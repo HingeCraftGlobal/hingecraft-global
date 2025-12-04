@@ -7,6 +7,10 @@ $w.onReady(function () {
     (function() {
       'use strict';
 
+      // Guard: Wix Preview / server contexts may lack DOM/window
+      const HAS_DOM = typeof document !== 'undefined';
+      const HAS_WINDOW = typeof window !== 'undefined';
+
       const CONFIG = {
         STORAGE_KEY: 'hingecraft_donation',
         SESSION_KEY: 'hingecraft_donation',
@@ -20,12 +24,14 @@ $w.onReady(function () {
        */
       function getDonationAmount() {
         // Method 1: URL parameter
-        const urlParams = new URLSearchParams(window.location.search);
-        const urlAmount = urlParams.get('donationAmount') || urlParams.get('amount');
-        if (urlAmount) {
-          const amount = parseFloat(urlAmount);
-          if (!isNaN(amount) && amount > 0) {
-            return amount;
+        if (HAS_WINDOW) {
+          const urlParams = new URLSearchParams(window.location.search);
+          const urlAmount = urlParams.get('donationAmount') || urlParams.get('amount');
+          if (urlAmount) {
+            const amount = parseFloat(urlAmount);
+            if (!isNaN(amount) && amount > 0) {
+              return amount;
+            }
           }
         }
 
@@ -64,7 +70,7 @@ $w.onReady(function () {
        * Update contributions section with donation amount
        */
       function updateContributionsSection(amount) {
-        if (!amount || amount <= 0) return;
+        if (!HAS_DOM || !amount || amount <= 0) return;
 
         const amountText = `$${amount.toFixed(2)}`;
         console.log('🔄 Updating contributions section with amount:', amountText);
@@ -119,6 +125,7 @@ $w.onReady(function () {
        * Display donation amount prominently
        */
       function displayDonationAmount(amount) {
+        if (!HAS_DOM) return;
         let displayEl = document.getElementById('hingecraft-donation-display');
         
         if (!displayEl) {
@@ -210,6 +217,7 @@ $w.onReady(function () {
        * Add checkout button
        */
       function addCheckoutButton() {
+        if (!HAS_DOM) return;
         if (document.getElementById('hingecraft-checkout-button')) {
           return;
         }
@@ -261,6 +269,11 @@ $w.onReady(function () {
        */
       function init() {
         console.log('🚀 HingeCraft Charter Page initialized (WITH CHECKOUT FLOW)');
+
+        if (!HAS_DOM) {
+          console.log('ℹ️ DOM not available in this context. Skipping DOM bindings.');
+          return;
+        }
 
         donationAmount = getDonationAmount();
 
