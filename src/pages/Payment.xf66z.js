@@ -1,437 +1,277 @@
 /**
- * HingeCraft Velo Backend API
- * Server-side functions for donation and payment processing
- * Place this in your Wix backend (backend/hingecraft-api.jsw)
+ * HingeCraft Payment Page Integration - NO DATABASE VERSION
  * 
- * Supports both Wix Database and External Database Adaptor
+ * This version works WITHOUT external database connection
+ * Flow: Payment Page → Charter Page → Checkout
+ * 
+ * FIXES:
+ * - Works without external database
+ * - Redirects to charter page immediately (before checkout)
+ * - Updates contributions section on charter page
+ * - Then proceeds to checkout
  */
 
-import wixData from 'wix-data';
-import { fetch } from 'wix-fetch';
+(function() {
+  'use strict';
 
-// External Database Adaptor Configuration
-// Set these in your Wix site settings or environment variables
-const EXTERNAL_DB_ENDPOINT = 'YOUR_EXTERNAL_DB_ADAPTOR_ENDPOINT_URL'; // e.g., 'https://api.example.com/database'
-const EXTERNAL_DB_SECRET_KEY = 'YOUR_EXTERNAL_DB_ADAPTOR_SECRET_KEY'; // Your secret key
-const USE_EXTERNAL_DB = true; // Set to true if using external database adaptor, false for Wix Database
+  // Configuration
+  const CONFIG = {
+    STORAGE_KEY: 'hingecraft_donation',
+    SESSION_KEY: 'hingecraft_donation',
+    CHARTER_PAGE_URL: '/charter', // UPDATE THIS to your actual charter page URL
+    CHECKOUT_PAGE_URL: '/checkout' // UPDATE THIS if needed
+  };
 
-/**
- * Get latest donation amount from database
- * Works with both Wix Database and External Database Adaptor
- */
-export async function getLatestDonation() {
-    try {
-        if (USE_EXTERNAL_DB) {
-            return await getLatestDonationFromExternal();
-        } else {
-            return await getLatestDonationFromWix();
+  let donationAmount = null;
+
+  /**
+   * Get donation amount from form
+   */
+  function getDonationAmount() {
+    const selectors = [
+      '#other-amount',
+      '#otherAmount',
+      '#customAmount',
+      'input[name="otherAmount"]',
+      'input[name="customAmount"]',
+      'input[type="number"][placeholder*="Other"]',
+      'input[type="number"][placeholder*="Custom"]',
+      '.other-amount-input',
+      '.custom-amount-input',
+      '[data-amount="other"]',
+      '[data-testid="other-amount"]'
+    ];
+
+    for (const selector of selectors) {
+      try {
+        const element = document.querySelector(selector);
+        if (element && element.value) {
+          const amount = parseFloat(element.value);
+          if (!isNaN(amount) && amount > 0) {
+            return amount;
+          }
         }
-    } catch (error) {
-        console.error('Error getting latest donation:', error);
-        return {
-            success: false,
-            amount: 0,
-            error: error.message
-        };
+      } catch (e) {
+        // Continue
+      }
     }
-}
 
-/**
- * Get latest donation from Wix Database
- */
-async function getLatestDonationFromWix() {
+    // Check URL parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const urlAmount = urlParams.get('donationAmount') || urlParams.get('amount');
+    if (urlAmount) {
+      const amount = parseFloat(urlAmount);
+      if (!isNaN(amount) && amount > 0) {
+        return amount;
+      }
+    }
+
+    return null;
+  }
+
+  /**
+   * Store donation amount (local storage only - no database)
+   */
+  function storeDonationAmount(amount) {
     try {
-        const results = await wixData.query('Donations')
-            .descending('createdAt')
-            .limit(1)
-            .find();
+      // Store in sessionStorage
+      if (typeof sessionStorage !== 'undefined') {
+        sessionStorage.setItem(CONFIG.SESSION_KEY, JSON.stringify({
+          amount: amount,
+          timestamp: new Date().toISOString(),
+          source: 'payment_page'
+        }));
+      }
 
-        if (results.items.length > 0) {
-            const latestDonation = results.items[0];
-            return {
-                success: true,
-                amount: parseFloat(latestDonation.amount) || 0,
-                isOtherAmount: latestDonation.isOtherAmount || false,
-                createdAt: latestDonation.createdAt,
-                donationId: latestDonation._id
-            };
+      // Store in Wix Storage (if available)
+      if (typeof wixStorage !== 'undefined') {
+        wixStorage.setItem(CONFIG.STORAGE_KEY, JSON.stringify({
+          amount: amount,
+          timestamp: new Date().toISOString(),
+          source: 'payment_page'
+        }));
+      }
+
+      console.log('✅ Donation amount stored:', amount);
+      return true;
+    } catch (error) {
+      console.error('❌ Error storing donation amount:', error);
+      return false;
+    }
+  }
+
+  /**
+   * Redirect to charter page (BEFORE checkout)
+   */
+  function redirectToCharterPage(amount) {
+    const charterUrl = `${CONFIG.CHARTER_PAGE_URL}?donationAmount=${encodeURIComponent(amount)}&fromPayment=true`;
+    console.log('✅ Redirecting to charter page:', charterUrl);
+    
+    // Use Wix location API if available
+    if (typeof wixLocation !== 'undefined' && wixLocation.to) {
+      wixLocation.to(charterUrl);
+    } else {
+      window.location.href = charterUrl;
+    }
+  }
+
+  /**
+   * Handle form submission
+   * NEW FLOW: Redirect to charter page immediately (before checkout)
+   * Flow: Payment Page → Charter Page → Checkout
+   */
+  function handleFormSubmit(event) {
+    // Get donation amount
+    const amount = getDonationAmount();
+    
+    if (amount && amount > 0) {
+      donationAmount = amount;
+      
+      // Store amount locally
+      storeDonationAmount(amount);
+      
+      console.log('💰 Donation amount captured:', amount);
+      console.log('🔄 Redirecting to charter page (before checkout)');
+      
+      // PREVENT default form submission
+      if (event && event.preventDefault) {
+        event.preventDefault();
+      }
+      
+      // Stop propagation
+      if (event && event.stopPropagation) {
+        event.stopPropagation();
+      }
+      
+      // Redirect to charter page IMMEDIATELY (before checkout)
+      redirectToCharterPage(amount);
+      
+      return false; // Prevent form submission
+    }
+    
+    // If no "Other" amount, let normal flow continue (goes to checkout)
+    console.log('ℹ️ No "Other" amount - continuing with normal checkout flow');
+    return true; // Allow form submission
+  }
+
+  /**
+   * Handle button click
+   * Flow: Payment Page → Charter Page → Checkout
+   */
+  function handleButtonClick(event) {
+    const amount = getDonationAmount();
+    
+    if (amount && amount > 0) {
+      donationAmount = amount;
+      
+      // Store amount locally
+      storeDonationAmount(amount);
+      
+      console.log('💰 Donation amount captured:', amount);
+      console.log('🔄 Redirecting to charter page (before checkout)');
+      
+      // Prevent default button action
+      if (event && event.preventDefault) {
+        event.preventDefault();
+      }
+      
+      // Stop propagation
+      if (event && event.stopPropagation) {
+        event.stopPropagation();
+      }
+      
+      // Redirect to charter page IMMEDIATELY
+      redirectToCharterPage(amount);
+      
+      return false;
+    }
+    
+    // Let button work normally if no "Other" amount
+    return true;
+  }
+
+  /**
+   * Initialize payment page integration
+   */
+  function init() {
+    console.log('🚀 HingeCraft Payment Page Integration initialized (NO DATABASE VERSION)');
+    console.log('📋 Flow: Payment Page → Charter Page → Checkout');
+
+    // Method 1: Listen for form submission
+    const forms = document.querySelectorAll('form');
+    forms.forEach(form => {
+      form.addEventListener('submit', function(e) {
+        const result = handleFormSubmit(e);
+        if (result === false) {
+          e.preventDefault();
+          e.stopPropagation();
+          return false;
         }
+      }, true); // Use capture phase
+    });
 
-        return {
-            success: false,
-            amount: 0,
-            message: 'No donations found'
-        };
-    } catch (error) {
-        console.error('Error getting donation from Wix Database:', error);
-        throw error;
-    }
-}
+    // Method 2: Listen for button clicks
+    const buttonSelectors = [
+      'button[type="submit"]',
+      'button[data-testid="submit"]',
+      '[data-submit="payment"]',
+      '.submit-payment',
+      '[data-testid="submit-payment"]',
+      'button.wixui-button',
+      'button[aria-label*="Submit"]',
+      'button[aria-label*="Pay"]'
+    ];
 
-/**
- * Get latest donation from External Database Adaptor
- */
-async function getLatestDonationFromExternal() {
-    try {
-        const response = await fetch(EXTERNAL_DB_ENDPOINT + '/donations/latest', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${EXTERNAL_DB_SECRET_KEY}`,
-                'X-API-Key': EXTERNAL_DB_SECRET_KEY
+    buttonSelectors.forEach(selector => {
+      try {
+        const buttons = document.querySelectorAll(selector);
+        buttons.forEach(button => {
+          button.addEventListener('click', function(e) {
+            const result = handleButtonClick(e);
+            if (result === false) {
+              e.preventDefault();
+              e.stopPropagation();
+              return false;
             }
+          }, true); // Use capture phase
         });
+      } catch (e) {
+        // Continue
+      }
+    });
 
-        if (!response.ok) {
-            throw new Error(`External DB request failed: ${response.status}`);
+    // Method 3: Use Wix $w API if available
+    if (typeof $w !== 'undefined' && $w.onReady) {
+      $w.onReady(function() {
+        try {
+          const paymentForm = $w('#paymentForm') || $w('#checkoutForm');
+          if (paymentForm && paymentForm.onSubmit) {
+            paymentForm.onSubmit(function() {
+              const amount = getDonationAmount();
+              if (amount && amount > 0) {
+                storeDonationAmount(amount);
+                redirectToCharterPage(amount);
+                return false; // Prevent form submission
+              }
+              return true; // Allow form submission
+            });
+          }
+        } catch (e) {
+          console.log('Wix $w API not available:', e);
         }
-
-        const data = await response.json();
-        
-        if (data && data.amount) {
-            return {
-                success: true,
-                amount: parseFloat(data.amount) || 0,
-                isOtherAmount: data.isOtherAmount || false,
-                createdAt: data.createdAt,
-                donationId: data.id || data._id
-            };
-        }
-
-        return {
-            success: false,
-            amount: 0,
-            message: 'No donations found'
-        };
-    } catch (error) {
-        console.error('Error getting donation from External DB:', error);
-        throw error;
+      });
     }
-}
+  }
 
-/**
- * Save donation to database
- * Works with both Wix Database and External Database Adaptor
- */
-export async function saveDonation(donationData) {
-    try {
-        // Validate donation data
-        if (!donationData.amount || donationData.amount <= 0) {
-            throw new Error('Invalid donation amount');
-        }
+  // Initialize
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
 
-        if (USE_EXTERNAL_DB) {
-            return await saveDonationToExternal(donationData);
-        } else {
-            return await saveDonationToWix(donationData);
-        }
-    } catch (error) {
-        console.error('Error saving donation:', error);
-        throw error;
-    }
-}
+  // Also initialize after delay for dynamic content
+  setTimeout(init, 1000);
 
-/**
- * Save donation to Wix Database
- */
-async function saveDonationToWix(donationData) {
-    try {
-        const donationRecord = {
-            amount: parseFloat(donationData.amount),
-            currency: donationData.currency || 'USD',
-            isOtherAmount: donationData.isOtherAmount || false,
-            source: donationData.source || 'payment_page',
-            paymentStatus: donationData.paymentStatus || 'completed',
-            paymentMethod: donationData.paymentMethod || null,
-            transactionId: donationData.transactionId || null,
-            memberEmail: donationData.email || null,
-            memberName: donationData.name || null,
-            createdAt: new Date(),
-            metadata: donationData.metadata || {}
-        };
+})();
 
-        const result = await wixData.save('Donations', donationRecord);
-        
-        console.log('Donation saved to Wix Database:', result);
-        
-        return {
-            success: true,
-            donationId: result._id,
-            amount: result.amount
-        };
-    } catch (error) {
-        console.error('Error saving donation to Wix Database:', error);
-        throw error;
-    }
-}
-
-/**
- * Save donation to External Database Adaptor
- */
-async function saveDonationToExternal(donationData) {
-    try {
-        const donationRecord = {
-            amount: parseFloat(donationData.amount),
-            currency: donationData.currency || 'USD',
-            isOtherAmount: donationData.isOtherAmount || false,
-            source: donationData.source || 'payment_page',
-            paymentStatus: donationData.paymentStatus || 'completed',
-            paymentMethod: donationData.paymentMethod || null,
-            transactionId: donationData.transactionId || null,
-            memberEmail: donationData.email || null,
-            memberName: donationData.name || null,
-            createdAt: new Date().toISOString(),
-            metadata: donationData.metadata || {}
-        };
-
-        const response = await fetch(EXTERNAL_DB_ENDPOINT + '/donations', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${EXTERNAL_DB_SECRET_KEY}`,
-                'X-API-Key': EXTERNAL_DB_SECRET_KEY
-            },
-            body: JSON.stringify(donationRecord)
-        });
-
-        if (!response.ok) {
-            throw new Error(`External DB save failed: ${response.status}`);
-        }
-
-        const result = await response.json();
-        
-        console.log('Donation saved to External Database:', result);
-        
-        return {
-            success: true,
-            donationId: result.id || result._id,
-            amount: result.amount
-        };
-    } catch (error) {
-        console.error('Error saving donation to External DB:', error);
-        throw error;
-    }
-}
-
-/**
- * Get all donations (optional - for admin/reporting)
- */
-export async function getAllDonations(limit = 100) {
-    try {
-        if (USE_EXTERNAL_DB) {
-            return await getAllDonationsFromExternal(limit);
-        } else {
-            return await getAllDonationsFromWix(limit);
-        }
-    } catch (error) {
-        console.error('Error getting donations:', error);
-        throw error;
-    }
-}
-
-/**
- * Get all donations from Wix Database
- */
-async function getAllDonationsFromWix(limit) {
-    try {
-        const results = await wixData.query('Donations')
-            .descending('createdAt')
-            .limit(limit)
-            .find();
-
-        return {
-            success: true,
-            donations: results.items,
-            total: results.items.length
-        };
-    } catch (error) {
-        console.error('Error getting donations from Wix Database:', error);
-        throw error;
-    }
-}
-
-/**
- * Get all donations from External Database Adaptor
- */
-async function getAllDonationsFromExternal(limit) {
-    try {
-        const response = await fetch(EXTERNAL_DB_ENDPOINT + `/donations?limit=${limit}`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${EXTERNAL_DB_SECRET_KEY}`,
-                'X-API-Key': EXTERNAL_DB_SECRET_KEY
-            }
-        });
-
-        if (!response.ok) {
-            throw new Error(`External DB request failed: ${response.status}`);
-        }
-
-        const data = await response.json();
-        
-        return {
-            success: true,
-            donations: data.donations || data.items || [],
-            total: data.total || (data.donations ? data.donations.length : 0)
-        };
-    } catch (error) {
-        console.error('Error getting donations from External DB:', error);
-        throw error;
-    }
-}
-
-/**
- * Get donation by ID
- */
-export async function getDonationById(donationId) {
-    try {
-        if (USE_EXTERNAL_DB) {
-            return await getDonationByIdFromExternal(donationId);
-        } else {
-            return await getDonationByIdFromWix(donationId);
-        }
-    } catch (error) {
-        console.error('Error getting donation by ID:', error);
-        throw error;
-    }
-}
-
-/**
- * Get donation by ID from Wix Database
- */
-async function getDonationByIdFromWix(donationId) {
-    try {
-        const donation = await wixData.get('Donations', donationId);
-        
-        if (!donation) {
-            return {
-                success: false,
-                message: 'Donation not found'
-            };
-        }
-
-        return {
-            success: true,
-            donation: donation
-        };
-    } catch (error) {
-        console.error('Error getting donation from Wix Database:', error);
-        throw error;
-    }
-}
-
-/**
- * Get donation by ID from External Database Adaptor
- */
-async function getDonationByIdFromExternal(donationId) {
-    try {
-        const response = await fetch(EXTERNAL_DB_ENDPOINT + `/donations/${donationId}`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${EXTERNAL_DB_SECRET_KEY}`,
-                'X-API-Key': EXTERNAL_DB_SECRET_KEY
-            }
-        });
-
-        if (!response.ok) {
-            if (response.status === 404) {
-                return {
-                    success: false,
-                    message: 'Donation not found'
-                };
-            }
-            throw new Error(`External DB request failed: ${response.status}`);
-        }
-
-        const data = await response.json();
-        
-        return {
-            success: true,
-            donation: data
-        };
-    } catch (error) {
-        console.error('Error getting donation from External DB:', error);
-        throw error;
-    }
-}
-
-/**
- * Update donation status
- */
-export async function updateDonationStatus(donationId, status) {
-    try {
-        if (USE_EXTERNAL_DB) {
-            return await updateDonationStatusInExternal(donationId, status);
-        } else {
-            return await updateDonationStatusInWix(donationId, status);
-        }
-    } catch (error) {
-        console.error('Error updating donation status:', error);
-        throw error;
-    }
-}
-
-/**
- * Update donation status in Wix Database
- */
-async function updateDonationStatusInWix(donationId, status) {
-    try {
-        const donation = await wixData.get('Donations', donationId);
-        
-        if (!donation) {
-            throw new Error('Donation not found');
-        }
-
-        donation.paymentStatus = status;
-        donation.updatedAt = new Date();
-
-        const updated = await wixData.update('Donations', donation);
-
-        return {
-            success: true,
-            donation: updated
-        };
-    } catch (error) {
-        console.error('Error updating donation in Wix Database:', error);
-        throw error;
-    }
-}
-
-/**
- * Update donation status in External Database Adaptor
- */
-async function updateDonationStatusInExternal(donationId, status) {
-    try {
-        const response = await fetch(EXTERNAL_DB_ENDPOINT + `/donations/${donationId}`, {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${EXTERNAL_DB_SECRET_KEY}`,
-                'X-API-Key': EXTERNAL_DB_SECRET_KEY
-            },
-            body: JSON.stringify({
-                paymentStatus: status,
-                updatedAt: new Date().toISOString()
-            })
-        });
-
-        if (!response.ok) {
-            if (response.status === 404) {
-                throw new Error('Donation not found');
-            }
-            throw new Error(`External DB update failed: ${response.status}`);
-        }
-
-        const result = await response.json();
-
-        return {
-            success: true,
-            donation: result
-        };
-    } catch (error) {
-        console.error('Error updating donation in External DB:', error);
-        throw error;
-    }
-}
