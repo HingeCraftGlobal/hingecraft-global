@@ -1,0 +1,19 @@
+{
+  "projectName": "hingecraft-global",
+  "version": "1.0.0",
+  "type": "velo",
+  "pages": {
+    "payment-page": {
+      "path": "public/pages/payment-page.js",
+      "type": "javascript"
+    },
+    "charter-page": {
+      "path": "public/pages/charter-page.html",
+      "type": "html"
+    }
+  },
+  "backend": {
+    "functions": "backend/functions"
+  }
+}
+
