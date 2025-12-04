@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "projectName": "hingecraft-global",
   "version": "1.0.0",
   "type": "velo",
@@ -17,3 +18,8 @@
   }
 }
 
+=======
+  "siteId": "450f03ec-e8b6-4373-b1b4-5d44459a7e08",
+  "uiVersion": "2134"
+}
+>>>>>>> 626b88b34ad9cf7179db8a270a8bae5b35c2a3d2
