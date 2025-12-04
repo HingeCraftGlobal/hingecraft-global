@@ -1,0 +1,12 @@
+{
+  "name": "hingecraft-global",
+  "version": "1.0.0",
+  "description": "HingeCraft Wix Website",
+  "scripts": {
+    "dev": "wix dev",
+    "build": "wix build",
+    "deploy": "wix deploy"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
