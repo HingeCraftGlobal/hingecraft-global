@@ -14,6 +14,10 @@
 (function() {
   'use strict';
 
+  // Wix Preview may execute this code in a non-DOM sandbox. Guard against missing globals.
+  const HAS_DOM = typeof document !== 'undefined';
+  const HAS_WINDOW = typeof window !== 'undefined';
+
   // Configuration
   const CONFIG = {
     STORAGE_KEY: 'hingecraft_donation',
@@ -28,6 +32,9 @@
    * Get donation amount from form
    */
   function getDonationAmount() {
+    // If DOM is unavailable (e.g., preview SSR), skip DOM queries
+    if (!HAS_DOM) return null;
+
     const selectors = [
       '#other-amount',
       '#otherAmount',
@@ -57,12 +64,14 @@
     }
 
     // Check URL parameter
-    const urlParams = new URLSearchParams(window.location.search);
-    const urlAmount = urlParams.get('donationAmount') || urlParams.get('amount');
-    if (urlAmount) {
-      const amount = parseFloat(urlAmount);
-      if (!isNaN(amount) && amount > 0) {
-        return amount;
+    if (HAS_WINDOW) {
+      const urlParams = new URLSearchParams(window.location.search);
+      const urlAmount = urlParams.get('donationAmount') || urlParams.get('amount');
+      if (urlAmount) {
+        const amount = parseFloat(urlAmount);
+        if (!isNaN(amount) && amount > 0) {
+          return amount;
+        }
       }
     }
 
@@ -110,7 +119,7 @@
     // Use Wix location API if available
     if (typeof wixLocation !== 'undefined' && wixLocation.to) {
       wixLocation.to(charterUrl);
-    } else {
+    } else if (HAS_WINDOW) {
       window.location.href = charterUrl;
     }
   }
@@ -196,6 +205,12 @@
   function init() {
     console.log('🚀 HingeCraft Payment Page Integration initialized (NO DATABASE VERSION)');
     console.log('📋 Flow: Payment Page → Charter Page → Checkout');
+
+    // If DOM is not available (e.g., Wix preview server-side), defer until client runtime
+    if (!HAS_DOM) {
+      console.log('ℹ️ DOM not available in this context. Skipping DOM bindings.');
+      return;
+    }
 
     // Method 1: Listen for form submission
     const forms = document.querySelectorAll('form');
