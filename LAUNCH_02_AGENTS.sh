@@ -179,8 +179,8 @@ fi
 # Test Crypto/Compliance Agent
 echo ""
 echo "📦 Testing Crypto/Compliance Agent..."
-CRYPTO_FILES=$(find agents/crypto_compliance -name "*.py" -type f | grep -v __pycache__ | wc -l)
-if [ "$CRYPTO_FILES" -gt 0 ]; then
+    CRYPTO_FILES=$(find agents/crypto_compliance -name "*.py" -type f 2>/dev/null | grep -v __pycache__ | grep -v __init__ | wc -l | tr -d ' ')
+    if [ "$CRYPTO_FILES" -gt 0 ]; then
         echo "  ✅ Crypto/Compliance Agent: $CRYPTO_FILES implementation files found"
         python3 << 'PYTHON_TEST'
 import sys
