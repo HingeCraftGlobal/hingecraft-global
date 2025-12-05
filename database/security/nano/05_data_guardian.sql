@@ -84,13 +84,21 @@ BEGIN
     
     -- Alert if exceeds thresholds
     IF p_records_count > threshold_records OR p_data_size_bytes > threshold_bytes THEN
-        PERFORM create_security_alert(
-            'data_access', 'high',
-            'Large data export detected',
-            'User ' || p_user_id || ' exported ' || p_records_count || ' records (' || 
-            ROUND(p_data_size_bytes::NUMERIC / 1048576, 2) || ' MB) from ' || p_table_name,
-            'data_guardian', NULL, p_table_name, p_user_id, NULL, 'bulk_export_threshold'
-        );
+        -- Log security alert if security_alerts table exists
+        IF EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = 'security_alerts') THEN
+            INSERT INTO security_alerts (
+                alert_id, alert_type, severity, title, description,
+                source_system, affected_resource, affected_user, rule_name
+            ) VALUES (
+                'ALERT-' || TO_CHAR(CURRENT_TIMESTAMP, 'YYYYMMDDHH24MISS') || '-' || 
+                LPAD(FLOOR(RANDOM() * 10000)::TEXT, 4, '0'),
+                'data_access', 'high',
+                'Large data export detected',
+                'User ' || p_user_id || ' exported ' || p_records_count || ' records (' || 
+                ROUND(p_data_size_bytes::NUMERIC / 1048576, 2) || ' MB) from ' || p_table_name,
+                'data_guardian', p_table_name, p_user_id, 'bulk_export_threshold'
+            );
+        END IF;
         RETURN false; -- Require approval
     END IF;
     
