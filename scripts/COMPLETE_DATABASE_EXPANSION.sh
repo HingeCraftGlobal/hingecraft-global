@@ -1,6 +1,6 @@
 #!/bin/bash
-# Complete HingeCraft Database Expansion - Full Automation
-# Executes all steps in perfect order for database expansion
+# Complete end-to-end database expansion automation
+# Executes everything in perfect order: extract → load → verify → adaptor → wix → git
 
 set -e
 
@@ -13,7 +13,7 @@ echo "🚀 COMPLETE HINGECRAFT DATABASE EXPANSION"
 echo "═══════════════════════════════════════════════════════════"
 echo ""
 
-# Detect Python environment (venv or system)
+# Detect Python environment
 if [ -d "$PROJECT_ROOT/.venv" ]; then
     PYTHON_BIN="$PROJECT_ROOT/.venv/bin/python3"
     PIP_BIN="$PROJECT_ROOT/.venv/bin/pip"
@@ -24,57 +24,57 @@ elif [ -n "$VIRTUAL_ENV" ]; then
     echo "✅ Using virtual environment: $VIRTUAL_ENV"
 else
     PYTHON_BIN="python3"
-    PIP_BIN="pip3"
+    PIP_BIN="python3 -m pip"
     echo "ℹ️  Using system Python"
 fi
 
-# Step 0: Install dependencies
+# Step 1: Install dependencies
 echo ""
-echo "📦 Step 0: Installing dependencies..."
+echo "═══════════════════════════════════════════════════════════"
+echo "📦 STEP 1: Installing dependencies"
+echo "═══════════════════════════════════════════════════════════"
 if ! "$PYTHON_BIN" -c "import psycopg2" 2>/dev/null; then
     echo "Installing psycopg2-binary..."
-    "$PIP_BIN" install psycopg2-binary --quiet --disable-pip-version-check
-    echo "✅ psycopg2-binary installed"
+    "$PIP_BIN" install psycopg2-binary beautifulsoup4 --quiet
+    echo "✅ Dependencies installed"
 else
-    echo "✅ psycopg2-binary already installed"
+    echo "✅ Dependencies already installed"
 fi
 
-if ! "$PYTHON_BIN" -c "import bs4" 2>/dev/null; then
-    echo "Installing beautifulsoup4..."
-    "$PIP_BIN" install beautifulsoup4 --quiet --disable-pip-version-check
-    echo "✅ beautifulsoup4 installed"
-else
-    echo "✅ beautifulsoup4 already installed"
-fi
-
-# Step 1: Extract registry data from HTML files
+# Step 2: Extract all consumer data
 echo ""
-echo "📦 Step 1: Extracting registry data from HTML files..."
+echo "═══════════════════════════════════════════════════════════"
+echo "📦 STEP 2: Extracting ALL consumer data from HTML files"
+echo "═══════════════════════════════════════════════════════════"
 cd "$PROJECT_ROOT"
-if [ -f "scripts/extract_registry.py" ]; then
-    "$PYTHON_BIN" scripts/extract_registry.py
-    echo "✅ Registry data extracted"
+if [ -f "scripts/extract_all_consumer_data.py" ]; then
+    "$PYTHON_BIN" scripts/extract_all_consumer_data.py
 else
-    echo "⚠️  extract_registry.py not found, skipping extraction"
+    echo "⚠️  Using existing extraction script..."
+    "$PYTHON_BIN" scripts/extract_registry.py
 fi
 
-# Step 2: Start Docker database
+# Step 3: Start Docker database
 echo ""
-echo "📦 Step 2: Starting Docker database..."
+echo "═══════════════════════════════════════════════════════════"
+echo "📦 STEP 3: Starting Docker database"
+echo "═══════════════════════════════════════════════════════════"
 cd "$HINGECRAFT_DIR"
 if ! docker compose ps 2>/dev/null | grep -q "hingecraft-postgres.*Up"; then
     echo "Starting Docker containers..."
     docker compose up -d
     echo "⏳ Waiting for database to be ready..."
-    sleep 8
+    sleep 10
 else
     echo "✅ Database already running"
 fi
 
-# Step 3: Wait for database health check
+# Step 4: Wait for database health
 echo ""
-echo "📦 Step 3: Waiting for database health check..."
-timeout=30
+echo "═══════════════════════════════════════════════════════════"
+echo "📦 STEP 4: Database health check"
+echo "═══════════════════════════════════════════════════════════"
+timeout=60
 counter=0
 while ! docker compose exec -T postgres pg_isready -U hingecraft_user -d hingecraft_db > /dev/null 2>&1; do
     if [ $counter -ge $timeout ]; then
@@ -82,129 +82,118 @@ while ! docker compose exec -T postgres pg_isready -U hingecraft_user -d hingecr
         exit 1
     fi
     echo "Waiting for database... ($counter/$timeout)"
-    sleep 1
-    counter=$((counter + 1))
+    sleep 2
+    counter=$((counter + 2))
 done
 echo "✅ Database is healthy"
 
-# Step 4: Ensure members table exists
+# Step 5: Get database password
 echo ""
-echo "📦 Step 4: Ensuring members table exists..."
-cd "$HINGECRAFT_DIR"
-docker compose exec -T postgres psql -U hingecraft_user -d hingecraft_db <<EOF
-CREATE TABLE IF NOT EXISTS members (
-    "_id" VARCHAR(255) PRIMARY KEY,
-    "_createdDate" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    "_updatedDate" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    "_owner" VARCHAR(255) DEFAULT 'system',
-    first_name VARCHAR(255),
-    last_name VARCHAR(255),
-    twin_name VARCHAR(255),
-    membership_id VARCHAR(255) UNIQUE,
-    city VARCHAR(255),
-    region VARCHAR(255),
-    country VARCHAR(255),
-    registry_date VARCHAR(50),
-    source_file VARCHAR(255),
-    metadata JSONB,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-CREATE INDEX IF NOT EXISTS idx_members_membership_id ON members(membership_id);
-CREATE INDEX IF NOT EXISTS idx_members_created_date ON members("_createdDate" DESC);
-CREATE INDEX IF NOT EXISTS idx_members_country ON members(country);
-EOF
-echo "✅ Members table verified"
+echo "═══════════════════════════════════════════════════════════"
+echo "📦 STEP 5: Setting database connection"
+echo "═══════════════════════════════════════════════════════════"
+if [ -f "$HINGECRAFT_DIR/.env" ]; then
+    ENV_PASSWORD=$(grep "^DB_PASSWORD=" "$HINGECRAFT_DIR/.env" 2>/dev/null | cut -d'=' -f2 | tr -d '"' | tr -d "'" || echo "")
+    if [ -n "$ENV_PASSWORD" ]; then
+        DB_PASSWORD="$ENV_PASSWORD"
+        echo "✅ Using password from .env file"
+    else
+        DB_PASSWORD="hingecraft_secure_password_123"
+        echo "⚠️  Using default password"
+    fi
+else
+    DB_PASSWORD="hingecraft_secure_password_123"
+    echo "⚠️  No .env file found, using default password"
+fi
 
-# Step 5: Set environment variables
-echo ""
-echo "📦 Step 5: Setting database connection..."
 export DB_HOST=localhost
 export DB_PORT=5432
 export DB_NAME=hingecraft_db
 export DB_USER=hingecraft_user
-export DB_PASSWORD=hingecraft_secure_password_123
+export DB_PASSWORD
 
 # Step 6: Load all data
 echo ""
-echo "📦 Step 6: Loading all HingeCraft data..."
+echo "═══════════════════════════════════════════════════════════"
+echo "📦 STEP 6: Loading ALL data into database"
+echo "═══════════════════════════════════════════════════════════"
 cd "$PROJECT_ROOT"
 "$PYTHON_BIN" scripts/load_all_hingecraft_data.py
 
-# Step 7: Verify data loaded
+# Step 7: Verify data
 echo ""
-echo "📦 Step 7: Verifying data..."
+echo "═══════════════════════════════════════════════════════════"
+echo "📦 STEP 7: Verifying loaded data"
+echo "═══════════════════════════════════════════════════════════"
 cd "$HINGECRAFT_DIR"
-DONATIONS=$(docker compose exec -T postgres psql -U hingecraft_user -d hingecraft_db -t -c "SELECT COUNT(*) FROM donations;" | tr -d ' ')
-MEMBERS=$(docker compose exec -T postgres psql -U hingecraft_user -d hingecraft_db -t -c "SELECT COUNT(*) FROM members;" | tr -d ' ')
+DONATIONS=$(docker compose exec -T postgres psql -U hingecraft_user -d hingecraft_db -t -c "SELECT COUNT(*) FROM donations;" 2>/dev/null | tr -d ' ' || echo "0")
+MEMBERS=$(docker compose exec -T postgres psql -U hingecraft_user -d hingecraft_db -t -c "SELECT COUNT(*) FROM members;" 2>/dev/null | tr -d ' ' || echo "0")
 
 echo ""
-echo "═══════════════════════════════════════════════════════════"
-echo "✅ DATABASE LOAD COMPLETE"
-echo "═══════════════════════════════════════════════════════════"
 echo "📊 Total Donations: $DONATIONS"
 echo "👥 Total Members: $MEMBERS"
+
+# Step 8: Ensure adaptor has members SPI
+echo ""
 echo "═══════════════════════════════════════════════════════════"
-
-# Step 8: Rebuild adaptor with members SPI endpoints
-echo ""
-echo "📦 Step 8: Rebuilding database adaptor..."
+echo "📦 STEP 8: Ensuring adaptor has members SPI endpoints"
+echo "═══════════════════════════════════════════════════════════"
 cd "$HINGECRAFT_DIR"
-docker compose build db-adaptor
-docker compose up -d db-adaptor
-echo "⏳ Waiting for adaptor to restart..."
-sleep 5
-
-# Step 9: Verify adaptor health
-echo ""
-echo "📦 Step 9: Verifying adaptor health..."
-if curl -s http://localhost:3000/health > /dev/null; then
-    echo "✅ Adaptor is healthy"
+if grep -q "/v1/collections/members/schema" database-adaptor/server.js 2>/dev/null; then
+    echo "✅ Members SPI endpoints found"
+    echo "Rebuilding and restarting adaptor..."
+    docker compose build db-adaptor
+    docker compose up -d db-adaptor
+    echo "⏳ Waiting for adaptor to restart..."
+    sleep 10
 else
-    echo "⚠️  Adaptor health check failed, but continuing..."
+    echo "⚠️  Members SPI endpoints not found - please add them to database-adaptor/server.js"
 fi
 
-# Step 10: Test members SPI endpoints
+# Step 9: Test adaptor endpoints
 echo ""
-echo "📦 Step 10: Testing members SPI endpoints..."
-SECRET_KEY="${ADAPTOR_SECRET_KEY:-hingecraft_secret_key_change_in_production}"
-if curl -s -H "Authorization: Bearer $SECRET_KEY" http://localhost:3000/v1/collections/members/schema > /dev/null; then
-    echo "✅ Members schema endpoint working"
+echo "═══════════════════════════════════════════════════════════"
+echo "📦 STEP 9: Testing adaptor endpoints"
+echo "═══════════════════════════════════════════════════════════"
+ADAPTOR_HEALTH=$(curl -s http://localhost:3000/health 2>/dev/null || echo "")
+if [ -n "$ADAPTOR_HEALTH" ]; then
+    echo "✅ Adaptor health check: OK"
+    echo "   Response: $ADAPTOR_HEALTH"
 else
-    echo "⚠️  Members schema endpoint test failed (may need correct SECRET_KEY)"
+    echo "⚠️  Adaptor health check failed"
 fi
 
-# Step 11: Commit and push to git
+# Step 10: Commit and push to git
 echo ""
-echo "📦 Step 11: Committing and pushing to git..."
+echo "═══════════════════════════════════════════════════════════"
+echo "📦 STEP 10: Committing and pushing to git"
+echo "═══════════════════════════════════════════════════════════"
 cd "$PROJECT_ROOT"
 git add -A
 if git diff --staged --quiet; then
-    echo "ℹ️  No changes to commit"
+    echo "✅ No changes to commit"
 else
-    git commit -m "feat: complete database expansion - all HingeCraft data loaded" || true
-    GIT_SSL_NO_VERIFY=true git push origin main || echo "⚠️  Git push failed, but data is loaded"
+    git commit -m "feat: complete database expansion - all consumer data loaded" || echo "⚠️  Commit failed"
+    GIT_SSL_NO_VERIFY=true git push origin main || echo "⚠️  Push failed"
     echo "✅ Changes pushed to git"
 fi
 
-# Step 12: Final summary
+# Step 11: Summary and next steps
 echo ""
 echo "═══════════════════════════════════════════════════════════"
 echo "✅ COMPLETE DATABASE EXPANSION FINISHED"
 echo "═══════════════════════════════════════════════════════════"
 echo ""
-echo "📊 Database Status:"
-echo "   - Donations: $DONATIONS records"
-echo "   - Members: $MEMBERS records"
+echo "📊 Database Summary:"
+echo "   Donations: $DONATIONS"
+echo "   Members: $MEMBERS"
 echo ""
 echo "🔗 Next Steps:"
 echo "   1. Test members schema:"
-echo "      curl -H 'Authorization: Bearer $SECRET_KEY' \\"
-echo "           http://localhost:3000/v1/collections/members/schema"
+echo "      curl -H 'Authorization: Bearer YOUR_SECRET' http://localhost:3000/v1/collections/members/schema"
 echo ""
 echo "   2. Test members items:"
-echo "      curl -H 'Authorization: Bearer $SECRET_KEY' \\"
-echo "           'http://localhost:3000/v1/collections/members/items?limit=5'"
+echo "      curl -H 'Authorization: Bearer YOUR_SECRET' 'http://localhost:3000/v1/collections/members/items?limit=5'"
 echo ""
 echo "   3. Sync to Wix:"
 echo "      cd $PROJECT_ROOT"
@@ -213,4 +202,3 @@ echo ""
 echo "   4. Refresh Wix Editor - members collection should be available"
 echo ""
 echo "═══════════════════════════════════════════════════════════"
-

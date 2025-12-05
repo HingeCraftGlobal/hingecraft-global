@@ -81,9 +81,9 @@ echo "📦 Step 4: Loading all data..."
 cd "$PROJECT_ROOT"
 "$PYTHON_BIN" scripts/load_all_hingecraft_data.py
 
-# Step 5: Verify data loaded
+# Step 6: Verify data loaded
 echo ""
-echo "📦 Step 5: Verifying data..."
+echo "📦 Step 6: Verifying data..."
 cd "$HINGECRAFT_DIR"
 DONATIONS=$(docker compose exec -T postgres psql -U hingecraft_user -d hingecraft_db -t -c "SELECT COUNT(*) FROM donations;" | tr -d ' ')
 MEMBERS=$(docker compose exec -T postgres psql -U hingecraft_user -d hingecraft_db -t -c "SELECT COUNT(*) FROM members;" | tr -d ' ')
