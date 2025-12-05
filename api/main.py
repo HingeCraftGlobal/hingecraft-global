@@ -10,7 +10,7 @@ from contextlib import asynccontextmanager
 import os
 from typing import Optional
 
-from api.routers import donations, wallets, compliance, receipts, admin, webhooks, auth
+from api.routers import donations, wallets, compliance, receipts, admin, webhooks, auth, wix
 from api.database import get_db, init_db
 from api.auth import verify_token, get_current_user
 from api.middleware import logging_middleware, error_handler
@@ -45,6 +45,7 @@ app.include_router(compliance.router, prefix="/v1/compliance", tags=["Compliance
 app.include_router(receipts.router, prefix="/v1/receipts", tags=["Receipts"])
 app.include_router(admin.router, prefix="/v1/admin", tags=["Admin"])
 app.include_router(webhooks.router, prefix="/v1/webhooks", tags=["Webhooks"])
+app.include_router(wix.router, prefix="", tags=["Wix Integration"])
 
 
 @app.on_event("startup")
