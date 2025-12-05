@@ -638,3 +638,4 @@ COMMENT ON FUNCTION decrypt_email IS 'Decrypt email addresses using master key';
 COMMENT ON FUNCTION rotate_encryption_key IS 'Rotate encryption keys for security';
 COMMENT ON FUNCTION generate_encryption_compliance_report IS 'Generate encryption compliance report';
 
+

@@ -465,3 +465,4 @@ COMMENT ON TABLE data_masking_rules IS 'Data masking rules for sensitive data';
 COMMENT ON FUNCTION apply_data_masking IS 'Apply data masking based on rules';
 COMMENT ON FUNCTION generate_dlp_compliance_report IS 'Generate DLP compliance report';
 
+

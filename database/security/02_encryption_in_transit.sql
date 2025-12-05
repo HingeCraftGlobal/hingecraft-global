@@ -472,3 +472,4 @@ COMMENT ON TABLE tls_security_policies IS 'TLS security policy configuration';
 COMMENT ON FUNCTION check_certificate_expiration IS 'Check SSL certificate expiration status';
 COMMENT ON FUNCTION generate_tls_compliance_report IS 'Generate TLS/SSL compliance report';
 
+

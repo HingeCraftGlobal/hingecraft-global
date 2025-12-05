@@ -128,3 +128,4 @@ COMMENT ON FUNCTION get_expired_cache_keys IS 'Get expired cache keys for cleanu
 COMMENT ON FUNCTION clear_expired_cache IS 'Clear expired cache entries';
 COMMENT ON VIEW v_cache_statistics IS 'Cache statistics by collection';
 
+

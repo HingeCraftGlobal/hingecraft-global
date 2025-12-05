@@ -1,0 +1,60 @@
+# Content Prompts Library
+# 25 modular prompts for content creation
+
+prompts:
+  - name: content_blog_post
+    category: content
+    version: 1.0
+    description: Generate a blog post on a given topic
+    variables:
+      - name: topic
+        type: string
+        required: true
+      - name: target_audience
+        type: string
+        required: true
+      - name: tone
+        type: string
+        default: "professional"
+      - name: length
+        type: string
+        default: "medium"
+    template: |
+      Write a {{length}} blog post about {{topic}} for {{target_audience}}.
+      Tone: {{tone}}
+      
+      Include:
+      1. Engaging introduction
+      2. Clear structure with headings
+      3. Actionable insights
+      4. Examples and case studies
+      5. Strong conclusion with call-to-action
+    tags: [content, blog, writing]
+
+  - name: content_social_media
+    category: content
+    version: 1.0
+    description: Generate social media post
+    variables:
+      - name: platform
+        type: string
+        required: true
+      - name: topic
+        type: string
+        required: true
+      - name: include_hashtags
+        type: boolean
+        default: true
+    template: |
+      Create a {{platform}} post about {{topic}}.
+      {% if include_hashtags %}Include relevant hashtags.{% endif %}
+      
+      Requirements:
+      - Platform-appropriate format
+      - Engaging hook
+      - Clear message
+      - Call-to-action
+    tags: [content, social-media, marketing]
+
+  # Add 23 more content prompts...
+

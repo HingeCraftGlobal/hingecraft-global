@@ -490,3 +490,4 @@ COMMENT ON TABLE security_event_audit IS 'Security event audit log';
 COMMENT ON FUNCTION comprehensive_audit_trigger IS 'Comprehensive audit trigger for all operations';
 COMMENT ON FUNCTION generate_audit_compliance_report IS 'Generate audit compliance report';
 
+

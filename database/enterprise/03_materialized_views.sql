@@ -152,3 +152,4 @@ ORDER BY pg_total_relation_size(schemaname||'.'||matviewname) DESC;
 
 COMMENT ON VIEW v_materialized_view_info IS 'Monitor materialized view sizes and row counts';
 
+

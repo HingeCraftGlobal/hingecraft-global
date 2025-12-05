@@ -45,3 +45,4 @@ echo ""
 echo "Verifying..."
 docker compose exec -T postgres psql -U hingecraft_user -d hingecraft_db -c "SELECT COUNT(*) as members FROM members; SELECT COUNT(*) as clubs FROM chat_clubs; SELECT COUNT(*) as messages FROM chat_messages;"
 
+

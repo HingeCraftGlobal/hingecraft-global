@@ -442,3 +442,4 @@ COMMENT ON FUNCTION check_firewall_rule IS 'Check if traffic is allowed by firew
 COMMENT ON FUNCTION detect_ddos_attack IS 'Detect DDoS attack patterns';
 COMMENT ON FUNCTION generate_network_security_compliance_report IS 'Generate network security compliance report';
 
+

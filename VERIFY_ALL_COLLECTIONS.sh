@@ -41,3 +41,4 @@ echo "All collections are available via Wix SPI endpoints."
 echo "Open Wix Editor → Database → External Database → HingeCraftDonationsDB"
 echo "═══════════════════════════════════════════════════════════"
 
+

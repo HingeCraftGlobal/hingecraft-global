@@ -147,3 +147,4 @@ echo "  3. Verify Wix SPI endpoints are accessible"
 echo "  4. Test data sync in Wix Editor"
 echo ""
 
+

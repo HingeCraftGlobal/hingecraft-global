@@ -131,3 +131,4 @@ The Docker database cannot start because **port 5432 is already in use** by anot
 
 *All code is production-ready and committed to git. The system will be fully operational once the database is available.*
 
+

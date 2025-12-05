@@ -513,3 +513,4 @@ COMMENT ON FUNCTION detect_xss IS 'Detect XSS attack attempts';
 COMMENT ON FUNCTION detect_brute_force IS 'Detect brute force attacks';
 COMMENT ON FUNCTION auto_mitigate_threat IS 'Automated threat mitigation';
 
+

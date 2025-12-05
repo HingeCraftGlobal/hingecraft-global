@@ -100,3 +100,4 @@ cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
 **Data Flow**: ✅ **Working with live updates**  
 **Wix Dev**: ✅ **Running and syncing**
 
+

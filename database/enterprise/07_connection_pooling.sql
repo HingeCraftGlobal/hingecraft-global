@@ -104,3 +104,4 @@ COMMENT ON VIEW v_long_running_queries IS 'Identify long-running queries';
 COMMENT ON FUNCTION kill_idle_connections IS 'Kill idle connections older than specified seconds';
 COMMENT ON FUNCTION get_connection_pool_stats IS 'Get connection pool statistics';
 
+

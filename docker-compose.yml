@@ -1,25 +1,107 @@
 version: "3.9"
 
 services:
-  db:
-    image: postgres:14
+  postgres:
+    image: postgres:15
     container_name: hingecraft_db
     restart: unless-stopped
     environment:
-      POSTGRES_DB: hingecraft_db
-      POSTGRES_USER: hingecraft_user
-      POSTGRES_PASSWORD: hingecraft_secure_password_123
+      POSTGRES_DB: hingecraft
+      POSTGRES_USER: hc
+      POSTGRES_PASSWORD: hcpass
     ports:
       - "5432:5432"
     volumes:
-      - db_data:/var/lib/postgresql/data
+      - ./pgdata:/var/lib/postgresql/data
       - ./database/init.sql:/docker-entrypoint-initdb.d/00-init.sql:ro
+      - ./database/master_schema:/docker-entrypoint-initdb.d/master_schema:ro
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U hingecraft_user -d hingecraft_db"]
+      test: ["CMD-SHELL", "pg_isready -U hc -d hingecraft"]
       interval: 5s
       timeout: 5s
       retries: 10
 
+  redis:
+    image: redis:7
+    container_name: hingecraft_redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
+  minio:
+    image: minio/minio
+    container_name: hingecraft_minio
+    restart: unless-stopped
+    command: server /data
+    environment:
+      MINIO_ROOT_USER: minio
+      MINIO_ROOT_PASSWORD: minio123
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - minio_data:/data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 30s
+      timeout: 20s
+      retries: 3
+
+  api:
+    build: ./api
+    container_name: hingecraft_api
+    restart: unless-stopped
+    command: uvicorn api.main:app --host 0.0.0.0 --port 8000 --reload
+    env_file:
+      - .env
+    environment:
+      DATABASE_URL: postgresql://hc:hcpass@postgres:5432/hingecraft
+      REDIS_URL: redis://redis:6379
+      MINIO_ENDPOINT: minio:9000
+      MINIO_ACCESS_KEY: minio
+      MINIO_SECRET_KEY: minio123
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+      - redis
+      - minio
+    volumes:
+      - ./api:/app/api
+
+  worker:
+    build: ./api
+    container_name: hingecraft_worker
+    restart: unless-stopped
+    command: celery -A api.celery_app worker --loglevel=info
+    env_file:
+      - .env
+    environment:
+      DATABASE_URL: postgresql://hc:hcpass@postgres:5432/hingecraft
+      REDIS_URL: redis://redis:6379
+    depends_on:
+      - redis
+      - postgres
+    volumes:
+      - ./api:/app/api
+
+  ngrok:
+    image: wernight/ngrok
+    container_name: hingecraft_ngrok
+    restart: unless-stopped
+    environment:
+      NGROK_AUTHTOKEN: ${NGROK_TOKEN:-}
+    command: http api:8000
+    ports:
+      - "4040:4040"
+    depends_on:
+      - api
+
 volumes:
   db_data:
+  redis_data:
+  minio_data:
+
 
