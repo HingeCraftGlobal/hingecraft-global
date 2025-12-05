@@ -1,0 +1,22 @@
+{
+  "execution_date": "2025-12-05T13:05:42.572166",
+  "main_tasks": {
+    "total": 5171,
+    "completed": 3034,
+    "failed": 53,
+    "skipped": 2084,
+    "rate": "58.67%"
+  },
+  "micro_tasks": {
+    "total": 1473,
+    "completed": 552,
+    "failed": 0,
+    "skipped": 921,
+    "rate": "37.5%"
+  },
+  "grand_total": {
+    "total_tasks": 6644,
+    "completed": 3586,
+    "completion_rate": "53.97%"
+  }
+}

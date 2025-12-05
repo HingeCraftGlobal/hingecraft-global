@@ -1,0 +1,210 @@
+{
+  "deployed_at": "1764964744.9971833",
+  "total_pages": 34,
+  "pages": [
+    {
+      "name": "Corporate Formation Charter",
+      "wix_filename": "corporate_formation_charter",
+      "original_file": "01-corporate-formation-charter.html",
+      "public_url": "/legal/corporate_formation_charter"
+    },
+    {
+      "name": "Corporate Bylaws",
+      "wix_filename": "corporate_bylaws",
+      "original_file": "02-corporate-bylaws.html",
+      "public_url": "/legal/corporate_bylaws"
+    },
+    {
+      "name": "Stakeholder Ethos & Ethics Charter",
+      "wix_filename": "stakeholder_ethos_ethics_charter",
+      "original_file": "03-stakeholder-ethos-ethics-charter.html",
+      "public_url": "/legal/stakeholder_ethos_ethics_charter"
+    },
+    {
+      "name": "Board Member Agreement",
+      "wix_filename": "board_member_agreement",
+      "original_file": "04-board-member-agreement.html",
+      "public_url": "/legal/board_member_agreement"
+    },
+    {
+      "name": "Corporate Risk Register",
+      "wix_filename": "corporate_risk_register",
+      "original_file": "05-corporate-risk-register-mitigation-protocol.html",
+      "public_url": "/legal/corporate_risk_register"
+    },
+    {
+      "name": "Corporate Social Responsibility",
+      "wix_filename": "corporate_social_responsibility",
+      "original_file": "06-corporate-social-responsibility-compliance.html",
+      "public_url": "/legal/corporate_social_responsibility"
+    },
+    {
+      "name": "Cookie Policy",
+      "wix_filename": "cookie_policy",
+      "original_file": "07-cookie-tracking-policy.html",
+      "public_url": "/legal/cookie_policy"
+    },
+    {
+      "name": "Terms of Service",
+      "wix_filename": "terms_of_service",
+      "original_file": "07-universal-terms-of-service.html",
+      "public_url": "/legal/terms_of_service"
+    },
+    {
+      "name": "End User License Agreement",
+      "wix_filename": "end_user_license_agreement",
+      "original_file": "08-end-user-license-agreement.html",
+      "public_url": "/legal/end_user_license_agreement"
+    },
+    {
+      "name": "Acceptable Use Policy",
+      "wix_filename": "acceptable_use_policy",
+      "original_file": "09-acceptable-use-safety-policy.html",
+      "public_url": "/legal/acceptable_use_policy"
+    },
+    {
+      "name": "Export Compliance",
+      "wix_filename": "export_compliance",
+      "original_file": "09-export-compliance-itar-ear.html",
+      "public_url": "/legal/export_compliance"
+    },
+    {
+      "name": "Service Level Agreement",
+      "wix_filename": "service_level_agreement",
+      "original_file": "10-service-level-agreement.html",
+      "public_url": "/legal/service_level_agreement"
+    },
+    {
+      "name": "Refunds & Warranty Policy",
+      "wix_filename": "refunds_warranty_policy",
+      "original_file": "11-refunds-warranty-return-policy.html",
+      "public_url": "/legal/refunds_warranty_policy"
+    },
+    {
+      "name": "Privacy Policy",
+      "wix_filename": "privacy_policy",
+      "original_file": "12-privacy-policy-gdpr-ccpa-coppa.html",
+      "public_url": "/legal/privacy_policy"
+    },
+    {
+      "name": "Data Processing Agreement",
+      "wix_filename": "data_processing_agreement",
+      "original_file": "13-data-processing-agreement.html",
+      "public_url": "/legal/data_processing_agreement"
+    },
+    {
+      "name": "AI Training Consent",
+      "wix_filename": "ai_training_consent",
+      "original_file": "14-ai-training-use-consent.html",
+      "public_url": "/legal/ai_training_consent"
+    },
+    {
+      "name": "Sensitive Data Consent",
+      "wix_filename": "sensitive_data_consent",
+      "original_file": "15-sensitive-data-youth-consent.html",
+      "public_url": "/legal/sensitive_data_consent"
+    },
+    {
+      "name": "Algorithmic Transparency",
+      "wix_filename": "algorithmic_transparency",
+      "original_file": "16-algorithmic-transparency-accountability.html",
+      "public_url": "/legal/algorithmic_transparency"
+    },
+    {
+      "name": "AI Safety & Governance",
+      "wix_filename": "ai_safety_governance",
+      "original_file": "17-ai-safety-bias-governance.html",
+      "public_url": "/legal/ai_safety_governance"
+    },
+    {
+      "name": "Creator Licensing Agreement",
+      "wix_filename": "creator_licensing_agreement",
+      "original_file": "18-creator-licensing-ip-agreement.html",
+      "public_url": "/legal/creator_licensing_agreement"
+    },
+    {
+      "name": "Marketplace Merchant Agreement",
+      "wix_filename": "marketplace_merchant_agreement",
+      "original_file": "19-marketplace-merchant-agreement.html",
+      "public_url": "/legal/marketplace_merchant_agreement"
+    },
+    {
+      "name": "Manufacturing Agreement",
+      "wix_filename": "manufacturing_agreement",
+      "original_file": "20-manufacturing-production-agreement.html",
+      "public_url": "/legal/manufacturing_agreement"
+    },
+    {
+      "name": "Attribution & Derivative Rights",
+      "wix_filename": "attribution_derivative_rights",
+      "original_file": "21-attribution-distribution-derivative-rights.html",
+      "public_url": "/legal/attribution_derivative_rights"
+    },
+    {
+      "name": "Digital Asset & NFT Ownership",
+      "wix_filename": "digital_asset_nft_ownership",
+      "original_file": "22-digital-asset-nft-ownership.html",
+      "public_url": "/legal/digital_asset_nft_ownership"
+    },
+    {
+      "name": "Product Liability Disclosure",
+      "wix_filename": "product_liability_disclosure",
+      "original_file": "23-product-liability-safety-disclosure.html",
+      "public_url": "/legal/product_liability_disclosure"
+    },
+    {
+      "name": "Warranty & Repair Policy",
+      "wix_filename": "warranty_repair_policy",
+      "original_file": "24-warranty-repair-policy.html",
+      "public_url": "/legal/warranty_repair_policy"
+    },
+    {
+      "name": "Materials Sourcing Compliance",
+      "wix_filename": "materials_sourcing_compliance",
+      "original_file": "25-materials-sourcing-ethical-compliance.html",
+      "public_url": "/legal/materials_sourcing_compliance"
+    },
+    {
+      "name": "Membership Terms & Rights",
+      "wix_filename": "membership_terms_rights",
+      "original_file": "26-membership-terms-rights.html",
+      "public_url": "/legal/membership_terms_rights"
+    },
+    {
+      "name": "Community Code of Conduct",
+      "wix_filename": "community_code_of_conduct",
+      "original_file": "27-community-code-of-conduct.html",
+      "public_url": "/legal/community_code_of_conduct"
+    },
+    {
+      "name": "Academic Integrity Policy",
+      "wix_filename": "academic_integrity_policy",
+      "original_file": "28-academic-integrity-institutional-use.html",
+      "public_url": "/legal/academic_integrity_policy"
+    },
+    {
+      "name": "Global Compliance Framework",
+      "wix_filename": "global_compliance_framework",
+      "original_file": "29-global-compliance-framework.html",
+      "public_url": "/legal/global_compliance_framework"
+    },
+    {
+      "name": "Cross-Border Data Transfer",
+      "wix_filename": "crossborder_data_transfer",
+      "original_file": "30-cross-border-data-transfer-hosting.html",
+      "public_url": "/legal/crossborder_data_transfer"
+    },
+    {
+      "name": "Charter of Abundance",
+      "wix_filename": "charter_of_abundance",
+      "original_file": "31-charter-of-abundance-resilience-governance.html",
+      "public_url": "/legal/charter_of_abundance"
+    },
+    {
+      "name": "Pledge & Participation Agreement",
+      "wix_filename": "pledge_participation_agreement",
+      "original_file": "32-pledge-participation-collective-impact.html",
+      "public_url": "/legal/pledge_participation_agreement"
+    }
+  ]
+}

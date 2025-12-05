@@ -1,27 +1,19 @@
 {
-<<<<<<< HEAD
   "name": "hingecraft-global",
   "version": "1.0.0",
   "description": "HingeCraft Wix Website",
   "scripts": {
+    "postinstall": "wix sync-types",
     "dev": "wix dev",
     "build": "wix build",
-    "deploy": "wix deploy"
+    "deploy": "wix deploy",
+    "lint": "eslint ."
   },
   "dependencies": {},
-  "devDependencies": {}
-}
-=======
   "devDependencies": {
     "@wix/cli": "^1.0.0",
     "@wix/eslint-plugin-cli": "^1.0.0",
     "eslint": "^8.25.0",
     "react": "16.14.0"
-  },
-  "scripts": {
-    "postinstall": "wix sync-types",
-    "dev": "wix dev",
-    "lint": "eslint ."
   }
 }
->>>>>>> 626b88b34ad9cf7179db8a270a8bae5b35c2a3d2
