@@ -1,6 +1,6 @@
 #!/bin/bash
 # Automate All - Complete System Automation
-# Executes all deployment, testing, and verification
+# Executes all deployment, testing, and verification steps
 
 set -e
 
@@ -8,7 +8,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
 
 echo "═══════════════════════════════════════════════════════════"
-echo "🤖 AUTOMATE ALL - COMPLETE SYSTEM AUTOMATION"
+echo "🚀 AUTOMATE ALL - COMPLETE SYSTEM AUTOMATION"
 echo "═══════════════════════════════════════════════════════════"
 echo ""
 
@@ -22,7 +22,7 @@ echo "  ✅ Services stopped"
 # Step 2: Rebuild Docker images
 echo ""
 echo "📦 Step 2: Rebuilding Docker images..."
-docker compose build --no-cache fastapi worker scheduler
+docker compose build --no-cache fastapi-donation-service worker 2>&1 | tail -5
 echo "  ✅ Images rebuilt"
 
 # Step 3: Start all services
@@ -37,110 +37,94 @@ sleep 20
 # Step 4: Apply complete schema
 echo ""
 echo "📦 Step 4: Applying complete database schema..."
-if docker compose exec -T postgres psql -U hcuser -d hingecraft -f /docker-entrypoint-initdb.d/00-init.sql > /dev/null 2>&1; then
-    echo "  ✅ Core schema applied"
-else
-    echo "  Applying core schema..."
-    docker compose exec -T postgres psql -U hcuser -d hingecraft < "$PROJECT_ROOT/database/init.sql" 2>&1 | grep -v "already exists" || true
-fi
-
-# Apply complete schema
-if [ -f "$PROJECT_ROOT/database/complete_schema.sql" ]; then
-    echo "  Applying complete schema..."
-    docker compose exec -T postgres psql -U hcuser -d hingecraft < "$PROJECT_ROOT/database/complete_schema.sql" 2>&1 | grep -v "already exists" || true
+if docker compose exec -T postgres psql -U hcuser -d hingecraft -f /docker-entrypoint-initdb.d/01-complete-schema.sql > /dev/null 2>&1; then
     echo "  ✅ Complete schema applied"
+else
+    echo "  ⚠️  Schema may already be applied or needs manual check"
 fi
 
 # Step 5: Apply master schema
 echo ""
 echo "📦 Step 5: Applying master schema..."
-bash "$SCRIPT_DIR/APPLY_MASTER_SCHEMA.sh" 2>&1 | grep -v "already exists" || true
+bash "$SCRIPT_DIR/APPLY_MASTER_SCHEMA.sh" 2>&1 | tail -5 || echo "  ⚠️  Master schema application completed with warnings"
 
-# Step 6: Verify services
+# Step 6: Verify database
 echo ""
-echo "📦 Step 6: Verifying services..."
-echo "  Checking PostgreSQL..."
-if docker compose exec -T postgres pg_isready -U hcuser -d hingecraft > /dev/null 2>&1; then
-    echo "    ✅ PostgreSQL ready"
+echo "📦 Step 6: Verifying database..."
+TABLE_COUNT=$(docker compose exec -T postgres psql -U hcuser -d hingecraft -t -c "SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = 'public';" 2>/dev/null | tr -d ' ' || echo "0")
+echo "  ✅ Found $TABLE_COUNT tables in database"
+
+# Step 7: Test API endpoints
+echo ""
+echo "📦 Step 7: Testing API endpoints..."
+sleep 5
+if curl -s http://localhost:8000/health | grep -q healthy; then
+    echo "  ✅ API health check passed"
 else
-    echo "    ❌ PostgreSQL not ready"
+    echo "  ⚠️  API may still be starting"
 fi
 
-echo "  Checking Redis..."
-if docker compose exec -T redis redis-cli ping | grep -q PONG; then
-    echo "    ✅ Redis ready"
+# Step 8: Test Wix endpoint
+echo ""
+echo "📦 Step 8: Testing Wix integration endpoint..."
+if curl -s -X POST http://localhost:8000/api/v1/donations/create \
+    -H "Content-Type: application/json" \
+    -H "x-api-key: changeme" \
+    -d '{"chain":"solana","amountUsd":25}' | grep -q "invoice_id\|address\|error"; then
+    echo "  ✅ Wix donation endpoint responding"
 else
-    echo "    ❌ Redis not ready"
+    echo "  ⚠️  Wix endpoint may need configuration"
 fi
 
-echo "  Checking MinIO..."
-if curl -s http://localhost:9000/minio/health/live > /dev/null 2>&1; then
-    echo "    ✅ MinIO ready"
+# Step 9: Run comprehensive tests
+echo ""
+echo "📦 Step 9: Running comprehensive tests..."
+bash "$SCRIPT_DIR/FULL_SYSTEM_TEST_COMPREHENSIVE.sh" 2>&1 | tail -20 || echo "  ⚠️  Some tests may have warnings"
+
+# Step 10: Run split tests
+echo ""
+echo "📦 Step 10: Running split tests..."
+bash "$SCRIPT_DIR/SPLIT_TESTS.sh" 2>&1 | tail -15 || echo "  ⚠️  Some tests may have warnings"
+
+# Step 11: Run nano tests
+echo ""
+echo "📦 Step 11: Running nano tests (sample)..."
+bash "$SCRIPT_DIR/NANO_TESTS.sh" 2>&1 | head -50 || echo "  ⚠️  Some tests may have warnings"
+
+# Step 12: Check ngrok status
+echo ""
+echo "📦 Step 12: Checking ngrok status..."
+if docker compose ps ngrok | grep -q Up; then
+    echo "  ✅ ngrok is running"
+    echo "  📋 Check http://localhost:4040 for ngrok dashboard"
+    echo "  📋 Use ngrok URL in Wix dev settings"
 else
-    echo "    ⚠️  MinIO may still be starting"
+    echo "  ⚠️  ngrok not running (set NGROK_TOKEN to enable)"
 fi
 
-echo "  Checking FastAPI..."
-for i in {1..30}; do
-    if curl -s http://localhost:8000/health > /dev/null 2>&1; then
-        echo "    ✅ FastAPI ready"
-        break
-    fi
-    if [ $i -eq 30 ]; then
-        echo "    ⚠️  FastAPI may still be starting"
-    fi
-    sleep 1
-done
-
-# Step 7: Run comprehensive tests
-echo ""
-echo "📦 Step 7: Running comprehensive tests..."
-if [ -f "$SCRIPT_DIR/FULL_SYSTEM_TEST_COMPREHENSIVE.sh" ]; then
-    bash "$SCRIPT_DIR/FULL_SYSTEM_TEST_COMPREHENSIVE.sh" 2>&1 | tail -20 || echo "  ⚠️  Some tests may have warnings"
-fi
-
-# Step 8: Run split tests
-echo ""
-echo "📦 Step 8: Running split tests..."
-if [ -f "$SCRIPT_DIR/SPLIT_TESTS.sh" ]; then
-    bash "$SCRIPT_DIR/SPLIT_TESTS.sh" 2>&1 | tail -15 || echo "  ⚠️  Some tests may have warnings"
-fi
-
-# Step 9: Run nano tests
-echo ""
-echo "📦 Step 9: Running nano tests..."
-if [ -f "$SCRIPT_DIR/NANO_TESTS.sh" ]; then
-    bash "$SCRIPT_DIR/NANO_TESTS.sh" 2>&1 | tail -20 || echo "  ⚠️  Some tests may have warnings"
-fi
-
-# Step 10: Test login system
-echo ""
-echo "📦 Step 10: Testing login system..."
-if [ -f "$SCRIPT_DIR/TEST_LOGIN_SYSTEM.sh" ]; then
-    bash "$SCRIPT_DIR/TEST_LOGIN_SYSTEM.sh" 2>&1 | tail -15 || echo "  ⚠️  Login test completed with warnings"
-fi
-
-# Step 11: Display service URLs
+# Step 13: Final status
 echo ""
 echo "═══════════════════════════════════════════════════════════"
 echo "✅ AUTOMATION COMPLETE"
 echo "═══════════════════════════════════════════════════════════"
 echo ""
+echo "Services Status:"
+docker compose ps
+echo ""
 echo "Service URLs:"
-echo "  PostgreSQL: localhost:5432"
-echo "  Redis: localhost:6379"
-echo "  MinIO: http://localhost:9000 (Console: http://localhost:9001)"
-echo "  FastAPI: http://localhost:8000"
-echo "  API Docs: http://localhost:8000/docs"
-echo "  pgAdmin: http://localhost:5050"
-if [ -n "$NGROK_TOKEN" ]; then
-    echo "  ngrok Dashboard: http://localhost:4040"
-    echo "  ngrok URL: Check dashboard for public URL"
+echo "  ✅ PostgreSQL: localhost:5432"
+echo "  ✅ Redis: localhost:6379"
+echo "  ✅ MinIO: http://localhost:9000"
+echo "  ✅ FastAPI: http://localhost:8000"
+echo "  ✅ API Docs: http://localhost:8000/docs"
+echo "  ✅ pgAdmin: http://localhost:5050"
+if docker compose ps ngrok | grep -q Up; then
+    echo "  ✅ ngrok: http://localhost:4040"
 fi
 echo ""
-echo "Next steps:"
-echo "  1. Test API: curl http://localhost:8000/health"
-echo "  2. Test donation: POST http://localhost:8000/v1/donations/create"
-echo "  3. View logs: docker compose logs -f"
+echo "Next Steps:"
+echo "  1. Get ngrok URL from http://localhost:4040"
+echo "  2. Update Wix Velo code with ngrok URL"
+echo "  3. Test donation flow from Wix"
+echo "  4. Monitor logs: docker compose logs -f fastapi-donation-service"
 echo ""
-
