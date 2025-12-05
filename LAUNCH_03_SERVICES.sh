@@ -17,15 +17,20 @@ cd "$PROJECT_ROOT"
 # Step 1: Start all services
 echo "📦 Step 1: Starting All Services..."
 cd "$PROJECT_ROOT"
-docker compose -f docker-compose.yml up -d 2>&1 | tail -5 || docker compose up -d 2>&1 | tail -5
+
+if [ ! -f "docker-compose.yml" ]; then
+    echo "  ❌ docker-compose.yml not found"
+    exit 1
+fi
+
+docker compose up -d 2>&1 | tail -5
 sleep 15
 
 # Step 2: Verify PostgreSQL
 echo ""
 echo "📦 Step 2: Verifying PostgreSQL..."
-if docker compose -f docker-compose.yml ps postgres 2>/dev/null | grep -q Up || docker compose ps postgres 2>/dev/null | grep -q Up; then
-    if docker compose -f docker-compose.yml exec -T postgres pg_isready -U hcuser > /dev/null 2>&1 || \
-       docker compose exec -T postgres pg_isready -U hcuser > /dev/null 2>&1; then
+if docker compose ps postgres 2>/dev/null | grep -q Up; then
+    if docker compose exec -T postgres pg_isready -U hcuser > /dev/null 2>&1; then
         echo "  ✅ PostgreSQL: Running and healthy"
     else
         echo "  ⚠️  PostgreSQL: Running but not ready"
@@ -38,9 +43,8 @@ fi
 # Step 3: Verify Redis
 echo ""
 echo "📦 Step 3: Verifying Redis..."
-if docker compose -f docker-compose.yml ps redis 2>/dev/null | grep -q Up || docker compose ps redis 2>/dev/null | grep -q Up; then
-    if docker compose -f docker-compose.yml exec -T redis redis-cli ping 2>/dev/null | grep -q PONG || \
-       docker compose exec -T redis redis-cli ping 2>/dev/null | grep -q PONG; then
+if docker compose ps redis 2>/dev/null | grep -q Up; then
+    if docker compose exec -T redis redis-cli ping 2>/dev/null | grep -q PONG; then
         echo "  ✅ Redis: Running and responding"
     else
         echo "  ⚠️  Redis: Running but not responding"
@@ -53,7 +57,7 @@ fi
 # Step 4: Verify MinIO
 echo ""
 echo "📦 Step 4: Verifying MinIO..."
-if docker compose -f docker-compose.yml ps minio 2>/dev/null | grep -q Up || docker compose ps minio 2>/dev/null | grep -q Up; then
+if docker compose ps minio 2>/dev/null | grep -q Up; then
     if curl -s http://localhost:9000/minio/health/live > /dev/null 2>&1; then
         echo "  ✅ MinIO: Running and healthy"
     else
@@ -67,7 +71,7 @@ fi
 # Step 5: Verify FastAPI
 echo ""
 echo "📦 Step 5: Verifying FastAPI..."
-if docker compose -f docker-compose.yml ps fastapi-donation-service 2>/dev/null | grep -q Up || docker compose ps fastapi-donation-service 2>/dev/null | grep -q Up; then
+if docker compose ps fastapi-donation-service 2>/dev/null | grep -q Up; then
     sleep 5
     if curl -s http://localhost:8000/health | grep -q healthy; then
         echo "  ✅ FastAPI: Running and healthy"
@@ -82,7 +86,7 @@ fi
 # Step 6: Verify Worker
 echo ""
 echo "📦 Step 6: Verifying Celery Worker..."
-if docker compose -f docker-compose.yml ps worker 2>/dev/null | grep -q Up || docker compose ps worker 2>/dev/null | grep -q Up; then
+if docker compose ps worker 2>/dev/null | grep -q Up; then
     echo "  ✅ Celery Worker: Running"
 else
     echo "  ⚠️  Celery Worker: Not running"
@@ -91,7 +95,7 @@ fi
 # Step 7: Verify pgAdmin
 echo ""
 echo "📦 Step 7: Verifying pgAdmin..."
-if docker compose -f docker-compose.yml ps pgadmin 2>/dev/null | grep -q Up || docker compose ps pgadmin 2>/dev/null | grep -q Up; then
+if docker compose ps pgadmin 2>/dev/null | grep -q Up; then
     echo "  ✅ pgAdmin: Running"
 else
     echo "  ⚠️  pgAdmin: Not running"
@@ -135,7 +139,7 @@ echo "✅ SERVICES LAUNCH COMPLETE"
 echo "═══════════════════════════════════════════════════════════"
 echo ""
 echo "Service Status:"
-docker compose -f docker-compose.yml ps 2>/dev/null || docker compose ps 2>/dev/null || echo "  ⚠️  Docker compose status unavailable"
+docker compose ps 2>/dev/null || echo "  ⚠️  Docker compose status unavailable"
 echo ""
 echo "Service URLs:"
 echo "  • PostgreSQL: localhost:5432"

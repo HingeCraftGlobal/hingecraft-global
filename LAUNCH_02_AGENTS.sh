@@ -5,14 +5,24 @@
 set -e
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
+
+# If script is in root, PROJECT_ROOT is SCRIPT_DIR
+# If script is in scripts/, PROJECT_ROOT is parent of SCRIPT_DIR
+if [ -f "$SCRIPT_DIR/docker-compose.yml" ]; then
+    PROJECT_ROOT="$SCRIPT_DIR"
+else
+    PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
+fi
 
 echo "═══════════════════════════════════════════════════════════"
 echo "🚀 LAUNCH 02: AGENTS - VERIFY ALL AGENTS FUNCTIONAL"
 echo "═══════════════════════════════════════════════════════════"
 echo ""
 
-cd "$PROJECT_ROOT"
+cd "$PROJECT_ROOT" || {
+    echo "  ❌ Cannot change to project root: $PROJECT_ROOT"
+    exit 1
+}
 
 # Test Legal Agent
 echo "📦 Testing Legal Agent..."
@@ -90,71 +100,80 @@ PYTHON_TEST
 # Test Engineering Agent
 echo ""
 echo "📦 Testing Engineering Agent..."
-ENGINEERING_FILES=$(find agents/engineering -name "*.py" -type f | grep -v __pycache__ | wc -l)
-if [ "$ENGINEERING_FILES" -gt 0 ]; then
-    echo "  ✅ Engineering Agent: $ENGINEERING_FILES implementation files found"
-    python3 << 'PYTHON_TEST'
+    ENGINEERING_FILES=$(find agents/engineering -name "*.py" -type f 2>/dev/null | grep -v __pycache__ | grep -v __init__ | wc -l | tr -d ' ')
+    if [ "$ENGINEERING_FILES" -gt 0 ]; then
+        echo "  ✅ Engineering Agent: $ENGINEERING_FILES implementation files found"
+        python3 << 'PYTHON_TEST'
 import sys
-sys.path.insert(0, '/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global')
+import os
+sys.path.insert(0, os.getcwd())
 
 try:
     # Test if engineering modules can be imported
     import importlib.util
-    spec = importlib.util.spec_from_file_location("code_generator", "agents/engineering/code_generator.py")
-    if spec:
+    if os.path.exists("agents/engineering/code_generator.py"):
         print("  ✅ CodeGenerator: Available")
     print("  ✅ Engineering Agent: Components available")
 except Exception as e:
     print(f"  ⚠️  Engineering Agent: {e}")
 PYTHON_TEST
+    else
+        echo "  ⚠️  Engineering Agent: No files found"
+    fi
 else
-    echo "  ⚠️  Engineering Agent: No files found"
+    echo "  ⚠️  Engineering Agent: Directory not found"
 fi
 
 # Test Education Agent
 echo ""
 echo "📦 Testing Education Agent..."
-EDUCATION_FILES=$(find agents/education -name "*.py" -type f | grep -v __pycache__ | wc -l)
-if [ "$EDUCATION_FILES" -gt 0 ]; then
-    echo "  ✅ Education Agent: $EDUCATION_FILES implementation files found"
-    python3 << 'PYTHON_TEST'
+    EDUCATION_FILES=$(find agents/education -name "*.py" -type f 2>/dev/null | grep -v __pycache__ | grep -v __init__ | wc -l | tr -d ' ')
+    if [ "$EDUCATION_FILES" -gt 0 ]; then
+        echo "  ✅ Education Agent: $EDUCATION_FILES implementation files found"
+        python3 << 'PYTHON_TEST'
 import sys
-sys.path.insert(0, '/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global')
+import os
+sys.path.insert(0, os.getcwd())
 
 try:
     import importlib.util
-    spec = importlib.util.spec_from_file_location("course_generator", "agents/education/coursegenerator.py")
-    if spec:
+    if os.path.exists("agents/education/coursegenerator.py"):
         print("  ✅ CourseGenerator: Available")
     print("  ✅ Education Agent: Components available")
 except Exception as e:
     print(f"  ⚠️  Education Agent: {e}")
 PYTHON_TEST
+    else
+        echo "  ⚠️  Education Agent: No files found"
+    fi
 else
-    echo "  ⚠️  Education Agent: No files found"
+    echo "  ⚠️  Education Agent: Directory not found"
 fi
 
 # Test Community Agent
 echo ""
 echo "📦 Testing Community Agent..."
-COMMUNITY_FILES=$(find agents/community -name "*.py" -type f | grep -v __pycache__ | wc -l)
-if [ "$COMMUNITY_FILES" -gt 0 ]; then
-    echo "  ✅ Community Agent: $COMMUNITY_FILES implementation files found"
-    python3 << 'PYTHON_TEST'
+    COMMUNITY_FILES=$(find agents/community -name "*.py" -type f 2>/dev/null | grep -v __pycache__ | grep -v __init__ | wc -l | tr -d ' ')
+    if [ "$COMMUNITY_FILES" -gt 0 ]; then
+        echo "  ✅ Community Agent: $COMMUNITY_FILES implementation files found"
+        python3 << 'PYTHON_TEST'
 import sys
-sys.path.insert(0, '/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global')
+import os
+sys.path.insert(0, os.getcwd())
 
 try:
     import importlib.util
-    spec = importlib.util.spec_from_file_location("member_profiler", "agents/community/memberprofiler.py")
-    if spec:
+    if os.path.exists("agents/community/memberprofiler.py"):
         print("  ✅ MemberProfiler: Available")
     print("  ✅ Community Agent: Components available")
 except Exception as e:
     print(f"  ⚠️  Community Agent: {e}")
 PYTHON_TEST
+    else
+        echo "  ⚠️  Community Agent: No files found"
+    fi
 else
-    echo "  ⚠️  Community Agent: No files found"
+    echo "  ⚠️  Community Agent: Directory not found"
 fi
 
 # Test Crypto/Compliance Agent
@@ -162,29 +181,37 @@ echo ""
 echo "📦 Testing Crypto/Compliance Agent..."
 CRYPTO_FILES=$(find agents/crypto_compliance -name "*.py" -type f | grep -v __pycache__ | wc -l)
 if [ "$CRYPTO_FILES" -gt 0 ]; then
-    echo "  ✅ Crypto/Compliance Agent: $CRYPTO_FILES implementation files found"
-    python3 << 'PYTHON_TEST'
+        echo "  ✅ Crypto/Compliance Agent: $CRYPTO_FILES implementation files found"
+        python3 << 'PYTHON_TEST'
 import sys
-sys.path.insert(0, '/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global')
+import os
+sys.path.insert(0, os.getcwd())
 
 try:
     import importlib.util
-    spec = importlib.util.spec_from_file_location("transaction_monitor", "agents/crypto_compliance/transactionmonitor.py")
-    if spec:
+    if os.path.exists("agents/crypto_compliance/transactionmonitor.py"):
         print("  ✅ TransactionMonitor: Available")
     print("  ✅ Crypto/Compliance Agent: Components available")
 except Exception as e:
     print(f"  ⚠️  Crypto/Compliance Agent: {e}")
 PYTHON_TEST
+    else
+        echo "  ⚠️  Crypto/Compliance Agent: No files found"
+    fi
 else
-    echo "  ⚠️  Crypto/Compliance Agent: No files found"
+    echo "  ⚠️  Crypto/Compliance Agent: Directory not found"
 fi
 
 # Count total agent files
 echo ""
 echo "📦 Agent File Summary..."
-TOTAL_FILES=$(find agents -name "*.py" -type f | grep -v __pycache__ | grep -v __init__ | wc -l)
-echo "  ✅ Total agent implementation files: $TOTAL_FILES"
+if [ -d "agents" ]; then
+    TOTAL_FILES=$(find agents -name "*.py" -type f 2>/dev/null | grep -v __pycache__ | grep -v __init__ | wc -l | tr -d ' ')
+    echo "  ✅ Total agent implementation files: $TOTAL_FILES"
+else
+    echo "  ⚠️  Agents directory not found"
+    TOTAL_FILES=0
+fi
 
 # Final summary
 echo ""
