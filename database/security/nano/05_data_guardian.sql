@@ -70,14 +70,17 @@ DECLARE
     threshold_records INTEGER := 10000;
     threshold_bytes BIGINT := 10485760; -- 10MB
 BEGIN
-    -- Log export
-    INSERT INTO data_export_log (
-        user_id, export_type, table_name, records_exported,
-        data_size_bytes, "_createdDate"
-    ) VALUES (
-        p_user_id, 'bulk_query', p_table_name, p_records_count,
-        p_data_size_bytes, CURRENT_TIMESTAMP
-    );
+    -- Log export (table created in 06_data_loss_prevention.sql)
+    -- Check if table exists before inserting
+    IF EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = 'data_export_log') THEN
+        INSERT INTO data_export_log (
+            user_id, export_type, table_name, records_exported,
+            data_size_bytes, "_createdDate"
+        ) VALUES (
+            p_user_id, 'bulk_query', p_table_name, p_records_count,
+            p_data_size_bytes, CURRENT_TIMESTAMP
+        );
+    END IF;
     
     -- Alert if exceeds thresholds
     IF p_records_count > threshold_records OR p_data_size_bytes > threshold_bytes THEN
