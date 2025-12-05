@@ -64,19 +64,30 @@ CREATE TRIGGER update_donations_updated_date
 CREATE OR REPLACE FUNCTION set_wix_id()
 RETURNS TRIGGER AS $$
 BEGIN
-    -- If _id is not set, use id or generate UUID
+    -- If _id is not set, use id (if exists) or generate UUID
     IF NEW."_id" IS NULL OR NEW."_id" = '' THEN
-        IF NEW.id IS NOT NULL AND NEW.id != '' THEN
-            NEW."_id" := NEW.id;
-        ELSE
+        -- Check if table has 'id' column (for donations table)
+        BEGIN
+            IF NEW.id IS NOT NULL AND NEW.id != '' THEN
+                NEW."_id" := NEW.id;
+            ELSE
+                NEW."_id" := gen_random_uuid()::VARCHAR;
+            END IF;
+        EXCEPTION WHEN OTHERS THEN
+            -- Table doesn't have 'id' column, just generate UUID
             NEW."_id" := gen_random_uuid()::VARCHAR;
-        END IF;
+        END;
     END IF;
     
-    -- If id is not set, use _id
-    IF NEW.id IS NULL OR NEW.id = '' THEN
-        NEW.id := NEW."_id";
-    END IF;
+    -- If table has 'id' column and it's not set, use _id
+    BEGIN
+        IF NEW.id IS NULL OR NEW.id = '' THEN
+            NEW.id := NEW."_id";
+        END IF;
+    EXCEPTION WHEN OTHERS THEN
+        -- Table doesn't have 'id' column, skip
+        NULL;
+    END;
     
     -- Set _createdDate if not set
     IF NEW."_createdDate" IS NULL THEN
