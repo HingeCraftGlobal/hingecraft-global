@@ -6,22 +6,34 @@
 -- ============================================
 
 -- Super admin role
-CREATE ROLE IF NOT EXISTS hingecraft_super_admin;
+DO $$ BEGIN
+    CREATE ROLE hingecraft_super_admin;
+EXCEPTION WHEN duplicate_object THEN NULL;
+END $$;
 GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO hingecraft_super_admin;
 GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO hingecraft_super_admin;
 
 -- Admin role (can read/write but not drop)
-CREATE ROLE IF NOT EXISTS hingecraft_admin;
+DO $$ BEGIN
+    CREATE ROLE hingecraft_admin;
+EXCEPTION WHEN duplicate_object THEN NULL;
+END $$;
 GRANT SELECT, INSERT, UPDATE ON ALL TABLES IN SCHEMA public TO hingecraft_admin;
 GRANT USAGE ON ALL SEQUENCES IN SCHEMA public TO hingecraft_admin;
 
 -- User role (read/write own data)
-CREATE ROLE IF NOT EXISTS hingecraft_user_role;
+DO $$ BEGIN
+    CREATE ROLE hingecraft_user_role;
+EXCEPTION WHEN duplicate_object THEN NULL;
+END $$;
 GRANT SELECT ON ALL TABLES IN SCHEMA public TO hingecraft_user_role;
 GRANT INSERT, UPDATE ON donations, members, chat_messages TO hingecraft_user_role;
 
 -- Read-only role
-CREATE ROLE IF NOT EXISTS hingecraft_readonly;
+DO $$ BEGIN
+    CREATE ROLE hingecraft_readonly;
+EXCEPTION WHEN duplicate_object THEN NULL;
+END $$;
 GRANT SELECT ON ALL TABLES IN SCHEMA public TO hingecraft_readonly;
 
 -- ============================================
@@ -32,7 +44,8 @@ GRANT SELECT ON ALL TABLES IN SCHEMA public TO hingecraft_readonly;
 ALTER TABLE donations ENABLE ROW LEVEL SECURITY;
 
 -- Policy: Users can only see their own donations
-CREATE POLICY IF NOT EXISTS donations_user_policy ON donations
+DROP POLICY IF EXISTS donations_user_policy ON donations;
+CREATE POLICY donations_user_policy ON donations
     FOR SELECT
     USING (
         "_owner" = current_user
@@ -40,12 +53,14 @@ CREATE POLICY IF NOT EXISTS donations_user_policy ON donations
     );
 
 -- Policy: Users can insert their own donations
-CREATE POLICY IF NOT EXISTS donations_insert_policy ON donations
+DROP POLICY IF EXISTS donations_insert_policy ON donations;
+CREATE POLICY donations_insert_policy ON donations
     FOR INSERT
     WITH CHECK ("_owner" = current_user);
 
 -- Policy: Users can update their own donations
-CREATE POLICY IF NOT EXISTS donations_update_policy ON donations
+DROP POLICY IF EXISTS donations_update_policy ON donations;
+CREATE POLICY donations_update_policy ON donations
     FOR UPDATE
     USING ("_owner" = current_user)
     WITH CHECK ("_owner" = current_user);
@@ -54,7 +69,8 @@ CREATE POLICY IF NOT EXISTS donations_update_policy ON donations
 ALTER TABLE members ENABLE ROW LEVEL SECURITY;
 
 -- Policy: Users can see members from their country
-CREATE POLICY IF NOT EXISTS members_country_policy ON members
+DROP POLICY IF EXISTS members_country_policy ON members;
+CREATE POLICY members_country_policy ON members
     FOR SELECT
     USING (
         country = (SELECT country FROM members WHERE "_owner" = current_user LIMIT 1)
@@ -65,7 +81,8 @@ CREATE POLICY IF NOT EXISTS members_country_policy ON members
 ALTER TABLE chat_messages ENABLE ROW LEVEL SECURITY;
 
 -- Policy: Users can see messages from their room/country
-CREATE POLICY IF NOT EXISTS chat_messages_room_policy ON chat_messages
+DROP POLICY IF EXISTS chat_messages_room_policy ON chat_messages;
+CREATE POLICY chat_messages_room_policy ON chat_messages
     FOR SELECT
     USING (
         room IN (SELECT DISTINCT room FROM chat_messages WHERE country = 

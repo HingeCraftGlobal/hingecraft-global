@@ -13,7 +13,11 @@ CREATE EXTENSION IF NOT EXISTS unaccent; -- Remove accents for better search
 -- ============================================
 
 -- Create custom text search configuration
-CREATE TEXT SEARCH CONFIGURATION IF NOT EXISTS hingecraft_search (COPY = english);
+DO $$ BEGIN
+    CREATE TEXT SEARCH CONFIGURATION hingecraft_search (COPY = english);
+EXCEPTION WHEN OTHERS THEN
+    NULL; -- Configuration already exists
+END $$;
 
 -- Add unaccent to configuration
 ALTER TEXT SEARCH CONFIGURATION hingecraft_search
