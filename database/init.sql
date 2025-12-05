@@ -145,3 +145,115 @@ CREATE TRIGGER set_members_wix_id
     BEFORE INSERT ON members
     FOR EACH ROW
     EXECUTE FUNCTION set_wix_id();
+
+-- ============================================
+-- TABLE: chat_clubs
+-- ============================================
+CREATE TABLE IF NOT EXISTS chat_clubs (
+    "_id" VARCHAR(255) PRIMARY KEY,
+    "_createdDate" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    "_updatedDate" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    "_owner" VARCHAR(255) DEFAULT 'system',
+    
+    club_name VARCHAR(255) NOT NULL,
+    category VARCHAR(255),
+    member_count INTEGER DEFAULT 0,
+    status VARCHAR(50) DEFAULT 'Active',
+    description TEXT,
+    source VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    metadata JSONB
+);
+
+CREATE INDEX IF NOT EXISTS idx_chat_clubs_category ON chat_clubs(category);
+CREATE INDEX IF NOT EXISTS idx_chat_clubs_status ON chat_clubs(status);
+CREATE INDEX IF NOT EXISTS idx_chat_clubs_created_at ON chat_clubs("_createdDate" DESC);
+
+DROP TRIGGER IF EXISTS update_chat_clubs_updated_date ON chat_clubs;
+CREATE TRIGGER update_chat_clubs_updated_date
+    BEFORE UPDATE ON chat_clubs
+    FOR EACH ROW
+    EXECUTE FUNCTION update_updated_date_column();
+
+DROP TRIGGER IF EXISTS set_chat_clubs_wix_id ON chat_clubs;
+CREATE TRIGGER set_chat_clubs_wix_id
+    BEFORE INSERT ON chat_clubs
+    FOR EACH ROW
+    EXECUTE FUNCTION set_wix_id();
+
+-- ============================================
+-- TABLE: chat_messages
+-- ============================================
+CREATE TABLE IF NOT EXISTS chat_messages (
+    "_id" VARCHAR(255) PRIMARY KEY,
+    "_createdDate" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    "_updatedDate" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    "_owner" VARCHAR(255) DEFAULT 'system',
+    
+    member_name VARCHAR(255),
+    twin_name VARCHAR(255),
+    country VARCHAR(100),
+    room VARCHAR(255),
+    message TEXT NOT NULL,
+    message_type VARCHAR(50) DEFAULT 'text',
+    source VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    metadata JSONB
+);
+
+CREATE INDEX IF NOT EXISTS idx_chat_messages_room ON chat_messages(room);
+CREATE INDEX IF NOT EXISTS idx_chat_messages_country ON chat_messages(country);
+CREATE INDEX IF NOT EXISTS idx_chat_messages_created_at ON chat_messages("_createdDate" DESC);
+
+DROP TRIGGER IF EXISTS update_chat_messages_updated_date ON chat_messages;
+CREATE TRIGGER update_chat_messages_updated_date
+    BEFORE UPDATE ON chat_messages
+    FOR EACH ROW
+    EXECUTE FUNCTION update_updated_date_column();
+
+DROP TRIGGER IF EXISTS set_chat_messages_wix_id ON chat_messages;
+CREATE TRIGGER set_chat_messages_wix_id
+    BEFORE INSERT ON chat_messages
+    FOR EACH ROW
+    EXECUTE FUNCTION set_wix_id();
+
+-- ============================================
+-- TABLE: ambassadors
+-- ============================================
+CREATE TABLE IF NOT EXISTS ambassadors (
+    "_id" VARCHAR(255) PRIMARY KEY,
+    "_createdDate" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    "_updatedDate" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    "_owner" VARCHAR(255) DEFAULT 'system',
+    
+    ambassador_name VARCHAR(255),
+    email VARCHAR(255),
+    country VARCHAR(100),
+    city VARCHAR(255),
+    campaign_name VARCHAR(255),
+    program_type VARCHAR(255),
+    status VARCHAR(50) DEFAULT 'active',
+    impact_metrics JSONB,
+    source VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    metadata JSONB
+);
+
+CREATE INDEX IF NOT EXISTS idx_ambassadors_country ON ambassadors(country);
+CREATE INDEX IF NOT EXISTS idx_ambassadors_status ON ambassadors(status);
+CREATE INDEX IF NOT EXISTS idx_ambassadors_created_at ON ambassadors("_createdDate" DESC);
+
+DROP TRIGGER IF EXISTS update_ambassadors_updated_date ON ambassadors;
+CREATE TRIGGER update_ambassadors_updated_date
+    BEFORE UPDATE ON ambassadors
+    FOR EACH ROW
+    EXECUTE FUNCTION update_updated_date_column();
+
+DROP TRIGGER IF EXISTS set_ambassadors_wix_id ON ambassadors;
+CREATE TRIGGER set_ambassadors_wix_id
+    BEFORE INSERT ON ambassadors
+    FOR EACH ROW
+    EXECUTE FUNCTION set_wix_id();
