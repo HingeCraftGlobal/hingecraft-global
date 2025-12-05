@@ -105,3 +105,43 @@ CREATE TRIGGER set_donations_wix_id
     BEFORE INSERT ON donations
     FOR EACH ROW
     EXECUTE FUNCTION set_wix_id();
+
+-- ============================================
+-- TABLE: members (registry)
+-- ============================================
+CREATE TABLE IF NOT EXISTS members (
+    "_id" VARCHAR(255) PRIMARY KEY,
+    "_createdDate" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    "_updatedDate" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    "_owner" VARCHAR(255) DEFAULT 'system',
+
+    first_name VARCHAR(255),
+    last_name VARCHAR(255),
+    twin_name VARCHAR(255),
+    membership_id VARCHAR(255) UNIQUE,
+    city VARCHAR(255),
+    region VARCHAR(255),
+    country VARCHAR(255),
+    registry_date VARCHAR(50),
+    source_file VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    metadata JSONB
+);
+
+CREATE INDEX IF NOT EXISTS idx_members_created_at ON members("_createdDate" DESC);
+CREATE INDEX IF NOT EXISTS idx_members_membership_id ON members(membership_id);
+CREATE INDEX IF NOT EXISTS idx_members_country ON members(country);
+CREATE INDEX IF NOT EXISTS idx_members_owner ON members("_owner");
+
+DROP TRIGGER IF EXISTS update_members_updated_date ON members;
+CREATE TRIGGER update_members_updated_date
+    BEFORE UPDATE ON members
+    FOR EACH ROW
+    EXECUTE FUNCTION update_updated_date_column();
+
+DROP TRIGGER IF EXISTS set_members_wix_id ON members;
+CREATE TRIGGER set_members_wix_id
+    BEFORE INSERT ON members
+    FOR EACH ROW
+    EXECUTE FUNCTION set_wix_id();
