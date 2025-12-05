@@ -1,0 +1,7 @@
+# Wix Dev Mode
+wix-dev.log
+.wix/
+
+# Temporary files
+*.tmp
+*.bak
