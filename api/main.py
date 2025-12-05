@@ -10,7 +10,7 @@ from contextlib import asynccontextmanager
 import os
 from typing import Optional
 
-from api.routers import donations, wallets, compliance, receipts, admin, webhooks
+from api.routers import donations, wallets, compliance, receipts, admin, webhooks, auth
 from api.database import get_db, init_db
 from api.auth import verify_token, get_current_user
 from api.middleware import logging_middleware, error_handler
@@ -38,6 +38,7 @@ app.middleware("http")(logging_middleware)
 app.middleware("http")(error_handler)
 
 # Include routers
+app.include_router(auth.router, prefix="/v1/auth", tags=["Authentication"])
 app.include_router(donations.router, prefix="/v1/donations", tags=["Donations"])
 app.include_router(wallets.router, prefix="/v1/wallets", tags=["Wallets"])
 app.include_router(compliance.router, prefix="/v1/compliance", tags=["Compliance"])

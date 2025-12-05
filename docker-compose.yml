@@ -15,6 +15,8 @@ services:
       - ./pgdata:/var/lib/postgresql/data
       - ./database/init.sql:/docker-entrypoint-initdb.d/00-init.sql:ro
       - ./database/master_schema:/docker-entrypoint-initdb.d/master_schema:ro
+      - ./database/rag_knowledge_base:/docker-entrypoint-initdb.d/rag_knowledge_base:ro
+      - ./database/governance:/docker-entrypoint-initdb.d/governance:ro
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U hc -d hingecraft"]
       interval: 5s
@@ -62,14 +64,24 @@ services:
       MINIO_ENDPOINT: minio:9000
       MINIO_ACCESS_KEY: minio
       MINIO_SECRET_KEY: minio123
+      JWT_SECRET: ${JWT_SECRET:-your-secret-key-change-in-production}
+      WEBHOOK_SECRET: ${WEBHOOK_SECRET:-your-webhook-secret}
     ports:
       - "8000:8000"
     depends_on:
-      - postgres
-      - redis
-      - minio
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_started
+      minio:
+        condition: service_started
     volumes:
       - ./api:/app/api
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
 
   worker:
     build: ./api
