@@ -11,11 +11,37 @@ HINGECRAFT_DIR="/Users/chandlerfergusen/Desktop/CURSOR/HingeCraft"
 echo "🚀 Applying ALL HingeCraft Database Data"
 echo "=========================================="
 
+# Detect Python environment (venv or system)
+if [ -d "$PROJECT_ROOT/.venv" ]; then
+    PYTHON_BIN="$PROJECT_ROOT/.venv/bin/python3"
+    PIP_BIN="$PROJECT_ROOT/.venv/bin/pip"
+    echo "✅ Using virtual environment: .venv"
+elif [ -n "$VIRTUAL_ENV" ]; then
+    PYTHON_BIN="$VIRTUAL_ENV/bin/python3"
+    PIP_BIN="$VIRTUAL_ENV/bin/pip"
+    echo "✅ Using virtual environment: $VIRTUAL_ENV"
+else
+    PYTHON_BIN="python3"
+    PIP_BIN="pip3"
+    echo "ℹ️  Using system Python"
+fi
+
+# Step 0: Ensure psycopg2-binary is installed
+echo ""
+echo "📦 Step 0: Checking psycopg2-binary..."
+if ! "$PYTHON_BIN" -c "import psycopg2" 2>/dev/null; then
+    echo "Installing psycopg2-binary..."
+    "$PIP_BIN" install psycopg2-binary --quiet
+    echo "✅ psycopg2-binary installed"
+else
+    echo "✅ psycopg2-binary already installed"
+fi
+
 # Step 1: Start Docker database (if not running)
 echo ""
 echo "📦 Step 1: Starting Docker database..."
 cd "$HINGECRAFT_DIR"
-if ! docker compose ps | grep -q "hingecraft-postgres.*Up"; then
+if ! docker compose ps 2>/dev/null | grep -q "hingecraft-postgres.*Up"; then
     echo "Starting Docker containers..."
     docker compose up -d
     echo "⏳ Waiting for database to be ready..."
@@ -53,7 +79,7 @@ export DB_PASSWORD=hingecraft_secure_password_123
 echo ""
 echo "📦 Step 4: Loading all data..."
 cd "$PROJECT_ROOT"
-python3 scripts/load_all_hingecraft_data.py
+"$PYTHON_BIN" scripts/load_all_hingecraft_data.py
 
 # Step 5: Verify data loaded
 echo ""
