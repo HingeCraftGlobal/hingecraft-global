@@ -36,7 +36,14 @@ LAYERS=(
 )
 
 for layer in "${LAYERS[@]}"; do
-    EXISTS=$(docker compose exec -T postgres psql -U hcuser -d hingecraft -t -c "
+    EXISTS=$(docker compose -f docker-compose.yml exec -T postgres psql -U hcuser -d hingecraft -t -c "
+        SELECT EXISTS (
+            SELECT FROM information_schema.tables 
+            WHERE table_schema = 'public' 
+            AND table_name = '$layer'
+        );
+    " 2>/dev/null | tr -d ' ' || \
+    docker compose exec -T postgres psql -U hcuser -d hingecraft -t -c "
         SELECT EXISTS (
             SELECT FROM information_schema.tables 
             WHERE table_schema = 'public' 
@@ -98,7 +105,14 @@ echo ""
 echo "📦 Verifying Wix Integration..."
 WIX_TABLES=("members" "chat_clubs" "chat_messages" "ambassadors")
 for table in "${WIX_TABLES[@]}"; do
-    EXISTS=$(docker compose exec -T postgres psql -U hcuser -d hingecraft -t -c "
+    EXISTS=$(docker compose -f docker-compose.yml exec -T postgres psql -U hcuser -d hingecraft -t -c "
+        SELECT EXISTS (
+            SELECT FROM information_schema.tables 
+            WHERE table_schema = 'public' 
+            AND table_name = '$table'
+        );
+    " 2>/dev/null | tr -d ' ' || \
+    docker compose exec -T postgres psql -U hcuser -d hingecraft -t -c "
         SELECT EXISTS (
             SELECT FROM information_schema.tables 
             WHERE table_schema = 'public' 
