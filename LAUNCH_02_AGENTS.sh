@@ -100,6 +100,7 @@ PYTHON_TEST
 # Test Engineering Agent
 echo ""
 echo "📦 Testing Engineering Agent..."
+if [ -d "agents/engineering" ]; then
     ENGINEERING_FILES=$(find agents/engineering -name "*.py" -type f 2>/dev/null | grep -v __pycache__ | grep -v __init__ | wc -l | tr -d ' ')
     if [ "$ENGINEERING_FILES" -gt 0 ]; then
         echo "  ✅ Engineering Agent: $ENGINEERING_FILES implementation files found"
@@ -127,6 +128,7 @@ fi
 # Test Education Agent
 echo ""
 echo "📦 Testing Education Agent..."
+if [ -d "agents/education" ]; then
     EDUCATION_FILES=$(find agents/education -name "*.py" -type f 2>/dev/null | grep -v __pycache__ | grep -v __init__ | wc -l | tr -d ' ')
     if [ "$EDUCATION_FILES" -gt 0 ]; then
         echo "  ✅ Education Agent: $EDUCATION_FILES implementation files found"
@@ -153,6 +155,7 @@ fi
 # Test Community Agent
 echo ""
 echo "📦 Testing Community Agent..."
+if [ -d "agents/community" ]; then
     COMMUNITY_FILES=$(find agents/community -name "*.py" -type f 2>/dev/null | grep -v __pycache__ | grep -v __init__ | wc -l | tr -d ' ')
     if [ "$COMMUNITY_FILES" -gt 0 ]; then
         echo "  ✅ Community Agent: $COMMUNITY_FILES implementation files found"
@@ -179,6 +182,7 @@ fi
 # Test Crypto/Compliance Agent
 echo ""
 echo "📦 Testing Crypto/Compliance Agent..."
+if [ -d "agents/crypto_compliance" ]; then
     CRYPTO_FILES=$(find agents/crypto_compliance -name "*.py" -type f 2>/dev/null | grep -v __pycache__ | grep -v __init__ | wc -l | tr -d ' ')
     if [ "$CRYPTO_FILES" -gt 0 ]; then
         echo "  ✅ Crypto/Compliance Agent: $CRYPTO_FILES implementation files found"
