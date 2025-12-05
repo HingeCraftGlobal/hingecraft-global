@@ -96,19 +96,55 @@ echo "📊 Total Donations: $DONATIONS"
 echo "👥 Total Members: $MEMBERS"
 echo "="*60
 
-# Step 6: Restart adaptor to pick up new members endpoints
+# Step 6: Ensure adaptor has members SPI endpoints
 echo ""
-echo "📦 Step 6: Restarting database adaptor..."
-docker compose restart db-adaptor
-echo "⏳ Waiting for adaptor to restart..."
-sleep 3
+echo "📦 Step 6: Ensuring adaptor has members SPI endpoints..."
+cd "$HINGECRAFT_DIR"
+# Check if server.js has members endpoints
+if grep -q "/v1/collections/members/schema" database-adaptor/server.js 2>/dev/null; then
+    echo "✅ Members SPI endpoints found in adaptor"
+    echo "Restarting database adaptor..."
+    docker compose restart db-adaptor
+    echo "⏳ Waiting for adaptor to restart..."
+    sleep 5
+else
+    echo "⚠️  Members SPI endpoints not found in adaptor/server.js"
+    echo "Please ensure HingeCraft/database-adaptor/server.js has members endpoints"
+    echo "See: scripts/load_all_hingecraft_data.py for reference"
+fi
+
+# Step 7: Verify data loaded
+echo ""
+echo "📦 Step 7: Verifying data..."
+cd "$HINGECRAFT_DIR"
+DONATIONS=$(docker compose exec -T postgres psql -U hingecraft_user -d hingecraft_db -t -c "SELECT COUNT(*) FROM donations;" 2>/dev/null | tr -d ' ' || echo "0")
+MEMBERS=$(docker compose exec -T postgres psql -U hingecraft_user -d hingecraft_db -t -c "SELECT COUNT(*) FROM members;" 2>/dev/null | tr -d ' ' || echo "0")
+
+echo ""
+echo "=========================================="
+echo "✅ DATABASE LOAD COMPLETE"
+echo "=========================================="
+echo "📊 Total Donations: $DONATIONS"
+echo "👥 Total Members: $MEMBERS"
+echo "=========================================="
+
+# Step 8: Test adaptor endpoints
+echo ""
+echo "📦 Step 8: Testing adaptor endpoints..."
+ADAPTOR_HEALTH=$(curl -s http://localhost:3000/health 2>/dev/null || echo "")
+if [ -n "$ADAPTOR_HEALTH" ]; then
+    echo "✅ Adaptor health check: OK"
+else
+    echo "⚠️  Adaptor health check failed - ensure adaptor is running"
+fi
 
 echo ""
 echo "✅ All HingeCraft data applied successfully!"
 echo ""
 echo "Next steps:"
-echo "1. Verify adaptor is running: curl http://localhost:3000/health"
+echo "1. Verify adaptor: curl http://localhost:3000/health"
 echo "2. Test members schema: curl -H 'Authorization: Bearer YOUR_SECRET' http://localhost:3000/v1/collections/members/schema"
 echo "3. Test members items: curl -H 'Authorization: Bearer YOUR_SECRET' 'http://localhost:3000/v1/collections/members/items?limit=5'"
-echo "4. Run wix dev: NODE_TLS_REJECT_UNAUTHORIZED=0 wix dev"
+echo "4. Sync to Wix: cd $PROJECT_ROOT && NODE_TLS_REJECT_UNAUTHORIZED=0 wix dev"
+echo "5. Refresh Wix Editor - members collection should be available"
 
