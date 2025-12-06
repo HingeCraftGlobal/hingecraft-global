@@ -1,0 +1,156 @@
+{
+  "timestamp": "2025-12-06T16:16:33.938780",
+  "components": {
+    "Notion Token": {
+      "status": "ok",
+      "value": "ntn_411288356367EsUe..."
+    },
+    "Parent Page ID": {
+      "status": "ok",
+      "value": "2c1993783a3480e7b13b..."
+    },
+    "Workspace ID": {
+      "status": "ok",
+      "value": "e2599378-3a34-813b-a..."
+    },
+    "Database_Projects": {
+      "status": "missing",
+      "id": ""
+    },
+    "Database_Tasks": {
+      "status": "missing",
+      "id": ""
+    },
+    "Database_Donations": {
+      "status": "missing",
+      "id": ""
+    },
+    "Database_Leads": {
+      "status": "missing",
+      "id": ""
+    },
+    "Database_Content": {
+      "status": "missing",
+      "id": ""
+    },
+    "Database_Team": {
+      "status": "missing",
+      "id": ""
+    },
+    "Database_Chat History": {
+      "status": "missing",
+      "id": ""
+    },
+    "Database_Timeline": {
+      "status": "missing",
+      "id": ""
+    },
+    "Database_System Status": {
+      "status": "ok",
+      "id": "e1a2a7de-a557-4e5d-9a80-2d2deccadc8d"
+    },
+    "Database_URLs": {
+      "status": "ok",
+      "id": "77ac9431-6b25-4067-8d7d-a059d871ea14"
+    },
+    "Script_sync_hingecraft_notion_sync.py": {
+      "status": "ok"
+    },
+    "Script_monitoring_cursor_monitor.py": {
+      "status": "ok"
+    },
+    "Script_webhooks_notion_webhook_handler.py": {
+      "status": "ok"
+    },
+    "Script_triggers_automation_triggers.py": {
+      "status": "ok"
+    },
+    "Script_monitoring_docker_monitor.py": {
+      "status": "ok"
+    },
+    "File____database_COMPLETE_DATABASE_EXPORT_json": {
+      "status": "ok",
+      "size": 1614
+    },
+    "File_company_urls_json": {
+      "status": "ok",
+      "size": 890
+    },
+    "File_deadlines_json": {
+      "status": "ok",
+      "size": 5696
+    },
+    "File_V1_STAGE2_1000_STEPS_json": {
+      "status": "ok",
+      "size": 219678
+    },
+    "File_NOTION_INTEGRATION_10000_TASKS_json": {
+      "status": "ok",
+      "size": 2174378
+    },
+    "Config_.env": {
+      "status": "ok"
+    },
+    "Config_env.example": {
+      "status": "ok"
+    },
+    "Config_requirements.txt": {
+      "status": "ok"
+    },
+    "Config_mappings.json": {
+      "status": "missing"
+    },
+    "Tasks_NOTION_INTEGRATION_10000_TASKS.json": {
+      "status": "ok"
+    },
+    "Tasks_V1_TESTING_500_TASKS.json": {
+      "status": "ok"
+    },
+    "Tasks_V1_STAGE2_1000_STEPS.json": {
+      "status": "ok"
+    },
+    "Feature_Cursor_Activity_Monitoring": {
+      "status": "ok"
+    },
+    "Feature_Docker_Service_Monitoring": {
+      "status": "ok"
+    },
+    "Feature_Webhook_Handler": {
+      "status": "ok"
+    },
+    "Feature_Automation_Triggers": {
+      "status": "ok"
+    },
+    "Feature_Real-time_Updates": {
+      "status": "ok"
+    },
+    "Feature_Progress_Tracking": {
+      "status": "ok"
+    },
+    "Feature_24/7_Monitoring": {
+      "status": "ok"
+    },
+    "Feature_Chat_History_Sync": {
+      "status": "ok"
+    },
+    "Feature_Timeline_Sync": {
+      "status": "ok"
+    },
+    "Feature_Database_Sync": {
+      "status": "ok"
+    },
+    "Feature_Company_URLs_Sync": {
+      "status": "ok"
+    },
+    "Feature_System_Status_Sync": {
+      "status": "ok"
+    }
+  },
+  "status": "incomplete",
+  "summary": {
+    "total": 42,
+    "verified": 33,
+    "missing": 9,
+    "completion_percent": 78.57142857142857
+  }
+}
