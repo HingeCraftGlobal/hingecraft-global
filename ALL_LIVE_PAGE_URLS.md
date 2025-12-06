@@ -153,3 +153,5 @@ See `src/pages/legal/README.md` for complete list.
 **Website:** https://www.hingecraft-global.ai  
 **Status:** Live with 60 pages, 34 legal pages ready to deploy
 
+
+

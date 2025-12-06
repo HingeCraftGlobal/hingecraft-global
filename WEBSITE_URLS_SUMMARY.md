@@ -146,3 +146,5 @@ Plus 24 additional legal documents (see `src/pages/legal/README.md`)
 **Website:** https://www.hingecraft-global.ai  
 **Status:** ✅ Live with 60 pages
 
+
+

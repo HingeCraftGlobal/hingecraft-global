@@ -90,3 +90,5 @@ class EmailCampaignBuilder:
         text = re.sub(r'<[^>]+>', '', content)
         return text.strip()
 
+
+

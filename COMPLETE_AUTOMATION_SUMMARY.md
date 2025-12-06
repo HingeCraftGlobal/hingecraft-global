@@ -101,3 +101,5 @@ cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
 **Wix Dev**: ✅ **Running and syncing**
 
 
+
+

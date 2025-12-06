@@ -491,3 +491,5 @@ COMMENT ON FUNCTION comprehensive_audit_trigger IS 'Comprehensive audit trigger 
 COMMENT ON FUNCTION generate_audit_compliance_report IS 'Generate audit compliance report';
 
 
+
+

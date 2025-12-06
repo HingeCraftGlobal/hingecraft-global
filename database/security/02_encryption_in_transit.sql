@@ -473,3 +473,5 @@ COMMENT ON FUNCTION check_certificate_expiration IS 'Check SSL certificate expir
 COMMENT ON FUNCTION generate_tls_compliance_report IS 'Generate TLS/SSL compliance report';
 
 
+
+

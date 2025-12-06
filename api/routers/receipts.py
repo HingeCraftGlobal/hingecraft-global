@@ -7,3 +7,5 @@ async def generate_receipt():
     """Generate and store PDF receipt"""
     pass
 
+
+

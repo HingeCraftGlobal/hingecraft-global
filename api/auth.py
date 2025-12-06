@@ -43,3 +43,5 @@ async def get_current_user(
     """Get current authenticated user"""
     return await verify_token(credentials)
 
+
+

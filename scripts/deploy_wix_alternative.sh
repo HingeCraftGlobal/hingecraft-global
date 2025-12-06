@@ -50,3 +50,5 @@ echo "3. Or manually add pages in Wix Editor"
 echo "4. Pages will sync automatically when Wix dev connects"
 echo ""
 
+
+

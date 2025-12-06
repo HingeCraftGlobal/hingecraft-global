@@ -110,3 +110,5 @@ COMMENT ON TABLE content_revisions IS 'Version history for content';
 COMMENT ON TABLE content_comments IS 'Comments on content';
 COMMENT ON TABLE content_contributions IS 'Contributor attribution and revenue sharing';
 
+
+

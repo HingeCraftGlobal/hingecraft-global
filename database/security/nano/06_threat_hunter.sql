@@ -127,3 +127,5 @@ COMMENT ON FUNCTION hunt_threats IS 'CIA/FBI level proactive threat hunting';
 COMMENT ON FUNCTION record_threat_indicator IS 'Record threat indicators for continuous monitoring';
 
 
+
+

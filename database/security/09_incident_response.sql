@@ -422,3 +422,5 @@ COMMENT ON FUNCTION update_incident_status IS 'Update incident status';
 COMMENT ON FUNCTION generate_incident_response_compliance_report IS 'Generate incident response compliance report';
 
 
+
+

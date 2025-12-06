@@ -109,3 +109,5 @@ This article explores {topic} and its relevance to {audience}.
         sentences = content.split('.')
         return '. '.join(sentences[:2]) + '.' if len(sentences) >= 2 else content[:200]
 
+
+

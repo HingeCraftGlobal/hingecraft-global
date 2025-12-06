@@ -149,3 +149,5 @@ class RiskCalculator:
             "gdpr_compliance": {"weight": 30, "severity": "high"}
         }
 
+
+

@@ -195,3 +195,5 @@ COMMENT ON TABLE escalation_requests IS 'Permission escalation workflow';
 COMMENT ON TABLE digital_signatures IS 'Digital signatures for governance';
 COMMENT ON FUNCTION check_user_permission IS 'Check if user has permission';
 
+
+

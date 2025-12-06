@@ -114,3 +114,5 @@ COMMENT ON TABLE inventory_items IS 'Inventory item master data';
 COMMENT ON TABLE inventory_transactions IS 'Inventory movement transactions';
 COMMENT ON TABLE microfactory_capabilities IS 'Available manufacturing capabilities';
 
+
+

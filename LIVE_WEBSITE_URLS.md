@@ -155,3 +155,5 @@ All other legal pages will follow the pattern:
 **Website:** https://www.hingecraft-global.ai  
 **Status:** Live and operational
 
+
+

@@ -66,3 +66,5 @@ rm -f "${TASKS_FILE}.bak"
 echo ""
 bash "$SCRIPT_DIR/CALCULATE_PROGRESS.sh" | tail -20
 
+
+

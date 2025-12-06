@@ -13,3 +13,5 @@ COMMENT ON EXTENSION "btree_gin" IS 'GIN indexes for JSONB and arrays';
 COMMENT ON EXTENSION "pg_trgm" IS 'Trigram matching for fuzzy search';
 COMMENT ON EXTENSION "ltree" IS 'Labeled tree paths for hierarchies';
 
+
+

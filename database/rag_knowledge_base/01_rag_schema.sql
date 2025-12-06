@@ -118,3 +118,5 @@ COMMENT ON TABLE knowledge_queries IS 'RAG query log for analytics and improveme
 COMMENT ON TABLE document_relationships IS 'Relationships between documents';
 COMMENT ON TABLE knowledge_categories IS 'Hierarchical knowledge categories';
 
+
+

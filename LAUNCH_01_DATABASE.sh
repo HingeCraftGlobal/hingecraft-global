@@ -5,14 +5,25 @@
 set -e
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
+
+# If script is in root, PROJECT_ROOT is SCRIPT_DIR
+# If script is in scripts/, PROJECT_ROOT is parent of SCRIPT_DIR
+if [ -f "$SCRIPT_DIR/docker-compose.yml" ]; then
+    PROJECT_ROOT="$SCRIPT_DIR"
+else
+    PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
+fi
 
 echo "═══════════════════════════════════════════════════════════"
 echo "🚀 LAUNCH 01: DATABASE - COMPLETE DEPLOYMENT"
 echo "═══════════════════════════════════════════════════════════"
 echo ""
 
-cd "$PROJECT_ROOT"
+# Change to project root
+cd "$PROJECT_ROOT" || {
+    echo "  ❌ Cannot change to project root: $PROJECT_ROOT"
+    exit 1
+}
 
 # Step 1: Start PostgreSQL
 echo "📦 Step 1: Starting PostgreSQL..."

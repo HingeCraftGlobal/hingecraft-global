@@ -164,3 +164,5 @@ Then create pages in Wix Editor - they will sync automatically.
 **Action Required:** Create pages in Wix Editor  
 **Files Ready:** ✅ All HTML files ready in `src/pages/legal/`
 
+
+

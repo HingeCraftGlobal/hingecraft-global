@@ -38,3 +38,5 @@ echo "2. Deploy legal pages following DEPLOYMENT_READY.md"
 echo "3. Add pages to navigation"
 echo "4. Test and publish"
 
+
+

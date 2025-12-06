@@ -142,3 +142,5 @@ echo "  3. Register user: POST http://localhost:8000/v1/auth/register"
 echo "  4. Login: POST http://localhost:8000/v1/auth/login"
 echo ""
 
+
+

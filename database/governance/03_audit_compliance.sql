@@ -145,3 +145,5 @@ COMMENT ON TABLE data_deletion_requests IS 'GDPR/CCPA data deletion requests';
 COMMENT ON TABLE audit_retention_config IS 'Audit log retention configuration';
 COMMENT ON TABLE compliance_reports IS 'Generated compliance reports';
 
+
+

@@ -165,3 +165,5 @@ echo "  2. Check adaptor logs: docker compose logs db-adaptor"
 echo "  3. Check Wix dev logs: tail -f wix-dev.log"
 echo ""
 
+
+

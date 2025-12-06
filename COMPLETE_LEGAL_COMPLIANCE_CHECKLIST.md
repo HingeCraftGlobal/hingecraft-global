@@ -227,3 +227,5 @@ All files located in: `/hingecraft-global/legal-pages/`
 **Last Updated:** December 4, 2025  
 **Next Step:** Deploy to Wix and push to repository
 
+
+

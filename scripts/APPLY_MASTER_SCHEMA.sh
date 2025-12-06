@@ -58,3 +58,5 @@ echo ""
 TABLE_COUNT=$(docker compose exec -T postgres psql -U hc -d hingecraft -t -c "SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = 'public';" 2>/dev/null | tr -d ' ')
 echo "  📊 Total tables in database: $TABLE_COUNT"
 
+
+

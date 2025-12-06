@@ -127,3 +127,5 @@ class LegalResearchAssistant:
         
         return recommendations
 
+
+

@@ -126,3 +126,5 @@ COMMENT ON TABLE prompt_runs IS 'LLM prompt execution logs and outputs';
 COMMENT ON TABLE prompt_templates IS 'Reusable prompt template library (100+ prompts)';
 COMMENT ON TABLE audit_logs IS 'Immutable audit trail for all operations';
 
+
+

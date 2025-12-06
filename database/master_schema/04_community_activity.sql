@@ -119,3 +119,5 @@ COMMENT ON TABLE community_messages IS 'Messages within community groups';
 COMMENT ON TABLE community_events IS 'Community events and meetups';
 COMMENT ON TABLE event_attendances IS 'Event registration and attendance';
 
+
+

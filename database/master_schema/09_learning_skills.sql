@@ -172,3 +172,5 @@ COMMENT ON TABLE certifications IS 'Available certifications';
 COMMENT ON TABLE user_certifications IS 'User earned certifications';
 COMMENT ON TABLE learning_paths IS 'Structured learning paths to skills';
 
+
+

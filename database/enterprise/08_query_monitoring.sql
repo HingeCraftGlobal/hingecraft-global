@@ -123,3 +123,5 @@ COMMENT ON VIEW v_queries_by_table IS 'Query statistics by table';
 COMMENT ON VIEW v_index_usage_stats IS 'Index usage statistics';
 
 
+
+

@@ -26,3 +26,5 @@ async def error_handler(request: Request, call_next):
         logger.error(f"Error: {str(e)}", exc_info=True)
         raise
 
+
+

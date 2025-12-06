@@ -116,3 +116,5 @@ COMMENT ON FUNCTION validate_password_strength IS 'CIA/FBI level password streng
 COMMENT ON FUNCTION check_password_reuse IS 'Prevent password reuse - CIA/FBI security standard';
 
 
+
+

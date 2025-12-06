@@ -653,3 +653,5 @@ COMMENT ON FUNCTION validate_session IS 'Validate session token';
 COMMENT ON FUNCTION check_ip_access IS 'Check if IP address is allowed';
 
 
+
+

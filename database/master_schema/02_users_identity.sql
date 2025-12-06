@@ -93,3 +93,5 @@ COMMENT ON TABLE user_profiles IS 'Extended user profile information';
 COMMENT ON TABLE consents IS 'GDPR/CCPA consent tracking';
 COMMENT ON TABLE user_identities IS 'Multiple identity providers per user';
 
+
+

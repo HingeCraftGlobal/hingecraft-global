@@ -151,3 +151,5 @@ COMMENT ON TABLE field_access_control IS 'Field-level access control definitions
 COMMENT ON TABLE access_log IS 'Detailed access logging';
 COMMENT ON FUNCTION evaluate_access_rule IS 'Evaluate access rules for user and resource';
 
+
+

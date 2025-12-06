@@ -141,3 +141,5 @@ COMMENT ON TABLE crypto_transactions IS 'All blockchain transactions';
 COMMENT ON TABLE treasury_operations IS 'Treasury management operations';
 COMMENT ON TABLE exchange_rates IS 'Historical exchange rates for conversion';
 
+
+

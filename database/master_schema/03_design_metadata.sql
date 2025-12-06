@@ -94,3 +94,5 @@ COMMENT ON TABLE design_versions IS 'Version control for design projects';
 COMMENT ON TABLE design_assets IS 'Assets associated with designs';
 COMMENT ON TABLE design_collaborations IS 'Multi-user collaboration on designs';
 
+
+

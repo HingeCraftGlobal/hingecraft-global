@@ -105,3 +105,5 @@ COMMENT ON TABLE carbon_offsets IS 'Carbon offset purchases and applications';
 COMMENT ON TABLE sustainability_goals IS 'Sustainability targets and goals';
 COMMENT ON TABLE impact_reporting_periods IS 'Aggregated impact reports by period';
 
+
+

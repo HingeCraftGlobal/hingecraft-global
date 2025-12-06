@@ -136,3 +136,5 @@ class LegalDocumentAnalyzer:
             "language": "en"  # Simplified
         }
 
+
+

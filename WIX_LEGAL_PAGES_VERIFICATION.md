@@ -201,3 +201,5 @@ src/pages/
 **Files Ready:** ✅ All HTML files ready  
 **Action:** Create pages in Wix Editor
 
+
+

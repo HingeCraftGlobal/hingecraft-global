@@ -639,3 +639,5 @@ COMMENT ON FUNCTION rotate_encryption_key IS 'Rotate encryption keys for securit
 COMMENT ON FUNCTION generate_encryption_compliance_report IS 'Generate encryption compliance report';
 
 
+
+
