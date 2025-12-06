@@ -503,13 +503,22 @@ def sync_donation(donation_data: dict):
     if not src_id:
         return
     
+    # Handle null/None values for select fields
+    payment_method = donation_data.get('payment_method')
+    if not payment_method or payment_method == 'null' or payment_method is None:
+        payment_method = 'Manual'
+    
+    currency = donation_data.get('currency')
+    if not currency or currency == 'null' or currency is None:
+        currency = 'USD'
+    
     props = {
         "Donor Name": {"title": [{"text": {"content": donation_data.get('member_name', 'Anonymous')}}]},
         "Donation ID": {"rich_text": [{"text": {"content": src_id}}]},
         "Amount": {"number": float(donation_data.get('amount', 0))},
-        "Currency": {"select": {"name": donation_data.get('currency', 'USD')}},
+        "Currency": {"select": {"name": str(currency)}},
         "Date": {"date": {"start": donation_data.get('created_at', datetime.now().isoformat())}},
-        "Method": {"select": {"name": donation_data.get('payment_method', 'Manual')}},
+        "Method": {"select": {"name": str(payment_method)}},
         "Confirmed": {"checkbox": donation_data.get('payment_status') == 'completed'},
         "Receipt Sent": {"checkbox": False}
     }
@@ -560,6 +569,7 @@ def sync_docker_status():
 def sync_company_urls():
     """Sync all company URLs and repositories to Notion"""
     if not DB_IDS['urls']:
+        logger.warning("URLs database not created yet - skipping URL sync")
         return
     
     try:
@@ -571,45 +581,75 @@ def sync_company_urls():
         with open(urls_file, 'r') as f:
             urls_data = json.load(f)
         
+        # Check if database exists and has correct properties
+        try:
+            db_info = notion.databases.retrieve(database_id=DB_IDS['urls'])
+            db_props = db_info.get('properties', {})
+            logger.debug(f"URLs DB properties: {list(db_props.keys())}")
+        except Exception as e:
+            logger.error(f"Failed to retrieve URLs database: {e}")
+            return
+        
         # Sync main website
         website_url = urls_data.get('company', {}).get('primary_domain', '')
         if website_url:
-            props = {
-                "Name": {"title": [{"text": {"content": "HingeCraft Global - Main Website"}}]},
-                "URL": {"url": website_url},
-                "Category": {"select": {"name": "Website"}},
-                "Type": {"select": {"name": "Main Site"}},
-                "Status": {"select": {"name": "Active"}},
-                "Description": {"rich_text": [{"text": {"content": "Primary HingeCraft Global website"}}]}
-            }
-            upsert_notion_page(DB_IDS['urls'], "main_website", props, 'url')
+            props = {}
+            if "Name" in db_props:
+                props["Name"] = {"title": [{"text": {"content": "HingeCraft Global - Main Website"}}]}
+            if "URL" in db_props:
+                props["URL"] = {"url": website_url}
+            if "Category" in db_props:
+                props["Category"] = {"select": {"name": "Website"}}
+            if "Type" in db_props:
+                props["Type"] = {"select": {"name": "Main Site"}}
+            if "Status" in db_props:
+                props["Status"] = {"select": {"name": "Active"}}
+            if "Description" in db_props:
+                props["Description"] = {"rich_text": [{"text": {"content": "Primary HingeCraft Global website"}}]}
+            
+            if props:
+                upsert_notion_page(DB_IDS['urls'], "main_website", props, 'url')
         
         # Sync repositories
         for repo_name, repo_info in urls_data.get('repositories', {}).items():
             repo_url = repo_info.get('url', '')
             if repo_url:
-                props = {
-                    "Name": {"title": [{"text": {"content": repo_info.get('name', repo_name)}}]},
-                    "URL": {"url": repo_url},
-                    "Category": {"select": {"name": "Repository"}},
-                    "Type": {"select": {"name": "GitHub Repo"}},
-                    "Status": {"select": {"name": "Active"}},
-                    "Description": {"rich_text": [{"text": {"content": repo_info.get('description', repo_info.get('type', ''))}}]}
-                }
-                upsert_notion_page(DB_IDS['urls'], f"repo_{repo_name}", props, 'url')
+                props = {}
+                if "Name" in db_props:
+                    props["Name"] = {"title": [{"text": {"content": repo_info.get('name', repo_name)}}]}
+                if "URL" in db_props:
+                    props["URL"] = {"url": repo_url}
+                if "Category" in db_props:
+                    props["Category"] = {"select": {"name": "Repository"}}
+                if "Type" in db_props:
+                    props["Type"] = {"select": {"name": "GitHub Repo"}}
+                if "Status" in db_props:
+                    props["Status"] = {"select": {"name": "Active"}}
+                if "Description" in db_props:
+                    props["Description"] = {"rich_text": [{"text": {"content": repo_info.get('description', repo_info.get('type', ''))}}]}
+                
+                if props:
+                    upsert_notion_page(DB_IDS['urls'], f"repo_{repo_name}", props, 'url')
         
         # Sync backend services
         for service_name, service_url in urls_data.get('backend_services', {}).items():
             if isinstance(service_url, str) and service_url.startswith('http'):
-                props = {
-                    "Name": {"title": [{"text": {"content": f"{service_name.title()} Service"}}]},
-                    "URL": {"url": service_url},
-                    "Category": {"select": {"name": "Backend Service"}},
-                    "Type": {"select": {"name": "API Endpoint"}},
-                    "Status": {"select": {"name": "Active"}},
-                    "Description": {"rich_text": [{"text": {"content": f"Backend {service_name} service endpoint"}}]}
-                }
-                upsert_notion_page(DB_IDS['urls'], f"backend_{service_name}", props, 'url')
+                props = {}
+                if "Name" in db_props:
+                    props["Name"] = {"title": [{"text": {"content": f"{service_name.title()} Service"}}]}
+                if "URL" in db_props:
+                    props["URL"] = {"url": service_url}
+                if "Category" in db_props:
+                    props["Category"] = {"select": {"name": "Backend Service"}}
+                if "Type" in db_props:
+                    props["Type"] = {"select": {"name": "API Endpoint"}}
+                if "Status" in db_props:
+                    props["Status"] = {"select": {"name": "Active"}}
+                if "Description" in db_props:
+                    props["Description"] = {"rich_text": [{"text": {"content": f"Backend {service_name} service endpoint"}}]}
+                
+                if props:
+                    upsert_notion_page(DB_IDS['urls'], f"backend_{service_name}", props, 'url')
         
         logger.info("Synced company URLs to Notion")
     except Exception as e:
