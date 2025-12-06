@@ -2,7 +2,7 @@
 # Launch Breakdown - Step-by-Step Complete System Launch
 # Breaks down the entire launch process into detailed steps
 
-set -e
+set +e  # Don't exit on error - we'll handle errors gracefully
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$SCRIPT_DIR"
@@ -23,9 +23,23 @@ echo ""
 echo "  [1.1] Checking Docker installation..."
 if ! command -v docker &> /dev/null; then
     echo "    ❌ Docker not found. Please install Docker."
+    echo "    📖 Install: https://www.docker.com/products/docker-desktop"
     exit 1
 fi
 echo "    ✅ Docker installed: $(docker --version)"
+
+echo "  [1.1.1] Checking Docker daemon..."
+if ! docker info &>/dev/null; then
+    echo "    ❌ Docker daemon is not running"
+    echo "    📖 Please start Docker Desktop: open -a Docker"
+    echo "    ⏳ Waiting 5 seconds for you to start Docker..."
+    sleep 5
+    if ! docker info &>/dev/null; then
+        echo "    ❌ Docker daemon still not running. Exiting."
+        exit 1
+    fi
+fi
+echo "    ✅ Docker daemon is running"
 
 echo "  [1.2] Checking Docker Compose installation..."
 if ! command -v docker-compose &> /dev/null && ! docker compose version &> /dev/null; then
