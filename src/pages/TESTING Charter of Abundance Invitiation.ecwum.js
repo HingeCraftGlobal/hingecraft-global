@@ -1,3 +1,27 @@
+// SEO Configuration
+$w.onReady(function () {
+    // Set page title
+    if (typeof document !== 'undefined') {
+        document.title = ' | HingeCraft Global';
+    }
+    
+    // Set meta tags via Wix SEO (if available)
+    try {
+        import({ seo } from 'wix-seo').then(seoModule => {
+            seoModule.seo.setTitle(' | HingeCraft Global');
+            seoModule.seo.setDescription('');
+            seoModule.seo.setKeywords('');
+            seoModule.seo.setOgTitle('');
+            seoModule.seo.setOgDescription('');
+        }).catch(() => {
+            // Fallback: Use page settings API
+            console.log('SEO module not available, using page settings');
+        });
+    } catch(e) {
+        console.log('SEO setup:', e);
+    }
+});
+
 /**
  * HingeCraft Payment Page Integration (Donation Page)
  * 
@@ -13,13 +37,44 @@ import wixStorage from 'wix-storage';
 import wixLocation from 'wix-location';
 import wixData from 'wix-data';
 
-$w.onReady(function () {
-    // Setup donation amount capture
-    setupDonationAmountCapture();
+// SEO Configuration for Charter of Abundance
+    import wixSeo from 'wix-seo';
     
-    // Monitor payment success to redirect to charter
-    setupPaymentSuccessHandler();
-});
+    $w.onReady(function () {
+        // Set SEO meta tags
+        wixSeo.setTitle('Charter of Abundance & Resilience – Governance Treaty | HingeCraft Global');
+        wixSeo.setDescription('HingeCraft Global Charter of Abundance & Resilience Governance Treaty - Public-facing legal declaration of mission and governance principles');
+        wixSeo.setKeywords('HingeCraft, Charter of Abundance, Resilience, Governance Treaty, Mission Statement');
+        
+        // Set Open Graph tags
+        wixSeo.setOgTitle('Charter of Abundance & Resilience – Governance Treaty | HingeCraft Global');
+        wixSeo.setOgDescription('HingeCraft Global Charter of Abundance & Resilience Governance Treaty - Public-facing legal declaration of mission and governance principles');
+        wixSeo.setOgImage('https://hingecraft-global.ai/og-image.jpg');
+        wixSeo.setOgUrl('https://hingecraft-global.ai/legal/charter-of-abundance-resilience-governance');
+        
+        // Set canonical URL
+        wixSeo.setCanonicalUrl('https://hingecraft-global.ai/legal/charter-of-abundance-resilience-governance');
+        
+        // Set robots meta
+        wixSeo.setRobots('index, follow');
+        
+        // Load legal page content
+        loadLegalPageContent();
+    });
+    
+    /**
+     * Load legal page HTML content
+     */
+    function loadLegalPageContent() {
+        // HTML content will be loaded from the HTML element
+        // Make sure HTML element with ID 'legalContent' exists on the page
+        const htmlElement = $w('#legalContent');
+        if (htmlElement) {
+            console.log('Legal content element found');
+        } else {
+            console.log('Legal content element not found. Add HTML element with ID: legalContent');
+        }
+    }
 
 /**
  * Setup donation amount capture

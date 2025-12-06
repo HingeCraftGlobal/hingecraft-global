@@ -1,8 +1,51 @@
+// SEO Configuration
+$w.onReady(function () {
+    // Set page title
+    if (typeof document !== 'undefined') {
+        document.title = ' | HingeCraft Global';
+    }
+    
+    // Set meta tags via Wix SEO (if available)
+    try {
+        import({ seo } from 'wix-seo').then(seoModule => {
+            seoModule.seo.setTitle(' | HingeCraft Global');
+            seoModule.seo.setDescription('');
+            seoModule.seo.setKeywords('');
+            seoModule.seo.setOgTitle('');
+            seoModule.seo.setOgDescription('');
+        }).catch(() => {
+            // Fallback: Use page settings API
+            console.log('SEO module not available, using page settings');
+        });
+    } catch(e) {
+        console.log('SEO setup:', e);
+    }
+});
+
 // API Reference: https://www.wix.com/velo/reference/api-overview/introduction
 // HingeCraft Charter Page - WITH CHECKOUT FLOW
 // Flow: Payment Page → Charter Page → Checkout
 
+// SEO Configuration for Charter of Abundance Invitation
+import { seo } from 'wix-seo';
+
 $w.onReady(function () {
+    // Set page SEO
+    seo.setTitle(' | HingeCraft Global');
+    seo.setDescription('');
+    seo.setKeywords('');
+    
+    // Set Open Graph
+    seo.setOgTitle('');
+    seo.setOgDescription('');
+    seo.setOgImage('https://hingecraft-global.ai/og-image.jpg');
+    
+    // Set canonical and robots
+    seo.setCanonicalUrl(window.location.href);
+    seo.setRobots('index, follow');
+});
+
+    $w.onReady(function () {
     // Charter Page Integration - WITH CHECKOUT FLOW
     (function() {
       'use strict';
