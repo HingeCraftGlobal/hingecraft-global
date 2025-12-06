@@ -1,0 +1,222 @@
+[
+  {
+    "id": "d_proj_01",
+    "name": "Core Architecture Setup",
+    "start_date": "2025-01-07",
+    "due_date": "2025-01-07",
+    "owner": "Engineering",
+    "priority": "Urgent",
+    "status": "Done",
+    "progress": 100,
+    "notes": "Multi-database architecture map; docker/ngrok; repo structuring"
+  },
+  {
+    "id": "d_proj_02",
+    "name": "Multi-Agent System MVP",
+    "start_date": "2025-01-08",
+    "due_date": "2025-01-10",
+    "owner": "AI Team",
+    "priority": "High",
+    "status": "Done",
+    "progress": 100,
+    "notes": "Legal, Marketing, Engineering, Education, Community, Crypto agents"
+  },
+  {
+    "id": "d_proj_03",
+    "name": "Automation Framework MVP",
+    "start_date": "2025-01-11",
+    "due_date": "2025-01-14",
+    "owner": "Engineering",
+    "priority": "High",
+    "status": "Done",
+    "progress": 100,
+    "notes": "Task graph, trigger engine, queue and retry logic"
+  },
+  {
+    "id": "d_proj_04",
+    "name": "Creative Pipeline MVP",
+    "start_date": "2025-01-15",
+    "due_date": "2025-01-18",
+    "owner": "Creative",
+    "priority": "High",
+    "status": "Done",
+    "progress": 100,
+    "notes": "MJ \u2192 Runway \u2192 DaVinci \u2192 Premiere automation"
+  },
+  {
+    "id": "d_proj_05",
+    "name": "Website Core Build",
+    "start_date": "2025-01-19",
+    "due_date": "2025-01-22",
+    "owner": "Engineering",
+    "priority": "Urgent",
+    "status": "In Progress",
+    "progress": 75,
+    "notes": "Homepage, Movement Page, Donation Page, Student Pass Funnel"
+  },
+  {
+    "id": "d_proj_06",
+    "name": "Donation & Crypto Integration",
+    "start_date": "2025-01-23",
+    "due_date": "2025-01-25",
+    "owner": "Finance",
+    "priority": "Urgent",
+    "status": "In Progress",
+    "progress": 80,
+    "notes": "BTC, SOL, USDC integration"
+  },
+  {
+    "id": "d_proj_07",
+    "name": "Legal Packet Finalization",
+    "start_date": "2025-01-24",
+    "due_date": "2025-01-27",
+    "owner": "Legal",
+    "priority": "High",
+    "status": "In Progress",
+    "progress": 90,
+    "notes": "All legal documents"
+  },
+  {
+    "id": "d_proj_08",
+    "name": "Movement Activation Funnel",
+    "start_date": "2025-01-25",
+    "due_date": "2025-01-29",
+    "owner": "Marketing",
+    "priority": "High",
+    "status": "In Progress",
+    "progress": 60,
+    "notes": "Email sequences, movement story"
+  },
+  {
+    "id": "d_proj_09",
+    "name": "Full 700-Content Engine",
+    "start_date": "2025-02-01",
+    "due_date": "2025-02-01",
+    "owner": "Marketing",
+    "priority": "Medium",
+    "status": "Planned",
+    "progress": 0,
+    "notes": "Short-form, long-form, infographics"
+  },
+  {
+    "id": "d_proj_10",
+    "name": "SEO Expansion + Web Copy",
+    "start_date": "2025-02-01",
+    "due_date": "2025-02-03",
+    "owner": "Marketing",
+    "priority": "Medium",
+    "status": "Planned",
+    "progress": 0,
+    "notes": "50-100 SEO topics"
+  },
+  {
+    "id": "d_proj_11",
+    "name": "Lead Hunting Engines",
+    "start_date": "2025-02-03",
+    "due_date": "2025-02-05",
+    "owner": "Marketing",
+    "priority": "High",
+    "status": "Planned",
+    "progress": 0,
+    "notes": "NGOs, schools, maker spaces"
+  },
+  {
+    "id": "d_proj_12",
+    "name": "CRM + Automated Outreach",
+    "start_date": "2025-02-05",
+    "due_date": "2025-02-09",
+    "owner": "Marketing",
+    "priority": "High",
+    "status": "Planned",
+    "progress": 0,
+    "notes": "7-step student journey, 5-touch educator sequence"
+  },
+  {
+    "id": "d_proj_13",
+    "name": "Complete AI Prompt Library",
+    "start_date": "2025-02-15",
+    "due_date": "2025-02-15",
+    "owner": "AI Team",
+    "priority": "High",
+    "status": "Planned",
+    "progress": 0,
+    "notes": "CW1-CW6 integrated"
+  },
+  {
+    "id": "d_proj_14",
+    "name": "Entire Team Dashboard Packet",
+    "start_date": "2025-02-15",
+    "due_date": "2025-02-16",
+    "owner": "Engineering",
+    "priority": "Urgent",
+    "status": "In Progress",
+    "progress": 50,
+    "notes": "Notion dashboard integration"
+  },
+  {
+    "id": "d_proj_15",
+    "name": "Full Executive Binder",
+    "start_date": "2025-02-16",
+    "due_date": "2025-02-17",
+    "owner": "Will",
+    "priority": "Urgent",
+    "status": "Planned",
+    "progress": 0,
+    "notes": "Complete presentation package"
+  },
+  {
+    "id": "d_proj_16",
+    "name": "Website Soft-Launch Version",
+    "start_date": "2025-12-01",
+    "due_date": "2025-12-06",
+    "owner": "Engineering",
+    "priority": "Urgent",
+    "status": "In Progress",
+    "progress": 85,
+    "notes": "Home, Movement, Donation, Student Pass pages"
+  },
+  {
+    "id": "d_proj_17",
+    "name": "Donation System End-to-End",
+    "start_date": "2025-12-01",
+    "due_date": "2025-12-06",
+    "owner": "Finance",
+    "priority": "Urgent",
+    "status": "In Progress",
+    "progress": 90,
+    "notes": "Bankful + Crypto integration"
+  },
+  {
+    "id": "d_proj_18",
+    "name": "CRM & Email Foundation",
+    "start_date": "2025-12-04",
+    "due_date": "2025-12-10",
+    "owner": "Marketing",
+    "priority": "High",
+    "status": "In Progress",
+    "progress": 70,
+    "notes": "Student 3-email journey, decision-maker sequences"
+  },
+  {
+    "id": "d_proj_19",
+    "name": "AI/Creative Pipeline Soft Version",
+    "start_date": "2025-12-07",
+    "due_date": "2025-12-10",
+    "owner": "Creative",
+    "priority": "High",
+    "status": "In Progress",
+    "progress": 65,
+    "notes": "10-20 launch assets"
+  },
+  {
+    "id": "d_proj_20",
+    "name": "Movement Narrative + Tier System",
+    "start_date": "2025-12-07",
+    "due_date": "2025-12-10",
+    "owner": "Marketing",
+    "priority": "High",
+    "status": "In Progress",
+    "progress": 80,
+    "notes": "Tier 1-3 system, movement story"
+  }
+]
