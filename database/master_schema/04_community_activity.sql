@@ -121,3 +121,4 @@ COMMENT ON TABLE event_attendances IS 'Event registration and attendance';
 
 
 
+

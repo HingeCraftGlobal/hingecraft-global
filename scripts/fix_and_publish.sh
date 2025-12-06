@@ -21,3 +21,4 @@ echo ""
 echo "✅ Publish complete!"
 echo "Check /tmp/wix_publish_final.log for details"
 
+

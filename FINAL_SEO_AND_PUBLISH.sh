@@ -13,3 +13,4 @@ wix publish --source local --approve-preview --force
 echo ""
 echo "✅ Complete! Check: https://www.hingecraft-global.ai/"
 
+

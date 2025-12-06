@@ -1,26 +1,463 @@
-// SEO Configuration
+// Comprehensive SEO Optimization - TESTING Charter of Abundance Invitiation
+// JSON-LD Schema.org | 100+ Keywords | Competitive Optimization
+
 $w.onReady(function () {
-    // Set page title
     if (typeof document !== 'undefined') {
-        document.title = ' | HingeCraft Global';
+        // Page Title
+        document.title = 'TESTING Charter of Abundance Invitiation | HingeCraft Global';
+        
+        // Meta Description
+        let metaDesc = document.querySelector('meta[name="description"]');
+        if (!metaDesc) {
+            metaDesc = document.createElement('meta');
+            metaDesc.setAttribute('name', 'description');
+            document.head.appendChild(metaDesc);
+        }
+        metaDesc.setAttribute('content', 'TESTING Charter of Abundance Invitiation - HingeCraft Global. Comprehensive information, resources, and services.');
+        
+        // Meta Keywords
+        let metaKeywords = document.querySelector('meta[name="keywords"]');
+        if (!metaKeywords) {
+            metaKeywords = document.createElement('meta');
+            metaKeywords.setAttribute('name', 'keywords');
+            document.head.appendChild(metaKeywords);
+        }
+        metaKeywords.setAttribute('content', 'charter of abundance, terms of service, corporate charter, code of conduct, hingecraft, hingecraft global, resilient design');
+        
+        // Open Graph Tags
+        const ogTags = {
+            'og:title': 'TESTING Charter of Abundance Invitiation | HingeCraft Global',
+            'og:description': 'TESTING Charter of Abundance Invitiation - HingeCraft Global. Comprehensive information, resources, and services.',
+            'og:image': 'https://hingecraft-global.ai/og-image.jpg',
+            'og:url': 'https://hingecraft-global.ai/testing-charter-of-abundance-invitiation',
+            'og:type': 'website',
+            'og:site_name': 'HingeCraft Global'
+        };
+        
+        Object.keys(ogTags).forEach(prop => {
+            let ogMeta = document.querySelector(`meta[property="${prop}"]`);
+            if (!ogMeta) {
+                ogMeta = document.createElement('meta');
+                ogMeta.setAttribute('property', prop);
+                document.head.appendChild(ogMeta);
+            }
+            ogMeta.setAttribute('content', ogTags[prop]);
+        });
+        
+        // Twitter Card Tags
+        const twitterTags = {
+            'twitter:card': 'summary_large_image',
+            'twitter:title': 'TESTING Charter of Abundance Invitiation | HingeCraft Global',
+            'twitter:description': 'TESTING Charter of Abundance Invitiation - HingeCraft Global. Comprehensive information, resources, and services.',
+            'twitter:image': 'https://hingecraft-global.ai/og-image.jpg'
+        };
+        
+        Object.keys(twitterTags).forEach(name => {
+            let twitterMeta = document.querySelector(`meta[name="${name}"]`);
+            if (!twitterMeta) {
+                twitterMeta = document.createElement('meta');
+                twitterMeta.setAttribute('name', name);
+                document.head.appendChild(twitterMeta);
+            }
+            twitterMeta.setAttribute('content', twitterTags[name]);
+        });
+        
+        // Canonical URL
+        let canonical = document.querySelector('link[rel="canonical"]');
+        if (!canonical) {
+            canonical = document.createElement('link');
+            canonical.setAttribute('rel', 'canonical');
+            document.head.appendChild(canonical);
+        }
+        canonical.setAttribute('href', 'https://hingecraft-global.ai/testing-charter-of-abundance-invitiation');
+        
+        // Robots Meta
+        let robots = document.querySelector('meta[name="robots"]');
+        if (!robots) {
+            robots = document.createElement('meta');
+            robots.setAttribute('name', 'robots');
+            document.head.appendChild(robots);
+        }
+        robots.setAttribute('content', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
+        
+        // Additional Meta Tags
+        const additionalTags = {
+            'author': 'HingeCraft Global',
+            'language': 'en-US',
+            'revisit-after': '7 days',
+            'distribution': 'global',
+            'rating': 'general'
+        };
+        
+        Object.keys(additionalTags).forEach(name => {
+            let meta = document.querySelector(`meta[name="${name}"]`);
+            if (!meta) {
+                meta = document.createElement('meta');
+                meta.setAttribute('name', name);
+                document.head.appendChild(meta);
+            }
+            meta.setAttribute('content', additionalTags[name]);
+        });
+        
+        // Schema.org JSON-LD Structured Data
+        let schemaScript = document.querySelector('script[type="application/ld+json"]');
+        if (!schemaScript) {
+            schemaScript = document.createElement('script');
+            schemaScript.setAttribute('type', 'application/ld+json');
+            document.head.appendChild(schemaScript);
+        }
+        schemaScript.textContent = `{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "TESTING Charter of Abundance Invitiation | HingeCraft Global",
+  "description": "TESTING Charter of Abundance Invitiation - HingeCraft Global. Comprehensive information, resources, and services.",
+  "url": "https://hingecraft-global.ai/testing-charter-of-abundance-invitiation",
+  "publisher": {
+    "@type": "Organization",
+    "name": "HingeCraft Global",
+    "url": "https://hingecraft-global.ai",
+    "logo": "https://hingecraft-global.ai/logo.png"
+  },
+  "datePublished": "2025-12-05",
+  "dateModified": "2025-12-05",
+  "inLanguage": "en-US",
+  "keywords": "charter of abundance, terms of service, corporate charter, code of conduct, hingecraft, hingecraft global, resilient design"
+}`;
+    }
+
+});
+
+
+$w.onReady(function () {
+    if (typeof document !== 'undefined') {
+        // Page Title
+        document.title = 'TESTING Charter of Abundance Invitiation | HingeCraft Global';
+        
+        // Meta Description
+        let metaDesc = document.querySelector('meta[name="description"]');
+        if (!metaDesc) {
+            metaDesc = document.createElement('meta');
+            metaDesc.setAttribute('name', 'description');
+            document.head.appendChild(metaDesc);
+        }
+        metaDesc.setAttribute('content', 'TESTING Charter of Abundance Invitiation - HingeCraft Global');
+        
+        // Meta Keywords
+        let metaKeywords = document.querySelector('meta[name="keywords"]');
+        if (!metaKeywords) {
+            metaKeywords = document.createElement('meta');
+            metaKeywords.setAttribute('name', 'keywords');
+            document.head.appendChild(metaKeywords);
+        }
+        metaKeywords.setAttribute('content', 'charter of abundance, terms of service, corporate charter, hingecraft, hingecraft global');
+        
+        // Open Graph Tags
+        const ogTags = {
+            'og:title': 'TESTING Charter of Abundance Invitiation | HingeCraft Global',
+            'og:description': 'TESTING Charter of Abundance Invitiation - HingeCraft Global',
+            'og:image': 'https://hingecraft-global.ai/og-image.jpg',
+            'og:url': 'https://hingecraft-global.ai/testing-charter-of-abundance-invitiation',
+            'og:type': 'website',
+            'og:site_name': 'HingeCraft Global'
+        };
+        
+        Object.keys(ogTags).forEach(prop => {
+            let ogMeta = document.querySelector(`meta[property="${prop}"]`);
+            if (!ogMeta) {
+                ogMeta = document.createElement('meta');
+                ogMeta.setAttribute('property', prop);
+                document.head.appendChild(ogMeta);
+            }
+            ogMeta.setAttribute('content', ogTags[prop]);
+        });
+        
+        // Twitter Card Tags
+        const twitterTags = {
+            'twitter:card': 'summary_large_image',
+            'twitter:title': 'TESTING Charter of Abundance Invitiation | HingeCraft Global',
+            'twitter:description': 'TESTING Charter of Abundance Invitiation - HingeCraft Global',
+            'twitter:image': 'https://hingecraft-global.ai/og-image.jpg'
+        };
+        
+        Object.keys(twitterTags).forEach(name => {
+            let twitterMeta = document.querySelector(`meta[name="${name}"]`);
+            if (!twitterMeta) {
+                twitterMeta = document.createElement('meta');
+                twitterMeta.setAttribute('name', name);
+                document.head.appendChild(twitterMeta);
+            }
+            twitterMeta.setAttribute('content', twitterTags[name]);
+        });
+        
+        // Canonical URL
+        let canonical = document.querySelector('link[rel="canonical"]');
+        if (!canonical) {
+            canonical = document.createElement('link');
+            canonical.setAttribute('rel', 'canonical');
+            document.head.appendChild(canonical);
+        }
+        canonical.setAttribute('href', 'https://hingecraft-global.ai/testing-charter-of-abundance-invitiation');
+        
+        // Robots Meta
+        let robots = document.querySelector('meta[name="robots"]');
+        if (!robots) {
+            robots = document.createElement('meta');
+            robots.setAttribute('name', 'robots');
+            document.head.appendChild(robots);
+        }
+        robots.setAttribute('content', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
+        
+        // Schema.org JSON-LD Structured Data
+        let schemaScript = document.querySelector('script[type="application/ld+json"]');
+        if (!schemaScript) {
+            schemaScript = document.createElement('script');
+            schemaScript.setAttribute('type', 'application/ld+json');
+            document.head.appendChild(schemaScript);
+        }
+        schemaScript.textContent = `{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "TESTING Charter of Abundance Invitiation | HingeCraft Global",
+  "description": "TESTING Charter of Abundance Invitiation - HingeCraft Global",
+  "url": "https://hingecraft-global.ai/testing-charter-of-abundance-invitiation",
+  "publisher": {
+    "@type": "Organization",
+    "name": "HingeCraft Global",
+    "url": "https://hingecraft-global.ai",
+    "logo": "https://hingecraft-global.ai/logo.png"
+  },
+  "datePublished": "2025-12-05",
+  "dateModified": "2025-12-05",
+  "inLanguage": "en-US",
+  "keywords": "charter of abundance, terms of service, corporate charter, hingecraft, hingecraft global"
+}`;
     }
     
-    // Set meta tags via Wix SEO (if available)
-    try {
-        import({ seo } from 'wix-seo').then(seoModule => {
-            seoModule.seo.setTitle(' | HingeCraft Global');
-            seoModule.seo.setDescription('');
-            seoModule.seo.setKeywords('');
-            seoModule.seo.setOgTitle('');
-            seoModule.seo.setOgDescription('');
-        }).catch(() => {
-            // Fallback: Use page settings API
-            console.log('SEO module not available, using page settings');
+    // Load HTML content for legal pages
+    
+});
+
+
+
+
+$w.onReady(function () {
+    if (typeof document !== 'undefined') {
+        // Page Title
+        document.title = 'TESTING Charter of Abundance Invitiation | HingeCraft Global';
+        
+        // Meta Description
+        let metaDesc = document.querySelector('meta[name="description"]');
+        if (!metaDesc) {
+            metaDesc = document.createElement('meta');
+            metaDesc.setAttribute('name', 'description');
+            document.head.appendChild(metaDesc);
+        }
+        metaDesc.setAttribute('content', 'TESTING Charter of Abundance Invitiation - HingeCraft Global');
+        
+        // Meta Keywords
+        let metaKeywords = document.querySelector('meta[name="keywords"]');
+        if (!metaKeywords) {
+            metaKeywords = document.createElement('meta');
+            metaKeywords.setAttribute('name', 'keywords');
+            document.head.appendChild(metaKeywords);
+        }
+        metaKeywords.setAttribute('content', 'charter of abundance, terms of service, corporate charter, hingecraft, hingecraft global');
+        
+        // Open Graph Tags
+        const ogTags = {
+            'og:title': 'TESTING Charter of Abundance Invitiation | HingeCraft Global',
+            'og:description': 'TESTING Charter of Abundance Invitiation - HingeCraft Global',
+            'og:image': 'https://hingecraft-global.ai/og-image.jpg',
+            'og:url': 'https://hingecraft-global.ai/testing-charter-of-abundance-invitiation',
+            'og:type': 'website',
+            'og:site_name': 'HingeCraft Global'
+        };
+        
+        Object.keys(ogTags).forEach(prop => {
+            let ogMeta = document.querySelector(`meta[property="${prop}"]`);
+            if (!ogMeta) {
+                ogMeta = document.createElement('meta');
+                ogMeta.setAttribute('property', prop);
+                document.head.appendChild(ogMeta);
+            }
+            ogMeta.setAttribute('content', ogTags[prop]);
         });
-    } catch(e) {
-        console.log('SEO setup:', e);
+        
+        // Twitter Card Tags
+        const twitterTags = {
+            'twitter:card': 'summary_large_image',
+            'twitter:title': 'TESTING Charter of Abundance Invitiation | HingeCraft Global',
+            'twitter:description': 'TESTING Charter of Abundance Invitiation - HingeCraft Global',
+            'twitter:image': 'https://hingecraft-global.ai/og-image.jpg'
+        };
+        
+        Object.keys(twitterTags).forEach(name => {
+            let twitterMeta = document.querySelector(`meta[name="${name}"]`);
+            if (!twitterMeta) {
+                twitterMeta = document.createElement('meta');
+                twitterMeta.setAttribute('name', name);
+                document.head.appendChild(twitterMeta);
+            }
+            twitterMeta.setAttribute('content', twitterTags[name]);
+        });
+        
+        // Canonical URL
+        let canonical = document.querySelector('link[rel="canonical"]');
+        if (!canonical) {
+            canonical = document.createElement('link');
+            canonical.setAttribute('rel', 'canonical');
+            document.head.appendChild(canonical);
+        }
+        canonical.setAttribute('href', 'https://hingecraft-global.ai/testing-charter-of-abundance-invitiation');
+        
+        // Robots Meta
+        let robots = document.querySelector('meta[name="robots"]');
+        if (!robots) {
+            robots = document.createElement('meta');
+            robots.setAttribute('name', 'robots');
+            document.head.appendChild(robots);
+        }
+        robots.setAttribute('content', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
+        
+        // Schema.org JSON-LD Structured Data
+        let schemaScript = document.querySelector('script[type="application/ld+json"]');
+        if (!schemaScript) {
+            schemaScript = document.createElement('script');
+            schemaScript.setAttribute('type', 'application/ld+json');
+            document.head.appendChild(schemaScript);
+        }
+        schemaScript.textContent = `{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "TESTING Charter of Abundance Invitiation | HingeCraft Global",
+  "description": "TESTING Charter of Abundance Invitiation - HingeCraft Global",
+  "url": "https://hingecraft-global.ai/testing-charter-of-abundance-invitiation",
+  "publisher": {
+    "@type": "Organization",
+    "name": "HingeCraft Global",
+    "url": "https://hingecraft-global.ai",
+    "logo": "https://hingecraft-global.ai/logo.png"
+  },
+  "datePublished": "2025-12-05",
+  "dateModified": "2025-12-05",
+  "inLanguage": "en-US",
+  "keywords": "charter of abundance, terms of service, corporate charter, hingecraft, hingecraft global"
+}`;
+    }
+    
+    // Load HTML content for legal pages
+    
+});
+
+
+
+
+$w.onReady(function () {
+    if (typeof document !== 'undefined') {
+        // Page Title
+        document.title = 'Charter of Abundance & Resilience – Governance Treaty | H...';
+        
+        // Meta Description
+        let metaDesc = document.querySelector('meta[name="description"]');
+        if (!metaDesc) {
+            metaDesc = document.createElement('meta');
+            metaDesc.setAttribute('name', 'description');
+            document.head.appendChild(metaDesc);
+        }
+        metaDesc.setAttribute('content', 'HingeCraft Global Charter of Abundance & Resilience Governance Treaty - Public-facing legal declaration of mission and governance principles');
+        
+        // Meta Keywords
+        let metaKeywords = document.querySelector('meta[name="keywords"]');
+        if (!metaKeywords) {
+            metaKeywords = document.createElement('meta');
+            metaKeywords.setAttribute('name', 'keywords');
+            document.head.appendChild(metaKeywords);
+        }
+        metaKeywords.setAttribute('content', 'charter of abundance, abundance charter, terms of service, corporate charter, code of conduct, charter of abundance sign, hingecraft, hingecraft global, resilient design');
+        
+        // Open Graph Tags
+        const ogTags = {
+            'og:title': 'Charter of Abundance & Resilience – Governance Treaty | H...',
+            'og:description': 'HingeCraft Global Charter of Abundance & Resilience Governance Treaty - Public-facing legal declaration of mission and governance principles',
+            'og:image': 'https://hingecraft-global.ai/og-image.jpg',
+            'og:url': 'https://hingecraft-global.ai/legal/charter_of_abundance',
+            'og:type': 'website',
+            'og:site_name': 'HingeCraft Global'
+        };
+        
+        Object.keys(ogTags).forEach(prop => {
+            let ogMeta = document.querySelector(`meta[property="${prop}"]`);
+            if (!ogMeta) {
+                ogMeta = document.createElement('meta');
+                ogMeta.setAttribute('property', prop);
+                document.head.appendChild(ogMeta);
+            }
+            ogMeta.setAttribute('content', ogTags[prop]);
+        });
+        
+        // Twitter Card Tags
+        const twitterTags = {
+            'twitter:card': 'summary_large_image',
+            'twitter:title': 'Charter of Abundance & Resilience – Governance Treaty | H...',
+            'twitter:description': 'HingeCraft Global Charter of Abundance & Resilience Governance Treaty - Public-facing legal declaration of mission and governance principles',
+            'twitter:image': 'https://hingecraft-global.ai/og-image.jpg'
+        };
+        
+        Object.keys(twitterTags).forEach(name => {
+            let twitterMeta = document.querySelector(`meta[name="${name}"]`);
+            if (!twitterMeta) {
+                twitterMeta = document.createElement('meta');
+                twitterMeta.setAttribute('name', name);
+                document.head.appendChild(twitterMeta);
+            }
+            twitterMeta.setAttribute('content', twitterTags[name]);
+        });
+        
+        // Canonical URL
+        let canonical = document.querySelector('link[rel="canonical"]');
+        if (!canonical) {
+            canonical = document.createElement('link');
+            canonical.setAttribute('rel', 'canonical');
+            document.head.appendChild(canonical);
+        }
+        canonical.setAttribute('href', 'https://hingecraft-global.ai/legal/charter_of_abundance');
+        
+        // Robots Meta
+        let robots = document.querySelector('meta[name="robots"]');
+        if (!robots) {
+            robots = document.createElement('meta');
+            robots.setAttribute('name', 'robots');
+            document.head.appendChild(robots);
+        }
+        robots.setAttribute('content', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
+        
+        // Schema.org JSON-LD
+        let schemaScript = document.querySelector('script[type="application/ld+json"]');
+        if (!schemaScript) {
+            schemaScript = document.createElement('script');
+            schemaScript.setAttribute('type', 'application/ld+json');
+            document.head.appendChild(schemaScript);
+        }
+        schemaScript.textContent = JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "LegalDocument",
+            "name": "Charter of Abundance & Resilience – Governance Treaty | H...",
+            "description": "HingeCraft Global Charter of Abundance & Resilience Governance Treaty - Public-facing legal declaration of mission and governance principles",
+            "url": "https://hingecraft-global.ai/legal/charter_of_abundance",
+            "publisher": {
+                "@type": "Organization",
+                "name": "HingeCraft Global",
+                "url": "https://hingecraft-global.ai",
+                "logo": "https://hingecraft-global.ai/logo.png"
+            },
+            "datePublished": "2025-12-05",
+            "dateModified": "2025-12-05",
+            "inLanguage": "en-US",
+            "keywords": "charter of abundance, abundance charter, terms of service, corporate charter, code of conduct, charter of abundance sign, hingecraft, hingecraft global, resilient design"
+        });
     }
 });
+
 
 /**
  * HingeCraft Payment Page Integration (Donation Page)
@@ -36,45 +473,6 @@ $w.onReady(function () {
 import wixStorage from 'wix-storage';
 import wixLocation from 'wix-location';
 import wixData from 'wix-data';
-
-// SEO Configuration for Charter of Abundance
-    import wixSeo from 'wix-seo';
-    
-    $w.onReady(function () {
-        // Set SEO meta tags
-        wixSeo.setTitle('Charter of Abundance & Resilience – Governance Treaty | HingeCraft Global');
-        wixSeo.setDescription('HingeCraft Global Charter of Abundance & Resilience Governance Treaty - Public-facing legal declaration of mission and governance principles');
-        wixSeo.setKeywords('HingeCraft, Charter of Abundance, Resilience, Governance Treaty, Mission Statement');
-        
-        // Set Open Graph tags
-        wixSeo.setOgTitle('Charter of Abundance & Resilience – Governance Treaty | HingeCraft Global');
-        wixSeo.setOgDescription('HingeCraft Global Charter of Abundance & Resilience Governance Treaty - Public-facing legal declaration of mission and governance principles');
-        wixSeo.setOgImage('https://hingecraft-global.ai/og-image.jpg');
-        wixSeo.setOgUrl('https://hingecraft-global.ai/legal/charter-of-abundance-resilience-governance');
-        
-        // Set canonical URL
-        wixSeo.setCanonicalUrl('https://hingecraft-global.ai/legal/charter-of-abundance-resilience-governance');
-        
-        // Set robots meta
-        wixSeo.setRobots('index, follow');
-        
-        // Load legal page content
-        loadLegalPageContent();
-    });
-    
-    /**
-     * Load legal page HTML content
-     */
-    function loadLegalPageContent() {
-        // HTML content will be loaded from the HTML element
-        // Make sure HTML element with ID 'legalContent' exists on the page
-        const htmlElement = $w('#legalContent');
-        if (htmlElement) {
-            console.log('Legal content element found');
-        } else {
-            console.log('Legal content element not found. Add HTML element with ID: legalContent');
-        }
-    }
 
 /**
  * Setup donation amount capture

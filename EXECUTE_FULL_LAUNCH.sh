@@ -118,3 +118,4 @@ echo "  3. Access pgAdmin: http://localhost:5050"
 echo "  4. Check Wix pages: https://www.hingecraft-global.ai"
 echo ""
 
+

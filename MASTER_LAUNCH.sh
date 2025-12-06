@@ -61,3 +61,4 @@ echo "  3. Test API: curl http://localhost:8000/health"
 echo "  4. Access pgAdmin: http://localhost:5050"
 echo ""
 
+

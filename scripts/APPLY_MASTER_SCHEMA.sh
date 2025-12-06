@@ -23,7 +23,7 @@ fi
 # Wait for database
 echo "  ⏳ Waiting for database..."
 for i in {1..30}; do
-    if docker compose exec -T postgres pg_isready -U hc -d hingecraft > /dev/null 2>&1; then
+    if docker compose exec -T postgres pg_isready -U hcuser -d hingecraft > /dev/null 2>&1; then
         break
     fi
     sleep 1
@@ -46,7 +46,7 @@ SCHEMA_FILES=(
 for schema_file in "${SCHEMA_FILES[@]}"; do
     if [ -f "$PROJECT_ROOT/$schema_file" ]; then
         echo "  Applying $(basename $schema_file)..."
-        docker compose exec -T postgres psql -U hc -d hingecraft < "$PROJECT_ROOT/$schema_file" 2>&1 | grep -v "already exists" | grep -v "NOTICE" || true
+        docker compose exec -T postgres psql -U hcuser -d hingecraft < "$PROJECT_ROOT/$schema_file" 2>&1 | grep -v "already exists" | grep -v "NOTICE" || true
     fi
 done
 
@@ -55,8 +55,9 @@ echo "✅ Master schema applied successfully!"
 echo ""
 
 # Verify tables
-TABLE_COUNT=$(docker compose exec -T postgres psql -U hc -d hingecraft -t -c "SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = 'public';" 2>/dev/null | tr -d ' ')
+TABLE_COUNT=$(docker compose exec -T postgres psql -U hcuser -d hingecraft -t -c "SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = 'public';" 2>/dev/null | tr -d ' ')
 echo "  📊 Total tables in database: $TABLE_COUNT"
+
 
 
 

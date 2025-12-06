@@ -128,3 +128,4 @@ COMMENT ON TABLE audit_logs IS 'Immutable audit trail for all operations';
 
 
 
+

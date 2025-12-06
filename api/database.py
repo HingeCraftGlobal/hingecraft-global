@@ -67,11 +67,13 @@ async def init_db():
 def check_db_connection() -> bool:
     """Check database connection"""
     try:
+        from sqlalchemy import text
         with engine.connect() as conn:
-            conn.execute("SELECT 1")
+            conn.execute(text("SELECT 1"))
         return True
     except Exception:
         return False
+
 
 
 
