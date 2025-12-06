@@ -18,12 +18,35 @@ import json
 import time
 import logging
 import subprocess
+import sys
 from typing import Optional, Tuple, List, Dict, Any
 from datetime import datetime, timedelta
 from pathlib import Path
 import requests
 from dotenv import load_dotenv
 from notion_client import Client
+
+# Setup logging first
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s",
+    handlers=[
+        logging.FileHandler("notion_sync.log"),
+        logging.StreamHandler()
+    ]
+)
+logger = logging.getLogger("hingecraft-notion-sync")
+
+# Add monitoring module to path
+sys.path.insert(0, str(Path(__file__).parent.parent / "monitoring"))
+try:
+    from docker_monitor import get_all_services_status, check_docker_running
+except ImportError:
+    logger.warning("Docker monitor not available - Docker monitoring disabled")
+    def get_all_services_status():
+        return {"docker_running": False, "error": "Docker monitor not available"}
+    def check_docker_running():
+        return False
 
 # Load environment
 load_dotenv()
@@ -45,7 +68,9 @@ DB_IDS = {
     'content': os.getenv("NOTION_CONTENT_DB_ID", ""),
     'team': os.getenv("NOTION_TEAM_DB_ID", ""),
     'chat_history': os.getenv("NOTION_CHAT_HISTORY_DB_ID", ""),
-    'timeline': os.getenv("NOTION_TIMELINE_DB_ID", "")
+    'timeline': os.getenv("NOTION_TIMELINE_DB_ID", ""),
+    'system_status': os.getenv("NOTION_SYSTEM_STATUS_DB_ID", ""),
+    'urls': os.getenv("NOTION_URLS_DB_ID", "")
 }
 
 # File paths
@@ -53,17 +78,6 @@ MAPPINGS_FILE = os.getenv("MAPPINGS_FILE", "./mappings.json")
 LAST_CURSOR_FILE = os.getenv("LAST_CURSOR_FILE", "./last_cursor.json")
 CHAT_HISTORY_FILE = os.getenv("CHAT_HISTORY_FILE", "./chat_history.json")
 PROGRESS_LOG_FILE = os.getenv("PROGRESS_LOG_FILE", "./progress_log.json")
-
-# Setup logging
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s [%(levelname)s] %(message)s",
-    handlers=[
-        logging.FileHandler("notion_sync.log"),
-        logging.StreamHandler()
-    ]
-)
-logger = logging.getLogger("hingecraft-notion-sync")
 
 # Initialize Notion client
 notion = Client(auth=NOTION_TOKEN)
@@ -225,6 +239,80 @@ def create_notion_databases():
         )
         DB_IDS['donations'] = donations_db['id']
         logger.info(f"Created Donations database: {DB_IDS['donations']}")
+    
+    # System Status Database
+    if not DB_IDS['system_status']:
+        system_status_db = notion.databases.create(
+            parent={"type": "page_id", "page_id": PARENT_PAGE},
+            title=[{"type": "text", "text": {"content": "System Status"}}],
+            properties={
+                "Service Name": {"title": {}},
+                "Service ID": {"rich_text": {}},
+                "Status": {"select": {
+                    "options": [
+                        {"name": "Running", "color": "green"},
+                        {"name": "Stopped", "color": "red"},
+                        {"name": "Degraded", "color": "yellow"},
+                        {"name": "Unknown", "color": "gray"}
+                    ]
+                }},
+                "Type": {"select": {
+                    "options": [
+                        {"name": "Database", "color": "blue"},
+                        {"name": "API", "color": "purple"},
+                        {"name": "Cache", "color": "orange"},
+                        {"name": "Storage", "color": "green"},
+                        {"name": "Worker", "color": "pink"},
+                        {"name": "Proxy", "color": "yellow"}
+                    ]
+                }},
+                "Port": {"number": {}},
+                "Health Check": {"url": {}},
+                "Last Checked": {"date": {}},
+                "Details": {"rich_text": {}}
+            }
+        )
+        DB_IDS['system_status'] = system_status_db['id']
+        logger.info(f"Created System Status database: {DB_IDS['system_status']}")
+    
+    # URLs Database
+    if not DB_IDS['urls']:
+        urls_db = notion.databases.create(
+            parent={"type": "page_id", "page_id": PARENT_PAGE},
+            title=[{"type": "text", "text": {"content": "Company URLs & Repositories"}}],
+            properties={
+                "Name": {"title": {}},
+                "URL": {"url": {}},
+                "Category": {"select": {
+                    "options": [
+                        {"name": "Website", "color": "blue"},
+                        {"name": "Repository", "color": "green"},
+                        {"name": "Backend Service", "color": "purple"},
+                        {"name": "Admin Panel", "color": "orange"},
+                        {"name": "Documentation", "color": "yellow"}
+                    ]
+                }},
+                "Type": {"select": {
+                    "options": [
+                        {"name": "Main Site", "color": "blue"},
+                        {"name": "GitHub Repo", "color": "gray"},
+                        {"name": "API Endpoint", "color": "purple"},
+                        {"name": "Database", "color": "green"},
+                        {"name": "Storage", "color": "orange"}
+                    ]
+                }},
+                "Status": {"select": {
+                    "options": [
+                        {"name": "Active", "color": "green"},
+                        {"name": "Inactive", "color": "red"},
+                        {"name": "Maintenance", "color": "yellow"}
+                    ]
+                }},
+                "Description": {"rich_text": {}}
+            }
+        )
+        DB_IDS['urls'] = urls_db['id']
+        logger.info(f"Created URLs database: {DB_IDS['urls']}")
     
     # Save DB IDs to .env or config file
     logger.info("All databases created successfully")
@@ -434,6 +522,99 @@ def sync_status_update(status_data: dict):
     # This would update a status text block on the main page
     pass
 
+def sync_docker_status():
+    """Sync Docker services status to Notion System Status database"""
+    if not DB_IDS['system_status']:
+        return
+    
+    if not os.getenv("DOCKER_MONITORING_ENABLED", "true").lower() == "true":
+        return
+    
+    try:
+        docker_status = get_all_services_status()
+        
+        for service_name, service_info in docker_status.get('services', {}).items():
+            src_id = f"docker_{service_name}"
+            props = {
+                "Service Name": {"title": [{"text": {"content": service_name}}]},
+                "Service ID": {"rich_text": [{"text": {"content": src_id}}]},
+                "Status": {"select": {"name": service_info.get('container_status', 'Unknown').title()}},
+                "Type": {"select": {"name": service_info.get('type', 'Unknown').title()}},
+                "Last Checked": {"date": {"start": service_info.get('last_checked', datetime.now().isoformat())}},
+                "Details": {"rich_text": [{"text": {"content": json.dumps(service_info, indent=2)}}]}
+            }
+            
+            if service_info.get('port'):
+                props["Port"] = {"number": service_info['port']}
+            
+            if service_info.get('port_status', {}).get('port_open'):
+                health_url = f"http://localhost:{service_info['port']}"
+                props["Health Check"] = {"url": health_url}
+            
+            upsert_notion_page(DB_IDS['system_status'], src_id, props, 'system_status')
+        
+        logger.info(f"Synced Docker status: {docker_status.get('summary', {})}")
+    except Exception as e:
+        logger.error(f"Failed to sync Docker status: {e}")
+
+def sync_company_urls():
+    """Sync all company URLs and repositories to Notion"""
+    if not DB_IDS['urls']:
+        return
+    
+    try:
+        urls_file = Path(__file__).parent.parent / "company_urls.json"
+        if not urls_file.exists():
+            logger.warning("company_urls.json not found")
+            return
+        
+        with open(urls_file, 'r') as f:
+            urls_data = json.load(f)
+        
+        # Sync main website
+        website_url = urls_data.get('company', {}).get('primary_domain', '')
+        if website_url:
+            props = {
+                "Name": {"title": [{"text": {"content": "HingeCraft Global - Main Website"}}]},
+                "URL": {"url": website_url},
+                "Category": {"select": {"name": "Website"}},
+                "Type": {"select": {"name": "Main Site"}},
+                "Status": {"select": {"name": "Active"}},
+                "Description": {"rich_text": [{"text": {"content": "Primary HingeCraft Global website"}}]}
+            }
+            upsert_notion_page(DB_IDS['urls'], "main_website", props, 'url')
+        
+        # Sync repositories
+        for repo_name, repo_info in urls_data.get('repositories', {}).items():
+            repo_url = repo_info.get('url', '')
+            if repo_url:
+                props = {
+                    "Name": {"title": [{"text": {"content": repo_info.get('name', repo_name)}}]},
+                    "URL": {"url": repo_url},
+                    "Category": {"select": {"name": "Repository"}},
+                    "Type": {"select": {"name": "GitHub Repo"}},
+                    "Status": {"select": {"name": "Active"}},
+                    "Description": {"rich_text": [{"text": {"content": repo_info.get('description', repo_info.get('type', ''))}}]}
+                }
+                upsert_notion_page(DB_IDS['urls'], f"repo_{repo_name}", props, 'url')
+        
+        # Sync backend services
+        for service_name, service_url in urls_data.get('backend_services', {}).items():
+            if isinstance(service_url, str) and service_url.startswith('http'):
+                props = {
+                    "Name": {"title": [{"text": {"content": f"{service_name.title()} Service"}}]},
+                    "URL": {"url": service_url},
+                    "Category": {"select": {"name": "Backend Service"}},
+                    "Type": {"select": {"name": "API Endpoint"}},
+                    "Status": {"select": {"name": "Active"}},
+                    "Description": {"rich_text": [{"text": {"content": f"Backend {service_name} service endpoint"}}]}
+                }
+                upsert_notion_page(DB_IDS['urls'], f"backend_{service_name}", props, 'url')
+        
+        logger.info("Synced company URLs to Notion")
+    except Exception as e:
+        logger.error(f"Failed to sync company URLs: {e}")
+
 # ============================================================================
 # Main Sync Loop
 # ============================================================================
@@ -447,6 +628,12 @@ def run_sync():
     if activity['active']:
         logger.info("Active work detected - updating status")
         sync_status_update({'status': 'Active', 'details': activity})
+    
+    # Sync Docker services status
+    sync_docker_status()
+    
+    # Sync company URLs
+    sync_company_urls()
     
     # Load data
     data = load_hingecraft_database()
