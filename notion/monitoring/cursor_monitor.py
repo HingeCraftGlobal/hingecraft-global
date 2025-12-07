@@ -80,3 +80,4 @@ if __name__ == '__main__':
     workspace = os.getenv("CURSOR_WORKSPACE_PATH", "../")
     monitor_cursor_workspace(workspace)
 
+

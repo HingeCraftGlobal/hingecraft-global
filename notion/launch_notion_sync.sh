@@ -74,3 +74,4 @@ echo ""
 # Run monitoring service
 python3 sync/hingecraft_notion_sync.py
 
+

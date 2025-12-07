@@ -155,3 +155,4 @@ python3 sync/hingecraft_notion_sync.py
 **Last Updated:** December 5, 2025  
 **Next Sync:** Automatic (every 60 seconds)
 
+

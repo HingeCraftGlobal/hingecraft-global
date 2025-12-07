@@ -36,3 +36,4 @@ for db_name, db_id in DB_IDS.items():
 
 print("✅ Schema check complete")
 
+

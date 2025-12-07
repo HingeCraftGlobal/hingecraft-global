@@ -45,3 +45,4 @@ LAST_CURSOR_FILE=./last_cursor.json
 CHAT_HISTORY_FILE=./chat_history.json
 PROGRESS_LOG_FILE=./progress_log.json
 
+
