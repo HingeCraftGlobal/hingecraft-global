@@ -185,18 +185,35 @@
     const amount = donationAmount || getDonationAmount();
     
     if (amount && amount > 0) {
-      // Store amount for checkout page
+      // Store amount for checkout/payment page
       storeDonationAmount(amount);
       
-      // Redirect to checkout with amount
-      const checkoutUrl = `${CONFIG.CHECKOUT_PAGE_URL}?donationAmount=${encodeURIComponent(amount)}`;
+      // Check if coming from Mission Support
+      const urlParams = new URLSearchParams(window.location.search);
+      const fromMissionSupport = urlParams.get('fromMissionSupport') === 'true';
       
-      console.log('✅ Proceeding to checkout:', checkoutUrl);
-      
-      if (typeof wixLocation !== 'undefined' && wixLocation.to) {
-        wixLocation.to(checkoutUrl);
+      // If from Mission Support, redirect to payment page (which shows Mission Support form)
+      // Otherwise, redirect to checkout
+      if (fromMissionSupport) {
+        // Redirect to payment page with amount (Mission Support form will pre-fill)
+        const paymentUrl = `/payment?amt=${encodeURIComponent(amount)}&fromCharter=true`;
+        console.log('✅ Redirecting to Payment Page (Mission Support):', paymentUrl);
+        
+        if (typeof wixLocation !== 'undefined' && wixLocation.to) {
+          wixLocation.to(paymentUrl);
+        } else {
+          window.location.href = paymentUrl;
+        }
       } else {
-        window.location.href = checkoutUrl;
+        // Standard checkout flow
+        const checkoutUrl = `${CONFIG.CHECKOUT_PAGE_URL}?donationAmount=${encodeURIComponent(amount)}`;
+        console.log('✅ Proceeding to checkout:', checkoutUrl);
+        
+        if (typeof wixLocation !== 'undefined' && wixLocation.to) {
+          wixLocation.to(checkoutUrl);
+        } else {
+          window.location.href = checkoutUrl;
+        }
       }
     } else {
       // No amount, just go to checkout
@@ -499,8 +516,34 @@
       addCheckoutButton();
 
       const urlParams = new URLSearchParams(window.location.search);
-      if (urlParams.get('fromPayment') === 'true') {
+      const fromMissionSupport = urlParams.get('fromMissionSupport') === 'true';
+      const fromPayment = urlParams.get('fromPayment') === 'true';
+      const paymentMethod = urlParams.get('paymentMethod');
+
+      if (fromMissionSupport) {
+        console.log('✅ Redirected from Mission Support form');
+        // Store source for tracking
+        try {
+          if (typeof sessionStorage !== 'undefined') {
+            sessionStorage.setItem('hingecraft_donation_source', 'missionSupportForm');
+          }
+        } catch (e) {}
+      }
+      
+      if (fromPayment) {
         console.log('✅ Redirected from payment page');
+      }
+
+      // If from Mission Support with card payment, show message
+      if (fromMissionSupport && paymentMethod === 'card') {
+        const displayEl = document.getElementById('hingecraft-donation-display');
+        if (displayEl) {
+          displayEl.innerHTML += `
+            <div style="margin-top: 12px; font-size: 14px; color: #059669;">
+              Your Mission Support contribution has been recorded. Proceed to checkout to complete your payment.
+            </div>
+          `;
+        }
       }
     } else {
       console.log('ℹ️ No donation amount found');
