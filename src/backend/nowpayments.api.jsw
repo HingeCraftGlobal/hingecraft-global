@@ -463,9 +463,105 @@ export async function handleNowPaymentsWebhook(webhookData, signatureHeader, raw
                     await triggerKYCForCryptoPayment(orderId, priceAmount, webhookData);
                 }
 
+                // Send receipt email
+                try {
+                    const { sendCryptoReceiptEmail } = await import('backend/email-templates');
+                    
+                    // Get donor email from intent
+                    let donorEmail = null;
+                    let donorFirstName = null;
+                    
+                    if (USE_EXTERNAL_DB) {
+                        const intentResponse = await fetch(`${EXTERNAL_DB_ENDPOINT}/contribution-intents/${orderId}`, {
+                            headers: {
+                                'Authorization': `Bearer ${EXTERNAL_DB_SECRET_KEY}`,
+                                'X-API-Key': EXTERNAL_DB_SECRET_KEY
+                            }
+                        });
+                        if (intentResponse.ok) {
+                            const intentData = await intentResponse.json();
+                            donorEmail = intentData.email;
+                            donorFirstName = intentData.first_name;
+                        }
+                    } else {
+                        const intentResults = await wixData.query('ContributionIntent')
+                            .eq('_id', orderId)
+                            .find();
+                        if (intentResults.items.length > 0) {
+                            donorEmail = intentResults.items[0].email;
+                            donorFirstName = intentResults.items[0].first_name;
+                        }
+                    }
+                    
+                    if (donorEmail) {
+                        await sendCryptoReceiptEmail(donorEmail, {
+                            firstName: donorFirstName || webhookData.metadata?.firstName || 'Friend',
+                            usdAmount: priceAmount,
+                            cryptoAmount: payAmount,
+                            cryptoSymbol: payCurrency,
+                            txHash: txHash,
+                            invoiceId: invoiceId,
+                            chain: payCurrency === 'BTC' ? 'bitcoin' : payCurrency === 'SOL' ? 'solana' : 'ethereum',
+                            confirmations: CRYPTO_CONFIRMATIONS_REQUIRED
+                        });
+                        console.log('✅ Receipt email sent to:', donorEmail);
+                    }
+                } catch (emailError) {
+                    console.error('❌ Receipt email error (non-blocking):', emailError);
+                }
+
                 // Enqueue Notion/CRM sync (non-blocking)
-                // This would call your existing sync functions
-                console.log('✅ Crypto payment confirmed, triggering sync jobs');
+                try {
+                    const { enqueueSyncJob, syncCryptoPaymentToNotion, tagUserForCRM } = await import('backend/notion-crm-sync');
+                    
+                    // Get donor info from intent
+                    let donorData = {};
+                    if (USE_EXTERNAL_DB) {
+                        const intentResponse = await fetch(`${EXTERNAL_DB_ENDPOINT}/contribution-intents/${orderId}`, {
+                            headers: {
+                                'Authorization': `Bearer ${EXTERNAL_DB_SECRET_KEY}`,
+                                'X-API-Key': EXTERNAL_DB_SECRET_KEY
+                            }
+                        });
+                        if (intentResponse.ok) {
+                            donorData = await intentResponse.json();
+                        }
+                    } else {
+                        const intentResults = await wixData.query('ContributionIntent')
+                            .eq('_id', orderId)
+                            .find();
+                        if (intentResults.items.length > 0) {
+                            donorData = intentResults.items[0];
+                        }
+                    }
+                    
+                    // Sync to Notion
+                    await syncCryptoPaymentToNotion({
+                        invoice_id: invoiceId,
+                        order_id: orderId,
+                        amount: priceAmount,
+                        crypto_amount: payAmount,
+                        crypto_symbol: payCurrency,
+                        tx_hash: txHash,
+                        status: 'confirmed',
+                        donor_email: donorData.email,
+                        donor_name: `${donorData.first_name || ''} ${donorData.last_name || ''}`.trim()
+                    });
+                    
+                    // Tag user for CRM
+                    if (donorData.email) {
+                        await tagUserForCRM(orderId, priceAmount, {
+                            email: donorData.email,
+                            firstName: donorData.first_name,
+                            lastName: donorData.last_name,
+                            address: donorData.address
+                        });
+                    }
+                    
+                    console.log('✅ Sync jobs triggered');
+                } catch (syncError) {
+                    console.error('❌ Sync error (non-blocking):', syncError);
+                }
 
             } catch (syncError) {
                 console.error('❌ Sync error (non-blocking):', syncError);
@@ -586,7 +682,46 @@ async function triggerKYCForCryptoPayment(intentId, amount, webhookData) {
             await wixData.save('KYCVerifications', kycRecord);
         }
 
-        // TODO: Send KYC email to donor
+        // Send KYC email to donor
+        try {
+            const { sendKYCRequestEmail } = await import('backend/email-templates');
+            const kycUrl = `${BASE_URL}/kyc/verify?token=${kycRecord.verification_token || kycId}`;
+            
+            // Get donor email from intent
+            let donorEmail = null;
+            if (USE_EXTERNAL_DB) {
+                const intentResponse = await fetch(`${EXTERNAL_DB_ENDPOINT}/contribution-intents/${intentId}`, {
+                    headers: {
+                        'Authorization': `Bearer ${EXTERNAL_DB_SECRET_KEY}`,
+                        'X-API-Key': EXTERNAL_DB_SECRET_KEY
+                    }
+                });
+                if (intentResponse.ok) {
+                    const intentData = await intentResponse.json();
+                    donorEmail = intentData.email;
+                }
+            } else {
+                const intentResults = await wixData.query('ContributionIntent')
+                    .eq('_id', intentId)
+                    .find();
+                if (intentResults.items.length > 0) {
+                    donorEmail = intentResults.items[0].email;
+                }
+            }
+            
+            if (donorEmail) {
+                await sendKYCRequestEmail(donorEmail, {
+                    firstName: webhookData.metadata?.firstName || 'Friend',
+                    amount: amount,
+                    kycUrl: kycUrl,
+                    expiresInHours: 72
+                });
+                console.log('✅ KYC email sent to:', donorEmail);
+            }
+        } catch (emailError) {
+            console.error('❌ KYC email error (non-blocking):', emailError);
+        }
+        
         console.log('✅ KYC verification triggered for intent:', intentId);
 
     } catch (error) {
