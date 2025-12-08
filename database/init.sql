@@ -325,3 +325,180 @@ CREATE TRIGGER set_contribution_intents_wix_id
     BEFORE INSERT ON contribution_intents
     FOR EACH ROW
     EXECUTE FUNCTION set_wix_id();
+
+-- ============================================
+-- TABLE: crypto_payments
+-- NOWPayments Integration: Stores crypto payment invoices and transactions
+-- ============================================
+CREATE TABLE IF NOT EXISTS crypto_payments (
+    "_id" VARCHAR(255) PRIMARY KEY,
+    "_createdDate" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    "_updatedDate" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    "_owner" VARCHAR(255) DEFAULT 'system',
+    
+    -- Link to contribution intent
+    intent_id VARCHAR(255), -- FK to contribution_intents._id
+    order_id VARCHAR(255) UNIQUE, -- NOWPayments order_id (same as intent_id for idempotency)
+    
+    -- NOWPayments invoice data
+    invoice_id VARCHAR(255) UNIQUE, -- NOWPayments invoice ID
+    payment_url TEXT, -- Invoice URL for donor
+    pay_address TEXT, -- Crypto receiving address
+    pay_amount_crypto DECIMAL(20, 8), -- Amount in crypto
+    pay_currency VARCHAR(10), -- Crypto symbol (BTC, ETH, SOL, etc.)
+    
+    -- USD pricing
+    price_amount DECIMAL(10, 2) NOT NULL, -- USD amount
+    price_currency VARCHAR(10) DEFAULT 'usd',
+    
+    -- Transaction data
+    tx_hash VARCHAR(255), -- Blockchain transaction hash
+    chain VARCHAR(50), -- Blockchain (ethereum, bitcoin, solana)
+    confirmations INTEGER DEFAULT 0,
+    
+    -- Status tracking
+    status VARCHAR(50) DEFAULT 'pending_invoice', -- pending_invoice, waiting, pending_payment, detected, confirmed, partial, expired, failed
+    nowpayments_status VARCHAR(50), -- NOWPayments status field
+    
+    -- Timestamps
+    invoice_created_at TIMESTAMP,
+    invoice_expires_at TIMESTAMP,
+    payment_detected_at TIMESTAMP,
+    payment_confirmed_at TIMESTAMP,
+    
+    -- Raw responses and metadata
+    raw_response JSONB, -- Full NOWPayments API response
+    raw_webhook JSONB, -- Full webhook payload
+    metadata JSONB DEFAULT '{}'::jsonb -- Additional metadata
+    
+    -- Foreign key constraint (optional, depends on DB setup)
+    -- CONSTRAINT fk_intent FOREIGN KEY (intent_id) REFERENCES contribution_intents("_id")
+);
+
+-- Indexes for performance
+CREATE INDEX IF NOT EXISTS idx_crypto_payments_intent_id ON crypto_payments(intent_id);
+CREATE INDEX IF NOT EXISTS idx_crypto_payments_order_id ON crypto_payments(order_id);
+CREATE INDEX IF NOT EXISTS idx_crypto_payments_invoice_id ON crypto_payments(invoice_id);
+CREATE INDEX IF NOT EXISTS idx_crypto_payments_status ON crypto_payments(status);
+CREATE INDEX IF NOT EXISTS idx_crypto_payments_tx_hash ON crypto_payments(tx_hash);
+CREATE INDEX IF NOT EXISTS idx_crypto_payments_created_at ON crypto_payments("_createdDate" DESC);
+CREATE INDEX IF NOT EXISTS idx_crypto_payments_owner ON crypto_payments("_owner");
+
+-- Triggers
+DROP TRIGGER IF EXISTS update_crypto_payments_updated_date ON crypto_payments;
+CREATE TRIGGER update_crypto_payments_updated_date
+    BEFORE UPDATE ON crypto_payments
+    FOR EACH ROW
+    EXECUTE FUNCTION update_updated_date_column();
+
+DROP TRIGGER IF EXISTS set_crypto_payments_wix_id ON crypto_payments;
+CREATE TRIGGER set_crypto_payments_wix_id
+    BEFORE INSERT ON crypto_payments
+    FOR EACH ROW
+    EXECUTE FUNCTION set_wix_id();
+
+-- ============================================
+-- TABLE: webhook_logs
+-- Stores all webhook events for audit and debugging
+-- ============================================
+CREATE TABLE IF NOT EXISTS webhook_logs (
+    "_id" VARCHAR(255) PRIMARY KEY,
+    "_createdDate" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    "_updatedDate" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    "_owner" VARCHAR(255) DEFAULT 'system',
+    
+    -- Webhook identification
+    event_id VARCHAR(255) UNIQUE, -- NOWPayments event ID or Stripe event ID
+    event_type VARCHAR(100), -- invoice_paid, invoice_expired, checkout.session.completed, etc.
+    source VARCHAR(50) DEFAULT 'nowpayments', -- nowpayments, stripe, etc.
+    
+    -- Verification
+    signature_valid BOOLEAN DEFAULT FALSE,
+    signature_header TEXT, -- Raw signature header for debugging
+    
+    -- Payload
+    payload_json JSONB NOT NULL, -- Full webhook payload
+    
+    -- Processing
+    processing_status VARCHAR(50) DEFAULT 'pending', -- pending, processed, failed, retry
+    processing_error TEXT,
+    processed_at TIMESTAMP,
+    
+    -- Metadata
+    metadata JSONB DEFAULT '{}'::jsonb
+);
+
+CREATE INDEX IF NOT EXISTS idx_webhook_logs_event_id ON webhook_logs(event_id);
+CREATE INDEX IF NOT EXISTS idx_webhook_logs_event_type ON webhook_logs(event_type);
+CREATE INDEX IF NOT EXISTS idx_webhook_logs_source ON webhook_logs(source);
+CREATE INDEX IF NOT EXISTS idx_webhook_logs_signature_valid ON webhook_logs(signature_valid);
+CREATE INDEX IF NOT EXISTS idx_webhook_logs_processing_status ON webhook_logs(processing_status);
+CREATE INDEX IF NOT EXISTS idx_webhook_logs_created_at ON webhook_logs("_createdDate" DESC);
+
+DROP TRIGGER IF EXISTS update_webhook_logs_updated_date ON webhook_logs;
+CREATE TRIGGER update_webhook_logs_updated_date
+    BEFORE UPDATE ON webhook_logs
+    FOR EACH ROW
+    EXECUTE FUNCTION update_updated_date_column();
+
+DROP TRIGGER IF EXISTS set_webhook_logs_wix_id ON webhook_logs;
+CREATE TRIGGER set_webhook_logs_wix_id
+    BEFORE INSERT ON webhook_logs
+    FOR EACH ROW
+    EXECUTE FUNCTION set_wix_id();
+
+-- ============================================
+-- TABLE: kyc_verifications
+-- KYC/AML verification tracking
+-- ============================================
+CREATE TABLE IF NOT EXISTS kyc_verifications (
+    "_id" VARCHAR(255) PRIMARY KEY,
+    "_createdDate" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    "_updatedDate" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    "_owner" VARCHAR(255) DEFAULT 'system',
+    
+    -- Link to user/donation
+    user_id VARCHAR(255), -- FK to users or contribution_intents
+    triggered_by_payment_id VARCHAR(255), -- FK to donations or crypto_payments
+    triggered_by_intent_id VARCHAR(255), -- FK to contribution_intents
+    
+    -- Threshold and reason
+    threshold_amount DECIMAL(10, 2),
+    trigger_reason VARCHAR(255), -- amount_threshold, crypto_flag, ofac_match, etc.
+    
+    -- Verification details
+    verification_url TEXT, -- Secure KYC portal URL
+    verification_provider VARCHAR(100), -- stripe_identity, jumio, persona, manual, etc.
+    verification_token VARCHAR(255), -- One-time token for KYC portal
+    
+    -- Status
+    status VARCHAR(50) DEFAULT 'pending', -- pending, verified, rejected, expired, cancelled
+    requested_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    completed_at TIMESTAMP,
+    expires_at TIMESTAMP, -- Token expiration (typically 72 hours)
+    
+    -- Results
+    verification_result JSONB, -- Provider response data
+    rejection_reason TEXT,
+    
+    -- Metadata
+    metadata JSONB DEFAULT '{}'::jsonb
+);
+
+CREATE INDEX IF NOT EXISTS idx_kyc_verifications_user_id ON kyc_verifications(user_id);
+CREATE INDEX IF NOT EXISTS idx_kyc_verifications_payment_id ON kyc_verifications(triggered_by_payment_id);
+CREATE INDEX IF NOT EXISTS idx_kyc_verifications_intent_id ON kyc_verifications(triggered_by_intent_id);
+CREATE INDEX IF NOT EXISTS idx_kyc_verifications_status ON kyc_verifications(status);
+CREATE INDEX IF NOT EXISTS idx_kyc_verifications_created_at ON kyc_verifications("_createdDate" DESC);
+
+DROP TRIGGER IF EXISTS update_kyc_verifications_updated_date ON kyc_verifications;
+CREATE TRIGGER update_kyc_verifications_updated_date
+    BEFORE UPDATE ON kyc_verifications
+    FOR EACH ROW
+    EXECUTE FUNCTION update_updated_date_column();
+
+DROP TRIGGER IF EXISTS set_kyc_verifications_wix_id ON kyc_verifications;
+CREATE TRIGGER set_kyc_verifications_wix_id
+    BEFORE INSERT ON kyc_verifications
+    FOR EACH ROW
+    EXECUTE FUNCTION set_wix_id();

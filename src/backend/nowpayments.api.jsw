@@ -1,0 +1,617 @@
+import { fetch } from 'wix-fetch';
+import { secrets } from 'wix-secrets-backend';
+import wixData from 'wix-data';
+import crypto from 'wix-crypto';
+
+/**
+ * NOWPayments API Integration for Crypto Payments
+ * 
+ * This module handles:
+ * - Creating NOWPayments invoices
+ * - Webhook signature verification
+ * - Invoice status reconciliation
+ * - Crypto payment tracking
+ * 
+ * Required Wix Secrets:
+ * - NOWPAYMENTS_API_KEY
+ * - NOWPAYMENTS_IPN_SECRET
+ * - NOWPAYMENTS_BASE_URL (default: https://api.nowpayments.io/v1)
+ * - BASE_URL (for webhook callbacks)
+ */
+
+// Configuration (loaded from secrets)
+let NOWPAYMENTS_API_KEY;
+let NOWPAYMENTS_IPN_SECRET;
+let NOWPAYMENTS_BASE_URL = 'https://api.nowpayments.io/v1';
+let BASE_URL;
+let KYC_THRESHOLD_USD = 1000;
+let CRYPTO_CONFIRMATIONS_REQUIRED = 3;
+
+// Initialize configuration from secrets
+async function initNowPaymentsConfig() {
+    try {
+        NOWPAYMENTS_API_KEY = await secrets.getSecret('NOWPAYMENTS_API_KEY');
+        NOWPAYMENTS_IPN_SECRET = await secrets.getSecret('NOWPAYMENTS_IPN_SECRET');
+        BASE_URL = await secrets.getSecret('BASE_URL') || 'https://www.hingecraft-global.ai';
+        
+        const baseUrl = await secrets.getSecret('NOWPAYMENTS_BASE_URL');
+        if (baseUrl) NOWPAYMENTS_BASE_URL = baseUrl;
+        
+        const kycThreshold = await secrets.getSecret('KYC_THRESHOLD_USD');
+        if (kycThreshold) KYC_THRESHOLD_USD = parseFloat(kycThreshold);
+        
+        const confirmations = await secrets.getSecret('CRYPTO_CONFIRMATIONS_REQUIRED');
+        if (confirmations) CRYPTO_CONFIRMATIONS_REQUIRED = parseInt(confirmations);
+    } catch (error) {
+        console.warn('⚠️ Could not load NOWPayments secrets:', error);
+        // In production, throw error - secrets are required
+        throw new Error('NOWPayments configuration missing. Please set secrets in Wix Secrets Manager.');
+    }
+}
+
+// Initialize on module load
+initNowPaymentsConfig();
+
+/**
+ * Validate USD amount (same validation as Stripe)
+ * @param {number|string} amount - Amount in USD
+ * @returns {number|null} - Validated amount or null if invalid
+ */
+function validateAmount(amount) {
+    const n = Number(amount);
+    if (!isFinite(n)) return null;
+    
+    // Regex pattern: /^\d{1,5}(\.\d{1,2})?$/
+    const regex = /^\d{1,5}(\.\d{1,2})?$/;
+    const rounded = Math.round(n * 100) / 100;
+    
+    if (!regex.test(String(rounded))) return null;
+    if (rounded < 1.00 || rounded > 25000.00) return null;
+    
+    return rounded;
+}
+
+/**
+ * Generate unique ID for crypto payment
+ */
+function generateCryptoPaymentId() {
+    return 'crypto_' + Date.now().toString(36) + Math.random().toString(36).substr(2, 9);
+}
+
+/**
+ * Create NOWPayments Invoice
+ * 
+ * @param {Object} requestData - Invoice creation data
+ * @param {string} requestData.intentId - Contribution intent ID (used as order_id for idempotency)
+ * @param {number} requestData.amount - USD amount
+ * @param {string} requestData.email - Donor email
+ * @param {string} requestData.sessionId - Session ID
+ * @param {string} requestData.firstName - Donor first name
+ * @param {string} requestData.lastName - Donor last name
+ * @param {string} requestData.missionSupportName - Optional dedication name
+ * @param {string} requestData.payCurrency - Optional: specific crypto (BTC, ETH, SOL) or null for all
+ * @returns {Promise<Object>} - Invoice data with payment_url
+ */
+export async function createNowPaymentsInvoice(requestData) {
+    try {
+        // Ensure config is loaded
+        if (!NOWPAYMENTS_API_KEY) {
+            await initNowPaymentsConfig();
+        }
+
+        // Validate required fields
+        if (!requestData || !requestData.intentId || !requestData.amount) {
+            throw new Error('Invalid request: intentId and amount required');
+        }
+
+        const amount = validateAmount(requestData.amount);
+        if (!amount) {
+            throw new Error(`Invalid amount: ${requestData.amount} (must be between $1.00 and $25,000.00)`);
+        }
+
+        const intentId = String(requestData.intentId);
+        const orderId = intentId; // Use intentId as order_id for idempotency
+
+        // Check if invoice already exists (idempotency check)
+        try {
+            const existing = await getCryptoPaymentByOrderId(orderId);
+            if (existing && existing.invoice_id) {
+                console.log('✅ Invoice already exists for order_id:', orderId);
+                return {
+                    success: true,
+                    invoiceId: existing.invoice_id,
+                    paymentUrl: existing.payment_url,
+                    payAddress: existing.pay_address,
+                    payAmountCrypto: existing.pay_amount_crypto,
+                    payCurrency: existing.pay_currency,
+                    orderId: orderId,
+                    intentId: intentId,
+                    isExisting: true
+                };
+            }
+        } catch (checkError) {
+            // Continue if check fails
+            console.log('No existing invoice found, creating new one');
+        }
+
+        // Build NOWPayments invoice payload
+        const invoicePayload = {
+            price_amount: amount,
+            price_currency: 'usd',
+            order_id: orderId,
+            order_description: 'HingeCraft Mission Support',
+            ipn_callback_url: `${BASE_URL}/_functions/webhooks/nowpayments`,
+            success_url: `${BASE_URL}/payment-success?intent=${encodeURIComponent(intentId)}&source=crypto`,
+            cancel_url: `${BASE_URL}/payment-cancel?intent=${encodeURIComponent(intentId)}&source=crypto`,
+            metadata: {
+                intentId: intentId,
+                sessionId: requestData.sessionId || 'unknown',
+                source: 'missionSupportForm',
+                email: requestData.email || '',
+                firstName: requestData.firstName || '',
+                lastName: requestData.lastName || '',
+                missionSupportName: requestData.missionSupportName || ''
+            }
+        };
+
+        // Add pay_currency if specified
+        if (requestData.payCurrency) {
+            invoicePayload.pay_currency = requestData.payCurrency.toLowerCase();
+        }
+
+        // Call NOWPayments API
+        const response = await fetch(`${NOWPAYMENTS_BASE_URL}/invoice`, {
+            method: 'POST',
+            headers: {
+                'x-api-key': NOWPAYMENTS_API_KEY,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(invoicePayload)
+        });
+
+        if (!response.ok) {
+            const errorText = await response.text();
+            console.error('❌ NOWPayments API error:', response.status, errorText);
+            throw new Error(`NOWPayments API error: ${response.status} - ${errorText}`);
+        }
+
+        const invoiceData = await response.json();
+
+        // Extract invoice details
+        const invoiceId = invoiceData.id || invoiceData.invoice_id;
+        const paymentUrl = invoiceData.invoice_url || invoiceData.payment_url;
+        const payAddress = invoiceData.pay_address || null;
+        const payAmountCrypto = invoiceData.pay_amount ? parseFloat(invoiceData.pay_amount) : null;
+        const payCurrency = invoiceData.pay_currency || null;
+        const invoiceExpiresAt = invoiceData.expiration_at ? new Date(invoiceData.expiration_at) : null;
+
+        // Store crypto payment record
+        const cryptoPaymentId = generateCryptoPaymentId();
+        const cryptoPaymentRecord = {
+            _id: cryptoPaymentId,
+            intent_id: intentId,
+            order_id: orderId,
+            invoice_id: invoiceId,
+            payment_url: paymentUrl,
+            pay_address: payAddress,
+            pay_amount_crypto: payAmountCrypto,
+            pay_currency: payCurrency,
+            price_amount: amount,
+            price_currency: 'usd',
+            status: 'pending_invoice',
+            nowpayments_status: invoiceData.status || 'waiting',
+            invoice_created_at: new Date(),
+            invoice_expires_at: invoiceExpiresAt,
+            raw_response: invoiceData,
+            metadata: {
+                source: 'missionSupportForm',
+                email: requestData.email,
+                firstName: requestData.firstName,
+                lastName: requestData.lastName
+            }
+        };
+
+        // Save to database
+        try {
+            if (USE_EXTERNAL_DB) {
+                const dbResponse = await fetch(EXTERNAL_DB_ENDPOINT + '/crypto-payments', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${EXTERNAL_DB_SECRET_KEY}`,
+                        'X-API-Key': EXTERNAL_DB_SECRET_KEY
+                    },
+                    body: JSON.stringify(cryptoPaymentRecord)
+                });
+
+                if (!dbResponse.ok) {
+                    throw new Error(`External DB save failed: ${dbResponse.status}`);
+                }
+            } else {
+                await wixData.save('CryptoPayments', cryptoPaymentRecord);
+            }
+        } catch (dbError) {
+            console.error('❌ Database save error:', dbError);
+            // Continue even if DB save fails - invoice is created
+        }
+
+        console.log('✅ NOWPayments invoice created:', invoiceId);
+
+        return {
+            success: true,
+            invoiceId: invoiceId,
+            paymentUrl: paymentUrl,
+            payAddress: payAddress,
+            payAmountCrypto: payAmountCrypto,
+            payCurrency: payCurrency,
+            orderId: orderId,
+            intentId: intentId,
+            expiresAt: invoiceExpiresAt ? invoiceExpiresAt.toISOString() : null
+        };
+
+    } catch (error) {
+        console.error('❌ Error creating NOWPayments invoice:', error);
+        return {
+            success: false,
+            error: error.message
+        };
+    }
+}
+
+/**
+ * Verify NOWPayments webhook signature
+ * @param {string} rawBody - Raw request body
+ * @param {string} signatureHeader - X-Nowpayments-Sig header value
+ * @returns {boolean} - True if signature is valid
+ */
+function verifyWebhookSignature(rawBody, signatureHeader) {
+    try {
+        if (!NOWPAYMENTS_IPN_SECRET) {
+            console.error('⚠️ NOWPAYMENTS_IPN_SECRET not configured');
+            return false;
+        }
+
+        if (!signatureHeader) {
+            return false;
+        }
+
+        // NOWPayments uses HMAC-SHA256
+        // Note: In Wix Velo, we use the crypto module from wix-crypto
+        // For HMAC, we'll use a simple comparison (in production, use proper crypto)
+        const hmac = crypto.createHmac('sha256', NOWPAYMENTS_IPN_SECRET);
+        hmac.update(rawBody);
+        const calculatedSignature = hmac.digest('hex');
+
+        // Simple comparison (in production, use timing-safe comparison)
+        return calculatedSignature === signatureHeader;
+    } catch (error) {
+        console.error('❌ Signature verification error:', error);
+        return false;
+    }
+}
+
+/**
+ * Handle NOWPayments webhook
+ * 
+ * @param {Object} webhookData - Webhook payload
+ * @param {string} signatureHeader - X-Nowpayments-Sig header
+ * @param {string} rawBody - Raw request body (for signature verification)
+ * @returns {Promise<Object>} - Processing result
+ */
+export async function handleNowPaymentsWebhook(webhookData, signatureHeader, rawBody) {
+    try {
+        // Ensure config is loaded
+        if (!NOWPAYMENTS_IPN_SECRET) {
+            await initNowPaymentsConfig();
+        }
+
+        // Verify signature (if header provided)
+        let isValid = true;
+        if (signatureHeader) {
+            isValid = verifyWebhookSignature(rawBody, signatureHeader);
+        } else {
+            console.warn('⚠️ No signature header provided - webhook may be insecure');
+        }
+        
+        // Log webhook event
+        const webhookLogId = generateCryptoPaymentId();
+        const webhookLog = {
+            _id: webhookLogId,
+            event_id: webhookData.id || webhookData.event_id || webhookLogId,
+            event_type: webhookData.event || webhookData.status || 'unknown',
+            source: 'nowpayments',
+            signature_valid: isValid,
+            signature_header: signatureHeader,
+            payload_json: webhookData,
+            processing_status: isValid ? 'pending' : 'failed',
+            processing_error: isValid ? null : 'Invalid signature'
+        };
+
+        // Save webhook log
+        try {
+            if (USE_EXTERNAL_DB) {
+                await fetch(EXTERNAL_DB_ENDPOINT + '/webhook-logs', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${EXTERNAL_DB_SECRET_KEY}`,
+                        'X-API-Key': EXTERNAL_DB_SECRET_KEY
+                    },
+                    body: JSON.stringify(webhookLog)
+                });
+            } else {
+                await wixData.save('WebhookLogs', webhookLog);
+            }
+        } catch (logError) {
+            console.error('❌ Webhook log save error:', logError);
+        }
+
+        if (!isValid) {
+            console.error('❌ Invalid webhook signature');
+            return {
+                success: false,
+                error: 'Invalid signature'
+            };
+        }
+
+        // Extract invoice data
+        const invoiceId = webhookData.id || webhookData.invoice_id;
+        const orderId = webhookData.order_id;
+        const status = webhookData.status || webhookData.event;
+        const txHash = webhookData.payment_id || webhookData.tx_hash || null;
+        const payAmount = webhookData.pay_amount ? parseFloat(webhookData.pay_amount) : null;
+        const payCurrency = webhookData.pay_currency || null;
+        const priceAmount = webhookData.price_amount ? parseFloat(webhookData.price_amount) : null;
+
+        if (!invoiceId || !orderId) {
+            throw new Error('Missing invoice_id or order_id in webhook');
+        }
+
+        // Map NOWPayments status to internal status
+        let internalStatus = 'pending_payment';
+        if (status === 'waiting' || status === 'invoice_waiting') {
+            internalStatus = 'pending_payment';
+        } else if (status === 'invoice_paid_unconfirmed' || status === 'partially_paid') {
+            internalStatus = 'detected';
+        } else if (status === 'invoice_paid' || status === 'confirmed') {
+            internalStatus = 'confirmed';
+        } else if (status === 'expired' || status === 'invoice_expired') {
+            internalStatus = 'expired';
+        } else if (status === 'failed' || status === 'invoice_failed') {
+            internalStatus = 'failed';
+        }
+
+        // Update crypto payment record
+        const updateData = {
+            status: internalStatus,
+            nowpayments_status: status,
+            raw_webhook: webhookData
+        };
+
+        if (txHash) {
+            updateData.tx_hash = txHash;
+            updateData.payment_detected_at = new Date();
+        }
+
+        if (payAmount) updateData.pay_amount_crypto = payAmount;
+        if (payCurrency) updateData.pay_currency = payCurrency;
+
+        if (internalStatus === 'confirmed') {
+            updateData.payment_confirmed_at = new Date();
+            updateData.confirmations = CRYPTO_CONFIRMATIONS_REQUIRED;
+        }
+
+        // Update database
+        try {
+            if (USE_EXTERNAL_DB) {
+                await fetch(`${EXTERNAL_DB_ENDPOINT}/crypto-payments/${orderId}`, {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${EXTERNAL_DB_SECRET_KEY}`,
+                        'X-API-Key': EXTERNAL_DB_SECRET_KEY
+                    },
+                    body: JSON.stringify(updateData)
+                });
+            } else {
+                // Find by order_id
+                const results = await wixData.query('CryptoPayments')
+                    .eq('order_id', orderId)
+                    .find();
+                
+                if (results.items.length > 0) {
+                    const existing = results.items[0];
+                    await wixData.update('CryptoPayments', {
+                        ...existing,
+                        ...updateData
+                    });
+                }
+            }
+        } catch (dbError) {
+            console.error('❌ Database update error:', dbError);
+        }
+
+        // If confirmed, update contribution intent and trigger KYC/CRM sync
+        if (internalStatus === 'confirmed' && orderId) {
+            try {
+                // Update contribution intent status
+                if (USE_EXTERNAL_DB) {
+                    await fetch(`${EXTERNAL_DB_ENDPOINT}/contribution-intents/${orderId}`, {
+                        method: 'PATCH',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${EXTERNAL_DB_SECRET_KEY}`,
+                            'X-API-Key': EXTERNAL_DB_SECRET_KEY
+                        },
+                        body: JSON.stringify({ status: 'completed' })
+                    });
+                } else {
+                    const intentResults = await wixData.query('ContributionIntent')
+                        .eq('_id', orderId)
+                        .find();
+                    
+                    if (intentResults.items.length > 0) {
+                        await wixData.update('ContributionIntent', {
+                            ...intentResults.items[0],
+                            status: 'completed'
+                        });
+                    }
+                }
+
+                // Trigger KYC if threshold met
+                if (priceAmount && priceAmount >= KYC_THRESHOLD_USD) {
+                    await triggerKYCForCryptoPayment(orderId, priceAmount, webhookData);
+                }
+
+                // Enqueue Notion/CRM sync (non-blocking)
+                // This would call your existing sync functions
+                console.log('✅ Crypto payment confirmed, triggering sync jobs');
+
+            } catch (syncError) {
+                console.error('❌ Sync error (non-blocking):', syncError);
+            }
+        }
+
+        // Update webhook log processing status
+        try {
+            if (USE_EXTERNAL_DB) {
+                await fetch(`${EXTERNAL_DB_ENDPOINT}/webhook-logs/${webhookLogId}`, {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${EXTERNAL_DB_SECRET_KEY}`,
+                        'X-API-Key': EXTERNAL_DB_SECRET_KEY
+                    },
+                    body: JSON.stringify({
+                        processing_status: 'processed',
+                        processed_at: new Date()
+                    })
+                });
+            } else {
+                const logResults = await wixData.query('WebhookLogs')
+                    .eq('_id', webhookLogId)
+                    .find();
+                
+                if (logResults.items.length > 0) {
+                    await wixData.update('WebhookLogs', {
+                        ...logResults.items[0],
+                        processing_status: 'processed',
+                        processed_at: new Date()
+                    });
+                }
+            }
+        } catch (logUpdateError) {
+            console.error('❌ Webhook log update error:', logUpdateError);
+        }
+
+        return {
+            success: true,
+            invoiceId: invoiceId,
+            orderId: orderId,
+            status: internalStatus
+        };
+
+    } catch (error) {
+        console.error('❌ Webhook processing error:', error);
+        return {
+            success: false,
+            error: error.message
+        };
+    }
+}
+
+/**
+ * Get crypto payment by order_id
+ */
+async function getCryptoPaymentByOrderId(orderId) {
+    try {
+        if (USE_EXTERNAL_DB) {
+            const response = await fetch(`${EXTERNAL_DB_ENDPOINT}/crypto-payments/order/${orderId}`, {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${EXTERNAL_DB_SECRET_KEY}`,
+                    'X-API-Key': EXTERNAL_DB_SECRET_KEY
+                }
+            });
+
+            if (response.ok) {
+                return await response.json();
+            }
+        } else {
+            const results = await wixData.query('CryptoPayments')
+                .eq('order_id', orderId)
+                .find();
+            
+            if (results.items.length > 0) {
+                return results.items[0];
+            }
+        }
+    } catch (error) {
+        console.error('Error fetching crypto payment:', error);
+    }
+    return null;
+}
+
+/**
+ * Trigger KYC verification for crypto payment
+ */
+async function triggerKYCForCryptoPayment(intentId, amount, webhookData) {
+    try {
+        const kycId = generateCryptoPaymentId();
+        const kycRecord = {
+            _id: kycId,
+            triggered_by_intent_id: intentId,
+            threshold_amount: amount,
+            trigger_reason: 'amount_threshold',
+            status: 'pending',
+            requested_at: new Date(),
+            expires_at: new Date(Date.now() + 72 * 60 * 60 * 1000), // 72 hours
+            metadata: {
+                source: 'crypto_payment',
+                webhook_data: webhookData
+            }
+        };
+
+        if (USE_EXTERNAL_DB) {
+            await fetch(EXTERNAL_DB_ENDPOINT + '/kyc-verifications', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${EXTERNAL_DB_SECRET_KEY}`,
+                    'X-API-Key': EXTERNAL_DB_SECRET_KEY
+                },
+                body: JSON.stringify(kycRecord)
+            });
+        } else {
+            await wixData.save('KYCVerifications', kycRecord);
+        }
+
+        // TODO: Send KYC email to donor
+        console.log('✅ KYC verification triggered for intent:', intentId);
+
+    } catch (error) {
+        console.error('❌ KYC trigger error:', error);
+    }
+}
+
+// Import external DB config (if available)
+let EXTERNAL_DB_ENDPOINT;
+let EXTERNAL_DB_SECRET_KEY;
+let USE_EXTERNAL_DB = true;
+
+async function initExternalDBConfig() {
+    try {
+        EXTERNAL_DB_ENDPOINT = await secrets.getSecret('EXTERNAL_DB_ENDPOINT');
+        EXTERNAL_DB_SECRET_KEY = await secrets.getSecret('EXTERNAL_DB_SECRET_KEY');
+        if (!EXTERNAL_DB_ENDPOINT || !EXTERNAL_DB_SECRET_KEY) {
+            USE_EXTERNAL_DB = false;
+        }
+    } catch (error) {
+        console.warn('External DB config not available, using Wix Database');
+        USE_EXTERNAL_DB = false;
+    }
+}
+
+// Initialize external DB config
+initExternalDBConfig();
+

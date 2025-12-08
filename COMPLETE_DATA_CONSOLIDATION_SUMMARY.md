@@ -620,3 +620,5 @@ Checkout Page: /checkout
 **Next Action:** Embed code in Wix Editor and test  
 **Completion:** ~95% complete
 
+
+

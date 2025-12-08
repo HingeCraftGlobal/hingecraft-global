@@ -172,3 +172,5 @@ docker compose up -d postgres
 ./scripts/APPLY_MASTER_SCHEMA.sh
 ```
 
+
+
