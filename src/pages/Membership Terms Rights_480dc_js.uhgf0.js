@@ -1,603 +1,587 @@
-// Comprehensive SEO Optimization - Membership Terms Rights_480dc_js
-// JSON-LD Schema.org | 100+ Keywords | Competitive Optimization
+// HingeCraft Global, LLC - Legal Document
+// Membership Terms Rights
+// State of South Carolina | December 6, 2025
+// Auto-generated - All URLs are HTTPS only
+
+import wixSeo from 'wix-seo';
 
 $w.onReady(function () {
-    if (typeof document !== 'undefined') {
-        // Page Title
-        document.title = 'Membership Terms & Rights | HingeCraft Global';
-        
-        // Meta Description
-        let metaDesc = document.querySelector('meta[name="description"]');
-        if (!metaDesc) {
-            metaDesc = document.createElement('meta');
-            metaDesc.setAttribute('name', 'description');
-            document.head.appendChild(metaDesc);
-        }
-        metaDesc.setAttribute('content', 'HingeCraft Global Membership Terms & Rights - Membership access levels, benefits, and cancellation policies');
-        
-        // Meta Keywords
-        let metaKeywords = document.querySelector('meta[name="keywords"]');
-        if (!metaKeywords) {
-            metaKeywords = document.createElement('meta');
-            metaKeywords.setAttribute('name', 'keywords');
-            document.head.appendChild(metaKeywords);
-        }
-        metaKeywords.setAttribute('content', 'terms of service, user rights, legal terms, ip rights, attribution rights, creator rights, membership terms, warranty terms, membership agreement, hingecraft, hingecraft global, resilient design');
-        
-        // Open Graph Tags
-        const ogTags = {
-            'og:title': 'Membership Terms & Rights | HingeCraft Global',
-            'og:description': 'HingeCraft Global Membership Terms & Rights - Membership access levels, benefits, and cancellation policies',
-            'og:image': 'https://hingecraft-global.ai/og-image.jpg',
-            'og:url': 'https://hingecraft-global.ai/legal/26-membership-terms-rights',
-            'og:type': 'website',
-            'og:site_name': 'HingeCraft Global'
-        };
-        
-        Object.keys(ogTags).forEach(prop => {
-            let ogMeta = document.querySelector(`meta[property="${prop}"]`);
-            if (!ogMeta) {
-                ogMeta = document.createElement('meta');
-                ogMeta.setAttribute('property', prop);
-                document.head.appendChild(ogMeta);
-            }
-            ogMeta.setAttribute('content', ogTags[prop]);
-        });
-        
-        // Twitter Card Tags
-        const twitterTags = {
-            'twitter:card': 'summary_large_image',
-            'twitter:title': 'Membership Terms & Rights | HingeCraft Global',
-            'twitter:description': 'HingeCraft Global Membership Terms & Rights - Membership access levels, benefits, and cancellation policies',
-            'twitter:image': 'https://hingecraft-global.ai/og-image.jpg'
-        };
-        
-        Object.keys(twitterTags).forEach(name => {
-            let twitterMeta = document.querySelector(`meta[name="${name}"]`);
-            if (!twitterMeta) {
-                twitterMeta = document.createElement('meta');
-                twitterMeta.setAttribute('name', name);
-                document.head.appendChild(twitterMeta);
-            }
-            twitterMeta.setAttribute('content', twitterTags[name]);
-        });
-        
-        // Canonical URL
-        let canonical = document.querySelector('link[rel="canonical"]');
-        if (!canonical) {
-            canonical = document.createElement('link');
-            canonical.setAttribute('rel', 'canonical');
-            document.head.appendChild(canonical);
-        }
-        canonical.setAttribute('href', 'https://hingecraft-global.ai/legal/26-membership-terms-rights');
-        
-        // Robots Meta
-        let robots = document.querySelector('meta[name="robots"]');
-        if (!robots) {
-            robots = document.createElement('meta');
-            robots.setAttribute('name', 'robots');
-            document.head.appendChild(robots);
-        }
-        robots.setAttribute('content', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
-        
-        // Additional Meta Tags
-        const additionalTags = {
-            'author': 'HingeCraft Global',
-            'language': 'en-US',
-            'revisit-after': '7 days',
-            'distribution': 'global',
-            'rating': 'general'
-        };
-        
-        Object.keys(additionalTags).forEach(name => {
-            let meta = document.querySelector(`meta[name="${name}"]`);
-            if (!meta) {
-                meta = document.createElement('meta');
-                meta.setAttribute('name', name);
-                document.head.appendChild(meta);
-            }
-            meta.setAttribute('content', additionalTags[name]);
-        });
-        
-        // Schema.org JSON-LD Structured Data
-        let schemaScript = document.querySelector('script[type="application/ld+json"]');
-        if (!schemaScript) {
-            schemaScript = document.createElement('script');
-            schemaScript.setAttribute('type', 'application/ld+json');
-            document.head.appendChild(schemaScript);
-        }
-        schemaScript.textContent = `{
-  "@context": "https://schema.org",
-  "@type": "LegalDocument",
-  "name": "Membership Terms & Rights | HingeCraft Global",
-  "description": "HingeCraft Global Membership Terms & Rights - Membership access levels, benefits, and cancellation policies",
-  "url": "https://hingecraft-global.ai/legal/26-membership-terms-rights",
-  "publisher": {
-    "@type": "Organization",
-    "name": "HingeCraft Global",
-    "url": "https://hingecraft-global.ai",
-    "logo": "https://hingecraft-global.ai/logo.png"
-  },
-  "datePublished": "2025-12-05",
-  "dateModified": "2025-12-05",
-  "inLanguage": "en-US",
-  "keywords": "terms of service, user rights, legal terms, ip rights, attribution rights, creator rights, membership terms, warranty terms, membership agreement, hingecraft, hingecraft global, resilient design"
-}`;
-    }
-
-    // Load Legal Page HTML Content
-    function loadLegalPageContent() {
-        const htmlElement = $w('#legalContent');
-        if (htmlElement) {
-            const htmlContent = `<body class="bg-slate-50">
-<section class="hero-gradient text-white py-12 px-6">
-<div class="max-w-4xl mx-auto text-center">
-<h1 class="text-4xl font-bold mb-4">Membership Terms &amp; Rights</h1>
-<p class="text-lg opacity-90">HINGECRAFT GLOBAL, INC.</p>
-<p class="text-sm opacity-75 mt-2">Access Levels, Perks, Cancellation</p>
-</div>
-</section>
-<main class="max-w-4xl mx-auto px-6 py-16">
-<div class="prose max-w-none bg-white p-8 rounded-lg shadow-sm">
-<h2>MEMBERSHIP TERMS &amp; RIGHTS</h2>
-<p>This document outlines membership terms, access levels, benefits, and cancellation policies for HingeCraft Global members.</p>
-<h2>I. MEMBERSHIP TIERS</h2>
-<h3>1.1 Basic Membership</h3>
-<ul>
-<li>Free access to basic features</li>
-<li>Limited design storage</li>
-<li>Community access</li>
-<li>Basic support</li>
-</ul>
-<h3>1.2 Premium Membership</h3>
-<ul>
-<li>All basic features</li>
-<li>Unlimited design storage</li>
-<li>Advanced AI tools</li>
-<li>Priority support</li>
-<li>Exclusive content</li>
-</ul>
-<h3>1.3 Enterprise Membership</h3>
-<ul>
-<li>All premium features</li>
-<li>Custom integrations</li>
-<li>Dedicated support</li>
-<li>Volume discounts</li>
-<li>SLA guarantees</li>
-</ul>
-<h2>II. MEMBER RIGHTS</h2>
-<ul>
-<li>Access to platform features per tier</li>
-<li>Data privacy and control</li>
-<li>Fair treatment</li>
-<li>Dispute resolution</li>
-<li>Account cancellation</li>
-</ul>
-<h2>III. MEMBER OBLIGATIONS</h2>
-<ul>
-<li>Comply with Terms of Service</li>
-<li>Maintain account security</li>
-<li>Pay fees when due</li>
-<li>Respect other members</li>
-</ul>
-<h2>IV. CANCELLATION</h2>
-<h3>4.1 Cancellation Rights</h3>
-<p>Members may cancel at any time through account settings or by contacting support.</p>
-<h3>4.2 Refund Policy</h3>
-<p>Refunds provided per our Refund Policy. Annual memberships may be prorated.</p>
-<h3>4.3 Effect of Cancellation</h3>
-<p>Upon cancellation:</p>
-<ul>
-<li>Access continues until period end</li>
-<li>Data available for export</li>
-<li>No further charges</li>
-</ul>
-<div class="mt-8 pt-8 border-t border-gray-200">
-<p class="text-sm text-gray-600">Last Updated: December 4, 2025</p>
-<p class="text-sm text-gray-600">For questions about this document, please contact: <a class="text-purple-700 hover:underline" href="mailto:legal@hingecraft-global.ai">legal@hingecraft-global.ai</a></p>
-</div>
-</div>
-<div class="mt-6 flex flex-wrap items-center gap-6 text-sm text-gray-600">
-<div class="flex items-center gap-2">
-<svg class="w-5 h-5 text-green-600" fill="currentColor" viewbox="0 0 20 20">
-<path clip-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" fill-rule="evenodd"></path>
-</svg>
-<span>GDPR Compliant</span>
-</div>
-<div class="flex items-center gap-2">
-<svg class="w-5 h-5 text-green-600" fill="currentColor" viewbox="0 0 20 20">
-<path clip-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" fill-rule="evenodd"></path>
-</svg>
-<span>CCPA Compliant</span>
-</div>
-<div class="flex items-center gap-2">
-<svg class="w-5 h-5 text-green-600" fill="currentColor" viewbox="0 0 20 20">
-<path clip-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" fill-rule="evenodd"></path>
-</svg>
-<span>Secure &amp; Encrypted</span>
-</div>
-</div>
-<div class="mt-8 pt-8 border-t border-gray-200 bg-gradient-to-r from-purple-50 to-blue-50 p-8 rounded-lg">
-<h3 class="text-2xl font-bold text-gray-900 mb-4">Ready to Get Started?</h3>
-<p class="text-lg text-gray-700 mb-6">Join thousands of creators building resilient systems with HingeCraft Global.</p>
-<div class="flex flex-wrap gap-4">
-<a class="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:opacity-90 transition shadow-lg" href="/membership">
-            Join Now
-          </a>
-<a class="bg-white border-2 border-purple-600 text-purple-600 px-8 py-3 rounded-lg font-semibold hover:bg-purple-50 transition" href="/contact">
-            Contact Us
-          </a>
-</div>
-</div>
-</main>
-<footer class="bg-gray-900 text-white py-12 px-6 mt-16">
-<div class="max-w-4xl mx-auto text-center">
-<p class="mb-4">© 2025 HingeCraft Global. All rights reserved.</p>
-<p class="text-gray-400 text-sm">
-<a class="hover:text-white" href="/legal">Legal</a> | 
-        <a class="hover:text-white" href="/privacy">Privacy</a> | 
-        <a class="hover:text-white" href="/terms">Terms</a>
-</p>
-</div>
-</footer>
-</body>`;
-            htmlElement.html = htmlContent;
-            console.log('Legal page content loaded successfully');
-        } else {
-            console.log('Legal content element not found. Add HTML element with ID: legalContent');
-        }
-    }
+    // Set SEO
+    wixSeo.setTitle("Membership Terms Rights | HingeCraft Global");
+    wixSeo.setMetaTags([
+        { name: "description", content: "Membership Terms Rights - HingeCraft Global, LLC legal document for South Carolina" },
+        { name: "robots", content: "index, follow" },
+        { property: "og:title", content: "Membership Terms Rights | HingeCraft Global" },
+        { property: "og:type", content: "website" }
+    ]);
     
-    loadLegalPageContent();
-
+    // Load legal document content
+    loadLegalContent();
 });
 
+function loadLegalContent() {
+    const legalContent = `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Membership Terms & Rights - HingeCraft Global, LLC</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Times New Roman', Times, serif; font-size: 12pt; line-height: 1.6; color: #000; background: #fff; max-width: 8.5in; margin: 0 auto; padding: 1in; }
+        h1 { font-size: 18pt; font-weight: bold; text-align: center; margin-bottom: 24pt; text-transform: uppercase; border-bottom: 2px solid #000; padding-bottom: 12pt; }
+        h2 { font-size: 14pt; font-weight: bold; margin-top: 24pt; margin-bottom: 12pt; text-transform: uppercase; }
+        h3 { font-size: 12pt; font-weight: bold; margin-top: 18pt; margin-bottom: 9pt; }
+        p { margin-bottom: 12pt; text-align: justify; }
+        ul, ol { margin-left: 36pt; margin-bottom: 12pt; }
+        li { margin-bottom: 6pt; }
+        .header { text-align: center; margin-bottom: 36pt; }
+        .company-name { font-size: 16pt; font-weight: bold; }
+        .footer { margin-top: 48pt; padding-top: 12pt; border-top: 1px solid #000; font-size: 10pt; text-align: center; }
+        table { width: 100%; border-collapse: collapse; margin: 12pt 0; }
+        th, td { border: 1px solid #000; padding: 8pt; text-align: left; }
+        th { background: #f0f0f0; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="company-name">HINGECRAFT GLOBAL, LLC</div>
+        <h1>MEMBERSHIP TERMS & RIGHTS</h1>
+        <p>Effective Date: _________________, 20____<br>State of South Carolina</p>
+    </div>
 
-$w.onReady(function () {
-    if (typeof document !== 'undefined') {
-        // Page Title
-        document.title = 'Membership Terms Rights_480dc_js | HingeCraft Global';
-        
-        // Meta Description
-        let metaDesc = document.querySelector('meta[name="description"]');
-        if (!metaDesc) {
-            metaDesc = document.createElement('meta');
-            metaDesc.setAttribute('name', 'description');
-            document.head.appendChild(metaDesc);
+    <h2>1. INTRODUCTION</h2>
+    
+    <p><strong>1.1 Overview.</strong> These Membership Terms & Rights ("Terms") govern your membership in the HingeCraft Membership Program (the "Program"). By enrolling in the Program, you agree to these Terms.</p>
+    
+    <p><strong>1.2 Program Description.</strong> The HingeCraft Membership Program provides members with exclusive benefits, including discounts, early access to products, educational resources, and community features.</p>
+
+    <h2>2. MEMBERSHIP TIERS</h2>
+    
+    <table>
+        <tr>
+            <th>Tier</th>
+            <th>Annual Fee</th>
+            <th>Key Benefits</th>
+        </tr>
+        <tr>
+            <td>Basic</td>
+            <td>Free</td>
+            <td>Account access, order history, newsletter</td>
+        </tr>
+        <tr>
+            <td>Professional</td>
+            <td>$99/year</td>
+            <td>10% discount, priority support, early access, training</td>
+        </tr>
+        <tr>
+            <td>Enterprise</td>
+            <td>$499/year</td>
+            <td>15% discount, dedicated account manager, custom solutions, volume pricing</td>
+        </tr>
+        <tr>
+            <td>Partner</td>
+            <td>By invitation</td>
+            <td>Custom pricing, co-marketing, referral commissions, API access</td>
+        </tr>
+    </table>
+
+    <h2>3. ENROLLMENT</h2>
+    
+    <p><strong>3.1 Eligibility.</strong> Membership is open to:</p>
+    <ul>
+        <li>(a) Individuals 18 years of age or older;</li>
+        <li>(b) Businesses and organizations;</li>
+        <li>(c) Government entities;</li>
+        <li>(d) Educational institutions.</li>
+    </ul>
+    
+    <p><strong>3.2 Registration.</strong> To enroll, you must:</p>
+    <ul>
+        <li>(a) Create an account on our website;</li>
+        <li>(b) Provide accurate and complete information;</li>
+        <li>(c) Select your membership tier;</li>
+        <li>(d) Pay applicable membership fees (for paid tiers);</li>
+        <li>(e) Agree to these Terms.</li>
+    </ul>
+    
+    <p><strong>3.3 Approval.</strong> HingeCraft reserves the right to accept or reject any membership application. Enterprise and Partner memberships may require additional verification.</p>
+
+    <h2>4. MEMBERSHIP BENEFITS</h2>
+    
+    <h3>4.1 All Members</h3>
+    <ul>
+        <li>(a) Online account and order management;</li>
+        <li>(b) Order history and tracking;</li>
+        <li>(c) Product documentation access;</li>
+        <li>(d) Newsletter and product updates;</li>
+        <li>(e) Community forum access;</li>
+        <li>(f) Standard customer support.</li>
+    </ul>
+    
+    <h3>4.2 Professional Members</h3>
+    <ul>
+        <li>(a) All Basic benefits plus:</li>
+        <li>(b) 10% discount on standard products;</li>
+        <li>(c) Priority customer support;</li>
+        <li>(d) Early access to new products (7 days before public);</li>
+        <li>(e) Access to professional training resources;</li>
+        <li>(f) Quarterly technical webinars;</li>
+        <li>(g) Professional certification program eligibility;</li>
+        <li>(h) Extended return period (45 days vs. 30 days).</li>
+    </ul>
+    
+    <h3>4.3 Enterprise Members</h3>
+    <ul>
+        <li>(a) All Professional benefits plus:</li>
+        <li>(b) 15% discount on standard products;</li>
+        <li>(c) Dedicated account manager;</li>
+        <li>(d) Custom product development consultation;</li>
+        <li>(e) Volume pricing agreements;</li>
+        <li>(f) Priority manufacturing slots;</li>
+        <li>(g) On-site training (subject to fees);</li>
+        <li>(h) Annual business review;</li>
+        <li>(i) Technical support SLA.</li>
+    </ul>
+    
+    <h3>4.4 Partner Members</h3>
+    <ul>
+        <li>(a) All Enterprise benefits plus:</li>
+        <li>(b) Custom pricing structure;</li>
+        <li>(c) Co-marketing opportunities;</li>
+        <li>(d) Referral commission program;</li>
+        <li>(e) API and integration access;</li>
+        <li>(f) Joint product development;</li>
+        <li>(g) Partner portal access;</li>
+        <li>(h) Co-branded materials.</li>
+    </ul>
+
+    <h2>5. MEMBERSHIP FEES</h2>
+    
+    <p><strong>5.1 Payment.</strong> Membership fees are:</p>
+    <ul>
+        <li>(a) Billed annually in advance;</li>
+        <li>(b) Non-refundable except as stated below;</li>
+        <li>(c) Subject to change with 30 days' notice;</li>
+        <li>(d) Payable by credit card, ACH, or invoice (Enterprise/Partner).</li>
+    </ul>
+    
+    <p><strong>5.2 Auto-Renewal.</strong> Paid memberships automatically renew unless cancelled at least 30 days before the renewal date.</p>
+    
+    <p><strong>5.3 Price Changes.</strong> If fees increase, you will be notified at least 30 days before renewal. You may cancel if you do not accept the new fees.</p>
+
+    <h2>6. MEMBER RESPONSIBILITIES</h2>
+    
+    <p>As a member, you agree to:</p>
+    <ul>
+        <li>(a) Provide accurate and current information;</li>
+        <li>(b) Maintain the security of your account credentials;</li>
+        <li>(c) Not share membership benefits with non-members;</li>
+        <li>(d) Not resell products purchased at member discounts;</li>
+        <li>(e) Comply with our Terms of Service and policies;</li>
+        <li>(f) Use member benefits for legitimate business purposes;</li>
+        <li>(g) Not abuse discounts or promotions;</li>
+        <li>(h) Notify us of any account security concerns.</li>
+    </ul>
+
+    <h2>7. MEMBER RIGHTS</h2>
+    
+    <p>As a member, you have the right to:</p>
+    <ul>
+        <li>(a) Access all benefits of your membership tier;</li>
+        <li>(b) Upgrade or downgrade your membership;</li>
+        <li>(c) Cancel your membership at any time;</li>
+        <li>(d) Request account data and export;</li>
+        <li>(e) Receive notice of material changes;</li>
+        <li>(f) Provide feedback and suggestions;</li>
+        <li>(g) Opt out of marketing communications;</li>
+        <li>(h) Privacy protection per our Privacy Policy.</li>
+    </ul>
+
+    <h2>8. DISCOUNT TERMS</h2>
+    
+    <p><strong>8.1 Eligible Products.</strong> Member discounts apply to standard catalog products. Discounts do NOT apply to:</p>
+    <ul>
+        <li>(a) Clearance or sale items;</li>
+        <li>(b) Custom or made-to-order products;</li>
+        <li>(c) Products already under promotional pricing;</li>
+        <li>(d) Shipping and handling charges;</li>
+        <li>(e) Installation or service fees.</li>
+    </ul>
+    
+    <p><strong>8.2 Discount Limits.</strong> HingeCraft reserves the right to limit discounts for orders that appear to be for resale or that exceed normal business quantities.</p>
+
+    <h2>9. TERMINATION</h2>
+    
+    <p><strong>9.1 Termination by Member.</strong> You may cancel your membership at any time by:</p>
+    <ul>
+        <li>(a) Logging into your account and selecting "Cancel Membership";</li>
+        <li>(b) Contacting customer service;</li>
+        <li>(c) Providing written notice.</li>
+    </ul>
+    
+    <p><strong>9.2 Refunds Upon Cancellation.</strong></p>
+    <ul>
+        <li>(a) Cancellation within 30 days of enrollment: Full refund;</li>
+        <li>(b) Cancellation after 30 days: No refund; benefits continue until end of term;</li>
+        <li>(c) Free memberships: May cancel at any time.</li>
+    </ul>
+    
+    <p><strong>9.3 Termination by HingeCraft.</strong> We may terminate membership if you:</p>
+    <ul>
+        <li>(a) Violate these Terms or other policies;</li>
+        <li>(b) Abuse member benefits;</li>
+        <li>(c) Engage in fraudulent activity;</li>
+        <li>(d) Fail to pay membership fees;</li>
+        <li>(e) Bring the Program into disrepute.</li>
+    </ul>
+    
+    <p><strong>9.4 Effect of Termination.</strong> Upon termination:</p>
+    <ul>
+        <li>(a) Access to member benefits ends immediately;</li>
+        <li>(b) Pending orders are not affected;</li>
+        <li>(c) Accumulated rewards may be forfeited;</li>
+        <li>(d) Account data is retained per our Privacy Policy.</li>
+    </ul>
+
+    <h2>10. PROGRAM CHANGES</h2>
+    
+    <p><strong>10.1 Modifications.</strong> HingeCraft may modify the Program, including:</p>
+    <ul>
+        <li>(a) Adding or removing benefits;</li>
+        <li>(b) Changing membership tiers;</li>
+        <li>(c) Adjusting pricing;</li>
+        <li>(d) Updating terms and conditions.</li>
+    </ul>
+    
+    <p><strong>10.2 Notice.</strong> We will provide at least 30 days' notice of material changes. Continued membership after changes constitutes acceptance.</p>
+
+    <h2>11. DISCLAIMERS</h2>
+    
+    <p><strong>11.1 Benefit Availability.</strong> Benefits are subject to availability. We reserve the right to limit or discontinue benefits.</p>
+    
+    <p><strong>11.2 No Guarantee.</strong> Membership does not guarantee product availability, specific discounts, or specific services.</p>
+
+    <h2>12. GENERAL PROVISIONS</h2>
+    
+    <p><strong>12.1 Governing Law.</strong> These Terms are governed by South Carolina law.</p>
+    
+    <p><strong>12.2 Disputes.</strong> Disputes shall be resolved by arbitration in Charleston, South Carolina.</p>
+    
+    <p><strong>12.3 Severability.</strong> Invalid provisions shall not affect other provisions.</p>
+    
+    <p><strong>12.4 Entire Agreement.</strong> These Terms, along with referenced policies, constitute the entire membership agreement.</p>
+
+    <h2>13. CONTACT</h2>
+    
+    <p>For membership questions:</p>
+    <p>HingeCraft Global, LLC<br>
+    Membership Services<br>
+    123 Innovation Drive, Suite 100<br>
+    Charleston, South Carolina 29401<br>
+    Email: membership@hingecraft.com<br>
+    Phone: (843) 555-0100</p>
+
+    <div class="footer">
+        <p>HingeCraft Global, LLC | 123 Innovation Drive, Suite 100, Charleston, SC 29401</p>
+        <p>Membership: membership@hingecraft.com | Phone: (843) 555-0100</p>
+        <p>© 2025 HingeCraft Global, LLC. All Rights Reserved.</p>
+    </div>
+</body>
+</html>
+
+`;
+    
+    // Try to find the legalContent element
+    if ($w('#legalContent')) {
+        try {
+            $w('#legalContent').html = legalContent;
+        } catch (e) {
+            console.log("HTML element not configured - content ready for manual embed");
         }
-        metaDesc.setAttribute('content', 'Membership Terms Rights_480dc_js - HingeCraft Global');
-        
-        // Meta Keywords
-        let metaKeywords = document.querySelector('meta[name="keywords"]');
-        if (!metaKeywords) {
-            metaKeywords = document.createElement('meta');
-            metaKeywords.setAttribute('name', 'keywords');
-            document.head.appendChild(metaKeywords);
-        }
-        metaKeywords.setAttribute('content', 'terms of service, user rights, legal terms, ip rights, attribution rights, creator rights, membership terms, hingecraft, hingecraft global');
-        
-        // Open Graph Tags
-        const ogTags = {
-            'og:title': 'Membership Terms Rights_480dc_js | HingeCraft Global',
-            'og:description': 'Membership Terms Rights_480dc_js - HingeCraft Global',
-            'og:image': 'https://hingecraft-global.ai/og-image.jpg',
-            'og:url': 'https://hingecraft-global.ai/membership-terms-rights-480dc-js',
-            'og:type': 'website',
-            'og:site_name': 'HingeCraft Global'
-        };
-        
-        Object.keys(ogTags).forEach(prop => {
-            let ogMeta = document.querySelector(`meta[property="${prop}"]`);
-            if (!ogMeta) {
-                ogMeta = document.createElement('meta');
-                ogMeta.setAttribute('property', prop);
-                document.head.appendChild(ogMeta);
-            }
-            ogMeta.setAttribute('content', ogTags[prop]);
-        });
-        
-        // Twitter Card Tags
-        const twitterTags = {
-            'twitter:card': 'summary_large_image',
-            'twitter:title': 'Membership Terms Rights_480dc_js | HingeCraft Global',
-            'twitter:description': 'Membership Terms Rights_480dc_js - HingeCraft Global',
-            'twitter:image': 'https://hingecraft-global.ai/og-image.jpg'
-        };
-        
-        Object.keys(twitterTags).forEach(name => {
-            let twitterMeta = document.querySelector(`meta[name="${name}"]`);
-            if (!twitterMeta) {
-                twitterMeta = document.createElement('meta');
-                twitterMeta.setAttribute('name', name);
-                document.head.appendChild(twitterMeta);
-            }
-            twitterMeta.setAttribute('content', twitterTags[name]);
-        });
-        
-        // Canonical URL
-        let canonical = document.querySelector('link[rel="canonical"]');
-        if (!canonical) {
-            canonical = document.createElement('link');
-            canonical.setAttribute('rel', 'canonical');
-            document.head.appendChild(canonical);
-        }
-        canonical.setAttribute('href', 'https://hingecraft-global.ai/membership-terms-rights-480dc-js');
-        
-        // Robots Meta
-        let robots = document.querySelector('meta[name="robots"]');
-        if (!robots) {
-            robots = document.createElement('meta');
-            robots.setAttribute('name', 'robots');
-            document.head.appendChild(robots);
-        }
-        robots.setAttribute('content', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
-        
-        // Schema.org JSON-LD Structured Data
-        let schemaScript = document.querySelector('script[type="application/ld+json"]');
-        if (!schemaScript) {
-            schemaScript = document.createElement('script');
-            schemaScript.setAttribute('type', 'application/ld+json');
-            document.head.appendChild(schemaScript);
-        }
-        schemaScript.textContent = `{
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "Membership Terms Rights_480dc_js | HingeCraft Global",
-  "description": "Membership Terms Rights_480dc_js - HingeCraft Global",
-  "url": "https://hingecraft-global.ai/membership-terms-rights-480dc-js",
-  "publisher": {
-    "@type": "Organization",
-    "name": "HingeCraft Global",
-    "url": "https://hingecraft-global.ai",
-    "logo": "https://hingecraft-global.ai/logo.png"
-  },
-  "datePublished": "2025-12-05",
-  "dateModified": "2025-12-05",
-  "inLanguage": "en-US",
-  "keywords": "terms of service, user rights, legal terms, ip rights, attribution rights, creator rights, membership terms, hingecraft, hingecraft global"
-}`;
     }
     
-    // Load HTML content for legal pages
-    
-});
-
-
-
-
-$w.onReady(function () {
-    if (typeof document !== 'undefined') {
-        // Page Title
-        document.title = 'Membership Terms Rights_480dc_js | HingeCraft Global';
-        
-        // Meta Description
-        let metaDesc = document.querySelector('meta[name="description"]');
-        if (!metaDesc) {
-            metaDesc = document.createElement('meta');
-            metaDesc.setAttribute('name', 'description');
-            document.head.appendChild(metaDesc);
+    // Also try text element fallback
+    if ($w('#legalText')) {
+        try {
+            $w('#legalText').html = legalContent;
+        } catch (e) {
+            console.log("Using text element fallback");
         }
-        metaDesc.setAttribute('content', 'Membership Terms Rights_480dc_js - HingeCraft Global');
-        
-        // Meta Keywords
-        let metaKeywords = document.querySelector('meta[name="keywords"]');
-        if (!metaKeywords) {
-            metaKeywords = document.createElement('meta');
-            metaKeywords.setAttribute('name', 'keywords');
-            document.head.appendChild(metaKeywords);
-        }
-        metaKeywords.setAttribute('content', 'terms of service, user rights, legal terms, ip rights, attribution rights, creator rights, membership terms, hingecraft, hingecraft global');
-        
-        // Open Graph Tags
-        const ogTags = {
-            'og:title': 'Membership Terms Rights_480dc_js | HingeCraft Global',
-            'og:description': 'Membership Terms Rights_480dc_js - HingeCraft Global',
-            'og:image': 'https://hingecraft-global.ai/og-image.jpg',
-            'og:url': 'https://hingecraft-global.ai/membership-terms-rights-480dc-js',
-            'og:type': 'website',
-            'og:site_name': 'HingeCraft Global'
-        };
-        
-        Object.keys(ogTags).forEach(prop => {
-            let ogMeta = document.querySelector(`meta[property="${prop}"]`);
-            if (!ogMeta) {
-                ogMeta = document.createElement('meta');
-                ogMeta.setAttribute('property', prop);
-                document.head.appendChild(ogMeta);
-            }
-            ogMeta.setAttribute('content', ogTags[prop]);
-        });
-        
-        // Twitter Card Tags
-        const twitterTags = {
-            'twitter:card': 'summary_large_image',
-            'twitter:title': 'Membership Terms Rights_480dc_js | HingeCraft Global',
-            'twitter:description': 'Membership Terms Rights_480dc_js - HingeCraft Global',
-            'twitter:image': 'https://hingecraft-global.ai/og-image.jpg'
-        };
-        
-        Object.keys(twitterTags).forEach(name => {
-            let twitterMeta = document.querySelector(`meta[name="${name}"]`);
-            if (!twitterMeta) {
-                twitterMeta = document.createElement('meta');
-                twitterMeta.setAttribute('name', name);
-                document.head.appendChild(twitterMeta);
-            }
-            twitterMeta.setAttribute('content', twitterTags[name]);
-        });
-        
-        // Canonical URL
-        let canonical = document.querySelector('link[rel="canonical"]');
-        if (!canonical) {
-            canonical = document.createElement('link');
-            canonical.setAttribute('rel', 'canonical');
-            document.head.appendChild(canonical);
-        }
-        canonical.setAttribute('href', 'https://hingecraft-global.ai/membership-terms-rights-480dc-js');
-        
-        // Robots Meta
-        let robots = document.querySelector('meta[name="robots"]');
-        if (!robots) {
-            robots = document.createElement('meta');
-            robots.setAttribute('name', 'robots');
-            document.head.appendChild(robots);
-        }
-        robots.setAttribute('content', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
-        
-        // Schema.org JSON-LD Structured Data
-        let schemaScript = document.querySelector('script[type="application/ld+json"]');
-        if (!schemaScript) {
-            schemaScript = document.createElement('script');
-            schemaScript.setAttribute('type', 'application/ld+json');
-            document.head.appendChild(schemaScript);
-        }
-        schemaScript.textContent = `{
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "Membership Terms Rights_480dc_js | HingeCraft Global",
-  "description": "Membership Terms Rights_480dc_js - HingeCraft Global",
-  "url": "https://hingecraft-global.ai/membership-terms-rights-480dc-js",
-  "publisher": {
-    "@type": "Organization",
-    "name": "HingeCraft Global",
-    "url": "https://hingecraft-global.ai",
-    "logo": "https://hingecraft-global.ai/logo.png"
-  },
-  "datePublished": "2025-12-05",
-  "dateModified": "2025-12-05",
-  "inLanguage": "en-US",
-  "keywords": "terms of service, user rights, legal terms, ip rights, attribution rights, creator rights, membership terms, hingecraft, hingecraft global"
-}`;
     }
+}
+
+// Export for potential use in other contexts
+export function getLegalDocumentHTML() {
+    return `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Membership Terms & Rights - HingeCraft Global, LLC</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Times New Roman', Times, serif; font-size: 12pt; line-height: 1.6; color: #000; background: #fff; max-width: 8.5in; margin: 0 auto; padding: 1in; }
+        h1 { font-size: 18pt; font-weight: bold; text-align: center; margin-bottom: 24pt; text-transform: uppercase; border-bottom: 2px solid #000; padding-bottom: 12pt; }
+        h2 { font-size: 14pt; font-weight: bold; margin-top: 24pt; margin-bottom: 12pt; text-transform: uppercase; }
+        h3 { font-size: 12pt; font-weight: bold; margin-top: 18pt; margin-bottom: 9pt; }
+        p { margin-bottom: 12pt; text-align: justify; }
+        ul, ol { margin-left: 36pt; margin-bottom: 12pt; }
+        li { margin-bottom: 6pt; }
+        .header { text-align: center; margin-bottom: 36pt; }
+        .company-name { font-size: 16pt; font-weight: bold; }
+        .footer { margin-top: 48pt; padding-top: 12pt; border-top: 1px solid #000; font-size: 10pt; text-align: center; }
+        table { width: 100%; border-collapse: collapse; margin: 12pt 0; }
+        th, td { border: 1px solid #000; padding: 8pt; text-align: left; }
+        th { background: #f0f0f0; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="company-name">HINGECRAFT GLOBAL, LLC</div>
+        <h1>MEMBERSHIP TERMS & RIGHTS</h1>
+        <p>Effective Date: _________________, 20____<br>State of South Carolina</p>
+    </div>
+
+    <h2>1. INTRODUCTION</h2>
     
-    // Load HTML content for legal pages
+    <p><strong>1.1 Overview.</strong> These Membership Terms & Rights ("Terms") govern your membership in the HingeCraft Membership Program (the "Program"). By enrolling in the Program, you agree to these Terms.</p>
     
-});
+    <p><strong>1.2 Program Description.</strong> The HingeCraft Membership Program provides members with exclusive benefits, including discounts, early access to products, educational resources, and community features.</p>
 
+    <h2>2. MEMBERSHIP TIERS</h2>
+    
+    <table>
+        <tr>
+            <th>Tier</th>
+            <th>Annual Fee</th>
+            <th>Key Benefits</th>
+        </tr>
+        <tr>
+            <td>Basic</td>
+            <td>Free</td>
+            <td>Account access, order history, newsletter</td>
+        </tr>
+        <tr>
+            <td>Professional</td>
+            <td>$99/year</td>
+            <td>10% discount, priority support, early access, training</td>
+        </tr>
+        <tr>
+            <td>Enterprise</td>
+            <td>$499/year</td>
+            <td>15% discount, dedicated account manager, custom solutions, volume pricing</td>
+        </tr>
+        <tr>
+            <td>Partner</td>
+            <td>By invitation</td>
+            <td>Custom pricing, co-marketing, referral commissions, API access</td>
+        </tr>
+    </table>
 
+    <h2>3. ENROLLMENT</h2>
+    
+    <p><strong>3.1 Eligibility.</strong> Membership is open to:</p>
+    <ul>
+        <li>(a) Individuals 18 years of age or older;</li>
+        <li>(b) Businesses and organizations;</li>
+        <li>(c) Government entities;</li>
+        <li>(d) Educational institutions.</li>
+    </ul>
+    
+    <p><strong>3.2 Registration.</strong> To enroll, you must:</p>
+    <ul>
+        <li>(a) Create an account on our website;</li>
+        <li>(b) Provide accurate and complete information;</li>
+        <li>(c) Select your membership tier;</li>
+        <li>(d) Pay applicable membership fees (for paid tiers);</li>
+        <li>(e) Agree to these Terms.</li>
+    </ul>
+    
+    <p><strong>3.3 Approval.</strong> HingeCraft reserves the right to accept or reject any membership application. Enterprise and Partner memberships may require additional verification.</p>
 
+    <h2>4. MEMBERSHIP BENEFITS</h2>
+    
+    <h3>4.1 All Members</h3>
+    <ul>
+        <li>(a) Online account and order management;</li>
+        <li>(b) Order history and tracking;</li>
+        <li>(c) Product documentation access;</li>
+        <li>(d) Newsletter and product updates;</li>
+        <li>(e) Community forum access;</li>
+        <li>(f) Standard customer support.</li>
+    </ul>
+    
+    <h3>4.2 Professional Members</h3>
+    <ul>
+        <li>(a) All Basic benefits plus:</li>
+        <li>(b) 10% discount on standard products;</li>
+        <li>(c) Priority customer support;</li>
+        <li>(d) Early access to new products (7 days before public);</li>
+        <li>(e) Access to professional training resources;</li>
+        <li>(f) Quarterly technical webinars;</li>
+        <li>(g) Professional certification program eligibility;</li>
+        <li>(h) Extended return period (45 days vs. 30 days).</li>
+    </ul>
+    
+    <h3>4.3 Enterprise Members</h3>
+    <ul>
+        <li>(a) All Professional benefits plus:</li>
+        <li>(b) 15% discount on standard products;</li>
+        <li>(c) Dedicated account manager;</li>
+        <li>(d) Custom product development consultation;</li>
+        <li>(e) Volume pricing agreements;</li>
+        <li>(f) Priority manufacturing slots;</li>
+        <li>(g) On-site training (subject to fees);</li>
+        <li>(h) Annual business review;</li>
+        <li>(i) Technical support SLA.</li>
+    </ul>
+    
+    <h3>4.4 Partner Members</h3>
+    <ul>
+        <li>(a) All Enterprise benefits plus:</li>
+        <li>(b) Custom pricing structure;</li>
+        <li>(c) Co-marketing opportunities;</li>
+        <li>(d) Referral commission program;</li>
+        <li>(e) API and integration access;</li>
+        <li>(f) Joint product development;</li>
+        <li>(g) Partner portal access;</li>
+        <li>(h) Co-branded materials.</li>
+    </ul>
 
-$w.onReady(function () {
-    if (typeof document !== 'undefined') {
-        // Page Title
-        document.title = 'Membership Terms & Rights | HingeCraft Global';
-        
-        // Meta Description
-        let metaDesc = document.querySelector('meta[name="description"]');
-        if (!metaDesc) {
-            metaDesc = document.createElement('meta');
-            metaDesc.setAttribute('name', 'description');
-            document.head.appendChild(metaDesc);
-        }
-        metaDesc.setAttribute('content', 'HingeCraft Global Membership Terms & Rights - Membership access levels, benefits, and cancellation policies');
-        
-        // Meta Keywords
-        let metaKeywords = document.querySelector('meta[name="keywords"]');
-        if (!metaKeywords) {
-            metaKeywords = document.createElement('meta');
-            metaKeywords.setAttribute('name', 'keywords');
-            document.head.appendChild(metaKeywords);
-        }
-        metaKeywords.setAttribute('content', 'terms of service, user rights, legal terms, board member agreement, ip rights, attribution rights, creator rights, derivative rights, warranty terms, membership terms, membership rights, membership agreement, hingecraft terms of service, hingecraft membership, hingecraft, hingecraft global, resilient design');
-        
-        // Open Graph Tags
-        const ogTags = {
-            'og:title': 'Membership Terms & Rights | HingeCraft Global',
-            'og:description': 'HingeCraft Global Membership Terms & Rights - Membership access levels, benefits, and cancellation policies',
-            'og:image': 'https://hingecraft-global.ai/og-image.jpg',
-            'og:url': 'https://hingecraft-global.ai/legal/membership_terms_rights',
-            'og:type': 'website',
-            'og:site_name': 'HingeCraft Global'
-        };
-        
-        Object.keys(ogTags).forEach(prop => {
-            let ogMeta = document.querySelector(`meta[property="${prop}"]`);
-            if (!ogMeta) {
-                ogMeta = document.createElement('meta');
-                ogMeta.setAttribute('property', prop);
-                document.head.appendChild(ogMeta);
-            }
-            ogMeta.setAttribute('content', ogTags[prop]);
-        });
-        
-        // Twitter Card Tags
-        const twitterTags = {
-            'twitter:card': 'summary_large_image',
-            'twitter:title': 'Membership Terms & Rights | HingeCraft Global',
-            'twitter:description': 'HingeCraft Global Membership Terms & Rights - Membership access levels, benefits, and cancellation policies',
-            'twitter:image': 'https://hingecraft-global.ai/og-image.jpg'
-        };
-        
-        Object.keys(twitterTags).forEach(name => {
-            let twitterMeta = document.querySelector(`meta[name="${name}"]`);
-            if (!twitterMeta) {
-                twitterMeta = document.createElement('meta');
-                twitterMeta.setAttribute('name', name);
-                document.head.appendChild(twitterMeta);
-            }
-            twitterMeta.setAttribute('content', twitterTags[name]);
-        });
-        
-        // Canonical URL
-        let canonical = document.querySelector('link[rel="canonical"]');
-        if (!canonical) {
-            canonical = document.createElement('link');
-            canonical.setAttribute('rel', 'canonical');
-            document.head.appendChild(canonical);
-        }
-        canonical.setAttribute('href', 'https://hingecraft-global.ai/legal/membership_terms_rights');
-        
-        // Robots Meta
-        let robots = document.querySelector('meta[name="robots"]');
-        if (!robots) {
-            robots = document.createElement('meta');
-            robots.setAttribute('name', 'robots');
-            document.head.appendChild(robots);
-        }
-        robots.setAttribute('content', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
-        
-        // Schema.org JSON-LD
-        let schemaScript = document.querySelector('script[type="application/ld+json"]');
-        if (!schemaScript) {
-            schemaScript = document.createElement('script');
-            schemaScript.setAttribute('type', 'application/ld+json');
-            document.head.appendChild(schemaScript);
-        }
-        schemaScript.textContent = JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "LegalDocument",
-            "name": "Membership Terms & Rights | HingeCraft Global",
-            "description": "HingeCraft Global Membership Terms & Rights - Membership access levels, benefits, and cancellation policies",
-            "url": "https://hingecraft-global.ai/legal/membership_terms_rights",
-            "publisher": {
-                "@type": "Organization",
-                "name": "HingeCraft Global",
-                "url": "https://hingecraft-global.ai",
-                "logo": "https://hingecraft-global.ai/logo.png"
-            },
-            "datePublished": "2025-12-05",
-            "dateModified": "2025-12-05",
-            "inLanguage": "en-US",
-            "keywords": "terms of service, user rights, legal terms, board member agreement, ip rights, attribution rights, creator rights, derivative rights, warranty terms, membership terms, membership rights, membership agreement, hingecraft terms of service, hingecraft membership, hingecraft, hingecraft global, resilient design"
-        });
-    }
-});
+    <h2>5. MEMBERSHIP FEES</h2>
+    
+    <p><strong>5.1 Payment.</strong> Membership fees are:</p>
+    <ul>
+        <li>(a) Billed annually in advance;</li>
+        <li>(b) Non-refundable except as stated below;</li>
+        <li>(c) Subject to change with 30 days' notice;</li>
+        <li>(d) Payable by credit card, ACH, or invoice (Enterprise/Partner).</li>
+    </ul>
+    
+    <p><strong>5.2 Auto-Renewal.</strong> Paid memberships automatically renew unless cancelled at least 30 days before the renewal date.</p>
+    
+    <p><strong>5.3 Price Changes.</strong> If fees increase, you will be notified at least 30 days before renewal. You may cancel if you do not accept the new fees.</p>
 
+    <h2>6. MEMBER RESPONSIBILITIES</h2>
+    
+    <p>As a member, you agree to:</p>
+    <ul>
+        <li>(a) Provide accurate and current information;</li>
+        <li>(b) Maintain the security of your account credentials;</li>
+        <li>(c) Not share membership benefits with non-members;</li>
+        <li>(d) Not resell products purchased at member discounts;</li>
+        <li>(e) Comply with our Terms of Service and policies;</li>
+        <li>(f) Use member benefits for legitimate business purposes;</li>
+        <li>(g) Not abuse discounts or promotions;</li>
+        <li>(h) Notify us of any account security concerns.</li>
+    </ul>
 
-// API Reference: https://www.wix.com/velo/reference/api-overview/introduction
-// “Hello, World!” Example: https://learn-code.wix.com/en/article/hello-world
+    <h2>7. MEMBER RIGHTS</h2>
+    
+    <p>As a member, you have the right to:</p>
+    <ul>
+        <li>(a) Access all benefits of your membership tier;</li>
+        <li>(b) Upgrade or downgrade your membership;</li>
+        <li>(c) Cancel your membership at any time;</li>
+        <li>(d) Request account data and export;</li>
+        <li>(e) Receive notice of material changes;</li>
+        <li>(f) Provide feedback and suggestions;</li>
+        <li>(g) Opt out of marketing communications;</li>
+        <li>(h) Privacy protection per our Privacy Policy.</li>
+    </ul>
 
-$w.onReady(function () {
-    // Write your JavaScript here
+    <h2>8. DISCOUNT TERMS</h2>
+    
+    <p><strong>8.1 Eligible Products.</strong> Member discounts apply to standard catalog products. Discounts do NOT apply to:</p>
+    <ul>
+        <li>(a) Clearance or sale items;</li>
+        <li>(b) Custom or made-to-order products;</li>
+        <li>(c) Products already under promotional pricing;</li>
+        <li>(d) Shipping and handling charges;</li>
+        <li>(e) Installation or service fees.</li>
+    </ul>
+    
+    <p><strong>8.2 Discount Limits.</strong> HingeCraft reserves the right to limit discounts for orders that appear to be for resale or that exceed normal business quantities.</p>
 
-    // To select an element by ID use: $w('#elementID')
+    <h2>9. TERMINATION</h2>
+    
+    <p><strong>9.1 Termination by Member.</strong> You may cancel your membership at any time by:</p>
+    <ul>
+        <li>(a) Logging into your account and selecting "Cancel Membership";</li>
+        <li>(b) Contacting customer service;</li>
+        <li>(c) Providing written notice.</li>
+    </ul>
+    
+    <p><strong>9.2 Refunds Upon Cancellation.</strong></p>
+    <ul>
+        <li>(a) Cancellation within 30 days of enrollment: Full refund;</li>
+        <li>(b) Cancellation after 30 days: No refund; benefits continue until end of term;</li>
+        <li>(c) Free memberships: May cancel at any time.</li>
+    </ul>
+    
+    <p><strong>9.3 Termination by HingeCraft.</strong> We may terminate membership if you:</p>
+    <ul>
+        <li>(a) Violate these Terms or other policies;</li>
+        <li>(b) Abuse member benefits;</li>
+        <li>(c) Engage in fraudulent activity;</li>
+        <li>(d) Fail to pay membership fees;</li>
+        <li>(e) Bring the Program into disrepute.</li>
+    </ul>
+    
+    <p><strong>9.4 Effect of Termination.</strong> Upon termination:</p>
+    <ul>
+        <li>(a) Access to member benefits ends immediately;</li>
+        <li>(b) Pending orders are not affected;</li>
+        <li>(c) Accumulated rewards may be forfeited;</li>
+        <li>(d) Account data is retained per our Privacy Policy.</li>
+    </ul>
 
-    // Click 'Preview' to run your code
-});
+    <h2>10. PROGRAM CHANGES</h2>
+    
+    <p><strong>10.1 Modifications.</strong> HingeCraft may modify the Program, including:</p>
+    <ul>
+        <li>(a) Adding or removing benefits;</li>
+        <li>(b) Changing membership tiers;</li>
+        <li>(c) Adjusting pricing;</li>
+        <li>(d) Updating terms and conditions.</li>
+    </ul>
+    
+    <p><strong>10.2 Notice.</strong> We will provide at least 30 days' notice of material changes. Continued membership after changes constitutes acceptance.</p>
 
+    <h2>11. DISCLAIMERS</h2>
+    
+    <p><strong>11.1 Benefit Availability.</strong> Benefits are subject to availability. We reserve the right to limit or discontinue benefits.</p>
+    
+    <p><strong>11.2 No Guarantee.</strong> Membership does not guarantee product availability, specific discounts, or specific services.</p>
 
-// Load Legal Page HTML Content
+    <h2>12. GENERAL PROVISIONS</h2>
+    
+    <p><strong>12.1 Governing Law.</strong> These Terms are governed by South Carolina law.</p>
+    
+    <p><strong>12.2 Disputes.</strong> Disputes shall be resolved by arbitration in Charleston, South Carolina.</p>
+    
+    <p><strong>12.3 Severability.</strong> Invalid provisions shall not affect other provisions.</p>
+    
+    <p><strong>12.4 Entire Agreement.</strong> These Terms, along with referenced policies, constitute the entire membership agreement.</p>
 
-$w.onReady(function () {
-    loadLegalPageContent();
-});
+    <h2>13. CONTACT</h2>
+    
+    <p>For membership questions:</p>
+    <p>HingeCraft Global, LLC<br>
+    Membership Services<br>
+    123 Innovation Drive, Suite 100<br>
+    Charleston, South Carolina 29401<br>
+    Email: membership@hingecraft.com<br>
+    Phone: (843) 555-0100</p>
+
+    <div class="footer">
+        <p>HingeCraft Global, LLC | 123 Innovation Drive, Suite 100, Charleston, SC 29401</p>
+        <p>Membership: membership@hingecraft.com | Phone: (843) 555-0100</p>
+        <p>© 2025 HingeCraft Global, LLC. All Rights Reserved.</p>
+    </div>
+</body>
+</html>
+
+`;
+}

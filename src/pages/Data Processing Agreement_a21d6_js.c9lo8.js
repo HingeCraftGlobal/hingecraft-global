@@ -1,563 +1,575 @@
-// Comprehensive SEO Optimization - Data Processing Agreement_a21d6_js
-// JSON-LD Schema.org | 100+ Keywords | Competitive Optimization
+// HingeCraft Global, LLC - Legal Document
+// Data Processing Agreement
+// State of South Carolina | December 6, 2025
+// Auto-generated - All URLs are HTTPS only
+
+import wixSeo from 'wix-seo';
 
 $w.onReady(function () {
-    if (typeof document !== 'undefined') {
-        // Page Title
-        document.title = 'Data Processing Agreement (DPA) | HingeCraft Global';
-        
-        // Meta Description
-        let metaDesc = document.querySelector('meta[name="description"]');
-        if (!metaDesc) {
-            metaDesc = document.createElement('meta');
-            metaDesc.setAttribute('name', 'description');
-            document.head.appendChild(metaDesc);
-        }
-        metaDesc.setAttribute('content', 'HingeCraft Global Data Processing Agreement - Agreement governing data processing for AI training and user uploads');
-        
-        // Meta Keywords
-        let metaKeywords = document.querySelector('meta[name="keywords"]');
-        if (!metaKeywords) {
-            metaKeywords = document.createElement('meta');
-            metaKeywords.setAttribute('name', 'keywords');
-            document.head.appendChild(metaKeywords);
-        }
-        metaKeywords.setAttribute('content', 'data protection, data security, service agreement, user agreement, data processing, data privacy, sensitive data, marketplace agreement, manufacturing agreement, cross-border data, membership agreement, international data, data transfer, data processing agreement, hingecraft, hingecraft global, resilient design');
-        
-        // Open Graph Tags
-        const ogTags = {
-            'og:title': 'Data Processing Agreement (DPA) | HingeCraft Global',
-            'og:description': 'HingeCraft Global Data Processing Agreement - Agreement governing data processing for AI training and user uploads',
-            'og:image': 'https://hingecraft-global.ai/og-image.jpg',
-            'og:url': 'https://hingecraft-global.ai/legal/13-data-processing-agreement',
-            'og:type': 'website',
-            'og:site_name': 'HingeCraft Global'
-        };
-        
-        Object.keys(ogTags).forEach(prop => {
-            let ogMeta = document.querySelector(`meta[property="${prop}"]`);
-            if (!ogMeta) {
-                ogMeta = document.createElement('meta');
-                ogMeta.setAttribute('property', prop);
-                document.head.appendChild(ogMeta);
-            }
-            ogMeta.setAttribute('content', ogTags[prop]);
-        });
-        
-        // Twitter Card Tags
-        const twitterTags = {
-            'twitter:card': 'summary_large_image',
-            'twitter:title': 'Data Processing Agreement (DPA) | HingeCraft Global',
-            'twitter:description': 'HingeCraft Global Data Processing Agreement - Agreement governing data processing for AI training and user uploads',
-            'twitter:image': 'https://hingecraft-global.ai/og-image.jpg'
-        };
-        
-        Object.keys(twitterTags).forEach(name => {
-            let twitterMeta = document.querySelector(`meta[name="${name}"]`);
-            if (!twitterMeta) {
-                twitterMeta = document.createElement('meta');
-                twitterMeta.setAttribute('name', name);
-                document.head.appendChild(twitterMeta);
-            }
-            twitterMeta.setAttribute('content', twitterTags[name]);
-        });
-        
-        // Canonical URL
-        let canonical = document.querySelector('link[rel="canonical"]');
-        if (!canonical) {
-            canonical = document.createElement('link');
-            canonical.setAttribute('rel', 'canonical');
-            document.head.appendChild(canonical);
-        }
-        canonical.setAttribute('href', 'https://hingecraft-global.ai/legal/13-data-processing-agreement');
-        
-        // Robots Meta
-        let robots = document.querySelector('meta[name="robots"]');
-        if (!robots) {
-            robots = document.createElement('meta');
-            robots.setAttribute('name', 'robots');
-            document.head.appendChild(robots);
-        }
-        robots.setAttribute('content', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
-        
-        // Additional Meta Tags
-        const additionalTags = {
-            'author': 'HingeCraft Global',
-            'language': 'en-US',
-            'revisit-after': '7 days',
-            'distribution': 'global',
-            'rating': 'general'
-        };
-        
-        Object.keys(additionalTags).forEach(name => {
-            let meta = document.querySelector(`meta[name="${name}"]`);
-            if (!meta) {
-                meta = document.createElement('meta');
-                meta.setAttribute('name', name);
-                document.head.appendChild(meta);
-            }
-            meta.setAttribute('content', additionalTags[name]);
-        });
-        
-        // Schema.org JSON-LD Structured Data
-        let schemaScript = document.querySelector('script[type="application/ld+json"]');
-        if (!schemaScript) {
-            schemaScript = document.createElement('script');
-            schemaScript.setAttribute('type', 'application/ld+json');
-            document.head.appendChild(schemaScript);
-        }
-        schemaScript.textContent = `{
-  "@context": "https://schema.org",
-  "@type": "LegalDocument",
-  "name": "Data Processing Agreement (DPA) | HingeCraft Global",
-  "description": "HingeCraft Global Data Processing Agreement - Agreement governing data processing for AI training and user uploads",
-  "url": "https://hingecraft-global.ai/legal/13-data-processing-agreement",
-  "publisher": {
-    "@type": "Organization",
-    "name": "HingeCraft Global",
-    "url": "https://hingecraft-global.ai",
-    "logo": "https://hingecraft-global.ai/logo.png"
-  },
-  "datePublished": "2025-12-05",
-  "dateModified": "2025-12-05",
-  "inLanguage": "en-US",
-  "keywords": "data protection, data security, service agreement, user agreement, data processing, data privacy, sensitive data, marketplace agreement, manufacturing agreement, cross-border data, membership agreement, international data, data transfer, data processing agreement, hingecraft, hingecraft global, resilient design"
-}`;
-    }
-
-    // Load Legal Page HTML Content
-    function loadLegalPageContent() {
-        const htmlElement = $w('#legalContent');
-        if (htmlElement) {
-            const htmlContent = `<body class="bg-slate-50">
-<section class="hero-gradient text-white py-12 px-6">
-<div class="max-w-4xl mx-auto text-center">
-<h1 class="text-4xl font-bold mb-4">Data Processing Agreement (DPA)</h1>
-<p class="text-lg opacity-90">HINGECRAFT GLOBAL, INC.</p>
-<p class="text-sm opacity-75 mt-2">Required for AI Training + User Uploads</p>
-</div>
-</section>
-<main class="max-w-4xl mx-auto px-6 py-16">
-<div class="prose max-w-none bg-white p-8 rounded-lg shadow-sm">
-<h2>DATA PROCESSING AGREEMENT</h2>
-<p>This Data Processing Agreement ("DPA") governs how HingeCraft Global processes personal data in connection with AI training and user uploads.</p>
-<h2>I. SCOPE</h2>
-<p>This DPA applies to all personal data processed by HingeCraft Global as a data processor on behalf of users or as a data controller for platform operations.</p>
-<h2>II. PROCESSING PURPOSES</h2>
-<ul>
-<li>AI model training and improvement</li>
-<li>Service provision and personalization</li>
-<li>Content processing and storage</li>
-<li>Analytics and platform improvement</li>
-</ul>
-<h2>III. DATA SECURITY</h2>
-<p>We implement:</p>
-<ul>
-<li>Encryption in transit and at rest</li>
-<li>Access controls and authentication</li>
-<li>Regular security audits</li>
-<li>Incident response procedures</li>
-</ul>
-<h2>IV. SUBPROCESSORS</h2>
-<p>We may use subprocessors for cloud hosting, analytics, and other services. Subprocessors are bound by equivalent data protection obligations.</p>
-<h2>V. DATA RETENTION</h2>
-<p>Data is retained only as long as necessary for the purposes stated in this DPA or as required by law.</p>
-<h2>VI. USER RIGHTS</h2>
-<p>Users may exercise their rights under GDPR/CCPA, including access, correction, deletion, and portability.</p>
-<div class="mt-8 pt-8 border-t border-gray-200">
-<p class="text-sm text-gray-600">Last Updated: December 4, 2025</p>
-<p class="text-sm text-gray-600">For questions about this document, please contact: <a class="text-purple-700 hover:underline" href="mailto:legal@hingecraft-global.ai">legal@hingecraft-global.ai</a></p>
-</div>
-</div>
-<div class="mt-6 flex flex-wrap items-center gap-6 text-sm text-gray-600">
-<div class="flex items-center gap-2">
-<svg class="w-5 h-5 text-green-600" fill="currentColor" viewbox="0 0 20 20">
-<path clip-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" fill-rule="evenodd"></path>
-</svg>
-<span>GDPR Compliant</span>
-</div>
-<div class="flex items-center gap-2">
-<svg class="w-5 h-5 text-green-600" fill="currentColor" viewbox="0 0 20 20">
-<path clip-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" fill-rule="evenodd"></path>
-</svg>
-<span>CCPA Compliant</span>
-</div>
-<div class="flex items-center gap-2">
-<svg class="w-5 h-5 text-green-600" fill="currentColor" viewbox="0 0 20 20">
-<path clip-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" fill-rule="evenodd"></path>
-</svg>
-<span>Secure &amp; Encrypted</span>
-</div>
-</div>
-</main>
-<footer class="bg-gray-900 text-white py-12 px-6 mt-16">
-<div class="max-w-4xl mx-auto text-center">
-<p class="mb-4">© 2025 HingeCraft Global. All rights reserved.</p>
-<p class="text-gray-400 text-sm">
-<a class="hover:text-white" href="/legal">Legal</a> | 
-        <a class="hover:text-white" href="/privacy">Privacy</a> | 
-        <a class="hover:text-white" href="/terms">Terms</a>
-</p>
-</div>
-</footer>
-</body>`;
-            htmlElement.html = htmlContent;
-            console.log('Legal page content loaded successfully');
-        } else {
-            console.log('Legal content element not found. Add HTML element with ID: legalContent');
-        }
-    }
+    // Set SEO
+    wixSeo.setTitle("Data Processing Agreement | HingeCraft Global");
+    wixSeo.setMetaTags([
+        { name: "description", content: "Data Processing Agreement - HingeCraft Global, LLC legal document for South Carolina" },
+        { name: "robots", content: "index, follow" },
+        { property: "og:title", content: "Data Processing Agreement | HingeCraft Global" },
+        { property: "og:type", content: "website" }
+    ]);
     
-    loadLegalPageContent();
-
+    // Load legal document content
+    loadLegalContent();
 });
 
+function loadLegalContent() {
+    const legalContent = `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Processing Agreement (DPA) - HingeCraft Global, LLC</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Times New Roman', Times, serif; font-size: 12pt; line-height: 1.6; color: #000; background: #fff; max-width: 8.5in; margin: 0 auto; padding: 1in; }
+        h1 { font-size: 18pt; font-weight: bold; text-align: center; margin-bottom: 24pt; text-transform: uppercase; border-bottom: 2px solid #000; padding-bottom: 12pt; }
+        h2 { font-size: 14pt; font-weight: bold; margin-top: 24pt; margin-bottom: 12pt; text-transform: uppercase; }
+        h3 { font-size: 12pt; font-weight: bold; margin-top: 18pt; margin-bottom: 9pt; }
+        p { margin-bottom: 12pt; text-align: justify; }
+        ul, ol { margin-left: 36pt; margin-bottom: 12pt; }
+        li { margin-bottom: 6pt; }
+        .header { text-align: center; margin-bottom: 36pt; }
+        .company-name { font-size: 16pt; font-weight: bold; }
+        .footer { margin-top: 48pt; padding-top: 12pt; border-top: 1px solid #000; font-size: 10pt; text-align: center; }
+        .signature-block { margin-top: 48pt; }
+        .signature-line { border-top: 1px solid #000; width: 300px; margin-top: 48pt; padding-top: 6pt; }
+        table { width: 100%; border-collapse: collapse; margin: 12pt 0; }
+        th, td { border: 1px solid #000; padding: 6pt; text-align: left; vertical-align: top; }
+        th { background: #f0f0f0; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="company-name">HINGECRAFT GLOBAL, LLC</div>
+        <h1>DATA PROCESSING AGREEMENT</h1>
+        <p>Effective Date: _________________, 20____<br>State of South Carolina</p>
+    </div>
 
-$w.onReady(function () {
-    if (typeof document !== 'undefined') {
-        // Page Title
-        document.title = 'Data Processing Agreement_a21d6_js | HingeCraft Global';
+    <p>This Data Processing Agreement ("DPA") is entered into by and between:</p>
+    <p><strong>HingeCraft Global, LLC</strong> ("Processor" or "HingeCraft"), a South Carolina limited liability company, with its principal place of business at 123 Innovation Drive, Suite 100, Charleston, South Carolina 29401, and</p>
+    <p><strong>_________________________________</strong> ("Controller" or "Customer"), with its principal place of business at _________________________________.</p>
+
+    <h2>1. DEFINITIONS</h2>
+    
+    <p><strong>"Applicable Data Protection Laws"</strong> means all applicable laws relating to privacy, data protection, and data security, including the GDPR, CCPA, and other relevant laws.</p>
+    
+    <p><strong>"Controller"</strong> means the natural or legal person that determines the purposes and means of Processing Personal Data.</p>
+    
+    <p><strong>"Data Subject"</strong> means an identified or identifiable natural person to whom Personal Data relates.</p>
+    
+    <p><strong>"GDPR"</strong> means the General Data Protection Regulation (EU) 2016/679.</p>
+    
+    <p><strong>"Personal Data"</strong> means any information relating to an identified or identifiable natural person.</p>
+    
+    <p><strong>"Personal Data Breach"</strong> means a breach of security leading to the accidental or unlawful destruction, loss, alteration, unauthorized disclosure of, or access to Personal Data.</p>
+    
+    <p><strong>"Processing"</strong> means any operation performed on Personal Data, including collection, storage, use, disclosure, and deletion.</p>
+    
+    <p><strong>"Processor"</strong> means a natural or legal person that Processes Personal Data on behalf of a Controller.</p>
+    
+    <p><strong>"Services"</strong> means the services provided by Processor to Controller under the underlying agreement.</p>
+    
+    <p><strong>"Sub-processor"</strong> means any third party engaged by Processor to Process Personal Data on behalf of Controller.</p>
+
+    <h2>2. SCOPE AND PURPOSE</h2>
+    
+    <p><strong>2.1 Scope.</strong> This DPA applies to all Processing of Personal Data by Processor on behalf of Controller in connection with the Services.</p>
+    
+    <p><strong>2.2 Processing Details.</strong> The details of Processing are set forth in Annex 1, including:</p>
+    <ul>
+        <li>(a) Subject matter and duration of Processing;</li>
+        <li>(b) Nature and purpose of Processing;</li>
+        <li>(c) Types of Personal Data;</li>
+        <li>(d) Categories of Data Subjects.</li>
+    </ul>
+    
+    <p><strong>2.3 Relationship.</strong> Controller is the Controller and Processor is the Processor with respect to Personal Data Processed under this DPA. Nothing in this DPA shall be construed to make Processor a joint Controller.</p>
+
+    <h2>3. CONTROLLER OBLIGATIONS</h2>
+    
+    <p>Controller represents, warrants, and agrees that:</p>
+    <ul>
+        <li>(a) It has complied with all Applicable Data Protection Laws in collecting Personal Data;</li>
+        <li>(b) It has provided all required notices and obtained all necessary consents;</li>
+        <li>(c) It has a lawful basis for Processing under Applicable Data Protection Laws;</li>
+        <li>(d) Its Processing instructions to Processor are lawful;</li>
+        <li>(e) It will respond to Data Subject requests in accordance with Applicable Data Protection Laws;</li>
+        <li>(f) It will maintain appropriate security measures for Personal Data in its possession.</li>
+    </ul>
+
+    <h2>4. PROCESSOR OBLIGATIONS</h2>
+    
+    <h3>4.1 Processing Instructions</h3>
+    <p>Processor shall:</p>
+    <ul>
+        <li>(a) Process Personal Data only on documented instructions from Controller;</li>
+        <li>(b) Inform Controller if, in its opinion, an instruction infringes Applicable Data Protection Laws;</li>
+        <li>(c) Not Process Personal Data for any purpose other than providing the Services;</li>
+        <li>(d) Not sell, share (as defined by CCPA), or use Personal Data for its own purposes.</li>
+    </ul>
+    
+    <h3>4.2 Confidentiality</h3>
+    <p>Processor shall:</p>
+    <ul>
+        <li>(a) Ensure that persons authorized to Process Personal Data are subject to confidentiality obligations;</li>
+        <li>(b) Limit access to Personal Data to personnel who need access to perform the Services;</li>
+        <li>(c) Treat Personal Data as confidential information.</li>
+    </ul>
+    
+    <h3>4.3 Security Measures</h3>
+    <p>Processor shall implement appropriate technical and organizational measures to ensure a level of security appropriate to the risk, including:</p>
+    <ul>
+        <li>(a) Encryption of Personal Data in transit and at rest;</li>
+        <li>(b) Access controls and authentication mechanisms;</li>
+        <li>(c) Regular testing and evaluation of security measures;</li>
+        <li>(d) Ability to restore availability of Personal Data;</li>
+        <li>(e) Physical security of facilities;</li>
+        <li>(f) Employee security training.</li>
+    </ul>
+    
+    <p>Specific security measures are described in Annex 2.</p>
+    
+    <h3>4.4 Sub-processors</h3>
+    <p>Processor shall:</p>
+    <ul>
+        <li>(a) Not engage Sub-processors without Controller's prior [written consent / general authorization];</li>
+        <li>(b) Maintain a list of authorized Sub-processors (Annex 3);</li>
+        <li>(c) Notify Controller of intended changes to Sub-processors and allow Controller to object;</li>
+        <li>(d) Ensure Sub-processors are bound by data protection obligations no less protective than this DPA;</li>
+        <li>(e) Remain liable for Sub-processors' acts and omissions.</li>
+    </ul>
+    
+    <h3>4.5 Data Subject Rights</h3>
+    <p>Processor shall:</p>
+    <ul>
+        <li>(a) Assist Controller in responding to Data Subject requests;</li>
+        <li>(b) Notify Controller promptly of any Data Subject requests received directly;</li>
+        <li>(c) Not respond directly to Data Subject requests unless authorized by Controller;</li>
+        <li>(d) Implement technical measures to facilitate Data Subject rights (access, correction, deletion, portability).</li>
+    </ul>
+    
+    <h3>4.6 Personal Data Breaches</h3>
+    <p>Processor shall:</p>
+    <ul>
+        <li>(a) Notify Controller without undue delay (and no later than 48 hours) upon becoming aware of a Personal Data Breach;</li>
+        <li>(b) Provide information necessary for Controller to comply with breach notification obligations;</li>
+        <li>(c) Cooperate with Controller in investigating and mitigating the breach;</li>
+        <li>(d) Document Personal Data Breaches and remedial actions.</li>
+    </ul>
+    
+    <h3>4.7 Data Protection Impact Assessments</h3>
+    <p>Processor shall provide reasonable assistance to Controller with data protection impact assessments and consultations with supervisory authorities where required.</p>
+    
+    <h3>4.8 Compliance Demonstration</h3>
+    <p>Processor shall:</p>
+    <ul>
+        <li>(a) Make available information necessary to demonstrate compliance;</li>
+        <li>(b) Allow for and contribute to audits conducted by Controller or an auditor;</li>
+        <li>(c) Provide audit reports, certifications, or other evidence of compliance upon request.</li>
+    </ul>
+
+    <h2>5. INTERNATIONAL DATA TRANSFERS</h2>
+    
+    <p><strong>5.1 Transfers.</strong> Personal Data may be transferred to and Processed in countries outside the EEA/UK, including the United States, where Processor or its Sub-processors maintain facilities.</p>
+    
+    <p><strong>5.2 Transfer Mechanisms.</strong> For transfers from the EEA/UK to countries without an adequacy decision, the parties shall rely on:</p>
+    <ul>
+        <li>(a) Standard Contractual Clauses (SCCs) adopted by the European Commission;</li>
+        <li>(b) Binding Corporate Rules (where applicable);</li>
+        <li>(c) Other approved transfer mechanisms under GDPR Article 46.</li>
+    </ul>
+    
+    <p><strong>5.3 SCCs.</strong> The Standard Contractual Clauses set forth in Annex 4 are incorporated by reference and form part of this DPA.</p>
+    
+    <p><strong>5.4 Supplementary Measures.</strong> Processor shall implement supplementary measures as necessary to ensure an essentially equivalent level of protection for transferred data.</p>
+
+    <h2>6. RETURN AND DELETION</h2>
+    
+    <p><strong>6.1 Upon Termination.</strong> Upon termination or expiration of the Services, Processor shall, at Controller's election:</p>
+    <ul>
+        <li>(a) Return all Personal Data to Controller; and/or</li>
+        <li>(b) Delete all Personal Data, unless retention is required by law.</li>
+    </ul>
+    
+    <p><strong>6.2 Certification.</strong> Upon request, Processor shall certify in writing that it has complied with deletion obligations.</p>
+    
+    <p><strong>6.3 Retention Period.</strong> Controller must make its election within 30 days of termination. If no election is made, Processor may delete Personal Data.</p>
+
+    <h2>7. LIABILITY AND INDEMNIFICATION</h2>
+    
+    <p><strong>7.1 Liability.</strong> Each party's liability under this DPA is subject to the limitations of liability in the underlying Services agreement.</p>
+    
+    <p><strong>7.2 Indemnification.</strong> Each party shall indemnify the other for losses arising from the indemnifying party's breach of this DPA or Applicable Data Protection Laws.</p>
+
+    <h2>8. TERM AND TERMINATION</h2>
+    
+    <p><strong>8.1 Term.</strong> This DPA shall remain in effect for the duration of Processing under the Services agreement.</p>
+    
+    <p><strong>8.2 Survival.</strong> Sections that by their nature should survive termination shall survive, including confidentiality, return/deletion, and liability provisions.</p>
+
+    <h2>9. GENERAL PROVISIONS</h2>
+    
+    <p><strong>9.1 Governing Law.</strong> This DPA shall be governed by the laws of the State of South Carolina, except that the SCCs shall be governed as set forth therein.</p>
+    
+    <p><strong>9.2 Conflicts.</strong> In the event of conflict between this DPA and the underlying agreement, this DPA shall prevail with respect to data protection matters.</p>
+    
+    <p><strong>9.3 Amendment.</strong> This DPA may be amended only by written agreement signed by both parties.</p>
+    
+    <p><strong>9.4 Severability.</strong> If any provision is found invalid, the remaining provisions shall remain in effect.</p>
+
+    <h2>ANNEX 1 - PROCESSING DETAILS</h2>
+    <table>
+        <tr><th>Element</th><th>Description</th></tr>
+        <tr><td>Subject Matter</td><td>Processing in connection with HingeCraft Services</td></tr>
+        <tr><td>Duration</td><td>Duration of Services agreement</td></tr>
+        <tr><td>Nature of Processing</td><td>Collection, storage, use, transmission, deletion</td></tr>
+        <tr><td>Purpose</td><td>Provide Services, customer support, order fulfillment</td></tr>
+        <tr><td>Types of Personal Data</td><td>Contact information, account data, order information, usage data</td></tr>
+        <tr><td>Categories of Data Subjects</td><td>Customer employees, end users, business contacts</td></tr>
+    </table>
+
+    <h2>ANNEX 2 - SECURITY MEASURES</h2>
+    <ul>
+        <li>Encryption (AES-256 at rest, TLS 1.2+ in transit)</li>
+        <li>Access controls (role-based, least privilege)</li>
+        <li>Multi-factor authentication</li>
+        <li>Network security (firewalls, intrusion detection)</li>
+        <li>Regular security testing and audits</li>
+        <li>Employee background checks and training</li>
+        <li>Physical security controls</li>
+        <li>Incident response procedures</li>
+        <li>Business continuity and disaster recovery</li>
+    </ul>
+
+    <h2>ANNEX 3 - AUTHORIZED SUB-PROCESSORS</h2>
+    <table>
+        <tr><th>Sub-processor</th><th>Purpose</th><th>Location</th></tr>
+        <tr><td>[Cloud Provider]</td><td>Infrastructure hosting</td><td>United States</td></tr>
+        <tr><td>[Payment Processor]</td><td>Payment processing</td><td>United States</td></tr>
+        <tr><td>[Analytics Provider]</td><td>Analytics services</td><td>United States</td></tr>
+    </table>
+
+    <div class="signature-block">
+        <p><strong>AGREEMENT</strong></p>
         
-        // Meta Description
-        let metaDesc = document.querySelector('meta[name="description"]');
-        if (!metaDesc) {
-            metaDesc = document.createElement('meta');
-            metaDesc.setAttribute('name', 'description');
-            document.head.appendChild(metaDesc);
+        <p><strong>CONTROLLER:</strong></p>
+        <div class="signature-line">
+            <p>Authorized Signature</p>
+        </div>
+        <p>Print Name: _________________________________</p>
+        <p>Title: _________________________________</p>
+        <p>Date: _________________________________</p>
+        
+        <p><strong>PROCESSOR:</strong><br>HingeCraft Global, LLC</p>
+        <div class="signature-line">
+            <p>Authorized Signature</p>
+        </div>
+        <p>Print Name: _________________________________</p>
+        <p>Title: _________________________________</p>
+        <p>Date: _________________________________</p>
+    </div>
+
+    <div class="footer">
+        <p>HingeCraft Global, LLC | 123 Innovation Drive, Suite 100, Charleston, SC 29401</p>
+        <p>Privacy: privacy@hingecraft.com | Phone: (843) 555-0100</p>
+        <p>© 2025 HingeCraft Global, LLC. All Rights Reserved.</p>
+    </div>
+</body>
+</html>
+
+`;
+    
+    // Try to find the legalContent element
+    if ($w('#legalContent')) {
+        try {
+            $w('#legalContent').html = legalContent;
+        } catch (e) {
+            console.log("HTML element not configured - content ready for manual embed");
         }
-        metaDesc.setAttribute('content', 'Data Processing Agreement_a21d6_js - HingeCraft Global');
-        
-        // Meta Keywords
-        let metaKeywords = document.querySelector('meta[name="keywords"]');
-        if (!metaKeywords) {
-            metaKeywords = document.createElement('meta');
-            metaKeywords.setAttribute('name', 'keywords');
-            document.head.appendChild(metaKeywords);
-        }
-        metaKeywords.setAttribute('content', 'data protection, data security, service agreement, user agreement, data processing, data privacy, sensitive data, marketplace agreement, manufacturing agreement, cross-border data, hingecraft, hingecraft global');
-        
-        // Open Graph Tags
-        const ogTags = {
-            'og:title': 'Data Processing Agreement_a21d6_js | HingeCraft Global',
-            'og:description': 'Data Processing Agreement_a21d6_js - HingeCraft Global',
-            'og:image': 'https://hingecraft-global.ai/og-image.jpg',
-            'og:url': 'https://hingecraft-global.ai/data-processing-agreement-a21d6-js',
-            'og:type': 'website',
-            'og:site_name': 'HingeCraft Global'
-        };
-        
-        Object.keys(ogTags).forEach(prop => {
-            let ogMeta = document.querySelector(`meta[property="${prop}"]`);
-            if (!ogMeta) {
-                ogMeta = document.createElement('meta');
-                ogMeta.setAttribute('property', prop);
-                document.head.appendChild(ogMeta);
-            }
-            ogMeta.setAttribute('content', ogTags[prop]);
-        });
-        
-        // Twitter Card Tags
-        const twitterTags = {
-            'twitter:card': 'summary_large_image',
-            'twitter:title': 'Data Processing Agreement_a21d6_js | HingeCraft Global',
-            'twitter:description': 'Data Processing Agreement_a21d6_js - HingeCraft Global',
-            'twitter:image': 'https://hingecraft-global.ai/og-image.jpg'
-        };
-        
-        Object.keys(twitterTags).forEach(name => {
-            let twitterMeta = document.querySelector(`meta[name="${name}"]`);
-            if (!twitterMeta) {
-                twitterMeta = document.createElement('meta');
-                twitterMeta.setAttribute('name', name);
-                document.head.appendChild(twitterMeta);
-            }
-            twitterMeta.setAttribute('content', twitterTags[name]);
-        });
-        
-        // Canonical URL
-        let canonical = document.querySelector('link[rel="canonical"]');
-        if (!canonical) {
-            canonical = document.createElement('link');
-            canonical.setAttribute('rel', 'canonical');
-            document.head.appendChild(canonical);
-        }
-        canonical.setAttribute('href', 'https://hingecraft-global.ai/data-processing-agreement-a21d6-js');
-        
-        // Robots Meta
-        let robots = document.querySelector('meta[name="robots"]');
-        if (!robots) {
-            robots = document.createElement('meta');
-            robots.setAttribute('name', 'robots');
-            document.head.appendChild(robots);
-        }
-        robots.setAttribute('content', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
-        
-        // Schema.org JSON-LD Structured Data
-        let schemaScript = document.querySelector('script[type="application/ld+json"]');
-        if (!schemaScript) {
-            schemaScript = document.createElement('script');
-            schemaScript.setAttribute('type', 'application/ld+json');
-            document.head.appendChild(schemaScript);
-        }
-        schemaScript.textContent = `{
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "Data Processing Agreement_a21d6_js | HingeCraft Global",
-  "description": "Data Processing Agreement_a21d6_js - HingeCraft Global",
-  "url": "https://hingecraft-global.ai/data-processing-agreement-a21d6-js",
-  "publisher": {
-    "@type": "Organization",
-    "name": "HingeCraft Global",
-    "url": "https://hingecraft-global.ai",
-    "logo": "https://hingecraft-global.ai/logo.png"
-  },
-  "datePublished": "2025-12-05",
-  "dateModified": "2025-12-05",
-  "inLanguage": "en-US",
-  "keywords": "data protection, data security, service agreement, user agreement, data processing, data privacy, sensitive data, marketplace agreement, manufacturing agreement, cross-border data, hingecraft, hingecraft global"
-}`;
     }
     
-    // Load HTML content for legal pages
-    
-});
-
-
-
-
-$w.onReady(function () {
-    if (typeof document !== 'undefined') {
-        // Page Title
-        document.title = 'Data Processing Agreement_a21d6_js | HingeCraft Global';
-        
-        // Meta Description
-        let metaDesc = document.querySelector('meta[name="description"]');
-        if (!metaDesc) {
-            metaDesc = document.createElement('meta');
-            metaDesc.setAttribute('name', 'description');
-            document.head.appendChild(metaDesc);
+    // Also try text element fallback
+    if ($w('#legalText')) {
+        try {
+            $w('#legalText').html = legalContent;
+        } catch (e) {
+            console.log("Using text element fallback");
         }
-        metaDesc.setAttribute('content', 'Data Processing Agreement_a21d6_js - HingeCraft Global');
-        
-        // Meta Keywords
-        let metaKeywords = document.querySelector('meta[name="keywords"]');
-        if (!metaKeywords) {
-            metaKeywords = document.createElement('meta');
-            metaKeywords.setAttribute('name', 'keywords');
-            document.head.appendChild(metaKeywords);
-        }
-        metaKeywords.setAttribute('content', 'data protection, data security, service agreement, user agreement, data processing, data privacy, sensitive data, marketplace agreement, manufacturing agreement, cross-border data, hingecraft, hingecraft global');
-        
-        // Open Graph Tags
-        const ogTags = {
-            'og:title': 'Data Processing Agreement_a21d6_js | HingeCraft Global',
-            'og:description': 'Data Processing Agreement_a21d6_js - HingeCraft Global',
-            'og:image': 'https://hingecraft-global.ai/og-image.jpg',
-            'og:url': 'https://hingecraft-global.ai/data-processing-agreement-a21d6-js',
-            'og:type': 'website',
-            'og:site_name': 'HingeCraft Global'
-        };
-        
-        Object.keys(ogTags).forEach(prop => {
-            let ogMeta = document.querySelector(`meta[property="${prop}"]`);
-            if (!ogMeta) {
-                ogMeta = document.createElement('meta');
-                ogMeta.setAttribute('property', prop);
-                document.head.appendChild(ogMeta);
-            }
-            ogMeta.setAttribute('content', ogTags[prop]);
-        });
-        
-        // Twitter Card Tags
-        const twitterTags = {
-            'twitter:card': 'summary_large_image',
-            'twitter:title': 'Data Processing Agreement_a21d6_js | HingeCraft Global',
-            'twitter:description': 'Data Processing Agreement_a21d6_js - HingeCraft Global',
-            'twitter:image': 'https://hingecraft-global.ai/og-image.jpg'
-        };
-        
-        Object.keys(twitterTags).forEach(name => {
-            let twitterMeta = document.querySelector(`meta[name="${name}"]`);
-            if (!twitterMeta) {
-                twitterMeta = document.createElement('meta');
-                twitterMeta.setAttribute('name', name);
-                document.head.appendChild(twitterMeta);
-            }
-            twitterMeta.setAttribute('content', twitterTags[name]);
-        });
-        
-        // Canonical URL
-        let canonical = document.querySelector('link[rel="canonical"]');
-        if (!canonical) {
-            canonical = document.createElement('link');
-            canonical.setAttribute('rel', 'canonical');
-            document.head.appendChild(canonical);
-        }
-        canonical.setAttribute('href', 'https://hingecraft-global.ai/data-processing-agreement-a21d6-js');
-        
-        // Robots Meta
-        let robots = document.querySelector('meta[name="robots"]');
-        if (!robots) {
-            robots = document.createElement('meta');
-            robots.setAttribute('name', 'robots');
-            document.head.appendChild(robots);
-        }
-        robots.setAttribute('content', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
-        
-        // Schema.org JSON-LD Structured Data
-        let schemaScript = document.querySelector('script[type="application/ld+json"]');
-        if (!schemaScript) {
-            schemaScript = document.createElement('script');
-            schemaScript.setAttribute('type', 'application/ld+json');
-            document.head.appendChild(schemaScript);
-        }
-        schemaScript.textContent = `{
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "Data Processing Agreement_a21d6_js | HingeCraft Global",
-  "description": "Data Processing Agreement_a21d6_js - HingeCraft Global",
-  "url": "https://hingecraft-global.ai/data-processing-agreement-a21d6-js",
-  "publisher": {
-    "@type": "Organization",
-    "name": "HingeCraft Global",
-    "url": "https://hingecraft-global.ai",
-    "logo": "https://hingecraft-global.ai/logo.png"
-  },
-  "datePublished": "2025-12-05",
-  "dateModified": "2025-12-05",
-  "inLanguage": "en-US",
-  "keywords": "data protection, data security, service agreement, user agreement, data processing, data privacy, sensitive data, marketplace agreement, manufacturing agreement, cross-border data, hingecraft, hingecraft global"
-}`;
     }
+}
+
+// Export for potential use in other contexts
+export function getLegalDocumentHTML() {
+    return `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Processing Agreement (DPA) - HingeCraft Global, LLC</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Times New Roman', Times, serif; font-size: 12pt; line-height: 1.6; color: #000; background: #fff; max-width: 8.5in; margin: 0 auto; padding: 1in; }
+        h1 { font-size: 18pt; font-weight: bold; text-align: center; margin-bottom: 24pt; text-transform: uppercase; border-bottom: 2px solid #000; padding-bottom: 12pt; }
+        h2 { font-size: 14pt; font-weight: bold; margin-top: 24pt; margin-bottom: 12pt; text-transform: uppercase; }
+        h3 { font-size: 12pt; font-weight: bold; margin-top: 18pt; margin-bottom: 9pt; }
+        p { margin-bottom: 12pt; text-align: justify; }
+        ul, ol { margin-left: 36pt; margin-bottom: 12pt; }
+        li { margin-bottom: 6pt; }
+        .header { text-align: center; margin-bottom: 36pt; }
+        .company-name { font-size: 16pt; font-weight: bold; }
+        .footer { margin-top: 48pt; padding-top: 12pt; border-top: 1px solid #000; font-size: 10pt; text-align: center; }
+        .signature-block { margin-top: 48pt; }
+        .signature-line { border-top: 1px solid #000; width: 300px; margin-top: 48pt; padding-top: 6pt; }
+        table { width: 100%; border-collapse: collapse; margin: 12pt 0; }
+        th, td { border: 1px solid #000; padding: 6pt; text-align: left; vertical-align: top; }
+        th { background: #f0f0f0; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="company-name">HINGECRAFT GLOBAL, LLC</div>
+        <h1>DATA PROCESSING AGREEMENT</h1>
+        <p>Effective Date: _________________, 20____<br>State of South Carolina</p>
+    </div>
+
+    <p>This Data Processing Agreement ("DPA") is entered into by and between:</p>
+    <p><strong>HingeCraft Global, LLC</strong> ("Processor" or "HingeCraft"), a South Carolina limited liability company, with its principal place of business at 123 Innovation Drive, Suite 100, Charleston, South Carolina 29401, and</p>
+    <p><strong>_________________________________</strong> ("Controller" or "Customer"), with its principal place of business at _________________________________.</p>
+
+    <h2>1. DEFINITIONS</h2>
     
-    // Load HTML content for legal pages
+    <p><strong>"Applicable Data Protection Laws"</strong> means all applicable laws relating to privacy, data protection, and data security, including the GDPR, CCPA, and other relevant laws.</p>
     
-});
+    <p><strong>"Controller"</strong> means the natural or legal person that determines the purposes and means of Processing Personal Data.</p>
+    
+    <p><strong>"Data Subject"</strong> means an identified or identifiable natural person to whom Personal Data relates.</p>
+    
+    <p><strong>"GDPR"</strong> means the General Data Protection Regulation (EU) 2016/679.</p>
+    
+    <p><strong>"Personal Data"</strong> means any information relating to an identified or identifiable natural person.</p>
+    
+    <p><strong>"Personal Data Breach"</strong> means a breach of security leading to the accidental or unlawful destruction, loss, alteration, unauthorized disclosure of, or access to Personal Data.</p>
+    
+    <p><strong>"Processing"</strong> means any operation performed on Personal Data, including collection, storage, use, disclosure, and deletion.</p>
+    
+    <p><strong>"Processor"</strong> means a natural or legal person that Processes Personal Data on behalf of a Controller.</p>
+    
+    <p><strong>"Services"</strong> means the services provided by Processor to Controller under the underlying agreement.</p>
+    
+    <p><strong>"Sub-processor"</strong> means any third party engaged by Processor to Process Personal Data on behalf of Controller.</p>
 
+    <h2>2. SCOPE AND PURPOSE</h2>
+    
+    <p><strong>2.1 Scope.</strong> This DPA applies to all Processing of Personal Data by Processor on behalf of Controller in connection with the Services.</p>
+    
+    <p><strong>2.2 Processing Details.</strong> The details of Processing are set forth in Annex 1, including:</p>
+    <ul>
+        <li>(a) Subject matter and duration of Processing;</li>
+        <li>(b) Nature and purpose of Processing;</li>
+        <li>(c) Types of Personal Data;</li>
+        <li>(d) Categories of Data Subjects.</li>
+    </ul>
+    
+    <p><strong>2.3 Relationship.</strong> Controller is the Controller and Processor is the Processor with respect to Personal Data Processed under this DPA. Nothing in this DPA shall be construed to make Processor a joint Controller.</p>
 
+    <h2>3. CONTROLLER OBLIGATIONS</h2>
+    
+    <p>Controller represents, warrants, and agrees that:</p>
+    <ul>
+        <li>(a) It has complied with all Applicable Data Protection Laws in collecting Personal Data;</li>
+        <li>(b) It has provided all required notices and obtained all necessary consents;</li>
+        <li>(c) It has a lawful basis for Processing under Applicable Data Protection Laws;</li>
+        <li>(d) Its Processing instructions to Processor are lawful;</li>
+        <li>(e) It will respond to Data Subject requests in accordance with Applicable Data Protection Laws;</li>
+        <li>(f) It will maintain appropriate security measures for Personal Data in its possession.</li>
+    </ul>
 
+    <h2>4. PROCESSOR OBLIGATIONS</h2>
+    
+    <h3>4.1 Processing Instructions</h3>
+    <p>Processor shall:</p>
+    <ul>
+        <li>(a) Process Personal Data only on documented instructions from Controller;</li>
+        <li>(b) Inform Controller if, in its opinion, an instruction infringes Applicable Data Protection Laws;</li>
+        <li>(c) Not Process Personal Data for any purpose other than providing the Services;</li>
+        <li>(d) Not sell, share (as defined by CCPA), or use Personal Data for its own purposes.</li>
+    </ul>
+    
+    <h3>4.2 Confidentiality</h3>
+    <p>Processor shall:</p>
+    <ul>
+        <li>(a) Ensure that persons authorized to Process Personal Data are subject to confidentiality obligations;</li>
+        <li>(b) Limit access to Personal Data to personnel who need access to perform the Services;</li>
+        <li>(c) Treat Personal Data as confidential information.</li>
+    </ul>
+    
+    <h3>4.3 Security Measures</h3>
+    <p>Processor shall implement appropriate technical and organizational measures to ensure a level of security appropriate to the risk, including:</p>
+    <ul>
+        <li>(a) Encryption of Personal Data in transit and at rest;</li>
+        <li>(b) Access controls and authentication mechanisms;</li>
+        <li>(c) Regular testing and evaluation of security measures;</li>
+        <li>(d) Ability to restore availability of Personal Data;</li>
+        <li>(e) Physical security of facilities;</li>
+        <li>(f) Employee security training.</li>
+    </ul>
+    
+    <p>Specific security measures are described in Annex 2.</p>
+    
+    <h3>4.4 Sub-processors</h3>
+    <p>Processor shall:</p>
+    <ul>
+        <li>(a) Not engage Sub-processors without Controller's prior [written consent / general authorization];</li>
+        <li>(b) Maintain a list of authorized Sub-processors (Annex 3);</li>
+        <li>(c) Notify Controller of intended changes to Sub-processors and allow Controller to object;</li>
+        <li>(d) Ensure Sub-processors are bound by data protection obligations no less protective than this DPA;</li>
+        <li>(e) Remain liable for Sub-processors' acts and omissions.</li>
+    </ul>
+    
+    <h3>4.5 Data Subject Rights</h3>
+    <p>Processor shall:</p>
+    <ul>
+        <li>(a) Assist Controller in responding to Data Subject requests;</li>
+        <li>(b) Notify Controller promptly of any Data Subject requests received directly;</li>
+        <li>(c) Not respond directly to Data Subject requests unless authorized by Controller;</li>
+        <li>(d) Implement technical measures to facilitate Data Subject rights (access, correction, deletion, portability).</li>
+    </ul>
+    
+    <h3>4.6 Personal Data Breaches</h3>
+    <p>Processor shall:</p>
+    <ul>
+        <li>(a) Notify Controller without undue delay (and no later than 48 hours) upon becoming aware of a Personal Data Breach;</li>
+        <li>(b) Provide information necessary for Controller to comply with breach notification obligations;</li>
+        <li>(c) Cooperate with Controller in investigating and mitigating the breach;</li>
+        <li>(d) Document Personal Data Breaches and remedial actions.</li>
+    </ul>
+    
+    <h3>4.7 Data Protection Impact Assessments</h3>
+    <p>Processor shall provide reasonable assistance to Controller with data protection impact assessments and consultations with supervisory authorities where required.</p>
+    
+    <h3>4.8 Compliance Demonstration</h3>
+    <p>Processor shall:</p>
+    <ul>
+        <li>(a) Make available information necessary to demonstrate compliance;</li>
+        <li>(b) Allow for and contribute to audits conducted by Controller or an auditor;</li>
+        <li>(c) Provide audit reports, certifications, or other evidence of compliance upon request.</li>
+    </ul>
 
-$w.onReady(function () {
-    if (typeof document !== 'undefined') {
-        // Page Title
-        document.title = 'Data Processing Agreement (DPA) | HingeCraft Global';
+    <h2>5. INTERNATIONAL DATA TRANSFERS</h2>
+    
+    <p><strong>5.1 Transfers.</strong> Personal Data may be transferred to and Processed in countries outside the EEA/UK, including the United States, where Processor or its Sub-processors maintain facilities.</p>
+    
+    <p><strong>5.2 Transfer Mechanisms.</strong> For transfers from the EEA/UK to countries without an adequacy decision, the parties shall rely on:</p>
+    <ul>
+        <li>(a) Standard Contractual Clauses (SCCs) adopted by the European Commission;</li>
+        <li>(b) Binding Corporate Rules (where applicable);</li>
+        <li>(c) Other approved transfer mechanisms under GDPR Article 46.</li>
+    </ul>
+    
+    <p><strong>5.3 SCCs.</strong> The Standard Contractual Clauses set forth in Annex 4 are incorporated by reference and form part of this DPA.</p>
+    
+    <p><strong>5.4 Supplementary Measures.</strong> Processor shall implement supplementary measures as necessary to ensure an essentially equivalent level of protection for transferred data.</p>
+
+    <h2>6. RETURN AND DELETION</h2>
+    
+    <p><strong>6.1 Upon Termination.</strong> Upon termination or expiration of the Services, Processor shall, at Controller's election:</p>
+    <ul>
+        <li>(a) Return all Personal Data to Controller; and/or</li>
+        <li>(b) Delete all Personal Data, unless retention is required by law.</li>
+    </ul>
+    
+    <p><strong>6.2 Certification.</strong> Upon request, Processor shall certify in writing that it has complied with deletion obligations.</p>
+    
+    <p><strong>6.3 Retention Period.</strong> Controller must make its election within 30 days of termination. If no election is made, Processor may delete Personal Data.</p>
+
+    <h2>7. LIABILITY AND INDEMNIFICATION</h2>
+    
+    <p><strong>7.1 Liability.</strong> Each party's liability under this DPA is subject to the limitations of liability in the underlying Services agreement.</p>
+    
+    <p><strong>7.2 Indemnification.</strong> Each party shall indemnify the other for losses arising from the indemnifying party's breach of this DPA or Applicable Data Protection Laws.</p>
+
+    <h2>8. TERM AND TERMINATION</h2>
+    
+    <p><strong>8.1 Term.</strong> This DPA shall remain in effect for the duration of Processing under the Services agreement.</p>
+    
+    <p><strong>8.2 Survival.</strong> Sections that by their nature should survive termination shall survive, including confidentiality, return/deletion, and liability provisions.</p>
+
+    <h2>9. GENERAL PROVISIONS</h2>
+    
+    <p><strong>9.1 Governing Law.</strong> This DPA shall be governed by the laws of the State of South Carolina, except that the SCCs shall be governed as set forth therein.</p>
+    
+    <p><strong>9.2 Conflicts.</strong> In the event of conflict between this DPA and the underlying agreement, this DPA shall prevail with respect to data protection matters.</p>
+    
+    <p><strong>9.3 Amendment.</strong> This DPA may be amended only by written agreement signed by both parties.</p>
+    
+    <p><strong>9.4 Severability.</strong> If any provision is found invalid, the remaining provisions shall remain in effect.</p>
+
+    <h2>ANNEX 1 - PROCESSING DETAILS</h2>
+    <table>
+        <tr><th>Element</th><th>Description</th></tr>
+        <tr><td>Subject Matter</td><td>Processing in connection with HingeCraft Services</td></tr>
+        <tr><td>Duration</td><td>Duration of Services agreement</td></tr>
+        <tr><td>Nature of Processing</td><td>Collection, storage, use, transmission, deletion</td></tr>
+        <tr><td>Purpose</td><td>Provide Services, customer support, order fulfillment</td></tr>
+        <tr><td>Types of Personal Data</td><td>Contact information, account data, order information, usage data</td></tr>
+        <tr><td>Categories of Data Subjects</td><td>Customer employees, end users, business contacts</td></tr>
+    </table>
+
+    <h2>ANNEX 2 - SECURITY MEASURES</h2>
+    <ul>
+        <li>Encryption (AES-256 at rest, TLS 1.2+ in transit)</li>
+        <li>Access controls (role-based, least privilege)</li>
+        <li>Multi-factor authentication</li>
+        <li>Network security (firewalls, intrusion detection)</li>
+        <li>Regular security testing and audits</li>
+        <li>Employee background checks and training</li>
+        <li>Physical security controls</li>
+        <li>Incident response procedures</li>
+        <li>Business continuity and disaster recovery</li>
+    </ul>
+
+    <h2>ANNEX 3 - AUTHORIZED SUB-PROCESSORS</h2>
+    <table>
+        <tr><th>Sub-processor</th><th>Purpose</th><th>Location</th></tr>
+        <tr><td>[Cloud Provider]</td><td>Infrastructure hosting</td><td>United States</td></tr>
+        <tr><td>[Payment Processor]</td><td>Payment processing</td><td>United States</td></tr>
+        <tr><td>[Analytics Provider]</td><td>Analytics services</td><td>United States</td></tr>
+    </table>
+
+    <div class="signature-block">
+        <p><strong>AGREEMENT</strong></p>
         
-        // Meta Description
-        let metaDesc = document.querySelector('meta[name="description"]');
-        if (!metaDesc) {
-            metaDesc = document.createElement('meta');
-            metaDesc.setAttribute('name', 'description');
-            document.head.appendChild(metaDesc);
-        }
-        metaDesc.setAttribute('content', 'HingeCraft Global Data Processing Agreement - Agreement governing data processing for AI training and user uploads');
+        <p><strong>CONTROLLER:</strong></p>
+        <div class="signature-line">
+            <p>Authorized Signature</p>
+        </div>
+        <p>Print Name: _________________________________</p>
+        <p>Title: _________________________________</p>
+        <p>Date: _________________________________</p>
         
-        // Meta Keywords
-        let metaKeywords = document.querySelector('meta[name="keywords"]');
-        if (!metaKeywords) {
-            metaKeywords = document.createElement('meta');
-            metaKeywords.setAttribute('name', 'keywords');
-            document.head.appendChild(metaKeywords);
-        }
-        metaKeywords.setAttribute('content', 'data protection, data security, service agreement, user agreement, data processing, data privacy, sensitive data, data governance, data processing agreement, marketplace agreement, manufacturing agreement, merchant agreement, licensing agreement, participation agreement, membership agreement, cross-border data, data transfer, international data, hingecraft data protection, hingecraft data processing');
-        
-        // Open Graph Tags
-        const ogTags = {
-            'og:title': 'Data Processing Agreement (DPA) | HingeCraft Global',
-            'og:description': 'HingeCraft Global Data Processing Agreement - Agreement governing data processing for AI training and user uploads',
-            'og:image': 'https://hingecraft-global.ai/og-image.jpg',
-            'og:url': 'https://hingecraft-global.ai/legal/data_processing_agreement',
-            'og:type': 'website',
-            'og:site_name': 'HingeCraft Global'
-        };
-        
-        Object.keys(ogTags).forEach(prop => {
-            let ogMeta = document.querySelector(`meta[property="${prop}"]`);
-            if (!ogMeta) {
-                ogMeta = document.createElement('meta');
-                ogMeta.setAttribute('property', prop);
-                document.head.appendChild(ogMeta);
-            }
-            ogMeta.setAttribute('content', ogTags[prop]);
-        });
-        
-        // Twitter Card Tags
-        const twitterTags = {
-            'twitter:card': 'summary_large_image',
-            'twitter:title': 'Data Processing Agreement (DPA) | HingeCraft Global',
-            'twitter:description': 'HingeCraft Global Data Processing Agreement - Agreement governing data processing for AI training and user uploads',
-            'twitter:image': 'https://hingecraft-global.ai/og-image.jpg'
-        };
-        
-        Object.keys(twitterTags).forEach(name => {
-            let twitterMeta = document.querySelector(`meta[name="${name}"]`);
-            if (!twitterMeta) {
-                twitterMeta = document.createElement('meta');
-                twitterMeta.setAttribute('name', name);
-                document.head.appendChild(twitterMeta);
-            }
-            twitterMeta.setAttribute('content', twitterTags[name]);
-        });
-        
-        // Canonical URL
-        let canonical = document.querySelector('link[rel="canonical"]');
-        if (!canonical) {
-            canonical = document.createElement('link');
-            canonical.setAttribute('rel', 'canonical');
-            document.head.appendChild(canonical);
-        }
-        canonical.setAttribute('href', 'https://hingecraft-global.ai/legal/data_processing_agreement');
-        
-        // Robots Meta
-        let robots = document.querySelector('meta[name="robots"]');
-        if (!robots) {
-            robots = document.createElement('meta');
-            robots.setAttribute('name', 'robots');
-            document.head.appendChild(robots);
-        }
-        robots.setAttribute('content', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
-        
-        // Schema.org JSON-LD
-        let schemaScript = document.querySelector('script[type="application/ld+json"]');
-        if (!schemaScript) {
-            schemaScript = document.createElement('script');
-            schemaScript.setAttribute('type', 'application/ld+json');
-            document.head.appendChild(schemaScript);
-        }
-        schemaScript.textContent = JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "LegalDocument",
-            "name": "Data Processing Agreement (DPA) | HingeCraft Global",
-            "description": "HingeCraft Global Data Processing Agreement - Agreement governing data processing for AI training and user uploads",
-            "url": "https://hingecraft-global.ai/legal/data_processing_agreement",
-            "publisher": {
-                "@type": "Organization",
-                "name": "HingeCraft Global",
-                "url": "https://hingecraft-global.ai",
-                "logo": "https://hingecraft-global.ai/logo.png"
-            },
-            "datePublished": "2025-12-05",
-            "dateModified": "2025-12-05",
-            "inLanguage": "en-US",
-            "keywords": "data protection, data security, service agreement, user agreement, data processing, data privacy, sensitive data, data governance, data processing agreement, marketplace agreement, manufacturing agreement, merchant agreement, licensing agreement, participation agreement, membership agreement, cross-border data, data transfer, international data, hingecraft data protection, hingecraft data processing"
-        });
-    }
-});
+        <p><strong>PROCESSOR:</strong><br>HingeCraft Global, LLC</p>
+        <div class="signature-line">
+            <p>Authorized Signature</p>
+        </div>
+        <p>Print Name: _________________________________</p>
+        <p>Title: _________________________________</p>
+        <p>Date: _________________________________</p>
+    </div>
 
+    <div class="footer">
+        <p>HingeCraft Global, LLC | 123 Innovation Drive, Suite 100, Charleston, SC 29401</p>
+        <p>Privacy: privacy@hingecraft.com | Phone: (843) 555-0100</p>
+        <p>© 2025 HingeCraft Global, LLC. All Rights Reserved.</p>
+    </div>
+</body>
+</html>
 
-// API Reference: https://www.wix.com/velo/reference/api-overview/introduction
-// “Hello, World!” Example: https://learn-code.wix.com/en/article/hello-world
-
-$w.onReady(function () {
-    // Write your JavaScript here
-
-    // To select an element by ID use: $w('#elementID')
-
-    // Click 'Preview' to run your code
-});
-
-
-// Load Legal Page HTML Content
-
-$w.onReady(function () {
-    loadLegalPageContent();
-});
+`;
+}

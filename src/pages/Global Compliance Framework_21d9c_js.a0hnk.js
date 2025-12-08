@@ -1,588 +1,293 @@
-// Comprehensive SEO Optimization - Global Compliance Framework_21d9c_js
-// JSON-LD Schema.org | 100+ Keywords | Competitive Optimization
+// HingeCraft Global, LLC - Legal Document
+// Global Compliance Framework
+// State of South Carolina | December 6, 2025
+// Auto-generated - All URLs are HTTPS only
+
+import wixSeo from 'wix-seo';
 
 $w.onReady(function () {
-    if (typeof document !== 'undefined') {
-        // Page Title
-        document.title = 'Global Compliance Framework | HingeCraft Global';
-        
-        // Meta Description
-        let metaDesc = document.querySelector('meta[name="description"]');
-        if (!metaDesc) {
-            metaDesc = document.createElement('meta');
-            metaDesc.setAttribute('name', 'description');
-            document.head.appendChild(metaDesc);
-        }
-        metaDesc.setAttribute('content', 'HingeCraft Global Compliance Framework - Comprehensive mapping of regulations and compliance requirements across jurisdictions');
-        
-        // Meta Keywords
-        let metaKeywords = document.querySelector('meta[name="keywords"]');
-        if (!metaKeywords) {
-            metaKeywords = document.createElement('meta');
-            metaKeywords.setAttribute('name', 'keywords');
-            document.head.appendChild(metaKeywords);
-        }
-        metaKeywords.setAttribute('content', 'hingecraft global, resilience framework, gdpr compliance, ccpa compliance, legal compliance, global compliance, international compliance, export compliance, safety compliance, materials compliance, sourcing compliance, global governance, compliance framework, hingecraft, resilient design');
-        
-        // Open Graph Tags
-        const ogTags = {
-            'og:title': 'Global Compliance Framework | HingeCraft Global',
-            'og:description': 'HingeCraft Global Compliance Framework - Comprehensive mapping of regulations and compliance requirements across jurisdictions',
-            'og:image': 'https://hingecraft-global.ai/og-image.jpg',
-            'og:url': 'https://hingecraft-global.ai/legal/29-global-compliance-framework',
-            'og:type': 'website',
-            'og:site_name': 'HingeCraft Global'
-        };
-        
-        Object.keys(ogTags).forEach(prop => {
-            let ogMeta = document.querySelector(`meta[property="${prop}"]`);
-            if (!ogMeta) {
-                ogMeta = document.createElement('meta');
-                ogMeta.setAttribute('property', prop);
-                document.head.appendChild(ogMeta);
-            }
-            ogMeta.setAttribute('content', ogTags[prop]);
-        });
-        
-        // Twitter Card Tags
-        const twitterTags = {
-            'twitter:card': 'summary_large_image',
-            'twitter:title': 'Global Compliance Framework | HingeCraft Global',
-            'twitter:description': 'HingeCraft Global Compliance Framework - Comprehensive mapping of regulations and compliance requirements across jurisdictions',
-            'twitter:image': 'https://hingecraft-global.ai/og-image.jpg'
-        };
-        
-        Object.keys(twitterTags).forEach(name => {
-            let twitterMeta = document.querySelector(`meta[name="${name}"]`);
-            if (!twitterMeta) {
-                twitterMeta = document.createElement('meta');
-                twitterMeta.setAttribute('name', name);
-                document.head.appendChild(twitterMeta);
-            }
-            twitterMeta.setAttribute('content', twitterTags[name]);
-        });
-        
-        // Canonical URL
-        let canonical = document.querySelector('link[rel="canonical"]');
-        if (!canonical) {
-            canonical = document.createElement('link');
-            canonical.setAttribute('rel', 'canonical');
-            document.head.appendChild(canonical);
-        }
-        canonical.setAttribute('href', 'https://hingecraft-global.ai/legal/29-global-compliance-framework');
-        
-        // Robots Meta
-        let robots = document.querySelector('meta[name="robots"]');
-        if (!robots) {
-            robots = document.createElement('meta');
-            robots.setAttribute('name', 'robots');
-            document.head.appendChild(robots);
-        }
-        robots.setAttribute('content', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
-        
-        // Additional Meta Tags
-        const additionalTags = {
-            'author': 'HingeCraft Global',
-            'language': 'en-US',
-            'revisit-after': '7 days',
-            'distribution': 'global',
-            'rating': 'general'
-        };
-        
-        Object.keys(additionalTags).forEach(name => {
-            let meta = document.querySelector(`meta[name="${name}"]`);
-            if (!meta) {
-                meta = document.createElement('meta');
-                meta.setAttribute('name', name);
-                document.head.appendChild(meta);
-            }
-            meta.setAttribute('content', additionalTags[name]);
-        });
-        
-        // Schema.org JSON-LD Structured Data
-        let schemaScript = document.querySelector('script[type="application/ld+json"]');
-        if (!schemaScript) {
-            schemaScript = document.createElement('script');
-            schemaScript.setAttribute('type', 'application/ld+json');
-            document.head.appendChild(schemaScript);
-        }
-        schemaScript.textContent = `{
-  "@context": "https://schema.org",
-  "@type": "LegalDocument",
-  "name": "Global Compliance Framework | HingeCraft Global",
-  "description": "HingeCraft Global Compliance Framework - Comprehensive mapping of regulations and compliance requirements across jurisdictions",
-  "url": "https://hingecraft-global.ai/legal/29-global-compliance-framework",
-  "publisher": {
-    "@type": "Organization",
-    "name": "HingeCraft Global",
-    "url": "https://hingecraft-global.ai",
-    "logo": "https://hingecraft-global.ai/logo.png"
-  },
-  "datePublished": "2025-12-05",
-  "dateModified": "2025-12-05",
-  "inLanguage": "en-US",
-  "keywords": "hingecraft global, resilience framework, gdpr compliance, ccpa compliance, legal compliance, global compliance, international compliance, export compliance, safety compliance, materials compliance, sourcing compliance, global governance, compliance framework, hingecraft, resilient design"
-}`;
-    }
+    // Set SEO
+    wixSeo.setTitle("Global Compliance Framework | HingeCraft Global");
+    wixSeo.setMetaTags([
+        { name: "description", content: "Global Compliance Framework - HingeCraft Global, LLC legal document for South Carolina" },
+        { name: "robots", content: "index, follow" },
+        { property: "og:title", content: "Global Compliance Framework | HingeCraft Global" },
+        { property: "og:type", content: "website" }
+    ]);
+    
+    // Load legal document content
+    loadLegalContent();
+});
 
-    // Load Legal Page HTML Content
-    function loadLegalPageContent() {
-        const htmlElement = $w('#legalContent');
-        if (htmlElement) {
-            const htmlContent = `<body class="bg-slate-50">
-<section class="hero-gradient text-white py-12 px-6">
-<div class="max-w-4xl mx-auto text-center">
-<h1 class="text-4xl font-bold mb-4">Global Compliance Framework</h1>
-<p class="text-lg opacity-90">HINGECRAFT GLOBAL, INC.</p>
-<p class="text-sm opacity-75 mt-2">Mapping Regulations Across Jurisdictions</p>
-</div>
-</section>
-<main class="max-w-4xl mx-auto px-6 py-16">
-<div class="prose max-w-none bg-white p-8 rounded-lg shadow-sm">
-<h2>GLOBAL COMPLIANCE FRAMEWORK</h2>
-<p>This framework maps regulatory requirements and compliance obligations across all jurisdictions where HingeCraft Global operates.</p>
-<h2>I. REGULATORY MAPPING</h2>
-<h3>1.1 Data Protection</h3>
-<ul>
-<li><strong>EU:</strong> GDPR compliance</li>
-<li><strong>US:</strong> CCPA, state privacy laws</li>
-<li><strong>UK:</strong> UK GDPR</li>
-<li><strong>Other:</strong> Local data protection laws</li>
-</ul>
-<h3>1.2 Consumer Protection</h3>
-<ul>
-<li>Product safety standards</li>
-<li>Warranty requirements</li>
-<li>Return and refund rights</li>
-<li>Advertising standards</li>
-</ul>
-<h3>1.3 Intellectual Property</h3>
-<ul>
-<li>Copyright laws</li>
-<li>Patent regulations</li>
-<li>Trademark protection</li>
-<li>Trade secret laws</li>
-</ul>
-<h2>II. JURISDICTION-SPECIFIC REQUIREMENTS</h2>
-<h3>2.1 European Union</h3>
-<ul>
-<li>GDPR compliance</li>
-<li>EU AI Act</li>
-<li>Product safety directives</li>
-<li>Consumer rights directives</li>
-</ul>
-<h3>2.2 United States</h3>
-<ul>
-<li>Federal and state regulations</li>
-<li>COPPA for children</li>
-<li>FTC guidelines</li>
-<li>Export controls</li>
-</ul>
-<h3>2.3 Other Jurisdictions</h3>
-<p>Compliance with local laws in all operating jurisdictions.</p>
-<h2>III. COMPLIANCE PROGRAM</h2>
-<ul>
-<li>Regular compliance audits</li>
-<li>Legal review processes</li>
-<li>Training programs</li>
-<li>Monitoring and reporting</li>
-</ul>
-<h2>IV. UPDATES</h2>
-<p>This framework is updated regularly to reflect regulatory changes.</p>
-<div class="mt-8 pt-8 border-t border-gray-200">
-<p class="text-sm text-gray-600">Last Updated: December 4, 2025</p>
-<p class="text-sm text-gray-600">For questions about this document, please contact: <a class="text-purple-700 hover:underline" href="mailto:legal@hingecraft-global.ai">legal@hingecraft-global.ai</a></p>
-</div>
-</div>
-<div class="mt-6 flex flex-wrap items-center gap-6 text-sm text-gray-600">
-<div class="flex items-center gap-2">
-<svg class="w-5 h-5 text-green-600" fill="currentColor" viewbox="0 0 20 20">
-<path clip-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" fill-rule="evenodd"></path>
-</svg>
-<span>GDPR Compliant</span>
-</div>
-<div class="flex items-center gap-2">
-<svg class="w-5 h-5 text-green-600" fill="currentColor" viewbox="0 0 20 20">
-<path clip-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" fill-rule="evenodd"></path>
-</svg>
-<span>CCPA Compliant</span>
-</div>
-<div class="flex items-center gap-2">
-<svg class="w-5 h-5 text-green-600" fill="currentColor" viewbox="0 0 20 20">
-<path clip-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" fill-rule="evenodd"></path>
-</svg>
-<span>Secure &amp; Encrypted</span>
-</div>
-</div>
-</main>
-<footer class="bg-gray-900 text-white py-12 px-6 mt-16">
-<div class="max-w-4xl mx-auto text-center">
-<p class="mb-4">© 2025 HingeCraft Global. All rights reserved.</p>
-<p class="text-gray-400 text-sm">
-<a class="hover:text-white" href="/legal">Legal</a> | 
-        <a class="hover:text-white" href="/privacy">Privacy</a> | 
-        <a class="hover:text-white" href="/terms">Terms</a>
-</p>
-</div>
-</footer>
-</body>`;
-            htmlElement.html = htmlContent;
-            console.log('Legal page content loaded successfully');
-        } else {
-            console.log('Legal content element not found. Add HTML element with ID: legalContent');
+function loadLegalContent() {
+    const legalContent = `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Compliance Framework - HingeCraft Global, LLC</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Times New Roman', Times, serif; font-size: 12pt; line-height: 1.6; color: #000; background: #fff; max-width: 8.5in; margin: 0 auto; padding: 1in; }
+        h1 { font-size: 18pt; font-weight: bold; text-align: center; margin-bottom: 24pt; text-transform: uppercase; border-bottom: 2px solid #000; padding-bottom: 12pt; }
+        h2 { font-size: 14pt; font-weight: bold; margin-top: 24pt; margin-bottom: 12pt; text-transform: uppercase; }
+        h3 { font-size: 12pt; font-weight: bold; margin-top: 18pt; margin-bottom: 9pt; }
+        p { margin-bottom: 12pt; text-align: justify; }
+        ul, ol { margin-left: 36pt; margin-bottom: 12pt; }
+        li { margin-bottom: 6pt; }
+        .header { text-align: center; margin-bottom: 36pt; }
+        .company-name { font-size: 16pt; font-weight: bold; }
+        .footer { margin-top: 48pt; padding-top: 12pt; border-top: 1px solid #000; font-size: 10pt; text-align: center; }
+        table { width: 100%; border-collapse: collapse; margin: 12pt 0; }
+        th, td { border: 1px solid #000; padding: 6pt; text-align: left; }
+        th { background: #f0f0f0; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="company-name">HINGECRAFT GLOBAL, LLC</div>
+        <h1>GLOBAL COMPLIANCE FRAMEWORK</h1>
+        <p>Effective Date: _________________, 20____<br>State of South Carolina</p>
+    </div>
+
+    <h2>1. PURPOSE</h2>
+    <p>This Global Compliance Framework ("Framework") establishes HingeCraft Global, LLC's ("HingeCraft") approach to legal and regulatory compliance across all jurisdictions in which we operate.</p>
+
+    <h2>2. COMPLIANCE PRINCIPLES</h2>
+    <ul>
+        <li><strong>Legal Compliance:</strong> Comply with all applicable laws and regulations;</li>
+        <li><strong>Ethical Conduct:</strong> Act ethically even beyond legal requirements;</li>
+        <li><strong>Accountability:</strong> Clear ownership and responsibility;</li>
+        <li><strong>Continuous Improvement:</strong> Regular assessment and enhancement;</li>
+        <li><strong>Transparency:</strong> Open communication about compliance matters.</li>
+    </ul>
+
+    <h2>3. COMPLIANCE AREAS</h2>
+    
+    <h3>3.1 Corporate Governance</h3>
+    <p>Compliance with: (a) South Carolina LLC Act; (b) Corporate formation requirements; (c) Reporting obligations; (d) Fiduciary duties.</p>
+    
+    <h3>3.2 Employment and Labor</h3>
+    <p>Compliance with: (a) Fair Labor Standards Act; (b) South Carolina employment laws; (c) OSHA requirements; (d) Equal employment opportunity laws; (e) Immigration laws (Form I-9).</p>
+    
+    <h3>3.3 Product Safety</h3>
+    <p>Compliance with: (a) Consumer Product Safety Act; (b) Product liability standards; (c) Industry-specific regulations; (d) Labeling requirements.</p>
+    
+    <h3>3.4 Environmental</h3>
+    <p>Compliance with: (a) Clean Air Act; (b) Clean Water Act; (c) RCRA (hazardous waste); (d) South Carolina environmental regulations; (e) RoHS/REACH (for international sales).</p>
+    
+    <h3>3.5 Privacy and Data Protection</h3>
+    <p>Compliance with: (a) CCPA/CPRA (California); (b) GDPR (European Union); (c) State privacy laws; (d) COPPA (children's privacy); (e) Industry standards (PCI-DSS).</p>
+    
+    <h3>3.6 Trade and Export</h3>
+    <p>Compliance with: (a) Export Administration Regulations (EAR); (b) ITAR (if applicable); (c) OFAC sanctions; (d) Customs regulations; (e) Anti-boycott laws.</p>
+    
+    <h3>3.7 Anti-Corruption</h3>
+    <p>Compliance with: (a) Foreign Corrupt Practices Act; (b) UK Bribery Act (for UK operations); (c) State anti-corruption laws.</p>
+    
+    <h3>3.8 Tax</h3>
+    <p>Compliance with: (a) Federal income tax; (b) South Carolina income tax; (c) Sales and use tax; (d) Payroll taxes; (e) International tax obligations.</p>
+    
+    <h3>3.9 Intellectual Property</h3>
+    <p>Compliance with: (a) Patent laws; (b) Trademark laws; (c) Copyright laws; (d) Trade secret protection.</p>
+
+    <h2>4. INTERNATIONAL COMPLIANCE</h2>
+    
+    <table>
+        <tr><th>Region</th><th>Key Regulations</th></tr>
+        <tr><td>European Union</td><td>GDPR, CE marking, REACH, RoHS, Machinery Directive</td></tr>
+        <tr><td>United Kingdom</td><td>UK GDPR, UKCA marking, UK Bribery Act</td></tr>
+        <tr><td>Canada</td><td>PIPEDA, Competition Act, CASL</td></tr>
+        <tr><td>Asia-Pacific</td><td>Regional privacy laws, product standards, import regulations</td></tr>
+    </table>
+
+    <h2>5. GOVERNANCE STRUCTURE</h2>
+    
+    <h3>5.1 Compliance Officer</h3>
+    <p>The Compliance Officer is responsible for: (a) Overseeing the compliance program; (b) Policy development; (c) Training; (d) Monitoring; (e) Reporting to leadership.</p>
+    
+    <h3>5.2 Compliance Committee</h3>
+    <p>A cross-functional Compliance Committee: (a) Meets quarterly; (b) Reviews compliance status; (c) Addresses compliance issues; (d) Recommends improvements.</p>
+
+    <h2>6. COMPLIANCE PROCESSES</h2>
+    
+    <h3>6.1 Risk Assessment</h3>
+    <p>Annual compliance risk assessments identify: (a) Applicable regulations; (b) Compliance gaps; (c) Emerging requirements; (d) Remediation priorities.</p>
+    
+    <h3>6.2 Policies and Procedures</h3>
+    <p>Written policies address key compliance areas. Procedures ensure consistent implementation.</p>
+    
+    <h3>6.3 Training</h3>
+    <p>Employees receive: (a) Initial compliance training; (b) Annual refresher training; (c) Role-specific training; (d) Updates on regulatory changes.</p>
+    
+    <h3>6.4 Monitoring</h3>
+    <p>Compliance monitoring includes: (a) Internal audits; (b) Self-assessments; (c) Third-party audits; (d) Continuous monitoring systems.</p>
+    
+    <h3>6.5 Reporting</h3>
+    <p>Employees may report concerns via: (a) Ethics hotline: (843) 555-0199; (b) Email: compliance@hingecraft.com; (c) Direct to Compliance Officer. Non-retaliation is guaranteed.</p>
+
+    <h2>7. REGULATORY UPDATES</h2>
+    <p>The Compliance team monitors regulatory changes through: (a) Regulatory alerts; (b) Industry associations; (c) Legal counsel; (d) Government communications.</p>
+
+    <h2>8. DOCUMENTATION</h2>
+    <p>Compliance records are maintained for periods required by law, generally 7 years minimum.</p>
+
+    <h2>9. CONTACT</h2>
+    <p>Compliance Department: compliance@hingecraft.com | (843) 555-0100</p>
+
+    <div class="footer">
+        <p>HingeCraft Global, LLC | 123 Innovation Drive, Suite 100, Charleston, SC 29401</p>
+        <p>Compliance: compliance@hingecraft.com | Ethics: (843) 555-0199</p>
+        <p>© 2025 HingeCraft Global, LLC. All Rights Reserved.</p>
+    </div>
+</body>
+</html>
+
+`;
+    
+    // Try to find the legalContent element
+    if ($w('#legalContent')) {
+        try {
+            $w('#legalContent').html = legalContent;
+        } catch (e) {
+            console.log("HTML element not configured - content ready for manual embed");
         }
     }
     
-    loadLegalPageContent();
-
-});
-
-
-$w.onReady(function () {
-    if (typeof document !== 'undefined') {
-        // Page Title
-        document.title = 'Global Compliance Framework_21d9c_js | HingeCraft Global';
-        
-        // Meta Description
-        let metaDesc = document.querySelector('meta[name="description"]');
-        if (!metaDesc) {
-            metaDesc = document.createElement('meta');
-            metaDesc.setAttribute('name', 'description');
-            document.head.appendChild(metaDesc);
+    // Also try text element fallback
+    if ($w('#legalText')) {
+        try {
+            $w('#legalText').html = legalContent;
+        } catch (e) {
+            console.log("Using text element fallback");
         }
-        metaDesc.setAttribute('content', 'Global Compliance Framework_21d9c_js - HingeCraft Global');
-        
-        // Meta Keywords
-        let metaKeywords = document.querySelector('meta[name="keywords"]');
-        if (!metaKeywords) {
-            metaKeywords = document.createElement('meta');
-            metaKeywords.setAttribute('name', 'keywords');
-            document.head.appendChild(metaKeywords);
-        }
-        metaKeywords.setAttribute('content', 'hingecraft global, resilience framework, gdpr compliance, ccpa compliance, legal compliance, global compliance, international compliance, export compliance, hingecraft');
-        
-        // Open Graph Tags
-        const ogTags = {
-            'og:title': 'Global Compliance Framework_21d9c_js | HingeCraft Global',
-            'og:description': 'Global Compliance Framework_21d9c_js - HingeCraft Global',
-            'og:image': 'https://hingecraft-global.ai/og-image.jpg',
-            'og:url': 'https://hingecraft-global.ai/global-compliance-framework-21d9c-js',
-            'og:type': 'website',
-            'og:site_name': 'HingeCraft Global'
-        };
-        
-        Object.keys(ogTags).forEach(prop => {
-            let ogMeta = document.querySelector(`meta[property="${prop}"]`);
-            if (!ogMeta) {
-                ogMeta = document.createElement('meta');
-                ogMeta.setAttribute('property', prop);
-                document.head.appendChild(ogMeta);
-            }
-            ogMeta.setAttribute('content', ogTags[prop]);
-        });
-        
-        // Twitter Card Tags
-        const twitterTags = {
-            'twitter:card': 'summary_large_image',
-            'twitter:title': 'Global Compliance Framework_21d9c_js | HingeCraft Global',
-            'twitter:description': 'Global Compliance Framework_21d9c_js - HingeCraft Global',
-            'twitter:image': 'https://hingecraft-global.ai/og-image.jpg'
-        };
-        
-        Object.keys(twitterTags).forEach(name => {
-            let twitterMeta = document.querySelector(`meta[name="${name}"]`);
-            if (!twitterMeta) {
-                twitterMeta = document.createElement('meta');
-                twitterMeta.setAttribute('name', name);
-                document.head.appendChild(twitterMeta);
-            }
-            twitterMeta.setAttribute('content', twitterTags[name]);
-        });
-        
-        // Canonical URL
-        let canonical = document.querySelector('link[rel="canonical"]');
-        if (!canonical) {
-            canonical = document.createElement('link');
-            canonical.setAttribute('rel', 'canonical');
-            document.head.appendChild(canonical);
-        }
-        canonical.setAttribute('href', 'https://hingecraft-global.ai/global-compliance-framework-21d9c-js');
-        
-        // Robots Meta
-        let robots = document.querySelector('meta[name="robots"]');
-        if (!robots) {
-            robots = document.createElement('meta');
-            robots.setAttribute('name', 'robots');
-            document.head.appendChild(robots);
-        }
-        robots.setAttribute('content', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
-        
-        // Schema.org JSON-LD Structured Data
-        let schemaScript = document.querySelector('script[type="application/ld+json"]');
-        if (!schemaScript) {
-            schemaScript = document.createElement('script');
-            schemaScript.setAttribute('type', 'application/ld+json');
-            document.head.appendChild(schemaScript);
-        }
-        schemaScript.textContent = `{
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "Global Compliance Framework_21d9c_js | HingeCraft Global",
-  "description": "Global Compliance Framework_21d9c_js - HingeCraft Global",
-  "url": "https://hingecraft-global.ai/global-compliance-framework-21d9c-js",
-  "publisher": {
-    "@type": "Organization",
-    "name": "HingeCraft Global",
-    "url": "https://hingecraft-global.ai",
-    "logo": "https://hingecraft-global.ai/logo.png"
-  },
-  "datePublished": "2025-12-05",
-  "dateModified": "2025-12-05",
-  "inLanguage": "en-US",
-  "keywords": "hingecraft global, resilience framework, gdpr compliance, ccpa compliance, legal compliance, global compliance, international compliance, export compliance, hingecraft"
-}`;
     }
+}
+
+// Export for potential use in other contexts
+export function getLegalDocumentHTML() {
+    return `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Compliance Framework - HingeCraft Global, LLC</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Times New Roman', Times, serif; font-size: 12pt; line-height: 1.6; color: #000; background: #fff; max-width: 8.5in; margin: 0 auto; padding: 1in; }
+        h1 { font-size: 18pt; font-weight: bold; text-align: center; margin-bottom: 24pt; text-transform: uppercase; border-bottom: 2px solid #000; padding-bottom: 12pt; }
+        h2 { font-size: 14pt; font-weight: bold; margin-top: 24pt; margin-bottom: 12pt; text-transform: uppercase; }
+        h3 { font-size: 12pt; font-weight: bold; margin-top: 18pt; margin-bottom: 9pt; }
+        p { margin-bottom: 12pt; text-align: justify; }
+        ul, ol { margin-left: 36pt; margin-bottom: 12pt; }
+        li { margin-bottom: 6pt; }
+        .header { text-align: center; margin-bottom: 36pt; }
+        .company-name { font-size: 16pt; font-weight: bold; }
+        .footer { margin-top: 48pt; padding-top: 12pt; border-top: 1px solid #000; font-size: 10pt; text-align: center; }
+        table { width: 100%; border-collapse: collapse; margin: 12pt 0; }
+        th, td { border: 1px solid #000; padding: 6pt; text-align: left; }
+        th { background: #f0f0f0; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="company-name">HINGECRAFT GLOBAL, LLC</div>
+        <h1>GLOBAL COMPLIANCE FRAMEWORK</h1>
+        <p>Effective Date: _________________, 20____<br>State of South Carolina</p>
+    </div>
+
+    <h2>1. PURPOSE</h2>
+    <p>This Global Compliance Framework ("Framework") establishes HingeCraft Global, LLC's ("HingeCraft") approach to legal and regulatory compliance across all jurisdictions in which we operate.</p>
+
+    <h2>2. COMPLIANCE PRINCIPLES</h2>
+    <ul>
+        <li><strong>Legal Compliance:</strong> Comply with all applicable laws and regulations;</li>
+        <li><strong>Ethical Conduct:</strong> Act ethically even beyond legal requirements;</li>
+        <li><strong>Accountability:</strong> Clear ownership and responsibility;</li>
+        <li><strong>Continuous Improvement:</strong> Regular assessment and enhancement;</li>
+        <li><strong>Transparency:</strong> Open communication about compliance matters.</li>
+    </ul>
+
+    <h2>3. COMPLIANCE AREAS</h2>
     
-    // Load HTML content for legal pages
+    <h3>3.1 Corporate Governance</h3>
+    <p>Compliance with: (a) South Carolina LLC Act; (b) Corporate formation requirements; (c) Reporting obligations; (d) Fiduciary duties.</p>
     
-});
-
-
-
-
-$w.onReady(function () {
-    if (typeof document !== 'undefined') {
-        // Page Title
-        document.title = 'Global Compliance Framework_21d9c_js | HingeCraft Global';
-        
-        // Meta Description
-        let metaDesc = document.querySelector('meta[name="description"]');
-        if (!metaDesc) {
-            metaDesc = document.createElement('meta');
-            metaDesc.setAttribute('name', 'description');
-            document.head.appendChild(metaDesc);
-        }
-        metaDesc.setAttribute('content', 'Global Compliance Framework_21d9c_js - HingeCraft Global');
-        
-        // Meta Keywords
-        let metaKeywords = document.querySelector('meta[name="keywords"]');
-        if (!metaKeywords) {
-            metaKeywords = document.createElement('meta');
-            metaKeywords.setAttribute('name', 'keywords');
-            document.head.appendChild(metaKeywords);
-        }
-        metaKeywords.setAttribute('content', 'hingecraft global, resilience framework, gdpr compliance, ccpa compliance, legal compliance, global compliance, international compliance, export compliance, hingecraft');
-        
-        // Open Graph Tags
-        const ogTags = {
-            'og:title': 'Global Compliance Framework_21d9c_js | HingeCraft Global',
-            'og:description': 'Global Compliance Framework_21d9c_js - HingeCraft Global',
-            'og:image': 'https://hingecraft-global.ai/og-image.jpg',
-            'og:url': 'https://hingecraft-global.ai/global-compliance-framework-21d9c-js',
-            'og:type': 'website',
-            'og:site_name': 'HingeCraft Global'
-        };
-        
-        Object.keys(ogTags).forEach(prop => {
-            let ogMeta = document.querySelector(`meta[property="${prop}"]`);
-            if (!ogMeta) {
-                ogMeta = document.createElement('meta');
-                ogMeta.setAttribute('property', prop);
-                document.head.appendChild(ogMeta);
-            }
-            ogMeta.setAttribute('content', ogTags[prop]);
-        });
-        
-        // Twitter Card Tags
-        const twitterTags = {
-            'twitter:card': 'summary_large_image',
-            'twitter:title': 'Global Compliance Framework_21d9c_js | HingeCraft Global',
-            'twitter:description': 'Global Compliance Framework_21d9c_js - HingeCraft Global',
-            'twitter:image': 'https://hingecraft-global.ai/og-image.jpg'
-        };
-        
-        Object.keys(twitterTags).forEach(name => {
-            let twitterMeta = document.querySelector(`meta[name="${name}"]`);
-            if (!twitterMeta) {
-                twitterMeta = document.createElement('meta');
-                twitterMeta.setAttribute('name', name);
-                document.head.appendChild(twitterMeta);
-            }
-            twitterMeta.setAttribute('content', twitterTags[name]);
-        });
-        
-        // Canonical URL
-        let canonical = document.querySelector('link[rel="canonical"]');
-        if (!canonical) {
-            canonical = document.createElement('link');
-            canonical.setAttribute('rel', 'canonical');
-            document.head.appendChild(canonical);
-        }
-        canonical.setAttribute('href', 'https://hingecraft-global.ai/global-compliance-framework-21d9c-js');
-        
-        // Robots Meta
-        let robots = document.querySelector('meta[name="robots"]');
-        if (!robots) {
-            robots = document.createElement('meta');
-            robots.setAttribute('name', 'robots');
-            document.head.appendChild(robots);
-        }
-        robots.setAttribute('content', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
-        
-        // Schema.org JSON-LD Structured Data
-        let schemaScript = document.querySelector('script[type="application/ld+json"]');
-        if (!schemaScript) {
-            schemaScript = document.createElement('script');
-            schemaScript.setAttribute('type', 'application/ld+json');
-            document.head.appendChild(schemaScript);
-        }
-        schemaScript.textContent = `{
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "Global Compliance Framework_21d9c_js | HingeCraft Global",
-  "description": "Global Compliance Framework_21d9c_js - HingeCraft Global",
-  "url": "https://hingecraft-global.ai/global-compliance-framework-21d9c-js",
-  "publisher": {
-    "@type": "Organization",
-    "name": "HingeCraft Global",
-    "url": "https://hingecraft-global.ai",
-    "logo": "https://hingecraft-global.ai/logo.png"
-  },
-  "datePublished": "2025-12-05",
-  "dateModified": "2025-12-05",
-  "inLanguage": "en-US",
-  "keywords": "hingecraft global, resilience framework, gdpr compliance, ccpa compliance, legal compliance, global compliance, international compliance, export compliance, hingecraft"
-}`;
-    }
+    <h3>3.2 Employment and Labor</h3>
+    <p>Compliance with: (a) Fair Labor Standards Act; (b) South Carolina employment laws; (c) OSHA requirements; (d) Equal employment opportunity laws; (e) Immigration laws (Form I-9).</p>
     
-    // Load HTML content for legal pages
+    <h3>3.3 Product Safety</h3>
+    <p>Compliance with: (a) Consumer Product Safety Act; (b) Product liability standards; (c) Industry-specific regulations; (d) Labeling requirements.</p>
     
-});
+    <h3>3.4 Environmental</h3>
+    <p>Compliance with: (a) Clean Air Act; (b) Clean Water Act; (c) RCRA (hazardous waste); (d) South Carolina environmental regulations; (e) RoHS/REACH (for international sales).</p>
+    
+    <h3>3.5 Privacy and Data Protection</h3>
+    <p>Compliance with: (a) CCPA/CPRA (California); (b) GDPR (European Union); (c) State privacy laws; (d) COPPA (children's privacy); (e) Industry standards (PCI-DSS).</p>
+    
+    <h3>3.6 Trade and Export</h3>
+    <p>Compliance with: (a) Export Administration Regulations (EAR); (b) ITAR (if applicable); (c) OFAC sanctions; (d) Customs regulations; (e) Anti-boycott laws.</p>
+    
+    <h3>3.7 Anti-Corruption</h3>
+    <p>Compliance with: (a) Foreign Corrupt Practices Act; (b) UK Bribery Act (for UK operations); (c) State anti-corruption laws.</p>
+    
+    <h3>3.8 Tax</h3>
+    <p>Compliance with: (a) Federal income tax; (b) South Carolina income tax; (c) Sales and use tax; (d) Payroll taxes; (e) International tax obligations.</p>
+    
+    <h3>3.9 Intellectual Property</h3>
+    <p>Compliance with: (a) Patent laws; (b) Trademark laws; (c) Copyright laws; (d) Trade secret protection.</p>
 
+    <h2>4. INTERNATIONAL COMPLIANCE</h2>
+    
+    <table>
+        <tr><th>Region</th><th>Key Regulations</th></tr>
+        <tr><td>European Union</td><td>GDPR, CE marking, REACH, RoHS, Machinery Directive</td></tr>
+        <tr><td>United Kingdom</td><td>UK GDPR, UKCA marking, UK Bribery Act</td></tr>
+        <tr><td>Canada</td><td>PIPEDA, Competition Act, CASL</td></tr>
+        <tr><td>Asia-Pacific</td><td>Regional privacy laws, product standards, import regulations</td></tr>
+    </table>
 
+    <h2>5. GOVERNANCE STRUCTURE</h2>
+    
+    <h3>5.1 Compliance Officer</h3>
+    <p>The Compliance Officer is responsible for: (a) Overseeing the compliance program; (b) Policy development; (c) Training; (d) Monitoring; (e) Reporting to leadership.</p>
+    
+    <h3>5.2 Compliance Committee</h3>
+    <p>A cross-functional Compliance Committee: (a) Meets quarterly; (b) Reviews compliance status; (c) Addresses compliance issues; (d) Recommends improvements.</p>
 
+    <h2>6. COMPLIANCE PROCESSES</h2>
+    
+    <h3>6.1 Risk Assessment</h3>
+    <p>Annual compliance risk assessments identify: (a) Applicable regulations; (b) Compliance gaps; (c) Emerging requirements; (d) Remediation priorities.</p>
+    
+    <h3>6.2 Policies and Procedures</h3>
+    <p>Written policies address key compliance areas. Procedures ensure consistent implementation.</p>
+    
+    <h3>6.3 Training</h3>
+    <p>Employees receive: (a) Initial compliance training; (b) Annual refresher training; (c) Role-specific training; (d) Updates on regulatory changes.</p>
+    
+    <h3>6.4 Monitoring</h3>
+    <p>Compliance monitoring includes: (a) Internal audits; (b) Self-assessments; (c) Third-party audits; (d) Continuous monitoring systems.</p>
+    
+    <h3>6.5 Reporting</h3>
+    <p>Employees may report concerns via: (a) Ethics hotline: (843) 555-0199; (b) Email: compliance@hingecraft.com; (c) Direct to Compliance Officer. Non-retaliation is guaranteed.</p>
 
-$w.onReady(function () {
-    if (typeof document !== 'undefined') {
-        // Page Title
-        document.title = 'Global Compliance Framework | HingeCraft Global';
-        
-        // Meta Description
-        let metaDesc = document.querySelector('meta[name="description"]');
-        if (!metaDesc) {
-            metaDesc = document.createElement('meta');
-            metaDesc.setAttribute('name', 'description');
-            document.head.appendChild(metaDesc);
-        }
-        metaDesc.setAttribute('content', 'HingeCraft Global Compliance Framework - Comprehensive mapping of regulations and compliance requirements across jurisdictions');
-        
-        // Meta Keywords
-        let metaKeywords = document.querySelector('meta[name="keywords"]');
-        if (!metaKeywords) {
-            metaKeywords = document.createElement('meta');
-            metaKeywords.setAttribute('name', 'keywords');
-            document.head.appendChild(metaKeywords);
-        }
-        metaKeywords.setAttribute('content', 'hingecraft global, resilience framework, gdpr compliance, ccpa compliance, legal compliance, export compliance, governance framework, corporate compliance, safety compliance, materials compliance, sourcing compliance, global compliance, international compliance, global governance, compliance framework, global compliance framework, hingecraft global privacy policy, hingecraft global compliance, hingecraft, resilient design');
-        
-        // Open Graph Tags
-        const ogTags = {
-            'og:title': 'Global Compliance Framework | HingeCraft Global',
-            'og:description': 'HingeCraft Global Compliance Framework - Comprehensive mapping of regulations and compliance requirements across jurisdictions',
-            'og:image': 'https://hingecraft-global.ai/og-image.jpg',
-            'og:url': 'https://hingecraft-global.ai/legal/global_compliance_framework',
-            'og:type': 'website',
-            'og:site_name': 'HingeCraft Global'
-        };
-        
-        Object.keys(ogTags).forEach(prop => {
-            let ogMeta = document.querySelector(`meta[property="${prop}"]`);
-            if (!ogMeta) {
-                ogMeta = document.createElement('meta');
-                ogMeta.setAttribute('property', prop);
-                document.head.appendChild(ogMeta);
-            }
-            ogMeta.setAttribute('content', ogTags[prop]);
-        });
-        
-        // Twitter Card Tags
-        const twitterTags = {
-            'twitter:card': 'summary_large_image',
-            'twitter:title': 'Global Compliance Framework | HingeCraft Global',
-            'twitter:description': 'HingeCraft Global Compliance Framework - Comprehensive mapping of regulations and compliance requirements across jurisdictions',
-            'twitter:image': 'https://hingecraft-global.ai/og-image.jpg'
-        };
-        
-        Object.keys(twitterTags).forEach(name => {
-            let twitterMeta = document.querySelector(`meta[name="${name}"]`);
-            if (!twitterMeta) {
-                twitterMeta = document.createElement('meta');
-                twitterMeta.setAttribute('name', name);
-                document.head.appendChild(twitterMeta);
-            }
-            twitterMeta.setAttribute('content', twitterTags[name]);
-        });
-        
-        // Canonical URL
-        let canonical = document.querySelector('link[rel="canonical"]');
-        if (!canonical) {
-            canonical = document.createElement('link');
-            canonical.setAttribute('rel', 'canonical');
-            document.head.appendChild(canonical);
-        }
-        canonical.setAttribute('href', 'https://hingecraft-global.ai/legal/global_compliance_framework');
-        
-        // Robots Meta
-        let robots = document.querySelector('meta[name="robots"]');
-        if (!robots) {
-            robots = document.createElement('meta');
-            robots.setAttribute('name', 'robots');
-            document.head.appendChild(robots);
-        }
-        robots.setAttribute('content', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
-        
-        // Schema.org JSON-LD
-        let schemaScript = document.querySelector('script[type="application/ld+json"]');
-        if (!schemaScript) {
-            schemaScript = document.createElement('script');
-            schemaScript.setAttribute('type', 'application/ld+json');
-            document.head.appendChild(schemaScript);
-        }
-        schemaScript.textContent = JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "LegalDocument",
-            "name": "Global Compliance Framework | HingeCraft Global",
-            "description": "HingeCraft Global Compliance Framework - Comprehensive mapping of regulations and compliance requirements across jurisdictions",
-            "url": "https://hingecraft-global.ai/legal/global_compliance_framework",
-            "publisher": {
-                "@type": "Organization",
-                "name": "HingeCraft Global",
-                "url": "https://hingecraft-global.ai",
-                "logo": "https://hingecraft-global.ai/logo.png"
-            },
-            "datePublished": "2025-12-05",
-            "dateModified": "2025-12-05",
-            "inLanguage": "en-US",
-            "keywords": "hingecraft global, resilience framework, gdpr compliance, ccpa compliance, legal compliance, export compliance, governance framework, corporate compliance, safety compliance, materials compliance, sourcing compliance, global compliance, international compliance, global governance, compliance framework, global compliance framework, hingecraft global privacy policy, hingecraft global compliance, hingecraft, resilient design"
-        });
-    }
-});
+    <h2>7. REGULATORY UPDATES</h2>
+    <p>The Compliance team monitors regulatory changes through: (a) Regulatory alerts; (b) Industry associations; (c) Legal counsel; (d) Government communications.</p>
 
+    <h2>8. DOCUMENTATION</h2>
+    <p>Compliance records are maintained for periods required by law, generally 7 years minimum.</p>
 
-// API Reference: https://www.wix.com/velo/reference/api-overview/introduction
-// “Hello, World!” Example: https://learn-code.wix.com/en/article/hello-world
+    <h2>9. CONTACT</h2>
+    <p>Compliance Department: compliance@hingecraft.com | (843) 555-0100</p>
 
-$w.onReady(function () {
-    // Write your JavaScript here
+    <div class="footer">
+        <p>HingeCraft Global, LLC | 123 Innovation Drive, Suite 100, Charleston, SC 29401</p>
+        <p>Compliance: compliance@hingecraft.com | Ethics: (843) 555-0199</p>
+        <p>© 2025 HingeCraft Global, LLC. All Rights Reserved.</p>
+    </div>
+</body>
+</html>
 
-    // To select an element by ID use: $w('#elementID')
-
-    // Click 'Preview' to run your code
-});
-
-
-// Load Legal Page HTML Content
-
-$w.onReady(function () {
-    loadLegalPageContent();
-});
+`;
+}

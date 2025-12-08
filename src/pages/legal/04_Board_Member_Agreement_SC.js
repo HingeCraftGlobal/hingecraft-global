@@ -1,0 +1,249 @@
+// HingeCraft Global, LLC - Legal Document
+// Board Member Agreement
+// State of South Carolina | December 6, 2025
+
+import wixSeo from 'wix-seo';
+
+$w.onReady(function () {
+    wixSeo.setTitle("Board Member Agreement | HingeCraft Global");
+    wixSeo.setMetaTags([
+        { name: "description", content: "Board Member Agreement - HingeCraft Global legal document" },
+        { name: "robots", content: "index, follow" }
+    ]);
+    loadLegalContent();
+});
+
+function loadLegalContent() {
+    const legalContent = `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Board Member Agreement - HingeCraft Global, LLC</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Times New Roman', Times, serif; font-size: 12pt; line-height: 1.6; color: #000; background: #fff; max-width: 8.5in; margin: 0 auto; padding: 1in; }
+        h1 { font-size: 18pt; font-weight: bold; text-align: center; margin-bottom: 24pt; text-transform: uppercase; border-bottom: 2px solid #000; padding-bottom: 12pt; }
+        h2 { font-size: 14pt; font-weight: bold; margin-top: 24pt; margin-bottom: 12pt; text-transform: uppercase; }
+        h3 { font-size: 12pt; font-weight: bold; margin-top: 18pt; margin-bottom: 9pt; }
+        p { margin-bottom: 12pt; text-align: justify; }
+        ul, ol { margin-left: 36pt; margin-bottom: 12pt; }
+        li { margin-bottom: 6pt; }
+        .header { text-align: center; margin-bottom: 36pt; }
+        .company-name { font-size: 16pt; font-weight: bold; }
+        .signature-block { margin-top: 48pt; }
+        .signature-line { border-top: 1px solid #000; width: 300px; margin-top: 48pt; padding-top: 6pt; }
+        .footer { margin-top: 48pt; padding-top: 12pt; border-top: 1px solid #000; font-size: 10pt; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="company-name">HINGECRAFT GLOBAL, LLC</div>
+        <h1>BOARD MEMBER / ADVISORY BOARD AGREEMENT</h1>
+        <p>State of South Carolina</p>
+    </div>
+
+    <p><strong>THIS BOARD MEMBER AGREEMENT</strong> (this "Agreement") is entered into as of _________________, 20____ (the "Effective Date"), by and between:</p>
+    
+    <p><strong>HINGECRAFT GLOBAL, LLC</strong>, a South Carolina limited liability company, with its principal place of business at 123 Innovation Drive, Suite 100, Charleston, South Carolina 29401 (the "Company"), and</p>
+    
+    <p><strong>_________________________________</strong> (the "Board Member"), an individual residing at _________________________________.</p>
+
+    <h2>RECITALS</h2>
+    <p>WHEREAS, the Company desires to engage the Board Member to serve on its [Board of Managers / Advisory Board] (the "Board") and provide guidance, advice, and oversight to the Company; and</p>
+    <p>WHEREAS, the Board Member desires to serve in such capacity and provide such services to the Company;</p>
+    <p>NOW, THEREFORE, in consideration of the mutual covenants and agreements set forth herein, and for other good and valuable consideration, the receipt and sufficiency of which are hereby acknowledged, the parties agree as follows:</p>
+
+    <h2>ARTICLE 1 - APPOINTMENT AND TERM</h2>
+    
+    <p><strong>1.1 Appointment.</strong> The Company hereby appoints the Board Member to serve on the Board, and the Board Member hereby accepts such appointment, subject to the terms and conditions of this Agreement.</p>
+    
+    <p><strong>1.2 Term.</strong> The Board Member's term shall commence on the Effective Date and shall continue for a period of [___] years, unless earlier terminated in accordance with this Agreement. The term may be renewed by mutual written agreement of the parties.</p>
+    
+    <p><strong>1.3 Position.</strong> The Board Member shall serve as a [Member of the Board of Managers / Member of the Advisory Board / Chairman of the Advisory Board].</p>
+
+    <h2>ARTICLE 2 - DUTIES AND RESPONSIBILITIES</h2>
+    
+    <p><strong>2.1 General Duties.</strong> The Board Member shall:</p>
+    <ul>
+        <li>(a) Attend and participate in Board meetings, whether in person, by telephone, or by video conference;</li>
+        <li>(b) Provide advice, guidance, and expertise on matters relating to the Company's business;</li>
+        <li>(c) Review materials and information provided by the Company;</li>
+        <li>(d) Exercise independent judgment in the best interests of the Company;</li>
+        <li>(e) Comply with all applicable laws, regulations, and the Company's governance documents;</li>
+        <li>(f) Act in good faith and with the care that an ordinarily prudent person in a like position would exercise;</li>
+        <li>(g) Maintain confidentiality of Company information;</li>
+        <li>(h) Disclose any conflicts of interest;</li>
+        <li>(i) Support the Company's mission, values, and strategic objectives.</li>
+    </ul>
+    
+    <p><strong>2.2 Meeting Attendance.</strong> The Board Member agrees to attend at least [___] Board meetings per year. Regular Board meetings shall be held [quarterly / monthly / as scheduled]. The Board Member shall use reasonable efforts to attend all Board meetings but must attend at least [75%] of all meetings in any calendar year.</p>
+    
+    <p><strong>2.3 Committee Service.</strong> The Board Member may be asked to serve on one or more committees of the Board. Committee service shall be as mutually agreed between the Board Member and the Company.</p>
+    
+    <p><strong>2.4 Time Commitment.</strong> The Board Member anticipates devoting approximately [___] hours per [month / quarter] to Company matters, including preparation for and attendance at meetings.</p>
+
+    <h2>ARTICLE 3 - COMPENSATION</h2>
+    
+    <p><strong>3.1 Board Fees.</strong> As compensation for services rendered under this Agreement, the Board Member shall receive:</p>
+    <ul>
+        <li>(a) An annual retainer fee of $[_________], payable in equal [quarterly / monthly] installments;</li>
+        <li>(b) A per-meeting fee of $[_________] for each Board meeting attended;</li>
+        <li>(c) A per-meeting fee of $[_________] for each committee meeting attended;</li>
+        <li>(d) [Additional compensation as specified: _________________________].</li>
+    </ul>
+    
+    <p><strong>3.2 Equity Compensation.</strong> [If applicable:] In addition to the fees set forth above, the Board Member shall be granted [describe equity compensation, e.g., membership interest units, options, phantom equity], subject to the terms of a separate equity grant agreement.</p>
+    
+    <p><strong>3.3 Expense Reimbursement.</strong> The Company shall reimburse the Board Member for all reasonable and documented out-of-pocket expenses incurred in connection with Board service, including travel, lodging, and meals, in accordance with the Company's expense reimbursement policies.</p>
+    
+    <p><strong>3.4 Independent Contractor Status.</strong> The Board Member is an independent contractor and not an employee of the Company. The Board Member shall be solely responsible for payment of all taxes on compensation received under this Agreement.</p>
+
+    <h2>ARTICLE 4 - FIDUCIARY DUTIES</h2>
+    
+    <p><strong>4.1 Duty of Care.</strong> The Board Member shall discharge their duties in good faith, with the care an ordinarily prudent person in a like position would exercise under similar circumstances, and in a manner the Board Member reasonably believes to be in the best interests of the Company.</p>
+    
+    <p><strong>4.2 Duty of Loyalty.</strong> The Board Member shall act in the best interests of the Company and shall not use their position for personal gain or to the detriment of the Company.</p>
+    
+    <p><strong>4.3 Duty of Obedience.</strong> The Board Member shall ensure that the Company operates within the bounds of the law and its governing documents.</p>
+    
+    <p><strong>4.4 Business Judgment Rule.</strong> The Board Member shall be entitled to rely on the business judgment rule in making decisions, provided the Board Member acts in good faith, with the care of an ordinarily prudent person, and in a manner reasonably believed to be in the best interests of the Company.</p>
+
+    <h2>ARTICLE 5 - CONFLICTS OF INTEREST</h2>
+    
+    <p><strong>5.1 Disclosure.</strong> The Board Member shall promptly and fully disclose to the Company any actual or potential conflict of interest, including:</p>
+    <ul>
+        <li>(a) Any financial interest in a transaction or arrangement involving the Company;</li>
+        <li>(b) Any relationship with a competitor, customer, or supplier of the Company;</li>
+        <li>(c) Any outside business activity that may conflict with Company interests;</li>
+        <li>(d) Any family or personal relationship that may create a conflict.</li>
+    </ul>
+    
+    <p><strong>5.2 Recusal.</strong> The Board Member shall recuse themselves from any discussion or vote on any matter in which they have a material personal interest.</p>
+    
+    <p><strong>5.3 Corporate Opportunities.</strong> The Board Member shall present to the Company any business opportunity that: (a) the Company is financially able to undertake; (b) is in the Company's line of business; and (c) would be of interest to the Company. The Board Member may pursue such opportunity only after the Company has declined it in writing.</p>
+
+    <h2>ARTICLE 6 - CONFIDENTIALITY</h2>
+    
+    <p><strong>6.1 Confidential Information.</strong> The Board Member acknowledges that during the course of service, they will have access to and become acquainted with confidential and proprietary information of the Company, including but not limited to: business plans, financial information, customer lists, pricing information, product designs, manufacturing processes, trade secrets, marketing strategies, and other proprietary information (collectively, "Confidential Information").</p>
+    
+    <p><strong>6.2 Non-Disclosure.</strong> The Board Member agrees:</p>
+    <ul>
+        <li>(a) To hold all Confidential Information in strict confidence;</li>
+        <li>(b) Not to disclose any Confidential Information to any third party without the Company's prior written consent;</li>
+        <li>(c) Not to use any Confidential Information for any purpose other than performing duties under this Agreement;</li>
+        <li>(d) To take all reasonable precautions to prevent unauthorized disclosure;</li>
+        <li>(e) To return or destroy all Confidential Information upon termination of this Agreement.</li>
+    </ul>
+    
+    <p><strong>6.3 Exceptions.</strong> The confidentiality obligations shall not apply to information that: (a) is or becomes publicly available through no fault of the Board Member; (b) was rightfully in the Board Member's possession prior to disclosure; (c) is rightfully received from a third party without restriction; or (d) is required to be disclosed by law or legal process, provided the Board Member gives the Company prompt notice.</p>
+    
+    <p><strong>6.4 Duration.</strong> The confidentiality obligations shall survive termination of this Agreement and shall continue for a period of [five (5)] years thereafter, or indefinitely for trade secrets.</p>
+
+    <h2>ARTICLE 7 - NON-COMPETITION AND NON-SOLICITATION</h2>
+    
+    <p><strong>7.1 Non-Competition.</strong> During the term of this Agreement and for a period of [one (1) year] following termination, the Board Member agrees not to, directly or indirectly:</p>
+    <ul>
+        <li>(a) Engage in any business that competes with the Company's business within [geographic scope];</li>
+        <li>(b) Own, manage, operate, or control any competing business;</li>
+        <li>(c) Serve as a director, officer, employee, consultant, or advisor to any competing business.</li>
+    </ul>
+    
+    <p><strong>7.2 Non-Solicitation of Employees.</strong> During the term and for [two (2) years] following termination, the Board Member agrees not to, directly or indirectly, solicit, recruit, or induce any employee of the Company to leave their employment.</p>
+    
+    <p><strong>7.3 Non-Solicitation of Customers.</strong> During the term and for [two (2) years] following termination, the Board Member agrees not to, directly or indirectly, solicit or divert any customer or prospective customer of the Company.</p>
+
+    <h2>ARTICLE 8 - INTELLECTUAL PROPERTY</h2>
+    
+    <p><strong>8.1 Assignment.</strong> The Board Member agrees that any inventions, ideas, designs, discoveries, improvements, or other intellectual property developed or conceived by the Board Member in connection with Company business shall be the sole and exclusive property of the Company.</p>
+    
+    <p><strong>8.2 Assistance.</strong> The Board Member agrees to assist the Company in obtaining patents, copyrights, or other protections for such intellectual property.</p>
+
+    <h2>ARTICLE 9 - INDEMNIFICATION</h2>
+    
+    <p><strong>9.1 Company Indemnification.</strong> The Company shall indemnify and hold harmless the Board Member from and against any and all claims, damages, losses, costs, and expenses (including reasonable attorneys' fees) arising out of or related to the Board Member's service on the Board, except to the extent resulting from the Board Member's gross negligence, willful misconduct, or knowing violation of law.</p>
+    
+    <p><strong>9.2 Advancement of Expenses.</strong> The Company shall advance to the Board Member reasonable expenses incurred in defending any claim, upon receipt of an undertaking to repay such amounts if it is ultimately determined that the Board Member is not entitled to indemnification.</p>
+    
+    <p><strong>9.3 D&O Insurance.</strong> The Company shall maintain directors and officers liability insurance coverage in an amount of not less than $[_________], covering the Board Member during the term of service and for [six (6)] years thereafter.</p>
+
+    <h2>ARTICLE 10 - TERMINATION</h2>
+    
+    <p><strong>10.1 Termination by Company.</strong> The Company may terminate this Agreement at any time, with or without cause, upon [thirty (30)] days' prior written notice to the Board Member.</p>
+    
+    <p><strong>10.2 Termination by Board Member.</strong> The Board Member may resign at any time upon [thirty (30)] days' prior written notice to the Company.</p>
+    
+    <p><strong>10.3 Termination for Cause.</strong> The Company may terminate this Agreement immediately upon written notice if the Board Member: (a) breaches any material provision of this Agreement; (b) engages in fraud, dishonesty, or gross misconduct; (c) is convicted of a felony; (d) becomes incapacitated; or (e) fails to perform duties as specified herein.</p>
+    
+    <p><strong>10.4 Effect of Termination.</strong> Upon termination:</p>
+    <ul>
+        <li>(a) All fees earned through the termination date shall be paid;</li>
+        <li>(b) The Board Member shall return all Company property and Confidential Information;</li>
+        <li>(c) The confidentiality, non-competition, and non-solicitation provisions shall survive;</li>
+        <li>(d) The indemnification provisions shall survive.</li>
+    </ul>
+
+    <h2>ARTICLE 11 - REPRESENTATIONS AND WARRANTIES</h2>
+    
+    <p><strong>11.1 Board Member Representations.</strong> The Board Member represents and warrants that:</p>
+    <ul>
+        <li>(a) The Board Member has the legal capacity to enter into this Agreement;</li>
+        <li>(b) The Board Member is not bound by any agreement that would prevent performance under this Agreement;</li>
+        <li>(c) The Board Member has disclosed all potential conflicts of interest;</li>
+        <li>(d) All information provided to the Company is true and accurate.</li>
+    </ul>
+
+    <h2>ARTICLE 12 - GENERAL PROVISIONS</h2>
+    
+    <p><strong>12.1 Governing Law.</strong> This Agreement shall be governed by and construed in accordance with the laws of the State of South Carolina, without regard to conflicts of law principles.</p>
+    
+    <p><strong>12.2 Dispute Resolution.</strong> Any dispute arising under this Agreement shall be resolved by binding arbitration in Charleston, South Carolina, in accordance with the Commercial Arbitration Rules of the American Arbitration Association.</p>
+    
+    <p><strong>12.3 Entire Agreement.</strong> This Agreement constitutes the entire agreement between the parties concerning the subject matter hereof and supersedes all prior agreements and understandings.</p>
+    
+    <p><strong>12.4 Amendment.</strong> This Agreement may be amended only by a written instrument signed by both parties.</p>
+    
+    <p><strong>12.5 Waiver.</strong> No waiver of any provision shall be effective unless in writing and signed by the waiving party.</p>
+    
+    <p><strong>12.6 Severability.</strong> If any provision is held invalid, the remaining provisions shall remain in full force and effect.</p>
+    
+    <p><strong>12.7 Notices.</strong> All notices shall be in writing and delivered personally, by certified mail, by overnight courier, or by email to the addresses set forth above.</p>
+    
+    <p><strong>12.8 Assignment.</strong> This Agreement may not be assigned by the Board Member without the Company's prior written consent.</p>
+    
+    <p><strong>12.9 Counterparts.</strong> This Agreement may be executed in counterparts, each of which shall be an original.</p>
+
+    <div class="signature-block">
+        <p>IN WITNESS WHEREOF, the parties have executed this Board Member Agreement as of the date first written above.</p>
+        
+        <p><strong>COMPANY:</strong></p>
+        <p>HINGECRAFT GLOBAL, LLC</p>
+        
+        <div class="signature-line">
+            <p>Authorized Signature</p>
+        </div>
+        <p>Print Name: _________________________________</p>
+        <p>Title: _________________________________</p>
+        <p>Date: _________________________________</p>
+        
+        <p><strong>BOARD MEMBER:</strong></p>
+        
+        <div class="signature-line">
+            <p>Board Member Signature</p>
+        </div>
+        <p>Print Name: _________________________________</p>
+        <p>Date: _________________________________</p>
+    </div>
+
+    <div class="footer">
+        <p>HingeCraft Global, LLC | 123 Innovation Drive, Suite 100, Charleston, SC 29401</p>
+        <p>© 2025 HingeCraft Global, LLC. All Rights Reserved.</p>
+    </div>
+</body>
+</html>
+
+`;
+    if ($w('#legalContent')) {
+        try { $w('#legalContent').html = legalContent; } catch (e) {}
+    }
+}

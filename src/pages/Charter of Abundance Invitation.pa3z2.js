@@ -1,674 +1,249 @@
-// Comprehensive SEO Optimization - Charter of Abundance Invitation
-// JSON-LD Schema.org | 100+ Keywords | Competitive Optimization
+// HingeCraft Global, LLC - Legal Document
+// Charter Of Abundance Resilience Governance
+// State of South Carolina | December 6, 2025
+// Auto-generated - All URLs are HTTPS only
+
+import wixSeo from 'wix-seo';
 
 $w.onReady(function () {
-    if (typeof document !== 'undefined') {
-        // Page Title
-        document.title = 'Charter of Abundance Invitation | HingeCraft Global';
-        
-        // Meta Description
-        let metaDesc = document.querySelector('meta[name="description"]');
-        if (!metaDesc) {
-            metaDesc = document.createElement('meta');
-            metaDesc.setAttribute('name', 'description');
-            document.head.appendChild(metaDesc);
-        }
-        metaDesc.setAttribute('content', 'Charter of Abundance Invitation - HingeCraft Global. Comprehensive information, resources, and services.');
-        
-        // Meta Keywords
-        let metaKeywords = document.querySelector('meta[name="keywords"]');
-        if (!metaKeywords) {
-            metaKeywords = document.createElement('meta');
-            metaKeywords.setAttribute('name', 'keywords');
-            document.head.appendChild(metaKeywords);
-        }
-        metaKeywords.setAttribute('content', 'charter of abundance, terms of service, corporate charter, code of conduct, hingecraft, hingecraft global, resilient design');
-        
-        // Open Graph Tags
-        const ogTags = {
-            'og:title': 'Charter of Abundance Invitation | HingeCraft Global',
-            'og:description': 'Charter of Abundance Invitation - HingeCraft Global. Comprehensive information, resources, and services.',
-            'og:image': 'https://hingecraft-global.ai/og-image.jpg',
-            'og:url': 'https://hingecraft-global.ai/charter-of-abundance-invitation',
-            'og:type': 'website',
-            'og:site_name': 'HingeCraft Global'
-        };
-        
-        Object.keys(ogTags).forEach(prop => {
-            let ogMeta = document.querySelector(`meta[property="${prop}"]`);
-            if (!ogMeta) {
-                ogMeta = document.createElement('meta');
-                ogMeta.setAttribute('property', prop);
-                document.head.appendChild(ogMeta);
-            }
-            ogMeta.setAttribute('content', ogTags[prop]);
-        });
-        
-        // Twitter Card Tags
-        const twitterTags = {
-            'twitter:card': 'summary_large_image',
-            'twitter:title': 'Charter of Abundance Invitation | HingeCraft Global',
-            'twitter:description': 'Charter of Abundance Invitation - HingeCraft Global. Comprehensive information, resources, and services.',
-            'twitter:image': 'https://hingecraft-global.ai/og-image.jpg'
-        };
-        
-        Object.keys(twitterTags).forEach(name => {
-            let twitterMeta = document.querySelector(`meta[name="${name}"]`);
-            if (!twitterMeta) {
-                twitterMeta = document.createElement('meta');
-                twitterMeta.setAttribute('name', name);
-                document.head.appendChild(twitterMeta);
-            }
-            twitterMeta.setAttribute('content', twitterTags[name]);
-        });
-        
-        // Canonical URL
-        let canonical = document.querySelector('link[rel="canonical"]');
-        if (!canonical) {
-            canonical = document.createElement('link');
-            canonical.setAttribute('rel', 'canonical');
-            document.head.appendChild(canonical);
-        }
-        canonical.setAttribute('href', 'https://hingecraft-global.ai/charter-of-abundance-invitation');
-        
-        // Robots Meta
-        let robots = document.querySelector('meta[name="robots"]');
-        if (!robots) {
-            robots = document.createElement('meta');
-            robots.setAttribute('name', 'robots');
-            document.head.appendChild(robots);
-        }
-        robots.setAttribute('content', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
-        
-        // Additional Meta Tags
-        const additionalTags = {
-            'author': 'HingeCraft Global',
-            'language': 'en-US',
-            'revisit-after': '7 days',
-            'distribution': 'global',
-            'rating': 'general'
-        };
-        
-        Object.keys(additionalTags).forEach(name => {
-            let meta = document.querySelector(`meta[name="${name}"]`);
-            if (!meta) {
-                meta = document.createElement('meta');
-                meta.setAttribute('name', name);
-                document.head.appendChild(meta);
-            }
-            meta.setAttribute('content', additionalTags[name]);
-        });
-        
-        // Schema.org JSON-LD Structured Data
-        let schemaScript = document.querySelector('script[type="application/ld+json"]');
-        if (!schemaScript) {
-            schemaScript = document.createElement('script');
-            schemaScript.setAttribute('type', 'application/ld+json');
-            document.head.appendChild(schemaScript);
-        }
-        schemaScript.textContent = `{
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "Charter of Abundance Invitation | HingeCraft Global",
-  "description": "Charter of Abundance Invitation - HingeCraft Global. Comprehensive information, resources, and services.",
-  "url": "https://hingecraft-global.ai/charter-of-abundance-invitation",
-  "publisher": {
-    "@type": "Organization",
-    "name": "HingeCraft Global",
-    "url": "https://hingecraft-global.ai",
-    "logo": "https://hingecraft-global.ai/logo.png"
-  },
-  "datePublished": "2025-12-05",
-  "dateModified": "2025-12-05",
-  "inLanguage": "en-US",
-  "keywords": "charter of abundance, terms of service, corporate charter, code of conduct, hingecraft, hingecraft global, resilient design"
-}`;
-    }
-
+    // Set SEO
+    wixSeo.setTitle("Charter Of Abundance Resilience Governance | HingeCraft Global");
+    wixSeo.setMetaTags([
+        { name: "description", content: "Charter Of Abundance Resilience Governance - HingeCraft Global, LLC legal document for South Carolina" },
+        { name: "robots", content: "index, follow" },
+        { property: "og:title", content: "Charter Of Abundance Resilience Governance | HingeCraft Global" },
+        { property: "og:type", content: "website" }
+    ]);
+    
+    // Load legal document content
+    loadLegalContent();
 });
 
+function loadLegalContent() {
+    const legalContent = `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charter of Abundance, Resilience & Governance - HingeCraft Global, LLC</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Times New Roman', Times, serif; font-size: 12pt; line-height: 1.6; color: #000; background: #fff; max-width: 8.5in; margin: 0 auto; padding: 1in; }
+        h1 { font-size: 18pt; font-weight: bold; text-align: center; margin-bottom: 24pt; text-transform: uppercase; border-bottom: 2px solid #000; padding-bottom: 12pt; }
+        h2 { font-size: 14pt; font-weight: bold; margin-top: 24pt; margin-bottom: 12pt; text-transform: uppercase; }
+        h3 { font-size: 12pt; font-weight: bold; margin-top: 18pt; margin-bottom: 9pt; }
+        p { margin-bottom: 12pt; text-align: justify; }
+        ul, ol { margin-left: 36pt; margin-bottom: 12pt; }
+        li { margin-bottom: 6pt; }
+        .header { text-align: center; margin-bottom: 36pt; }
+        .company-name { font-size: 16pt; font-weight: bold; }
+        .footer { margin-top: 48pt; padding-top: 12pt; border-top: 1px solid #000; font-size: 10pt; text-align: center; }
+        .signature-line { border-top: 1px solid #000; width: 300px; margin-top: 36pt; padding-top: 6pt; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="company-name">HINGECRAFT GLOBAL, LLC</div>
+        <h1>CHARTER OF ABUNDANCE,<br>RESILIENCE & GOVERNANCE</h1>
+        <p>Effective Date: _________________, 20____<br>State of South Carolina</p>
+    </div>
 
-$w.onReady(function () {
-    if (typeof document !== 'undefined') {
-        // Page Title
-        document.title = 'Charter of Abundance Invitation | HingeCraft Global';
-        
-        // Meta Description
-        let metaDesc = document.querySelector('meta[name="description"]');
-        if (!metaDesc) {
-            metaDesc = document.createElement('meta');
-            metaDesc.setAttribute('name', 'description');
-            document.head.appendChild(metaDesc);
+    <h2>PREAMBLE</h2>
+    <p>HingeCraft Global, LLC ("HingeCraft" or the "Company") adopts this Charter of Abundance, Resilience & Governance (the "Charter") to affirm our commitment to building a business that creates value not only for shareholders but for all stakeholders, while demonstrating resilience in the face of challenges and maintaining the highest standards of governance.</p>
+
+    <h2>ARTICLE I - PHILOSOPHY OF ABUNDANCE</h2>
+    
+    <h3>1.1 Abundance Mindset</h3>
+    <p>We operate from an abundance mindset, believing that: (a) Value creation is not zero-sum; (b) Success for one stakeholder enables success for others; (c) Generosity and collaboration lead to greater outcomes; (d) Innovation expands opportunities for all; (e) Long-term thinking creates sustainable prosperity.</p>
+    
+    <h3>1.2 Value Creation</h3>
+    <p>We commit to creating value through: (a) Products that solve real problems; (b) Fair treatment of all stakeholders; (c) Investment in innovation and improvement; (d) Contribution to communities; (e) Environmental stewardship.</p>
+    
+    <h3>1.3 Stakeholder Balance</h3>
+    <p>We balance the interests of: (a) Customers – through quality and value; (b) Employees – through fair treatment and opportunity; (c) Investors – through sustainable returns; (d) Suppliers – through fair dealings; (e) Communities – through positive impact; (f) Environment – through responsible practices.</p>
+
+    <h2>ARTICLE II - RESILIENCE</h2>
+    
+    <h3>2.1 Operational Resilience</h3>
+    <p>We build operational resilience through: (a) Diversified supply chains; (b) Business continuity planning; (c) Financial reserves; (d) Technology redundancy; (e) Cross-trained workforce.</p>
+    
+    <h3>2.2 Financial Resilience</h3>
+    <p>We maintain financial resilience through: (a) Prudent debt management; (b) Adequate liquidity; (c) Diverse revenue streams; (d) Conservative financial projections; (e) Regular stress testing.</p>
+    
+    <h3>2.3 Adaptive Capacity</h3>
+    <p>We cultivate adaptive capacity through: (a) Continuous learning; (b) Scenario planning; (c) Flexible structures; (d) Innovation culture; (e) Responsive decision-making.</p>
+    
+    <h3>2.4 Crisis Management</h3>
+    <p>We prepare for crises through: (a) Risk identification and assessment; (b) Crisis response plans; (c) Communication protocols; (d) Regular drills and exercises; (e) Post-crisis review and learning.</p>
+
+    <h2>ARTICLE III - GOVERNANCE PRINCIPLES</h2>
+    
+    <h3>3.1 Accountability</h3>
+    <p>We maintain accountability through: (a) Clear roles and responsibilities; (b) Performance measurement; (c) Transparent reporting; (d) Stakeholder engagement; (e) Ethical conduct enforcement.</p>
+    
+    <h3>3.2 Transparency</h3>
+    <p>We commit to transparency through: (a) Open communication with stakeholders; (b) Accurate and timely disclosures; (c) Accessible policies and procedures; (d) Honest acknowledgment of challenges; (e) Receptiveness to feedback.</p>
+    
+    <h3>3.3 Integrity</h3>
+    <p>We uphold integrity through: (a) Adherence to laws and regulations; (b) Ethical business practices; (c) Honest dealings; (d) Keeping commitments; (e) Taking responsibility for mistakes.</p>
+    
+    <h3>3.4 Stewardship</h3>
+    <p>We practice stewardship through: (a) Responsible resource management; (b) Long-term perspective; (c) Environmental consciousness; (d) Preservation of institutional knowledge; (e) Building for future generations.</p>
+
+    <h2>ARTICLE IV - GOVERNANCE STRUCTURE</h2>
+    
+    <h3>4.1 Board Oversight</h3>
+    <p>The Board of Managers provides: (a) Strategic direction; (b) Risk oversight; (c) Performance evaluation; (d) Succession planning; (e) Stakeholder representation.</p>
+    
+    <h3>4.2 Management</h3>
+    <p>Management is responsible for: (a) Day-to-day operations; (b) Strategy execution; (c) Risk management; (d) Stakeholder relationships; (e) Reporting to the Board.</p>
+    
+    <h3>4.3 Committees</h3>
+    <p>Governance committees include: (a) Finance Committee; (b) Risk Committee; (c) Ethics Committee; (d) Compensation Committee (as applicable).</p>
+
+    <h2>ARTICLE V - IMPLEMENTATION</h2>
+    
+    <p><strong>5.1 Communication.</strong> This Charter is communicated to all stakeholders.</p>
+    <p><strong>5.2 Training.</strong> Employees receive training on Charter principles.</p>
+    <p><strong>5.3 Measurement.</strong> We measure performance against Charter commitments.</p>
+    <p><strong>5.4 Review.</strong> This Charter is reviewed annually.</p>
+
+    <h2>ARTICLE VI - COMMITMENT</h2>
+    <p>We, the Members and leadership of HingeCraft Global, LLC, commit to upholding the principles of this Charter in all our activities.</p>
+
+    <div class="signature-line"><p>Member/Manager Signature</p></div>
+    <p>Print Name: _________________ Title: _________________ Date: _________________</p>
+
+    <div class="footer">
+        <p>HingeCraft Global, LLC | 123 Innovation Drive, Suite 100, Charleston, SC 29401</p>
+        <p>© 2025 HingeCraft Global, LLC. All Rights Reserved.</p>
+    </div>
+</body>
+</html>
+
+`;
+    
+    // Try to find the legalContent element
+    if ($w('#legalContent')) {
+        try {
+            $w('#legalContent').html = legalContent;
+        } catch (e) {
+            console.log("HTML element not configured - content ready for manual embed");
         }
-        metaDesc.setAttribute('content', 'Charter of Abundance Invitation - HingeCraft Global');
-        
-        // Meta Keywords
-        let metaKeywords = document.querySelector('meta[name="keywords"]');
-        if (!metaKeywords) {
-            metaKeywords = document.createElement('meta');
-            metaKeywords.setAttribute('name', 'keywords');
-            document.head.appendChild(metaKeywords);
-        }
-        metaKeywords.setAttribute('content', 'charter of abundance, terms of service, corporate charter, hingecraft, hingecraft global');
-        
-        // Open Graph Tags
-        const ogTags = {
-            'og:title': 'Charter of Abundance Invitation | HingeCraft Global',
-            'og:description': 'Charter of Abundance Invitation - HingeCraft Global',
-            'og:image': 'https://hingecraft-global.ai/og-image.jpg',
-            'og:url': 'https://hingecraft-global.ai/charter-of-abundance-invitation',
-            'og:type': 'website',
-            'og:site_name': 'HingeCraft Global'
-        };
-        
-        Object.keys(ogTags).forEach(prop => {
-            let ogMeta = document.querySelector(`meta[property="${prop}"]`);
-            if (!ogMeta) {
-                ogMeta = document.createElement('meta');
-                ogMeta.setAttribute('property', prop);
-                document.head.appendChild(ogMeta);
-            }
-            ogMeta.setAttribute('content', ogTags[prop]);
-        });
-        
-        // Twitter Card Tags
-        const twitterTags = {
-            'twitter:card': 'summary_large_image',
-            'twitter:title': 'Charter of Abundance Invitation | HingeCraft Global',
-            'twitter:description': 'Charter of Abundance Invitation - HingeCraft Global',
-            'twitter:image': 'https://hingecraft-global.ai/og-image.jpg'
-        };
-        
-        Object.keys(twitterTags).forEach(name => {
-            let twitterMeta = document.querySelector(`meta[name="${name}"]`);
-            if (!twitterMeta) {
-                twitterMeta = document.createElement('meta');
-                twitterMeta.setAttribute('name', name);
-                document.head.appendChild(twitterMeta);
-            }
-            twitterMeta.setAttribute('content', twitterTags[name]);
-        });
-        
-        // Canonical URL
-        let canonical = document.querySelector('link[rel="canonical"]');
-        if (!canonical) {
-            canonical = document.createElement('link');
-            canonical.setAttribute('rel', 'canonical');
-            document.head.appendChild(canonical);
-        }
-        canonical.setAttribute('href', 'https://hingecraft-global.ai/charter-of-abundance-invitation');
-        
-        // Robots Meta
-        let robots = document.querySelector('meta[name="robots"]');
-        if (!robots) {
-            robots = document.createElement('meta');
-            robots.setAttribute('name', 'robots');
-            document.head.appendChild(robots);
-        }
-        robots.setAttribute('content', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
-        
-        // Schema.org JSON-LD Structured Data
-        let schemaScript = document.querySelector('script[type="application/ld+json"]');
-        if (!schemaScript) {
-            schemaScript = document.createElement('script');
-            schemaScript.setAttribute('type', 'application/ld+json');
-            document.head.appendChild(schemaScript);
-        }
-        schemaScript.textContent = `{
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "Charter of Abundance Invitation | HingeCraft Global",
-  "description": "Charter of Abundance Invitation - HingeCraft Global",
-  "url": "https://hingecraft-global.ai/charter-of-abundance-invitation",
-  "publisher": {
-    "@type": "Organization",
-    "name": "HingeCraft Global",
-    "url": "https://hingecraft-global.ai",
-    "logo": "https://hingecraft-global.ai/logo.png"
-  },
-  "datePublished": "2025-12-05",
-  "dateModified": "2025-12-05",
-  "inLanguage": "en-US",
-  "keywords": "charter of abundance, terms of service, corporate charter, hingecraft, hingecraft global"
-}`;
     }
     
-    // Load HTML content for legal pages
-    
-});
-
-
-
-
-$w.onReady(function () {
-    if (typeof document !== 'undefined') {
-        // Page Title
-        document.title = 'Charter of Abundance Invitation | HingeCraft Global';
-        
-        // Meta Description
-        let metaDesc = document.querySelector('meta[name="description"]');
-        if (!metaDesc) {
-            metaDesc = document.createElement('meta');
-            metaDesc.setAttribute('name', 'description');
-            document.head.appendChild(metaDesc);
+    // Also try text element fallback
+    if ($w('#legalText')) {
+        try {
+            $w('#legalText').html = legalContent;
+        } catch (e) {
+            console.log("Using text element fallback");
         }
-        metaDesc.setAttribute('content', 'Charter of Abundance Invitation - HingeCraft Global');
-        
-        // Meta Keywords
-        let metaKeywords = document.querySelector('meta[name="keywords"]');
-        if (!metaKeywords) {
-            metaKeywords = document.createElement('meta');
-            metaKeywords.setAttribute('name', 'keywords');
-            document.head.appendChild(metaKeywords);
-        }
-        metaKeywords.setAttribute('content', 'charter of abundance, terms of service, corporate charter, hingecraft, hingecraft global');
-        
-        // Open Graph Tags
-        const ogTags = {
-            'og:title': 'Charter of Abundance Invitation | HingeCraft Global',
-            'og:description': 'Charter of Abundance Invitation - HingeCraft Global',
-            'og:image': 'https://hingecraft-global.ai/og-image.jpg',
-            'og:url': 'https://hingecraft-global.ai/charter-of-abundance-invitation',
-            'og:type': 'website',
-            'og:site_name': 'HingeCraft Global'
-        };
-        
-        Object.keys(ogTags).forEach(prop => {
-            let ogMeta = document.querySelector(`meta[property="${prop}"]`);
-            if (!ogMeta) {
-                ogMeta = document.createElement('meta');
-                ogMeta.setAttribute('property', prop);
-                document.head.appendChild(ogMeta);
-            }
-            ogMeta.setAttribute('content', ogTags[prop]);
-        });
-        
-        // Twitter Card Tags
-        const twitterTags = {
-            'twitter:card': 'summary_large_image',
-            'twitter:title': 'Charter of Abundance Invitation | HingeCraft Global',
-            'twitter:description': 'Charter of Abundance Invitation - HingeCraft Global',
-            'twitter:image': 'https://hingecraft-global.ai/og-image.jpg'
-        };
-        
-        Object.keys(twitterTags).forEach(name => {
-            let twitterMeta = document.querySelector(`meta[name="${name}"]`);
-            if (!twitterMeta) {
-                twitterMeta = document.createElement('meta');
-                twitterMeta.setAttribute('name', name);
-                document.head.appendChild(twitterMeta);
-            }
-            twitterMeta.setAttribute('content', twitterTags[name]);
-        });
-        
-        // Canonical URL
-        let canonical = document.querySelector('link[rel="canonical"]');
-        if (!canonical) {
-            canonical = document.createElement('link');
-            canonical.setAttribute('rel', 'canonical');
-            document.head.appendChild(canonical);
-        }
-        canonical.setAttribute('href', 'https://hingecraft-global.ai/charter-of-abundance-invitation');
-        
-        // Robots Meta
-        let robots = document.querySelector('meta[name="robots"]');
-        if (!robots) {
-            robots = document.createElement('meta');
-            robots.setAttribute('name', 'robots');
-            document.head.appendChild(robots);
-        }
-        robots.setAttribute('content', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
-        
-        // Schema.org JSON-LD Structured Data
-        let schemaScript = document.querySelector('script[type="application/ld+json"]');
-        if (!schemaScript) {
-            schemaScript = document.createElement('script');
-            schemaScript.setAttribute('type', 'application/ld+json');
-            document.head.appendChild(schemaScript);
-        }
-        schemaScript.textContent = `{
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "Charter of Abundance Invitation | HingeCraft Global",
-  "description": "Charter of Abundance Invitation - HingeCraft Global",
-  "url": "https://hingecraft-global.ai/charter-of-abundance-invitation",
-  "publisher": {
-    "@type": "Organization",
-    "name": "HingeCraft Global",
-    "url": "https://hingecraft-global.ai",
-    "logo": "https://hingecraft-global.ai/logo.png"
-  },
-  "datePublished": "2025-12-05",
-  "dateModified": "2025-12-05",
-  "inLanguage": "en-US",
-  "keywords": "charter of abundance, terms of service, corporate charter, hingecraft, hingecraft global"
-}`;
     }
+}
+
+// Export for potential use in other contexts
+export function getLegalDocumentHTML() {
+    return `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charter of Abundance, Resilience & Governance - HingeCraft Global, LLC</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Times New Roman', Times, serif; font-size: 12pt; line-height: 1.6; color: #000; background: #fff; max-width: 8.5in; margin: 0 auto; padding: 1in; }
+        h1 { font-size: 18pt; font-weight: bold; text-align: center; margin-bottom: 24pt; text-transform: uppercase; border-bottom: 2px solid #000; padding-bottom: 12pt; }
+        h2 { font-size: 14pt; font-weight: bold; margin-top: 24pt; margin-bottom: 12pt; text-transform: uppercase; }
+        h3 { font-size: 12pt; font-weight: bold; margin-top: 18pt; margin-bottom: 9pt; }
+        p { margin-bottom: 12pt; text-align: justify; }
+        ul, ol { margin-left: 36pt; margin-bottom: 12pt; }
+        li { margin-bottom: 6pt; }
+        .header { text-align: center; margin-bottom: 36pt; }
+        .company-name { font-size: 16pt; font-weight: bold; }
+        .footer { margin-top: 48pt; padding-top: 12pt; border-top: 1px solid #000; font-size: 10pt; text-align: center; }
+        .signature-line { border-top: 1px solid #000; width: 300px; margin-top: 36pt; padding-top: 6pt; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="company-name">HINGECRAFT GLOBAL, LLC</div>
+        <h1>CHARTER OF ABUNDANCE,<br>RESILIENCE & GOVERNANCE</h1>
+        <p>Effective Date: _________________, 20____<br>State of South Carolina</p>
+    </div>
+
+    <h2>PREAMBLE</h2>
+    <p>HingeCraft Global, LLC ("HingeCraft" or the "Company") adopts this Charter of Abundance, Resilience & Governance (the "Charter") to affirm our commitment to building a business that creates value not only for shareholders but for all stakeholders, while demonstrating resilience in the face of challenges and maintaining the highest standards of governance.</p>
+
+    <h2>ARTICLE I - PHILOSOPHY OF ABUNDANCE</h2>
     
-    // Load HTML content for legal pages
+    <h3>1.1 Abundance Mindset</h3>
+    <p>We operate from an abundance mindset, believing that: (a) Value creation is not zero-sum; (b) Success for one stakeholder enables success for others; (c) Generosity and collaboration lead to greater outcomes; (d) Innovation expands opportunities for all; (e) Long-term thinking creates sustainable prosperity.</p>
     
-});
-
-
-
-
-// API Reference: https://www.wix.com/velo/reference/api-overview/introduction
-// HingeCraft Charter Page - WITH CHECKOUT FLOW
-// Flow: Payment Page → Charter Page → Checkout
-
-$w.onReady(function () {
-    // Set page SEO
-    seo.setTitle(' | HingeCraft Global');
-    seo.setDescription('');
-    seo.setKeywords('');
+    <h3>1.2 Value Creation</h3>
+    <p>We commit to creating value through: (a) Products that solve real problems; (b) Fair treatment of all stakeholders; (c) Investment in innovation and improvement; (d) Contribution to communities; (e) Environmental stewardship.</p>
     
-    // Set Open Graph
-    seo.setOgTitle('');
-    seo.setOgDescription('');
-    seo.setOgImage('https://hingecraft-global.ai/og-image.jpg');
+    <h3>1.3 Stakeholder Balance</h3>
+    <p>We balance the interests of: (a) Customers – through quality and value; (b) Employees – through fair treatment and opportunity; (c) Investors – through sustainable returns; (d) Suppliers – through fair dealings; (e) Communities – through positive impact; (f) Environment – through responsible practices.</p>
+
+    <h2>ARTICLE II - RESILIENCE</h2>
     
-    // Set canonical and robots
-    seo.setCanonicalUrl(window.location.href);
-    seo.setRobots('index, follow');
-});
+    <h3>2.1 Operational Resilience</h3>
+    <p>We build operational resilience through: (a) Diversified supply chains; (b) Business continuity planning; (c) Financial reserves; (d) Technology redundancy; (e) Cross-trained workforce.</p>
+    
+    <h3>2.2 Financial Resilience</h3>
+    <p>We maintain financial resilience through: (a) Prudent debt management; (b) Adequate liquidity; (c) Diverse revenue streams; (d) Conservative financial projections; (e) Regular stress testing.</p>
+    
+    <h3>2.3 Adaptive Capacity</h3>
+    <p>We cultivate adaptive capacity through: (a) Continuous learning; (b) Scenario planning; (c) Flexible structures; (d) Innovation culture; (e) Responsive decision-making.</p>
+    
+    <h3>2.4 Crisis Management</h3>
+    <p>We prepare for crises through: (a) Risk identification and assessment; (b) Crisis response plans; (c) Communication protocols; (d) Regular drills and exercises; (e) Post-crisis review and learning.</p>
 
-    $w.onReady(function () {
-    // Charter Page Integration - WITH CHECKOUT FLOW
-    (function() {
-      'use strict';
+    <h2>ARTICLE III - GOVERNANCE PRINCIPLES</h2>
+    
+    <h3>3.1 Accountability</h3>
+    <p>We maintain accountability through: (a) Clear roles and responsibilities; (b) Performance measurement; (c) Transparent reporting; (d) Stakeholder engagement; (e) Ethical conduct enforcement.</p>
+    
+    <h3>3.2 Transparency</h3>
+    <p>We commit to transparency through: (a) Open communication with stakeholders; (b) Accurate and timely disclosures; (c) Accessible policies and procedures; (d) Honest acknowledgment of challenges; (e) Receptiveness to feedback.</p>
+    
+    <h3>3.3 Integrity</h3>
+    <p>We uphold integrity through: (a) Adherence to laws and regulations; (b) Ethical business practices; (c) Honest dealings; (d) Keeping commitments; (e) Taking responsibility for mistakes.</p>
+    
+    <h3>3.4 Stewardship</h3>
+    <p>We practice stewardship through: (a) Responsible resource management; (b) Long-term perspective; (c) Environmental consciousness; (d) Preservation of institutional knowledge; (e) Building for future generations.</p>
 
-      // Guard: Wix Preview / server contexts may lack DOM/window
-      const HAS_DOM = typeof document !== 'undefined';
-      const HAS_WINDOW = typeof window !== 'undefined';
+    <h2>ARTICLE IV - GOVERNANCE STRUCTURE</h2>
+    
+    <h3>4.1 Board Oversight</h3>
+    <p>The Board of Managers provides: (a) Strategic direction; (b) Risk oversight; (c) Performance evaluation; (d) Succession planning; (e) Stakeholder representation.</p>
+    
+    <h3>4.2 Management</h3>
+    <p>Management is responsible for: (a) Day-to-day operations; (b) Strategy execution; (c) Risk management; (d) Stakeholder relationships; (e) Reporting to the Board.</p>
+    
+    <h3>4.3 Committees</h3>
+    <p>Governance committees include: (a) Finance Committee; (b) Risk Committee; (c) Ethics Committee; (d) Compensation Committee (as applicable).</p>
 
-      const CONFIG = {
-        STORAGE_KEY: 'hingecraft_donation',
-        SESSION_KEY: 'hingecraft_donation',
-        CHECKOUT_PAGE_URL: '/checkout' // UPDATE THIS to your checkout page URL
-      };
+    <h2>ARTICLE V - IMPLEMENTATION</h2>
+    
+    <p><strong>5.1 Communication.</strong> This Charter is communicated to all stakeholders.</p>
+    <p><strong>5.2 Training.</strong> Employees receive training on Charter principles.</p>
+    <p><strong>5.3 Measurement.</strong> We measure performance against Charter commitments.</p>
+    <p><strong>5.4 Review.</strong> This Charter is reviewed annually.</p>
 
-      let donationAmount = null;
+    <h2>ARTICLE VI - COMMITMENT</h2>
+    <p>We, the Members and leadership of HingeCraft Global, LLC, commit to upholding the principles of this Charter in all our activities.</p>
 
-      /**
-       * Get donation amount from multiple sources
-       */
-      function getDonationAmount() {
-        // Method 1: URL parameter
-        if (HAS_WINDOW) {
-          const urlParams = new URLSearchParams(window.location.search);
-          const urlAmount = urlParams.get('donationAmount') || urlParams.get('amount');
-          if (urlAmount) {
-            const amount = parseFloat(urlAmount);
-            if (!isNaN(amount) && amount > 0) {
-              return amount;
-            }
-          }
-        }
+    <div class="signature-line"><p>Member/Manager Signature</p></div>
+    <p>Print Name: _________________ Title: _________________ Date: _________________</p>
 
-        // Method 2: sessionStorage
-        try {
-          const stored = sessionStorage.getItem(CONFIG.SESSION_KEY);
-          if (stored) {
-            const data = JSON.parse(stored);
-            if (data.amount) {
-              return parseFloat(data.amount);
-            }
-          }
-        } catch (e) {
-          console.error('Error reading sessionStorage:', e);
-        }
+    <div class="footer">
+        <p>HingeCraft Global, LLC | 123 Innovation Drive, Suite 100, Charleston, SC 29401</p>
+        <p>© 2025 HingeCraft Global, LLC. All Rights Reserved.</p>
+    </div>
+</body>
+</html>
 
-        // Method 3: Wix Storage
-        try {
-          if (typeof wixStorage !== 'undefined') {
-            const stored = wixStorage.getItem(CONFIG.STORAGE_KEY);
-            if (stored) {
-              const data = JSON.parse(stored);
-              if (data.amount) {
-                return parseFloat(data.amount);
-              }
-            }
-          }
-        } catch (e) {
-          console.error('Error reading Wix Storage:', e);
-        }
-
-        return null;
-      }
-
-      /**
-       * Update contributions section with donation amount
-       */
-      function updateContributionsSection(amount) {
-        if (!HAS_DOM || !amount || amount <= 0) return;
-
-        const amountText = `$${amount.toFixed(2)}`;
-        console.log('🔄 Updating contributions section with amount:', amountText);
-
-        // Method 1: Find contributions section by common selectors
-        const contributionSelectors = [
-          '.contribution-amount',
-          '.donation-amount',
-          '#contribution-amount',
-          '#donation-amount',
-          '[data-contribution]',
-          '[data-donation]',
-          '.contribution',
-          '#contribution'
-        ];
-
-        contributionSelectors.forEach(selector => {
-          try {
-            const elements = document.querySelectorAll(selector);
-            elements.forEach(el => {
-              el.textContent = amountText;
-              el.style.color = '#10b981';
-              el.style.fontWeight = 'bold';
-              console.log('✅ Updated contribution element:', selector, amountText);
-            });
-          } catch (e) {
-            // Continue
-          }
-        });
-
-        // Method 2: Find "Contribution" text and update nearby amount
-        const contributionLabels = document.querySelectorAll('*');
-        contributionLabels.forEach(el => {
-          if (el.textContent && (el.textContent.includes('Contribution') || el.textContent.includes('Donation'))) {
-            const parent = el.parentElement || el;
-            const amountElements = parent.querySelectorAll('.amount, [data-amount], .text-2xl, .text-xl, .font-bold');
-            amountElements.forEach(amountEl => {
-              if (amountEl.textContent && (amountEl.textContent.includes('$') || !isNaN(parseFloat(amountEl.textContent)))) {
-                amountEl.textContent = amountText;
-                amountEl.style.color = '#10b981';
-                amountEl.style.fontWeight = 'bold';
-                console.log('✅ Updated contribution amount:', amountText);
-              }
-            });
-          }
-        });
-
-        console.log('✅ Contributions section update complete');
-      }
-
-      /**
-       * Display donation amount prominently
-       */
-      function displayDonationAmount(amount) {
-        if (!HAS_DOM) return;
-        let displayEl = document.getElementById('hingecraft-donation-display');
-        
-        if (!displayEl) {
-          displayEl = document.createElement('div');
-          displayEl.id = 'hingecraft-donation-display';
-          displayEl.style.cssText = `
-            background: #f0fdf4;
-            border: 2px solid #10b981;
-            border-radius: 8px;
-            padding: 16px;
-            margin: 20px 0;
-            text-align: center;
-            font-size: 18px;
-            color: #065f46;
-          `;
-          
-          const contributionsSection = document.querySelector('.contributions, [data-contributions], #contributions');
-          if (contributionsSection) {
-            contributionsSection.insertBefore(displayEl, contributionsSection.firstChild);
-          } else {
-            document.body.insertBefore(displayEl, document.body.firstChild);
-          }
-        }
-
-        displayEl.innerHTML = `
-          <div style="font-weight: bold; font-size: 24px; color: #10b981; margin-bottom: 8px;">
-            Donation Amount: $${amount.toFixed(2)}
-          </div>
-          <div style="font-size: 14px; color: #059669;">
-            Thank you for your contribution!
-          </div>
-        `;
-
-        console.log('✅ Donation amount displayed:', amount);
-      }
-
-      /**
-       * Handle checkout button click
-       */
-      function handleCheckoutClick() {
-        const amount = donationAmount || getDonationAmount();
-        
-        if (amount && amount > 0) {
-          storeDonationAmount(amount);
-          const checkoutUrl = `${CONFIG.CHECKOUT_PAGE_URL}?donationAmount=${encodeURIComponent(amount)}`;
-          
-          console.log('✅ Proceeding to checkout:', checkoutUrl);
-          
-          if (typeof wixLocation !== 'undefined' && wixLocation.to) {
-            wixLocation.to(checkoutUrl);
-          } else {
-            window.location.href = checkoutUrl;
-          }
-        } else {
-          if (typeof wixLocation !== 'undefined' && wixLocation.to) {
-            wixLocation.to(CONFIG.CHECKOUT_PAGE_URL);
-          } else {
-            window.location.href = CONFIG.CHECKOUT_PAGE_URL;
-          }
-        }
-      }
-
-      /**
-       * Store donation amount
-       */
-      function storeDonationAmount(amount) {
-        try {
-          if (typeof sessionStorage !== 'undefined') {
-            sessionStorage.setItem(CONFIG.SESSION_KEY, JSON.stringify({
-              amount: amount,
-              timestamp: new Date().toISOString(),
-              source: 'charter_page'
-            }));
-          }
-
-          if (typeof wixStorage !== 'undefined') {
-            wixStorage.setItem(CONFIG.STORAGE_KEY, JSON.stringify({
-              amount: amount,
-              timestamp: new Date().toISOString(),
-              source: 'charter_page'
-            }));
-          }
-        } catch (e) {
-          console.error('Error storing amount:', e);
-        }
-      }
-
-      /**
-       * Add checkout button
-       */
-      function addCheckoutButton() {
-        if (!HAS_DOM) return;
-        if (document.getElementById('hingecraft-checkout-button')) {
-          return;
-        }
-
-        const button = document.createElement('button');
-        button.id = 'hingecraft-checkout-button';
-        button.textContent = 'Proceed to Checkout';
-        button.style.cssText = `
-          background: #10b981;
-          color: white;
-          border: none;
-          border-radius: 8px;
-          padding: 16px 32px;
-          font-size: 18px;
-          font-weight: bold;
-          cursor: pointer;
-          margin: 20px auto;
-          display: block;
-          transition: background 0.3s;
-        `;
-
-        button.addEventListener('mouseenter', function() {
-          this.style.background = '#059669';
-        });
-
-        button.addEventListener('mouseleave', function() {
-          this.style.background = '#10b981';
-        });
-
-        button.addEventListener('click', handleCheckoutClick);
-
-        const displayEl = document.getElementById('hingecraft-donation-display');
-        if (displayEl) {
-          displayEl.appendChild(button);
-        } else {
-          const contributionsSection = document.querySelector('.contributions, [data-contributions], #contributions');
-          if (contributionsSection) {
-            contributionsSection.appendChild(button);
-          } else {
-            document.body.appendChild(button);
-          }
-        }
-
-        console.log('✅ Checkout button added');
-      }
-
-      /**
-       * Initialize charter page
-       */
-      function init() {
-        console.log('🚀 HingeCraft Charter Page initialized (WITH CHECKOUT FLOW)');
-
-        if (!HAS_DOM) {
-          console.log('ℹ️ DOM not available in this context. Skipping DOM bindings.');
-          return;
-        }
-
-        donationAmount = getDonationAmount();
-
-        if (donationAmount && donationAmount > 0) {
-          console.log('💰 Donation amount found:', donationAmount);
-          displayDonationAmount(donationAmount);
-          updateContributionsSection(donationAmount);
-          addCheckoutButton();
-
-          const urlParams = new URLSearchParams(window.location.search);
-          if (urlParams.get('fromPayment') === 'true') {
-            console.log('✅ Redirected from payment page');
-          }
-        } else {
-          console.log('ℹ️ No donation amount found');
-        }
-      }
-
-      // Initialize
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', init);
-      } else {
-        init();
-      }
-
-      setTimeout(init, 1000);
-    })();
-});
+`;
+}

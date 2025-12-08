@@ -193,3 +193,5 @@ Once Docker Desktop is started, run:
 This will launch the complete HingeCraft system with full verification at each step.
 
 
+
+

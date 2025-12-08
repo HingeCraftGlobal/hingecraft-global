@@ -1,3 +1,69 @@
+// HingeCraft Global - SEO Optimized
+// Invitation | Join HingeCraft's Vision
+// Generated: December 6, 2025
+
+import wixSeo from 'wix-seo';
+
+$w.onReady(function () {
+    // Set page title
+    wixSeo.setTitle("Invitation | Join HingeCraft's Vision");
+    
+    // Set meta tags
+    wixSeo.setMetaTags([
+        { name: "description", content: "You're invited to join HingeCraft's mission for sustainable manufacturing and the Age of Abundance. Accept your invitation today." },
+        { name: "keywords", content: "invitation, join us, exclusive invite, membership invitation, welcome" },
+        { name: "robots", content: "index, follow" },
+        { property: "og:title", content: "Invitation | Join HingeCraft's Vision" },
+        { property: "og:description", content: "You're invited to join HingeCraft's mission for sustainable manufacturing and the Age of Abundance. Accept your invitation today." },
+        { property: "og:type", content: "website" },
+        { property: "og:site_name", content: "HingeCraft Global" },
+        { property: "twitter:card", content: "summary_large_image" },
+        { property: "twitter:title", content: "Invitation | Join HingeCraft's Vision" },
+        { property: "twitter:description", content: "You're invited to join HingeCraft's mission for sustainable manufacturing and the Age of Abundance. Accept your invitation today." }
+    ]);
+    
+    // Set structured data (JSON-LD)
+    wixSeo.setStructuredData([
+        {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Invitation | Join HingeCraft's Vision",
+        "description": "You're invited to join HingeCraft's mission for sustainable manufacturing and the Age of Abundance. Accept your invitation today.",
+        "url": "https://www.hingecraft.com/invitation.x3szx",
+        "inLanguage": "en-US",
+        "dateModified": "2025-12-06",
+        "publisher": {
+                "@type": "Organization",
+                "name": "HingeCraft Global",
+                "url": "https://www.hingecraft.com",
+                "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://www.hingecraft.com/logo.png"
+                }
+        }
+},
+        {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+                {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "https://www.hingecraft.com"
+                },
+                {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "Invitation",
+                        "item": "https://www.hingecraft.com/invitation.x3szx"
+                }
+        ]
+}
+    ]);
+});
+
+
+// Original page code below
 // Comprehensive SEO Optimization - Invitation
 // JSON-LD Schema.org | 100+ Keywords | Competitive Optimization
 

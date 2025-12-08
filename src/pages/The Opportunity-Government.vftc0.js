@@ -1,3 +1,69 @@
+// HingeCraft Global - SEO Optimized
+// Government Partnerships | HingeCraft Public Sector
+// Generated: December 6, 2025
+
+import wixSeo from 'wix-seo';
+
+$w.onReady(function () {
+    // Set page title
+    wixSeo.setTitle("Government Partnerships | HingeCraft Public Sector");
+    
+    // Set meta tags
+    wixSeo.setMetaTags([
+        { name: "description", content: "HingeCraft government partnerships support public sector manufacturing, defense contracts, and economic development initiatives." },
+        { name: "keywords", content: "government partnership, public sector, defense manufacturing, government contracts, economic development" },
+        { name: "robots", content: "index, follow" },
+        { property: "og:title", content: "Government Partnerships | HingeCraft Public Sector" },
+        { property: "og:description", content: "HingeCraft government partnerships support public sector manufacturing, defense contracts, and economic development initiatives." },
+        { property: "og:type", content: "website" },
+        { property: "og:site_name", content: "HingeCraft Global" },
+        { property: "twitter:card", content: "summary_large_image" },
+        { property: "twitter:title", content: "Government Partnerships | HingeCraft Public Sector" },
+        { property: "twitter:description", content: "HingeCraft government partnerships support public sector manufacturing, defense contracts, and economic development initiatives." }
+    ]);
+    
+    // Set structured data (JSON-LD)
+    wixSeo.setStructuredData([
+        {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Government Partnerships | HingeCraft Public Sector",
+        "description": "HingeCraft government partnerships support public sector manufacturing, defense contracts, and economic development initiatives.",
+        "url": "https://www.hingecraft.com/the-opportunity-government.vftc0",
+        "inLanguage": "en-US",
+        "dateModified": "2025-12-06",
+        "publisher": {
+                "@type": "Organization",
+                "name": "HingeCraft Global",
+                "url": "https://www.hingecraft.com",
+                "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://www.hingecraft.com/logo.png"
+                }
+        }
+},
+        {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+                {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "https://www.hingecraft.com"
+                },
+                {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "Government Partnerships",
+                        "item": "https://www.hingecraft.com/the-opportunity-government.vftc0"
+                }
+        ]
+}
+    ]);
+});
+
+
+// Original page code below
 // Comprehensive SEO Optimization - The Opportunity-Government
 // JSON-LD Schema.org | 100+ Keywords | Competitive Optimization
 

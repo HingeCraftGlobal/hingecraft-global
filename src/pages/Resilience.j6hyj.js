@@ -1,3 +1,69 @@
+// HingeCraft Global - SEO Optimized
+// Resilience at HingeCraft | Building Sustainable Strength
+// Generated: December 6, 2025
+
+import wixSeo from 'wix-seo';
+
+$w.onReady(function () {
+    // Set page title
+    wixSeo.setTitle("Resilience at HingeCraft | Building Sustainable Strength");
+    
+    // Set meta tags
+    wixSeo.setMetaTags([
+        { name: "description", content: "Discover how HingeCraft Global builds resilience through diversified supply chains, adaptive strategies, and sustainable practices for long-term success." },
+        { name: "keywords", content: "business resilience, supply chain resilience, sustainable strength, risk management, adaptive business" },
+        { name: "robots", content: "index, follow" },
+        { property: "og:title", content: "Resilience at HingeCraft | Building Sustainable Strength" },
+        { property: "og:description", content: "Discover how HingeCraft Global builds resilience through diversified supply chains, adaptive strategies, and sustainable practices for long-term success." },
+        { property: "og:type", content: "website" },
+        { property: "og:site_name", content: "HingeCraft Global" },
+        { property: "twitter:card", content: "summary_large_image" },
+        { property: "twitter:title", content: "Resilience at HingeCraft | Building Sustainable Strength" },
+        { property: "twitter:description", content: "Discover how HingeCraft Global builds resilience through diversified supply chains, adaptive strategies, and sustainable practices for long-term success." }
+    ]);
+    
+    // Set structured data (JSON-LD)
+    wixSeo.setStructuredData([
+        {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Resilience at HingeCraft | Building Sustainable Strength",
+        "description": "Discover how HingeCraft Global builds resilience through diversified supply chains, adaptive strategies, and sustainable practices for long-term success.",
+        "url": "https://www.hingecraft.com/resilience.j6hyj",
+        "inLanguage": "en-US",
+        "dateModified": "2025-12-06",
+        "publisher": {
+                "@type": "Organization",
+                "name": "HingeCraft Global",
+                "url": "https://www.hingecraft.com",
+                "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://www.hingecraft.com/logo.png"
+                }
+        }
+},
+        {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+                {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "https://www.hingecraft.com"
+                },
+                {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "Resilience at HingeCraft",
+                        "item": "https://www.hingecraft.com/resilience.j6hyj"
+                }
+        ]
+}
+    ]);
+});
+
+
+// Original page code below
 // Comprehensive SEO Optimization - Resilience
 // JSON-LD Schema.org | 100+ Keywords | Competitive Optimization
 

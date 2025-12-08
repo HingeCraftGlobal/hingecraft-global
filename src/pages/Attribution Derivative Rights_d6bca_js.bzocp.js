@@ -1,571 +1,215 @@
-// Comprehensive SEO Optimization - Attribution Derivative Rights_d6bca_js
-// JSON-LD Schema.org | 100+ Keywords | Competitive Optimization
+// HingeCraft Global, LLC - Legal Document
+// Attribution Distribution Derivative Rights
+// State of South Carolina | December 6, 2025
+// Auto-generated - All URLs are HTTPS only
+
+import wixSeo from 'wix-seo';
 
 $w.onReady(function () {
-    if (typeof document !== 'undefined') {
-        // Page Title
-        document.title = 'Attribution, Distribution & Derivative Rights Policy | Hi...';
-        
-        // Meta Description
-        let metaDesc = document.querySelector('meta[name="description"]');
-        if (!metaDesc) {
-            metaDesc = document.createElement('meta');
-            metaDesc.setAttribute('name', 'description');
-            document.head.appendChild(metaDesc);
-        }
-        metaDesc.setAttribute('content', 'HingeCraft Global Attribution, Distribution & Derivative Rights Policy - Policy governing remix, resale, and commercial usage rights');
-        
-        // Meta Keywords
-        let metaKeywords = document.querySelector('meta[name="keywords"]');
-        if (!metaKeywords) {
-            metaKeywords = document.createElement('meta');
-            metaKeywords.setAttribute('name', 'keywords');
-            document.head.appendChild(metaKeywords);
-        }
-        metaKeywords.setAttribute('content', 'user rights, ip rights, attribution rights, derivative works, creator rights, hingecraft, hingecraft global, resilient design');
-        
-        // Open Graph Tags
-        const ogTags = {
-            'og:title': 'Attribution, Distribution & Derivative Rights Policy | Hi...',
-            'og:description': 'HingeCraft Global Attribution, Distribution & Derivative Rights Policy - Policy governing remix, resale, and commercial usage rights',
-            'og:image': 'https://hingecraft-global.ai/og-image.jpg',
-            'og:url': 'https://hingecraft-global.ai/legal/21-attribution-distribution-derivative-rights',
-            'og:type': 'website',
-            'og:site_name': 'HingeCraft Global'
-        };
-        
-        Object.keys(ogTags).forEach(prop => {
-            let ogMeta = document.querySelector(`meta[property="${prop}"]`);
-            if (!ogMeta) {
-                ogMeta = document.createElement('meta');
-                ogMeta.setAttribute('property', prop);
-                document.head.appendChild(ogMeta);
-            }
-            ogMeta.setAttribute('content', ogTags[prop]);
-        });
-        
-        // Twitter Card Tags
-        const twitterTags = {
-            'twitter:card': 'summary_large_image',
-            'twitter:title': 'Attribution, Distribution & Derivative Rights Policy | Hi...',
-            'twitter:description': 'HingeCraft Global Attribution, Distribution & Derivative Rights Policy - Policy governing remix, resale, and commercial usage rights',
-            'twitter:image': 'https://hingecraft-global.ai/og-image.jpg'
-        };
-        
-        Object.keys(twitterTags).forEach(name => {
-            let twitterMeta = document.querySelector(`meta[name="${name}"]`);
-            if (!twitterMeta) {
-                twitterMeta = document.createElement('meta');
-                twitterMeta.setAttribute('name', name);
-                document.head.appendChild(twitterMeta);
-            }
-            twitterMeta.setAttribute('content', twitterTags[name]);
-        });
-        
-        // Canonical URL
-        let canonical = document.querySelector('link[rel="canonical"]');
-        if (!canonical) {
-            canonical = document.createElement('link');
-            canonical.setAttribute('rel', 'canonical');
-            document.head.appendChild(canonical);
-        }
-        canonical.setAttribute('href', 'https://hingecraft-global.ai/legal/21-attribution-distribution-derivative-rights');
-        
-        // Robots Meta
-        let robots = document.querySelector('meta[name="robots"]');
-        if (!robots) {
-            robots = document.createElement('meta');
-            robots.setAttribute('name', 'robots');
-            document.head.appendChild(robots);
-        }
-        robots.setAttribute('content', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
-        
-        // Additional Meta Tags
-        const additionalTags = {
-            'author': 'HingeCraft Global',
-            'language': 'en-US',
-            'revisit-after': '7 days',
-            'distribution': 'global',
-            'rating': 'general'
-        };
-        
-        Object.keys(additionalTags).forEach(name => {
-            let meta = document.querySelector(`meta[name="${name}"]`);
-            if (!meta) {
-                meta = document.createElement('meta');
-                meta.setAttribute('name', name);
-                document.head.appendChild(meta);
-            }
-            meta.setAttribute('content', additionalTags[name]);
-        });
-        
-        // Schema.org JSON-LD Structured Data
-        let schemaScript = document.querySelector('script[type="application/ld+json"]');
-        if (!schemaScript) {
-            schemaScript = document.createElement('script');
-            schemaScript.setAttribute('type', 'application/ld+json');
-            document.head.appendChild(schemaScript);
-        }
-        schemaScript.textContent = `{
-  "@context": "https://schema.org",
-  "@type": "LegalDocument",
-  "name": "Attribution, Distribution & Derivative Rights Policy | Hi...",
-  "description": "HingeCraft Global Attribution, Distribution & Derivative Rights Policy - Policy governing remix, resale, and commercial usage rights",
-  "url": "https://hingecraft-global.ai/legal/21-attribution-distribution-derivative-rights",
-  "publisher": {
-    "@type": "Organization",
-    "name": "HingeCraft Global",
-    "url": "https://hingecraft-global.ai",
-    "logo": "https://hingecraft-global.ai/logo.png"
-  },
-  "datePublished": "2025-12-05",
-  "dateModified": "2025-12-05",
-  "inLanguage": "en-US",
-  "keywords": "user rights, ip rights, attribution rights, derivative works, creator rights, hingecraft, hingecraft global, resilient design"
-}`;
-    }
+    // Set SEO
+    wixSeo.setTitle("Attribution Distribution Derivative Rights | HingeCraft Global");
+    wixSeo.setMetaTags([
+        { name: "description", content: "Attribution Distribution Derivative Rights - HingeCraft Global, LLC legal document for South Carolina" },
+        { name: "robots", content: "index, follow" },
+        { property: "og:title", content: "Attribution Distribution Derivative Rights | HingeCraft Global" },
+        { property: "og:type", content: "website" }
+    ]);
+    
+    // Load legal document content
+    loadLegalContent();
+});
 
-    // Load Legal Page HTML Content
-    function loadLegalPageContent() {
-        const htmlElement = $w('#legalContent');
-        if (htmlElement) {
-            const htmlContent = `<body class="bg-slate-50">
-<section class="hero-gradient text-white py-12 px-6">
-<div class="max-w-4xl mx-auto text-center">
-<h1 class="text-4xl font-bold mb-4">Attribution, Distribution &amp; Derivative Rights Policy</h1>
-<p class="text-lg opacity-90">HINGECRAFT GLOBAL, INC.</p>
-<p class="text-sm opacity-75 mt-2">Controls Remix, Resale, and Commercial Usage</p>
-</div>
-</section>
-<main class="max-w-4xl mx-auto px-6 py-16">
-<div class="prose max-w-none bg-white p-8 rounded-lg shadow-sm">
-<h2>ATTRIBUTION, DISTRIBUTION &amp; DERIVATIVE RIGHTS POLICY</h2>
-<p>This policy defines rights for attribution, distribution, and creation of derivative works from HingeCraft Global designs.</p>
-<h2>I. ATTRIBUTION REQUIREMENTS</h2>
-<p>When using designs, users must:</p>
-<ul>
-<li>Credit the original creator</li>
-<li>Include HingeCraft Global attribution when required</li>
-<li>Maintain attribution in derivative works</li>
-</ul>
-<h2>II. DISTRIBUTION RIGHTS</h2>
-<h3>2.1 Personal Use</h3>
-<p>Users may distribute designs for personal, non-commercial use.</p>
-<h3>2.2 Commercial Distribution</h3>
-<p>Commercial distribution requires:</p>
-<ul>
-<li>Appropriate license</li>
-<li>Creator attribution</li>
-<li>Compliance with license terms</li>
-</ul>
-<h2>III. DERIVATIVE WORKS</h2>
-<h3>3.1 Remix Rights</h3>
-<p>Remix rights depend on license type:</p>
-<ul>
-<li><strong>Open License:</strong> Remix allowed with attribution</li>
-<li><strong>Restricted License:</strong> Remix requires permission</li>
-<li><strong>Commercial License:</strong> Terms specified</li>
-</ul>
-<h3>3.2 Derivative Attribution</h3>
-<p>Derivative works must attribute both original creator and derivative creator.</p>
-<h2>IV. RESALE RIGHTS</h2>
-<p>Resale of physical products generally allowed. Resale of digital designs subject to license terms.</p>
-<h2>V. COMMERCIAL USAGE</h2>
-<p>Commercial usage requires appropriate license. Contact licensing@hingecraft-global.ai for commercial licensing.</p>
-<div class="mt-8 pt-8 border-t border-gray-200">
-<p class="text-sm text-gray-600">Last Updated: December 4, 2025</p>
-<p class="text-sm text-gray-600">For questions about this document, please contact: <a class="text-purple-700 hover:underline" href="mailto:legal@hingecraft-global.ai">legal@hingecraft-global.ai</a></p>
-</div>
-</div>
-<div class="mt-6 flex flex-wrap items-center gap-6 text-sm text-gray-600">
-<div class="flex items-center gap-2">
-<svg class="w-5 h-5 text-green-600" fill="currentColor" viewbox="0 0 20 20">
-<path clip-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" fill-rule="evenodd"></path>
-</svg>
-<span>GDPR Compliant</span>
-</div>
-<div class="flex items-center gap-2">
-<svg class="w-5 h-5 text-green-600" fill="currentColor" viewbox="0 0 20 20">
-<path clip-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" fill-rule="evenodd"></path>
-</svg>
-<span>CCPA Compliant</span>
-</div>
-<div class="flex items-center gap-2">
-<svg class="w-5 h-5 text-green-600" fill="currentColor" viewbox="0 0 20 20">
-<path clip-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" fill-rule="evenodd"></path>
-</svg>
-<span>Secure &amp; Encrypted</span>
-</div>
-</div>
-</main>
-<footer class="bg-gray-900 text-white py-12 px-6 mt-16">
-<div class="max-w-4xl mx-auto text-center">
-<p class="mb-4">© 2025 HingeCraft Global. All rights reserved.</p>
-<p class="text-gray-400 text-sm">
-<a class="hover:text-white" href="/legal">Legal</a> | 
-        <a class="hover:text-white" href="/privacy">Privacy</a> | 
-        <a class="hover:text-white" href="/terms">Terms</a>
-</p>
-</div>
-</footer>
-</body>`;
-            htmlElement.html = htmlContent;
-            console.log('Legal page content loaded successfully');
-        } else {
-            console.log('Legal content element not found. Add HTML element with ID: legalContent');
+function loadLegalContent() {
+    const legalContent = `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attribution, Distribution & Derivative Rights Policy - HingeCraft Global, LLC</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Times New Roman', Times, serif; font-size: 12pt; line-height: 1.6; color: #000; background: #fff; max-width: 8.5in; margin: 0 auto; padding: 1in; }
+        h1 { font-size: 18pt; font-weight: bold; text-align: center; margin-bottom: 24pt; text-transform: uppercase; border-bottom: 2px solid #000; padding-bottom: 12pt; }
+        h2 { font-size: 14pt; font-weight: bold; margin-top: 24pt; margin-bottom: 12pt; text-transform: uppercase; }
+        h3 { font-size: 12pt; font-weight: bold; margin-top: 18pt; margin-bottom: 9pt; }
+        p { margin-bottom: 12pt; text-align: justify; }
+        ul, ol { margin-left: 36pt; margin-bottom: 12pt; }
+        li { margin-bottom: 6pt; }
+        .header { text-align: center; margin-bottom: 36pt; }
+        .company-name { font-size: 16pt; font-weight: bold; }
+        .footer { margin-top: 48pt; padding-top: 12pt; border-top: 1px solid #000; font-size: 10pt; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="company-name">HINGECRAFT GLOBAL, LLC</div>
+        <h1>ATTRIBUTION, DISTRIBUTION &<br>DERIVATIVE RIGHTS POLICY</h1>
+        <p>Effective Date: _________________, 20____<br>State of South Carolina</p>
+    </div>
+
+    <h2>1. PURPOSE</h2>
+    <p>This Policy establishes the terms for attribution, distribution, and creation of derivative works based on HingeCraft Global, LLC ("HingeCraft") intellectual property, including designs, specifications, and content.</p>
+
+    <h2>2. ATTRIBUTION REQUIREMENTS</h2>
+    
+    <h3>2.1 When Attribution Is Required</h3>
+    <p>Attribution to HingeCraft is required when: (a) Using HingeCraft designs or specifications with permission; (b) Referencing HingeCraft technical documentation; (c) Incorporating HingeCraft content in publications; (d) Displaying HingeCraft products in marketing materials.</p>
+    
+    <h3>2.2 Proper Attribution</h3>
+    <p>Proper attribution includes: (a) Company name: "HingeCraft Global, LLC" or "HingeCraft"; (b) Copyright notice: "© [Year] HingeCraft Global, LLC"; (c) Website: "www.hingecraft.com"; (d) Specific product or design name (if applicable).</p>
+    
+    <h3>2.3 Attribution Placement</h3>
+    <p>Attribution should be: (a) Clearly visible; (b) In reasonable proximity to the content; (c) In a font size comparable to other attributions; (d) Not modified or obscured.</p>
+
+    <h2>3. DISTRIBUTION RIGHTS</h2>
+    
+    <h3>3.1 Authorized Distribution</h3>
+    <p>Distribution of HingeCraft products and content requires: (a) Written authorization from HingeCraft; (b) Compliance with distribution agreements; (c) Adherence to pricing and territory restrictions; (d) Maintenance of product quality and safety.</p>
+    
+    <h3>3.2 Prohibited Distribution</h3>
+    <p>The following distribution is prohibited: (a) Unauthorized reproduction; (b) Distribution to embargoed regions; (c) Sale through unauthorized channels; (d) Modification of products without permission.</p>
+
+    <h2>4. DERIVATIVE WORKS</h2>
+    
+    <h3>4.1 Definition</h3>
+    <p>A "derivative work" is any work based upon HingeCraft intellectual property, including modifications, adaptations, improvements, and compilations.</p>
+    
+    <h3>4.2 Authorization Required</h3>
+    <p>Creating derivative works requires prior written permission from HingeCraft. Requests should include: (a) Description of proposed derivative; (b) Intended use and distribution; (c) Commercial or non-commercial purpose; (d) Territory and duration.</p>
+    
+    <h3>4.3 Ownership</h3>
+    <p>Unless otherwise agreed: (a) HingeCraft retains rights to original IP; (b) Derivative works are jointly owned; (c) HingeCraft may use derivative improvements; (d) Creator retains rights to original contributions.</p>
+    
+    <h3>4.4 Royalties</h3>
+    <p>Commercial derivative works may require royalty payments as specified in licensing agreements.</p>
+
+    <h2>5. OPEN SOURCE AND SHARED DESIGNS</h2>
+    
+    <h3>5.1 Open Source Releases</h3>
+    <p>Certain designs may be released under open source licenses. Such releases will specify: (a) Applicable license terms; (b) Attribution requirements; (c) Commercial use rights; (d) Derivative work permissions.</p>
+    
+    <h3>5.2 Community Contributions</h3>
+    <p>Contributors to community projects grant HingeCraft a license to use contributions, subject to contributor agreements.</p>
+
+    <h2>6. ENFORCEMENT</h2>
+    <p>HingeCraft reserves the right to: (a) Monitor use of its intellectual property; (b) Take action against unauthorized use; (c) Revoke permissions for policy violations; (d) Seek legal remedies for infringement.</p>
+
+    <h2>7. CONTACT</h2>
+    <p>For licensing inquiries: licensing@hingecraft.com | (843) 555-0100</p>
+
+    <div class="footer">
+        <p>HingeCraft Global, LLC | 123 Innovation Drive, Suite 100, Charleston, SC 29401</p>
+        <p>© 2025 HingeCraft Global, LLC. All Rights Reserved.</p>
+    </div>
+</body>
+</html>
+
+`;
+    
+    // Try to find the legalContent element
+    if ($w('#legalContent')) {
+        try {
+            $w('#legalContent').html = legalContent;
+        } catch (e) {
+            console.log("HTML element not configured - content ready for manual embed");
         }
     }
     
-    loadLegalPageContent();
-
-});
-
-
-$w.onReady(function () {
-    if (typeof document !== 'undefined') {
-        // Page Title
-        document.title = 'Attribution Derivative Rights_d6bca_js | HingeCraft Global';
-        
-        // Meta Description
-        let metaDesc = document.querySelector('meta[name="description"]');
-        if (!metaDesc) {
-            metaDesc = document.createElement('meta');
-            metaDesc.setAttribute('name', 'description');
-            document.head.appendChild(metaDesc);
+    // Also try text element fallback
+    if ($w('#legalText')) {
+        try {
+            $w('#legalText').html = legalContent;
+        } catch (e) {
+            console.log("Using text element fallback");
         }
-        metaDesc.setAttribute('content', 'Attribution Derivative Rights_d6bca_js - HingeCraft Global');
-        
-        // Meta Keywords
-        let metaKeywords = document.querySelector('meta[name="keywords"]');
-        if (!metaKeywords) {
-            metaKeywords = document.createElement('meta');
-            metaKeywords.setAttribute('name', 'keywords');
-            document.head.appendChild(metaKeywords);
-        }
-        metaKeywords.setAttribute('content', 'user rights, ip rights, attribution rights, derivative works, creator rights, hingecraft, hingecraft global');
-        
-        // Open Graph Tags
-        const ogTags = {
-            'og:title': 'Attribution Derivative Rights_d6bca_js | HingeCraft Global',
-            'og:description': 'Attribution Derivative Rights_d6bca_js - HingeCraft Global',
-            'og:image': 'https://hingecraft-global.ai/og-image.jpg',
-            'og:url': 'https://hingecraft-global.ai/attribution-derivative-rights-d6bca-js',
-            'og:type': 'website',
-            'og:site_name': 'HingeCraft Global'
-        };
-        
-        Object.keys(ogTags).forEach(prop => {
-            let ogMeta = document.querySelector(`meta[property="${prop}"]`);
-            if (!ogMeta) {
-                ogMeta = document.createElement('meta');
-                ogMeta.setAttribute('property', prop);
-                document.head.appendChild(ogMeta);
-            }
-            ogMeta.setAttribute('content', ogTags[prop]);
-        });
-        
-        // Twitter Card Tags
-        const twitterTags = {
-            'twitter:card': 'summary_large_image',
-            'twitter:title': 'Attribution Derivative Rights_d6bca_js | HingeCraft Global',
-            'twitter:description': 'Attribution Derivative Rights_d6bca_js - HingeCraft Global',
-            'twitter:image': 'https://hingecraft-global.ai/og-image.jpg'
-        };
-        
-        Object.keys(twitterTags).forEach(name => {
-            let twitterMeta = document.querySelector(`meta[name="${name}"]`);
-            if (!twitterMeta) {
-                twitterMeta = document.createElement('meta');
-                twitterMeta.setAttribute('name', name);
-                document.head.appendChild(twitterMeta);
-            }
-            twitterMeta.setAttribute('content', twitterTags[name]);
-        });
-        
-        // Canonical URL
-        let canonical = document.querySelector('link[rel="canonical"]');
-        if (!canonical) {
-            canonical = document.createElement('link');
-            canonical.setAttribute('rel', 'canonical');
-            document.head.appendChild(canonical);
-        }
-        canonical.setAttribute('href', 'https://hingecraft-global.ai/attribution-derivative-rights-d6bca-js');
-        
-        // Robots Meta
-        let robots = document.querySelector('meta[name="robots"]');
-        if (!robots) {
-            robots = document.createElement('meta');
-            robots.setAttribute('name', 'robots');
-            document.head.appendChild(robots);
-        }
-        robots.setAttribute('content', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
-        
-        // Schema.org JSON-LD Structured Data
-        let schemaScript = document.querySelector('script[type="application/ld+json"]');
-        if (!schemaScript) {
-            schemaScript = document.createElement('script');
-            schemaScript.setAttribute('type', 'application/ld+json');
-            document.head.appendChild(schemaScript);
-        }
-        schemaScript.textContent = `{
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "Attribution Derivative Rights_d6bca_js | HingeCraft Global",
-  "description": "Attribution Derivative Rights_d6bca_js - HingeCraft Global",
-  "url": "https://hingecraft-global.ai/attribution-derivative-rights-d6bca-js",
-  "publisher": {
-    "@type": "Organization",
-    "name": "HingeCraft Global",
-    "url": "https://hingecraft-global.ai",
-    "logo": "https://hingecraft-global.ai/logo.png"
-  },
-  "datePublished": "2025-12-05",
-  "dateModified": "2025-12-05",
-  "inLanguage": "en-US",
-  "keywords": "user rights, ip rights, attribution rights, derivative works, creator rights, hingecraft, hingecraft global"
-}`;
     }
+}
+
+// Export for potential use in other contexts
+export function getLegalDocumentHTML() {
+    return `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attribution, Distribution & Derivative Rights Policy - HingeCraft Global, LLC</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Times New Roman', Times, serif; font-size: 12pt; line-height: 1.6; color: #000; background: #fff; max-width: 8.5in; margin: 0 auto; padding: 1in; }
+        h1 { font-size: 18pt; font-weight: bold; text-align: center; margin-bottom: 24pt; text-transform: uppercase; border-bottom: 2px solid #000; padding-bottom: 12pt; }
+        h2 { font-size: 14pt; font-weight: bold; margin-top: 24pt; margin-bottom: 12pt; text-transform: uppercase; }
+        h3 { font-size: 12pt; font-weight: bold; margin-top: 18pt; margin-bottom: 9pt; }
+        p { margin-bottom: 12pt; text-align: justify; }
+        ul, ol { margin-left: 36pt; margin-bottom: 12pt; }
+        li { margin-bottom: 6pt; }
+        .header { text-align: center; margin-bottom: 36pt; }
+        .company-name { font-size: 16pt; font-weight: bold; }
+        .footer { margin-top: 48pt; padding-top: 12pt; border-top: 1px solid #000; font-size: 10pt; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="company-name">HINGECRAFT GLOBAL, LLC</div>
+        <h1>ATTRIBUTION, DISTRIBUTION &<br>DERIVATIVE RIGHTS POLICY</h1>
+        <p>Effective Date: _________________, 20____<br>State of South Carolina</p>
+    </div>
+
+    <h2>1. PURPOSE</h2>
+    <p>This Policy establishes the terms for attribution, distribution, and creation of derivative works based on HingeCraft Global, LLC ("HingeCraft") intellectual property, including designs, specifications, and content.</p>
+
+    <h2>2. ATTRIBUTION REQUIREMENTS</h2>
     
-    // Load HTML content for legal pages
+    <h3>2.1 When Attribution Is Required</h3>
+    <p>Attribution to HingeCraft is required when: (a) Using HingeCraft designs or specifications with permission; (b) Referencing HingeCraft technical documentation; (c) Incorporating HingeCraft content in publications; (d) Displaying HingeCraft products in marketing materials.</p>
     
-});
-
-
-
-
-$w.onReady(function () {
-    if (typeof document !== 'undefined') {
-        // Page Title
-        document.title = 'Attribution Derivative Rights_d6bca_js | HingeCraft Global';
-        
-        // Meta Description
-        let metaDesc = document.querySelector('meta[name="description"]');
-        if (!metaDesc) {
-            metaDesc = document.createElement('meta');
-            metaDesc.setAttribute('name', 'description');
-            document.head.appendChild(metaDesc);
-        }
-        metaDesc.setAttribute('content', 'Attribution Derivative Rights_d6bca_js - HingeCraft Global');
-        
-        // Meta Keywords
-        let metaKeywords = document.querySelector('meta[name="keywords"]');
-        if (!metaKeywords) {
-            metaKeywords = document.createElement('meta');
-            metaKeywords.setAttribute('name', 'keywords');
-            document.head.appendChild(metaKeywords);
-        }
-        metaKeywords.setAttribute('content', 'user rights, ip rights, attribution rights, derivative works, creator rights, hingecraft, hingecraft global');
-        
-        // Open Graph Tags
-        const ogTags = {
-            'og:title': 'Attribution Derivative Rights_d6bca_js | HingeCraft Global',
-            'og:description': 'Attribution Derivative Rights_d6bca_js - HingeCraft Global',
-            'og:image': 'https://hingecraft-global.ai/og-image.jpg',
-            'og:url': 'https://hingecraft-global.ai/attribution-derivative-rights-d6bca-js',
-            'og:type': 'website',
-            'og:site_name': 'HingeCraft Global'
-        };
-        
-        Object.keys(ogTags).forEach(prop => {
-            let ogMeta = document.querySelector(`meta[property="${prop}"]`);
-            if (!ogMeta) {
-                ogMeta = document.createElement('meta');
-                ogMeta.setAttribute('property', prop);
-                document.head.appendChild(ogMeta);
-            }
-            ogMeta.setAttribute('content', ogTags[prop]);
-        });
-        
-        // Twitter Card Tags
-        const twitterTags = {
-            'twitter:card': 'summary_large_image',
-            'twitter:title': 'Attribution Derivative Rights_d6bca_js | HingeCraft Global',
-            'twitter:description': 'Attribution Derivative Rights_d6bca_js - HingeCraft Global',
-            'twitter:image': 'https://hingecraft-global.ai/og-image.jpg'
-        };
-        
-        Object.keys(twitterTags).forEach(name => {
-            let twitterMeta = document.querySelector(`meta[name="${name}"]`);
-            if (!twitterMeta) {
-                twitterMeta = document.createElement('meta');
-                twitterMeta.setAttribute('name', name);
-                document.head.appendChild(twitterMeta);
-            }
-            twitterMeta.setAttribute('content', twitterTags[name]);
-        });
-        
-        // Canonical URL
-        let canonical = document.querySelector('link[rel="canonical"]');
-        if (!canonical) {
-            canonical = document.createElement('link');
-            canonical.setAttribute('rel', 'canonical');
-            document.head.appendChild(canonical);
-        }
-        canonical.setAttribute('href', 'https://hingecraft-global.ai/attribution-derivative-rights-d6bca-js');
-        
-        // Robots Meta
-        let robots = document.querySelector('meta[name="robots"]');
-        if (!robots) {
-            robots = document.createElement('meta');
-            robots.setAttribute('name', 'robots');
-            document.head.appendChild(robots);
-        }
-        robots.setAttribute('content', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
-        
-        // Schema.org JSON-LD Structured Data
-        let schemaScript = document.querySelector('script[type="application/ld+json"]');
-        if (!schemaScript) {
-            schemaScript = document.createElement('script');
-            schemaScript.setAttribute('type', 'application/ld+json');
-            document.head.appendChild(schemaScript);
-        }
-        schemaScript.textContent = `{
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "Attribution Derivative Rights_d6bca_js | HingeCraft Global",
-  "description": "Attribution Derivative Rights_d6bca_js - HingeCraft Global",
-  "url": "https://hingecraft-global.ai/attribution-derivative-rights-d6bca-js",
-  "publisher": {
-    "@type": "Organization",
-    "name": "HingeCraft Global",
-    "url": "https://hingecraft-global.ai",
-    "logo": "https://hingecraft-global.ai/logo.png"
-  },
-  "datePublished": "2025-12-05",
-  "dateModified": "2025-12-05",
-  "inLanguage": "en-US",
-  "keywords": "user rights, ip rights, attribution rights, derivative works, creator rights, hingecraft, hingecraft global"
-}`;
-    }
+    <h3>2.2 Proper Attribution</h3>
+    <p>Proper attribution includes: (a) Company name: "HingeCraft Global, LLC" or "HingeCraft"; (b) Copyright notice: "© [Year] HingeCraft Global, LLC"; (c) Website: "www.hingecraft.com"; (d) Specific product or design name (if applicable).</p>
     
-    // Load HTML content for legal pages
+    <h3>2.3 Attribution Placement</h3>
+    <p>Attribution should be: (a) Clearly visible; (b) In reasonable proximity to the content; (c) In a font size comparable to other attributions; (d) Not modified or obscured.</p>
+
+    <h2>3. DISTRIBUTION RIGHTS</h2>
     
-});
+    <h3>3.1 Authorized Distribution</h3>
+    <p>Distribution of HingeCraft products and content requires: (a) Written authorization from HingeCraft; (b) Compliance with distribution agreements; (c) Adherence to pricing and territory restrictions; (d) Maintenance of product quality and safety.</p>
+    
+    <h3>3.2 Prohibited Distribution</h3>
+    <p>The following distribution is prohibited: (a) Unauthorized reproduction; (b) Distribution to embargoed regions; (c) Sale through unauthorized channels; (d) Modification of products without permission.</p>
 
+    <h2>4. DERIVATIVE WORKS</h2>
+    
+    <h3>4.1 Definition</h3>
+    <p>A "derivative work" is any work based upon HingeCraft intellectual property, including modifications, adaptations, improvements, and compilations.</p>
+    
+    <h3>4.2 Authorization Required</h3>
+    <p>Creating derivative works requires prior written permission from HingeCraft. Requests should include: (a) Description of proposed derivative; (b) Intended use and distribution; (c) Commercial or non-commercial purpose; (d) Territory and duration.</p>
+    
+    <h3>4.3 Ownership</h3>
+    <p>Unless otherwise agreed: (a) HingeCraft retains rights to original IP; (b) Derivative works are jointly owned; (c) HingeCraft may use derivative improvements; (d) Creator retains rights to original contributions.</p>
+    
+    <h3>4.4 Royalties</h3>
+    <p>Commercial derivative works may require royalty payments as specified in licensing agreements.</p>
 
+    <h2>5. OPEN SOURCE AND SHARED DESIGNS</h2>
+    
+    <h3>5.1 Open Source Releases</h3>
+    <p>Certain designs may be released under open source licenses. Such releases will specify: (a) Applicable license terms; (b) Attribution requirements; (c) Commercial use rights; (d) Derivative work permissions.</p>
+    
+    <h3>5.2 Community Contributions</h3>
+    <p>Contributors to community projects grant HingeCraft a license to use contributions, subject to contributor agreements.</p>
 
+    <h2>6. ENFORCEMENT</h2>
+    <p>HingeCraft reserves the right to: (a) Monitor use of its intellectual property; (b) Take action against unauthorized use; (c) Revoke permissions for policy violations; (d) Seek legal remedies for infringement.</p>
 
-$w.onReady(function () {
-    if (typeof document !== 'undefined') {
-        // Page Title
-        document.title = 'Attribution, Distribution & Derivative Rights Policy | Hi...';
-        
-        // Meta Description
-        let metaDesc = document.querySelector('meta[name="description"]');
-        if (!metaDesc) {
-            metaDesc = document.createElement('meta');
-            metaDesc.setAttribute('name', 'description');
-            document.head.appendChild(metaDesc);
-        }
-        metaDesc.setAttribute('content', 'HingeCraft Global Attribution, Distribution & Derivative Rights Policy - Policy governing remix, resale, and commercial usage rights');
-        
-        // Meta Keywords
-        let metaKeywords = document.querySelector('meta[name="keywords"]');
-        if (!metaKeywords) {
-            metaKeywords = document.createElement('meta');
-            metaKeywords.setAttribute('name', 'keywords');
-            document.head.appendChild(metaKeywords);
-        }
-        metaKeywords.setAttribute('content', 'user rights, ip rights, attribution rights, derivative works, creator rights, derivative rights, membership rights, hingecraft, hingecraft global, resilient design');
-        
-        // Open Graph Tags
-        const ogTags = {
-            'og:title': 'Attribution, Distribution & Derivative Rights Policy | Hi...',
-            'og:description': 'HingeCraft Global Attribution, Distribution & Derivative Rights Policy - Policy governing remix, resale, and commercial usage rights',
-            'og:image': 'https://hingecraft-global.ai/og-image.jpg',
-            'og:url': 'https://hingecraft-global.ai/legal/attribution_derivative_rights',
-            'og:type': 'website',
-            'og:site_name': 'HingeCraft Global'
-        };
-        
-        Object.keys(ogTags).forEach(prop => {
-            let ogMeta = document.querySelector(`meta[property="${prop}"]`);
-            if (!ogMeta) {
-                ogMeta = document.createElement('meta');
-                ogMeta.setAttribute('property', prop);
-                document.head.appendChild(ogMeta);
-            }
-            ogMeta.setAttribute('content', ogTags[prop]);
-        });
-        
-        // Twitter Card Tags
-        const twitterTags = {
-            'twitter:card': 'summary_large_image',
-            'twitter:title': 'Attribution, Distribution & Derivative Rights Policy | Hi...',
-            'twitter:description': 'HingeCraft Global Attribution, Distribution & Derivative Rights Policy - Policy governing remix, resale, and commercial usage rights',
-            'twitter:image': 'https://hingecraft-global.ai/og-image.jpg'
-        };
-        
-        Object.keys(twitterTags).forEach(name => {
-            let twitterMeta = document.querySelector(`meta[name="${name}"]`);
-            if (!twitterMeta) {
-                twitterMeta = document.createElement('meta');
-                twitterMeta.setAttribute('name', name);
-                document.head.appendChild(twitterMeta);
-            }
-            twitterMeta.setAttribute('content', twitterTags[name]);
-        });
-        
-        // Canonical URL
-        let canonical = document.querySelector('link[rel="canonical"]');
-        if (!canonical) {
-            canonical = document.createElement('link');
-            canonical.setAttribute('rel', 'canonical');
-            document.head.appendChild(canonical);
-        }
-        canonical.setAttribute('href', 'https://hingecraft-global.ai/legal/attribution_derivative_rights');
-        
-        // Robots Meta
-        let robots = document.querySelector('meta[name="robots"]');
-        if (!robots) {
-            robots = document.createElement('meta');
-            robots.setAttribute('name', 'robots');
-            document.head.appendChild(robots);
-        }
-        robots.setAttribute('content', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
-        
-        // Schema.org JSON-LD
-        let schemaScript = document.querySelector('script[type="application/ld+json"]');
-        if (!schemaScript) {
-            schemaScript = document.createElement('script');
-            schemaScript.setAttribute('type', 'application/ld+json');
-            document.head.appendChild(schemaScript);
-        }
-        schemaScript.textContent = JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "LegalDocument",
-            "name": "Attribution, Distribution & Derivative Rights Policy | Hi...",
-            "description": "HingeCraft Global Attribution, Distribution & Derivative Rights Policy - Policy governing remix, resale, and commercial usage rights",
-            "url": "https://hingecraft-global.ai/legal/attribution_derivative_rights",
-            "publisher": {
-                "@type": "Organization",
-                "name": "HingeCraft Global",
-                "url": "https://hingecraft-global.ai",
-                "logo": "https://hingecraft-global.ai/logo.png"
-            },
-            "datePublished": "2025-12-05",
-            "dateModified": "2025-12-05",
-            "inLanguage": "en-US",
-            "keywords": "user rights, ip rights, attribution rights, derivative works, creator rights, derivative rights, membership rights, hingecraft, hingecraft global, resilient design"
-        });
-    }
-});
+    <h2>7. CONTACT</h2>
+    <p>For licensing inquiries: licensing@hingecraft.com | (843) 555-0100</p>
 
+    <div class="footer">
+        <p>HingeCraft Global, LLC | 123 Innovation Drive, Suite 100, Charleston, SC 29401</p>
+        <p>© 2025 HingeCraft Global, LLC. All Rights Reserved.</p>
+    </div>
+</body>
+</html>
 
-// API Reference: https://www.wix.com/velo/reference/api-overview/introduction
-// “Hello, World!” Example: https://learn-code.wix.com/en/article/hello-world
-
-$w.onReady(function () {
-    // Write your JavaScript here
-
-    // To select an element by ID use: $w('#elementID')
-
-    // Click 'Preview' to run your code
-});
-
-
-// Load Legal Page HTML Content
-
-$w.onReady(function () {
-    loadLegalPageContent();
-});
+`;
+}

@@ -1,3 +1,69 @@
+// HingeCraft Global - SEO Optimized
+// HingeCraft Governance | Corporate Leadership
+// Generated: December 6, 2025
+
+import wixSeo from 'wix-seo';
+
+$w.onReady(function () {
+    // Set page title
+    wixSeo.setTitle("HingeCraft Governance | Corporate Leadership");
+    
+    // Set meta tags
+    wixSeo.setMetaTags([
+        { name: "description", content: "Learn about HingeCraft Global's governance structure, leadership team, and commitment to ethical corporate practices." },
+        { name: "keywords", content: "corporate governance, leadership, board of directors, corporate structure, ethical governance" },
+        { name: "robots", content: "index, follow" },
+        { property: "og:title", content: "HingeCraft Governance | Corporate Leadership" },
+        { property: "og:description", content: "Learn about HingeCraft Global's governance structure, leadership team, and commitment to ethical corporate practices." },
+        { property: "og:type", content: "website" },
+        { property: "og:site_name", content: "HingeCraft Global" },
+        { property: "twitter:card", content: "summary_large_image" },
+        { property: "twitter:title", content: "HingeCraft Governance | Corporate Leadership" },
+        { property: "twitter:description", content: "Learn about HingeCraft Global's governance structure, leadership team, and commitment to ethical corporate practices." }
+    ]);
+    
+    // Set structured data (JSON-LD)
+    wixSeo.setStructuredData([
+        {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "HingeCraft Governance | Corporate Leadership",
+        "description": "Learn about HingeCraft Global's governance structure, leadership team, and commitment to ethical corporate practices.",
+        "url": "https://www.hingecraft.com/hc-governance.u5fe7",
+        "inLanguage": "en-US",
+        "dateModified": "2025-12-06",
+        "publisher": {
+                "@type": "Organization",
+                "name": "HingeCraft Global",
+                "url": "https://www.hingecraft.com",
+                "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://www.hingecraft.com/logo.png"
+                }
+        }
+},
+        {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+                {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "https://www.hingecraft.com"
+                },
+                {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "HingeCraft Governance",
+                        "item": "https://www.hingecraft.com/hc-governance.u5fe7"
+                }
+        ]
+}
+    ]);
+});
+
+
+// Original page code below
 // Comprehensive SEO Optimization - HC Governance
 // JSON-LD Schema.org | 100+ Keywords | Competitive Optimization
 

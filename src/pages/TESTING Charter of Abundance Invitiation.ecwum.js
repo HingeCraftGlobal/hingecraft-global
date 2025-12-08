@@ -1,3 +1,69 @@
+// HingeCraft Global - SEO Optimized
+// Charter of Abundance Test | Preview
+// Generated: December 6, 2025
+
+import wixSeo from 'wix-seo';
+
+$w.onReady(function () {
+    // Set page title
+    wixSeo.setTitle("Charter of Abundance Test | Preview");
+    
+    // Set meta tags
+    wixSeo.setMetaTags([
+        { name: "description", content: "Preview page for Charter of Abundance invitation - HingeCraft's commitment to sustainable prosperity." },
+        { name: "keywords", content: "charter preview, abundance charter, invitation preview" },
+        { name: "robots", content: "index, follow" },
+        { property: "og:title", content: "Charter of Abundance Test | Preview" },
+        { property: "og:description", content: "Preview page for Charter of Abundance invitation - HingeCraft's commitment to sustainable prosperity." },
+        { property: "og:type", content: "website" },
+        { property: "og:site_name", content: "HingeCraft Global" },
+        { property: "twitter:card", content: "summary_large_image" },
+        { property: "twitter:title", content: "Charter of Abundance Test | Preview" },
+        { property: "twitter:description", content: "Preview page for Charter of Abundance invitation - HingeCraft's commitment to sustainable prosperity." }
+    ]);
+    
+    // Set structured data (JSON-LD)
+    wixSeo.setStructuredData([
+        {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Charter of Abundance Test | Preview",
+        "description": "Preview page for Charter of Abundance invitation - HingeCraft's commitment to sustainable prosperity.",
+        "url": "https://www.hingecraft.com/testing-charter-of-abundance-invitiation.ecwum",
+        "inLanguage": "en-US",
+        "dateModified": "2025-12-06",
+        "publisher": {
+                "@type": "Organization",
+                "name": "HingeCraft Global",
+                "url": "https://www.hingecraft.com",
+                "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://www.hingecraft.com/logo.png"
+                }
+        }
+},
+        {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+                {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "https://www.hingecraft.com"
+                },
+                {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "Charter of Abundance Test",
+                        "item": "https://www.hingecraft.com/testing-charter-of-abundance-invitiation.ecwum"
+                }
+        ]
+}
+    ]);
+});
+
+
+// Original page code below
 // Comprehensive SEO Optimization - TESTING Charter of Abundance Invitiation
 // JSON-LD Schema.org | 100+ Keywords | Competitive Optimization
 

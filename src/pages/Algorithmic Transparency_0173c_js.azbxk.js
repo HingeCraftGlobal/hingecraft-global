@@ -1,573 +1,189 @@
-// Comprehensive SEO Optimization - Algorithmic Transparency_0173c_js
-// JSON-LD Schema.org | 100+ Keywords | Competitive Optimization
+// HingeCraft Global, LLC - Legal Document
+// Algorithmic Transparency Accountability
+// State of South Carolina | December 6, 2025
+// Auto-generated - All URLs are HTTPS only
+
+import wixSeo from 'wix-seo';
 
 $w.onReady(function () {
-    if (typeof document !== 'undefined') {
-        // Page Title
-        document.title = 'Algorithmic Transparency & Accountability Statement | Hin...';
-        
-        // Meta Description
-        let metaDesc = document.querySelector('meta[name="description"]');
-        if (!metaDesc) {
-            metaDesc = document.createElement('meta');
-            metaDesc.setAttribute('name', 'description');
-            document.head.appendChild(metaDesc);
-        }
-        metaDesc.setAttribute('content', 'HingeCraft Global Algorithmic Transparency & Accountability Statement - AI governance compliance, transparency, and accountability measures');
-        
-        // Meta Keywords
-        let metaKeywords = document.querySelector('meta[name="keywords"]');
-        if (!metaKeywords) {
-            metaKeywords = document.createElement('meta');
-            metaKeywords.setAttribute('name', 'keywords');
-            document.head.appendChild(metaKeywords);
-        }
-        metaKeywords.setAttribute('content', 'transparency, corporate transparency, algorithmic transparency, hingecraft, hingecraft global, resilient design');
-        
-        // Open Graph Tags
-        const ogTags = {
-            'og:title': 'Algorithmic Transparency & Accountability Statement | Hin...',
-            'og:description': 'HingeCraft Global Algorithmic Transparency & Accountability Statement - AI governance compliance, transparency, and accountability measures',
-            'og:image': 'https://hingecraft-global.ai/og-image.jpg',
-            'og:url': 'https://hingecraft-global.ai/legal/16-algorithmic-transparency-accountability',
-            'og:type': 'website',
-            'og:site_name': 'HingeCraft Global'
-        };
-        
-        Object.keys(ogTags).forEach(prop => {
-            let ogMeta = document.querySelector(`meta[property="${prop}"]`);
-            if (!ogMeta) {
-                ogMeta = document.createElement('meta');
-                ogMeta.setAttribute('property', prop);
-                document.head.appendChild(ogMeta);
-            }
-            ogMeta.setAttribute('content', ogTags[prop]);
-        });
-        
-        // Twitter Card Tags
-        const twitterTags = {
-            'twitter:card': 'summary_large_image',
-            'twitter:title': 'Algorithmic Transparency & Accountability Statement | Hin...',
-            'twitter:description': 'HingeCraft Global Algorithmic Transparency & Accountability Statement - AI governance compliance, transparency, and accountability measures',
-            'twitter:image': 'https://hingecraft-global.ai/og-image.jpg'
-        };
-        
-        Object.keys(twitterTags).forEach(name => {
-            let twitterMeta = document.querySelector(`meta[name="${name}"]`);
-            if (!twitterMeta) {
-                twitterMeta = document.createElement('meta');
-                twitterMeta.setAttribute('name', name);
-                document.head.appendChild(twitterMeta);
-            }
-            twitterMeta.setAttribute('content', twitterTags[name]);
-        });
-        
-        // Canonical URL
-        let canonical = document.querySelector('link[rel="canonical"]');
-        if (!canonical) {
-            canonical = document.createElement('link');
-            canonical.setAttribute('rel', 'canonical');
-            document.head.appendChild(canonical);
-        }
-        canonical.setAttribute('href', 'https://hingecraft-global.ai/legal/16-algorithmic-transparency-accountability');
-        
-        // Robots Meta
-        let robots = document.querySelector('meta[name="robots"]');
-        if (!robots) {
-            robots = document.createElement('meta');
-            robots.setAttribute('name', 'robots');
-            document.head.appendChild(robots);
-        }
-        robots.setAttribute('content', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
-        
-        // Additional Meta Tags
-        const additionalTags = {
-            'author': 'HingeCraft Global',
-            'language': 'en-US',
-            'revisit-after': '7 days',
-            'distribution': 'global',
-            'rating': 'general'
-        };
-        
-        Object.keys(additionalTags).forEach(name => {
-            let meta = document.querySelector(`meta[name="${name}"]`);
-            if (!meta) {
-                meta = document.createElement('meta');
-                meta.setAttribute('name', name);
-                document.head.appendChild(meta);
-            }
-            meta.setAttribute('content', additionalTags[name]);
-        });
-        
-        // Schema.org JSON-LD Structured Data
-        let schemaScript = document.querySelector('script[type="application/ld+json"]');
-        if (!schemaScript) {
-            schemaScript = document.createElement('script');
-            schemaScript.setAttribute('type', 'application/ld+json');
-            document.head.appendChild(schemaScript);
-        }
-        schemaScript.textContent = `{
-  "@context": "https://schema.org",
-  "@type": "LegalDocument",
-  "name": "Algorithmic Transparency & Accountability Statement | Hin...",
-  "description": "HingeCraft Global Algorithmic Transparency & Accountability Statement - AI governance compliance, transparency, and accountability measures",
-  "url": "https://hingecraft-global.ai/legal/16-algorithmic-transparency-accountability",
-  "publisher": {
-    "@type": "Organization",
-    "name": "HingeCraft Global",
-    "url": "https://hingecraft-global.ai",
-    "logo": "https://hingecraft-global.ai/logo.png"
-  },
-  "datePublished": "2025-12-05",
-  "dateModified": "2025-12-05",
-  "inLanguage": "en-US",
-  "keywords": "transparency, corporate transparency, algorithmic transparency, hingecraft, hingecraft global, resilient design"
-}`;
-    }
+    // Set SEO
+    wixSeo.setTitle("Algorithmic Transparency Accountability | HingeCraft Global");
+    wixSeo.setMetaTags([
+        { name: "description", content: "Algorithmic Transparency Accountability - HingeCraft Global, LLC legal document for South Carolina" },
+        { name: "robots", content: "index, follow" },
+        { property: "og:title", content: "Algorithmic Transparency Accountability | HingeCraft Global" },
+        { property: "og:type", content: "website" }
+    ]);
+    
+    // Load legal document content
+    loadLegalContent();
+});
 
-    // Load Legal Page HTML Content
-    function loadLegalPageContent() {
-        const htmlElement = $w('#legalContent');
-        if (htmlElement) {
-            const htmlContent = `<body class="bg-slate-50">
-<section class="hero-gradient text-white py-12 px-6">
-<div class="max-w-4xl mx-auto text-center">
-<h1 class="text-4xl font-bold mb-4">Algorithmic Transparency &amp; Accountability Statement</h1>
-<p class="text-lg opacity-90">HINGECRAFT GLOBAL, INC.</p>
-<p class="text-sm opacity-75 mt-2">Required for AI Governance Compliance</p>
-</div>
-</section>
-<main class="max-w-4xl mx-auto px-6 py-16">
-<div class="prose max-w-none bg-white p-8 rounded-lg shadow-sm">
-<h2>ALGORITHMIC TRANSPARENCY &amp; ACCOUNTABILITY STATEMENT</h2>
-<p>HingeCraft Global is committed to transparent and accountable AI systems. This statement outlines our approach to algorithmic governance.</p>
-<h2>I. TRANSPARENCY COMMITMENTS</h2>
-<h3>1.1 Algorithm Disclosure</h3>
-<p>We disclose:</p>
-<ul>
-<li>Types of AI systems used</li>
-<li>General purposes and capabilities</li>
-<li>Data sources and training methods</li>
-<li>Known limitations</li>
-</ul>
-<h3>1.2 Decision Explanation</h3>
-<p>Where feasible, we provide explanations for AI-driven decisions affecting users.</p>
-<h2>II. ACCOUNTABILITY MEASURES</h2>
-<h3>2.1 Human Oversight</h3>
-<p>Critical decisions involve human review and oversight.</p>
-<h3>2.2 Bias Testing</h3>
-<p>We regularly test AI systems for bias and discrimination.</p>
-<h3>2.3 Impact Assessment</h3>
-<p>We assess the social and ethical impacts of our AI systems.</p>
-<h2>III. USER RIGHTS</h2>
-<ul>
-<li>Right to explanation</li>
-<li>Right to human review</li>
-<li>Right to contest decisions</li>
-<li>Right to opt-out</li>
-</ul>
-<h2>IV. GOVERNANCE FRAMEWORK</h2>
-<p>Our AI governance includes:</p>
-<ul>
-<li>Ethics review board</li>
-<li>Regular audits</li>
-<li>Stakeholder input</li>
-<li>Continuous improvement</li>
-</ul>
-<div class="mt-8 pt-8 border-t border-gray-200">
-<p class="text-sm text-gray-600">Last Updated: December 4, 2025</p>
-<p class="text-sm text-gray-600">For questions about this document, please contact: <a class="text-purple-700 hover:underline" href="mailto:legal@hingecraft-global.ai">legal@hingecraft-global.ai</a></p>
-</div>
-</div>
-<div class="mt-6 flex flex-wrap items-center gap-6 text-sm text-gray-600">
-<div class="flex items-center gap-2">
-<svg class="w-5 h-5 text-green-600" fill="currentColor" viewbox="0 0 20 20">
-<path clip-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" fill-rule="evenodd"></path>
-</svg>
-<span>GDPR Compliant</span>
-</div>
-<div class="flex items-center gap-2">
-<svg class="w-5 h-5 text-green-600" fill="currentColor" viewbox="0 0 20 20">
-<path clip-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" fill-rule="evenodd"></path>
-</svg>
-<span>CCPA Compliant</span>
-</div>
-<div class="flex items-center gap-2">
-<svg class="w-5 h-5 text-green-600" fill="currentColor" viewbox="0 0 20 20">
-<path clip-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" fill-rule="evenodd"></path>
-</svg>
-<span>Secure &amp; Encrypted</span>
-</div>
-</div>
-</main>
-<footer class="bg-gray-900 text-white py-12 px-6 mt-16">
-<div class="max-w-4xl mx-auto text-center">
-<p class="mb-4">© 2025 HingeCraft Global. All rights reserved.</p>
-<p class="text-gray-400 text-sm">
-<a class="hover:text-white" href="/legal">Legal</a> | 
-        <a class="hover:text-white" href="/privacy">Privacy</a> | 
-        <a class="hover:text-white" href="/terms">Terms</a>
-</p>
-</div>
-</footer>
-</body>`;
-            htmlElement.html = htmlContent;
-            console.log('Legal page content loaded successfully');
-        } else {
-            console.log('Legal content element not found. Add HTML element with ID: legalContent');
+function loadLegalContent() {
+    const legalContent = `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algorithmic Transparency & Accountability Policy - HingeCraft Global, LLC</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Times New Roman', Times, serif; font-size: 12pt; line-height: 1.6; color: #000; background: #fff; max-width: 8.5in; margin: 0 auto; padding: 1in; }
+        h1 { font-size: 18pt; font-weight: bold; text-align: center; margin-bottom: 24pt; text-transform: uppercase; border-bottom: 2px solid #000; padding-bottom: 12pt; }
+        h2 { font-size: 14pt; font-weight: bold; margin-top: 24pt; margin-bottom: 12pt; text-transform: uppercase; }
+        h3 { font-size: 12pt; font-weight: bold; margin-top: 18pt; margin-bottom: 9pt; }
+        p { margin-bottom: 12pt; text-align: justify; }
+        ul, ol { margin-left: 36pt; margin-bottom: 12pt; }
+        li { margin-bottom: 6pt; }
+        .header { text-align: center; margin-bottom: 36pt; }
+        .company-name { font-size: 16pt; font-weight: bold; }
+        .footer { margin-top: 48pt; padding-top: 12pt; border-top: 1px solid #000; font-size: 10pt; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="company-name">HINGECRAFT GLOBAL, LLC</div>
+        <h1>ALGORITHMIC TRANSPARENCY &<br>ACCOUNTABILITY POLICY</h1>
+        <p>Effective Date: _________________, 20____<br>State of South Carolina</p>
+    </div>
+
+    <h2>1. PURPOSE</h2>
+    <p>This Algorithmic Transparency & Accountability Policy ("Policy") establishes HingeCraft Global, LLC's ("HingeCraft") commitment to transparency and accountability in the use of automated decision-making systems and algorithms.</p>
+
+    <h2>2. SCOPE</h2>
+    <p>This Policy applies to all algorithms and automated systems that: (a) Make or significantly influence decisions affecting individuals; (b) Process personal data; (c) Provide recommendations or predictions; (d) Automate previously human-performed tasks.</p>
+
+    <h2>3. TRANSPARENCY PRINCIPLES</h2>
+    
+    <h3>3.1 Notice</h3>
+    <p>We provide notice when: (a) Algorithms are used in decision-making; (b) Automated systems process personal data; (c) Recommendations are algorithmically generated.</p>
+    
+    <h3>3.2 Explanation</h3>
+    <p>We explain: (a) The general logic of significant algorithmic decisions; (b) Key factors influencing outcomes; (c) How to contest or seek review of decisions.</p>
+    
+    <h3>3.3 Documentation</h3>
+    <p>We document: (a) Purpose and function of algorithms; (b) Data inputs and outputs; (c) Training data and methodology; (d) Testing and validation results; (e) Known limitations.</p>
+
+    <h2>4. ACCOUNTABILITY FRAMEWORK</h2>
+    
+    <h3>4.1 Ownership</h3>
+    <p>Each algorithm has a designated owner responsible for: (a) Compliance with this Policy; (b) Accuracy and performance; (c) Ongoing monitoring; (d) Responding to concerns.</p>
+    
+    <h3>4.2 Review</h3>
+    <p>Algorithms undergo: (a) Pre-deployment review; (b) Regular performance audits; (c) Bias assessments; (d) Impact assessments for significant changes.</p>
+    
+    <h3>4.3 Human Oversight</h3>
+    <p>Significant algorithmic decisions are subject to: (a) Human review capability; (b) Override mechanisms; (c) Appeal processes.</p>
+
+    <h2>5. RIGHTS OF INDIVIDUALS</h2>
+    <p>Individuals affected by algorithmic decisions have the right to: (a) Know when algorithms are used; (b) Understand the basis for decisions; (c) Request human review; (d) Contest algorithmic decisions; (e) Opt out where legally permitted.</p>
+
+    <h2>6. GOVERNANCE</h2>
+    <p>The AI Ethics Committee oversees algorithmic accountability. Annual reports are provided to leadership on algorithmic performance and issues.</p>
+
+    <h2>7. CONTACT</h2>
+    <p>Questions or concerns: ai-ethics@hingecraft.com | (843) 555-0100</p>
+
+    <div class="footer">
+        <p>HingeCraft Global, LLC | 123 Innovation Drive, Suite 100, Charleston, SC 29401</p>
+        <p>© 2025 HingeCraft Global, LLC. All Rights Reserved.</p>
+    </div>
+</body>
+</html>
+
+`;
+    
+    // Try to find the legalContent element
+    if ($w('#legalContent')) {
+        try {
+            $w('#legalContent').html = legalContent;
+        } catch (e) {
+            console.log("HTML element not configured - content ready for manual embed");
         }
     }
     
-    loadLegalPageContent();
-
-});
-
-
-$w.onReady(function () {
-    if (typeof document !== 'undefined') {
-        // Page Title
-        document.title = 'Algorithmic Transparency_0173c_js | HingeCraft Global';
-        
-        // Meta Description
-        let metaDesc = document.querySelector('meta[name="description"]');
-        if (!metaDesc) {
-            metaDesc = document.createElement('meta');
-            metaDesc.setAttribute('name', 'description');
-            document.head.appendChild(metaDesc);
+    // Also try text element fallback
+    if ($w('#legalText')) {
+        try {
+            $w('#legalText').html = legalContent;
+        } catch (e) {
+            console.log("Using text element fallback");
         }
-        metaDesc.setAttribute('content', 'Algorithmic Transparency_0173c_js - HingeCraft Global');
-        
-        // Meta Keywords
-        let metaKeywords = document.querySelector('meta[name="keywords"]');
-        if (!metaKeywords) {
-            metaKeywords = document.createElement('meta');
-            metaKeywords.setAttribute('name', 'keywords');
-            document.head.appendChild(metaKeywords);
-        }
-        metaKeywords.setAttribute('content', 'transparency, corporate transparency, algorithmic transparency, hingecraft, hingecraft global');
-        
-        // Open Graph Tags
-        const ogTags = {
-            'og:title': 'Algorithmic Transparency_0173c_js | HingeCraft Global',
-            'og:description': 'Algorithmic Transparency_0173c_js - HingeCraft Global',
-            'og:image': 'https://hingecraft-global.ai/og-image.jpg',
-            'og:url': 'https://hingecraft-global.ai/algorithmic-transparency-0173c-js',
-            'og:type': 'website',
-            'og:site_name': 'HingeCraft Global'
-        };
-        
-        Object.keys(ogTags).forEach(prop => {
-            let ogMeta = document.querySelector(`meta[property="${prop}"]`);
-            if (!ogMeta) {
-                ogMeta = document.createElement('meta');
-                ogMeta.setAttribute('property', prop);
-                document.head.appendChild(ogMeta);
-            }
-            ogMeta.setAttribute('content', ogTags[prop]);
-        });
-        
-        // Twitter Card Tags
-        const twitterTags = {
-            'twitter:card': 'summary_large_image',
-            'twitter:title': 'Algorithmic Transparency_0173c_js | HingeCraft Global',
-            'twitter:description': 'Algorithmic Transparency_0173c_js - HingeCraft Global',
-            'twitter:image': 'https://hingecraft-global.ai/og-image.jpg'
-        };
-        
-        Object.keys(twitterTags).forEach(name => {
-            let twitterMeta = document.querySelector(`meta[name="${name}"]`);
-            if (!twitterMeta) {
-                twitterMeta = document.createElement('meta');
-                twitterMeta.setAttribute('name', name);
-                document.head.appendChild(twitterMeta);
-            }
-            twitterMeta.setAttribute('content', twitterTags[name]);
-        });
-        
-        // Canonical URL
-        let canonical = document.querySelector('link[rel="canonical"]');
-        if (!canonical) {
-            canonical = document.createElement('link');
-            canonical.setAttribute('rel', 'canonical');
-            document.head.appendChild(canonical);
-        }
-        canonical.setAttribute('href', 'https://hingecraft-global.ai/algorithmic-transparency-0173c-js');
-        
-        // Robots Meta
-        let robots = document.querySelector('meta[name="robots"]');
-        if (!robots) {
-            robots = document.createElement('meta');
-            robots.setAttribute('name', 'robots');
-            document.head.appendChild(robots);
-        }
-        robots.setAttribute('content', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
-        
-        // Schema.org JSON-LD Structured Data
-        let schemaScript = document.querySelector('script[type="application/ld+json"]');
-        if (!schemaScript) {
-            schemaScript = document.createElement('script');
-            schemaScript.setAttribute('type', 'application/ld+json');
-            document.head.appendChild(schemaScript);
-        }
-        schemaScript.textContent = `{
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "Algorithmic Transparency_0173c_js | HingeCraft Global",
-  "description": "Algorithmic Transparency_0173c_js - HingeCraft Global",
-  "url": "https://hingecraft-global.ai/algorithmic-transparency-0173c-js",
-  "publisher": {
-    "@type": "Organization",
-    "name": "HingeCraft Global",
-    "url": "https://hingecraft-global.ai",
-    "logo": "https://hingecraft-global.ai/logo.png"
-  },
-  "datePublished": "2025-12-05",
-  "dateModified": "2025-12-05",
-  "inLanguage": "en-US",
-  "keywords": "transparency, corporate transparency, algorithmic transparency, hingecraft, hingecraft global"
-}`;
     }
+}
+
+// Export for potential use in other contexts
+export function getLegalDocumentHTML() {
+    return `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algorithmic Transparency & Accountability Policy - HingeCraft Global, LLC</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Times New Roman', Times, serif; font-size: 12pt; line-height: 1.6; color: #000; background: #fff; max-width: 8.5in; margin: 0 auto; padding: 1in; }
+        h1 { font-size: 18pt; font-weight: bold; text-align: center; margin-bottom: 24pt; text-transform: uppercase; border-bottom: 2px solid #000; padding-bottom: 12pt; }
+        h2 { font-size: 14pt; font-weight: bold; margin-top: 24pt; margin-bottom: 12pt; text-transform: uppercase; }
+        h3 { font-size: 12pt; font-weight: bold; margin-top: 18pt; margin-bottom: 9pt; }
+        p { margin-bottom: 12pt; text-align: justify; }
+        ul, ol { margin-left: 36pt; margin-bottom: 12pt; }
+        li { margin-bottom: 6pt; }
+        .header { text-align: center; margin-bottom: 36pt; }
+        .company-name { font-size: 16pt; font-weight: bold; }
+        .footer { margin-top: 48pt; padding-top: 12pt; border-top: 1px solid #000; font-size: 10pt; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="company-name">HINGECRAFT GLOBAL, LLC</div>
+        <h1>ALGORITHMIC TRANSPARENCY &<br>ACCOUNTABILITY POLICY</h1>
+        <p>Effective Date: _________________, 20____<br>State of South Carolina</p>
+    </div>
+
+    <h2>1. PURPOSE</h2>
+    <p>This Algorithmic Transparency & Accountability Policy ("Policy") establishes HingeCraft Global, LLC's ("HingeCraft") commitment to transparency and accountability in the use of automated decision-making systems and algorithms.</p>
+
+    <h2>2. SCOPE</h2>
+    <p>This Policy applies to all algorithms and automated systems that: (a) Make or significantly influence decisions affecting individuals; (b) Process personal data; (c) Provide recommendations or predictions; (d) Automate previously human-performed tasks.</p>
+
+    <h2>3. TRANSPARENCY PRINCIPLES</h2>
     
-    // Load HTML content for legal pages
+    <h3>3.1 Notice</h3>
+    <p>We provide notice when: (a) Algorithms are used in decision-making; (b) Automated systems process personal data; (c) Recommendations are algorithmically generated.</p>
     
-});
-
-
-
-
-$w.onReady(function () {
-    if (typeof document !== 'undefined') {
-        // Page Title
-        document.title = 'Algorithmic Transparency_0173c_js | HingeCraft Global';
-        
-        // Meta Description
-        let metaDesc = document.querySelector('meta[name="description"]');
-        if (!metaDesc) {
-            metaDesc = document.createElement('meta');
-            metaDesc.setAttribute('name', 'description');
-            document.head.appendChild(metaDesc);
-        }
-        metaDesc.setAttribute('content', 'Algorithmic Transparency_0173c_js - HingeCraft Global');
-        
-        // Meta Keywords
-        let metaKeywords = document.querySelector('meta[name="keywords"]');
-        if (!metaKeywords) {
-            metaKeywords = document.createElement('meta');
-            metaKeywords.setAttribute('name', 'keywords');
-            document.head.appendChild(metaKeywords);
-        }
-        metaKeywords.setAttribute('content', 'transparency, corporate transparency, algorithmic transparency, hingecraft, hingecraft global');
-        
-        // Open Graph Tags
-        const ogTags = {
-            'og:title': 'Algorithmic Transparency_0173c_js | HingeCraft Global',
-            'og:description': 'Algorithmic Transparency_0173c_js - HingeCraft Global',
-            'og:image': 'https://hingecraft-global.ai/og-image.jpg',
-            'og:url': 'https://hingecraft-global.ai/algorithmic-transparency-0173c-js',
-            'og:type': 'website',
-            'og:site_name': 'HingeCraft Global'
-        };
-        
-        Object.keys(ogTags).forEach(prop => {
-            let ogMeta = document.querySelector(`meta[property="${prop}"]`);
-            if (!ogMeta) {
-                ogMeta = document.createElement('meta');
-                ogMeta.setAttribute('property', prop);
-                document.head.appendChild(ogMeta);
-            }
-            ogMeta.setAttribute('content', ogTags[prop]);
-        });
-        
-        // Twitter Card Tags
-        const twitterTags = {
-            'twitter:card': 'summary_large_image',
-            'twitter:title': 'Algorithmic Transparency_0173c_js | HingeCraft Global',
-            'twitter:description': 'Algorithmic Transparency_0173c_js - HingeCraft Global',
-            'twitter:image': 'https://hingecraft-global.ai/og-image.jpg'
-        };
-        
-        Object.keys(twitterTags).forEach(name => {
-            let twitterMeta = document.querySelector(`meta[name="${name}"]`);
-            if (!twitterMeta) {
-                twitterMeta = document.createElement('meta');
-                twitterMeta.setAttribute('name', name);
-                document.head.appendChild(twitterMeta);
-            }
-            twitterMeta.setAttribute('content', twitterTags[name]);
-        });
-        
-        // Canonical URL
-        let canonical = document.querySelector('link[rel="canonical"]');
-        if (!canonical) {
-            canonical = document.createElement('link');
-            canonical.setAttribute('rel', 'canonical');
-            document.head.appendChild(canonical);
-        }
-        canonical.setAttribute('href', 'https://hingecraft-global.ai/algorithmic-transparency-0173c-js');
-        
-        // Robots Meta
-        let robots = document.querySelector('meta[name="robots"]');
-        if (!robots) {
-            robots = document.createElement('meta');
-            robots.setAttribute('name', 'robots');
-            document.head.appendChild(robots);
-        }
-        robots.setAttribute('content', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
-        
-        // Schema.org JSON-LD Structured Data
-        let schemaScript = document.querySelector('script[type="application/ld+json"]');
-        if (!schemaScript) {
-            schemaScript = document.createElement('script');
-            schemaScript.setAttribute('type', 'application/ld+json');
-            document.head.appendChild(schemaScript);
-        }
-        schemaScript.textContent = `{
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "Algorithmic Transparency_0173c_js | HingeCraft Global",
-  "description": "Algorithmic Transparency_0173c_js - HingeCraft Global",
-  "url": "https://hingecraft-global.ai/algorithmic-transparency-0173c-js",
-  "publisher": {
-    "@type": "Organization",
-    "name": "HingeCraft Global",
-    "url": "https://hingecraft-global.ai",
-    "logo": "https://hingecraft-global.ai/logo.png"
-  },
-  "datePublished": "2025-12-05",
-  "dateModified": "2025-12-05",
-  "inLanguage": "en-US",
-  "keywords": "transparency, corporate transparency, algorithmic transparency, hingecraft, hingecraft global"
-}`;
-    }
+    <h3>3.2 Explanation</h3>
+    <p>We explain: (a) The general logic of significant algorithmic decisions; (b) Key factors influencing outcomes; (c) How to contest or seek review of decisions.</p>
     
-    // Load HTML content for legal pages
+    <h3>3.3 Documentation</h3>
+    <p>We document: (a) Purpose and function of algorithms; (b) Data inputs and outputs; (c) Training data and methodology; (d) Testing and validation results; (e) Known limitations.</p>
+
+    <h2>4. ACCOUNTABILITY FRAMEWORK</h2>
     
-});
+    <h3>4.1 Ownership</h3>
+    <p>Each algorithm has a designated owner responsible for: (a) Compliance with this Policy; (b) Accuracy and performance; (c) Ongoing monitoring; (d) Responding to concerns.</p>
+    
+    <h3>4.2 Review</h3>
+    <p>Algorithms undergo: (a) Pre-deployment review; (b) Regular performance audits; (c) Bias assessments; (d) Impact assessments for significant changes.</p>
+    
+    <h3>4.3 Human Oversight</h3>
+    <p>Significant algorithmic decisions are subject to: (a) Human review capability; (b) Override mechanisms; (c) Appeal processes.</p>
 
+    <h2>5. RIGHTS OF INDIVIDUALS</h2>
+    <p>Individuals affected by algorithmic decisions have the right to: (a) Know when algorithms are used; (b) Understand the basis for decisions; (c) Request human review; (d) Contest algorithmic decisions; (e) Opt out where legally permitted.</p>
 
+    <h2>6. GOVERNANCE</h2>
+    <p>The AI Ethics Committee oversees algorithmic accountability. Annual reports are provided to leadership on algorithmic performance and issues.</p>
 
+    <h2>7. CONTACT</h2>
+    <p>Questions or concerns: ai-ethics@hingecraft.com | (843) 555-0100</p>
 
-$w.onReady(function () {
-    if (typeof document !== 'undefined') {
-        // Page Title
-        document.title = 'Algorithmic Transparency & Accountability Statement | Hin...';
-        
-        // Meta Description
-        let metaDesc = document.querySelector('meta[name="description"]');
-        if (!metaDesc) {
-            metaDesc = document.createElement('meta');
-            metaDesc.setAttribute('name', 'description');
-            document.head.appendChild(metaDesc);
-        }
-        metaDesc.setAttribute('content', 'HingeCraft Global Algorithmic Transparency & Accountability Statement - AI governance compliance, transparency, and accountability measures');
-        
-        // Meta Keywords
-        let metaKeywords = document.querySelector('meta[name="keywords"]');
-        if (!metaKeywords) {
-            metaKeywords = document.createElement('meta');
-            metaKeywords.setAttribute('name', 'keywords');
-            document.head.appendChild(metaKeywords);
-        }
-        metaKeywords.setAttribute('content', 'transparency, corporate transparency, algorithmic transparency, algorithmic accountability, hingecraft algorithmic transparency, hingecraft, hingecraft global, resilient design');
-        
-        // Open Graph Tags
-        const ogTags = {
-            'og:title': 'Algorithmic Transparency & Accountability Statement | Hin...',
-            'og:description': 'HingeCraft Global Algorithmic Transparency & Accountability Statement - AI governance compliance, transparency, and accountability measures',
-            'og:image': 'https://hingecraft-global.ai/og-image.jpg',
-            'og:url': 'https://hingecraft-global.ai/legal/algorithmic_transparency',
-            'og:type': 'website',
-            'og:site_name': 'HingeCraft Global'
-        };
-        
-        Object.keys(ogTags).forEach(prop => {
-            let ogMeta = document.querySelector(`meta[property="${prop}"]`);
-            if (!ogMeta) {
-                ogMeta = document.createElement('meta');
-                ogMeta.setAttribute('property', prop);
-                document.head.appendChild(ogMeta);
-            }
-            ogMeta.setAttribute('content', ogTags[prop]);
-        });
-        
-        // Twitter Card Tags
-        const twitterTags = {
-            'twitter:card': 'summary_large_image',
-            'twitter:title': 'Algorithmic Transparency & Accountability Statement | Hin...',
-            'twitter:description': 'HingeCraft Global Algorithmic Transparency & Accountability Statement - AI governance compliance, transparency, and accountability measures',
-            'twitter:image': 'https://hingecraft-global.ai/og-image.jpg'
-        };
-        
-        Object.keys(twitterTags).forEach(name => {
-            let twitterMeta = document.querySelector(`meta[name="${name}"]`);
-            if (!twitterMeta) {
-                twitterMeta = document.createElement('meta');
-                twitterMeta.setAttribute('name', name);
-                document.head.appendChild(twitterMeta);
-            }
-            twitterMeta.setAttribute('content', twitterTags[name]);
-        });
-        
-        // Canonical URL
-        let canonical = document.querySelector('link[rel="canonical"]');
-        if (!canonical) {
-            canonical = document.createElement('link');
-            canonical.setAttribute('rel', 'canonical');
-            document.head.appendChild(canonical);
-        }
-        canonical.setAttribute('href', 'https://hingecraft-global.ai/legal/algorithmic_transparency');
-        
-        // Robots Meta
-        let robots = document.querySelector('meta[name="robots"]');
-        if (!robots) {
-            robots = document.createElement('meta');
-            robots.setAttribute('name', 'robots');
-            document.head.appendChild(robots);
-        }
-        robots.setAttribute('content', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
-        
-        // Schema.org JSON-LD
-        let schemaScript = document.querySelector('script[type="application/ld+json"]');
-        if (!schemaScript) {
-            schemaScript = document.createElement('script');
-            schemaScript.setAttribute('type', 'application/ld+json');
-            document.head.appendChild(schemaScript);
-        }
-        schemaScript.textContent = JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "LegalDocument",
-            "name": "Algorithmic Transparency & Accountability Statement | Hin...",
-            "description": "HingeCraft Global Algorithmic Transparency & Accountability Statement - AI governance compliance, transparency, and accountability measures",
-            "url": "https://hingecraft-global.ai/legal/algorithmic_transparency",
-            "publisher": {
-                "@type": "Organization",
-                "name": "HingeCraft Global",
-                "url": "https://hingecraft-global.ai",
-                "logo": "https://hingecraft-global.ai/logo.png"
-            },
-            "datePublished": "2025-12-05",
-            "dateModified": "2025-12-05",
-            "inLanguage": "en-US",
-            "keywords": "transparency, corporate transparency, algorithmic transparency, algorithmic accountability, hingecraft algorithmic transparency, hingecraft, hingecraft global, resilient design"
-        });
-    }
-});
+    <div class="footer">
+        <p>HingeCraft Global, LLC | 123 Innovation Drive, Suite 100, Charleston, SC 29401</p>
+        <p>© 2025 HingeCraft Global, LLC. All Rights Reserved.</p>
+    </div>
+</body>
+</html>
 
-
-// API Reference: https://www.wix.com/velo/reference/api-overview/introduction
-// “Hello, World!” Example: https://learn-code.wix.com/en/article/hello-world
-
-$w.onReady(function () {
-    // Write your JavaScript here
-
-    // To select an element by ID use: $w('#elementID')
-
-    // Click 'Preview' to run your code
-});
-
-
-// Load Legal Page HTML Content
-
-$w.onReady(function () {
-    loadLegalPageContent();
-});
+`;
+}

@@ -1,3 +1,69 @@
+// HingeCraft Global - SEO Optimized
+// HingeCraft Print Alliance | 3D Printing Network
+// Generated: December 6, 2025
+
+import wixSeo from 'wix-seo';
+
+$w.onReady(function () {
+    // Set page title
+    wixSeo.setTitle("HingeCraft Print Alliance | 3D Printing Network");
+    
+    // Set meta tags
+    wixSeo.setMetaTags([
+        { name: "description", content: "Join HingeCraft Print Alliance - a global network of 3D printing and additive manufacturing partners for distributed production." },
+        { name: "keywords", content: "3D printing, additive manufacturing, print network, distributed manufacturing, rapid prototyping" },
+        { name: "robots", content: "index, follow" },
+        { property: "og:title", content: "HingeCraft Print Alliance | 3D Printing Network" },
+        { property: "og:description", content: "Join HingeCraft Print Alliance - a global network of 3D printing and additive manufacturing partners for distributed production." },
+        { property: "og:type", content: "website" },
+        { property: "og:site_name", content: "HingeCraft Global" },
+        { property: "twitter:card", content: "summary_large_image" },
+        { property: "twitter:title", content: "HingeCraft Print Alliance | 3D Printing Network" },
+        { property: "twitter:description", content: "Join HingeCraft Print Alliance - a global network of 3D printing and additive manufacturing partners for distributed production." }
+    ]);
+    
+    // Set structured data (JSON-LD)
+    wixSeo.setStructuredData([
+        {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "HingeCraft Print Alliance | 3D Printing Network",
+        "description": "Join HingeCraft Print Alliance - a global network of 3D printing and additive manufacturing partners for distributed production.",
+        "url": "https://www.hingecraft.com/hc-print-alliance.y5onw",
+        "inLanguage": "en-US",
+        "dateModified": "2025-12-06",
+        "publisher": {
+                "@type": "Organization",
+                "name": "HingeCraft Global",
+                "url": "https://www.hingecraft.com",
+                "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://www.hingecraft.com/logo.png"
+                }
+        }
+},
+        {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+                {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "https://www.hingecraft.com"
+                },
+                {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "HingeCraft Print Alliance",
+                        "item": "https://www.hingecraft.com/hc-print-alliance.y5onw"
+                }
+        ]
+}
+    ]);
+});
+
+
+// Original page code below
 // Comprehensive SEO Optimization - HC Print Alliance
 // JSON-LD Schema.org | 100+ Keywords | Competitive Optimization
 

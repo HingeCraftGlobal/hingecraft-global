@@ -1,3 +1,69 @@
+// HingeCraft Global - SEO Optimized
+// Alliance Opportunity | Strategic Manufacturing Partners
+// Generated: December 6, 2025
+
+import wixSeo from 'wix-seo';
+
+$w.onReady(function () {
+    // Set page title
+    wixSeo.setTitle("Alliance Opportunity | Strategic Manufacturing Partners");
+    
+    // Set meta tags
+    wixSeo.setMetaTags([
+        { name: "description", content: "Join HingeCraft's strategic alliance program for exclusive partnerships, co-development opportunities, and shared growth." },
+        { name: "keywords", content: "strategic alliance, manufacturing alliance, partnership program, co-development, strategic partner" },
+        { name: "robots", content: "index, follow" },
+        { property: "og:title", content: "Alliance Opportunity | Strategic Manufacturing Partners" },
+        { property: "og:description", content: "Join HingeCraft's strategic alliance program for exclusive partnerships, co-development opportunities, and shared growth." },
+        { property: "og:type", content: "website" },
+        { property: "og:site_name", content: "HingeCraft Global" },
+        { property: "twitter:card", content: "summary_large_image" },
+        { property: "twitter:title", content: "Alliance Opportunity | Strategic Manufacturing Partners" },
+        { property: "twitter:description", content: "Join HingeCraft's strategic alliance program for exclusive partnerships, co-development opportunities, and shared growth." }
+    ]);
+    
+    // Set structured data (JSON-LD)
+    wixSeo.setStructuredData([
+        {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Alliance Opportunity | Strategic Manufacturing Partners",
+        "description": "Join HingeCraft's strategic alliance program for exclusive partnerships, co-development opportunities, and shared growth.",
+        "url": "https://www.hingecraft.com/alliance-opportunity.gz9y4",
+        "inLanguage": "en-US",
+        "dateModified": "2025-12-06",
+        "publisher": {
+                "@type": "Organization",
+                "name": "HingeCraft Global",
+                "url": "https://www.hingecraft.com",
+                "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://www.hingecraft.com/logo.png"
+                }
+        }
+},
+        {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+                {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "https://www.hingecraft.com"
+                },
+                {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "Alliance Opportunity",
+                        "item": "https://www.hingecraft.com/alliance-opportunity.gz9y4"
+                }
+        ]
+}
+    ]);
+});
+
+
+// Original page code below
 // Comprehensive SEO Optimization - Alliance Opportunity
 // JSON-LD Schema.org | 100+ Keywords | Competitive Optimization
 

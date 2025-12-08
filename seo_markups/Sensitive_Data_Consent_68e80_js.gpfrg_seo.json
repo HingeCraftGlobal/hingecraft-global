@@ -1,0 +1,63 @@
+{
+  "page": "Sensitive Data Consent_68e80_js.gpfrg.js",
+  "title": "Sensitive Data & Youth Consent | HingeCraft Privacy",
+  "description": "HingeCraft's policy on sensitive personal data and children's privacy - COPPA compliant youth protection measures.",
+  "keywords": [
+    "sensitive data",
+    "youth consent",
+    "COPPA",
+    "children privacy",
+    "parental consent"
+  ],
+  "meta_tags": {
+    "title": "Sensitive Data & Youth Consent | HingeCraft Privacy",
+    "description": "HingeCraft's policy on sensitive personal data and children's privacy - COPPA compliant youth protection measures.",
+    "keywords": "sensitive data, youth consent, COPPA, children privacy, parental consent",
+    "robots": "index, follow",
+    "og:title": "Sensitive Data & Youth Consent | HingeCraft Privacy",
+    "og:description": "HingeCraft's policy on sensitive personal data and children's privacy - COPPA compliant youth protection measures.",
+    "og:type": "website",
+    "og:site_name": "HingeCraft Global",
+    "twitter:card": "summary_large_image",
+    "twitter:title": "Sensitive Data & Youth Consent | HingeCraft Privacy",
+    "twitter:description": "HingeCraft's policy on sensitive personal data and children's privacy - COPPA compliant youth protection measures."
+  },
+  "json_ld": {
+    "page": {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Sensitive Data & Youth Consent | HingeCraft Privacy",
+      "description": "HingeCraft's policy on sensitive personal data and children's privacy - COPPA compliant youth protection measures.",
+      "url": "https://www.hingecraft.com/sensitive-data-consent_68e80_js.gpfrg",
+      "inLanguage": "en-US",
+      "dateModified": "2025-12-06",
+      "publisher": {
+        "@type": "Organization",
+        "name": "HingeCraft Global",
+        "url": "https://www.hingecraft.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.hingecraft.com/logo.png"
+        }
+      }
+    },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.hingecraft.com"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Sensitive Data & Youth Consent",
+          "item": "https://www.hingecraft.com/sensitive-data-consent_68e80_js.gpfrg"
+        }
+      ]
+    }
+  },
+  "schema_type": "WebPage"
+}

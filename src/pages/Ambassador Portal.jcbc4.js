@@ -1,3 +1,69 @@
+// HingeCraft Global - SEO Optimized
+// Ambassador Portal | HingeCraft Brand Advocates
+// Generated: December 6, 2025
+
+import wixSeo from 'wix-seo';
+
+$w.onReady(function () {
+    // Set page title
+    wixSeo.setTitle("Ambassador Portal | HingeCraft Brand Advocates");
+    
+    // Set meta tags
+    wixSeo.setMetaTags([
+        { name: "description", content: "HingeCraft Ambassador Portal - resources, tools, and support for our brand ambassadors promoting sustainable manufacturing." },
+        { name: "keywords", content: "ambassador program, brand ambassador, advocate portal, influencer program, brand promotion" },
+        { name: "robots", content: "index, follow" },
+        { property: "og:title", content: "Ambassador Portal | HingeCraft Brand Advocates" },
+        { property: "og:description", content: "HingeCraft Ambassador Portal - resources, tools, and support for our brand ambassadors promoting sustainable manufacturing." },
+        { property: "og:type", content: "website" },
+        { property: "og:site_name", content: "HingeCraft Global" },
+        { property: "twitter:card", content: "summary_large_image" },
+        { property: "twitter:title", content: "Ambassador Portal | HingeCraft Brand Advocates" },
+        { property: "twitter:description", content: "HingeCraft Ambassador Portal - resources, tools, and support for our brand ambassadors promoting sustainable manufacturing." }
+    ]);
+    
+    // Set structured data (JSON-LD)
+    wixSeo.setStructuredData([
+        {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Ambassador Portal | HingeCraft Brand Advocates",
+        "description": "HingeCraft Ambassador Portal - resources, tools, and support for our brand ambassadors promoting sustainable manufacturing.",
+        "url": "https://www.hingecraft.com/ambassador-portal.jcbc4",
+        "inLanguage": "en-US",
+        "dateModified": "2025-12-06",
+        "publisher": {
+                "@type": "Organization",
+                "name": "HingeCraft Global",
+                "url": "https://www.hingecraft.com",
+                "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://www.hingecraft.com/logo.png"
+                }
+        }
+},
+        {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+                {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "https://www.hingecraft.com"
+                },
+                {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "Ambassador Portal",
+                        "item": "https://www.hingecraft.com/ambassador-portal.jcbc4"
+                }
+        ]
+}
+    ]);
+});
+
+
+// Original page code below
 // Comprehensive SEO Optimization - Ambassador Portal
 // JSON-LD Schema.org | 100+ Keywords | Competitive Optimization
 

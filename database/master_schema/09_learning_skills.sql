@@ -175,3 +175,115 @@ COMMENT ON TABLE learning_paths IS 'Structured learning paths to skills';
 
 
 
+
+
+
+
+-- ============================================
+-- TRIGGERS
+-- ============================================
+
+-- Auto-update updated_at timestamp for learning_courses
+CREATE TRIGGER trigger_learning_courses_updated_at
+    BEFORE UPDATE ON learning_courses
+    FOR EACH ROW
+    WHEN (OLD.updated_at IS DISTINCT FROM NEW.updated_at OR OLD."_updatedDate" IS DISTINCT FROM NEW."_updatedDate")
+    EXECUTE FUNCTION update_updated_at_column();
+
+-- Audit logging trigger for learning_courses
+CREATE TRIGGER trigger_learning_courses_audit
+    AFTER INSERT OR UPDATE OR DELETE ON learning_courses
+    FOR EACH ROW
+    EXECUTE FUNCTION log_audit_event();
+
+-- Auto-update updated_at timestamp for course_modules
+CREATE TRIGGER trigger_course_modules_updated_at
+    BEFORE UPDATE ON course_modules
+    FOR EACH ROW
+    WHEN (OLD.updated_at IS DISTINCT FROM NEW.updated_at OR OLD."_updatedDate" IS DISTINCT FROM NEW."_updatedDate")
+    EXECUTE FUNCTION update_updated_at_column();
+
+-- Audit logging trigger for course_modules
+CREATE TRIGGER trigger_course_modules_audit
+    AFTER INSERT OR UPDATE OR DELETE ON course_modules
+    FOR EACH ROW
+    EXECUTE FUNCTION log_audit_event();
+
+-- Auto-update updated_at timestamp for course_enrollments
+CREATE TRIGGER trigger_course_enrollments_updated_at
+    BEFORE UPDATE ON course_enrollments
+    FOR EACH ROW
+    WHEN (OLD.updated_at IS DISTINCT FROM NEW.updated_at OR OLD."_updatedDate" IS DISTINCT FROM NEW."_updatedDate")
+    EXECUTE FUNCTION update_updated_at_column();
+
+-- Audit logging trigger for course_enrollments
+CREATE TRIGGER trigger_course_enrollments_audit
+    AFTER INSERT OR UPDATE OR DELETE ON course_enrollments
+    FOR EACH ROW
+    EXECUTE FUNCTION log_audit_event();
+
+-- Auto-update updated_at timestamp for skills_catalog
+CREATE TRIGGER trigger_skills_catalog_updated_at
+    BEFORE UPDATE ON skills_catalog
+    FOR EACH ROW
+    WHEN (OLD.updated_at IS DISTINCT FROM NEW.updated_at OR OLD."_updatedDate" IS DISTINCT FROM NEW."_updatedDate")
+    EXECUTE FUNCTION update_updated_at_column();
+
+-- Audit logging trigger for skills_catalog
+CREATE TRIGGER trigger_skills_catalog_audit
+    AFTER INSERT OR UPDATE OR DELETE ON skills_catalog
+    FOR EACH ROW
+    EXECUTE FUNCTION log_audit_event();
+
+-- Auto-update updated_at timestamp for user_skills
+CREATE TRIGGER trigger_user_skills_updated_at
+    BEFORE UPDATE ON user_skills
+    FOR EACH ROW
+    WHEN (OLD.updated_at IS DISTINCT FROM NEW.updated_at OR OLD."_updatedDate" IS DISTINCT FROM NEW."_updatedDate")
+    EXECUTE FUNCTION update_updated_at_column();
+
+-- Audit logging trigger for user_skills
+CREATE TRIGGER trigger_user_skills_audit
+    AFTER INSERT OR UPDATE OR DELETE ON user_skills
+    FOR EACH ROW
+    EXECUTE FUNCTION log_audit_event();
+
+-- Auto-update updated_at timestamp for certifications
+CREATE TRIGGER trigger_certifications_updated_at
+    BEFORE UPDATE ON certifications
+    FOR EACH ROW
+    WHEN (OLD.updated_at IS DISTINCT FROM NEW.updated_at OR OLD."_updatedDate" IS DISTINCT FROM NEW."_updatedDate")
+    EXECUTE FUNCTION update_updated_at_column();
+
+-- Audit logging trigger for certifications
+CREATE TRIGGER trigger_certifications_audit
+    AFTER INSERT OR UPDATE OR DELETE ON certifications
+    FOR EACH ROW
+    EXECUTE FUNCTION log_audit_event();
+
+-- Auto-update updated_at timestamp for user_certifications
+CREATE TRIGGER trigger_user_certifications_updated_at
+    BEFORE UPDATE ON user_certifications
+    FOR EACH ROW
+    WHEN (OLD.updated_at IS DISTINCT FROM NEW.updated_at OR OLD."_updatedDate" IS DISTINCT FROM NEW."_updatedDate")
+    EXECUTE FUNCTION update_updated_at_column();
+
+-- Audit logging trigger for user_certifications
+CREATE TRIGGER trigger_user_certifications_audit
+    AFTER INSERT OR UPDATE OR DELETE ON user_certifications
+    FOR EACH ROW
+    EXECUTE FUNCTION log_audit_event();
+
+-- Auto-update updated_at timestamp for learning_paths
+CREATE TRIGGER trigger_learning_paths_updated_at
+    BEFORE UPDATE ON learning_paths
+    FOR EACH ROW
+    WHEN (OLD.updated_at IS DISTINCT FROM NEW.updated_at OR OLD."_updatedDate" IS DISTINCT FROM NEW."_updatedDate")
+    EXECUTE FUNCTION update_updated_at_column();
+
+-- Audit logging trigger for learning_paths
+CREATE TRIGGER trigger_learning_paths_audit
+    AFTER INSERT OR UPDATE OR DELETE ON learning_paths
+    FOR EACH ROW
+    EXECUTE FUNCTION log_audit_event();
+

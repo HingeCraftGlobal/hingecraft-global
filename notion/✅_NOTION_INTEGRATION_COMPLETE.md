@@ -240,3 +240,4 @@ python sync/hingecraft_notion_sync.py --monitor
 **Next Action:** Configure `.env` and run initial sync
 
 
+

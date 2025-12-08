@@ -122,3 +122,23 @@ COMMENT ON TABLE event_attendances IS 'Event registration and attendance';
 
 
 
+
+
+
+
+-- ============================================
+-- TRIGGERS FOR community_groups
+-- ============================================
+
+-- Auto-update updated_at timestamp
+CREATE TRIGGER trigger_community_groups_updated_at
+    BEFORE UPDATE ON community_groups
+    FOR EACH ROW
+    EXECUTE FUNCTION update_updated_at_column();
+
+-- Audit logging trigger
+CREATE TRIGGER trigger_community_groups_audit
+    AFTER INSERT OR UPDATE OR DELETE ON community_groups
+    FOR EACH ROW
+    EXECUTE FUNCTION log_audit_event();
+

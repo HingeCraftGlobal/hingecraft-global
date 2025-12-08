@@ -1,583 +1,221 @@
-// Comprehensive SEO Optimization - CrossBorder Data Transfer_17eea_js
-// JSON-LD Schema.org | 100+ Keywords | Competitive Optimization
+// HingeCraft Global, LLC - Legal Document
+// Cross Border Data Transfer Hosting
+// State of South Carolina | December 6, 2025
+// Auto-generated - All URLs are HTTPS only
+
+import wixSeo from 'wix-seo';
 
 $w.onReady(function () {
-    if (typeof document !== 'undefined') {
-        // Page Title
-        document.title = 'Cross-Border Data Transfer & Hosting Agreement | HingeCra...';
-        
-        // Meta Description
-        let metaDesc = document.querySelector('meta[name="description"]');
-        if (!metaDesc) {
-            metaDesc = document.createElement('meta');
-            metaDesc.setAttribute('name', 'description');
-            document.head.appendChild(metaDesc);
-        }
-        metaDesc.setAttribute('content', 'HingeCraft Global Cross-Border Data Transfer & Hosting Agreement - Agreement for EU to US data transfers and multi-region hosting');
-        
-        // Meta Keywords
-        let metaKeywords = document.querySelector('meta[name="keywords"]');
-        if (!metaKeywords) {
-            metaKeywords = document.createElement('meta');
-            metaKeywords.setAttribute('name', 'keywords');
-            document.head.appendChild(metaKeywords);
-        }
-        metaKeywords.setAttribute('content', 'data protection, data security, data processing, data privacy, sensitive data, cross-border data, international data, data transfer, data processing agreement, hingecraft, hingecraft global, resilient design');
-        
-        // Open Graph Tags
-        const ogTags = {
-            'og:title': 'Cross-Border Data Transfer & Hosting Agreement | HingeCra...',
-            'og:description': 'HingeCraft Global Cross-Border Data Transfer & Hosting Agreement - Agreement for EU to US data transfers and multi-region hosting',
-            'og:image': 'https://hingecraft-global.ai/og-image.jpg',
-            'og:url': 'https://hingecraft-global.ai/legal/30-cross-border-data-transfer-hosting',
-            'og:type': 'website',
-            'og:site_name': 'HingeCraft Global'
-        };
-        
-        Object.keys(ogTags).forEach(prop => {
-            let ogMeta = document.querySelector(`meta[property="${prop}"]`);
-            if (!ogMeta) {
-                ogMeta = document.createElement('meta');
-                ogMeta.setAttribute('property', prop);
-                document.head.appendChild(ogMeta);
-            }
-            ogMeta.setAttribute('content', ogTags[prop]);
-        });
-        
-        // Twitter Card Tags
-        const twitterTags = {
-            'twitter:card': 'summary_large_image',
-            'twitter:title': 'Cross-Border Data Transfer & Hosting Agreement | HingeCra...',
-            'twitter:description': 'HingeCraft Global Cross-Border Data Transfer & Hosting Agreement - Agreement for EU to US data transfers and multi-region hosting',
-            'twitter:image': 'https://hingecraft-global.ai/og-image.jpg'
-        };
-        
-        Object.keys(twitterTags).forEach(name => {
-            let twitterMeta = document.querySelector(`meta[name="${name}"]`);
-            if (!twitterMeta) {
-                twitterMeta = document.createElement('meta');
-                twitterMeta.setAttribute('name', name);
-                document.head.appendChild(twitterMeta);
-            }
-            twitterMeta.setAttribute('content', twitterTags[name]);
-        });
-        
-        // Canonical URL
-        let canonical = document.querySelector('link[rel="canonical"]');
-        if (!canonical) {
-            canonical = document.createElement('link');
-            canonical.setAttribute('rel', 'canonical');
-            document.head.appendChild(canonical);
-        }
-        canonical.setAttribute('href', 'https://hingecraft-global.ai/legal/30-cross-border-data-transfer-hosting');
-        
-        // Robots Meta
-        let robots = document.querySelector('meta[name="robots"]');
-        if (!robots) {
-            robots = document.createElement('meta');
-            robots.setAttribute('name', 'robots');
-            document.head.appendChild(robots);
-        }
-        robots.setAttribute('content', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
-        
-        // Additional Meta Tags
-        const additionalTags = {
-            'author': 'HingeCraft Global',
-            'language': 'en-US',
-            'revisit-after': '7 days',
-            'distribution': 'global',
-            'rating': 'general'
-        };
-        
-        Object.keys(additionalTags).forEach(name => {
-            let meta = document.querySelector(`meta[name="${name}"]`);
-            if (!meta) {
-                meta = document.createElement('meta');
-                meta.setAttribute('name', name);
-                document.head.appendChild(meta);
-            }
-            meta.setAttribute('content', additionalTags[name]);
-        });
-        
-        // Schema.org JSON-LD Structured Data
-        let schemaScript = document.querySelector('script[type="application/ld+json"]');
-        if (!schemaScript) {
-            schemaScript = document.createElement('script');
-            schemaScript.setAttribute('type', 'application/ld+json');
-            document.head.appendChild(schemaScript);
-        }
-        schemaScript.textContent = `{
-  "@context": "https://schema.org",
-  "@type": "LegalDocument",
-  "name": "Cross-Border Data Transfer & Hosting Agreement | HingeCra...",
-  "description": "HingeCraft Global Cross-Border Data Transfer & Hosting Agreement - Agreement for EU to US data transfers and multi-region hosting",
-  "url": "https://hingecraft-global.ai/legal/30-cross-border-data-transfer-hosting",
-  "publisher": {
-    "@type": "Organization",
-    "name": "HingeCraft Global",
-    "url": "https://hingecraft-global.ai",
-    "logo": "https://hingecraft-global.ai/logo.png"
-  },
-  "datePublished": "2025-12-05",
-  "dateModified": "2025-12-05",
-  "inLanguage": "en-US",
-  "keywords": "data protection, data security, data processing, data privacy, sensitive data, cross-border data, international data, data transfer, data processing agreement, hingecraft, hingecraft global, resilient design"
-}`;
-    }
+    // Set SEO
+    wixSeo.setTitle("Cross Border Data Transfer Hosting | HingeCraft Global");
+    wixSeo.setMetaTags([
+        { name: "description", content: "Cross Border Data Transfer Hosting - HingeCraft Global, LLC legal document for South Carolina" },
+        { name: "robots", content: "index, follow" },
+        { property: "og:title", content: "Cross Border Data Transfer Hosting | HingeCraft Global" },
+        { property: "og:type", content: "website" }
+    ]);
+    
+    // Load legal document content
+    loadLegalContent();
+});
 
-    // Load Legal Page HTML Content
-    function loadLegalPageContent() {
-        const htmlElement = $w('#legalContent');
-        if (htmlElement) {
-            const htmlContent = `<body class="bg-slate-50">
-<section class="hero-gradient text-white py-12 px-6">
-<div class="max-w-4xl mx-auto text-center">
-<h1 class="text-4xl font-bold mb-4">Cross-Border Data Transfer &amp; Hosting Agreement</h1>
-<p class="text-lg opacity-90">HINGECRAFT GLOBAL, INC.</p>
-<p class="text-sm opacity-75 mt-2">Required for EU → US Transfers &amp; Multi-Region Scaling</p>
-</div>
-</section>
-<main class="max-w-4xl mx-auto px-6 py-16">
-<div class="prose max-w-none bg-white p-8 rounded-lg shadow-sm">
-<h2>CROSS-BORDER DATA TRANSFER &amp; HOSTING AGREEMENT</h2>
-<p>This agreement governs cross-border data transfers, particularly EU to US transfers, and multi-region data hosting.</p>
-<h2>I. DATA TRANSFER FRAMEWORK</h2>
-<h3>1.1 Legal Basis</h3>
-<p>Transfers are based on:</p>
-<ul>
-<li>Standard Contractual Clauses (SCCs)</li>
-<li>Adequacy decisions</li>
-<li>Appropriate safeguards</li>
-<li>User consent when required</li>
-</ul>
-<h3>1.2 Transfer Mechanisms</h3>
-<ul>
-<li>EU-US Data Privacy Framework</li>
-<li>Standard Contractual Clauses</li>
-<li>Binding Corporate Rules</li>
-<li>Other approved mechanisms</li>
-</ul>
-<h2>II. DATA HOSTING</h2>
-<h3>2.1 Hosting Locations</h3>
-<p>Data may be hosted in:</p>
-<ul>
-<li>United States</li>
-<li>European Union</li>
-<li>Other regions as specified</li>
-</ul>
-<h3>2.2 Data Localization</h3>
-<p>Where required by law, data is localized to specific jurisdictions.</p>
-<h2>III. SAFEGUARDS</h2>
-<ul>
-<li>Encryption in transit and at rest</li>
-<li>Access controls</li>
-<li>Audit logs</li>
-<li>Security assessments</li>
-</ul>
-<h2>IV. USER RIGHTS</h2>
-<p>Users maintain rights to:</p>
-<ul>
-<li>Access their data</li>
-<li>Request data portability</li>
-<li>Request deletion</li>
-<li>Object to processing</li>
-</ul>
-<h2>V. NOTIFICATION</h2>
-<p>Users are notified of data transfers and hosting locations through our Privacy Policy.</p>
-<div class="mt-8 pt-8 border-t border-gray-200">
-<p class="text-sm text-gray-600">Last Updated: December 4, 2025</p>
-<p class="text-sm text-gray-600">For questions about this document, please contact: <a class="text-purple-700 hover:underline" href="mailto:legal@hingecraft-global.ai">legal@hingecraft-global.ai</a></p>
-</div>
-</div>
-<div class="mt-6 flex flex-wrap items-center gap-6 text-sm text-gray-600">
-<div class="flex items-center gap-2">
-<svg class="w-5 h-5 text-green-600" fill="currentColor" viewbox="0 0 20 20">
-<path clip-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" fill-rule="evenodd"></path>
-</svg>
-<span>GDPR Compliant</span>
-</div>
-<div class="flex items-center gap-2">
-<svg class="w-5 h-5 text-green-600" fill="currentColor" viewbox="0 0 20 20">
-<path clip-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" fill-rule="evenodd"></path>
-</svg>
-<span>CCPA Compliant</span>
-</div>
-<div class="flex items-center gap-2">
-<svg class="w-5 h-5 text-green-600" fill="currentColor" viewbox="0 0 20 20">
-<path clip-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" fill-rule="evenodd"></path>
-</svg>
-<span>Secure &amp; Encrypted</span>
-</div>
-</div>
-</main>
-<footer class="bg-gray-900 text-white py-12 px-6 mt-16">
-<div class="max-w-4xl mx-auto text-center">
-<p class="mb-4">© 2025 HingeCraft Global. All rights reserved.</p>
-<p class="text-gray-400 text-sm">
-<a class="hover:text-white" href="/legal">Legal</a> | 
-        <a class="hover:text-white" href="/privacy">Privacy</a> | 
-        <a class="hover:text-white" href="/terms">Terms</a>
-</p>
-</div>
-</footer>
-</body>`;
-            htmlElement.html = htmlContent;
-            console.log('Legal page content loaded successfully');
-        } else {
-            console.log('Legal content element not found. Add HTML element with ID: legalContent');
+function loadLegalContent() {
+    const legalContent = `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cross-Border Data Transfer & Hosting Policy - HingeCraft Global, LLC</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Times New Roman', Times, serif; font-size: 12pt; line-height: 1.6; color: #000; background: #fff; max-width: 8.5in; margin: 0 auto; padding: 1in; }
+        h1 { font-size: 18pt; font-weight: bold; text-align: center; margin-bottom: 24pt; text-transform: uppercase; border-bottom: 2px solid #000; padding-bottom: 12pt; }
+        h2 { font-size: 14pt; font-weight: bold; margin-top: 24pt; margin-bottom: 12pt; text-transform: uppercase; }
+        h3 { font-size: 12pt; font-weight: bold; margin-top: 18pt; margin-bottom: 9pt; }
+        p { margin-bottom: 12pt; text-align: justify; }
+        ul, ol { margin-left: 36pt; margin-bottom: 12pt; }
+        li { margin-bottom: 6pt; }
+        .header { text-align: center; margin-bottom: 36pt; }
+        .company-name { font-size: 16pt; font-weight: bold; }
+        .footer { margin-top: 48pt; padding-top: 12pt; border-top: 1px solid #000; font-size: 10pt; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="company-name">HINGECRAFT GLOBAL, LLC</div>
+        <h1>CROSS-BORDER DATA TRANSFER &<br>HOSTING POLICY</h1>
+        <p>Effective Date: _________________, 20____<br>State of South Carolina</p>
+    </div>
+
+    <h2>1. PURPOSE</h2>
+    <p>This Cross-Border Data Transfer & Hosting Policy ("Policy") establishes HingeCraft Global, LLC's ("HingeCraft") framework for lawfully transferring personal data across international borders and hosting data in various jurisdictions.</p>
+
+    <h2>2. SCOPE</h2>
+    <p>This Policy applies to: (a) Personal data transferred from one country to another; (b) Data stored in cloud services located outside the data subject's country; (c) Access to data by personnel in other countries; (d) Sharing with international partners, vendors, or affiliates.</p>
+
+    <h2>3. DATA HOSTING LOCATIONS</h2>
+    
+    <h3>3.1 Primary Infrastructure</h3>
+    <p>HingeCraft's primary data infrastructure is located in the United States. Specific hosting locations include: (a) Primary data center: United States (East Coast); (b) Backup/disaster recovery: United States (West Coast); (c) CDN edge locations: Globally distributed.</p>
+    
+    <h3>3.2 Regional Hosting</h3>
+    <p>For compliance with data localization requirements, HingeCraft may maintain regional hosting in: (a) European Union (for EU customer data where required); (b) Other regions as required by law or contract.</p>
+
+    <h2>4. TRANSFER MECHANISMS</h2>
+    
+    <h3>4.1 EU/EEA Transfers</h3>
+    <p>For transfers from the EU/EEA to the United States, we rely on: (a) EU-US Data Privacy Framework (where applicable); (b) Standard Contractual Clauses (SCCs); (c) Binding Corporate Rules (for intra-group transfers); (d) Explicit consent (for specific transfers); (e) Derogations under GDPR Article 49.</p>
+    
+    <h3>4.2 UK Transfers</h3>
+    <p>For transfers from the UK, we use: (a) UK-US Data Bridge; (b) UK International Data Transfer Agreement; (c) Addendum to EU SCCs.</p>
+    
+    <h3>4.3 Other Jurisdictions</h3>
+    <p>For transfers from other countries, we comply with local requirements, which may include: (a) Consent; (b) Contractual provisions; (c) Regulatory approval; (d) Adequacy determinations.</p>
+
+    <h2>5. STANDARD CONTRACTUAL CLAUSES</h2>
+    
+    <p><strong>5.1 Implementation.</strong> When SCCs are used: (a) We incorporate the appropriate module(s); (b) We complete required annexes; (c) We implement supplementary measures as needed; (d) We conduct transfer impact assessments.</p>
+    
+    <p><strong>5.2 Supplementary Measures.</strong> Technical and organizational measures include: (a) Encryption in transit and at rest; (b) Pseudonymization where feasible; (c) Access controls; (d) Audit logging; (e) Security certifications.</p>
+
+    <h2>6. TRANSFER IMPACT ASSESSMENTS</h2>
+    <p>For transfers to countries without adequacy decisions, we assess: (a) Nature of data transferred; (b) Legal framework in the destination country; (c) Government access risks; (d) Effectiveness of safeguards; (e) Need for supplementary measures.</p>
+
+    <h2>7. DATA LOCALIZATION</h2>
+    <p>When data localization is required: (a) We identify applicable requirements; (b) We implement local hosting solutions; (c) We ensure data does not leave the required jurisdiction; (d) We document compliance.</p>
+
+    <h2>8. VENDOR MANAGEMENT</h2>
+    <p>Vendors processing personal data internationally must: (a) Agree to data protection terms; (b) Implement appropriate safeguards; (c) Disclose sub-processor locations; (d) Notify us of government access requests.</p>
+
+    <h2>9. INDIVIDUAL RIGHTS</h2>
+    <p>Individuals whose data is transferred internationally retain all privacy rights, including: (a) Access; (b) Correction; (c) Deletion; (d) Objection to processing; (e) Lodging complaints with supervisory authorities.</p>
+
+    <h2>10. GOVERNMENT ACCESS</h2>
+    <p>If we receive government requests for data: (a) We assess legality; (b) We narrow the scope where possible; (c) We notify data subjects where permitted; (d) We challenge unlawful requests; (e) We document requests and responses.</p>
+
+    <h2>11. REVIEW</h2>
+    <p>This Policy is reviewed annually and updated for: (a) Changes in law; (b) New transfer mechanisms; (c) Changes in hosting locations; (d) Lessons learned.</p>
+
+    <h2>12. CONTACT</h2>
+    <p>Data Protection Officer: privacy@hingecraft.com | (843) 555-0100</p>
+
+    <div class="footer">
+        <p>HingeCraft Global, LLC | 123 Innovation Drive, Suite 100, Charleston, SC 29401</p>
+        <p>Privacy: privacy@hingecraft.com | Phone: (843) 555-0100</p>
+        <p>© 2025 HingeCraft Global, LLC. All Rights Reserved.</p>
+    </div>
+</body>
+</html>
+
+`;
+    
+    // Try to find the legalContent element
+    if ($w('#legalContent')) {
+        try {
+            $w('#legalContent').html = legalContent;
+        } catch (e) {
+            console.log("HTML element not configured - content ready for manual embed");
         }
     }
     
-    loadLegalPageContent();
-
-});
-
-
-$w.onReady(function () {
-    if (typeof document !== 'undefined') {
-        // Page Title
-        document.title = 'CrossBorder Data Transfer_17eea_js | HingeCraft Global';
-        
-        // Meta Description
-        let metaDesc = document.querySelector('meta[name="description"]');
-        if (!metaDesc) {
-            metaDesc = document.createElement('meta');
-            metaDesc.setAttribute('name', 'description');
-            document.head.appendChild(metaDesc);
+    // Also try text element fallback
+    if ($w('#legalText')) {
+        try {
+            $w('#legalText').html = legalContent;
+        } catch (e) {
+            console.log("Using text element fallback");
         }
-        metaDesc.setAttribute('content', 'CrossBorder Data Transfer_17eea_js - HingeCraft Global');
-        
-        // Meta Keywords
-        let metaKeywords = document.querySelector('meta[name="keywords"]');
-        if (!metaKeywords) {
-            metaKeywords = document.createElement('meta');
-            metaKeywords.setAttribute('name', 'keywords');
-            document.head.appendChild(metaKeywords);
-        }
-        metaKeywords.setAttribute('content', 'data protection, data security, data processing, data privacy, sensitive data, cross-border data, hingecraft, hingecraft global');
-        
-        // Open Graph Tags
-        const ogTags = {
-            'og:title': 'CrossBorder Data Transfer_17eea_js | HingeCraft Global',
-            'og:description': 'CrossBorder Data Transfer_17eea_js - HingeCraft Global',
-            'og:image': 'https://hingecraft-global.ai/og-image.jpg',
-            'og:url': 'https://hingecraft-global.ai/crossborder-data-transfer-17eea-js',
-            'og:type': 'website',
-            'og:site_name': 'HingeCraft Global'
-        };
-        
-        Object.keys(ogTags).forEach(prop => {
-            let ogMeta = document.querySelector(`meta[property="${prop}"]`);
-            if (!ogMeta) {
-                ogMeta = document.createElement('meta');
-                ogMeta.setAttribute('property', prop);
-                document.head.appendChild(ogMeta);
-            }
-            ogMeta.setAttribute('content', ogTags[prop]);
-        });
-        
-        // Twitter Card Tags
-        const twitterTags = {
-            'twitter:card': 'summary_large_image',
-            'twitter:title': 'CrossBorder Data Transfer_17eea_js | HingeCraft Global',
-            'twitter:description': 'CrossBorder Data Transfer_17eea_js - HingeCraft Global',
-            'twitter:image': 'https://hingecraft-global.ai/og-image.jpg'
-        };
-        
-        Object.keys(twitterTags).forEach(name => {
-            let twitterMeta = document.querySelector(`meta[name="${name}"]`);
-            if (!twitterMeta) {
-                twitterMeta = document.createElement('meta');
-                twitterMeta.setAttribute('name', name);
-                document.head.appendChild(twitterMeta);
-            }
-            twitterMeta.setAttribute('content', twitterTags[name]);
-        });
-        
-        // Canonical URL
-        let canonical = document.querySelector('link[rel="canonical"]');
-        if (!canonical) {
-            canonical = document.createElement('link');
-            canonical.setAttribute('rel', 'canonical');
-            document.head.appendChild(canonical);
-        }
-        canonical.setAttribute('href', 'https://hingecraft-global.ai/crossborder-data-transfer-17eea-js');
-        
-        // Robots Meta
-        let robots = document.querySelector('meta[name="robots"]');
-        if (!robots) {
-            robots = document.createElement('meta');
-            robots.setAttribute('name', 'robots');
-            document.head.appendChild(robots);
-        }
-        robots.setAttribute('content', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
-        
-        // Schema.org JSON-LD Structured Data
-        let schemaScript = document.querySelector('script[type="application/ld+json"]');
-        if (!schemaScript) {
-            schemaScript = document.createElement('script');
-            schemaScript.setAttribute('type', 'application/ld+json');
-            document.head.appendChild(schemaScript);
-        }
-        schemaScript.textContent = `{
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "CrossBorder Data Transfer_17eea_js | HingeCraft Global",
-  "description": "CrossBorder Data Transfer_17eea_js - HingeCraft Global",
-  "url": "https://hingecraft-global.ai/crossborder-data-transfer-17eea-js",
-  "publisher": {
-    "@type": "Organization",
-    "name": "HingeCraft Global",
-    "url": "https://hingecraft-global.ai",
-    "logo": "https://hingecraft-global.ai/logo.png"
-  },
-  "datePublished": "2025-12-05",
-  "dateModified": "2025-12-05",
-  "inLanguage": "en-US",
-  "keywords": "data protection, data security, data processing, data privacy, sensitive data, cross-border data, hingecraft, hingecraft global"
-}`;
     }
+}
+
+// Export for potential use in other contexts
+export function getLegalDocumentHTML() {
+    return `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cross-Border Data Transfer & Hosting Policy - HingeCraft Global, LLC</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Times New Roman', Times, serif; font-size: 12pt; line-height: 1.6; color: #000; background: #fff; max-width: 8.5in; margin: 0 auto; padding: 1in; }
+        h1 { font-size: 18pt; font-weight: bold; text-align: center; margin-bottom: 24pt; text-transform: uppercase; border-bottom: 2px solid #000; padding-bottom: 12pt; }
+        h2 { font-size: 14pt; font-weight: bold; margin-top: 24pt; margin-bottom: 12pt; text-transform: uppercase; }
+        h3 { font-size: 12pt; font-weight: bold; margin-top: 18pt; margin-bottom: 9pt; }
+        p { margin-bottom: 12pt; text-align: justify; }
+        ul, ol { margin-left: 36pt; margin-bottom: 12pt; }
+        li { margin-bottom: 6pt; }
+        .header { text-align: center; margin-bottom: 36pt; }
+        .company-name { font-size: 16pt; font-weight: bold; }
+        .footer { margin-top: 48pt; padding-top: 12pt; border-top: 1px solid #000; font-size: 10pt; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="company-name">HINGECRAFT GLOBAL, LLC</div>
+        <h1>CROSS-BORDER DATA TRANSFER &<br>HOSTING POLICY</h1>
+        <p>Effective Date: _________________, 20____<br>State of South Carolina</p>
+    </div>
+
+    <h2>1. PURPOSE</h2>
+    <p>This Cross-Border Data Transfer & Hosting Policy ("Policy") establishes HingeCraft Global, LLC's ("HingeCraft") framework for lawfully transferring personal data across international borders and hosting data in various jurisdictions.</p>
+
+    <h2>2. SCOPE</h2>
+    <p>This Policy applies to: (a) Personal data transferred from one country to another; (b) Data stored in cloud services located outside the data subject's country; (c) Access to data by personnel in other countries; (d) Sharing with international partners, vendors, or affiliates.</p>
+
+    <h2>3. DATA HOSTING LOCATIONS</h2>
     
-    // Load HTML content for legal pages
+    <h3>3.1 Primary Infrastructure</h3>
+    <p>HingeCraft's primary data infrastructure is located in the United States. Specific hosting locations include: (a) Primary data center: United States (East Coast); (b) Backup/disaster recovery: United States (West Coast); (c) CDN edge locations: Globally distributed.</p>
     
-});
+    <h3>3.2 Regional Hosting</h3>
+    <p>For compliance with data localization requirements, HingeCraft may maintain regional hosting in: (a) European Union (for EU customer data where required); (b) Other regions as required by law or contract.</p>
 
-
-
-
-$w.onReady(function () {
-    if (typeof document !== 'undefined') {
-        // Page Title
-        document.title = 'CrossBorder Data Transfer_17eea_js | HingeCraft Global';
-        
-        // Meta Description
-        let metaDesc = document.querySelector('meta[name="description"]');
-        if (!metaDesc) {
-            metaDesc = document.createElement('meta');
-            metaDesc.setAttribute('name', 'description');
-            document.head.appendChild(metaDesc);
-        }
-        metaDesc.setAttribute('content', 'CrossBorder Data Transfer_17eea_js - HingeCraft Global');
-        
-        // Meta Keywords
-        let metaKeywords = document.querySelector('meta[name="keywords"]');
-        if (!metaKeywords) {
-            metaKeywords = document.createElement('meta');
-            metaKeywords.setAttribute('name', 'keywords');
-            document.head.appendChild(metaKeywords);
-        }
-        metaKeywords.setAttribute('content', 'data protection, data security, data processing, data privacy, sensitive data, cross-border data, hingecraft, hingecraft global');
-        
-        // Open Graph Tags
-        const ogTags = {
-            'og:title': 'CrossBorder Data Transfer_17eea_js | HingeCraft Global',
-            'og:description': 'CrossBorder Data Transfer_17eea_js - HingeCraft Global',
-            'og:image': 'https://hingecraft-global.ai/og-image.jpg',
-            'og:url': 'https://hingecraft-global.ai/crossborder-data-transfer-17eea-js',
-            'og:type': 'website',
-            'og:site_name': 'HingeCraft Global'
-        };
-        
-        Object.keys(ogTags).forEach(prop => {
-            let ogMeta = document.querySelector(`meta[property="${prop}"]`);
-            if (!ogMeta) {
-                ogMeta = document.createElement('meta');
-                ogMeta.setAttribute('property', prop);
-                document.head.appendChild(ogMeta);
-            }
-            ogMeta.setAttribute('content', ogTags[prop]);
-        });
-        
-        // Twitter Card Tags
-        const twitterTags = {
-            'twitter:card': 'summary_large_image',
-            'twitter:title': 'CrossBorder Data Transfer_17eea_js | HingeCraft Global',
-            'twitter:description': 'CrossBorder Data Transfer_17eea_js - HingeCraft Global',
-            'twitter:image': 'https://hingecraft-global.ai/og-image.jpg'
-        };
-        
-        Object.keys(twitterTags).forEach(name => {
-            let twitterMeta = document.querySelector(`meta[name="${name}"]`);
-            if (!twitterMeta) {
-                twitterMeta = document.createElement('meta');
-                twitterMeta.setAttribute('name', name);
-                document.head.appendChild(twitterMeta);
-            }
-            twitterMeta.setAttribute('content', twitterTags[name]);
-        });
-        
-        // Canonical URL
-        let canonical = document.querySelector('link[rel="canonical"]');
-        if (!canonical) {
-            canonical = document.createElement('link');
-            canonical.setAttribute('rel', 'canonical');
-            document.head.appendChild(canonical);
-        }
-        canonical.setAttribute('href', 'https://hingecraft-global.ai/crossborder-data-transfer-17eea-js');
-        
-        // Robots Meta
-        let robots = document.querySelector('meta[name="robots"]');
-        if (!robots) {
-            robots = document.createElement('meta');
-            robots.setAttribute('name', 'robots');
-            document.head.appendChild(robots);
-        }
-        robots.setAttribute('content', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
-        
-        // Schema.org JSON-LD Structured Data
-        let schemaScript = document.querySelector('script[type="application/ld+json"]');
-        if (!schemaScript) {
-            schemaScript = document.createElement('script');
-            schemaScript.setAttribute('type', 'application/ld+json');
-            document.head.appendChild(schemaScript);
-        }
-        schemaScript.textContent = `{
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "CrossBorder Data Transfer_17eea_js | HingeCraft Global",
-  "description": "CrossBorder Data Transfer_17eea_js - HingeCraft Global",
-  "url": "https://hingecraft-global.ai/crossborder-data-transfer-17eea-js",
-  "publisher": {
-    "@type": "Organization",
-    "name": "HingeCraft Global",
-    "url": "https://hingecraft-global.ai",
-    "logo": "https://hingecraft-global.ai/logo.png"
-  },
-  "datePublished": "2025-12-05",
-  "dateModified": "2025-12-05",
-  "inLanguage": "en-US",
-  "keywords": "data protection, data security, data processing, data privacy, sensitive data, cross-border data, hingecraft, hingecraft global"
-}`;
-    }
+    <h2>4. TRANSFER MECHANISMS</h2>
     
-    // Load HTML content for legal pages
+    <h3>4.1 EU/EEA Transfers</h3>
+    <p>For transfers from the EU/EEA to the United States, we rely on: (a) EU-US Data Privacy Framework (where applicable); (b) Standard Contractual Clauses (SCCs); (c) Binding Corporate Rules (for intra-group transfers); (d) Explicit consent (for specific transfers); (e) Derogations under GDPR Article 49.</p>
     
-});
+    <h3>4.2 UK Transfers</h3>
+    <p>For transfers from the UK, we use: (a) UK-US Data Bridge; (b) UK International Data Transfer Agreement; (c) Addendum to EU SCCs.</p>
+    
+    <h3>4.3 Other Jurisdictions</h3>
+    <p>For transfers from other countries, we comply with local requirements, which may include: (a) Consent; (b) Contractual provisions; (c) Regulatory approval; (d) Adequacy determinations.</p>
 
+    <h2>5. STANDARD CONTRACTUAL CLAUSES</h2>
+    
+    <p><strong>5.1 Implementation.</strong> When SCCs are used: (a) We incorporate the appropriate module(s); (b) We complete required annexes; (c) We implement supplementary measures as needed; (d) We conduct transfer impact assessments.</p>
+    
+    <p><strong>5.2 Supplementary Measures.</strong> Technical and organizational measures include: (a) Encryption in transit and at rest; (b) Pseudonymization where feasible; (c) Access controls; (d) Audit logging; (e) Security certifications.</p>
 
+    <h2>6. TRANSFER IMPACT ASSESSMENTS</h2>
+    <p>For transfers to countries without adequacy decisions, we assess: (a) Nature of data transferred; (b) Legal framework in the destination country; (c) Government access risks; (d) Effectiveness of safeguards; (e) Need for supplementary measures.</p>
 
+    <h2>7. DATA LOCALIZATION</h2>
+    <p>When data localization is required: (a) We identify applicable requirements; (b) We implement local hosting solutions; (c) We ensure data does not leave the required jurisdiction; (d) We document compliance.</p>
 
-$w.onReady(function () {
-    if (typeof document !== 'undefined') {
-        // Page Title
-        document.title = 'Cross-Border Data Transfer & Hosting Agreement | HingeCra...';
-        
-        // Meta Description
-        let metaDesc = document.querySelector('meta[name="description"]');
-        if (!metaDesc) {
-            metaDesc = document.createElement('meta');
-            metaDesc.setAttribute('name', 'description');
-            document.head.appendChild(metaDesc);
-        }
-        metaDesc.setAttribute('content', 'HingeCraft Global Cross-Border Data Transfer & Hosting Agreement - Agreement for EU to US data transfers and multi-region hosting');
-        
-        // Meta Keywords
-        let metaKeywords = document.querySelector('meta[name="keywords"]');
-        if (!metaKeywords) {
-            metaKeywords = document.createElement('meta');
-            metaKeywords.setAttribute('name', 'keywords');
-            document.head.appendChild(metaKeywords);
-        }
-        metaKeywords.setAttribute('content', 'data protection, data security, data processing, data privacy, sensitive data, data governance, data processing agreement, cross-border data, data transfer, international data, cross border data transfer, hingecraft data protection, hingecraft data processing, hingecraft, hingecraft global, resilient design');
-        
-        // Open Graph Tags
-        const ogTags = {
-            'og:title': 'Cross-Border Data Transfer & Hosting Agreement | HingeCra...',
-            'og:description': 'HingeCraft Global Cross-Border Data Transfer & Hosting Agreement - Agreement for EU to US data transfers and multi-region hosting',
-            'og:image': 'https://hingecraft-global.ai/og-image.jpg',
-            'og:url': 'https://hingecraft-global.ai/legal/crossborder_data_transfer',
-            'og:type': 'website',
-            'og:site_name': 'HingeCraft Global'
-        };
-        
-        Object.keys(ogTags).forEach(prop => {
-            let ogMeta = document.querySelector(`meta[property="${prop}"]`);
-            if (!ogMeta) {
-                ogMeta = document.createElement('meta');
-                ogMeta.setAttribute('property', prop);
-                document.head.appendChild(ogMeta);
-            }
-            ogMeta.setAttribute('content', ogTags[prop]);
-        });
-        
-        // Twitter Card Tags
-        const twitterTags = {
-            'twitter:card': 'summary_large_image',
-            'twitter:title': 'Cross-Border Data Transfer & Hosting Agreement | HingeCra...',
-            'twitter:description': 'HingeCraft Global Cross-Border Data Transfer & Hosting Agreement - Agreement for EU to US data transfers and multi-region hosting',
-            'twitter:image': 'https://hingecraft-global.ai/og-image.jpg'
-        };
-        
-        Object.keys(twitterTags).forEach(name => {
-            let twitterMeta = document.querySelector(`meta[name="${name}"]`);
-            if (!twitterMeta) {
-                twitterMeta = document.createElement('meta');
-                twitterMeta.setAttribute('name', name);
-                document.head.appendChild(twitterMeta);
-            }
-            twitterMeta.setAttribute('content', twitterTags[name]);
-        });
-        
-        // Canonical URL
-        let canonical = document.querySelector('link[rel="canonical"]');
-        if (!canonical) {
-            canonical = document.createElement('link');
-            canonical.setAttribute('rel', 'canonical');
-            document.head.appendChild(canonical);
-        }
-        canonical.setAttribute('href', 'https://hingecraft-global.ai/legal/crossborder_data_transfer');
-        
-        // Robots Meta
-        let robots = document.querySelector('meta[name="robots"]');
-        if (!robots) {
-            robots = document.createElement('meta');
-            robots.setAttribute('name', 'robots');
-            document.head.appendChild(robots);
-        }
-        robots.setAttribute('content', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
-        
-        // Schema.org JSON-LD
-        let schemaScript = document.querySelector('script[type="application/ld+json"]');
-        if (!schemaScript) {
-            schemaScript = document.createElement('script');
-            schemaScript.setAttribute('type', 'application/ld+json');
-            document.head.appendChild(schemaScript);
-        }
-        schemaScript.textContent = JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "LegalDocument",
-            "name": "Cross-Border Data Transfer & Hosting Agreement | HingeCra...",
-            "description": "HingeCraft Global Cross-Border Data Transfer & Hosting Agreement - Agreement for EU to US data transfers and multi-region hosting",
-            "url": "https://hingecraft-global.ai/legal/crossborder_data_transfer",
-            "publisher": {
-                "@type": "Organization",
-                "name": "HingeCraft Global",
-                "url": "https://hingecraft-global.ai",
-                "logo": "https://hingecraft-global.ai/logo.png"
-            },
-            "datePublished": "2025-12-05",
-            "dateModified": "2025-12-05",
-            "inLanguage": "en-US",
-            "keywords": "data protection, data security, data processing, data privacy, sensitive data, data governance, data processing agreement, cross-border data, data transfer, international data, cross border data transfer, hingecraft data protection, hingecraft data processing, hingecraft, hingecraft global, resilient design"
-        });
-    }
-});
+    <h2>8. VENDOR MANAGEMENT</h2>
+    <p>Vendors processing personal data internationally must: (a) Agree to data protection terms; (b) Implement appropriate safeguards; (c) Disclose sub-processor locations; (d) Notify us of government access requests.</p>
 
+    <h2>9. INDIVIDUAL RIGHTS</h2>
+    <p>Individuals whose data is transferred internationally retain all privacy rights, including: (a) Access; (b) Correction; (c) Deletion; (d) Objection to processing; (e) Lodging complaints with supervisory authorities.</p>
 
-// API Reference: https://www.wix.com/velo/reference/api-overview/introduction
-// “Hello, World!” Example: https://learn-code.wix.com/en/article/hello-world
+    <h2>10. GOVERNMENT ACCESS</h2>
+    <p>If we receive government requests for data: (a) We assess legality; (b) We narrow the scope where possible; (c) We notify data subjects where permitted; (d) We challenge unlawful requests; (e) We document requests and responses.</p>
 
-$w.onReady(function () {
-    // Write your JavaScript here
+    <h2>11. REVIEW</h2>
+    <p>This Policy is reviewed annually and updated for: (a) Changes in law; (b) New transfer mechanisms; (c) Changes in hosting locations; (d) Lessons learned.</p>
 
-    // To select an element by ID use: $w('#elementID')
+    <h2>12. CONTACT</h2>
+    <p>Data Protection Officer: privacy@hingecraft.com | (843) 555-0100</p>
 
-    // Click 'Preview' to run your code
-});
+    <div class="footer">
+        <p>HingeCraft Global, LLC | 123 Innovation Drive, Suite 100, Charleston, SC 29401</p>
+        <p>Privacy: privacy@hingecraft.com | Phone: (843) 555-0100</p>
+        <p>© 2025 HingeCraft Global, LLC. All Rights Reserved.</p>
+    </div>
+</body>
+</html>
 
-
-// Load Legal Page HTML Content
-
-$w.onReady(function () {
-    loadLegalPageContent();
-});
+`;
+}

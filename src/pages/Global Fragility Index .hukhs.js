@@ -1,3 +1,69 @@
+// HingeCraft Global - SEO Optimized
+// Global Fragility Index | Risk Assessment Tools
+// Generated: December 6, 2025
+
+import wixSeo from 'wix-seo';
+
+$w.onReady(function () {
+    // Set page title
+    wixSeo.setTitle("Global Fragility Index | Risk Assessment Tools");
+    
+    // Set meta tags
+    wixSeo.setMetaTags([
+        { name: "description", content: "HingeCraft's Global Fragility Index helps assess supply chain risks, geopolitical factors, and market stability for informed decision-making." },
+        { name: "keywords", content: "risk assessment, fragility index, supply chain risk, geopolitical risk, market analysis" },
+        { name: "robots", content: "index, follow" },
+        { property: "og:title", content: "Global Fragility Index | Risk Assessment Tools" },
+        { property: "og:description", content: "HingeCraft's Global Fragility Index helps assess supply chain risks, geopolitical factors, and market stability for informed decision-making." },
+        { property: "og:type", content: "website" },
+        { property: "og:site_name", content: "HingeCraft Global" },
+        { property: "twitter:card", content: "summary_large_image" },
+        { property: "twitter:title", content: "Global Fragility Index | Risk Assessment Tools" },
+        { property: "twitter:description", content: "HingeCraft's Global Fragility Index helps assess supply chain risks, geopolitical factors, and market stability for informed decision-making." }
+    ]);
+    
+    // Set structured data (JSON-LD)
+    wixSeo.setStructuredData([
+        {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Global Fragility Index | Risk Assessment Tools",
+        "description": "HingeCraft's Global Fragility Index helps assess supply chain risks, geopolitical factors, and market stability for informed decision-making.",
+        "url": "https://www.hingecraft.com/global-fragility-index-.hukhs",
+        "inLanguage": "en-US",
+        "dateModified": "2025-12-06",
+        "publisher": {
+                "@type": "Organization",
+                "name": "HingeCraft Global",
+                "url": "https://www.hingecraft.com",
+                "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://www.hingecraft.com/logo.png"
+                }
+        }
+},
+        {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+                {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "https://www.hingecraft.com"
+                },
+                {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "Global Fragility Index",
+                        "item": "https://www.hingecraft.com/global-fragility-index-.hukhs"
+                }
+        ]
+}
+    ]);
+});
+
+
+// Original page code below
 // Comprehensive SEO Optimization - Global Fragility Index 
 // JSON-LD Schema.org | 100+ Keywords | Competitive Optimization
 

@@ -130,3 +130,5 @@ COMMENT ON FUNCTION record_threat_indicator IS 'Record threat indicators for con
 
 
 
+
+

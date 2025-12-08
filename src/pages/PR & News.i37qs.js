@@ -1,3 +1,69 @@
+// HingeCraft Global - SEO Optimized
+// PR & News | HingeCraft Updates
+// Generated: December 6, 2025
+
+import wixSeo from 'wix-seo';
+
+$w.onReady(function () {
+    // Set page title
+    wixSeo.setTitle("PR & News | HingeCraft Updates");
+    
+    // Set meta tags
+    wixSeo.setMetaTags([
+        { name: "description", content: "Stay updated with HingeCraft news, press releases, company announcements, and industry insights." },
+        { name: "keywords", content: "news, press releases, company news, announcements, PR" },
+        { name: "robots", content: "index, follow" },
+        { property: "og:title", content: "PR & News | HingeCraft Updates" },
+        { property: "og:description", content: "Stay updated with HingeCraft news, press releases, company announcements, and industry insights." },
+        { property: "og:type", content: "website" },
+        { property: "og:site_name", content: "HingeCraft Global" },
+        { property: "twitter:card", content: "summary_large_image" },
+        { property: "twitter:title", content: "PR & News | HingeCraft Updates" },
+        { property: "twitter:description", content: "Stay updated with HingeCraft news, press releases, company announcements, and industry insights." }
+    ]);
+    
+    // Set structured data (JSON-LD)
+    wixSeo.setStructuredData([
+        {
+        "@context": "https://schema.org",
+        "@type": "NewsArticle",
+        "name": "PR & News | HingeCraft Updates",
+        "description": "Stay updated with HingeCraft news, press releases, company announcements, and industry insights.",
+        "url": "https://www.hingecraft.com/pr-&-news.i37qs",
+        "inLanguage": "en-US",
+        "dateModified": "2025-12-06",
+        "publisher": {
+                "@type": "Organization",
+                "name": "HingeCraft Global",
+                "url": "https://www.hingecraft.com",
+                "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://www.hingecraft.com/logo.png"
+                }
+        }
+},
+        {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+                {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "https://www.hingecraft.com"
+                },
+                {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "PR & News",
+                        "item": "https://www.hingecraft.com/pr-&-news.i37qs"
+                }
+        ]
+}
+    ]);
+});
+
+
+// Original page code below
 // Comprehensive SEO Optimization - PR & News
 // JSON-LD Schema.org | 100+ Keywords | Competitive Optimization
 

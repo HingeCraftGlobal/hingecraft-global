@@ -1,3 +1,69 @@
+// HingeCraft Global - SEO Optimized
+// Careers at HingeCraft | Join Our Team
+// Generated: December 6, 2025
+
+import wixSeo from 'wix-seo';
+
+$w.onReady(function () {
+    // Set page title
+    wixSeo.setTitle("Careers at HingeCraft | Join Our Team");
+    
+    // Set meta tags
+    wixSeo.setMetaTags([
+        { name: "description", content: "Explore career opportunities at HingeCraft Global. Join our team of innovators, engineers, and changemakers building the future." },
+        { name: "keywords", content: "careers, job opportunities, employment, join team, job openings" },
+        { name: "robots", content: "index, follow" },
+        { property: "og:title", content: "Careers at HingeCraft | Join Our Team" },
+        { property: "og:description", content: "Explore career opportunities at HingeCraft Global. Join our team of innovators, engineers, and changemakers building the future." },
+        { property: "og:type", content: "website" },
+        { property: "og:site_name", content: "HingeCraft Global" },
+        { property: "twitter:card", content: "summary_large_image" },
+        { property: "twitter:title", content: "Careers at HingeCraft | Join Our Team" },
+        { property: "twitter:description", content: "Explore career opportunities at HingeCraft Global. Join our team of innovators, engineers, and changemakers building the future." }
+    ]);
+    
+    // Set structured data (JSON-LD)
+    wixSeo.setStructuredData([
+        {
+        "@context": "https://schema.org",
+        "@type": "JobPosting",
+        "name": "Careers at HingeCraft | Join Our Team",
+        "description": "Explore career opportunities at HingeCraft Global. Join our team of innovators, engineers, and changemakers building the future.",
+        "url": "https://www.hingecraft.com/career-opportunities.wmn7s",
+        "inLanguage": "en-US",
+        "dateModified": "2025-12-06",
+        "publisher": {
+                "@type": "Organization",
+                "name": "HingeCraft Global",
+                "url": "https://www.hingecraft.com",
+                "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://www.hingecraft.com/logo.png"
+                }
+        }
+},
+        {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+                {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "https://www.hingecraft.com"
+                },
+                {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "Careers at HingeCraft",
+                        "item": "https://www.hingecraft.com/career-opportunities.wmn7s"
+                }
+        ]
+}
+    ]);
+});
+
+
+// Original page code below
 // Comprehensive SEO Optimization - Career Opportunities
 // JSON-LD Schema.org | 100+ Keywords | Competitive Optimization
 

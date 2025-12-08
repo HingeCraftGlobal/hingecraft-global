@@ -1,3 +1,69 @@
+// HingeCraft Global - SEO Optimized
+// Member Portal | HingeCraft Account Access
+// Generated: December 6, 2025
+
+import wixSeo from 'wix-seo';
+
+$w.onReady(function () {
+    // Set page title
+    wixSeo.setTitle("Member Portal | HingeCraft Account Access");
+    
+    // Set meta tags
+    wixSeo.setMetaTags([
+        { name: "description", content: "Access your HingeCraft Member Portal for account management, orders, subscriptions, and exclusive member resources." },
+        { name: "keywords", content: "member portal, account access, member login, dashboard, member services" },
+        { name: "robots", content: "index, follow" },
+        { property: "og:title", content: "Member Portal | HingeCraft Account Access" },
+        { property: "og:description", content: "Access your HingeCraft Member Portal for account management, orders, subscriptions, and exclusive member resources." },
+        { property: "og:type", content: "website" },
+        { property: "og:site_name", content: "HingeCraft Global" },
+        { property: "twitter:card", content: "summary_large_image" },
+        { property: "twitter:title", content: "Member Portal | HingeCraft Account Access" },
+        { property: "twitter:description", content: "Access your HingeCraft Member Portal for account management, orders, subscriptions, and exclusive member resources." }
+    ]);
+    
+    // Set structured data (JSON-LD)
+    wixSeo.setStructuredData([
+        {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Member Portal | HingeCraft Account Access",
+        "description": "Access your HingeCraft Member Portal for account management, orders, subscriptions, and exclusive member resources.",
+        "url": "https://www.hingecraft.com/membership-portal.covet",
+        "inLanguage": "en-US",
+        "dateModified": "2025-12-06",
+        "publisher": {
+                "@type": "Organization",
+                "name": "HingeCraft Global",
+                "url": "https://www.hingecraft.com",
+                "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://www.hingecraft.com/logo.png"
+                }
+        }
+},
+        {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+                {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "https://www.hingecraft.com"
+                },
+                {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "Member Portal",
+                        "item": "https://www.hingecraft.com/membership-portal.covet"
+                }
+        ]
+}
+    ]);
+});
+
+
+// Original page code below
 // Comprehensive SEO Optimization - Membership Portal
 // JSON-LD Schema.org | 100+ Keywords | Competitive Optimization
 

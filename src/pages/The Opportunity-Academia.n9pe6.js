@@ -1,3 +1,69 @@
+// HingeCraft Global - SEO Optimized
+// Academic Partnerships | HingeCraft Education Programs
+// Generated: December 6, 2025
+
+import wixSeo from 'wix-seo';
+
+$w.onReady(function () {
+    // Set page title
+    wixSeo.setTitle("Academic Partnerships | HingeCraft Education Programs");
+    
+    // Set meta tags
+    wixSeo.setMetaTags([
+        { name: "description", content: "HingeCraft academic partnerships offer research collaboration, STEM education programs, and workforce development opportunities." },
+        { name: "keywords", content: "academic partnership, education programs, university collaboration, STEM, research partnership" },
+        { name: "robots", content: "index, follow" },
+        { property: "og:title", content: "Academic Partnerships | HingeCraft Education Programs" },
+        { property: "og:description", content: "HingeCraft academic partnerships offer research collaboration, STEM education programs, and workforce development opportunities." },
+        { property: "og:type", content: "website" },
+        { property: "og:site_name", content: "HingeCraft Global" },
+        { property: "twitter:card", content: "summary_large_image" },
+        { property: "twitter:title", content: "Academic Partnerships | HingeCraft Education Programs" },
+        { property: "twitter:description", content: "HingeCraft academic partnerships offer research collaboration, STEM education programs, and workforce development opportunities." }
+    ]);
+    
+    // Set structured data (JSON-LD)
+    wixSeo.setStructuredData([
+        {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Academic Partnerships | HingeCraft Education Programs",
+        "description": "HingeCraft academic partnerships offer research collaboration, STEM education programs, and workforce development opportunities.",
+        "url": "https://www.hingecraft.com/the-opportunity-academia.n9pe6",
+        "inLanguage": "en-US",
+        "dateModified": "2025-12-06",
+        "publisher": {
+                "@type": "Organization",
+                "name": "HingeCraft Global",
+                "url": "https://www.hingecraft.com",
+                "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://www.hingecraft.com/logo.png"
+                }
+        }
+},
+        {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+                {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "https://www.hingecraft.com"
+                },
+                {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "Academic Partnerships",
+                        "item": "https://www.hingecraft.com/the-opportunity-academia.n9pe6"
+                }
+        ]
+}
+    ]);
+});
+
+
+// Original page code below
 // Comprehensive SEO Optimization - The Opportunity-Academia
 // JSON-LD Schema.org | 100+ Keywords | Competitive Optimization
 

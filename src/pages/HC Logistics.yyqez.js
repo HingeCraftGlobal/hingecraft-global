@@ -1,3 +1,69 @@
+// HingeCraft Global - SEO Optimized
+// HingeCraft Logistics | Global Shipping & Distribution
+// Generated: December 6, 2025
+
+import wixSeo from 'wix-seo';
+
+$w.onReady(function () {
+    // Set page title
+    wixSeo.setTitle("HingeCraft Logistics | Global Shipping & Distribution");
+    
+    // Set meta tags
+    wixSeo.setMetaTags([
+        { name: "description", content: "HingeCraft Logistics delivers worldwide shipping, warehousing, and distribution solutions. Efficient, reliable, and sustainable logistics." },
+        { name: "keywords", content: "logistics services, global shipping, distribution, warehousing, supply chain logistics" },
+        { name: "robots", content: "index, follow" },
+        { property: "og:title", content: "HingeCraft Logistics | Global Shipping & Distribution" },
+        { property: "og:description", content: "HingeCraft Logistics delivers worldwide shipping, warehousing, and distribution solutions. Efficient, reliable, and sustainable logistics." },
+        { property: "og:type", content: "website" },
+        { property: "og:site_name", content: "HingeCraft Global" },
+        { property: "twitter:card", content: "summary_large_image" },
+        { property: "twitter:title", content: "HingeCraft Logistics | Global Shipping & Distribution" },
+        { property: "twitter:description", content: "HingeCraft Logistics delivers worldwide shipping, warehousing, and distribution solutions. Efficient, reliable, and sustainable logistics." }
+    ]);
+    
+    // Set structured data (JSON-LD)
+    wixSeo.setStructuredData([
+        {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "HingeCraft Logistics | Global Shipping & Distribution",
+        "description": "HingeCraft Logistics delivers worldwide shipping, warehousing, and distribution solutions. Efficient, reliable, and sustainable logistics.",
+        "url": "https://www.hingecraft.com/hc-logistics.yyqez",
+        "inLanguage": "en-US",
+        "dateModified": "2025-12-06",
+        "publisher": {
+                "@type": "Organization",
+                "name": "HingeCraft Global",
+                "url": "https://www.hingecraft.com",
+                "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://www.hingecraft.com/logo.png"
+                }
+        }
+},
+        {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+                {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "https://www.hingecraft.com"
+                },
+                {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "HingeCraft Logistics",
+                        "item": "https://www.hingecraft.com/hc-logistics.yyqez"
+                }
+        ]
+}
+    ]);
+});
+
+
+// Original page code below
 // Comprehensive SEO Optimization - HC Logistics
 // JSON-LD Schema.org | 100+ Keywords | Competitive Optimization
 

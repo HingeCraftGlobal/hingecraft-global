@@ -1,3 +1,69 @@
+// HingeCraft Global - SEO Optimized
+// Member Workspace | Collaborative Tools
+// Generated: December 6, 2025
+
+import wixSeo from 'wix-seo';
+
+$w.onReady(function () {
+    // Set page title
+    wixSeo.setTitle("Member Workspace | Collaborative Tools");
+    
+    // Set meta tags
+    wixSeo.setMetaTags([
+        { name: "description", content: "HingeCraft Member Workspace provides collaborative tools, project management, and communication features for members and partners." },
+        { name: "keywords", content: "workspace, collaboration tools, project management, team workspace, member tools" },
+        { name: "robots", content: "index, follow" },
+        { property: "og:title", content: "Member Workspace | Collaborative Tools" },
+        { property: "og:description", content: "HingeCraft Member Workspace provides collaborative tools, project management, and communication features for members and partners." },
+        { property: "og:type", content: "website" },
+        { property: "og:site_name", content: "HingeCraft Global" },
+        { property: "twitter:card", content: "summary_large_image" },
+        { property: "twitter:title", content: "Member Workspace | Collaborative Tools" },
+        { property: "twitter:description", content: "HingeCraft Member Workspace provides collaborative tools, project management, and communication features for members and partners." }
+    ]);
+    
+    // Set structured data (JSON-LD)
+    wixSeo.setStructuredData([
+        {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Member Workspace | Collaborative Tools",
+        "description": "HingeCraft Member Workspace provides collaborative tools, project management, and communication features for members and partners.",
+        "url": "https://www.hingecraft.com/member-workspace.yci98",
+        "inLanguage": "en-US",
+        "dateModified": "2025-12-06",
+        "publisher": {
+                "@type": "Organization",
+                "name": "HingeCraft Global",
+                "url": "https://www.hingecraft.com",
+                "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://www.hingecraft.com/logo.png"
+                }
+        }
+},
+        {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+                {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "https://www.hingecraft.com"
+                },
+                {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "Member Workspace",
+                        "item": "https://www.hingecraft.com/member-workspace.yci98"
+                }
+        ]
+}
+    ]);
+});
+
+
+// Original page code below
 // Comprehensive SEO Optimization - Member Workspace
 // JSON-LD Schema.org | 100+ Keywords | Competitive Optimization
 

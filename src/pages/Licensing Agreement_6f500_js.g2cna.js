@@ -1,567 +1,547 @@
-// Comprehensive SEO Optimization - Licensing Agreement_6f500_js
-// JSON-LD Schema.org | 100+ Keywords | Competitive Optimization
+// HingeCraft Global, LLC - Legal Document
+// Intellectual Property Creator Licensing
+// State of South Carolina | December 6, 2025
+// Auto-generated - All URLs are HTTPS only
+
+import wixSeo from 'wix-seo';
 
 $w.onReady(function () {
-    if (typeof document !== 'undefined') {
-        // Page Title
-        document.title = 'Creator Licensing & IP Agreement | HingeCraft Global';
-        
-        // Meta Description
-        let metaDesc = document.querySelector('meta[name="description"]');
-        if (!metaDesc) {
-            metaDesc = document.createElement('meta');
-            metaDesc.setAttribute('name', 'description');
-            document.head.appendChild(metaDesc);
-        }
-        metaDesc.setAttribute('content', 'HingeCraft Global Creator Licensing & IP Agreement - Intellectual property ownership and royalty structure for creators');
-        
-        // Meta Keywords
-        let metaKeywords = document.querySelector('meta[name="keywords"]');
-        if (!metaKeywords) {
-            metaKeywords = document.createElement('meta');
-            metaKeywords.setAttribute('name', 'keywords');
-            document.head.appendChild(metaKeywords);
-        }
-        metaKeywords.setAttribute('content', 'service agreement, user agreement, creator licensing, marketplace agreement, manufacturing agreement, membership agreement, hingecraft, hingecraft global, resilient design');
-        
-        // Open Graph Tags
-        const ogTags = {
-            'og:title': 'Creator Licensing & IP Agreement | HingeCraft Global',
-            'og:description': 'HingeCraft Global Creator Licensing & IP Agreement - Intellectual property ownership and royalty structure for creators',
-            'og:image': 'https://hingecraft-global.ai/og-image.jpg',
-            'og:url': 'https://hingecraft-global.ai/legal/18-creator-licensing-ip-agreement',
-            'og:type': 'website',
-            'og:site_name': 'HingeCraft Global'
-        };
-        
-        Object.keys(ogTags).forEach(prop => {
-            let ogMeta = document.querySelector(`meta[property="${prop}"]`);
-            if (!ogMeta) {
-                ogMeta = document.createElement('meta');
-                ogMeta.setAttribute('property', prop);
-                document.head.appendChild(ogMeta);
-            }
-            ogMeta.setAttribute('content', ogTags[prop]);
-        });
-        
-        // Twitter Card Tags
-        const twitterTags = {
-            'twitter:card': 'summary_large_image',
-            'twitter:title': 'Creator Licensing & IP Agreement | HingeCraft Global',
-            'twitter:description': 'HingeCraft Global Creator Licensing & IP Agreement - Intellectual property ownership and royalty structure for creators',
-            'twitter:image': 'https://hingecraft-global.ai/og-image.jpg'
-        };
-        
-        Object.keys(twitterTags).forEach(name => {
-            let twitterMeta = document.querySelector(`meta[name="${name}"]`);
-            if (!twitterMeta) {
-                twitterMeta = document.createElement('meta');
-                twitterMeta.setAttribute('name', name);
-                document.head.appendChild(twitterMeta);
-            }
-            twitterMeta.setAttribute('content', twitterTags[name]);
-        });
-        
-        // Canonical URL
-        let canonical = document.querySelector('link[rel="canonical"]');
-        if (!canonical) {
-            canonical = document.createElement('link');
-            canonical.setAttribute('rel', 'canonical');
-            document.head.appendChild(canonical);
-        }
-        canonical.setAttribute('href', 'https://hingecraft-global.ai/legal/18-creator-licensing-ip-agreement');
-        
-        // Robots Meta
-        let robots = document.querySelector('meta[name="robots"]');
-        if (!robots) {
-            robots = document.createElement('meta');
-            robots.setAttribute('name', 'robots');
-            document.head.appendChild(robots);
-        }
-        robots.setAttribute('content', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
-        
-        // Additional Meta Tags
-        const additionalTags = {
-            'author': 'HingeCraft Global',
-            'language': 'en-US',
-            'revisit-after': '7 days',
-            'distribution': 'global',
-            'rating': 'general'
-        };
-        
-        Object.keys(additionalTags).forEach(name => {
-            let meta = document.querySelector(`meta[name="${name}"]`);
-            if (!meta) {
-                meta = document.createElement('meta');
-                meta.setAttribute('name', name);
-                document.head.appendChild(meta);
-            }
-            meta.setAttribute('content', additionalTags[name]);
-        });
-        
-        // Schema.org JSON-LD Structured Data
-        let schemaScript = document.querySelector('script[type="application/ld+json"]');
-        if (!schemaScript) {
-            schemaScript = document.createElement('script');
-            schemaScript.setAttribute('type', 'application/ld+json');
-            document.head.appendChild(schemaScript);
-        }
-        schemaScript.textContent = `{
-  "@context": "https://schema.org",
-  "@type": "LegalDocument",
-  "name": "Creator Licensing & IP Agreement | HingeCraft Global",
-  "description": "HingeCraft Global Creator Licensing & IP Agreement - Intellectual property ownership and royalty structure for creators",
-  "url": "https://hingecraft-global.ai/legal/18-creator-licensing-ip-agreement",
-  "publisher": {
-    "@type": "Organization",
-    "name": "HingeCraft Global",
-    "url": "https://hingecraft-global.ai",
-    "logo": "https://hingecraft-global.ai/logo.png"
-  },
-  "datePublished": "2025-12-05",
-  "dateModified": "2025-12-05",
-  "inLanguage": "en-US",
-  "keywords": "service agreement, user agreement, creator licensing, marketplace agreement, manufacturing agreement, membership agreement, hingecraft, hingecraft global, resilient design"
-}`;
-    }
-
-    // Load Legal Page HTML Content
-    function loadLegalPageContent() {
-        const htmlElement = $w('#legalContent');
-        if (htmlElement) {
-            const htmlContent = `<body class="bg-slate-50">
-<section class="hero-gradient text-white py-12 px-6">
-<div class="max-w-4xl mx-auto text-center">
-<h1 class="text-4xl font-bold mb-4">Creator Licensing &amp; IP Agreement</h1>
-<p class="text-lg opacity-90">HINGECRAFT GLOBAL, INC.</p>
-<p class="text-sm opacity-75 mt-2">Ownership + Royalties for Designs</p>
-</div>
-</section>
-<main class="max-w-4xl mx-auto px-6 py-16">
-<div class="prose max-w-none bg-white p-8 rounded-lg shadow-sm">
-<h2>CREATOR LICENSING &amp; IP AGREEMENT</h2>
-<p>This agreement governs intellectual property rights and licensing for creators using the HingeCraft Global platform.</p>
-<h2>I. OWNERSHIP</h2>
-<p>Creators retain ownership of their original designs and content. By uploading to the platform, creators grant HingeCraft Global a license to:</p>
-<ul>
-<li>Display and promote designs</li>
-<li>Facilitate sales and licensing</li>
-<li>Use for platform operations</li>
-</ul>
-<h2>II. LICENSING OPTIONS</h2>
-<h3>2.1 Exclusive License</h3>
-<p>Creator grants exclusive rights to HingeCraft Global for specified period.</p>
-<h3>2.2 Non-Exclusive License</h3>
-<p>Creator retains rights to license elsewhere while granting HingeCraft Global non-exclusive rights.</p>
-<h3>2.3 Marketplace License</h3>
-<p>Designs available for purchase/license by other users through marketplace.</p>
-<h2>III. ROYALTIES</h2>
-<h3>3.1 Royalty Structure</h3>
-<ul>
-<li><strong>Direct Sales:</strong> 70% to creator, 30% to platform</li>
-<li><strong>Licensing:</strong> 60% to creator, 40% to platform</li>
-<li><strong>Custom Agreements:</strong> Negotiated terms</li>
-</ul>
-<h3>3.2 Payment Terms</h3>
-<p>Royalties paid monthly within 30 days of month end.</p>
-<h2>IV. ATTRIBUTION</h2>
-<p>Creators receive attribution for their designs unless otherwise agreed.</p>
-<h2>V. TERMINATION</h2>
-<p>Either party may terminate with 30 days notice. Existing licenses remain valid.</p>
-<div class="mt-8 pt-8 border-t border-gray-200">
-<p class="text-sm text-gray-600">Last Updated: December 4, 2025</p>
-<p class="text-sm text-gray-600">For questions about this document, please contact: <a class="text-purple-700 hover:underline" href="mailto:legal@hingecraft-global.ai">legal@hingecraft-global.ai</a></p>
-</div>
-</div>
-<div class="mt-6 flex flex-wrap items-center gap-6 text-sm text-gray-600">
-<div class="flex items-center gap-2">
-<svg class="w-5 h-5 text-green-600" fill="currentColor" viewbox="0 0 20 20">
-<path clip-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" fill-rule="evenodd"></path>
-</svg>
-<span>GDPR Compliant</span>
-</div>
-<div class="flex items-center gap-2">
-<svg class="w-5 h-5 text-green-600" fill="currentColor" viewbox="0 0 20 20">
-<path clip-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" fill-rule="evenodd"></path>
-</svg>
-<span>CCPA Compliant</span>
-</div>
-<div class="flex items-center gap-2">
-<svg class="w-5 h-5 text-green-600" fill="currentColor" viewbox="0 0 20 20">
-<path clip-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" fill-rule="evenodd"></path>
-</svg>
-<span>Secure &amp; Encrypted</span>
-</div>
-</div>
-</main>
-<footer class="bg-gray-900 text-white py-12 px-6 mt-16">
-<div class="max-w-4xl mx-auto text-center">
-<p class="mb-4">© 2025 HingeCraft Global. All rights reserved.</p>
-<p class="text-gray-400 text-sm">
-<a class="hover:text-white" href="/legal">Legal</a> | 
-        <a class="hover:text-white" href="/privacy">Privacy</a> | 
-        <a class="hover:text-white" href="/terms">Terms</a>
-</p>
-</div>
-</footer>
-</body>`;
-            htmlElement.html = htmlContent;
-            console.log('Legal page content loaded successfully');
-        } else {
-            console.log('Legal content element not found. Add HTML element with ID: legalContent');
-        }
-    }
+    // Set SEO
+    wixSeo.setTitle("Intellectual Property Creator Licensing | HingeCraft Global");
+    wixSeo.setMetaTags([
+        { name: "description", content: "Intellectual Property Creator Licensing - HingeCraft Global, LLC legal document for South Carolina" },
+        { name: "robots", content: "index, follow" },
+        { property: "og:title", content: "Intellectual Property Creator Licensing | HingeCraft Global" },
+        { property: "og:type", content: "website" }
+    ]);
     
-    loadLegalPageContent();
-
+    // Load legal document content
+    loadLegalContent();
 });
 
+function loadLegalContent() {
+    const legalContent = `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intellectual Property & Creator Licensing Agreement - HingeCraft Global, LLC</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Times New Roman', Times, serif; font-size: 12pt; line-height: 1.6; color: #000; background: #fff; max-width: 8.5in; margin: 0 auto; padding: 1in; }
+        h1 { font-size: 18pt; font-weight: bold; text-align: center; margin-bottom: 24pt; text-transform: uppercase; border-bottom: 2px solid #000; padding-bottom: 12pt; }
+        h2 { font-size: 14pt; font-weight: bold; margin-top: 24pt; margin-bottom: 12pt; text-transform: uppercase; }
+        h3 { font-size: 12pt; font-weight: bold; margin-top: 18pt; margin-bottom: 9pt; }
+        p { margin-bottom: 12pt; text-align: justify; }
+        ul, ol { margin-left: 36pt; margin-bottom: 12pt; }
+        li { margin-bottom: 6pt; }
+        .header { text-align: center; margin-bottom: 36pt; }
+        .company-name { font-size: 16pt; font-weight: bold; }
+        .footer { margin-top: 48pt; padding-top: 12pt; border-top: 1px solid #000; font-size: 10pt; text-align: center; }
+        .signature-block { margin-top: 48pt; }
+        .signature-line { border-top: 1px solid #000; width: 300px; margin-top: 36pt; padding-top: 6pt; }
+        table { width: 100%; border-collapse: collapse; margin: 12pt 0; }
+        th, td { border: 1px solid #000; padding: 6pt; text-align: left; }
+        th { background: #f0f0f0; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="company-name">HINGECRAFT GLOBAL, LLC</div>
+        <h1>INTELLECTUAL PROPERTY &<br>CREATOR LICENSING AGREEMENT</h1>
+        <p>Effective Date: _________________, 20____<br>State of South Carolina</p>
+    </div>
 
-$w.onReady(function () {
-    if (typeof document !== 'undefined') {
-        // Page Title
-        document.title = 'Licensing Agreement_6f500_js | HingeCraft Global';
+    <p>This Intellectual Property & Creator Licensing Agreement ("Agreement") is entered into by and between:</p>
+    <p><strong>HingeCraft Global, LLC</strong> ("Company" or "HingeCraft"), a South Carolina limited liability company, with its principal place of business at 123 Innovation Drive, Suite 100, Charleston, South Carolina 29401, and</p>
+    <p><strong>_________________________________</strong> ("Creator"), an individual/entity with address at _________________________________.</p>
+
+    <h2>1. DEFINITIONS</h2>
+    
+    <p><strong>"Confidential Information"</strong> means all non-public information disclosed by either party, including trade secrets, technical data, designs, and business information.</p>
+    
+    <p><strong>"Derivative Work"</strong> means any work based upon one or more preexisting works, including modifications, improvements, and adaptations.</p>
+    
+    <p><strong>"Intellectual Property"</strong> or <strong>"IP"</strong> means all patents, copyrights, trademarks, trade secrets, designs, and other intellectual property rights.</p>
+    
+    <p><strong>"Licensed IP"</strong> means the intellectual property licensed to Company under this Agreement, as described in Exhibit A.</p>
+    
+    <p><strong>"Net Revenue"</strong> means gross revenue from products incorporating Licensed IP, less returns, taxes, and shipping costs.</p>
+    
+    <p><strong>"Territory"</strong> means [worldwide / specific territories as defined in Exhibit B].</p>
+    
+    <p><strong>"Work Product"</strong> means all work, inventions, designs, and intellectual property created by Creator under this Agreement.</p>
+
+    <h2>2. LICENSE GRANT</h2>
+    
+    <h3>2.1 Grant of License</h3>
+    <p>Creator hereby grants to Company a [exclusive/non-exclusive], [perpetual/term-limited], [royalty-bearing/royalty-free] license to:</p>
+    <ul>
+        <li>(a) Use, reproduce, and display the Licensed IP;</li>
+        <li>(b) Create Derivative Works based on the Licensed IP;</li>
+        <li>(c) Make, have made, sell, offer to sell, and import products incorporating the Licensed IP;</li>
+        <li>(d) Sublicense the rights granted herein to affiliates, manufacturers, and distributors;</li>
+        <li>(e) Use Creator's name and likeness in connection with marketing (with Creator's approval).</li>
+    </ul>
+    
+    <h3>2.2 Reservation of Rights</h3>
+    <p>Creator reserves all rights not expressly granted herein. [For non-exclusive licenses:] Creator may continue to use and license the Licensed IP to others.</p>
+    
+    <h3>2.3 Sublicensing</h3>
+    <p>Company may sublicense the rights granted herein, provided that:</p>
+    <ul>
+        <li>(a) Sublicensees are bound by terms no less protective than this Agreement;</li>
+        <li>(b) Company remains responsible for sublicensee compliance;</li>
+        <li>(c) Creator is notified of material sublicenses.</li>
+    </ul>
+
+    <h2>3. COMPENSATION</h2>
+    
+    <h3>3.1 Royalty Payments</h3>
+    <p>In consideration for the license granted herein, Company shall pay Creator:</p>
+    <ul>
+        <li>(a) An upfront license fee of $________________;</li>
+        <li>(b) Ongoing royalties of ____% of Net Revenue from products incorporating the Licensed IP;</li>
+        <li>(c) Minimum annual royalties of $________________ (applicable after Year ______).</li>
+    </ul>
+    
+    <h3>3.2 Payment Terms</h3>
+    <ul>
+        <li>(a) Royalties are calculated quarterly;</li>
+        <li>(b) Payments are due within 45 days after each quarter end;</li>
+        <li>(c) Payments made by [check/wire transfer/ACH];</li>
+        <li>(d) Payments in U.S. dollars;</li>
+        <li>(e) Late payments accrue interest at 1.5% per month.</li>
+    </ul>
+    
+    <h3>3.3 Royalty Reports</h3>
+    <p>Company shall provide quarterly reports showing:</p>
+    <ul>
+        <li>(a) Units sold;</li>
+        <li>(b) Gross revenue;</li>
+        <li>(c) Deductions (returns, taxes, shipping);</li>
+        <li>(d) Net Revenue;</li>
+        <li>(e) Royalties due;</li>
+        <li>(f) By product and by territory.</li>
+    </ul>
+    
+    <h3>3.4 Audit Rights</h3>
+    <p>Creator may audit Company's books and records related to royalties:</p>
+    <ul>
+        <li>(a) No more than once per year;</li>
+        <li>(b) With 30 days' prior written notice;</li>
+        <li>(c) During normal business hours;</li>
+        <li>(d) At Creator's expense (unless audit reveals underpayment exceeding 5%, then Company pays);</li>
+        <li>(e) For records within the past three years.</li>
+    </ul>
+
+    <h2>4. INTELLECTUAL PROPERTY RIGHTS</h2>
+    
+    <h3>4.1 Ownership of Licensed IP</h3>
+    <p>Creator retains ownership of the Licensed IP. This Agreement does not transfer ownership of the Licensed IP to Company.</p>
+    
+    <h3>4.2 Ownership of Derivative Works</h3>
+    <p>Ownership of Derivative Works created by Company shall be as follows:</p>
+    <ul>
+        <li>(a) Company owns improvements to manufacturing processes;</li>
+        <li>(b) Jointly owned: significant design improvements;</li>
+        <li>(c) Creator owns: underlying Licensed IP incorporated in Derivative Works.</li>
+    </ul>
+    
+    <h3>4.3 Company IP</h3>
+    <p>Company retains ownership of all Company IP, including trademarks, trade secrets, and proprietary technologies.</p>
+    
+    <h3>4.4 Attribution</h3>
+    <p>Company shall provide attribution to Creator as follows:</p>
+    <ul>
+        <li>(a) "Designed by [Creator Name]" on product packaging;</li>
+        <li>(b) Creator credit in product documentation;</li>
+        <li>(c) Creator acknowledgment on website product pages.</li>
+    </ul>
+
+    <h2>5. REPRESENTATIONS AND WARRANTIES</h2>
+    
+    <h3>5.1 Creator Representations</h3>
+    <p>Creator represents and warrants that:</p>
+    <ul>
+        <li>(a) Creator is the sole owner of the Licensed IP or has authority to grant the license;</li>
+        <li>(b) The Licensed IP does not infringe any third-party intellectual property rights;</li>
+        <li>(c) There are no pending or threatened claims regarding the Licensed IP;</li>
+        <li>(d) Creator has not previously granted any conflicting licenses;</li>
+        <li>(e) Creator has the legal capacity to enter into this Agreement.</li>
+    </ul>
+    
+    <h3>5.2 Company Representations</h3>
+    <p>Company represents and warrants that:</p>
+    <ul>
+        <li>(a) Company is duly organized and authorized to enter into this Agreement;</li>
+        <li>(b) Company will use the Licensed IP only as permitted by this Agreement;</li>
+        <li>(c) Company will maintain appropriate quality standards;</li>
+        <li>(d) Company will comply with all applicable laws.</li>
+    </ul>
+
+    <h2>6. INFRINGEMENT</h2>
+    
+    <h3>6.1 Notice</h3>
+    <p>Each party shall promptly notify the other of any known or suspected infringement of the Licensed IP.</p>
+    
+    <h3>6.2 Enforcement</h3>
+    <p>Company shall have the first right to enforce the Licensed IP against infringers in the Territory. If Company does not take action within 60 days, Creator may enforce at its expense.</p>
+    
+    <h3>6.3 Cooperation</h3>
+    <p>Each party shall cooperate in enforcement actions, including providing documents and testimony.</p>
+    
+    <h3>6.4 Recovery</h3>
+    <p>Any recovery from enforcement shall first reimburse enforcement costs, then be divided [50/50 / per agreed allocation].</p>
+
+    <h2>7. CONFIDENTIALITY</h2>
+    
+    <p>Each party shall maintain the confidentiality of the other party's Confidential Information and shall not disclose or use such information except as necessary to perform this Agreement. This obligation survives termination for five (5) years.</p>
+
+    <h2>8. TERM AND TERMINATION</h2>
+    
+    <h3>8.1 Term</h3>
+    <p>This Agreement shall be effective for an initial term of _____ years, automatically renewing for successive one-year terms unless terminated.</p>
+    
+    <h3>8.2 Termination for Convenience</h3>
+    <p>Either party may terminate with _____ days' written notice.</p>
+    
+    <h3>8.3 Termination for Cause</h3>
+    <p>Either party may terminate immediately if the other party:</p>
+    <ul>
+        <li>(a) Materially breaches and fails to cure within 30 days of notice;</li>
+        <li>(b) Becomes insolvent or files for bankruptcy;</li>
+        <li>(c) Assigns the Agreement without consent.</li>
+    </ul>
+    
+    <h3>8.4 Effect of Termination</h3>
+    <p>Upon termination:</p>
+    <ul>
+        <li>(a) License rights terminate (subject to sell-off period);</li>
+        <li>(b) Company may sell existing inventory for 90 days;</li>
+        <li>(c) All outstanding royalties become due;</li>
+        <li>(d) Each party returns the other's Confidential Information;</li>
+        <li>(e) Accrued rights and obligations survive.</li>
+    </ul>
+
+    <h2>9. INDEMNIFICATION</h2>
+    
+    <p><strong>9.1 Creator Indemnification.</strong> Creator shall indemnify Company against claims that the Licensed IP infringes third-party IP rights.</p>
+    
+    <p><strong>9.2 Company Indemnification.</strong> Company shall indemnify Creator against claims arising from Company's manufacture, sale, or use of products, except to the extent caused by the Licensed IP.</p>
+
+    <h2>10. LIMITATION OF LIABILITY</h2>
+    
+    <p>NEITHER PARTY SHALL BE LIABLE FOR INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES. EACH PARTY'S TOTAL LIABILITY SHALL NOT EXCEED THE GREATER OF (A) ROYALTIES PAID IN THE PRECEDING 12 MONTHS OR (B) $100,000.</p>
+
+    <h2>11. GENERAL PROVISIONS</h2>
+    
+    <p><strong>11.1 Governing Law.</strong> This Agreement shall be governed by the laws of South Carolina.</p>
+    <p><strong>11.2 Dispute Resolution.</strong> Disputes shall be resolved by arbitration in Charleston, South Carolina.</p>
+    <p><strong>11.3 Assignment.</strong> Neither party may assign without the other's consent, except to an affiliate or acquirer.</p>
+    <p><strong>11.4 Entire Agreement.</strong> This Agreement constitutes the entire agreement between the parties.</p>
+    <p><strong>11.5 Amendment.</strong> Amendments must be in writing signed by both parties.</p>
+    <p><strong>11.6 Notices.</strong> Notices shall be in writing to the addresses above.</p>
+
+    <div class="signature-block">
+        <p><strong>IN WITNESS WHEREOF</strong>, the parties have executed this Agreement as of the date first written above.</p>
         
-        // Meta Description
-        let metaDesc = document.querySelector('meta[name="description"]');
-        if (!metaDesc) {
-            metaDesc = document.createElement('meta');
-            metaDesc.setAttribute('name', 'description');
-            document.head.appendChild(metaDesc);
+        <p><strong>COMPANY:</strong><br>HingeCraft Global, LLC</p>
+        <div class="signature-line">
+            <p>Authorized Signature</p>
+        </div>
+        <p>Print Name: _________________________________</p>
+        <p>Title: _________________________________</p>
+        <p>Date: _________________________________</p>
+        
+        <p><strong>CREATOR:</strong></p>
+        <div class="signature-line">
+            <p>Creator Signature</p>
+        </div>
+        <p>Print Name: _________________________________</p>
+        <p>Date: _________________________________</p>
+    </div>
+
+    <div class="footer">
+        <p>HingeCraft Global, LLC | 123 Innovation Drive, Suite 100, Charleston, SC 29401</p>
+        <p>Legal: legal@hingecraft.com | Phone: (843) 555-0100</p>
+        <p>© 2025 HingeCraft Global, LLC. All Rights Reserved.</p>
+    </div>
+</body>
+</html>
+
+`;
+    
+    // Try to find the legalContent element
+    if ($w('#legalContent')) {
+        try {
+            $w('#legalContent').html = legalContent;
+        } catch (e) {
+            console.log("HTML element not configured - content ready for manual embed");
         }
-        metaDesc.setAttribute('content', 'Licensing Agreement_6f500_js - HingeCraft Global. Comprehensive information and resources.');
-        
-        // Meta Keywords
-        let metaKeywords = document.querySelector('meta[name="keywords"]');
-        if (!metaKeywords) {
-            metaKeywords = document.createElement('meta');
-            metaKeywords.setAttribute('name', 'keywords');
-            document.head.appendChild(metaKeywords);
-        }
-        metaKeywords.setAttribute('content', 'service agreement, user agreement, creator licensing, marketplace agreement, manufacturing agreement, hingecraft, hingecraft global');
-        
-        // Open Graph Tags
-        const ogTags = {
-            'og:title': 'Licensing Agreement_6f500_js | HingeCraft Global',
-            'og:description': 'Licensing Agreement_6f500_js - HingeCraft Global. Comprehensive information and resources.',
-            'og:image': 'https://hingecraft-global.ai/og-image.jpg',
-            'og:url': 'https://hingecraft-global.ai/licensing-agreement-6f500-js',
-            'og:type': 'website',
-            'og:site_name': 'HingeCraft Global'
-        };
-        
-        Object.keys(ogTags).forEach(prop => {
-            let ogMeta = document.querySelector(`meta[property="${prop}"]`);
-            if (!ogMeta) {
-                ogMeta = document.createElement('meta');
-                ogMeta.setAttribute('property', prop);
-                document.head.appendChild(ogMeta);
-            }
-            ogMeta.setAttribute('content', ogTags[prop]);
-        });
-        
-        // Twitter Card Tags
-        const twitterTags = {
-            'twitter:card': 'summary_large_image',
-            'twitter:title': 'Licensing Agreement_6f500_js | HingeCraft Global',
-            'twitter:description': 'Licensing Agreement_6f500_js - HingeCraft Global. Comprehensive information and resources.',
-            'twitter:image': 'https://hingecraft-global.ai/og-image.jpg'
-        };
-        
-        Object.keys(twitterTags).forEach(name => {
-            let twitterMeta = document.querySelector(`meta[name="${name}"]`);
-            if (!twitterMeta) {
-                twitterMeta = document.createElement('meta');
-                twitterMeta.setAttribute('name', name);
-                document.head.appendChild(twitterMeta);
-            }
-            twitterMeta.setAttribute('content', twitterTags[name]);
-        });
-        
-        // Canonical URL
-        let canonical = document.querySelector('link[rel="canonical"]');
-        if (!canonical) {
-            canonical = document.createElement('link');
-            canonical.setAttribute('rel', 'canonical');
-            document.head.appendChild(canonical);
-        }
-        canonical.setAttribute('href', 'https://hingecraft-global.ai/licensing-agreement-6f500-js');
-        
-        // Robots Meta
-        let robots = document.querySelector('meta[name="robots"]');
-        if (!robots) {
-            robots = document.createElement('meta');
-            robots.setAttribute('name', 'robots');
-            document.head.appendChild(robots);
-        }
-        robots.setAttribute('content', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
-        
-        // Schema.org JSON-LD Structured Data
-        let schemaScript = document.querySelector('script[type="application/ld+json"]');
-        if (!schemaScript) {
-            schemaScript = document.createElement('script');
-            schemaScript.setAttribute('type', 'application/ld+json');
-            document.head.appendChild(schemaScript);
-        }
-        schemaScript.textContent = `{
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "Licensing Agreement_6f500_js | HingeCraft Global",
-  "description": "Licensing Agreement_6f500_js - HingeCraft Global. Comprehensive information and resources.",
-  "url": "https://hingecraft-global.ai/licensing-agreement-6f500-js",
-  "publisher": {
-    "@type": "Organization",
-    "name": "HingeCraft Global",
-    "url": "https://hingecraft-global.ai",
-    "logo": "https://hingecraft-global.ai/logo.png"
-  },
-  "datePublished": "2025-12-05",
-  "dateModified": "2025-12-05",
-  "inLanguage": "en-US",
-  "keywords": "service agreement, user agreement, creator licensing, marketplace agreement, manufacturing agreement, hingecraft, hingecraft global"
-}`;
     }
     
-    // Load HTML content for legal pages
-    
-});
-
-
-
-
-$w.onReady(function () {
-    if (typeof document !== 'undefined') {
-        // Page Title
-        document.title = 'Licensing Agreement_6f500_js | HingeCraft Global';
-        
-        // Meta Description
-        let metaDesc = document.querySelector('meta[name="description"]');
-        if (!metaDesc) {
-            metaDesc = document.createElement('meta');
-            metaDesc.setAttribute('name', 'description');
-            document.head.appendChild(metaDesc);
+    // Also try text element fallback
+    if ($w('#legalText')) {
+        try {
+            $w('#legalText').html = legalContent;
+        } catch (e) {
+            console.log("Using text element fallback");
         }
-        metaDesc.setAttribute('content', 'Licensing Agreement_6f500_js - HingeCraft Global. Comprehensive information and resources.');
-        
-        // Meta Keywords
-        let metaKeywords = document.querySelector('meta[name="keywords"]');
-        if (!metaKeywords) {
-            metaKeywords = document.createElement('meta');
-            metaKeywords.setAttribute('name', 'keywords');
-            document.head.appendChild(metaKeywords);
-        }
-        metaKeywords.setAttribute('content', 'service agreement, user agreement, creator licensing, marketplace agreement, manufacturing agreement, hingecraft, hingecraft global');
-        
-        // Open Graph Tags
-        const ogTags = {
-            'og:title': 'Licensing Agreement_6f500_js | HingeCraft Global',
-            'og:description': 'Licensing Agreement_6f500_js - HingeCraft Global. Comprehensive information and resources.',
-            'og:image': 'https://hingecraft-global.ai/og-image.jpg',
-            'og:url': 'https://hingecraft-global.ai/licensing-agreement-6f500-js',
-            'og:type': 'website',
-            'og:site_name': 'HingeCraft Global'
-        };
-        
-        Object.keys(ogTags).forEach(prop => {
-            let ogMeta = document.querySelector(`meta[property="${prop}"]`);
-            if (!ogMeta) {
-                ogMeta = document.createElement('meta');
-                ogMeta.setAttribute('property', prop);
-                document.head.appendChild(ogMeta);
-            }
-            ogMeta.setAttribute('content', ogTags[prop]);
-        });
-        
-        // Twitter Card Tags
-        const twitterTags = {
-            'twitter:card': 'summary_large_image',
-            'twitter:title': 'Licensing Agreement_6f500_js | HingeCraft Global',
-            'twitter:description': 'Licensing Agreement_6f500_js - HingeCraft Global. Comprehensive information and resources.',
-            'twitter:image': 'https://hingecraft-global.ai/og-image.jpg'
-        };
-        
-        Object.keys(twitterTags).forEach(name => {
-            let twitterMeta = document.querySelector(`meta[name="${name}"]`);
-            if (!twitterMeta) {
-                twitterMeta = document.createElement('meta');
-                twitterMeta.setAttribute('name', name);
-                document.head.appendChild(twitterMeta);
-            }
-            twitterMeta.setAttribute('content', twitterTags[name]);
-        });
-        
-        // Canonical URL
-        let canonical = document.querySelector('link[rel="canonical"]');
-        if (!canonical) {
-            canonical = document.createElement('link');
-            canonical.setAttribute('rel', 'canonical');
-            document.head.appendChild(canonical);
-        }
-        canonical.setAttribute('href', 'https://hingecraft-global.ai/licensing-agreement-6f500-js');
-        
-        // Robots Meta
-        let robots = document.querySelector('meta[name="robots"]');
-        if (!robots) {
-            robots = document.createElement('meta');
-            robots.setAttribute('name', 'robots');
-            document.head.appendChild(robots);
-        }
-        robots.setAttribute('content', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
-        
-        // Schema.org JSON-LD Structured Data
-        let schemaScript = document.querySelector('script[type="application/ld+json"]');
-        if (!schemaScript) {
-            schemaScript = document.createElement('script');
-            schemaScript.setAttribute('type', 'application/ld+json');
-            document.head.appendChild(schemaScript);
-        }
-        schemaScript.textContent = `{
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "Licensing Agreement_6f500_js | HingeCraft Global",
-  "description": "Licensing Agreement_6f500_js - HingeCraft Global. Comprehensive information and resources.",
-  "url": "https://hingecraft-global.ai/licensing-agreement-6f500-js",
-  "publisher": {
-    "@type": "Organization",
-    "name": "HingeCraft Global",
-    "url": "https://hingecraft-global.ai",
-    "logo": "https://hingecraft-global.ai/logo.png"
-  },
-  "datePublished": "2025-12-05",
-  "dateModified": "2025-12-05",
-  "inLanguage": "en-US",
-  "keywords": "service agreement, user agreement, creator licensing, marketplace agreement, manufacturing agreement, hingecraft, hingecraft global"
-}`;
     }
+}
+
+// Export for potential use in other contexts
+export function getLegalDocumentHTML() {
+    return `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intellectual Property & Creator Licensing Agreement - HingeCraft Global, LLC</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Times New Roman', Times, serif; font-size: 12pt; line-height: 1.6; color: #000; background: #fff; max-width: 8.5in; margin: 0 auto; padding: 1in; }
+        h1 { font-size: 18pt; font-weight: bold; text-align: center; margin-bottom: 24pt; text-transform: uppercase; border-bottom: 2px solid #000; padding-bottom: 12pt; }
+        h2 { font-size: 14pt; font-weight: bold; margin-top: 24pt; margin-bottom: 12pt; text-transform: uppercase; }
+        h3 { font-size: 12pt; font-weight: bold; margin-top: 18pt; margin-bottom: 9pt; }
+        p { margin-bottom: 12pt; text-align: justify; }
+        ul, ol { margin-left: 36pt; margin-bottom: 12pt; }
+        li { margin-bottom: 6pt; }
+        .header { text-align: center; margin-bottom: 36pt; }
+        .company-name { font-size: 16pt; font-weight: bold; }
+        .footer { margin-top: 48pt; padding-top: 12pt; border-top: 1px solid #000; font-size: 10pt; text-align: center; }
+        .signature-block { margin-top: 48pt; }
+        .signature-line { border-top: 1px solid #000; width: 300px; margin-top: 36pt; padding-top: 6pt; }
+        table { width: 100%; border-collapse: collapse; margin: 12pt 0; }
+        th, td { border: 1px solid #000; padding: 6pt; text-align: left; }
+        th { background: #f0f0f0; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="company-name">HINGECRAFT GLOBAL, LLC</div>
+        <h1>INTELLECTUAL PROPERTY &<br>CREATOR LICENSING AGREEMENT</h1>
+        <p>Effective Date: _________________, 20____<br>State of South Carolina</p>
+    </div>
+
+    <p>This Intellectual Property & Creator Licensing Agreement ("Agreement") is entered into by and between:</p>
+    <p><strong>HingeCraft Global, LLC</strong> ("Company" or "HingeCraft"), a South Carolina limited liability company, with its principal place of business at 123 Innovation Drive, Suite 100, Charleston, South Carolina 29401, and</p>
+    <p><strong>_________________________________</strong> ("Creator"), an individual/entity with address at _________________________________.</p>
+
+    <h2>1. DEFINITIONS</h2>
     
-    // Load HTML content for legal pages
+    <p><strong>"Confidential Information"</strong> means all non-public information disclosed by either party, including trade secrets, technical data, designs, and business information.</p>
     
-});
+    <p><strong>"Derivative Work"</strong> means any work based upon one or more preexisting works, including modifications, improvements, and adaptations.</p>
+    
+    <p><strong>"Intellectual Property"</strong> or <strong>"IP"</strong> means all patents, copyrights, trademarks, trade secrets, designs, and other intellectual property rights.</p>
+    
+    <p><strong>"Licensed IP"</strong> means the intellectual property licensed to Company under this Agreement, as described in Exhibit A.</p>
+    
+    <p><strong>"Net Revenue"</strong> means gross revenue from products incorporating Licensed IP, less returns, taxes, and shipping costs.</p>
+    
+    <p><strong>"Territory"</strong> means [worldwide / specific territories as defined in Exhibit B].</p>
+    
+    <p><strong>"Work Product"</strong> means all work, inventions, designs, and intellectual property created by Creator under this Agreement.</p>
 
+    <h2>2. LICENSE GRANT</h2>
+    
+    <h3>2.1 Grant of License</h3>
+    <p>Creator hereby grants to Company a [exclusive/non-exclusive], [perpetual/term-limited], [royalty-bearing/royalty-free] license to:</p>
+    <ul>
+        <li>(a) Use, reproduce, and display the Licensed IP;</li>
+        <li>(b) Create Derivative Works based on the Licensed IP;</li>
+        <li>(c) Make, have made, sell, offer to sell, and import products incorporating the Licensed IP;</li>
+        <li>(d) Sublicense the rights granted herein to affiliates, manufacturers, and distributors;</li>
+        <li>(e) Use Creator's name and likeness in connection with marketing (with Creator's approval).</li>
+    </ul>
+    
+    <h3>2.2 Reservation of Rights</h3>
+    <p>Creator reserves all rights not expressly granted herein. [For non-exclusive licenses:] Creator may continue to use and license the Licensed IP to others.</p>
+    
+    <h3>2.3 Sublicensing</h3>
+    <p>Company may sublicense the rights granted herein, provided that:</p>
+    <ul>
+        <li>(a) Sublicensees are bound by terms no less protective than this Agreement;</li>
+        <li>(b) Company remains responsible for sublicensee compliance;</li>
+        <li>(c) Creator is notified of material sublicenses.</li>
+    </ul>
 
+    <h2>3. COMPENSATION</h2>
+    
+    <h3>3.1 Royalty Payments</h3>
+    <p>In consideration for the license granted herein, Company shall pay Creator:</p>
+    <ul>
+        <li>(a) An upfront license fee of $________________;</li>
+        <li>(b) Ongoing royalties of ____% of Net Revenue from products incorporating the Licensed IP;</li>
+        <li>(c) Minimum annual royalties of $________________ (applicable after Year ______).</li>
+    </ul>
+    
+    <h3>3.2 Payment Terms</h3>
+    <ul>
+        <li>(a) Royalties are calculated quarterly;</li>
+        <li>(b) Payments are due within 45 days after each quarter end;</li>
+        <li>(c) Payments made by [check/wire transfer/ACH];</li>
+        <li>(d) Payments in U.S. dollars;</li>
+        <li>(e) Late payments accrue interest at 1.5% per month.</li>
+    </ul>
+    
+    <h3>3.3 Royalty Reports</h3>
+    <p>Company shall provide quarterly reports showing:</p>
+    <ul>
+        <li>(a) Units sold;</li>
+        <li>(b) Gross revenue;</li>
+        <li>(c) Deductions (returns, taxes, shipping);</li>
+        <li>(d) Net Revenue;</li>
+        <li>(e) Royalties due;</li>
+        <li>(f) By product and by territory.</li>
+    </ul>
+    
+    <h3>3.4 Audit Rights</h3>
+    <p>Creator may audit Company's books and records related to royalties:</p>
+    <ul>
+        <li>(a) No more than once per year;</li>
+        <li>(b) With 30 days' prior written notice;</li>
+        <li>(c) During normal business hours;</li>
+        <li>(d) At Creator's expense (unless audit reveals underpayment exceeding 5%, then Company pays);</li>
+        <li>(e) For records within the past three years.</li>
+    </ul>
 
+    <h2>4. INTELLECTUAL PROPERTY RIGHTS</h2>
+    
+    <h3>4.1 Ownership of Licensed IP</h3>
+    <p>Creator retains ownership of the Licensed IP. This Agreement does not transfer ownership of the Licensed IP to Company.</p>
+    
+    <h3>4.2 Ownership of Derivative Works</h3>
+    <p>Ownership of Derivative Works created by Company shall be as follows:</p>
+    <ul>
+        <li>(a) Company owns improvements to manufacturing processes;</li>
+        <li>(b) Jointly owned: significant design improvements;</li>
+        <li>(c) Creator owns: underlying Licensed IP incorporated in Derivative Works.</li>
+    </ul>
+    
+    <h3>4.3 Company IP</h3>
+    <p>Company retains ownership of all Company IP, including trademarks, trade secrets, and proprietary technologies.</p>
+    
+    <h3>4.4 Attribution</h3>
+    <p>Company shall provide attribution to Creator as follows:</p>
+    <ul>
+        <li>(a) "Designed by [Creator Name]" on product packaging;</li>
+        <li>(b) Creator credit in product documentation;</li>
+        <li>(c) Creator acknowledgment on website product pages.</li>
+    </ul>
 
-$w.onReady(function () {
-    if (typeof document !== 'undefined') {
-        // Page Title
-        document.title = 'Creator Licensing & IP Agreement | HingeCraft Global';
+    <h2>5. REPRESENTATIONS AND WARRANTIES</h2>
+    
+    <h3>5.1 Creator Representations</h3>
+    <p>Creator represents and warrants that:</p>
+    <ul>
+        <li>(a) Creator is the sole owner of the Licensed IP or has authority to grant the license;</li>
+        <li>(b) The Licensed IP does not infringe any third-party intellectual property rights;</li>
+        <li>(c) There are no pending or threatened claims regarding the Licensed IP;</li>
+        <li>(d) Creator has not previously granted any conflicting licenses;</li>
+        <li>(e) Creator has the legal capacity to enter into this Agreement.</li>
+    </ul>
+    
+    <h3>5.2 Company Representations</h3>
+    <p>Company represents and warrants that:</p>
+    <ul>
+        <li>(a) Company is duly organized and authorized to enter into this Agreement;</li>
+        <li>(b) Company will use the Licensed IP only as permitted by this Agreement;</li>
+        <li>(c) Company will maintain appropriate quality standards;</li>
+        <li>(d) Company will comply with all applicable laws.</li>
+    </ul>
+
+    <h2>6. INFRINGEMENT</h2>
+    
+    <h3>6.1 Notice</h3>
+    <p>Each party shall promptly notify the other of any known or suspected infringement of the Licensed IP.</p>
+    
+    <h3>6.2 Enforcement</h3>
+    <p>Company shall have the first right to enforce the Licensed IP against infringers in the Territory. If Company does not take action within 60 days, Creator may enforce at its expense.</p>
+    
+    <h3>6.3 Cooperation</h3>
+    <p>Each party shall cooperate in enforcement actions, including providing documents and testimony.</p>
+    
+    <h3>6.4 Recovery</h3>
+    <p>Any recovery from enforcement shall first reimburse enforcement costs, then be divided [50/50 / per agreed allocation].</p>
+
+    <h2>7. CONFIDENTIALITY</h2>
+    
+    <p>Each party shall maintain the confidentiality of the other party's Confidential Information and shall not disclose or use such information except as necessary to perform this Agreement. This obligation survives termination for five (5) years.</p>
+
+    <h2>8. TERM AND TERMINATION</h2>
+    
+    <h3>8.1 Term</h3>
+    <p>This Agreement shall be effective for an initial term of _____ years, automatically renewing for successive one-year terms unless terminated.</p>
+    
+    <h3>8.2 Termination for Convenience</h3>
+    <p>Either party may terminate with _____ days' written notice.</p>
+    
+    <h3>8.3 Termination for Cause</h3>
+    <p>Either party may terminate immediately if the other party:</p>
+    <ul>
+        <li>(a) Materially breaches and fails to cure within 30 days of notice;</li>
+        <li>(b) Becomes insolvent or files for bankruptcy;</li>
+        <li>(c) Assigns the Agreement without consent.</li>
+    </ul>
+    
+    <h3>8.4 Effect of Termination</h3>
+    <p>Upon termination:</p>
+    <ul>
+        <li>(a) License rights terminate (subject to sell-off period);</li>
+        <li>(b) Company may sell existing inventory for 90 days;</li>
+        <li>(c) All outstanding royalties become due;</li>
+        <li>(d) Each party returns the other's Confidential Information;</li>
+        <li>(e) Accrued rights and obligations survive.</li>
+    </ul>
+
+    <h2>9. INDEMNIFICATION</h2>
+    
+    <p><strong>9.1 Creator Indemnification.</strong> Creator shall indemnify Company against claims that the Licensed IP infringes third-party IP rights.</p>
+    
+    <p><strong>9.2 Company Indemnification.</strong> Company shall indemnify Creator against claims arising from Company's manufacture, sale, or use of products, except to the extent caused by the Licensed IP.</p>
+
+    <h2>10. LIMITATION OF LIABILITY</h2>
+    
+    <p>NEITHER PARTY SHALL BE LIABLE FOR INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES. EACH PARTY'S TOTAL LIABILITY SHALL NOT EXCEED THE GREATER OF (A) ROYALTIES PAID IN THE PRECEDING 12 MONTHS OR (B) $100,000.</p>
+
+    <h2>11. GENERAL PROVISIONS</h2>
+    
+    <p><strong>11.1 Governing Law.</strong> This Agreement shall be governed by the laws of South Carolina.</p>
+    <p><strong>11.2 Dispute Resolution.</strong> Disputes shall be resolved by arbitration in Charleston, South Carolina.</p>
+    <p><strong>11.3 Assignment.</strong> Neither party may assign without the other's consent, except to an affiliate or acquirer.</p>
+    <p><strong>11.4 Entire Agreement.</strong> This Agreement constitutes the entire agreement between the parties.</p>
+    <p><strong>11.5 Amendment.</strong> Amendments must be in writing signed by both parties.</p>
+    <p><strong>11.6 Notices.</strong> Notices shall be in writing to the addresses above.</p>
+
+    <div class="signature-block">
+        <p><strong>IN WITNESS WHEREOF</strong>, the parties have executed this Agreement as of the date first written above.</p>
         
-        // Meta Description
-        let metaDesc = document.querySelector('meta[name="description"]');
-        if (!metaDesc) {
-            metaDesc = document.createElement('meta');
-            metaDesc.setAttribute('name', 'description');
-            document.head.appendChild(metaDesc);
-        }
-        metaDesc.setAttribute('content', 'HingeCraft Global Creator Licensing & IP Agreement - Intellectual property ownership and royalty structure for creators');
+        <p><strong>COMPANY:</strong><br>HingeCraft Global, LLC</p>
+        <div class="signature-line">
+            <p>Authorized Signature</p>
+        </div>
+        <p>Print Name: _________________________________</p>
+        <p>Title: _________________________________</p>
+        <p>Date: _________________________________</p>
         
-        // Meta Keywords
-        let metaKeywords = document.querySelector('meta[name="keywords"]');
-        if (!metaKeywords) {
-            metaKeywords = document.createElement('meta');
-            metaKeywords.setAttribute('name', 'keywords');
-            document.head.appendChild(metaKeywords);
-        }
-        metaKeywords.setAttribute('content', 'service agreement, user agreement, creator licensing, marketplace agreement, manufacturing agreement, creator rights, merchant agreement, licensing agreement, participation agreement, membership agreement, hingecraft creator licensing, hingecraft, hingecraft global, resilient design');
-        
-        // Open Graph Tags
-        const ogTags = {
-            'og:title': 'Creator Licensing & IP Agreement | HingeCraft Global',
-            'og:description': 'HingeCraft Global Creator Licensing & IP Agreement - Intellectual property ownership and royalty structure for creators',
-            'og:image': 'https://hingecraft-global.ai/og-image.jpg',
-            'og:url': 'https://hingecraft-global.ai/legal/creator_licensing_agreement',
-            'og:type': 'website',
-            'og:site_name': 'HingeCraft Global'
-        };
-        
-        Object.keys(ogTags).forEach(prop => {
-            let ogMeta = document.querySelector(`meta[property="${prop}"]`);
-            if (!ogMeta) {
-                ogMeta = document.createElement('meta');
-                ogMeta.setAttribute('property', prop);
-                document.head.appendChild(ogMeta);
-            }
-            ogMeta.setAttribute('content', ogTags[prop]);
-        });
-        
-        // Twitter Card Tags
-        const twitterTags = {
-            'twitter:card': 'summary_large_image',
-            'twitter:title': 'Creator Licensing & IP Agreement | HingeCraft Global',
-            'twitter:description': 'HingeCraft Global Creator Licensing & IP Agreement - Intellectual property ownership and royalty structure for creators',
-            'twitter:image': 'https://hingecraft-global.ai/og-image.jpg'
-        };
-        
-        Object.keys(twitterTags).forEach(name => {
-            let twitterMeta = document.querySelector(`meta[name="${name}"]`);
-            if (!twitterMeta) {
-                twitterMeta = document.createElement('meta');
-                twitterMeta.setAttribute('name', name);
-                document.head.appendChild(twitterMeta);
-            }
-            twitterMeta.setAttribute('content', twitterTags[name]);
-        });
-        
-        // Canonical URL
-        let canonical = document.querySelector('link[rel="canonical"]');
-        if (!canonical) {
-            canonical = document.createElement('link');
-            canonical.setAttribute('rel', 'canonical');
-            document.head.appendChild(canonical);
-        }
-        canonical.setAttribute('href', 'https://hingecraft-global.ai/legal/creator_licensing_agreement');
-        
-        // Robots Meta
-        let robots = document.querySelector('meta[name="robots"]');
-        if (!robots) {
-            robots = document.createElement('meta');
-            robots.setAttribute('name', 'robots');
-            document.head.appendChild(robots);
-        }
-        robots.setAttribute('content', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
-        
-        // Schema.org JSON-LD
-        let schemaScript = document.querySelector('script[type="application/ld+json"]');
-        if (!schemaScript) {
-            schemaScript = document.createElement('script');
-            schemaScript.setAttribute('type', 'application/ld+json');
-            document.head.appendChild(schemaScript);
-        }
-        schemaScript.textContent = JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "LegalDocument",
-            "name": "Creator Licensing & IP Agreement | HingeCraft Global",
-            "description": "HingeCraft Global Creator Licensing & IP Agreement - Intellectual property ownership and royalty structure for creators",
-            "url": "https://hingecraft-global.ai/legal/creator_licensing_agreement",
-            "publisher": {
-                "@type": "Organization",
-                "name": "HingeCraft Global",
-                "url": "https://hingecraft-global.ai",
-                "logo": "https://hingecraft-global.ai/logo.png"
-            },
-            "datePublished": "2025-12-05",
-            "dateModified": "2025-12-05",
-            "inLanguage": "en-US",
-            "keywords": "service agreement, user agreement, creator licensing, marketplace agreement, manufacturing agreement, creator rights, merchant agreement, licensing agreement, participation agreement, membership agreement, hingecraft creator licensing, hingecraft, hingecraft global, resilient design"
-        });
-    }
-});
+        <p><strong>CREATOR:</strong></p>
+        <div class="signature-line">
+            <p>Creator Signature</p>
+        </div>
+        <p>Print Name: _________________________________</p>
+        <p>Date: _________________________________</p>
+    </div>
 
+    <div class="footer">
+        <p>HingeCraft Global, LLC | 123 Innovation Drive, Suite 100, Charleston, SC 29401</p>
+        <p>Legal: legal@hingecraft.com | Phone: (843) 555-0100</p>
+        <p>© 2025 HingeCraft Global, LLC. All Rights Reserved.</p>
+    </div>
+</body>
+</html>
 
-// API Reference: https://www.wix.com/velo/reference/api-overview/introduction
-// “Hello, World!” Example: https://learn-code.wix.com/en/article/hello-world
-
-$w.onReady(function () {
-    // Write your JavaScript here
-
-    // To select an element by ID use: $w('#elementID')
-
-    // Click 'Preview' to run your code
-});
-
-
-// Load Legal Page HTML Content
-
-$w.onReady(function () {
-    loadLegalPageContent();
-});
+`;
+}

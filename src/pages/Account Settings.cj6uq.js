@@ -1,3 +1,69 @@
+// HingeCraft Global - SEO Optimized
+// Account Settings | Manage Your HingeCraft Profile
+// Generated: December 6, 2025
+
+import wixSeo from 'wix-seo';
+
+$w.onReady(function () {
+    // Set page title
+    wixSeo.setTitle("Account Settings | Manage Your HingeCraft Profile");
+    
+    // Set meta tags
+    wixSeo.setMetaTags([
+        { name: "description", content: "Manage your HingeCraft account settings, preferences, notifications, and security options in one convenient location." },
+        { name: "keywords", content: "account settings, profile management, preferences, security settings, account management" },
+        { name: "robots", content: "index, follow" },
+        { property: "og:title", content: "Account Settings | Manage Your HingeCraft Profile" },
+        { property: "og:description", content: "Manage your HingeCraft account settings, preferences, notifications, and security options in one convenient location." },
+        { property: "og:type", content: "website" },
+        { property: "og:site_name", content: "HingeCraft Global" },
+        { property: "twitter:card", content: "summary_large_image" },
+        { property: "twitter:title", content: "Account Settings | Manage Your HingeCraft Profile" },
+        { property: "twitter:description", content: "Manage your HingeCraft account settings, preferences, notifications, and security options in one convenient location." }
+    ]);
+    
+    // Set structured data (JSON-LD)
+    wixSeo.setStructuredData([
+        {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Account Settings | Manage Your HingeCraft Profile",
+        "description": "Manage your HingeCraft account settings, preferences, notifications, and security options in one convenient location.",
+        "url": "https://www.hingecraft.com/account-settings.cj6uq",
+        "inLanguage": "en-US",
+        "dateModified": "2025-12-06",
+        "publisher": {
+                "@type": "Organization",
+                "name": "HingeCraft Global",
+                "url": "https://www.hingecraft.com",
+                "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://www.hingecraft.com/logo.png"
+                }
+        }
+},
+        {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+                {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "https://www.hingecraft.com"
+                },
+                {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "Account Settings",
+                        "item": "https://www.hingecraft.com/account-settings.cj6uq"
+                }
+        ]
+}
+    ]);
+});
+
+
+// Original page code below
 // Comprehensive SEO Optimization - Account Settings
 // JSON-LD Schema.org | 100+ Keywords | Competitive Optimization
 

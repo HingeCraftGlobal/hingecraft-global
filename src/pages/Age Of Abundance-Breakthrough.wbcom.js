@@ -1,3 +1,69 @@
+// HingeCraft Global - SEO Optimized
+// Age of Abundance | Manufacturing Breakthrough
+// Generated: December 6, 2025
+
+import wixSeo from 'wix-seo';
+
+$w.onReady(function () {
+    // Set page title
+    wixSeo.setTitle("Age of Abundance | Manufacturing Breakthrough");
+    
+    // Set meta tags
+    wixSeo.setMetaTags([
+        { name: "description", content: "Enter the Age of Abundance with HingeCraft - breakthrough manufacturing technologies creating sustainable prosperity for all." },
+        { name: "keywords", content: "age of abundance, manufacturing breakthrough, sustainable prosperity, innovation, future manufacturing" },
+        { name: "robots", content: "index, follow" },
+        { property: "og:title", content: "Age of Abundance | Manufacturing Breakthrough" },
+        { property: "og:description", content: "Enter the Age of Abundance with HingeCraft - breakthrough manufacturing technologies creating sustainable prosperity for all." },
+        { property: "og:type", content: "website" },
+        { property: "og:site_name", content: "HingeCraft Global" },
+        { property: "twitter:card", content: "summary_large_image" },
+        { property: "twitter:title", content: "Age of Abundance | Manufacturing Breakthrough" },
+        { property: "twitter:description", content: "Enter the Age of Abundance with HingeCraft - breakthrough manufacturing technologies creating sustainable prosperity for all." }
+    ]);
+    
+    // Set structured data (JSON-LD)
+    wixSeo.setStructuredData([
+        {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Age of Abundance | Manufacturing Breakthrough",
+        "description": "Enter the Age of Abundance with HingeCraft - breakthrough manufacturing technologies creating sustainable prosperity for all.",
+        "url": "https://www.hingecraft.com/age-of-abundance-breakthrough.wbcom",
+        "inLanguage": "en-US",
+        "dateModified": "2025-12-06",
+        "publisher": {
+                "@type": "Organization",
+                "name": "HingeCraft Global",
+                "url": "https://www.hingecraft.com",
+                "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://www.hingecraft.com/logo.png"
+                }
+        }
+},
+        {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+                {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "https://www.hingecraft.com"
+                },
+                {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "Age of Abundance",
+                        "item": "https://www.hingecraft.com/age-of-abundance-breakthrough.wbcom"
+                }
+        ]
+}
+    ]);
+});
+
+
+// Original page code below
 // Comprehensive SEO Optimization - Age Of Abundance-Breakthrough
 // JSON-LD Schema.org | 100+ Keywords | Competitive Optimization
 

@@ -101,3 +101,5 @@ COMMENT ON FUNCTION inspect_query_for_injection IS 'CIA/FBI level SQL injection 
 
 
 
+
+

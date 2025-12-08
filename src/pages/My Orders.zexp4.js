@@ -1,3 +1,69 @@
+// HingeCraft Global - SEO Optimized
+// My Orders | Track Your HingeCraft Orders
+// Generated: December 6, 2025
+
+import wixSeo from 'wix-seo';
+
+$w.onReady(function () {
+    // Set page title
+    wixSeo.setTitle("My Orders | Track Your HingeCraft Orders");
+    
+    // Set meta tags
+    wixSeo.setMetaTags([
+        { name: "description", content: "View and track your HingeCraft orders, shipping status, order history, and delivery information in your account." },
+        { name: "keywords", content: "order tracking, my orders, order status, shipping tracking, order history" },
+        { name: "robots", content: "index, follow" },
+        { property: "og:title", content: "My Orders | Track Your HingeCraft Orders" },
+        { property: "og:description", content: "View and track your HingeCraft orders, shipping status, order history, and delivery information in your account." },
+        { property: "og:type", content: "website" },
+        { property: "og:site_name", content: "HingeCraft Global" },
+        { property: "twitter:card", content: "summary_large_image" },
+        { property: "twitter:title", content: "My Orders | Track Your HingeCraft Orders" },
+        { property: "twitter:description", content: "View and track your HingeCraft orders, shipping status, order history, and delivery information in your account." }
+    ]);
+    
+    // Set structured data (JSON-LD)
+    wixSeo.setStructuredData([
+        {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "My Orders | Track Your HingeCraft Orders",
+        "description": "View and track your HingeCraft orders, shipping status, order history, and delivery information in your account.",
+        "url": "https://www.hingecraft.com/my-orders.zexp4",
+        "inLanguage": "en-US",
+        "dateModified": "2025-12-06",
+        "publisher": {
+                "@type": "Organization",
+                "name": "HingeCraft Global",
+                "url": "https://www.hingecraft.com",
+                "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://www.hingecraft.com/logo.png"
+                }
+        }
+},
+        {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+                {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "https://www.hingecraft.com"
+                },
+                {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "My Orders",
+                        "item": "https://www.hingecraft.com/my-orders.zexp4"
+                }
+        ]
+}
+    ]);
+});
+
+
+// Original page code below
 // Comprehensive SEO Optimization - My Orders
 // JSON-LD Schema.org | 100+ Keywords | Competitive Optimization
 

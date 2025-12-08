@@ -1,3 +1,89 @@
+// HingeCraft Global - SEO Optimized
+// HingeCraft Global | Advanced Manufacturing & AI Innovation
+// Generated: December 6, 2025
+
+import wixSeo from 'wix-seo';
+
+$w.onReady(function () {
+    // Set page title
+    wixSeo.setTitle("HingeCraft Global | Advanced Manufacturing & AI Innovation");
+    
+    // Set meta tags
+    wixSeo.setMetaTags([
+        { name: "description", content: "HingeCraft Global delivers cutting-edge manufacturing solutions, AI-driven innovation, and sustainable global supply chain services. Partner with us for the Age of Abundance." },
+        { name: "keywords", content: "advanced manufacturing, AI innovation, sustainable manufacturing, global supply chain, Industry 4.0" },
+        { name: "robots", content: "index, follow" },
+        { property: "og:title", content: "HingeCraft Global | Advanced Manufacturing & AI Innovation" },
+        { property: "og:description", content: "HingeCraft Global delivers cutting-edge manufacturing solutions, AI-driven innovation, and sustainable global supply chain services. Partner with us for the Age of Abundance." },
+        { property: "og:type", content: "website" },
+        { property: "og:site_name", content: "HingeCraft Global" },
+        { property: "twitter:card", content: "summary_large_image" },
+        { property: "twitter:title", content: "HingeCraft Global | Advanced Manufacturing & AI Innovation" },
+        { property: "twitter:description", content: "HingeCraft Global delivers cutting-edge manufacturing solutions, AI-driven innovation, and sustainable global supply chain services. Partner with us for the Age of Abundance." }
+    ]);
+    
+    // Set structured data (JSON-LD)
+    wixSeo.setStructuredData([
+        {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "HingeCraft Global | Advanced Manufacturing & AI Innovation",
+        "description": "HingeCraft Global delivers cutting-edge manufacturing solutions, AI-driven innovation, and sustainable global supply chain services. Partner with us for the Age of Abundance.",
+        "url": "https://www.hingecraft.com/home-.ihy19",
+        "inLanguage": "en-US",
+        "dateModified": "2025-12-06",
+        "publisher": {
+                "@type": "Organization",
+                "name": "HingeCraft Global",
+                "url": "https://www.hingecraft.com",
+                "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://www.hingecraft.com/logo.png"
+                }
+        },
+        "legalName": "HingeCraft Global, LLC",
+        "foundingDate": "2024",
+        "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "123 Innovation Drive, Suite 100",
+                "addressLocality": "Charleston",
+                "addressRegion": "South Carolina",
+                "postalCode": "29401",
+                "addressCountry": "US"
+        },
+        "contactPoint": {
+                "@type": "ContactPoint",
+                "telephone": "+1-843-555-0100",
+                "email": "info@hingecraft.com",
+                "contactType": "customer service"
+        },
+        "sameAs": [
+                "https://www.linkedin.com/company/hingecraft-global",
+                "https://twitter.com/hingecraftglobal"
+        ]
+},
+        {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+                {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "https://www.hingecraft.com"
+                },
+                {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "HingeCraft Global",
+                        "item": "https://www.hingecraft.com/home-.ihy19"
+                }
+        ]
+}
+    ]);
+});
+
+
+// Original page code below
 // Comprehensive SEO Optimization - Home 
 // JSON-LD Schema.org | 100+ Keywords | Competitive Optimization
 

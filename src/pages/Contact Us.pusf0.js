@@ -1,3 +1,69 @@
+// HingeCraft Global - SEO Optimized
+// Contact HingeCraft Global | Get in Touch
+// Generated: December 6, 2025
+
+import wixSeo from 'wix-seo';
+
+$w.onReady(function () {
+    // Set page title
+    wixSeo.setTitle("Contact HingeCraft Global | Get in Touch");
+    
+    // Set meta tags
+    wixSeo.setMetaTags([
+        { name: "description", content: "Contact HingeCraft Global for manufacturing solutions, partnerships, and inquiries. Reach our Charleston, SC headquarters or connect online." },
+        { name: "keywords", content: "contact hingecraft, manufacturing contact, business inquiries, Charleston SC, customer support" },
+        { name: "robots", content: "index, follow" },
+        { property: "og:title", content: "Contact HingeCraft Global | Get in Touch" },
+        { property: "og:description", content: "Contact HingeCraft Global for manufacturing solutions, partnerships, and inquiries. Reach our Charleston, SC headquarters or connect online." },
+        { property: "og:type", content: "website" },
+        { property: "og:site_name", content: "HingeCraft Global" },
+        { property: "twitter:card", content: "summary_large_image" },
+        { property: "twitter:title", content: "Contact HingeCraft Global | Get in Touch" },
+        { property: "twitter:description", content: "Contact HingeCraft Global for manufacturing solutions, partnerships, and inquiries. Reach our Charleston, SC headquarters or connect online." }
+    ]);
+    
+    // Set structured data (JSON-LD)
+    wixSeo.setStructuredData([
+        {
+        "@context": "https://schema.org",
+        "@type": "ContactPage",
+        "name": "Contact HingeCraft Global | Get in Touch",
+        "description": "Contact HingeCraft Global for manufacturing solutions, partnerships, and inquiries. Reach our Charleston, SC headquarters or connect online.",
+        "url": "https://www.hingecraft.com/contact-us.pusf0",
+        "inLanguage": "en-US",
+        "dateModified": "2025-12-06",
+        "publisher": {
+                "@type": "Organization",
+                "name": "HingeCraft Global",
+                "url": "https://www.hingecraft.com",
+                "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://www.hingecraft.com/logo.png"
+                }
+        }
+},
+        {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+                {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "https://www.hingecraft.com"
+                },
+                {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "Contact HingeCraft Global",
+                        "item": "https://www.hingecraft.com/contact-us.pusf0"
+                }
+        ]
+}
+    ]);
+});
+
+
+// Original page code below
 // Comprehensive SEO Optimization - Contact Us
 // JSON-LD Schema.org | 100+ Keywords | Competitive Optimization
 

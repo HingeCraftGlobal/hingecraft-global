@@ -1,3 +1,69 @@
+// HingeCraft Global - SEO Optimized
+// HingeCraft Global Core | Worldwide Operations Center
+// Generated: December 6, 2025
+
+import wixSeo from 'wix-seo';
+
+$w.onReady(function () {
+    // Set page title
+    wixSeo.setTitle("HingeCraft Global Core | Worldwide Operations Center");
+    
+    // Set meta tags
+    wixSeo.setMetaTags([
+        { name: "description", content: "HingeCraft Global Core connects our worldwide operations, enabling seamless international manufacturing and supply chain coordination." },
+        { name: "keywords", content: "global operations, international manufacturing, worldwide production, global supply chain, multinational business" },
+        { name: "robots", content: "index, follow" },
+        { property: "og:title", content: "HingeCraft Global Core | Worldwide Operations Center" },
+        { property: "og:description", content: "HingeCraft Global Core connects our worldwide operations, enabling seamless international manufacturing and supply chain coordination." },
+        { property: "og:type", content: "website" },
+        { property: "og:site_name", content: "HingeCraft Global" },
+        { property: "twitter:card", content: "summary_large_image" },
+        { property: "twitter:title", content: "HingeCraft Global Core | Worldwide Operations Center" },
+        { property: "twitter:description", content: "HingeCraft Global Core connects our worldwide operations, enabling seamless international manufacturing and supply chain coordination." }
+    ]);
+    
+    // Set structured data (JSON-LD)
+    wixSeo.setStructuredData([
+        {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "HingeCraft Global Core | Worldwide Operations Center",
+        "description": "HingeCraft Global Core connects our worldwide operations, enabling seamless international manufacturing and supply chain coordination.",
+        "url": "https://www.hingecraft.com/hc-global-core.j6i4e",
+        "inLanguage": "en-US",
+        "dateModified": "2025-12-06",
+        "publisher": {
+                "@type": "Organization",
+                "name": "HingeCraft Global",
+                "url": "https://www.hingecraft.com",
+                "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://www.hingecraft.com/logo.png"
+                }
+        }
+},
+        {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+                {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "https://www.hingecraft.com"
+                },
+                {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "HingeCraft Global Core",
+                        "item": "https://www.hingecraft.com/hc-global-core.j6i4e"
+                }
+        ]
+}
+    ]);
+});
+
+
+// Original page code below
 // Comprehensive SEO Optimization - HC Global Core
 // JSON-LD Schema.org | 100+ Keywords | Competitive Optimization
 

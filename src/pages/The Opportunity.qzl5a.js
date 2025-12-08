@@ -1,3 +1,69 @@
+// HingeCraft Global - SEO Optimized
+// The Opportunity | Partner with HingeCraft
+// Generated: December 6, 2025
+
+import wixSeo from 'wix-seo';
+
+$w.onReady(function () {
+    // Set page title
+    wixSeo.setTitle("The Opportunity | Partner with HingeCraft");
+    
+    // Set meta tags
+    wixSeo.setMetaTags([
+        { name: "description", content: "Discover partnership opportunities with HingeCraft Global. Join our network of innovators, manufacturers, and changemakers." },
+        { name: "keywords", content: "partnership opportunity, business opportunity, join hingecraft, partner program, collaboration" },
+        { name: "robots", content: "index, follow" },
+        { property: "og:title", content: "The Opportunity | Partner with HingeCraft" },
+        { property: "og:description", content: "Discover partnership opportunities with HingeCraft Global. Join our network of innovators, manufacturers, and changemakers." },
+        { property: "og:type", content: "website" },
+        { property: "og:site_name", content: "HingeCraft Global" },
+        { property: "twitter:card", content: "summary_large_image" },
+        { property: "twitter:title", content: "The Opportunity | Partner with HingeCraft" },
+        { property: "twitter:description", content: "Discover partnership opportunities with HingeCraft Global. Join our network of innovators, manufacturers, and changemakers." }
+    ]);
+    
+    // Set structured data (JSON-LD)
+    wixSeo.setStructuredData([
+        {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "The Opportunity | Partner with HingeCraft",
+        "description": "Discover partnership opportunities with HingeCraft Global. Join our network of innovators, manufacturers, and changemakers.",
+        "url": "https://www.hingecraft.com/the-opportunity.qzl5a",
+        "inLanguage": "en-US",
+        "dateModified": "2025-12-06",
+        "publisher": {
+                "@type": "Organization",
+                "name": "HingeCraft Global",
+                "url": "https://www.hingecraft.com",
+                "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://www.hingecraft.com/logo.png"
+                }
+        }
+},
+        {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+                {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "https://www.hingecraft.com"
+                },
+                {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "The Opportunity",
+                        "item": "https://www.hingecraft.com/the-opportunity.qzl5a"
+                }
+        ]
+}
+    ]);
+});
+
+
+// Original page code below
 // Comprehensive SEO Optimization - The Opportunity
 // JSON-LD Schema.org | 100+ Keywords | Competitive Optimization
 

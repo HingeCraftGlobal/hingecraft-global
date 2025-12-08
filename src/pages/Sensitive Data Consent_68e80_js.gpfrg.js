@@ -1,581 +1,201 @@
-// Comprehensive SEO Optimization - Sensitive Data Consent_68e80_js
-// JSON-LD Schema.org | 100+ Keywords | Competitive Optimization
+// HingeCraft Global, LLC - Legal Document
+// Sensitive Data Youth Consent
+// State of South Carolina | December 6, 2025
+// Auto-generated - All URLs are HTTPS only
+
+import wixSeo from 'wix-seo';
 
 $w.onReady(function () {
-    if (typeof document !== 'undefined') {
-        // Page Title
-        document.title = 'Sensitive Data & Youth Data Consent | HingeCraft Global';
-        
-        // Meta Description
-        let metaDesc = document.querySelector('meta[name="description"]');
-        if (!metaDesc) {
-            metaDesc = document.createElement('meta');
-            metaDesc.setAttribute('name', 'description');
-            document.head.appendChild(metaDesc);
-        }
-        metaDesc.setAttribute('content', 'HingeCraft Global Sensitive Data & Youth Data Consent - Special protections for minors, biometric data, and educational information');
-        
-        // Meta Keywords
-        let metaKeywords = document.querySelector('meta[name="keywords"]');
-        if (!metaKeywords) {
-            metaKeywords = document.createElement('meta');
-            metaKeywords.setAttribute('name', 'keywords');
-            document.head.appendChild(metaKeywords);
-        }
-        metaKeywords.setAttribute('content', 'data protection, data security, data processing, data privacy, sensitive data, cross-border data, international data, data transfer, data processing agreement, hingecraft, hingecraft global, resilient design');
-        
-        // Open Graph Tags
-        const ogTags = {
-            'og:title': 'Sensitive Data & Youth Data Consent | HingeCraft Global',
-            'og:description': 'HingeCraft Global Sensitive Data & Youth Data Consent - Special protections for minors, biometric data, and educational information',
-            'og:image': 'https://hingecraft-global.ai/og-image.jpg',
-            'og:url': 'https://hingecraft-global.ai/legal/15-sensitive-data-youth-consent',
-            'og:type': 'website',
-            'og:site_name': 'HingeCraft Global'
-        };
-        
-        Object.keys(ogTags).forEach(prop => {
-            let ogMeta = document.querySelector(`meta[property="${prop}"]`);
-            if (!ogMeta) {
-                ogMeta = document.createElement('meta');
-                ogMeta.setAttribute('property', prop);
-                document.head.appendChild(ogMeta);
-            }
-            ogMeta.setAttribute('content', ogTags[prop]);
-        });
-        
-        // Twitter Card Tags
-        const twitterTags = {
-            'twitter:card': 'summary_large_image',
-            'twitter:title': 'Sensitive Data & Youth Data Consent | HingeCraft Global',
-            'twitter:description': 'HingeCraft Global Sensitive Data & Youth Data Consent - Special protections for minors, biometric data, and educational information',
-            'twitter:image': 'https://hingecraft-global.ai/og-image.jpg'
-        };
-        
-        Object.keys(twitterTags).forEach(name => {
-            let twitterMeta = document.querySelector(`meta[name="${name}"]`);
-            if (!twitterMeta) {
-                twitterMeta = document.createElement('meta');
-                twitterMeta.setAttribute('name', name);
-                document.head.appendChild(twitterMeta);
-            }
-            twitterMeta.setAttribute('content', twitterTags[name]);
-        });
-        
-        // Canonical URL
-        let canonical = document.querySelector('link[rel="canonical"]');
-        if (!canonical) {
-            canonical = document.createElement('link');
-            canonical.setAttribute('rel', 'canonical');
-            document.head.appendChild(canonical);
-        }
-        canonical.setAttribute('href', 'https://hingecraft-global.ai/legal/15-sensitive-data-youth-consent');
-        
-        // Robots Meta
-        let robots = document.querySelector('meta[name="robots"]');
-        if (!robots) {
-            robots = document.createElement('meta');
-            robots.setAttribute('name', 'robots');
-            document.head.appendChild(robots);
-        }
-        robots.setAttribute('content', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
-        
-        // Additional Meta Tags
-        const additionalTags = {
-            'author': 'HingeCraft Global',
-            'language': 'en-US',
-            'revisit-after': '7 days',
-            'distribution': 'global',
-            'rating': 'general'
-        };
-        
-        Object.keys(additionalTags).forEach(name => {
-            let meta = document.querySelector(`meta[name="${name}"]`);
-            if (!meta) {
-                meta = document.createElement('meta');
-                meta.setAttribute('name', name);
-                document.head.appendChild(meta);
-            }
-            meta.setAttribute('content', additionalTags[name]);
-        });
-        
-        // Schema.org JSON-LD Structured Data
-        let schemaScript = document.querySelector('script[type="application/ld+json"]');
-        if (!schemaScript) {
-            schemaScript = document.createElement('script');
-            schemaScript.setAttribute('type', 'application/ld+json');
-            document.head.appendChild(schemaScript);
-        }
-        schemaScript.textContent = `{
-  "@context": "https://schema.org",
-  "@type": "LegalDocument",
-  "name": "Sensitive Data & Youth Data Consent | HingeCraft Global",
-  "description": "HingeCraft Global Sensitive Data & Youth Data Consent - Special protections for minors, biometric data, and educational information",
-  "url": "https://hingecraft-global.ai/legal/15-sensitive-data-youth-consent",
-  "publisher": {
-    "@type": "Organization",
-    "name": "HingeCraft Global",
-    "url": "https://hingecraft-global.ai",
-    "logo": "https://hingecraft-global.ai/logo.png"
-  },
-  "datePublished": "2025-12-05",
-  "dateModified": "2025-12-05",
-  "inLanguage": "en-US",
-  "keywords": "data protection, data security, data processing, data privacy, sensitive data, cross-border data, international data, data transfer, data processing agreement, hingecraft, hingecraft global, resilient design"
-}`;
-    }
+    // Set SEO
+    wixSeo.setTitle("Sensitive Data Youth Consent | HingeCraft Global");
+    wixSeo.setMetaTags([
+        { name: "description", content: "Sensitive Data Youth Consent - HingeCraft Global, LLC legal document for South Carolina" },
+        { name: "robots", content: "index, follow" },
+        { property: "og:title", content: "Sensitive Data Youth Consent | HingeCraft Global" },
+        { property: "og:type", content: "website" }
+    ]);
+    
+    // Load legal document content
+    loadLegalContent();
+});
 
-    // Load Legal Page HTML Content
-    function loadLegalPageContent() {
-        const htmlElement = $w('#legalContent');
-        if (htmlElement) {
-            const htmlContent = `<body class="bg-slate-50">
-<section class="hero-gradient text-white py-12 px-6">
-<div class="max-w-4xl mx-auto text-center">
-<h1 class="text-4xl font-bold mb-4">Sensitive Data &amp; Youth Data Consent</h1>
-<p class="text-lg opacity-90">HINGECRAFT GLOBAL, INC.</p>
-<p class="text-sm opacity-75 mt-2">For Minors, Biometrics, Education Data</p>
-</div>
-</section>
-<main class="max-w-4xl mx-auto px-6 py-16">
-<div class="prose max-w-none bg-white p-8 rounded-lg shadow-sm">
-<h2>SENSITIVE DATA &amp; YOUTH DATA CONSENT</h2>
-<p>This policy addresses special protections for sensitive data, including information from minors, biometric data, and educational records.</p>
-<h2>I. MINOR DATA PROTECTION (COPPA)</h2>
-<h3>1.1 Parental Consent</h3>
-<p>For users under 13, we require:</p>
-<ul>
-<li>Verifiable parental consent</li>
-<li>Parental access to child's account</li>
-<li>Limited data collection</li>
-<li>No behavioral advertising</li>
-</ul>
-<h3>1.2 Teen Privacy (13-17)</h3>
-<p>For users 13-17:</p>
-<ul>
-<li>Enhanced privacy protections</li>
-<li>Limited data sharing</li>
-<li>Age-appropriate content</li>
-<li>Parental notification options</li>
-</ul>
-<h2>II. BIOMETRIC DATA</h2>
-<p>If we collect biometric data:</p>
-<ul>
-<li>Explicit consent required</li>
-<li>Limited use and retention</li>
-<li>Secure storage</li>
-<li>Right to deletion</li>
-</ul>
-<h2>III. EDUCATIONAL DATA (FERPA)</h2>
-<p>For educational institutions:</p>
-<ul>
-<li>FERPA-compliant handling</li>
-<li>Limited disclosure</li>
-<li>Student record protection</li>
-<li>Institutional consent</li>
-</ul>
-<h2>IV. SENSITIVE PERSONAL DATA</h2>
-<p>Special protections apply to:</p>
-<ul>
-<li>Health information</li>
-<li>Financial data</li>
-<li>Location data</li>
-<li>Political or religious beliefs</li>
-</ul>
-<div class="mt-8 pt-8 border-t border-gray-200">
-<p class="text-sm text-gray-600">Last Updated: December 4, 2025</p>
-<p class="text-sm text-gray-600">For questions about this document, please contact: <a class="text-purple-700 hover:underline" href="mailto:legal@hingecraft-global.ai">legal@hingecraft-global.ai</a></p>
-</div>
-</div>
-<div class="mt-6 flex flex-wrap items-center gap-6 text-sm text-gray-600">
-<div class="flex items-center gap-2">
-<svg class="w-5 h-5 text-green-600" fill="currentColor" viewbox="0 0 20 20">
-<path clip-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" fill-rule="evenodd"></path>
-</svg>
-<span>GDPR Compliant</span>
-</div>
-<div class="flex items-center gap-2">
-<svg class="w-5 h-5 text-green-600" fill="currentColor" viewbox="0 0 20 20">
-<path clip-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" fill-rule="evenodd"></path>
-</svg>
-<span>CCPA Compliant</span>
-</div>
-<div class="flex items-center gap-2">
-<svg class="w-5 h-5 text-green-600" fill="currentColor" viewbox="0 0 20 20">
-<path clip-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" fill-rule="evenodd"></path>
-</svg>
-<span>Secure &amp; Encrypted</span>
-</div>
-</div>
-</main>
-<footer class="bg-gray-900 text-white py-12 px-6 mt-16">
-<div class="max-w-4xl mx-auto text-center">
-<p class="mb-4">© 2025 HingeCraft Global. All rights reserved.</p>
-<p class="text-gray-400 text-sm">
-<a class="hover:text-white" href="/legal">Legal</a> | 
-        <a class="hover:text-white" href="/privacy">Privacy</a> | 
-        <a class="hover:text-white" href="/terms">Terms</a>
-</p>
-</div>
-</footer>
-</body>`;
-            htmlElement.html = htmlContent;
-            console.log('Legal page content loaded successfully');
-        } else {
-            console.log('Legal content element not found. Add HTML element with ID: legalContent');
+function loadLegalContent() {
+    const legalContent = `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sensitive Data & Youth Consent Policy - HingeCraft Global, LLC</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Times New Roman', Times, serif; font-size: 12pt; line-height: 1.6; color: #000; background: #fff; max-width: 8.5in; margin: 0 auto; padding: 1in; }
+        h1 { font-size: 18pt; font-weight: bold; text-align: center; margin-bottom: 24pt; text-transform: uppercase; border-bottom: 2px solid #000; padding-bottom: 12pt; }
+        h2 { font-size: 14pt; font-weight: bold; margin-top: 24pt; margin-bottom: 12pt; text-transform: uppercase; }
+        h3 { font-size: 12pt; font-weight: bold; margin-top: 18pt; margin-bottom: 9pt; }
+        p { margin-bottom: 12pt; text-align: justify; }
+        ul, ol { margin-left: 36pt; margin-bottom: 12pt; }
+        li { margin-bottom: 6pt; }
+        .header { text-align: center; margin-bottom: 36pt; }
+        .company-name { font-size: 16pt; font-weight: bold; }
+        .footer { margin-top: 48pt; padding-top: 12pt; border-top: 1px solid #000; font-size: 10pt; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="company-name">HINGECRAFT GLOBAL, LLC</div>
+        <h1>SENSITIVE DATA & YOUTH CONSENT POLICY</h1>
+        <p>Effective Date: _________________, 20____<br>State of South Carolina</p>
+    </div>
+
+    <h2>1. PURPOSE</h2>
+    <p>This Sensitive Data & Youth Consent Policy ("Policy") establishes HingeCraft Global, LLC's ("HingeCraft") standards for handling sensitive personal data and protecting the privacy of children and young people.</p>
+
+    <h2>2. SENSITIVE DATA CATEGORIES</h2>
+    
+    <h3>2.1 Definition</h3>
+    <p>"Sensitive Personal Data" includes: (a) Racial or ethnic origin; (b) Political opinions; (c) Religious or philosophical beliefs; (d) Trade union membership; (e) Genetic data; (f) Biometric data; (g) Health data; (h) Sexual orientation; (i) Criminal history; (j) Financial account information; (k) Government ID numbers.</p>
+    
+    <h3>2.2 Collection Limitations</h3>
+    <p>HingeCraft generally does NOT collect Sensitive Personal Data. When collection is necessary: (a) We obtain explicit consent; (b) We minimize data collected; (c) We implement enhanced security; (d) We limit access; (e) We retain only as long as necessary.</p>
+    
+    <h3>2.3 Lawful Basis</h3>
+    <p>We process Sensitive Personal Data only when: (a) You provide explicit consent; (b) Processing is necessary for employment law; (c) Processing is necessary to protect vital interests; (d) Processing is required by law.</p>
+
+    <h2>3. CHILDREN'S PRIVACY (COPPA)</h2>
+    
+    <h3>3.1 Age Restriction</h3>
+    <p>Our services are not directed to children under 13 years of age. We do not knowingly collect personal information from children under 13.</p>
+    
+    <h3>3.2 Parental Consent</h3>
+    <p>If we learn we have collected information from a child under 13 without parental consent, we will: (a) Delete the information immediately; (b) Notify the parent/guardian if appropriate; (c) Take steps to prevent recurrence.</p>
+    
+    <h3>3.3 Parental Rights</h3>
+    <p>Parents may: (a) Request access to their child's data; (b) Request deletion of their child's data; (c) Refuse further collection; (d) Contact us at privacy@hingecraft.com.</p>
+
+    <h2>4. YOUTH DATA (13-17)</h2>
+    
+    <h3>4.1 Enhanced Protections</h3>
+    <p>For users ages 13-17: (a) We provide age-appropriate privacy notices; (b) We limit data collection; (c) We do not sell or share data for advertising; (d) We provide parental notification options.</p>
+    
+    <h3>4.2 Consent</h3>
+    <p>Users ages 13-17 may provide their own consent for non-sensitive processing. For sensitive data, parental consent may be required under applicable law.</p>
+
+    <h2>5. SECURITY MEASURES</h2>
+    <p>Enhanced security for sensitive and youth data includes: (a) Encryption at rest and in transit; (b) Restricted access; (c) Audit logging; (d) Regular security assessments; (e) Incident response procedures.</p>
+
+    <h2>6. DATA SUBJECT RIGHTS</h2>
+    <p>Individuals (or parents on behalf of children) may: (a) Access their data; (b) Correct inaccuracies; (c) Request deletion; (d) Withdraw consent; (e) Object to processing; (f) Request data portability.</p>
+
+    <h2>7. REPORTING</h2>
+    <p>To report concerns about sensitive or youth data: privacy@hingecraft.com | (843) 555-0100</p>
+
+    <div class="footer">
+        <p>HingeCraft Global, LLC | 123 Innovation Drive, Suite 100, Charleston, SC 29401</p>
+        <p>Privacy: privacy@hingecraft.com | Phone: (843) 555-0100</p>
+        <p>© 2025 HingeCraft Global, LLC. All Rights Reserved.</p>
+    </div>
+</body>
+</html>
+
+`;
+    
+    // Try to find the legalContent element
+    if ($w('#legalContent')) {
+        try {
+            $w('#legalContent').html = legalContent;
+        } catch (e) {
+            console.log("HTML element not configured - content ready for manual embed");
         }
     }
     
-    loadLegalPageContent();
-
-});
-
-
-$w.onReady(function () {
-    if (typeof document !== 'undefined') {
-        // Page Title
-        document.title = 'Sensitive Data Consent_68e80_js | HingeCraft Global';
-        
-        // Meta Description
-        let metaDesc = document.querySelector('meta[name="description"]');
-        if (!metaDesc) {
-            metaDesc = document.createElement('meta');
-            metaDesc.setAttribute('name', 'description');
-            document.head.appendChild(metaDesc);
+    // Also try text element fallback
+    if ($w('#legalText')) {
+        try {
+            $w('#legalText').html = legalContent;
+        } catch (e) {
+            console.log("Using text element fallback");
         }
-        metaDesc.setAttribute('content', 'Sensitive Data Consent_68e80_js - HingeCraft Global');
-        
-        // Meta Keywords
-        let metaKeywords = document.querySelector('meta[name="keywords"]');
-        if (!metaKeywords) {
-            metaKeywords = document.createElement('meta');
-            metaKeywords.setAttribute('name', 'keywords');
-            document.head.appendChild(metaKeywords);
-        }
-        metaKeywords.setAttribute('content', 'data protection, data security, data processing, data privacy, sensitive data, cross-border data, hingecraft, hingecraft global');
-        
-        // Open Graph Tags
-        const ogTags = {
-            'og:title': 'Sensitive Data Consent_68e80_js | HingeCraft Global',
-            'og:description': 'Sensitive Data Consent_68e80_js - HingeCraft Global',
-            'og:image': 'https://hingecraft-global.ai/og-image.jpg',
-            'og:url': 'https://hingecraft-global.ai/sensitive-data-consent-68e80-js',
-            'og:type': 'website',
-            'og:site_name': 'HingeCraft Global'
-        };
-        
-        Object.keys(ogTags).forEach(prop => {
-            let ogMeta = document.querySelector(`meta[property="${prop}"]`);
-            if (!ogMeta) {
-                ogMeta = document.createElement('meta');
-                ogMeta.setAttribute('property', prop);
-                document.head.appendChild(ogMeta);
-            }
-            ogMeta.setAttribute('content', ogTags[prop]);
-        });
-        
-        // Twitter Card Tags
-        const twitterTags = {
-            'twitter:card': 'summary_large_image',
-            'twitter:title': 'Sensitive Data Consent_68e80_js | HingeCraft Global',
-            'twitter:description': 'Sensitive Data Consent_68e80_js - HingeCraft Global',
-            'twitter:image': 'https://hingecraft-global.ai/og-image.jpg'
-        };
-        
-        Object.keys(twitterTags).forEach(name => {
-            let twitterMeta = document.querySelector(`meta[name="${name}"]`);
-            if (!twitterMeta) {
-                twitterMeta = document.createElement('meta');
-                twitterMeta.setAttribute('name', name);
-                document.head.appendChild(twitterMeta);
-            }
-            twitterMeta.setAttribute('content', twitterTags[name]);
-        });
-        
-        // Canonical URL
-        let canonical = document.querySelector('link[rel="canonical"]');
-        if (!canonical) {
-            canonical = document.createElement('link');
-            canonical.setAttribute('rel', 'canonical');
-            document.head.appendChild(canonical);
-        }
-        canonical.setAttribute('href', 'https://hingecraft-global.ai/sensitive-data-consent-68e80-js');
-        
-        // Robots Meta
-        let robots = document.querySelector('meta[name="robots"]');
-        if (!robots) {
-            robots = document.createElement('meta');
-            robots.setAttribute('name', 'robots');
-            document.head.appendChild(robots);
-        }
-        robots.setAttribute('content', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
-        
-        // Schema.org JSON-LD Structured Data
-        let schemaScript = document.querySelector('script[type="application/ld+json"]');
-        if (!schemaScript) {
-            schemaScript = document.createElement('script');
-            schemaScript.setAttribute('type', 'application/ld+json');
-            document.head.appendChild(schemaScript);
-        }
-        schemaScript.textContent = `{
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "Sensitive Data Consent_68e80_js | HingeCraft Global",
-  "description": "Sensitive Data Consent_68e80_js - HingeCraft Global",
-  "url": "https://hingecraft-global.ai/sensitive-data-consent-68e80-js",
-  "publisher": {
-    "@type": "Organization",
-    "name": "HingeCraft Global",
-    "url": "https://hingecraft-global.ai",
-    "logo": "https://hingecraft-global.ai/logo.png"
-  },
-  "datePublished": "2025-12-05",
-  "dateModified": "2025-12-05",
-  "inLanguage": "en-US",
-  "keywords": "data protection, data security, data processing, data privacy, sensitive data, cross-border data, hingecraft, hingecraft global"
-}`;
     }
+}
+
+// Export for potential use in other contexts
+export function getLegalDocumentHTML() {
+    return `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sensitive Data & Youth Consent Policy - HingeCraft Global, LLC</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Times New Roman', Times, serif; font-size: 12pt; line-height: 1.6; color: #000; background: #fff; max-width: 8.5in; margin: 0 auto; padding: 1in; }
+        h1 { font-size: 18pt; font-weight: bold; text-align: center; margin-bottom: 24pt; text-transform: uppercase; border-bottom: 2px solid #000; padding-bottom: 12pt; }
+        h2 { font-size: 14pt; font-weight: bold; margin-top: 24pt; margin-bottom: 12pt; text-transform: uppercase; }
+        h3 { font-size: 12pt; font-weight: bold; margin-top: 18pt; margin-bottom: 9pt; }
+        p { margin-bottom: 12pt; text-align: justify; }
+        ul, ol { margin-left: 36pt; margin-bottom: 12pt; }
+        li { margin-bottom: 6pt; }
+        .header { text-align: center; margin-bottom: 36pt; }
+        .company-name { font-size: 16pt; font-weight: bold; }
+        .footer { margin-top: 48pt; padding-top: 12pt; border-top: 1px solid #000; font-size: 10pt; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="company-name">HINGECRAFT GLOBAL, LLC</div>
+        <h1>SENSITIVE DATA & YOUTH CONSENT POLICY</h1>
+        <p>Effective Date: _________________, 20____<br>State of South Carolina</p>
+    </div>
+
+    <h2>1. PURPOSE</h2>
+    <p>This Sensitive Data & Youth Consent Policy ("Policy") establishes HingeCraft Global, LLC's ("HingeCraft") standards for handling sensitive personal data and protecting the privacy of children and young people.</p>
+
+    <h2>2. SENSITIVE DATA CATEGORIES</h2>
     
-    // Load HTML content for legal pages
+    <h3>2.1 Definition</h3>
+    <p>"Sensitive Personal Data" includes: (a) Racial or ethnic origin; (b) Political opinions; (c) Religious or philosophical beliefs; (d) Trade union membership; (e) Genetic data; (f) Biometric data; (g) Health data; (h) Sexual orientation; (i) Criminal history; (j) Financial account information; (k) Government ID numbers.</p>
     
-});
-
-
-
-
-$w.onReady(function () {
-    if (typeof document !== 'undefined') {
-        // Page Title
-        document.title = 'Sensitive Data Consent_68e80_js | HingeCraft Global';
-        
-        // Meta Description
-        let metaDesc = document.querySelector('meta[name="description"]');
-        if (!metaDesc) {
-            metaDesc = document.createElement('meta');
-            metaDesc.setAttribute('name', 'description');
-            document.head.appendChild(metaDesc);
-        }
-        metaDesc.setAttribute('content', 'Sensitive Data Consent_68e80_js - HingeCraft Global');
-        
-        // Meta Keywords
-        let metaKeywords = document.querySelector('meta[name="keywords"]');
-        if (!metaKeywords) {
-            metaKeywords = document.createElement('meta');
-            metaKeywords.setAttribute('name', 'keywords');
-            document.head.appendChild(metaKeywords);
-        }
-        metaKeywords.setAttribute('content', 'data protection, data security, data processing, data privacy, sensitive data, cross-border data, hingecraft, hingecraft global');
-        
-        // Open Graph Tags
-        const ogTags = {
-            'og:title': 'Sensitive Data Consent_68e80_js | HingeCraft Global',
-            'og:description': 'Sensitive Data Consent_68e80_js - HingeCraft Global',
-            'og:image': 'https://hingecraft-global.ai/og-image.jpg',
-            'og:url': 'https://hingecraft-global.ai/sensitive-data-consent-68e80-js',
-            'og:type': 'website',
-            'og:site_name': 'HingeCraft Global'
-        };
-        
-        Object.keys(ogTags).forEach(prop => {
-            let ogMeta = document.querySelector(`meta[property="${prop}"]`);
-            if (!ogMeta) {
-                ogMeta = document.createElement('meta');
-                ogMeta.setAttribute('property', prop);
-                document.head.appendChild(ogMeta);
-            }
-            ogMeta.setAttribute('content', ogTags[prop]);
-        });
-        
-        // Twitter Card Tags
-        const twitterTags = {
-            'twitter:card': 'summary_large_image',
-            'twitter:title': 'Sensitive Data Consent_68e80_js | HingeCraft Global',
-            'twitter:description': 'Sensitive Data Consent_68e80_js - HingeCraft Global',
-            'twitter:image': 'https://hingecraft-global.ai/og-image.jpg'
-        };
-        
-        Object.keys(twitterTags).forEach(name => {
-            let twitterMeta = document.querySelector(`meta[name="${name}"]`);
-            if (!twitterMeta) {
-                twitterMeta = document.createElement('meta');
-                twitterMeta.setAttribute('name', name);
-                document.head.appendChild(twitterMeta);
-            }
-            twitterMeta.setAttribute('content', twitterTags[name]);
-        });
-        
-        // Canonical URL
-        let canonical = document.querySelector('link[rel="canonical"]');
-        if (!canonical) {
-            canonical = document.createElement('link');
-            canonical.setAttribute('rel', 'canonical');
-            document.head.appendChild(canonical);
-        }
-        canonical.setAttribute('href', 'https://hingecraft-global.ai/sensitive-data-consent-68e80-js');
-        
-        // Robots Meta
-        let robots = document.querySelector('meta[name="robots"]');
-        if (!robots) {
-            robots = document.createElement('meta');
-            robots.setAttribute('name', 'robots');
-            document.head.appendChild(robots);
-        }
-        robots.setAttribute('content', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
-        
-        // Schema.org JSON-LD Structured Data
-        let schemaScript = document.querySelector('script[type="application/ld+json"]');
-        if (!schemaScript) {
-            schemaScript = document.createElement('script');
-            schemaScript.setAttribute('type', 'application/ld+json');
-            document.head.appendChild(schemaScript);
-        }
-        schemaScript.textContent = `{
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "Sensitive Data Consent_68e80_js | HingeCraft Global",
-  "description": "Sensitive Data Consent_68e80_js - HingeCraft Global",
-  "url": "https://hingecraft-global.ai/sensitive-data-consent-68e80-js",
-  "publisher": {
-    "@type": "Organization",
-    "name": "HingeCraft Global",
-    "url": "https://hingecraft-global.ai",
-    "logo": "https://hingecraft-global.ai/logo.png"
-  },
-  "datePublished": "2025-12-05",
-  "dateModified": "2025-12-05",
-  "inLanguage": "en-US",
-  "keywords": "data protection, data security, data processing, data privacy, sensitive data, cross-border data, hingecraft, hingecraft global"
-}`;
-    }
+    <h3>2.2 Collection Limitations</h3>
+    <p>HingeCraft generally does NOT collect Sensitive Personal Data. When collection is necessary: (a) We obtain explicit consent; (b) We minimize data collected; (c) We implement enhanced security; (d) We limit access; (e) We retain only as long as necessary.</p>
     
-    // Load HTML content for legal pages
+    <h3>2.3 Lawful Basis</h3>
+    <p>We process Sensitive Personal Data only when: (a) You provide explicit consent; (b) Processing is necessary for employment law; (c) Processing is necessary to protect vital interests; (d) Processing is required by law.</p>
+
+    <h2>3. CHILDREN'S PRIVACY (COPPA)</h2>
     
-});
+    <h3>3.1 Age Restriction</h3>
+    <p>Our services are not directed to children under 13 years of age. We do not knowingly collect personal information from children under 13.</p>
+    
+    <h3>3.2 Parental Consent</h3>
+    <p>If we learn we have collected information from a child under 13 without parental consent, we will: (a) Delete the information immediately; (b) Notify the parent/guardian if appropriate; (c) Take steps to prevent recurrence.</p>
+    
+    <h3>3.3 Parental Rights</h3>
+    <p>Parents may: (a) Request access to their child's data; (b) Request deletion of their child's data; (c) Refuse further collection; (d) Contact us at privacy@hingecraft.com.</p>
 
+    <h2>4. YOUTH DATA (13-17)</h2>
+    
+    <h3>4.1 Enhanced Protections</h3>
+    <p>For users ages 13-17: (a) We provide age-appropriate privacy notices; (b) We limit data collection; (c) We do not sell or share data for advertising; (d) We provide parental notification options.</p>
+    
+    <h3>4.2 Consent</h3>
+    <p>Users ages 13-17 may provide their own consent for non-sensitive processing. For sensitive data, parental consent may be required under applicable law.</p>
 
+    <h2>5. SECURITY MEASURES</h2>
+    <p>Enhanced security for sensitive and youth data includes: (a) Encryption at rest and in transit; (b) Restricted access; (c) Audit logging; (d) Regular security assessments; (e) Incident response procedures.</p>
 
+    <h2>6. DATA SUBJECT RIGHTS</h2>
+    <p>Individuals (or parents on behalf of children) may: (a) Access their data; (b) Correct inaccuracies; (c) Request deletion; (d) Withdraw consent; (e) Object to processing; (f) Request data portability.</p>
 
-$w.onReady(function () {
-    if (typeof document !== 'undefined') {
-        // Page Title
-        document.title = 'Sensitive Data & Youth Data Consent | HingeCraft Global';
-        
-        // Meta Description
-        let metaDesc = document.querySelector('meta[name="description"]');
-        if (!metaDesc) {
-            metaDesc = document.createElement('meta');
-            metaDesc.setAttribute('name', 'description');
-            document.head.appendChild(metaDesc);
-        }
-        metaDesc.setAttribute('content', 'HingeCraft Global Sensitive Data & Youth Data Consent - Special protections for minors, biometric data, and educational information');
-        
-        // Meta Keywords
-        let metaKeywords = document.querySelector('meta[name="keywords"]');
-        if (!metaKeywords) {
-            metaKeywords = document.createElement('meta');
-            metaKeywords.setAttribute('name', 'keywords');
-            document.head.appendChild(metaKeywords);
-        }
-        metaKeywords.setAttribute('content', 'data protection, data security, data processing, data privacy, sensitive data, ai consent, data governance, data processing agreement, cross-border data, data transfer, international data, hingecraft data protection, hingecraft data processing, hingecraft, hingecraft global, resilient design');
-        
-        // Open Graph Tags
-        const ogTags = {
-            'og:title': 'Sensitive Data & Youth Data Consent | HingeCraft Global',
-            'og:description': 'HingeCraft Global Sensitive Data & Youth Data Consent - Special protections for minors, biometric data, and educational information',
-            'og:image': 'https://hingecraft-global.ai/og-image.jpg',
-            'og:url': 'https://hingecraft-global.ai/legal/sensitive_data_consent',
-            'og:type': 'website',
-            'og:site_name': 'HingeCraft Global'
-        };
-        
-        Object.keys(ogTags).forEach(prop => {
-            let ogMeta = document.querySelector(`meta[property="${prop}"]`);
-            if (!ogMeta) {
-                ogMeta = document.createElement('meta');
-                ogMeta.setAttribute('property', prop);
-                document.head.appendChild(ogMeta);
-            }
-            ogMeta.setAttribute('content', ogTags[prop]);
-        });
-        
-        // Twitter Card Tags
-        const twitterTags = {
-            'twitter:card': 'summary_large_image',
-            'twitter:title': 'Sensitive Data & Youth Data Consent | HingeCraft Global',
-            'twitter:description': 'HingeCraft Global Sensitive Data & Youth Data Consent - Special protections for minors, biometric data, and educational information',
-            'twitter:image': 'https://hingecraft-global.ai/og-image.jpg'
-        };
-        
-        Object.keys(twitterTags).forEach(name => {
-            let twitterMeta = document.querySelector(`meta[name="${name}"]`);
-            if (!twitterMeta) {
-                twitterMeta = document.createElement('meta');
-                twitterMeta.setAttribute('name', name);
-                document.head.appendChild(twitterMeta);
-            }
-            twitterMeta.setAttribute('content', twitterTags[name]);
-        });
-        
-        // Canonical URL
-        let canonical = document.querySelector('link[rel="canonical"]');
-        if (!canonical) {
-            canonical = document.createElement('link');
-            canonical.setAttribute('rel', 'canonical');
-            document.head.appendChild(canonical);
-        }
-        canonical.setAttribute('href', 'https://hingecraft-global.ai/legal/sensitive_data_consent');
-        
-        // Robots Meta
-        let robots = document.querySelector('meta[name="robots"]');
-        if (!robots) {
-            robots = document.createElement('meta');
-            robots.setAttribute('name', 'robots');
-            document.head.appendChild(robots);
-        }
-        robots.setAttribute('content', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
-        
-        // Schema.org JSON-LD
-        let schemaScript = document.querySelector('script[type="application/ld+json"]');
-        if (!schemaScript) {
-            schemaScript = document.createElement('script');
-            schemaScript.setAttribute('type', 'application/ld+json');
-            document.head.appendChild(schemaScript);
-        }
-        schemaScript.textContent = JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "LegalDocument",
-            "name": "Sensitive Data & Youth Data Consent | HingeCraft Global",
-            "description": "HingeCraft Global Sensitive Data & Youth Data Consent - Special protections for minors, biometric data, and educational information",
-            "url": "https://hingecraft-global.ai/legal/sensitive_data_consent",
-            "publisher": {
-                "@type": "Organization",
-                "name": "HingeCraft Global",
-                "url": "https://hingecraft-global.ai",
-                "logo": "https://hingecraft-global.ai/logo.png"
-            },
-            "datePublished": "2025-12-05",
-            "dateModified": "2025-12-05",
-            "inLanguage": "en-US",
-            "keywords": "data protection, data security, data processing, data privacy, sensitive data, ai consent, data governance, data processing agreement, cross-border data, data transfer, international data, hingecraft data protection, hingecraft data processing, hingecraft, hingecraft global, resilient design"
-        });
-    }
-});
+    <h2>7. REPORTING</h2>
+    <p>To report concerns about sensitive or youth data: privacy@hingecraft.com | (843) 555-0100</p>
 
+    <div class="footer">
+        <p>HingeCraft Global, LLC | 123 Innovation Drive, Suite 100, Charleston, SC 29401</p>
+        <p>Privacy: privacy@hingecraft.com | Phone: (843) 555-0100</p>
+        <p>© 2025 HingeCraft Global, LLC. All Rights Reserved.</p>
+    </div>
+</body>
+</html>
 
-// API Reference: https://www.wix.com/velo/reference/api-overview/introduction
-// “Hello, World!” Example: https://learn-code.wix.com/en/article/hello-world
-
-$w.onReady(function () {
-    // Write your JavaScript here
-
-    // To select an element by ID use: $w('#elementID')
-
-    // Click 'Preview' to run your code
-});
-
-
-// Load Legal Page HTML Content
-
-$w.onReady(function () {
-    loadLegalPageContent();
-});
+`;
+}

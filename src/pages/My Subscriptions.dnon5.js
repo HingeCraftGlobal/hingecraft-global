@@ -1,3 +1,69 @@
+// HingeCraft Global - SEO Optimized
+// My Subscriptions | Manage HingeCraft Services
+// Generated: December 6, 2025
+
+import wixSeo from 'wix-seo';
+
+$w.onReady(function () {
+    // Set page title
+    wixSeo.setTitle("My Subscriptions | Manage HingeCraft Services");
+    
+    // Set meta tags
+    wixSeo.setMetaTags([
+        { name: "description", content: "Manage your HingeCraft subscriptions, billing, service plans, and recurring orders from your subscription dashboard." },
+        { name: "keywords", content: "subscriptions, subscription management, billing, service plans, recurring orders" },
+        { name: "robots", content: "index, follow" },
+        { property: "og:title", content: "My Subscriptions | Manage HingeCraft Services" },
+        { property: "og:description", content: "Manage your HingeCraft subscriptions, billing, service plans, and recurring orders from your subscription dashboard." },
+        { property: "og:type", content: "website" },
+        { property: "og:site_name", content: "HingeCraft Global" },
+        { property: "twitter:card", content: "summary_large_image" },
+        { property: "twitter:title", content: "My Subscriptions | Manage HingeCraft Services" },
+        { property: "twitter:description", content: "Manage your HingeCraft subscriptions, billing, service plans, and recurring orders from your subscription dashboard." }
+    ]);
+    
+    // Set structured data (JSON-LD)
+    wixSeo.setStructuredData([
+        {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "My Subscriptions | Manage HingeCraft Services",
+        "description": "Manage your HingeCraft subscriptions, billing, service plans, and recurring orders from your subscription dashboard.",
+        "url": "https://www.hingecraft.com/my-subscriptions.dnon5",
+        "inLanguage": "en-US",
+        "dateModified": "2025-12-06",
+        "publisher": {
+                "@type": "Organization",
+                "name": "HingeCraft Global",
+                "url": "https://www.hingecraft.com",
+                "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://www.hingecraft.com/logo.png"
+                }
+        }
+},
+        {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+                {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "https://www.hingecraft.com"
+                },
+                {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "My Subscriptions",
+                        "item": "https://www.hingecraft.com/my-subscriptions.dnon5"
+                }
+        ]
+}
+    ]);
+});
+
+
+// Original page code below
 // Comprehensive SEO Optimization - My Subscriptions
 // JSON-LD Schema.org | 100+ Keywords | Competitive Optimization
 

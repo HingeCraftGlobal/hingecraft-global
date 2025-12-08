@@ -642,3 +642,5 @@ COMMENT ON FUNCTION generate_encryption_compliance_report IS 'Generate encryptio
 
 
 
+
+

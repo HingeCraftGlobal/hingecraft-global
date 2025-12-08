@@ -1,3 +1,69 @@
+// HingeCraft Global - SEO Optimized
+// Checkout | Complete Your HingeCraft Order
+// Generated: December 6, 2025
+
+import wixSeo from 'wix-seo';
+
+$w.onReady(function () {
+    // Set page title
+    wixSeo.setTitle("Checkout | Complete Your HingeCraft Order");
+    
+    // Set meta tags
+    wixSeo.setMetaTags([
+        { name: "description", content: "Secure checkout for HingeCraft products and services. Multiple payment options and fast, reliable order processing." },
+        { name: "keywords", content: "checkout, secure payment, order completion, shopping cart, purchase" },
+        { name: "robots", content: "index, follow" },
+        { property: "og:title", content: "Checkout | Complete Your HingeCraft Order" },
+        { property: "og:description", content: "Secure checkout for HingeCraft products and services. Multiple payment options and fast, reliable order processing." },
+        { property: "og:type", content: "website" },
+        { property: "og:site_name", content: "HingeCraft Global" },
+        { property: "twitter:card", content: "summary_large_image" },
+        { property: "twitter:title", content: "Checkout | Complete Your HingeCraft Order" },
+        { property: "twitter:description", content: "Secure checkout for HingeCraft products and services. Multiple payment options and fast, reliable order processing." }
+    ]);
+    
+    // Set structured data (JSON-LD)
+    wixSeo.setStructuredData([
+        {
+        "@context": "https://schema.org",
+        "@type": "CheckoutPage",
+        "name": "Checkout | Complete Your HingeCraft Order",
+        "description": "Secure checkout for HingeCraft products and services. Multiple payment options and fast, reliable order processing.",
+        "url": "https://www.hingecraft.com/checkout.h98n7",
+        "inLanguage": "en-US",
+        "dateModified": "2025-12-06",
+        "publisher": {
+                "@type": "Organization",
+                "name": "HingeCraft Global",
+                "url": "https://www.hingecraft.com",
+                "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://www.hingecraft.com/logo.png"
+                }
+        }
+},
+        {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+                {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "https://www.hingecraft.com"
+                },
+                {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "Checkout",
+                        "item": "https://www.hingecraft.com/checkout.h98n7"
+                }
+        ]
+}
+    ]);
+});
+
+
+// Original page code below
 // Comprehensive SEO Optimization - Checkout
 // JSON-LD Schema.org | 100+ Keywords | Competitive Optimization
 

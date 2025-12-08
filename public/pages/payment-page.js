@@ -25,21 +25,105 @@
   let donationAmount = null;
 
   /**
-   * Get donation amount from form
+   * T10 IMPLEMENTATION: Get amount from URL parameter (?amt=VALUE) for pre-fill
+   * Priority: URL param (?amt=VALUE) → Session storage → Form input
+   */
+  function getAmountFromURL() {
+    try {
+      // Check URL parameter ?amt=VALUE (T10 implementation)
+      const urlParams = new URLSearchParams(window.location.search);
+      const urlAmount = urlParams.get('amt') || urlParams.get('donationAmount') || urlParams.get('amount');
+      
+      if (urlAmount) {
+        const amount = parseFloat(urlAmount);
+        if (!isNaN(amount) && amount >= 1.00 && amount <= 25000.00) {
+          return amount;
+        }
+      }
+    } catch (e) {
+      console.error('Error reading URL parameter:', e);
+    }
+    return null;
+  }
+
+  /**
+   * T10 IMPLEMENTATION: Pre-fill payment widget with amount
+   */
+  function prefillPaymentWidget(amount) {
+    if (!amount || amount <= 0) return false;
+
+    console.log('💰 T10: Pre-filling payment widget with amount:', amount);
+
+    // Method 1: Wix Pay API
+    try {
+      if (typeof wixPay !== 'undefined' && wixPay.setAmount) {
+        wixPay.setAmount(amount);
+        console.log('✅ T10: Amount set via wixPay.setAmount');
+        return true;
+      }
+    } catch (e) {}
+
+    // Method 2: Wix $w API
+    try {
+      if (typeof $w !== 'undefined') {
+        const paymentWidgets = [
+          $w('#paymentWidget'), $w('#paymentForm'), $w('#checkoutForm'),
+          $w('#wixPayWidget'), $w('#stripeWidget')
+        ];
+        for (const widget of paymentWidgets) {
+          if (widget && widget.amount !== undefined) {
+            widget.amount = amount;
+            console.log('✅ T10: Amount set via $w payment widget');
+            return true;
+          }
+          if (widget && widget.setAmount) {
+            widget.setAmount(amount);
+            console.log('✅ T10: Amount set via widget.setAmount');
+            return true;
+          }
+        }
+      }
+    } catch (e) {}
+
+    // Method 3: DOM manipulation
+    try {
+      const amountInputSelectors = [
+        '#amount', '#payment-amount', '#donation-amount',
+        'input[name="amount"]', 'input[name="paymentAmount"]',
+        '[data-amount]', '[data-payment-amount]'
+      ];
+      for (const selector of amountInputSelectors) {
+        const element = document.querySelector(selector);
+        if (element) {
+          element.value = amount.toFixed(2);
+          element.dispatchEvent(new Event('change', { bubbles: true }));
+          console.log('✅ T10: Amount set via DOM:', selector);
+          return true;
+        }
+      }
+    } catch (e) {}
+
+    console.warn('⚠️ T10: Could not pre-fill payment widget');
+    return false;
+  }
+
+  /**
+   * Get donation amount from form (original functionality)
    */
   function getDonationAmount() {
+    // T10: First check URL parameter for pre-filled amount
+    const urlAmount = getAmountFromURL();
+    if (urlAmount) {
+      return urlAmount;
+    }
+
+    // Original: Check form inputs
     const selectors = [
-      '#other-amount',
-      '#otherAmount',
-      '#customAmount',
-      'input[name="otherAmount"]',
-      'input[name="customAmount"]',
+      '#other-amount', '#otherAmount', '#customAmount',
+      'input[name="otherAmount"]', 'input[name="customAmount"]',
       'input[type="number"][placeholder*="Other"]',
-      'input[type="number"][placeholder*="Custom"]',
-      '.other-amount-input',
-      '.custom-amount-input',
-      '[data-amount="other"]',
-      '[data-testid="other-amount"]'
+      '.other-amount-input', '.custom-amount-input',
+      '[data-amount="other"]', '[data-testid="other-amount"]'
     ];
 
     for (const selector of selectors) {
@@ -51,16 +135,14 @@
             return amount;
           }
         }
-      } catch (e) {
-        // Continue
-      }
+      } catch (e) {}
     }
 
-    // Check URL parameter
+    // Check URL parameter (legacy)
     const urlParams = new URLSearchParams(window.location.search);
-    const urlAmount = urlParams.get('donationAmount') || urlParams.get('amount');
-    if (urlAmount) {
-      const amount = parseFloat(urlAmount);
+    const urlAmountLegacy = urlParams.get('donationAmount') || urlParams.get('amount');
+    if (urlAmountLegacy) {
+      const amount = parseFloat(urlAmountLegacy);
       if (!isNaN(amount) && amount > 0) {
         return amount;
       }
@@ -194,8 +276,23 @@
    * Initialize payment page integration
    */
   function init() {
-    console.log('🚀 HingeCraft Payment Page Integration initialized (NO DATABASE VERSION)');
-    console.log('📋 Flow: Payment Page → Charter Page → Checkout');
+    console.log('🚀 HingeCraft Payment Page Integration initialized (NO DATABASE VERSION + T10 PRE-FILL)');
+    console.log('📋 Flow: Charter Page → Payment Page (Pre-filled) → Checkout');
+
+    // T10: Pre-fill payment widget with amount from URL BEFORE rendering
+    const urlAmount = getAmountFromURL();
+    if (urlAmount && urlAmount > 0) {
+      console.log('💰 T10: Amount found in URL, pre-filling widget:', urlAmount);
+      donationAmount = urlAmount;
+      
+      // Pre-fill IMMEDIATELY (before any rendering to prevent flicker)
+      const prefilled = prefillPaymentWidget(urlAmount);
+      if (prefilled) {
+        console.log('✅ T10: Payment widget pre-filled successfully');
+      } else {
+        console.warn('⚠️ T10: Could not pre-fill widget, will try again after DOM ready');
+      }
+    }
 
     // Method 1: Listen for form submission
     const forms = document.querySelectorAll('form');
@@ -243,6 +340,14 @@
     // Method 3: Use Wix $w API if available
     if (typeof $w !== 'undefined' && $w.onReady) {
       $w.onReady(function() {
+        // T10: Try to pre-fill again with $w API (may not have been available earlier)
+        if (urlAmount && urlAmount > 0) {
+          const prefilled = prefillPaymentWidget(urlAmount);
+          if (prefilled) {
+            console.log('✅ T10: Payment widget pre-filled via $w API');
+          }
+        }
+
         try {
           const paymentForm = $w('#paymentForm') || $w('#checkoutForm');
           if (paymentForm && paymentForm.onSubmit) {
@@ -260,6 +365,17 @@
           console.log('Wix $w API not available:', e);
         }
       });
+    }
+  }
+
+  // T10: Initialize pre-fill IMMEDIATELY (before DOM ready to prevent flicker)
+  if (typeof window !== 'undefined') {
+    const urlAmount = getAmountFromURL();
+    if (urlAmount && urlAmount > 0) {
+      // Try to pre-fill before DOM is ready
+      setTimeout(() => {
+        prefillPaymentWidget(urlAmount);
+      }, 0);
     }
   }
 

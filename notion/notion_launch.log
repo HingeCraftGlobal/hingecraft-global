@@ -1,0 +1,92 @@
+2025-12-07 17:38:47,971 [INFO] ================================================================================
+2025-12-07 17:38:47,971 [INFO] 🚀 HingeCraft Notion Project - Complete Launch
+2025-12-07 17:38:47,971 [INFO] ================================================================================
+2025-12-07 17:38:47,971 [INFO] 
+📋 Step 1: Creating enhanced UX/UI structure...
+2025-12-07 17:38:47,971 [INFO] Creating enhanced Notion structure...
+2025-12-07 17:38:48,577 [INFO] Creating team workspace structure...
+2025-12-07 17:38:48,577 [INFO] Creating main dashboard page...
+2025-12-07 17:38:49,254 [INFO] HTTP Request: POST https://api.notion.com/v1/pages "HTTP/1.1 200 OK"
+2025-12-07 17:38:49,301 [INFO] ✅ Dashboard page created: 2c399378-3a34-81e0-8b00-caee5dff07c2
+2025-12-07 17:38:49,633 [INFO] HTTP Request: PATCH https://api.notion.com/v1/pages/2c399378-3a34-81e0-8b00-caee5dff07c2 "HTTP/1.1 200 OK"
+2025-12-07 17:38:50,138 [INFO] HTTP Request: PATCH https://api.notion.com/v1/pages/2c399378-3a34-81e0-8b00-caee5dff07c2 "HTTP/1.1 200 OK"
+2025-12-07 17:38:50,481 [INFO] HTTP Request: PATCH https://api.notion.com/v1/blocks/2c399378-3a34-81e0-8b00-caee5dff07c2/children "HTTP/1.1 200 OK"
+2025-12-07 17:38:50,487 [INFO] ✅ Created section: 📊 Overview
+2025-12-07 17:38:50,978 [INFO] HTTP Request: PATCH https://api.notion.com/v1/blocks/2c399378-3a34-81e0-8b00-caee5dff07c2/children "HTTP/1.1 200 OK"
+2025-12-07 17:38:51,026 [INFO] ✅ Created section: 🎯 Projects
+2025-12-07 17:38:51,343 [INFO] HTTP Request: PATCH https://api.notion.com/v1/blocks/2c399378-3a34-81e0-8b00-caee5dff07c2/children "HTTP/1.1 200 OK"
+2025-12-07 17:38:51,390 [INFO] ✅ Created section: ✅ Tasks
+2025-12-07 17:38:51,649 [INFO] HTTP Request: PATCH https://api.notion.com/v1/blocks/2c399378-3a34-81e0-8b00-caee5dff07c2/children "HTTP/1.1 200 OK"
+2025-12-07 17:38:51,688 [INFO] ✅ Created section: 💰 Donations
+2025-12-07 17:38:51,922 [INFO] HTTP Request: PATCH https://api.notion.com/v1/blocks/2c399378-3a34-81e0-8b00-caee5dff07c2/children "HTTP/1.1 200 OK"
+2025-12-07 17:38:51,975 [INFO] ✅ Created section: 👥 Team
+2025-12-07 17:38:52,275 [INFO] HTTP Request: PATCH https://api.notion.com/v1/blocks/2c399378-3a34-81e0-8b00-caee5dff07c2/children "HTTP/1.1 200 OK"
+2025-12-07 17:38:52,325 [INFO] ✅ Created section: 📝 Content
+2025-12-07 17:38:52,607 [INFO] HTTP Request: PATCH https://api.notion.com/v1/blocks/2c399378-3a34-81e0-8b00-caee5dff07c2/children "HTTP/1.1 200 OK"
+2025-12-07 17:38:52,701 [INFO] ✅ Created section: 💬 Chat History
+2025-12-07 17:38:53,006 [INFO] HTTP Request: PATCH https://api.notion.com/v1/blocks/2c399378-3a34-81e0-8b00-caee5dff07c2/children "HTTP/1.1 200 OK"
+2025-12-07 17:38:53,054 [INFO] ✅ Created section: 📅 Timeline
+2025-12-07 17:38:53,297 [INFO] HTTP Request: PATCH https://api.notion.com/v1/blocks/2c399378-3a34-81e0-8b00-caee5dff07c2/children "HTTP/1.1 200 OK"
+2025-12-07 17:38:53,363 [INFO] ✅ Created section: 🔧 System Status
+2025-12-07 17:38:53,576 [INFO] HTTP Request: PATCH https://api.notion.com/v1/blocks/2c399378-3a34-81e0-8b00-caee5dff07c2/children "HTTP/1.1 200 OK"
+2025-12-07 17:38:53,577 [INFO] ✅ Created section: 🔗 Resources
+2025-12-07 17:38:53,851 [INFO] HTTP Request: PATCH https://api.notion.com/v1/blocks/2c399378-3a34-81e0-8b00-caee5dff07c2/children "HTTP/1.1 200 OK"
+2025-12-07 17:38:54,164 [INFO] HTTP Request: PATCH https://api.notion.com/v1/blocks/2c399378-3a34-81e0-8b00-caee5dff07c2/children "HTTP/1.1 200 OK"
+2025-12-07 17:38:54,538 [INFO] HTTP Request: PATCH https://api.notion.com/v1/blocks/2c399378-3a34-81e0-8b00-caee5dff07c2/children "HTTP/1.1 200 OK"
+2025-12-07 17:38:54,964 [INFO] HTTP Request: PATCH https://api.notion.com/v1/blocks/2c399378-3a34-81e0-8b00-caee5dff07c2/children "HTTP/1.1 200 OK"
+2025-12-07 17:38:55,311 [INFO] HTTP Request: PATCH https://api.notion.com/v1/blocks/2c399378-3a34-81e0-8b00-caee5dff07c2/children "HTTP/1.1 200 OK"
+2025-12-07 17:38:55,356 [INFO] ✅ Team workspace structure created successfully
+2025-12-07 17:38:55,357 [INFO] Creating quick links page...
+2025-12-07 17:38:55,588 [INFO] HTTP Request: POST https://api.notion.com/v1/pages "HTTP/1.1 200 OK"
+2025-12-07 17:38:56,593 [INFO] HTTP Request: PATCH https://api.notion.com/v1/blocks/2c399378-3a34-815e-bc9e-fc5a5f53b9d2/children "HTTP/1.1 200 OK"
+2025-12-07 17:38:56,855 [INFO] HTTP Request: PATCH https://api.notion.com/v1/blocks/2c399378-3a34-815e-bc9e-fc5a5f53b9d2/children "HTTP/1.1 200 OK"
+2025-12-07 17:38:57,116 [INFO] HTTP Request: PATCH https://api.notion.com/v1/blocks/2c399378-3a34-815e-bc9e-fc5a5f53b9d2/children "HTTP/1.1 200 OK"
+2025-12-07 17:38:59,068 [INFO] HTTP Request: PATCH https://api.notion.com/v1/blocks/2c399378-3a34-815e-bc9e-fc5a5f53b9d2/children "HTTP/1.1 200 OK"
+2025-12-07 17:38:59,114 [INFO] ✅ Quick links page created
+2025-12-07 17:38:59,115 [INFO] ✅ Enhanced structure created
+2025-12-07 17:38:59,115 [INFO] ✅ Step 1 Complete
+2025-12-07 17:38:59,115 [INFO] 
+📋 Step 2: Verifying databases...
+2025-12-07 17:38:59,115 [INFO] Verifying databases...
+2025-12-07 17:38:59,710 [INFO] HTTP Request: GET https://api.notion.com/v1/databases/83ef7fe8-cfb9-49d3-ad79-21e00604aa99 "HTTP/1.1 200 OK"
+2025-12-07 17:38:59,758 [INFO] ✅ projects database verified: 83ef7fe8...
+2025-12-07 17:38:59,901 [INFO] HTTP Request: GET https://api.notion.com/v1/databases/6bf0d476-e9fe-4825-8e51-65cab3fdb032 "HTTP/1.1 200 OK"
+2025-12-07 17:38:59,949 [INFO] ✅ tasks database verified: 6bf0d476...
+2025-12-07 17:39:00,111 [INFO] HTTP Request: GET https://api.notion.com/v1/databases/bc3848dc-aa7f-4b72-a228-ee7bb6249a61 "HTTP/1.1 200 OK"
+2025-12-07 17:39:00,157 [INFO] ✅ donations database verified: bc3848dc...
+2025-12-07 17:39:00,157 [INFO] ✅ Verified 3/3 databases
+2025-12-07 17:39:00,157 [INFO] ✅ Step 2 Complete
+2025-12-07 17:39:00,158 [INFO] 
+📋 Step 3: Launching sync service...
+2025-12-07 17:39:00,158 [INFO] Launching Notion sync service...
+2025-12-07 17:39:00,405 [INFO] Creating Notion databases...
+2025-12-07 17:39:00,405 [INFO] All databases created successfully
+2025-12-07 17:39:00,406 [INFO] Starting HingeCraft -> Notion sync...
+2025-12-07 17:39:01,075 [INFO] Active work detected - updating status
+2025-12-07 17:39:03,280 [INFO] Synced Docker status: {}
+2025-12-07 17:39:03,557 [INFO] HTTP Request: GET https://api.notion.com/v1/databases/77ac9431-6b25-4067-8d7d-a059d871ea14 "HTTP/1.1 200 OK"
+2025-12-07 17:39:03,602 [INFO] Synced company URLs to Notion
+2025-12-07 17:39:03,779 [INFO] HTTP Request: POST https://api.notion.com/v1/pages "HTTP/1.1 400 Bad Request"
+2025-12-07 17:39:03,780 [ERROR] Failed to create donation for 14ae821b-7915-46bc-bd5d-f5c60264f47a: Donor Name is not a property that exists. Donation ID is not a property that exists. Amount is not a property that exists. Currency is not a property that exists. Date is not a property that exists. Method is not a property that exists. Confirmed is not a property that exists. Receipt Sent is not a property that exists.
+2025-12-07 17:39:03,781 [ERROR] Failed to sync donation 14ae821b-7915-46bc-bd5d-f5c60264f47a: Donor Name is not a property that exists. Donation ID is not a property that exists. Amount is not a property that exists. Currency is not a property that exists. Date is not a property that exists. Method is not a property that exists. Confirmed is not a property that exists. Receipt Sent is not a property that exists.
+2025-12-07 17:39:03,894 [INFO] HTTP Request: POST https://api.notion.com/v1/pages "HTTP/1.1 400 Bad Request"
+2025-12-07 17:39:03,895 [ERROR] Failed to create donation for 489d10f6-b022-4825-b757-2b334fe08f35: Donor Name is not a property that exists. Donation ID is not a property that exists. Amount is not a property that exists. Currency is not a property that exists. Date is not a property that exists. Method is not a property that exists. Confirmed is not a property that exists. Receipt Sent is not a property that exists.
+2025-12-07 17:39:03,895 [ERROR] Failed to sync donation 489d10f6-b022-4825-b757-2b334fe08f35: Donor Name is not a property that exists. Donation ID is not a property that exists. Amount is not a property that exists. Currency is not a property that exists. Date is not a property that exists. Method is not a property that exists. Confirmed is not a property that exists. Receipt Sent is not a property that exists.
+2025-12-07 17:39:04,034 [INFO] HTTP Request: POST https://api.notion.com/v1/pages "HTTP/1.1 400 Bad Request"
+2025-12-07 17:39:04,035 [ERROR] Failed to create donation for a74af7be-08a4-4296-b451-60e61c903c4b: Donor Name is not a property that exists. Donation ID is not a property that exists. Amount is not a property that exists. Currency is not a property that exists. Date is not a property that exists. Method is not a property that exists. Confirmed is not a property that exists. Receipt Sent is not a property that exists.
+2025-12-07 17:39:04,036 [ERROR] Failed to sync donation a74af7be-08a4-4296-b451-60e61c903c4b: Donor Name is not a property that exists. Donation ID is not a property that exists. Amount is not a property that exists. Currency is not a property that exists. Date is not a property that exists. Method is not a property that exists. Confirmed is not a property that exists. Receipt Sent is not a property that exists.
+2025-12-07 17:39:04,059 [INFO] Sync complete. Overall progress: 379.2%
+2025-12-07 17:39:04,059 [INFO] ✅ Sync service launched successfully
+2025-12-07 17:39:04,059 [INFO] ✅ Step 3 Complete
+2025-12-07 17:39:04,060 [INFO] 
+================================================================================
+2025-12-07 17:39:04,060 [INFO] ✅ HingeCraft Notion Project Launch Complete!
+2025-12-07 17:39:04,060 [INFO] ================================================================================
+2025-12-07 17:39:04,060 [INFO] 
+📊 Next Steps:
+2025-12-07 17:39:04,060 [INFO] 1. Open Notion: https://www.notion.so/Main-Page-2c1993783a3480e7b13be279941b67e0
+2025-12-07 17:39:04,060 [INFO] 2. Check the new Dashboard page
+2025-12-07 17:39:04,061 [INFO] 3. Review Quick Links page
+2025-12-07 17:39:04,061 [INFO] 4. Verify all databases are syncing
+2025-12-07 17:39:04,061 [INFO] 
+🎉 Project is ready for team collaboration!

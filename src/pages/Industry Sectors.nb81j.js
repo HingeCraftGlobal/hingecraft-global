@@ -1,3 +1,69 @@
+// HingeCraft Global - SEO Optimized
+// Industry Sectors | HingeCraft Solutions
+// Generated: December 6, 2025
+
+import wixSeo from 'wix-seo';
+
+$w.onReady(function () {
+    // Set page title
+    wixSeo.setTitle("Industry Sectors | HingeCraft Solutions");
+    
+    // Set meta tags
+    wixSeo.setMetaTags([
+        { name: "description", content: "HingeCraft serves diverse industry sectors - aerospace, automotive, medical, electronics, and consumer products with specialized solutions." },
+        { name: "keywords", content: "industry sectors, aerospace manufacturing, automotive parts, medical devices, electronics manufacturing" },
+        { name: "robots", content: "index, follow" },
+        { property: "og:title", content: "Industry Sectors | HingeCraft Solutions" },
+        { property: "og:description", content: "HingeCraft serves diverse industry sectors - aerospace, automotive, medical, electronics, and consumer products with specialized solutions." },
+        { property: "og:type", content: "website" },
+        { property: "og:site_name", content: "HingeCraft Global" },
+        { property: "twitter:card", content: "summary_large_image" },
+        { property: "twitter:title", content: "Industry Sectors | HingeCraft Solutions" },
+        { property: "twitter:description", content: "HingeCraft serves diverse industry sectors - aerospace, automotive, medical, electronics, and consumer products with specialized solutions." }
+    ]);
+    
+    // Set structured data (JSON-LD)
+    wixSeo.setStructuredData([
+        {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Industry Sectors | HingeCraft Solutions",
+        "description": "HingeCraft serves diverse industry sectors - aerospace, automotive, medical, electronics, and consumer products with specialized solutions.",
+        "url": "https://www.hingecraft.com/industry-sectors.nb81j",
+        "inLanguage": "en-US",
+        "dateModified": "2025-12-06",
+        "publisher": {
+                "@type": "Organization",
+                "name": "HingeCraft Global",
+                "url": "https://www.hingecraft.com",
+                "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://www.hingecraft.com/logo.png"
+                }
+        }
+},
+        {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+                {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "https://www.hingecraft.com"
+                },
+                {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "Industry Sectors",
+                        "item": "https://www.hingecraft.com/industry-sectors.nb81j"
+                }
+        ]
+}
+    ]);
+});
+
+
+// Original page code below
 // Comprehensive SEO Optimization - Industry Sectors
 // JSON-LD Schema.org | 100+ Keywords | Competitive Optimization
 

@@ -1,589 +1,357 @@
-// Comprehensive SEO Optimization - AI Safety Governance_f4e07_js
-// JSON-LD Schema.org | 100+ Keywords | Competitive Optimization
+// HingeCraft Global, LLC - Legal Document
+// Ai Safety Bias Governance
+// State of South Carolina | December 6, 2025
+// Auto-generated - All URLs are HTTPS only
+
+import wixSeo from 'wix-seo';
 
 $w.onReady(function () {
-    if (typeof document !== 'undefined') {
-        // Page Title
-        document.title = 'AI Safety, Bias, and Governance Framework | HingeCraft Gl...';
-        
-        // Meta Description
-        let metaDesc = document.querySelector('meta[name="description"]');
-        if (!metaDesc) {
-            metaDesc = document.createElement('meta');
-            metaDesc.setAttribute('name', 'description');
-            document.head.appendChild(metaDesc);
-        }
-        metaDesc.setAttribute('content', 'HingeCraft Global AI Safety, Bias, and Governance Framework - Comprehensive framework for AI safety, bias mitigation, and ethical governance');
-        
-        // Meta Keywords
-        let metaKeywords = document.querySelector('meta[name="keywords"]');
-        if (!metaKeywords) {
-            metaKeywords = document.createElement('meta');
-            metaKeywords.setAttribute('name', 'keywords');
-            document.head.appendChild(metaKeywords);
-        }
-        metaKeywords.setAttribute('content', 'corporate governance, board governance, ethical governance, ai training consent, ai governance, ai safety, ai bias, product safety, safety compliance, global governance, hingecraft, hingecraft global, resilient design');
-        
-        // Open Graph Tags
-        const ogTags = {
-            'og:title': 'AI Safety, Bias, and Governance Framework | HingeCraft Gl...',
-            'og:description': 'HingeCraft Global AI Safety, Bias, and Governance Framework - Comprehensive framework for AI safety, bias mitigation, and ethical governance',
-            'og:image': 'https://hingecraft-global.ai/og-image.jpg',
-            'og:url': 'https://hingecraft-global.ai/legal/17-ai-safety-bias-governance',
-            'og:type': 'website',
-            'og:site_name': 'HingeCraft Global'
-        };
-        
-        Object.keys(ogTags).forEach(prop => {
-            let ogMeta = document.querySelector(`meta[property="${prop}"]`);
-            if (!ogMeta) {
-                ogMeta = document.createElement('meta');
-                ogMeta.setAttribute('property', prop);
-                document.head.appendChild(ogMeta);
-            }
-            ogMeta.setAttribute('content', ogTags[prop]);
-        });
-        
-        // Twitter Card Tags
-        const twitterTags = {
-            'twitter:card': 'summary_large_image',
-            'twitter:title': 'AI Safety, Bias, and Governance Framework | HingeCraft Gl...',
-            'twitter:description': 'HingeCraft Global AI Safety, Bias, and Governance Framework - Comprehensive framework for AI safety, bias mitigation, and ethical governance',
-            'twitter:image': 'https://hingecraft-global.ai/og-image.jpg'
-        };
-        
-        Object.keys(twitterTags).forEach(name => {
-            let twitterMeta = document.querySelector(`meta[name="${name}"]`);
-            if (!twitterMeta) {
-                twitterMeta = document.createElement('meta');
-                twitterMeta.setAttribute('name', name);
-                document.head.appendChild(twitterMeta);
-            }
-            twitterMeta.setAttribute('content', twitterTags[name]);
-        });
-        
-        // Canonical URL
-        let canonical = document.querySelector('link[rel="canonical"]');
-        if (!canonical) {
-            canonical = document.createElement('link');
-            canonical.setAttribute('rel', 'canonical');
-            document.head.appendChild(canonical);
-        }
-        canonical.setAttribute('href', 'https://hingecraft-global.ai/legal/17-ai-safety-bias-governance');
-        
-        // Robots Meta
-        let robots = document.querySelector('meta[name="robots"]');
-        if (!robots) {
-            robots = document.createElement('meta');
-            robots.setAttribute('name', 'robots');
-            document.head.appendChild(robots);
-        }
-        robots.setAttribute('content', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
-        
-        // Additional Meta Tags
-        const additionalTags = {
-            'author': 'HingeCraft Global',
-            'language': 'en-US',
-            'revisit-after': '7 days',
-            'distribution': 'global',
-            'rating': 'general'
-        };
-        
-        Object.keys(additionalTags).forEach(name => {
-            let meta = document.querySelector(`meta[name="${name}"]`);
-            if (!meta) {
-                meta = document.createElement('meta');
-                meta.setAttribute('name', name);
-                document.head.appendChild(meta);
-            }
-            meta.setAttribute('content', additionalTags[name]);
-        });
-        
-        // Schema.org JSON-LD Structured Data
-        let schemaScript = document.querySelector('script[type="application/ld+json"]');
-        if (!schemaScript) {
-            schemaScript = document.createElement('script');
-            schemaScript.setAttribute('type', 'application/ld+json');
-            document.head.appendChild(schemaScript);
-        }
-        schemaScript.textContent = `{
-  "@context": "https://schema.org",
-  "@type": "LegalDocument",
-  "name": "AI Safety, Bias, and Governance Framework | HingeCraft Gl...",
-  "description": "HingeCraft Global AI Safety, Bias, and Governance Framework - Comprehensive framework for AI safety, bias mitigation, and ethical governance",
-  "url": "https://hingecraft-global.ai/legal/17-ai-safety-bias-governance",
-  "publisher": {
-    "@type": "Organization",
-    "name": "HingeCraft Global",
-    "url": "https://hingecraft-global.ai",
-    "logo": "https://hingecraft-global.ai/logo.png"
-  },
-  "datePublished": "2025-12-05",
-  "dateModified": "2025-12-05",
-  "inLanguage": "en-US",
-  "keywords": "corporate governance, board governance, ethical governance, ai training consent, ai governance, ai safety, ai bias, product safety, safety compliance, global governance, hingecraft, hingecraft global, resilient design"
-}`;
-    }
+    // Set SEO
+    wixSeo.setTitle("Ai Safety Bias Governance | HingeCraft Global");
+    wixSeo.setMetaTags([
+        { name: "description", content: "Ai Safety Bias Governance - HingeCraft Global, LLC legal document for South Carolina" },
+        { name: "robots", content: "index, follow" },
+        { property: "og:title", content: "Ai Safety Bias Governance | HingeCraft Global" },
+        { property: "og:type", content: "website" }
+    ]);
+    
+    // Load legal document content
+    loadLegalContent();
+});
 
-    // Load Legal Page HTML Content
-    function loadLegalPageContent() {
-        const htmlElement = $w('#legalContent');
-        if (htmlElement) {
-            const htmlContent = `<body class="bg-slate-50">
-<section class="hero-gradient text-white py-12 px-6">
-<div class="max-w-4xl mx-auto text-center">
-<h1 class="text-4xl font-bold mb-4">AI Safety, Bias, and Governance Framework</h1>
-<p class="text-lg opacity-90">HINGECRAFT GLOBAL, INC.</p>
-<p class="text-sm opacity-75 mt-2">Comprehensive AI Safety and Bias Mitigation</p>
-</div>
-</section>
-<main class="max-w-4xl mx-auto px-6 py-16">
-<div class="prose max-w-none bg-white p-8 rounded-lg shadow-sm">
-<h2>AI SAFETY, BIAS, AND GOVERNANCE FRAMEWORK</h2>
-<p>This framework establishes comprehensive guidelines for AI safety, bias mitigation, and ethical governance at HingeCraft Global.</p>
-<h2>I. AI SAFETY</h2>
-<h3>1.1 Safety Standards</h3>
-<ul>
-<li>Robust testing and validation</li>
-<li>Fail-safe mechanisms</li>
-<li>Error handling and recovery</li>
-<li>Security measures</li>
-</ul>
-<h3>1.2 Risk Assessment</h3>
-<p>We assess risks associated with:</p>
-<ul>
-<li>AI system failures</li>
-<li>Adversarial attacks</li>
-<li>Unintended consequences</li>
-<li>Systemic risks</li>
-</ul>
-<h2>II. BIAS MITIGATION</h2>
-<h3>2.1 Bias Detection</h3>
-<ul>
-<li>Regular bias audits</li>
-<li>Diverse training data</li>
-<li>Fairness metrics</li>
-<li>Representation analysis</li>
-</ul>
-<h3>2.2 Bias Remediation</h3>
-<ul>
-<li>Data balancing</li>
-<li>Algorithm adjustments</li>
-<li>Post-processing corrections</li>
-<li>Continuous monitoring</li>
-</ul>
-<h2>III. GOVERNANCE STRUCTURE</h2>
-<h3>3.1 Ethics Board</h3>
-<p>An independent ethics board reviews AI systems and policies.</p>
-<h3>3.2 Review Process</h3>
-<ul>
-<li>Pre-deployment review</li>
-<li>Ongoing monitoring</li>
-<li>Incident response</li>
-<li>Stakeholder feedback</li>
-</ul>
-<h2>IV. COMPLIANCE</h2>
-<p>We comply with:</p>
-<ul>
-<li>EU AI Act</li>
-<li>Algorithmic accountability laws</li>
-<li>Industry best practices</li>
-<li>Ethical AI principles</li>
-</ul>
-<div class="mt-8 pt-8 border-t border-gray-200">
-<p class="text-sm text-gray-600">Last Updated: December 4, 2025</p>
-<p class="text-sm text-gray-600">For questions about this document, please contact: <a class="text-purple-700 hover:underline" href="mailto:legal@hingecraft-global.ai">legal@hingecraft-global.ai</a></p>
-</div>
-</div>
-<div class="mt-6 flex flex-wrap items-center gap-6 text-sm text-gray-600">
-<div class="flex items-center gap-2">
-<svg class="w-5 h-5 text-green-600" fill="currentColor" viewbox="0 0 20 20">
-<path clip-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" fill-rule="evenodd"></path>
-</svg>
-<span>GDPR Compliant</span>
-</div>
-<div class="flex items-center gap-2">
-<svg class="w-5 h-5 text-green-600" fill="currentColor" viewbox="0 0 20 20">
-<path clip-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" fill-rule="evenodd"></path>
-</svg>
-<span>CCPA Compliant</span>
-</div>
-<div class="flex items-center gap-2">
-<svg class="w-5 h-5 text-green-600" fill="currentColor" viewbox="0 0 20 20">
-<path clip-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" fill-rule="evenodd"></path>
-</svg>
-<span>Secure &amp; Encrypted</span>
-</div>
-</div>
-</main>
-<footer class="bg-gray-900 text-white py-12 px-6 mt-16">
-<div class="max-w-4xl mx-auto text-center">
-<p class="mb-4">© 2025 HingeCraft Global. All rights reserved.</p>
-<p class="text-gray-400 text-sm">
-<a class="hover:text-white" href="/legal">Legal</a> | 
-        <a class="hover:text-white" href="/privacy">Privacy</a> | 
-        <a class="hover:text-white" href="/terms">Terms</a>
-</p>
-</div>
-</footer>
-</body>`;
-            htmlElement.html = htmlContent;
-            console.log('Legal page content loaded successfully');
-        } else {
-            console.log('Legal content element not found. Add HTML element with ID: legalContent');
+function loadLegalContent() {
+    const legalContent = `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Safety, Bias & Governance Policy - HingeCraft Global, LLC</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Times New Roman', Times, serif; font-size: 12pt; line-height: 1.6; color: #000; background: #fff; max-width: 8.5in; margin: 0 auto; padding: 1in; }
+        h1 { font-size: 18pt; font-weight: bold; text-align: center; margin-bottom: 24pt; text-transform: uppercase; border-bottom: 2px solid #000; padding-bottom: 12pt; }
+        h2 { font-size: 14pt; font-weight: bold; margin-top: 24pt; margin-bottom: 12pt; text-transform: uppercase; }
+        h3 { font-size: 12pt; font-weight: bold; margin-top: 18pt; margin-bottom: 9pt; }
+        p { margin-bottom: 12pt; text-align: justify; }
+        ul, ol { margin-left: 36pt; margin-bottom: 12pt; }
+        li { margin-bottom: 6pt; }
+        .header { text-align: center; margin-bottom: 36pt; }
+        .company-name { font-size: 16pt; font-weight: bold; }
+        .footer { margin-top: 48pt; padding-top: 12pt; border-top: 1px solid #000; font-size: 10pt; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="company-name">HINGECRAFT GLOBAL, LLC</div>
+        <h1>AI SAFETY, BIAS &<br>GOVERNANCE POLICY</h1>
+        <p>Effective Date: _________________, 20____<br>State of South Carolina</p>
+    </div>
+
+    <h2>1. PURPOSE AND SCOPE</h2>
+    
+    <p><strong>1.1 Purpose.</strong> This AI Safety, Bias & Governance Policy ("Policy") establishes HingeCraft Global, LLC's ("HingeCraft" or "Company") framework for the responsible development, deployment, and use of artificial intelligence (AI) and machine learning (ML) systems.</p>
+    
+    <p><strong>1.2 Scope.</strong> This Policy applies to: (a) All AI and ML systems developed or deployed by HingeCraft; (b) Third-party AI systems integrated into HingeCraft products or services; (c) All employees, contractors, and partners involved in AI development or deployment.</p>
+    
+    <p><strong>1.3 Commitment.</strong> HingeCraft is committed to: (a) Developing AI that is safe, fair, and beneficial; (b) Preventing and mitigating AI-related harms; (c) Maintaining human oversight and control; (d) Transparency about AI capabilities and limitations; (e) Continuous improvement of AI governance.</p>
+
+    <h2>2. PRINCIPLES</h2>
+    
+    <h3>2.1 Safety</h3>
+    <p>AI systems must: (a) Be designed with safety as a primary consideration; (b) Include appropriate safeguards and fail-safes; (c) Be tested rigorously before deployment; (d) Be monitored continuously for safety issues; (e) Allow for human intervention when needed.</p>
+    
+    <h3>2.2 Fairness</h3>
+    <p>AI systems must: (a) Treat all individuals and groups fairly; (b) Avoid discrimination based on protected characteristics; (c) Be tested for bias before and after deployment; (d) Include mechanisms for bias detection and correction.</p>
+    
+    <h3>2.3 Transparency</h3>
+    <p>AI systems must: (a) Have documented purposes and capabilities; (b) Provide explanations for decisions when feasible; (c) Disclose AI involvement to affected individuals; (d) Maintain audit trails for accountability.</p>
+    
+    <h3>2.4 Privacy</h3>
+    <p>AI systems must: (a) Comply with privacy laws and policies; (b) Minimize data collection and retention; (c) Protect personal information used for training; (d) Respect user consent preferences.</p>
+    
+    <h3>2.5 Accountability</h3>
+    <p>AI systems must: (a) Have clear ownership and responsibility; (b) Include mechanisms for redress; (c) Be subject to regular review and audit; (d) Allow for human oversight and override.</p>
+
+    <h2>3. GOVERNANCE STRUCTURE</h2>
+    
+    <h3>3.1 AI Ethics Committee</h3>
+    <p>An AI Ethics Committee oversees AI governance: (a) Reviews high-risk AI applications; (b) Develops and updates AI policies; (c) Investigates AI-related concerns; (d) Reports to executive management.</p>
+    
+    <h3>3.2 AI Product Owners</h3>
+    <p>Each AI system has a designated owner responsible for: (a) Compliance with this Policy; (b) Risk assessment and mitigation; (c) Monitoring and maintenance; (d) Incident response.</p>
+    
+    <h3>3.3 Data Science Team</h3>
+    <p>The Data Science Team is responsible for: (a) Technical implementation of safeguards; (b) Bias testing and mitigation; (c) Model documentation; (d) Technical review of AI systems.</p>
+
+    <h2>4. RISK ASSESSMENT</h2>
+    
+    <h3>4.1 Risk Categories</h3>
+    <p>AI applications are categorized by risk level:</p>
+    <ul>
+        <li><strong>High Risk:</strong> Systems affecting health, safety, legal rights, or significant financial decisions;</li>
+        <li><strong>Medium Risk:</strong> Systems with moderate impact on individuals;</li>
+        <li><strong>Low Risk:</strong> Systems with minimal individual impact (e.g., product recommendations).</li>
+    </ul>
+    
+    <h3>4.2 Assessment Process</h3>
+    <p>Before deployment, AI systems undergo: (a) Purpose and scope documentation; (b) Data quality assessment; (c) Bias evaluation; (d) Safety and security review; (e) Privacy impact assessment; (f) Ethics review (for high-risk systems).</p>
+
+    <h2>5. BIAS PREVENTION AND MITIGATION</h2>
+    
+    <h3>5.1 Data Quality</h3>
+    <p>Training data must: (a) Be representative of intended use populations; (b) Be reviewed for historical biases; (c) Include diverse perspectives; (d) Be documented and auditable.</p>
+    
+    <h3>5.2 Testing</h3>
+    <p>AI systems are tested for bias: (a) Before initial deployment; (b) Regularly after deployment; (c) After significant updates; (d) When issues are reported.</p>
+    
+    <h3>5.3 Mitigation</h3>
+    <p>When bias is identified: (a) Assess severity and impact; (b) Implement technical corrections; (c) Adjust training data if needed; (d) Document and report findings; (e) Monitor for recurrence.</p>
+
+    <h2>6. SAFETY REQUIREMENTS</h2>
+    
+    <h3>6.1 Design for Safety</h3>
+    <p>AI systems must: (a) Have defined operating boundaries; (b) Include input validation; (c) Handle edge cases gracefully; (d) Fail safely when errors occur; (e) Allow human override.</p>
+    
+    <h3>6.2 Testing</h3>
+    <p>Safety testing includes: (a) Functional testing; (b) Stress testing; (c) Adversarial testing; (d) Edge case testing; (e) Red team exercises (for high-risk systems).</p>
+    
+    <h3>6.3 Monitoring</h3>
+    <p>Deployed systems are monitored for: (a) Performance degradation; (b) Unexpected outputs; (c) Safety incidents; (d) User feedback; (e) Model drift.</p>
+
+    <h2>7. TRANSPARENCY AND EXPLAINABILITY</h2>
+    
+    <h3>7.1 Disclosure</h3>
+    <p>We disclose: (a) When AI is being used; (b) The purpose of AI use; (c) How AI decisions are made (where feasible); (d) Options for human review.</p>
+    
+    <h3>7.2 Documentation</h3>
+    <p>AI systems must have: (a) Model cards describing capabilities and limitations; (b) Data documentation; (c) Decision documentation; (d) Audit logs.</p>
+    
+    <h3>7.3 Explainability</h3>
+    <p>For significant decisions: (a) Provide meaningful explanations when feasible; (b) Identify key factors in decisions; (c) Offer human review options.</p>
+
+    <h2>8. HUMAN OVERSIGHT</h2>
+    
+    <p><strong>8.1 Human-in-the-Loop.</strong> High-risk decisions require human review before action.</p>
+    
+    <p><strong>8.2 Human-on-the-Loop.</strong> Medium-risk systems require human monitoring with ability to intervene.</p>
+    
+    <p><strong>8.3 Override Capability.</strong> All AI systems must allow human override of automated decisions.</p>
+
+    <h2>9. INCIDENT RESPONSE</h2>
+    
+    <p><strong>9.1 Reporting.</strong> AI-related incidents must be reported to the AI Ethics Committee immediately.</p>
+    
+    <p><strong>9.2 Investigation.</strong> Incidents are investigated to determine: (a) Root cause; (b) Impact; (c) Corrective actions; (d) Preventive measures.</p>
+    
+    <p><strong>9.3 Remediation.</strong> Affected individuals receive: (a) Notification; (b) Explanation; (c) Remediation of any harm; (d) Information about changes made.</p>
+
+    <h2>10. THIRD-PARTY AI</h2>
+    
+    <p>Before using third-party AI: (a) Conduct due diligence on the provider; (b) Review the AI for compliance with this Policy; (c) Obtain appropriate documentation; (d) Establish contractual requirements; (e) Monitor performance.</p>
+
+    <h2>11. TRAINING</h2>
+    
+    <p>Personnel involved in AI development and deployment receive training on: (a) This Policy; (b) AI ethics principles; (c) Bias recognition and mitigation; (d) Safety requirements; (e) Privacy considerations.</p>
+
+    <h2>12. REVIEW AND UPDATE</h2>
+    
+    <p>This Policy is reviewed annually and updated to reflect: (a) Changes in technology; (b) New regulations and standards; (c) Lessons learned; (d) Best practices.</p>
+
+    <h2>13. CONTACT</h2>
+    
+    <p>For questions or to report concerns:</p>
+    <p>HingeCraft Global, LLC<br>
+    AI Ethics Committee<br>
+    123 Innovation Drive, Suite 100<br>
+    Charleston, South Carolina 29401<br>
+    Email: ai-ethics@hingecraft.com<br>
+    Phone: (843) 555-0100</p>
+
+    <div class="footer">
+        <p>HingeCraft Global, LLC | 123 Innovation Drive, Suite 100, Charleston, SC 29401</p>
+        <p>AI Ethics: ai-ethics@hingecraft.com | Phone: (843) 555-0100</p>
+        <p>© 2025 HingeCraft Global, LLC. All Rights Reserved.</p>
+    </div>
+</body>
+</html>
+
+`;
+    
+    // Try to find the legalContent element
+    if ($w('#legalContent')) {
+        try {
+            $w('#legalContent').html = legalContent;
+        } catch (e) {
+            console.log("HTML element not configured - content ready for manual embed");
         }
     }
     
-    loadLegalPageContent();
-
-});
-
-
-$w.onReady(function () {
-    if (typeof document !== 'undefined') {
-        // Page Title
-        document.title = 'AI Safety Governance_f4e07_js | HingeCraft Global';
-        
-        // Meta Description
-        let metaDesc = document.querySelector('meta[name="description"]');
-        if (!metaDesc) {
-            metaDesc = document.createElement('meta');
-            metaDesc.setAttribute('name', 'description');
-            document.head.appendChild(metaDesc);
+    // Also try text element fallback
+    if ($w('#legalText')) {
+        try {
+            $w('#legalText').html = legalContent;
+        } catch (e) {
+            console.log("Using text element fallback");
         }
-        metaDesc.setAttribute('content', 'AI Safety Governance_f4e07_js - HingeCraft Global. Comprehensive information and resources.');
-        
-        // Meta Keywords
-        let metaKeywords = document.querySelector('meta[name="keywords"]');
-        if (!metaKeywords) {
-            metaKeywords = document.createElement('meta');
-            metaKeywords.setAttribute('name', 'keywords');
-            document.head.appendChild(metaKeywords);
-        }
-        metaKeywords.setAttribute('content', 'corporate governance, board governance, ethical governance, ai training consent, ai governance, ai safety, ai bias, hingecraft, hingecraft global');
-        
-        // Open Graph Tags
-        const ogTags = {
-            'og:title': 'AI Safety Governance_f4e07_js | HingeCraft Global',
-            'og:description': 'AI Safety Governance_f4e07_js - HingeCraft Global. Comprehensive information and resources.',
-            'og:image': 'https://hingecraft-global.ai/og-image.jpg',
-            'og:url': 'https://hingecraft-global.ai/ai-safety-governance-f4e07-js',
-            'og:type': 'website',
-            'og:site_name': 'HingeCraft Global'
-        };
-        
-        Object.keys(ogTags).forEach(prop => {
-            let ogMeta = document.querySelector(`meta[property="${prop}"]`);
-            if (!ogMeta) {
-                ogMeta = document.createElement('meta');
-                ogMeta.setAttribute('property', prop);
-                document.head.appendChild(ogMeta);
-            }
-            ogMeta.setAttribute('content', ogTags[prop]);
-        });
-        
-        // Twitter Card Tags
-        const twitterTags = {
-            'twitter:card': 'summary_large_image',
-            'twitter:title': 'AI Safety Governance_f4e07_js | HingeCraft Global',
-            'twitter:description': 'AI Safety Governance_f4e07_js - HingeCraft Global. Comprehensive information and resources.',
-            'twitter:image': 'https://hingecraft-global.ai/og-image.jpg'
-        };
-        
-        Object.keys(twitterTags).forEach(name => {
-            let twitterMeta = document.querySelector(`meta[name="${name}"]`);
-            if (!twitterMeta) {
-                twitterMeta = document.createElement('meta');
-                twitterMeta.setAttribute('name', name);
-                document.head.appendChild(twitterMeta);
-            }
-            twitterMeta.setAttribute('content', twitterTags[name]);
-        });
-        
-        // Canonical URL
-        let canonical = document.querySelector('link[rel="canonical"]');
-        if (!canonical) {
-            canonical = document.createElement('link');
-            canonical.setAttribute('rel', 'canonical');
-            document.head.appendChild(canonical);
-        }
-        canonical.setAttribute('href', 'https://hingecraft-global.ai/ai-safety-governance-f4e07-js');
-        
-        // Robots Meta
-        let robots = document.querySelector('meta[name="robots"]');
-        if (!robots) {
-            robots = document.createElement('meta');
-            robots.setAttribute('name', 'robots');
-            document.head.appendChild(robots);
-        }
-        robots.setAttribute('content', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
-        
-        // Schema.org JSON-LD Structured Data
-        let schemaScript = document.querySelector('script[type="application/ld+json"]');
-        if (!schemaScript) {
-            schemaScript = document.createElement('script');
-            schemaScript.setAttribute('type', 'application/ld+json');
-            document.head.appendChild(schemaScript);
-        }
-        schemaScript.textContent = `{
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "AI Safety Governance_f4e07_js | HingeCraft Global",
-  "description": "AI Safety Governance_f4e07_js - HingeCraft Global. Comprehensive information and resources.",
-  "url": "https://hingecraft-global.ai/ai-safety-governance-f4e07-js",
-  "publisher": {
-    "@type": "Organization",
-    "name": "HingeCraft Global",
-    "url": "https://hingecraft-global.ai",
-    "logo": "https://hingecraft-global.ai/logo.png"
-  },
-  "datePublished": "2025-12-05",
-  "dateModified": "2025-12-05",
-  "inLanguage": "en-US",
-  "keywords": "corporate governance, board governance, ethical governance, ai training consent, ai governance, ai safety, ai bias, hingecraft, hingecraft global"
-}`;
     }
+}
+
+// Export for potential use in other contexts
+export function getLegalDocumentHTML() {
+    return `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Safety, Bias & Governance Policy - HingeCraft Global, LLC</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Times New Roman', Times, serif; font-size: 12pt; line-height: 1.6; color: #000; background: #fff; max-width: 8.5in; margin: 0 auto; padding: 1in; }
+        h1 { font-size: 18pt; font-weight: bold; text-align: center; margin-bottom: 24pt; text-transform: uppercase; border-bottom: 2px solid #000; padding-bottom: 12pt; }
+        h2 { font-size: 14pt; font-weight: bold; margin-top: 24pt; margin-bottom: 12pt; text-transform: uppercase; }
+        h3 { font-size: 12pt; font-weight: bold; margin-top: 18pt; margin-bottom: 9pt; }
+        p { margin-bottom: 12pt; text-align: justify; }
+        ul, ol { margin-left: 36pt; margin-bottom: 12pt; }
+        li { margin-bottom: 6pt; }
+        .header { text-align: center; margin-bottom: 36pt; }
+        .company-name { font-size: 16pt; font-weight: bold; }
+        .footer { margin-top: 48pt; padding-top: 12pt; border-top: 1px solid #000; font-size: 10pt; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="company-name">HINGECRAFT GLOBAL, LLC</div>
+        <h1>AI SAFETY, BIAS &<br>GOVERNANCE POLICY</h1>
+        <p>Effective Date: _________________, 20____<br>State of South Carolina</p>
+    </div>
+
+    <h2>1. PURPOSE AND SCOPE</h2>
     
-    // Load HTML content for legal pages
+    <p><strong>1.1 Purpose.</strong> This AI Safety, Bias & Governance Policy ("Policy") establishes HingeCraft Global, LLC's ("HingeCraft" or "Company") framework for the responsible development, deployment, and use of artificial intelligence (AI) and machine learning (ML) systems.</p>
     
-});
-
-
-
-
-$w.onReady(function () {
-    if (typeof document !== 'undefined') {
-        // Page Title
-        document.title = 'AI Safety Governance_f4e07_js | HingeCraft Global';
-        
-        // Meta Description
-        let metaDesc = document.querySelector('meta[name="description"]');
-        if (!metaDesc) {
-            metaDesc = document.createElement('meta');
-            metaDesc.setAttribute('name', 'description');
-            document.head.appendChild(metaDesc);
-        }
-        metaDesc.setAttribute('content', 'AI Safety Governance_f4e07_js - HingeCraft Global. Comprehensive information and resources.');
-        
-        // Meta Keywords
-        let metaKeywords = document.querySelector('meta[name="keywords"]');
-        if (!metaKeywords) {
-            metaKeywords = document.createElement('meta');
-            metaKeywords.setAttribute('name', 'keywords');
-            document.head.appendChild(metaKeywords);
-        }
-        metaKeywords.setAttribute('content', 'corporate governance, board governance, ethical governance, ai training consent, ai governance, ai safety, ai bias, hingecraft, hingecraft global');
-        
-        // Open Graph Tags
-        const ogTags = {
-            'og:title': 'AI Safety Governance_f4e07_js | HingeCraft Global',
-            'og:description': 'AI Safety Governance_f4e07_js - HingeCraft Global. Comprehensive information and resources.',
-            'og:image': 'https://hingecraft-global.ai/og-image.jpg',
-            'og:url': 'https://hingecraft-global.ai/ai-safety-governance-f4e07-js',
-            'og:type': 'website',
-            'og:site_name': 'HingeCraft Global'
-        };
-        
-        Object.keys(ogTags).forEach(prop => {
-            let ogMeta = document.querySelector(`meta[property="${prop}"]`);
-            if (!ogMeta) {
-                ogMeta = document.createElement('meta');
-                ogMeta.setAttribute('property', prop);
-                document.head.appendChild(ogMeta);
-            }
-            ogMeta.setAttribute('content', ogTags[prop]);
-        });
-        
-        // Twitter Card Tags
-        const twitterTags = {
-            'twitter:card': 'summary_large_image',
-            'twitter:title': 'AI Safety Governance_f4e07_js | HingeCraft Global',
-            'twitter:description': 'AI Safety Governance_f4e07_js - HingeCraft Global. Comprehensive information and resources.',
-            'twitter:image': 'https://hingecraft-global.ai/og-image.jpg'
-        };
-        
-        Object.keys(twitterTags).forEach(name => {
-            let twitterMeta = document.querySelector(`meta[name="${name}"]`);
-            if (!twitterMeta) {
-                twitterMeta = document.createElement('meta');
-                twitterMeta.setAttribute('name', name);
-                document.head.appendChild(twitterMeta);
-            }
-            twitterMeta.setAttribute('content', twitterTags[name]);
-        });
-        
-        // Canonical URL
-        let canonical = document.querySelector('link[rel="canonical"]');
-        if (!canonical) {
-            canonical = document.createElement('link');
-            canonical.setAttribute('rel', 'canonical');
-            document.head.appendChild(canonical);
-        }
-        canonical.setAttribute('href', 'https://hingecraft-global.ai/ai-safety-governance-f4e07-js');
-        
-        // Robots Meta
-        let robots = document.querySelector('meta[name="robots"]');
-        if (!robots) {
-            robots = document.createElement('meta');
-            robots.setAttribute('name', 'robots');
-            document.head.appendChild(robots);
-        }
-        robots.setAttribute('content', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
-        
-        // Schema.org JSON-LD Structured Data
-        let schemaScript = document.querySelector('script[type="application/ld+json"]');
-        if (!schemaScript) {
-            schemaScript = document.createElement('script');
-            schemaScript.setAttribute('type', 'application/ld+json');
-            document.head.appendChild(schemaScript);
-        }
-        schemaScript.textContent = `{
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "AI Safety Governance_f4e07_js | HingeCraft Global",
-  "description": "AI Safety Governance_f4e07_js - HingeCraft Global. Comprehensive information and resources.",
-  "url": "https://hingecraft-global.ai/ai-safety-governance-f4e07-js",
-  "publisher": {
-    "@type": "Organization",
-    "name": "HingeCraft Global",
-    "url": "https://hingecraft-global.ai",
-    "logo": "https://hingecraft-global.ai/logo.png"
-  },
-  "datePublished": "2025-12-05",
-  "dateModified": "2025-12-05",
-  "inLanguage": "en-US",
-  "keywords": "corporate governance, board governance, ethical governance, ai training consent, ai governance, ai safety, ai bias, hingecraft, hingecraft global"
-}`;
-    }
+    <p><strong>1.2 Scope.</strong> This Policy applies to: (a) All AI and ML systems developed or deployed by HingeCraft; (b) Third-party AI systems integrated into HingeCraft products or services; (c) All employees, contractors, and partners involved in AI development or deployment.</p>
     
-    // Load HTML content for legal pages
+    <p><strong>1.3 Commitment.</strong> HingeCraft is committed to: (a) Developing AI that is safe, fair, and beneficial; (b) Preventing and mitigating AI-related harms; (c) Maintaining human oversight and control; (d) Transparency about AI capabilities and limitations; (e) Continuous improvement of AI governance.</p>
+
+    <h2>2. PRINCIPLES</h2>
     
-});
+    <h3>2.1 Safety</h3>
+    <p>AI systems must: (a) Be designed with safety as a primary consideration; (b) Include appropriate safeguards and fail-safes; (c) Be tested rigorously before deployment; (d) Be monitored continuously for safety issues; (e) Allow for human intervention when needed.</p>
+    
+    <h3>2.2 Fairness</h3>
+    <p>AI systems must: (a) Treat all individuals and groups fairly; (b) Avoid discrimination based on protected characteristics; (c) Be tested for bias before and after deployment; (d) Include mechanisms for bias detection and correction.</p>
+    
+    <h3>2.3 Transparency</h3>
+    <p>AI systems must: (a) Have documented purposes and capabilities; (b) Provide explanations for decisions when feasible; (c) Disclose AI involvement to affected individuals; (d) Maintain audit trails for accountability.</p>
+    
+    <h3>2.4 Privacy</h3>
+    <p>AI systems must: (a) Comply with privacy laws and policies; (b) Minimize data collection and retention; (c) Protect personal information used for training; (d) Respect user consent preferences.</p>
+    
+    <h3>2.5 Accountability</h3>
+    <p>AI systems must: (a) Have clear ownership and responsibility; (b) Include mechanisms for redress; (c) Be subject to regular review and audit; (d) Allow for human oversight and override.</p>
 
+    <h2>3. GOVERNANCE STRUCTURE</h2>
+    
+    <h3>3.1 AI Ethics Committee</h3>
+    <p>An AI Ethics Committee oversees AI governance: (a) Reviews high-risk AI applications; (b) Develops and updates AI policies; (c) Investigates AI-related concerns; (d) Reports to executive management.</p>
+    
+    <h3>3.2 AI Product Owners</h3>
+    <p>Each AI system has a designated owner responsible for: (a) Compliance with this Policy; (b) Risk assessment and mitigation; (c) Monitoring and maintenance; (d) Incident response.</p>
+    
+    <h3>3.3 Data Science Team</h3>
+    <p>The Data Science Team is responsible for: (a) Technical implementation of safeguards; (b) Bias testing and mitigation; (c) Model documentation; (d) Technical review of AI systems.</p>
 
+    <h2>4. RISK ASSESSMENT</h2>
+    
+    <h3>4.1 Risk Categories</h3>
+    <p>AI applications are categorized by risk level:</p>
+    <ul>
+        <li><strong>High Risk:</strong> Systems affecting health, safety, legal rights, or significant financial decisions;</li>
+        <li><strong>Medium Risk:</strong> Systems with moderate impact on individuals;</li>
+        <li><strong>Low Risk:</strong> Systems with minimal individual impact (e.g., product recommendations).</li>
+    </ul>
+    
+    <h3>4.2 Assessment Process</h3>
+    <p>Before deployment, AI systems undergo: (a) Purpose and scope documentation; (b) Data quality assessment; (c) Bias evaluation; (d) Safety and security review; (e) Privacy impact assessment; (f) Ethics review (for high-risk systems).</p>
 
+    <h2>5. BIAS PREVENTION AND MITIGATION</h2>
+    
+    <h3>5.1 Data Quality</h3>
+    <p>Training data must: (a) Be representative of intended use populations; (b) Be reviewed for historical biases; (c) Include diverse perspectives; (d) Be documented and auditable.</p>
+    
+    <h3>5.2 Testing</h3>
+    <p>AI systems are tested for bias: (a) Before initial deployment; (b) Regularly after deployment; (c) After significant updates; (d) When issues are reported.</p>
+    
+    <h3>5.3 Mitigation</h3>
+    <p>When bias is identified: (a) Assess severity and impact; (b) Implement technical corrections; (c) Adjust training data if needed; (d) Document and report findings; (e) Monitor for recurrence.</p>
 
-$w.onReady(function () {
-    if (typeof document !== 'undefined') {
-        // Page Title
-        document.title = 'AI Safety, Bias, and Governance Framework | HingeCraft Gl...';
-        
-        // Meta Description
-        let metaDesc = document.querySelector('meta[name="description"]');
-        if (!metaDesc) {
-            metaDesc = document.createElement('meta');
-            metaDesc.setAttribute('name', 'description');
-            document.head.appendChild(metaDesc);
-        }
-        metaDesc.setAttribute('content', 'HingeCraft Global AI Safety, Bias, and Governance Framework - Comprehensive framework for AI safety, bias mitigation, and ethical governance');
-        
-        // Meta Keywords
-        let metaKeywords = document.querySelector('meta[name="keywords"]');
-        if (!metaKeywords) {
-            metaKeywords = document.createElement('meta');
-            metaKeywords.setAttribute('name', 'keywords');
-            document.head.appendChild(metaKeywords);
-        }
-        metaKeywords.setAttribute('content', 'corporate governance, board governance, ethical governance, governance framework, ai training consent, ai governance, ai safety, ai bias, ai consent, data governance, ai ethics, ai training use consent, product safety, safety compliance, global governance, hingecraft ai ethics, hingecraft ai training consent, hingecraft, hingecraft global, resilient design');
-        
-        // Open Graph Tags
-        const ogTags = {
-            'og:title': 'AI Safety, Bias, and Governance Framework | HingeCraft Gl...',
-            'og:description': 'HingeCraft Global AI Safety, Bias, and Governance Framework - Comprehensive framework for AI safety, bias mitigation, and ethical governance',
-            'og:image': 'https://hingecraft-global.ai/og-image.jpg',
-            'og:url': 'https://hingecraft-global.ai/legal/ai_safety_governance',
-            'og:type': 'website',
-            'og:site_name': 'HingeCraft Global'
-        };
-        
-        Object.keys(ogTags).forEach(prop => {
-            let ogMeta = document.querySelector(`meta[property="${prop}"]`);
-            if (!ogMeta) {
-                ogMeta = document.createElement('meta');
-                ogMeta.setAttribute('property', prop);
-                document.head.appendChild(ogMeta);
-            }
-            ogMeta.setAttribute('content', ogTags[prop]);
-        });
-        
-        // Twitter Card Tags
-        const twitterTags = {
-            'twitter:card': 'summary_large_image',
-            'twitter:title': 'AI Safety, Bias, and Governance Framework | HingeCraft Gl...',
-            'twitter:description': 'HingeCraft Global AI Safety, Bias, and Governance Framework - Comprehensive framework for AI safety, bias mitigation, and ethical governance',
-            'twitter:image': 'https://hingecraft-global.ai/og-image.jpg'
-        };
-        
-        Object.keys(twitterTags).forEach(name => {
-            let twitterMeta = document.querySelector(`meta[name="${name}"]`);
-            if (!twitterMeta) {
-                twitterMeta = document.createElement('meta');
-                twitterMeta.setAttribute('name', name);
-                document.head.appendChild(twitterMeta);
-            }
-            twitterMeta.setAttribute('content', twitterTags[name]);
-        });
-        
-        // Canonical URL
-        let canonical = document.querySelector('link[rel="canonical"]');
-        if (!canonical) {
-            canonical = document.createElement('link');
-            canonical.setAttribute('rel', 'canonical');
-            document.head.appendChild(canonical);
-        }
-        canonical.setAttribute('href', 'https://hingecraft-global.ai/legal/ai_safety_governance');
-        
-        // Robots Meta
-        let robots = document.querySelector('meta[name="robots"]');
-        if (!robots) {
-            robots = document.createElement('meta');
-            robots.setAttribute('name', 'robots');
-            document.head.appendChild(robots);
-        }
-        robots.setAttribute('content', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
-        
-        // Schema.org JSON-LD
-        let schemaScript = document.querySelector('script[type="application/ld+json"]');
-        if (!schemaScript) {
-            schemaScript = document.createElement('script');
-            schemaScript.setAttribute('type', 'application/ld+json');
-            document.head.appendChild(schemaScript);
-        }
-        schemaScript.textContent = JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "LegalDocument",
-            "name": "AI Safety, Bias, and Governance Framework | HingeCraft Gl...",
-            "description": "HingeCraft Global AI Safety, Bias, and Governance Framework - Comprehensive framework for AI safety, bias mitigation, and ethical governance",
-            "url": "https://hingecraft-global.ai/legal/ai_safety_governance",
-            "publisher": {
-                "@type": "Organization",
-                "name": "HingeCraft Global",
-                "url": "https://hingecraft-global.ai",
-                "logo": "https://hingecraft-global.ai/logo.png"
-            },
-            "datePublished": "2025-12-05",
-            "dateModified": "2025-12-05",
-            "inLanguage": "en-US",
-            "keywords": "corporate governance, board governance, ethical governance, governance framework, ai training consent, ai governance, ai safety, ai bias, ai consent, data governance, ai ethics, ai training use consent, product safety, safety compliance, global governance, hingecraft ai ethics, hingecraft ai training consent, hingecraft, hingecraft global, resilient design"
-        });
-    }
-});
+    <h2>6. SAFETY REQUIREMENTS</h2>
+    
+    <h3>6.1 Design for Safety</h3>
+    <p>AI systems must: (a) Have defined operating boundaries; (b) Include input validation; (c) Handle edge cases gracefully; (d) Fail safely when errors occur; (e) Allow human override.</p>
+    
+    <h3>6.2 Testing</h3>
+    <p>Safety testing includes: (a) Functional testing; (b) Stress testing; (c) Adversarial testing; (d) Edge case testing; (e) Red team exercises (for high-risk systems).</p>
+    
+    <h3>6.3 Monitoring</h3>
+    <p>Deployed systems are monitored for: (a) Performance degradation; (b) Unexpected outputs; (c) Safety incidents; (d) User feedback; (e) Model drift.</p>
 
+    <h2>7. TRANSPARENCY AND EXPLAINABILITY</h2>
+    
+    <h3>7.1 Disclosure</h3>
+    <p>We disclose: (a) When AI is being used; (b) The purpose of AI use; (c) How AI decisions are made (where feasible); (d) Options for human review.</p>
+    
+    <h3>7.2 Documentation</h3>
+    <p>AI systems must have: (a) Model cards describing capabilities and limitations; (b) Data documentation; (c) Decision documentation; (d) Audit logs.</p>
+    
+    <h3>7.3 Explainability</h3>
+    <p>For significant decisions: (a) Provide meaningful explanations when feasible; (b) Identify key factors in decisions; (c) Offer human review options.</p>
 
-// API Reference: https://www.wix.com/velo/reference/api-overview/introduction
-// “Hello, World!” Example: https://learn-code.wix.com/en/article/hello-world
+    <h2>8. HUMAN OVERSIGHT</h2>
+    
+    <p><strong>8.1 Human-in-the-Loop.</strong> High-risk decisions require human review before action.</p>
+    
+    <p><strong>8.2 Human-on-the-Loop.</strong> Medium-risk systems require human monitoring with ability to intervene.</p>
+    
+    <p><strong>8.3 Override Capability.</strong> All AI systems must allow human override of automated decisions.</p>
 
-$w.onReady(function () {
-    // Write your JavaScript here
+    <h2>9. INCIDENT RESPONSE</h2>
+    
+    <p><strong>9.1 Reporting.</strong> AI-related incidents must be reported to the AI Ethics Committee immediately.</p>
+    
+    <p><strong>9.2 Investigation.</strong> Incidents are investigated to determine: (a) Root cause; (b) Impact; (c) Corrective actions; (d) Preventive measures.</p>
+    
+    <p><strong>9.3 Remediation.</strong> Affected individuals receive: (a) Notification; (b) Explanation; (c) Remediation of any harm; (d) Information about changes made.</p>
 
-    // To select an element by ID use: $w('#elementID')
+    <h2>10. THIRD-PARTY AI</h2>
+    
+    <p>Before using third-party AI: (a) Conduct due diligence on the provider; (b) Review the AI for compliance with this Policy; (c) Obtain appropriate documentation; (d) Establish contractual requirements; (e) Monitor performance.</p>
 
-    // Click 'Preview' to run your code
-});
+    <h2>11. TRAINING</h2>
+    
+    <p>Personnel involved in AI development and deployment receive training on: (a) This Policy; (b) AI ethics principles; (c) Bias recognition and mitigation; (d) Safety requirements; (e) Privacy considerations.</p>
 
+    <h2>12. REVIEW AND UPDATE</h2>
+    
+    <p>This Policy is reviewed annually and updated to reflect: (a) Changes in technology; (b) New regulations and standards; (c) Lessons learned; (d) Best practices.</p>
 
-// Load Legal Page HTML Content
+    <h2>13. CONTACT</h2>
+    
+    <p>For questions or to report concerns:</p>
+    <p>HingeCraft Global, LLC<br>
+    AI Ethics Committee<br>
+    123 Innovation Drive, Suite 100<br>
+    Charleston, South Carolina 29401<br>
+    Email: ai-ethics@hingecraft.com<br>
+    Phone: (843) 555-0100</p>
 
-$w.onReady(function () {
-    loadLegalPageContent();
-});
+    <div class="footer">
+        <p>HingeCraft Global, LLC | 123 Innovation Drive, Suite 100, Charleston, SC 29401</p>
+        <p>AI Ethics: ai-ethics@hingecraft.com | Phone: (843) 555-0100</p>
+        <p>© 2025 HingeCraft Global, LLC. All Rights Reserved.</p>
+    </div>
+</body>
+</html>
+
+`;
+}

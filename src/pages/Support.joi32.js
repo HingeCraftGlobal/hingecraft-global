@@ -1,3 +1,69 @@
+// HingeCraft Global - SEO Optimized
+// Support | HingeCraft Help Center
+// Generated: December 6, 2025
+
+import wixSeo from 'wix-seo';
+
+$w.onReady(function () {
+    // Set page title
+    wixSeo.setTitle("Support | HingeCraft Help Center");
+    
+    // Set meta tags
+    wixSeo.setMetaTags([
+        { name: "description", content: "Get support from HingeCraft - FAQs, documentation, contact options, and expert assistance for all your questions." },
+        { name: "keywords", content: "support, help center, customer support, FAQ, assistance" },
+        { name: "robots", content: "index, follow" },
+        { property: "og:title", content: "Support | HingeCraft Help Center" },
+        { property: "og:description", content: "Get support from HingeCraft - FAQs, documentation, contact options, and expert assistance for all your questions." },
+        { property: "og:type", content: "website" },
+        { property: "og:site_name", content: "HingeCraft Global" },
+        { property: "twitter:card", content: "summary_large_image" },
+        { property: "twitter:title", content: "Support | HingeCraft Help Center" },
+        { property: "twitter:description", content: "Get support from HingeCraft - FAQs, documentation, contact options, and expert assistance for all your questions." }
+    ]);
+    
+    // Set structured data (JSON-LD)
+    wixSeo.setStructuredData([
+        {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "name": "Support | HingeCraft Help Center",
+        "description": "Get support from HingeCraft - FAQs, documentation, contact options, and expert assistance for all your questions.",
+        "url": "https://www.hingecraft.com/support.joi32",
+        "inLanguage": "en-US",
+        "dateModified": "2025-12-06",
+        "publisher": {
+                "@type": "Organization",
+                "name": "HingeCraft Global",
+                "url": "https://www.hingecraft.com",
+                "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://www.hingecraft.com/logo.png"
+                }
+        }
+},
+        {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+                {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "https://www.hingecraft.com"
+                },
+                {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "Support",
+                        "item": "https://www.hingecraft.com/support.joi32"
+                }
+        ]
+}
+    ]);
+});
+
+
+// Original page code below
 // Comprehensive SEO Optimization - Support
 // JSON-LD Schema.org | 100+ Keywords | Competitive Optimization
 

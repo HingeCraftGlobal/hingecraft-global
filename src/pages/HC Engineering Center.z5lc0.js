@@ -1,3 +1,69 @@
+// HingeCraft Global - SEO Optimized
+// HingeCraft Engineering Center | Design & Development
+// Generated: December 6, 2025
+
+import wixSeo from 'wix-seo';
+
+$w.onReady(function () {
+    // Set page title
+    wixSeo.setTitle("HingeCraft Engineering Center | Design & Development");
+    
+    // Set meta tags
+    wixSeo.setMetaTags([
+        { name: "description", content: "HingeCraft Engineering Center offers expert design, prototyping, and engineering services. From concept to production with precision engineering." },
+        { name: "keywords", content: "engineering services, product design, prototyping, CAD design, engineering center" },
+        { name: "robots", content: "index, follow" },
+        { property: "og:title", content: "HingeCraft Engineering Center | Design & Development" },
+        { property: "og:description", content: "HingeCraft Engineering Center offers expert design, prototyping, and engineering services. From concept to production with precision engineering." },
+        { property: "og:type", content: "website" },
+        { property: "og:site_name", content: "HingeCraft Global" },
+        { property: "twitter:card", content: "summary_large_image" },
+        { property: "twitter:title", content: "HingeCraft Engineering Center | Design & Development" },
+        { property: "twitter:description", content: "HingeCraft Engineering Center offers expert design, prototyping, and engineering services. From concept to production with precision engineering." }
+    ]);
+    
+    // Set structured data (JSON-LD)
+    wixSeo.setStructuredData([
+        {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "HingeCraft Engineering Center | Design & Development",
+        "description": "HingeCraft Engineering Center offers expert design, prototyping, and engineering services. From concept to production with precision engineering.",
+        "url": "https://www.hingecraft.com/hc-engineering-center.z5lc0",
+        "inLanguage": "en-US",
+        "dateModified": "2025-12-06",
+        "publisher": {
+                "@type": "Organization",
+                "name": "HingeCraft Global",
+                "url": "https://www.hingecraft.com",
+                "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://www.hingecraft.com/logo.png"
+                }
+        }
+},
+        {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+                {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "https://www.hingecraft.com"
+                },
+                {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "HingeCraft Engineering Center",
+                        "item": "https://www.hingecraft.com/hc-engineering-center.z5lc0"
+                }
+        ]
+}
+    ]);
+});
+
+
+// Original page code below
 // Comprehensive SEO Optimization - HC Engineering Center
 // JSON-LD Schema.org | 100+ Keywords | Competitive Optimization
 

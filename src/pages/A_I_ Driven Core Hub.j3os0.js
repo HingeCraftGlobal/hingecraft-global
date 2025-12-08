@@ -1,3 +1,69 @@
+// HingeCraft Global - SEO Optimized
+// AI-Driven Core Hub | Intelligent Manufacturing
+// Generated: December 6, 2025
+
+import wixSeo from 'wix-seo';
+
+$w.onReady(function () {
+    // Set page title
+    wixSeo.setTitle("AI-Driven Core Hub | Intelligent Manufacturing");
+    
+    // Set meta tags
+    wixSeo.setMetaTags([
+        { name: "description", content: "HingeCraft's AI-Driven Core Hub leverages machine learning for smart manufacturing, process optimization, and predictive maintenance." },
+        { name: "keywords", content: "AI manufacturing, machine learning, smart factory, intelligent production, AI optimization" },
+        { name: "robots", content: "index, follow" },
+        { property: "og:title", content: "AI-Driven Core Hub | Intelligent Manufacturing" },
+        { property: "og:description", content: "HingeCraft's AI-Driven Core Hub leverages machine learning for smart manufacturing, process optimization, and predictive maintenance." },
+        { property: "og:type", content: "website" },
+        { property: "og:site_name", content: "HingeCraft Global" },
+        { property: "twitter:card", content: "summary_large_image" },
+        { property: "twitter:title", content: "AI-Driven Core Hub | Intelligent Manufacturing" },
+        { property: "twitter:description", content: "HingeCraft's AI-Driven Core Hub leverages machine learning for smart manufacturing, process optimization, and predictive maintenance." }
+    ]);
+    
+    // Set structured data (JSON-LD)
+    wixSeo.setStructuredData([
+        {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "AI-Driven Core Hub | Intelligent Manufacturing",
+        "description": "HingeCraft's AI-Driven Core Hub leverages machine learning for smart manufacturing, process optimization, and predictive maintenance.",
+        "url": "https://www.hingecraft.com/a_i_-driven-core-hub.j3os0",
+        "inLanguage": "en-US",
+        "dateModified": "2025-12-06",
+        "publisher": {
+                "@type": "Organization",
+                "name": "HingeCraft Global",
+                "url": "https://www.hingecraft.com",
+                "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://www.hingecraft.com/logo.png"
+                }
+        }
+},
+        {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+                {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "https://www.hingecraft.com"
+                },
+                {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "AI-Driven Core Hub",
+                        "item": "https://www.hingecraft.com/a_i_-driven-core-hub.j3os0"
+                }
+        ]
+}
+    ]);
+});
+
+
+// Original page code below
 // Comprehensive SEO Optimization - A_I_ Driven Core Hub
 // JSON-LD Schema.org | 100+ Keywords | Competitive Optimization
 

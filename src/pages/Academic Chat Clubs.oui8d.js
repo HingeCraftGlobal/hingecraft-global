@@ -1,3 +1,69 @@
+// HingeCraft Global - SEO Optimized
+// Academic Chat Clubs | Research & Education Forums
+// Generated: December 6, 2025
+
+import wixSeo from 'wix-seo';
+
+$w.onReady(function () {
+    // Set page title
+    wixSeo.setTitle("Academic Chat Clubs | Research & Education Forums");
+    
+    // Set meta tags
+    wixSeo.setMetaTags([
+        { name: "description", content: "Academic Chat Clubs for researchers, educators, and students to discuss manufacturing innovation and STEM topics." },
+        { name: "keywords", content: "academic forum, research discussion, education chat, STEM forum, academic community" },
+        { name: "robots", content: "index, follow" },
+        { property: "og:title", content: "Academic Chat Clubs | Research & Education Forums" },
+        { property: "og:description", content: "Academic Chat Clubs for researchers, educators, and students to discuss manufacturing innovation and STEM topics." },
+        { property: "og:type", content: "website" },
+        { property: "og:site_name", content: "HingeCraft Global" },
+        { property: "twitter:card", content: "summary_large_image" },
+        { property: "twitter:title", content: "Academic Chat Clubs | Research & Education Forums" },
+        { property: "twitter:description", content: "Academic Chat Clubs for researchers, educators, and students to discuss manufacturing innovation and STEM topics." }
+    ]);
+    
+    // Set structured data (JSON-LD)
+    wixSeo.setStructuredData([
+        {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Academic Chat Clubs | Research & Education Forums",
+        "description": "Academic Chat Clubs for researchers, educators, and students to discuss manufacturing innovation and STEM topics.",
+        "url": "https://www.hingecraft.com/academic-chat-clubs.oui8d",
+        "inLanguage": "en-US",
+        "dateModified": "2025-12-06",
+        "publisher": {
+                "@type": "Organization",
+                "name": "HingeCraft Global",
+                "url": "https://www.hingecraft.com",
+                "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://www.hingecraft.com/logo.png"
+                }
+        }
+},
+        {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+                {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "https://www.hingecraft.com"
+                },
+                {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "Academic Chat Clubs",
+                        "item": "https://www.hingecraft.com/academic-chat-clubs.oui8d"
+                }
+        ]
+}
+    ]);
+});
+
+
+// Original page code below
 // Comprehensive SEO Optimization - Academic Chat Clubs
 // JSON-LD Schema.org | 100+ Keywords | Competitive Optimization
 

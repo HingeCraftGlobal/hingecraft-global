@@ -1,0 +1,61 @@
+{
+  "page": "New Page.ytxew.js",
+  "title": "HingeCraft Global | New Page",
+  "description": "New page on HingeCraft Global - engineering services.",
+  "keywords": [
+    "hingecraft",
+    "engineering",
+    "services"
+  ],
+  "meta_tags": {
+    "title": "HingeCraft Global | New Page",
+    "description": "New page on HingeCraft Global - engineering services.",
+    "keywords": "hingecraft, engineering, services",
+    "robots": "index, follow",
+    "og:title": "HingeCraft Global | New Page",
+    "og:description": "New page on HingeCraft Global - engineering services.",
+    "og:type": "website",
+    "og:site_name": "HingeCraft Global",
+    "twitter:card": "summary_large_image",
+    "twitter:title": "HingeCraft Global | New Page",
+    "twitter:description": "New page on HingeCraft Global - engineering services."
+  },
+  "json_ld": {
+    "page": {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "HingeCraft Global | New Page",
+      "description": "New page on HingeCraft Global - engineering services.",
+      "url": "https://www.hingecraft.com/new-page.ytxew",
+      "inLanguage": "en-US",
+      "dateModified": "2025-12-06",
+      "publisher": {
+        "@type": "Organization",
+        "name": "HingeCraft Global",
+        "url": "https://www.hingecraft.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.hingecraft.com/logo.png"
+        }
+      }
+    },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.hingecraft.com"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "HingeCraft Global",
+          "item": "https://www.hingecraft.com/new-page.ytxew"
+        }
+      ]
+    }
+  },
+  "schema_type": "WebPage"
+}

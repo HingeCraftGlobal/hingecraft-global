@@ -1,3 +1,69 @@
+// HingeCraft Global - SEO Optimized
+// HingeCraft Materials | Ethical Sourcing & Supply
+// Generated: December 6, 2025
+
+import wixSeo from 'wix-seo';
+
+$w.onReady(function () {
+    // Set page title
+    wixSeo.setTitle("HingeCraft Materials | Ethical Sourcing & Supply");
+    
+    // Set meta tags
+    wixSeo.setMetaTags([
+        { name: "description", content: "HingeCraft Materials provides ethically sourced, high-quality materials for manufacturing. Sustainable supply chain with full traceability." },
+        { name: "keywords", content: "materials sourcing, ethical materials, sustainable supply, raw materials, supply chain" },
+        { name: "robots", content: "index, follow" },
+        { property: "og:title", content: "HingeCraft Materials | Ethical Sourcing & Supply" },
+        { property: "og:description", content: "HingeCraft Materials provides ethically sourced, high-quality materials for manufacturing. Sustainable supply chain with full traceability." },
+        { property: "og:type", content: "website" },
+        { property: "og:site_name", content: "HingeCraft Global" },
+        { property: "twitter:card", content: "summary_large_image" },
+        { property: "twitter:title", content: "HingeCraft Materials | Ethical Sourcing & Supply" },
+        { property: "twitter:description", content: "HingeCraft Materials provides ethically sourced, high-quality materials for manufacturing. Sustainable supply chain with full traceability." }
+    ]);
+    
+    // Set structured data (JSON-LD)
+    wixSeo.setStructuredData([
+        {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "HingeCraft Materials | Ethical Sourcing & Supply",
+        "description": "HingeCraft Materials provides ethically sourced, high-quality materials for manufacturing. Sustainable supply chain with full traceability.",
+        "url": "https://www.hingecraft.com/hc-materials.fc8xk",
+        "inLanguage": "en-US",
+        "dateModified": "2025-12-06",
+        "publisher": {
+                "@type": "Organization",
+                "name": "HingeCraft Global",
+                "url": "https://www.hingecraft.com",
+                "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://www.hingecraft.com/logo.png"
+                }
+        }
+},
+        {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+                {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "https://www.hingecraft.com"
+                },
+                {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "HingeCraft Materials",
+                        "item": "https://www.hingecraft.com/hc-materials.fc8xk"
+                }
+        ]
+}
+    ]);
+});
+
+
+// Original page code below
 // Comprehensive SEO Optimization - HC Materials
 // JSON-LD Schema.org | 100+ Keywords | Competitive Optimization
 

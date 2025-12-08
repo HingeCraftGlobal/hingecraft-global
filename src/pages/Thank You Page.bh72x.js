@@ -1,3 +1,69 @@
+// HingeCraft Global - SEO Optimized
+// Thank You | Order Confirmed
+// Generated: December 6, 2025
+
+import wixSeo from 'wix-seo';
+
+$w.onReady(function () {
+    // Set page title
+    wixSeo.setTitle("Thank You | Order Confirmed");
+    
+    // Set meta tags
+    wixSeo.setMetaTags([
+        { name: "description", content: "Thank you for your HingeCraft order! Your transaction is confirmed. Check your email for order details and tracking information." },
+        { name: "keywords", content: "order confirmation, thank you, purchase complete, order success, confirmation" },
+        { name: "robots", content: "index, follow" },
+        { property: "og:title", content: "Thank You | Order Confirmed" },
+        { property: "og:description", content: "Thank you for your HingeCraft order! Your transaction is confirmed. Check your email for order details and tracking information." },
+        { property: "og:type", content: "website" },
+        { property: "og:site_name", content: "HingeCraft Global" },
+        { property: "twitter:card", content: "summary_large_image" },
+        { property: "twitter:title", content: "Thank You | Order Confirmed" },
+        { property: "twitter:description", content: "Thank you for your HingeCraft order! Your transaction is confirmed. Check your email for order details and tracking information." }
+    ]);
+    
+    // Set structured data (JSON-LD)
+    wixSeo.setStructuredData([
+        {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Thank You | Order Confirmed",
+        "description": "Thank you for your HingeCraft order! Your transaction is confirmed. Check your email for order details and tracking information.",
+        "url": "https://www.hingecraft.com/thank-you-page.bh72x",
+        "inLanguage": "en-US",
+        "dateModified": "2025-12-06",
+        "publisher": {
+                "@type": "Organization",
+                "name": "HingeCraft Global",
+                "url": "https://www.hingecraft.com",
+                "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://www.hingecraft.com/logo.png"
+                }
+        }
+},
+        {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+                {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "https://www.hingecraft.com"
+                },
+                {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "Thank You",
+                        "item": "https://www.hingecraft.com/thank-you-page.bh72x"
+                }
+        ]
+}
+    ]);
+});
+
+
+// Original page code below
 // Comprehensive SEO Optimization - Thank You Page
 // JSON-LD Schema.org | 100+ Keywords | Competitive Optimization
 

@@ -1,3 +1,69 @@
+// HingeCraft Global - SEO Optimized
+// AI Business Dashboard | HingeCraft Analytics
+// Generated: December 6, 2025
+
+import wixSeo from 'wix-seo';
+
+$w.onReady(function () {
+    // Set page title
+    wixSeo.setTitle("AI Business Dashboard | HingeCraft Analytics");
+    
+    // Set meta tags
+    wixSeo.setMetaTags([
+        { name: "description", content: "Access HingeCraft's AI-powered Business Dashboard for real-time analytics, predictive insights, and intelligent manufacturing optimization." },
+        { name: "keywords", content: "AI dashboard, business analytics, predictive analytics, manufacturing AI, real-time insights" },
+        { name: "robots", content: "index, follow" },
+        { property: "og:title", content: "AI Business Dashboard | HingeCraft Analytics" },
+        { property: "og:description", content: "Access HingeCraft's AI-powered Business Dashboard for real-time analytics, predictive insights, and intelligent manufacturing optimization." },
+        { property: "og:type", content: "website" },
+        { property: "og:site_name", content: "HingeCraft Global" },
+        { property: "twitter:card", content: "summary_large_image" },
+        { property: "twitter:title", content: "AI Business Dashboard | HingeCraft Analytics" },
+        { property: "twitter:description", content: "Access HingeCraft's AI-powered Business Dashboard for real-time analytics, predictive insights, and intelligent manufacturing optimization." }
+    ]);
+    
+    // Set structured data (JSON-LD)
+    wixSeo.setStructuredData([
+        {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "AI Business Dashboard | HingeCraft Analytics",
+        "description": "Access HingeCraft's AI-powered Business Dashboard for real-time analytics, predictive insights, and intelligent manufacturing optimization.",
+        "url": "https://www.hingecraft.com/a_i_-business-dashboard.kc69j",
+        "inLanguage": "en-US",
+        "dateModified": "2025-12-06",
+        "publisher": {
+                "@type": "Organization",
+                "name": "HingeCraft Global",
+                "url": "https://www.hingecraft.com",
+                "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://www.hingecraft.com/logo.png"
+                }
+        }
+},
+        {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+                {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "https://www.hingecraft.com"
+                },
+                {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "AI Business Dashboard",
+                        "item": "https://www.hingecraft.com/a_i_-business-dashboard.kc69j"
+                }
+        ]
+}
+    ]);
+});
+
+
+// Original page code below
 // Comprehensive SEO Optimization - A_I_ Business Dashboard
 // JSON-LD Schema.org | 100+ Keywords | Competitive Optimization
 

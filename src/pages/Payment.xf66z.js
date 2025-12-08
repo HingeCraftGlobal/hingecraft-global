@@ -1,3 +1,69 @@
+// HingeCraft Global - SEO Optimized
+// Payment | Secure Transaction Processing
+// Generated: December 6, 2025
+
+import wixSeo from 'wix-seo';
+
+$w.onReady(function () {
+    // Set page title
+    wixSeo.setTitle("Payment | Secure Transaction Processing");
+    
+    // Set meta tags
+    wixSeo.setMetaTags([
+        { name: "description", content: "Complete your payment securely with HingeCraft. We accept all major payment methods with encrypted, PCI-compliant processing." },
+        { name: "keywords", content: "payment, secure transaction, payment processing, credit card, online payment" },
+        { name: "robots", content: "index, follow" },
+        { property: "og:title", content: "Payment | Secure Transaction Processing" },
+        { property: "og:description", content: "Complete your payment securely with HingeCraft. We accept all major payment methods with encrypted, PCI-compliant processing." },
+        { property: "og:type", content: "website" },
+        { property: "og:site_name", content: "HingeCraft Global" },
+        { property: "twitter:card", content: "summary_large_image" },
+        { property: "twitter:title", content: "Payment | Secure Transaction Processing" },
+        { property: "twitter:description", content: "Complete your payment securely with HingeCraft. We accept all major payment methods with encrypted, PCI-compliant processing." }
+    ]);
+    
+    // Set structured data (JSON-LD)
+    wixSeo.setStructuredData([
+        {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Payment | Secure Transaction Processing",
+        "description": "Complete your payment securely with HingeCraft. We accept all major payment methods with encrypted, PCI-compliant processing.",
+        "url": "https://www.hingecraft.com/payment.xf66z",
+        "inLanguage": "en-US",
+        "dateModified": "2025-12-06",
+        "publisher": {
+                "@type": "Organization",
+                "name": "HingeCraft Global",
+                "url": "https://www.hingecraft.com",
+                "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://www.hingecraft.com/logo.png"
+                }
+        }
+},
+        {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+                {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "https://www.hingecraft.com"
+                },
+                {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "Payment",
+                        "item": "https://www.hingecraft.com/payment.xf66z"
+                }
+        ]
+}
+    ]);
+});
+
+
+// Original page code below
 // Comprehensive SEO Optimization - Payment
 // JSON-LD Schema.org | 100+ Keywords | Competitive Optimization
 

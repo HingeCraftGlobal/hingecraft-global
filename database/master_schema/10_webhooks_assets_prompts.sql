@@ -129,3 +129,76 @@ COMMENT ON TABLE audit_logs IS 'Immutable audit trail for all operations';
 
 
 
+
+
+
+
+-- ============================================
+-- TRIGGERS
+-- ============================================
+
+-- Auto-update updated_at timestamp for webhooks
+CREATE TRIGGER trigger_webhooks_updated_at
+    BEFORE UPDATE ON webhooks
+    FOR EACH ROW
+    WHEN (OLD.updated_at IS DISTINCT FROM NEW.updated_at OR OLD."_updatedDate" IS DISTINCT FROM NEW."_updatedDate")
+    EXECUTE FUNCTION update_updated_at_column();
+
+-- Audit logging trigger for webhooks
+CREATE TRIGGER trigger_webhooks_audit
+    AFTER INSERT OR UPDATE OR DELETE ON webhooks
+    FOR EACH ROW
+    EXECUTE FUNCTION log_audit_event();
+
+-- Auto-update updated_at timestamp for assets
+CREATE TRIGGER trigger_assets_updated_at
+    BEFORE UPDATE ON assets
+    FOR EACH ROW
+    WHEN (OLD.updated_at IS DISTINCT FROM NEW.updated_at OR OLD."_updatedDate" IS DISTINCT FROM NEW."_updatedDate")
+    EXECUTE FUNCTION update_updated_at_column();
+
+-- Audit logging trigger for assets
+CREATE TRIGGER trigger_assets_audit
+    AFTER INSERT OR UPDATE OR DELETE ON assets
+    FOR EACH ROW
+    EXECUTE FUNCTION log_audit_event();
+
+-- Auto-update updated_at timestamp for prompt_runs
+CREATE TRIGGER trigger_prompt_runs_updated_at
+    BEFORE UPDATE ON prompt_runs
+    FOR EACH ROW
+    WHEN (OLD.updated_at IS DISTINCT FROM NEW.updated_at OR OLD."_updatedDate" IS DISTINCT FROM NEW."_updatedDate")
+    EXECUTE FUNCTION update_updated_at_column();
+
+-- Audit logging trigger for prompt_runs
+CREATE TRIGGER trigger_prompt_runs_audit
+    AFTER INSERT OR UPDATE OR DELETE ON prompt_runs
+    FOR EACH ROW
+    EXECUTE FUNCTION log_audit_event();
+
+-- Auto-update updated_at timestamp for prompt_templates
+CREATE TRIGGER trigger_prompt_templates_updated_at
+    BEFORE UPDATE ON prompt_templates
+    FOR EACH ROW
+    WHEN (OLD.updated_at IS DISTINCT FROM NEW.updated_at OR OLD."_updatedDate" IS DISTINCT FROM NEW."_updatedDate")
+    EXECUTE FUNCTION update_updated_at_column();
+
+-- Audit logging trigger for prompt_templates
+CREATE TRIGGER trigger_prompt_templates_audit
+    AFTER INSERT OR UPDATE OR DELETE ON prompt_templates
+    FOR EACH ROW
+    EXECUTE FUNCTION log_audit_event();
+
+-- Auto-update updated_at timestamp for audit_logs
+CREATE TRIGGER trigger_audit_logs_updated_at
+    BEFORE UPDATE ON audit_logs
+    FOR EACH ROW
+    WHEN (OLD.updated_at IS DISTINCT FROM NEW.updated_at OR OLD."_updatedDate" IS DISTINCT FROM NEW."_updatedDate")
+    EXECUTE FUNCTION update_updated_at_column();
+
+-- Audit logging trigger for audit_logs
+CREATE TRIGGER trigger_audit_logs_audit
+    AFTER INSERT OR UPDATE OR DELETE ON audit_logs
+    FOR EACH ROW
+    EXECUTE FUNCTION log_audit_event();
+

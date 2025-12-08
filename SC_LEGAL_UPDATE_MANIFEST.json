@@ -1,0 +1,105 @@
+{
+  "updated": [
+    [
+      "02-Operating-Agreement-Bylaws.html",
+      "Corporate Bylaws_fe19a_js.tr26u.js"
+    ],
+    [
+      "03-Stakeholder-Ethos-Ethics-Charter.html",
+      "Ethos.e4ras.js"
+    ],
+    [
+      "06-Corporate-Social-Responsibility-Compliance.html",
+      "Corporate Social Responsibility_9751a_js.auj04.js"
+    ],
+    [
+      "07-Universal-Terms-of-Service.html",
+      "Terms Of Service.vgoal.js"
+    ],
+    [
+      "08-End-User-License-Agreement.html",
+      "End User License Agreement_8b2b2_js.k0kt5.js"
+    ],
+    [
+      "09-Acceptable-Use-Safety-Policy.html",
+      "Acceptable Use Policy_f6c46_js.htlsm.js"
+    ],
+    [
+      "12-Privacy-Policy-GDPR-CCPA-COPPA.html",
+      "Privacy Policy.wp2xl.js"
+    ],
+    [
+      "13-Data-Processing-Agreement.html",
+      "Data Processing Agreement_a21d6_js.c9lo8.js"
+    ],
+    [
+      "15-AI-Training-Use-Consent.html",
+      "AI Training Consent_70d20_js.pl3ff.js"
+    ],
+    [
+      "16-Refunds-Warranty-Return-Policy.html",
+      "Refunds Warranty Policy_0afd3_js.o6f0e.js"
+    ],
+    [
+      "17-Intellectual-Property-Creator-Licensing.html",
+      "Licensing Agreement_6f500_js.g2cna.js"
+    ],
+    [
+      "18-Community-Code-of-Conduct.html",
+      "Community Code of Conduct_7fd4f_js.hh404.js"
+    ],
+    [
+      "20-Membership-Terms-Rights.html",
+      "Membership Terms Rights_480dc_js.uhgf0.js"
+    ],
+    [
+      "24-AI-Safety-Bias-Governance.html",
+      "AI Safety Governance_f4e07_js.f8x76.js"
+    ],
+    [
+      "25-Algorithmic-Transparency-Accountability.html",
+      "Algorithmic Transparency_0173c_js.azbxk.js"
+    ],
+    [
+      "27-Attribution-Distribution-Derivative-Rights.html",
+      "Attribution Derivative Rights_d6bca_js.bzocp.js"
+    ],
+    [
+      "28-Academic-Integrity-Institutional-Use.html",
+      "Academic Integrity Policy_c1c5d_js.za1av.js"
+    ],
+    [
+      "29-Sensitive-Data-Youth-Consent.html",
+      "Sensitive Data Consent_68e80_js.gpfrg.js"
+    ],
+    [
+      "30-Global-Compliance-Framework.html",
+      "Global Compliance Framework_21d9c_js.a0hnk.js"
+    ],
+    [
+      "31-Cross-Border-Data-Transfer-Hosting.html",
+      "CrossBorder Data Transfer_17eea_js.onmtb.js"
+    ],
+    [
+      "32-Charter-of-Abundance-Resilience-Governance.html",
+      "Charter of Abundance Invitation.pa3z2.js"
+    ]
+  ],
+  "skipped": [
+    "01-Corporate-Formation-Charter.html",
+    "04-Board-Member-Agreement.html",
+    "05-Corporate-Risk-Register-Mitigation-Protocol.html",
+    "10-Export-Compliance-ITAR-EAR.html",
+    "11-Service-Level-Agreement.html",
+    "14-Cookie-Tracking-Policy.html",
+    "19-Product-Liability-Safety-Disclosure.html",
+    "21-Manufacturing-Production-Agreement.html",
+    "22-Marketplace-Merchant-Agreement.html",
+    "23-Materials-Sourcing-Ethical-Compliance.html",
+    "26-Digital-Asset-NFT-Ownership.html",
+    "33-Pledge-Participation-Collective-Impact.html",
+    "34-Employee-Handbook-Policies.html"
+  ],
+  "errors": [],
+  "timestamp": "2025-12-06"
+}

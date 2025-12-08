@@ -1,0 +1,63 @@
+{
+  "page": "legal/22_Marketplace_Merchant_Agreement_SC.js",
+  "title": "Marketplace Merchant Agreement | HingeCraft Sellers",
+  "description": "HingeCraft Marketplace Merchant Agreement - terms for sellers on our platform including commissions and fulfillment.",
+  "keywords": [
+    "merchant agreement",
+    "marketplace terms",
+    "seller agreement",
+    "platform terms",
+    "merchant terms"
+  ],
+  "meta_tags": {
+    "title": "Marketplace Merchant Agreement | HingeCraft Sellers",
+    "description": "HingeCraft Marketplace Merchant Agreement - terms for sellers on our platform including commissions and fulfillment.",
+    "keywords": "merchant agreement, marketplace terms, seller agreement, platform terms, merchant terms",
+    "robots": "index, follow",
+    "og:title": "Marketplace Merchant Agreement | HingeCraft Sellers",
+    "og:description": "HingeCraft Marketplace Merchant Agreement - terms for sellers on our platform including commissions and fulfillment.",
+    "og:type": "website",
+    "og:site_name": "HingeCraft Global",
+    "twitter:card": "summary_large_image",
+    "twitter:title": "Marketplace Merchant Agreement | HingeCraft Sellers",
+    "twitter:description": "HingeCraft Marketplace Merchant Agreement - terms for sellers on our platform including commissions and fulfillment."
+  },
+  "json_ld": {
+    "page": {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Marketplace Merchant Agreement | HingeCraft Sellers",
+      "description": "HingeCraft Marketplace Merchant Agreement - terms for sellers on our platform including commissions and fulfillment.",
+      "url": "https://www.hingecraft.com/legal/22_marketplace_merchant_agreement_sc",
+      "inLanguage": "en-US",
+      "dateModified": "2025-12-06",
+      "publisher": {
+        "@type": "Organization",
+        "name": "HingeCraft Global",
+        "url": "https://www.hingecraft.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.hingecraft.com/logo.png"
+        }
+      }
+    },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.hingecraft.com"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Marketplace Merchant Agreement",
+          "item": "https://www.hingecraft.com/legal/22_marketplace_merchant_agreement_sc"
+        }
+      ]
+    }
+  },
+  "schema_type": "WebPage"
+}

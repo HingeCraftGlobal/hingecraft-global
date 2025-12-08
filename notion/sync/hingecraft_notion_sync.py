@@ -53,7 +53,10 @@ load_dotenv()
 
 # Configuration
 NOTION_TOKEN = os.getenv("NOTION_TOKEN", "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")
-PARENT_PAGE = os.getenv("NOTION_PARENT_PAGE_ID", "2c1993783a3480e7b13be279941b67e0")
+# Primary Notion Page ID (Ferguson-System Sync Blueprint)
+PARENT_PAGE = os.getenv("NOTION_PARENT_PAGE_ID", "19ad872b-594c-81d7-b4fd-00024322280f")
+# Legacy/Alternative Notion Page ID (if needed)
+LEGACY_PARENT_PAGE = os.getenv("NOTION_LEGACY_PAGE_ID", "2c1993783a3480e7b13be279941b67e0")
 HINGECRAFT_DB_PATH = os.getenv("HINGECRAFT_DB_PATH", "../database")
 CURSOR_WORKSPACE = os.getenv("CURSOR_WORKSPACE_PATH", "../")
 SYNC_INTERVAL = int(os.getenv("SYNC_INTERVAL", "60"))

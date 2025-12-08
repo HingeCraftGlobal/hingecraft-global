@@ -1,586 +1,509 @@
-// Comprehensive SEO Optimization - Community Code of Conduct_7fd4f_js
-// JSON-LD Schema.org | 100+ Keywords | Competitive Optimization
+// HingeCraft Global, LLC - Legal Document
+// Community Code Of Conduct
+// State of South Carolina | December 6, 2025
+// Auto-generated - All URLs are HTTPS only
+
+import wixSeo from 'wix-seo';
 
 $w.onReady(function () {
-    if (typeof document !== 'undefined') {
-        // Page Title
-        document.title = 'Community Code of Conduct | HingeCraft Global';
-        
-        // Meta Description
-        let metaDesc = document.querySelector('meta[name="description"]');
-        if (!metaDesc) {
-            metaDesc = document.createElement('meta');
-            metaDesc.setAttribute('name', 'description');
-            document.head.appendChild(metaDesc);
-        }
-        metaDesc.setAttribute('content', 'HingeCraft Global Community Code of Conduct - Gen-Z aligned community rules, moderation policies, and safety guidelines');
-        
-        // Meta Keywords
-        let metaKeywords = document.querySelector('meta[name="keywords"]');
-        if (!metaKeywords) {
-            metaKeywords = document.createElement('meta');
-            metaKeywords.setAttribute('name', 'keywords');
-            document.head.appendChild(metaKeywords);
-        }
-        metaKeywords.setAttribute('content', 'charter of abundance, community resilience, terms of service, community code of conduct, community guidelines, code of conduct, hingecraft, hingecraft global, resilient design');
-        
-        // Open Graph Tags
-        const ogTags = {
-            'og:title': 'Community Code of Conduct | HingeCraft Global',
-            'og:description': 'HingeCraft Global Community Code of Conduct - Gen-Z aligned community rules, moderation policies, and safety guidelines',
-            'og:image': 'https://hingecraft-global.ai/og-image.jpg',
-            'og:url': 'https://hingecraft-global.ai/legal/27-community-code-of-conduct',
-            'og:type': 'website',
-            'og:site_name': 'HingeCraft Global'
-        };
-        
-        Object.keys(ogTags).forEach(prop => {
-            let ogMeta = document.querySelector(`meta[property="${prop}"]`);
-            if (!ogMeta) {
-                ogMeta = document.createElement('meta');
-                ogMeta.setAttribute('property', prop);
-                document.head.appendChild(ogMeta);
-            }
-            ogMeta.setAttribute('content', ogTags[prop]);
-        });
-        
-        // Twitter Card Tags
-        const twitterTags = {
-            'twitter:card': 'summary_large_image',
-            'twitter:title': 'Community Code of Conduct | HingeCraft Global',
-            'twitter:description': 'HingeCraft Global Community Code of Conduct - Gen-Z aligned community rules, moderation policies, and safety guidelines',
-            'twitter:image': 'https://hingecraft-global.ai/og-image.jpg'
-        };
-        
-        Object.keys(twitterTags).forEach(name => {
-            let twitterMeta = document.querySelector(`meta[name="${name}"]`);
-            if (!twitterMeta) {
-                twitterMeta = document.createElement('meta');
-                twitterMeta.setAttribute('name', name);
-                document.head.appendChild(twitterMeta);
-            }
-            twitterMeta.setAttribute('content', twitterTags[name]);
-        });
-        
-        // Canonical URL
-        let canonical = document.querySelector('link[rel="canonical"]');
-        if (!canonical) {
-            canonical = document.createElement('link');
-            canonical.setAttribute('rel', 'canonical');
-            document.head.appendChild(canonical);
-        }
-        canonical.setAttribute('href', 'https://hingecraft-global.ai/legal/27-community-code-of-conduct');
-        
-        // Robots Meta
-        let robots = document.querySelector('meta[name="robots"]');
-        if (!robots) {
-            robots = document.createElement('meta');
-            robots.setAttribute('name', 'robots');
-            document.head.appendChild(robots);
-        }
-        robots.setAttribute('content', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
-        
-        // Additional Meta Tags
-        const additionalTags = {
-            'author': 'HingeCraft Global',
-            'language': 'en-US',
-            'revisit-after': '7 days',
-            'distribution': 'global',
-            'rating': 'general'
-        };
-        
-        Object.keys(additionalTags).forEach(name => {
-            let meta = document.querySelector(`meta[name="${name}"]`);
-            if (!meta) {
-                meta = document.createElement('meta');
-                meta.setAttribute('name', name);
-                document.head.appendChild(meta);
-            }
-            meta.setAttribute('content', additionalTags[name]);
-        });
-        
-        // Schema.org JSON-LD Structured Data
-        let schemaScript = document.querySelector('script[type="application/ld+json"]');
-        if (!schemaScript) {
-            schemaScript = document.createElement('script');
-            schemaScript.setAttribute('type', 'application/ld+json');
-            document.head.appendChild(schemaScript);
-        }
-        schemaScript.textContent = `{
-  "@context": "https://schema.org",
-  "@type": "LegalDocument",
-  "name": "Community Code of Conduct | HingeCraft Global",
-  "description": "HingeCraft Global Community Code of Conduct - Gen-Z aligned community rules, moderation policies, and safety guidelines",
-  "url": "https://hingecraft-global.ai/legal/27-community-code-of-conduct",
-  "publisher": {
-    "@type": "Organization",
-    "name": "HingeCraft Global",
-    "url": "https://hingecraft-global.ai",
-    "logo": "https://hingecraft-global.ai/logo.png"
-  },
-  "datePublished": "2025-12-05",
-  "dateModified": "2025-12-05",
-  "inLanguage": "en-US",
-  "keywords": "charter of abundance, community resilience, terms of service, community code of conduct, community guidelines, code of conduct, hingecraft, hingecraft global, resilient design"
-}`;
-    }
-
-    // Load Legal Page HTML Content
-    function loadLegalPageContent() {
-        const htmlElement = $w('#legalContent');
-        if (htmlElement) {
-            const htmlContent = `<body class="bg-slate-50">
-<section class="hero-gradient text-white py-12 px-6">
-<div class="max-w-4xl mx-auto text-center">
-<h1 class="text-4xl font-bold mb-4">Community Code of Conduct</h1>
-<p class="text-lg opacity-90">HINGECRAFT GLOBAL, INC.</p>
-<p class="text-sm opacity-75 mt-2">Gen-Z Aligned Rules, Moderation, Safety</p>
-</div>
-</section>
-<main class="max-w-4xl mx-auto px-6 py-16">
-<div class="prose max-w-none bg-white p-8 rounded-lg shadow-sm">
-<h2>COMMUNITY CODE OF CONDUCT</h2>
-<p>This Code of Conduct establishes expectations for respectful, inclusive, and safe participation in the HingeCraft Global community.</p>
-<h2>I. OUR VALUES</h2>
-<ul>
-<li><strong>Respect:</strong> Treat everyone with dignity</li>
-<li><strong>Inclusion:</strong> Welcome diverse perspectives</li>
-<li><strong>Safety:</strong> Create safe spaces</li>
-<li><strong>Integrity:</strong> Be honest and authentic</li>
-<li><strong>Collaboration:</strong> Work together constructively</li>
-</ul>
-<h2>II. EXPECTED BEHAVIOR</h2>
-<ul>
-<li>Be respectful and kind</li>
-<li>Listen to different viewpoints</li>
-<li>Give constructive feedback</li>
-<li>Help others learn</li>
-<li>Celebrate diversity</li>
-<li>Take responsibility for your actions</li>
-</ul>
-<h2>III. PROHIBITED BEHAVIOR</h2>
-<p>Do not:</p>
-<ul>
-<li>Harass, bully, or threaten</li>
-<li>Discriminate or use hate speech</li>
-<li>Share harmful or illegal content</li>
-<li>Spam or self-promote excessively</li>
-<li>Impersonate others</li>
-<li>Violate privacy</li>
-</ul>
-<h2>IV. MODERATION</h2>
-<p>Moderators may:</p>
-<ul>
-<li>Remove violating content</li>
-<li>Warn or suspend accounts</li>
-<li>Ban repeat offenders</li>
-<li>Report to authorities when necessary</li>
-</ul>
-<h2>V. REPORTING</h2>
-<p>Report violations to: <a href="mailto:community@hingecraft-global.ai">community@hingecraft-global.ai</a></p>
-<p>All reports are reviewed confidentially.</p>
-<h2>VI. CONSEQUENCES</h2>
-<p>Violations may result in:</p>
-<ul>
-<li>Warning</li>
-<li>Temporary suspension</li>
-<li>Permanent ban</li>
-<li>Legal action if warranted</li>
-</ul>
-<div class="mt-8 pt-8 border-t border-gray-200">
-<p class="text-sm text-gray-600">Last Updated: December 4, 2025</p>
-<p class="text-sm text-gray-600">For questions about this document, please contact: <a class="text-purple-700 hover:underline" href="mailto:legal@hingecraft-global.ai">legal@hingecraft-global.ai</a></p>
-</div>
-</div>
-<div class="mt-6 flex flex-wrap items-center gap-6 text-sm text-gray-600">
-<div class="flex items-center gap-2">
-<svg class="w-5 h-5 text-green-600" fill="currentColor" viewbox="0 0 20 20">
-<path clip-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" fill-rule="evenodd"></path>
-</svg>
-<span>GDPR Compliant</span>
-</div>
-<div class="flex items-center gap-2">
-<svg class="w-5 h-5 text-green-600" fill="currentColor" viewbox="0 0 20 20">
-<path clip-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" fill-rule="evenodd"></path>
-</svg>
-<span>CCPA Compliant</span>
-</div>
-<div class="flex items-center gap-2">
-<svg class="w-5 h-5 text-green-600" fill="currentColor" viewbox="0 0 20 20">
-<path clip-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" fill-rule="evenodd"></path>
-</svg>
-<span>Secure &amp; Encrypted</span>
-</div>
-</div>
-</main>
-<footer class="bg-gray-900 text-white py-12 px-6 mt-16">
-<div class="max-w-4xl mx-auto text-center">
-<p class="mb-4">© 2025 HingeCraft Global. All rights reserved.</p>
-<p class="text-gray-400 text-sm">
-<a class="hover:text-white" href="/legal">Legal</a> | 
-        <a class="hover:text-white" href="/privacy">Privacy</a> | 
-        <a class="hover:text-white" href="/terms">Terms</a>
-</p>
-</div>
-</footer>
-</body>`;
-            htmlElement.html = htmlContent;
-            console.log('Legal page content loaded successfully');
-        } else {
-            console.log('Legal content element not found. Add HTML element with ID: legalContent');
-        }
-    }
+    // Set SEO
+    wixSeo.setTitle("Community Code Of Conduct | HingeCraft Global");
+    wixSeo.setMetaTags([
+        { name: "description", content: "Community Code Of Conduct - HingeCraft Global, LLC legal document for South Carolina" },
+        { name: "robots", content: "index, follow" },
+        { property: "og:title", content: "Community Code Of Conduct | HingeCraft Global" },
+        { property: "og:type", content: "website" }
+    ]);
     
-    loadLegalPageContent();
-
+    // Load legal document content
+    loadLegalContent();
 });
 
+function loadLegalContent() {
+    const legalContent = `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Code of Conduct - HingeCraft Global, LLC</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Times New Roman', Times, serif; font-size: 12pt; line-height: 1.6; color: #000; background: #fff; max-width: 8.5in; margin: 0 auto; padding: 1in; }
+        h1 { font-size: 18pt; font-weight: bold; text-align: center; margin-bottom: 24pt; text-transform: uppercase; border-bottom: 2px solid #000; padding-bottom: 12pt; }
+        h2 { font-size: 14pt; font-weight: bold; margin-top: 24pt; margin-bottom: 12pt; text-transform: uppercase; }
+        h3 { font-size: 12pt; font-weight: bold; margin-top: 18pt; margin-bottom: 9pt; }
+        p { margin-bottom: 12pt; text-align: justify; }
+        ul, ol { margin-left: 36pt; margin-bottom: 12pt; }
+        li { margin-bottom: 6pt; }
+        .header { text-align: center; margin-bottom: 36pt; }
+        .company-name { font-size: 16pt; font-weight: bold; }
+        .footer { margin-top: 48pt; padding-top: 12pt; border-top: 1px solid #000; font-size: 10pt; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="company-name">HINGECRAFT GLOBAL, LLC</div>
+        <h1>COMMUNITY CODE OF CONDUCT</h1>
+        <p>Effective Date: _________________, 20____<br>State of South Carolina</p>
+    </div>
 
-$w.onReady(function () {
-    if (typeof document !== 'undefined') {
-        // Page Title
-        document.title = 'Community Code of Conduct_7fd4f_js | HingeCraft Global';
-        
-        // Meta Description
-        let metaDesc = document.querySelector('meta[name="description"]');
-        if (!metaDesc) {
-            metaDesc = document.createElement('meta');
-            metaDesc.setAttribute('name', 'description');
-            document.head.appendChild(metaDesc);
+    <h2>1. PURPOSE AND SCOPE</h2>
+    
+    <p><strong>1.1 Purpose.</strong> This Community Code of Conduct ("Code") establishes the standards of behavior expected of all participants in the HingeCraft community. We are committed to providing a welcoming, inclusive, and respectful environment for everyone.</p>
+    
+    <p><strong>1.2 Scope.</strong> This Code applies to all HingeCraft community spaces, including:</p>
+    <ul>
+        <li>(a) HingeCraft website forums and discussion boards;</li>
+        <li>(b) Social media channels and groups;</li>
+        <li>(c) Email lists and newsletters;</li>
+        <li>(d) In-person events, trade shows, and meetups;</li>
+        <li>(e) Online events, webinars, and virtual gatherings;</li>
+        <li>(f) Customer support interactions;</li>
+        <li>(g) Any other space designated as a HingeCraft community space.</li>
+    </ul>
+    
+    <p><strong>1.3 Participants.</strong> This Code applies to all community participants, including customers, partners, suppliers, employees, contractors, and any other individuals engaging with the HingeCraft community.</p>
+
+    <h2>2. OUR VALUES</h2>
+    
+    <p>The HingeCraft community is built on the following values:</p>
+    <ul>
+        <li><strong>Respect:</strong> We treat everyone with dignity and respect.</li>
+        <li><strong>Inclusion:</strong> We welcome diverse perspectives and backgrounds.</li>
+        <li><strong>Collaboration:</strong> We work together to solve problems and share knowledge.</li>
+        <li><strong>Integrity:</strong> We act honestly and transparently.</li>
+        <li><strong>Innovation:</strong> We encourage creativity and new ideas.</li>
+        <li><strong>Professionalism:</strong> We maintain professional standards in our interactions.</li>
+    </ul>
+
+    <h2>3. EXPECTED BEHAVIOR</h2>
+    
+    <p><strong>3.1 Be Respectful.</strong> Community members should:</p>
+    <ul>
+        <li>(a) Treat all participants with courtesy and respect;</li>
+        <li>(b) Listen to and consider different viewpoints;</li>
+        <li>(c) Use welcoming and inclusive language;</li>
+        <li>(d) Respect others' time, opinions, and expertise;</li>
+        <li>(e) Give credit where credit is due;</li>
+        <li>(f) Accept constructive criticism gracefully.</li>
+    </ul>
+    
+    <p><strong>3.2 Be Professional.</strong> Community members should:</p>
+    <ul>
+        <li>(a) Keep discussions on-topic and relevant;</li>
+        <li>(b) Communicate clearly and constructively;</li>
+        <li>(c) Share accurate and helpful information;</li>
+        <li>(d) Respect intellectual property rights;</li>
+        <li>(e) Maintain confidentiality when appropriate;</li>
+        <li>(f) Represent HingeCraft products and services accurately.</li>
+    </ul>
+    
+    <p><strong>3.3 Be Helpful.</strong> Community members should:</p>
+    <ul>
+        <li>(a) Share knowledge and experience to help others;</li>
+        <li>(b) Answer questions thoughtfully and completely;</li>
+        <li>(c) Provide constructive feedback;</li>
+        <li>(d) Support newcomers and less experienced members;</li>
+        <li>(e) Contribute positively to discussions;</li>
+        <li>(f) Report issues and problems constructively.</li>
+    </ul>
+    
+    <p><strong>3.4 Be Responsible.</strong> Community members should:</p>
+    <ul>
+        <li>(a) Take responsibility for their words and actions;</li>
+        <li>(b) Correct mistakes promptly;</li>
+        <li>(c) Report violations of this Code;</li>
+        <li>(d) Comply with all applicable laws and regulations;</li>
+        <li>(e) Protect their own and others' personal information;</li>
+        <li>(f) Use community resources appropriately.</li>
+    </ul>
+
+    <h2>4. PROHIBITED BEHAVIOR</h2>
+    
+    <p><strong>4.1 Harassment.</strong> The following behavior is prohibited:</p>
+    <ul>
+        <li>(a) Offensive comments related to race, ethnicity, national origin, religion, gender, gender identity, sexual orientation, age, disability, or physical appearance;</li>
+        <li>(b) Sexual harassment, including unwelcome sexual attention or advances;</li>
+        <li>(c) Deliberate intimidation, stalking, or following;</li>
+        <li>(d) Threats of violence or incitement of violence;</li>
+        <li>(e) Publishing others' private information without permission ("doxxing");</li>
+        <li>(f) Continued one-on-one communication after being asked to stop;</li>
+        <li>(g) Any other conduct that creates a hostile environment.</li>
+    </ul>
+    
+    <p><strong>4.2 Disruptive Behavior.</strong> The following behavior is prohibited:</p>
+    <ul>
+        <li>(a) Trolling, insulting, or derogatory comments;</li>
+        <li>(b) Personal or political attacks;</li>
+        <li>(c) Sustained disruption of discussions or events;</li>
+        <li>(d) Spam, off-topic content, or excessive self-promotion;</li>
+        <li>(e) Impersonating others or misrepresenting affiliation;</li>
+        <li>(f) Creating multiple accounts to evade bans;</li>
+        <li>(g) Interfering with community moderation.</li>
+    </ul>
+    
+    <p><strong>4.3 Illegal and Unethical Conduct.</strong> The following behavior is prohibited:</p>
+    <ul>
+        <li>(a) Sharing illegal content;</li>
+        <li>(b) Infringing intellectual property rights;</li>
+        <li>(c) Sharing malware or malicious links;</li>
+        <li>(d) Phishing or attempting to obtain credentials;</li>
+        <li>(e) Fraud or deceptive practices;</li>
+        <li>(f) Violating export control laws;</li>
+        <li>(g) Any other illegal activity.</li>
+    </ul>
+    
+    <p><strong>4.4 Commercial Misuse.</strong> The following behavior is prohibited:</p>
+    <ul>
+        <li>(a) Unsolicited advertising or promotion;</li>
+        <li>(b) Soliciting business from other community members inappropriately;</li>
+        <li>(c) Pyramid schemes or multi-level marketing;</li>
+        <li>(d) Selling counterfeit products;</li>
+        <li>(e) Misrepresenting products or services.</li>
+    </ul>
+
+    <h2>5. REPORTING VIOLATIONS</h2>
+    
+    <h3>5.1 How to Report</h3>
+    <p>If you experience or witness a violation of this Code, please report it:</p>
+    <ul>
+        <li>(a) Email: community@hingecraft.com;</li>
+        <li>(b) Phone: (843) 555-0100;</li>
+        <li>(c) Use the "Report" function in community platforms;</li>
+        <li>(d) Contact any community moderator.</li>
+    </ul>
+    
+    <h3>5.2 What to Include</h3>
+    <p>When reporting, please include:</p>
+    <ul>
+        <li>(a) Your contact information (optional for anonymous reports);</li>
+        <li>(b) Names or usernames of those involved;</li>
+        <li>(c) Description of the incident;</li>
+        <li>(d) Date, time, and location (online or physical);</li>
+        <li>(e) Screenshots or other evidence if available;</li>
+        <li>(f) Names of any witnesses.</li>
+    </ul>
+    
+    <h3>5.3 Confidentiality</h3>
+    <p>Reports will be handled confidentially to the extent possible. We will not disclose the identity of reporters without their consent, except as required by law.</p>
+    
+    <h3>5.4 No Retaliation</h3>
+    <p>Retaliation against anyone who reports a violation in good faith is strictly prohibited and will be treated as a separate violation.</p>
+
+    <h2>6. ENFORCEMENT</h2>
+    
+    <h3>6.1 Investigation</h3>
+    <p>Upon receiving a report, the community team will:</p>
+    <ul>
+        <li>(a) Review the report promptly;</li>
+        <li>(b) Gather additional information as needed;</li>
+        <li>(c) Determine whether a violation occurred;</li>
+        <li>(d) Decide on appropriate action.</li>
+    </ul>
+    
+    <h3>6.2 Enforcement Actions</h3>
+    <p>Depending on the severity of the violation, enforcement actions may include:</p>
+    <ul>
+        <li>(a) <strong>Warning:</strong> A private warning to the individual;</li>
+        <li>(b) <strong>Content Removal:</strong> Removal of offending content;</li>
+        <li>(c) <strong>Temporary Suspension:</strong> Temporary ban from community spaces;</li>
+        <li>(d) <strong>Permanent Ban:</strong> Permanent removal from community;</li>
+        <li>(e) <strong>Account Termination:</strong> Termination of HingeCraft accounts;</li>
+        <li>(f) <strong>Legal Action:</strong> Referral to law enforcement for illegal activity.</li>
+    </ul>
+    
+    <h3>6.3 Appeals</h3>
+    <p>Individuals subject to enforcement action may appeal by emailing appeals@hingecraft.com within 14 days. Appeals will be reviewed by a different team member.</p>
+
+    <h2>7. COMMUNITY MODERATION</h2>
+    
+    <p><strong>7.1 Moderators.</strong> Community moderators are responsible for enforcing this Code. They have the authority to remove content, warn members, and escalate issues.</p>
+    
+    <p><strong>7.2 Moderator Conduct.</strong> Moderators are also bound by this Code and must act impartially and professionally.</p>
+
+    <h2>8. SAFETY</h2>
+    
+    <p><strong>8.1 Personal Safety.</strong> For in-person events, we are committed to providing a safe environment. If you feel unsafe, contact event staff immediately.</p>
+    
+    <p><strong>8.2 Online Safety.</strong> Protect yourself online by not sharing personal information publicly and using strong passwords.</p>
+    
+    <p><strong>8.3 Emergency.</strong> In case of imminent danger, contact local emergency services (911 in the U.S.) first, then notify HingeCraft.</p>
+
+    <h2>9. ACKNOWLEDGMENT</h2>
+    
+    <p>By participating in the HingeCraft community, you acknowledge that you have read, understood, and agree to abide by this Community Code of Conduct.</p>
+
+    <h2>10. CONTACT</h2>
+    
+    <p>For questions about this Code:</p>
+    <p>HingeCraft Global, LLC<br>
+    Community Team<br>
+    123 Innovation Drive, Suite 100<br>
+    Charleston, South Carolina 29401<br>
+    Email: community@hingecraft.com<br>
+    Phone: (843) 555-0100</p>
+
+    <div class="footer">
+        <p>HingeCraft Global, LLC | 123 Innovation Drive, Suite 100, Charleston, SC 29401</p>
+        <p>Community: community@hingecraft.com | Phone: (843) 555-0100</p>
+        <p>© 2025 HingeCraft Global, LLC. All Rights Reserved.</p>
+    </div>
+</body>
+</html>
+
+`;
+    
+    // Try to find the legalContent element
+    if ($w('#legalContent')) {
+        try {
+            $w('#legalContent').html = legalContent;
+        } catch (e) {
+            console.log("HTML element not configured - content ready for manual embed");
         }
-        metaDesc.setAttribute('content', 'Community Code of Conduct_7fd4f_js - HingeCraft Global');
-        
-        // Meta Keywords
-        let metaKeywords = document.querySelector('meta[name="keywords"]');
-        if (!metaKeywords) {
-            metaKeywords = document.createElement('meta');
-            metaKeywords.setAttribute('name', 'keywords');
-            document.head.appendChild(metaKeywords);
-        }
-        metaKeywords.setAttribute('content', 'charter of abundance, community resilience, terms of service, community code of conduct, community guidelines, hingecraft, hingecraft global');
-        
-        // Open Graph Tags
-        const ogTags = {
-            'og:title': 'Community Code of Conduct_7fd4f_js | HingeCraft Global',
-            'og:description': 'Community Code of Conduct_7fd4f_js - HingeCraft Global',
-            'og:image': 'https://hingecraft-global.ai/og-image.jpg',
-            'og:url': 'https://hingecraft-global.ai/community-code-of-conduct-7fd4f-js',
-            'og:type': 'website',
-            'og:site_name': 'HingeCraft Global'
-        };
-        
-        Object.keys(ogTags).forEach(prop => {
-            let ogMeta = document.querySelector(`meta[property="${prop}"]`);
-            if (!ogMeta) {
-                ogMeta = document.createElement('meta');
-                ogMeta.setAttribute('property', prop);
-                document.head.appendChild(ogMeta);
-            }
-            ogMeta.setAttribute('content', ogTags[prop]);
-        });
-        
-        // Twitter Card Tags
-        const twitterTags = {
-            'twitter:card': 'summary_large_image',
-            'twitter:title': 'Community Code of Conduct_7fd4f_js | HingeCraft Global',
-            'twitter:description': 'Community Code of Conduct_7fd4f_js - HingeCraft Global',
-            'twitter:image': 'https://hingecraft-global.ai/og-image.jpg'
-        };
-        
-        Object.keys(twitterTags).forEach(name => {
-            let twitterMeta = document.querySelector(`meta[name="${name}"]`);
-            if (!twitterMeta) {
-                twitterMeta = document.createElement('meta');
-                twitterMeta.setAttribute('name', name);
-                document.head.appendChild(twitterMeta);
-            }
-            twitterMeta.setAttribute('content', twitterTags[name]);
-        });
-        
-        // Canonical URL
-        let canonical = document.querySelector('link[rel="canonical"]');
-        if (!canonical) {
-            canonical = document.createElement('link');
-            canonical.setAttribute('rel', 'canonical');
-            document.head.appendChild(canonical);
-        }
-        canonical.setAttribute('href', 'https://hingecraft-global.ai/community-code-of-conduct-7fd4f-js');
-        
-        // Robots Meta
-        let robots = document.querySelector('meta[name="robots"]');
-        if (!robots) {
-            robots = document.createElement('meta');
-            robots.setAttribute('name', 'robots');
-            document.head.appendChild(robots);
-        }
-        robots.setAttribute('content', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
-        
-        // Schema.org JSON-LD Structured Data
-        let schemaScript = document.querySelector('script[type="application/ld+json"]');
-        if (!schemaScript) {
-            schemaScript = document.createElement('script');
-            schemaScript.setAttribute('type', 'application/ld+json');
-            document.head.appendChild(schemaScript);
-        }
-        schemaScript.textContent = `{
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "Community Code of Conduct_7fd4f_js | HingeCraft Global",
-  "description": "Community Code of Conduct_7fd4f_js - HingeCraft Global",
-  "url": "https://hingecraft-global.ai/community-code-of-conduct-7fd4f-js",
-  "publisher": {
-    "@type": "Organization",
-    "name": "HingeCraft Global",
-    "url": "https://hingecraft-global.ai",
-    "logo": "https://hingecraft-global.ai/logo.png"
-  },
-  "datePublished": "2025-12-05",
-  "dateModified": "2025-12-05",
-  "inLanguage": "en-US",
-  "keywords": "charter of abundance, community resilience, terms of service, community code of conduct, community guidelines, hingecraft, hingecraft global"
-}`;
     }
     
-    // Load HTML content for legal pages
-    
-});
-
-
-
-
-$w.onReady(function () {
-    if (typeof document !== 'undefined') {
-        // Page Title
-        document.title = 'Community Code of Conduct_7fd4f_js | HingeCraft Global';
-        
-        // Meta Description
-        let metaDesc = document.querySelector('meta[name="description"]');
-        if (!metaDesc) {
-            metaDesc = document.createElement('meta');
-            metaDesc.setAttribute('name', 'description');
-            document.head.appendChild(metaDesc);
+    // Also try text element fallback
+    if ($w('#legalText')) {
+        try {
+            $w('#legalText').html = legalContent;
+        } catch (e) {
+            console.log("Using text element fallback");
         }
-        metaDesc.setAttribute('content', 'Community Code of Conduct_7fd4f_js - HingeCraft Global');
-        
-        // Meta Keywords
-        let metaKeywords = document.querySelector('meta[name="keywords"]');
-        if (!metaKeywords) {
-            metaKeywords = document.createElement('meta');
-            metaKeywords.setAttribute('name', 'keywords');
-            document.head.appendChild(metaKeywords);
-        }
-        metaKeywords.setAttribute('content', 'charter of abundance, community resilience, terms of service, community code of conduct, community guidelines, hingecraft, hingecraft global');
-        
-        // Open Graph Tags
-        const ogTags = {
-            'og:title': 'Community Code of Conduct_7fd4f_js | HingeCraft Global',
-            'og:description': 'Community Code of Conduct_7fd4f_js - HingeCraft Global',
-            'og:image': 'https://hingecraft-global.ai/og-image.jpg',
-            'og:url': 'https://hingecraft-global.ai/community-code-of-conduct-7fd4f-js',
-            'og:type': 'website',
-            'og:site_name': 'HingeCraft Global'
-        };
-        
-        Object.keys(ogTags).forEach(prop => {
-            let ogMeta = document.querySelector(`meta[property="${prop}"]`);
-            if (!ogMeta) {
-                ogMeta = document.createElement('meta');
-                ogMeta.setAttribute('property', prop);
-                document.head.appendChild(ogMeta);
-            }
-            ogMeta.setAttribute('content', ogTags[prop]);
-        });
-        
-        // Twitter Card Tags
-        const twitterTags = {
-            'twitter:card': 'summary_large_image',
-            'twitter:title': 'Community Code of Conduct_7fd4f_js | HingeCraft Global',
-            'twitter:description': 'Community Code of Conduct_7fd4f_js - HingeCraft Global',
-            'twitter:image': 'https://hingecraft-global.ai/og-image.jpg'
-        };
-        
-        Object.keys(twitterTags).forEach(name => {
-            let twitterMeta = document.querySelector(`meta[name="${name}"]`);
-            if (!twitterMeta) {
-                twitterMeta = document.createElement('meta');
-                twitterMeta.setAttribute('name', name);
-                document.head.appendChild(twitterMeta);
-            }
-            twitterMeta.setAttribute('content', twitterTags[name]);
-        });
-        
-        // Canonical URL
-        let canonical = document.querySelector('link[rel="canonical"]');
-        if (!canonical) {
-            canonical = document.createElement('link');
-            canonical.setAttribute('rel', 'canonical');
-            document.head.appendChild(canonical);
-        }
-        canonical.setAttribute('href', 'https://hingecraft-global.ai/community-code-of-conduct-7fd4f-js');
-        
-        // Robots Meta
-        let robots = document.querySelector('meta[name="robots"]');
-        if (!robots) {
-            robots = document.createElement('meta');
-            robots.setAttribute('name', 'robots');
-            document.head.appendChild(robots);
-        }
-        robots.setAttribute('content', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
-        
-        // Schema.org JSON-LD Structured Data
-        let schemaScript = document.querySelector('script[type="application/ld+json"]');
-        if (!schemaScript) {
-            schemaScript = document.createElement('script');
-            schemaScript.setAttribute('type', 'application/ld+json');
-            document.head.appendChild(schemaScript);
-        }
-        schemaScript.textContent = `{
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "Community Code of Conduct_7fd4f_js | HingeCraft Global",
-  "description": "Community Code of Conduct_7fd4f_js - HingeCraft Global",
-  "url": "https://hingecraft-global.ai/community-code-of-conduct-7fd4f-js",
-  "publisher": {
-    "@type": "Organization",
-    "name": "HingeCraft Global",
-    "url": "https://hingecraft-global.ai",
-    "logo": "https://hingecraft-global.ai/logo.png"
-  },
-  "datePublished": "2025-12-05",
-  "dateModified": "2025-12-05",
-  "inLanguage": "en-US",
-  "keywords": "charter of abundance, community resilience, terms of service, community code of conduct, community guidelines, hingecraft, hingecraft global"
-}`;
     }
+}
+
+// Export for potential use in other contexts
+export function getLegalDocumentHTML() {
+    return `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Code of Conduct - HingeCraft Global, LLC</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Times New Roman', Times, serif; font-size: 12pt; line-height: 1.6; color: #000; background: #fff; max-width: 8.5in; margin: 0 auto; padding: 1in; }
+        h1 { font-size: 18pt; font-weight: bold; text-align: center; margin-bottom: 24pt; text-transform: uppercase; border-bottom: 2px solid #000; padding-bottom: 12pt; }
+        h2 { font-size: 14pt; font-weight: bold; margin-top: 24pt; margin-bottom: 12pt; text-transform: uppercase; }
+        h3 { font-size: 12pt; font-weight: bold; margin-top: 18pt; margin-bottom: 9pt; }
+        p { margin-bottom: 12pt; text-align: justify; }
+        ul, ol { margin-left: 36pt; margin-bottom: 12pt; }
+        li { margin-bottom: 6pt; }
+        .header { text-align: center; margin-bottom: 36pt; }
+        .company-name { font-size: 16pt; font-weight: bold; }
+        .footer { margin-top: 48pt; padding-top: 12pt; border-top: 1px solid #000; font-size: 10pt; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="company-name">HINGECRAFT GLOBAL, LLC</div>
+        <h1>COMMUNITY CODE OF CONDUCT</h1>
+        <p>Effective Date: _________________, 20____<br>State of South Carolina</p>
+    </div>
+
+    <h2>1. PURPOSE AND SCOPE</h2>
     
-    // Load HTML content for legal pages
+    <p><strong>1.1 Purpose.</strong> This Community Code of Conduct ("Code") establishes the standards of behavior expected of all participants in the HingeCraft community. We are committed to providing a welcoming, inclusive, and respectful environment for everyone.</p>
     
-});
+    <p><strong>1.2 Scope.</strong> This Code applies to all HingeCraft community spaces, including:</p>
+    <ul>
+        <li>(a) HingeCraft website forums and discussion boards;</li>
+        <li>(b) Social media channels and groups;</li>
+        <li>(c) Email lists and newsletters;</li>
+        <li>(d) In-person events, trade shows, and meetups;</li>
+        <li>(e) Online events, webinars, and virtual gatherings;</li>
+        <li>(f) Customer support interactions;</li>
+        <li>(g) Any other space designated as a HingeCraft community space.</li>
+    </ul>
+    
+    <p><strong>1.3 Participants.</strong> This Code applies to all community participants, including customers, partners, suppliers, employees, contractors, and any other individuals engaging with the HingeCraft community.</p>
 
+    <h2>2. OUR VALUES</h2>
+    
+    <p>The HingeCraft community is built on the following values:</p>
+    <ul>
+        <li><strong>Respect:</strong> We treat everyone with dignity and respect.</li>
+        <li><strong>Inclusion:</strong> We welcome diverse perspectives and backgrounds.</li>
+        <li><strong>Collaboration:</strong> We work together to solve problems and share knowledge.</li>
+        <li><strong>Integrity:</strong> We act honestly and transparently.</li>
+        <li><strong>Innovation:</strong> We encourage creativity and new ideas.</li>
+        <li><strong>Professionalism:</strong> We maintain professional standards in our interactions.</li>
+    </ul>
 
+    <h2>3. EXPECTED BEHAVIOR</h2>
+    
+    <p><strong>3.1 Be Respectful.</strong> Community members should:</p>
+    <ul>
+        <li>(a) Treat all participants with courtesy and respect;</li>
+        <li>(b) Listen to and consider different viewpoints;</li>
+        <li>(c) Use welcoming and inclusive language;</li>
+        <li>(d) Respect others' time, opinions, and expertise;</li>
+        <li>(e) Give credit where credit is due;</li>
+        <li>(f) Accept constructive criticism gracefully.</li>
+    </ul>
+    
+    <p><strong>3.2 Be Professional.</strong> Community members should:</p>
+    <ul>
+        <li>(a) Keep discussions on-topic and relevant;</li>
+        <li>(b) Communicate clearly and constructively;</li>
+        <li>(c) Share accurate and helpful information;</li>
+        <li>(d) Respect intellectual property rights;</li>
+        <li>(e) Maintain confidentiality when appropriate;</li>
+        <li>(f) Represent HingeCraft products and services accurately.</li>
+    </ul>
+    
+    <p><strong>3.3 Be Helpful.</strong> Community members should:</p>
+    <ul>
+        <li>(a) Share knowledge and experience to help others;</li>
+        <li>(b) Answer questions thoughtfully and completely;</li>
+        <li>(c) Provide constructive feedback;</li>
+        <li>(d) Support newcomers and less experienced members;</li>
+        <li>(e) Contribute positively to discussions;</li>
+        <li>(f) Report issues and problems constructively.</li>
+    </ul>
+    
+    <p><strong>3.4 Be Responsible.</strong> Community members should:</p>
+    <ul>
+        <li>(a) Take responsibility for their words and actions;</li>
+        <li>(b) Correct mistakes promptly;</li>
+        <li>(c) Report violations of this Code;</li>
+        <li>(d) Comply with all applicable laws and regulations;</li>
+        <li>(e) Protect their own and others' personal information;</li>
+        <li>(f) Use community resources appropriately.</li>
+    </ul>
 
+    <h2>4. PROHIBITED BEHAVIOR</h2>
+    
+    <p><strong>4.1 Harassment.</strong> The following behavior is prohibited:</p>
+    <ul>
+        <li>(a) Offensive comments related to race, ethnicity, national origin, religion, gender, gender identity, sexual orientation, age, disability, or physical appearance;</li>
+        <li>(b) Sexual harassment, including unwelcome sexual attention or advances;</li>
+        <li>(c) Deliberate intimidation, stalking, or following;</li>
+        <li>(d) Threats of violence or incitement of violence;</li>
+        <li>(e) Publishing others' private information without permission ("doxxing");</li>
+        <li>(f) Continued one-on-one communication after being asked to stop;</li>
+        <li>(g) Any other conduct that creates a hostile environment.</li>
+    </ul>
+    
+    <p><strong>4.2 Disruptive Behavior.</strong> The following behavior is prohibited:</p>
+    <ul>
+        <li>(a) Trolling, insulting, or derogatory comments;</li>
+        <li>(b) Personal or political attacks;</li>
+        <li>(c) Sustained disruption of discussions or events;</li>
+        <li>(d) Spam, off-topic content, or excessive self-promotion;</li>
+        <li>(e) Impersonating others or misrepresenting affiliation;</li>
+        <li>(f) Creating multiple accounts to evade bans;</li>
+        <li>(g) Interfering with community moderation.</li>
+    </ul>
+    
+    <p><strong>4.3 Illegal and Unethical Conduct.</strong> The following behavior is prohibited:</p>
+    <ul>
+        <li>(a) Sharing illegal content;</li>
+        <li>(b) Infringing intellectual property rights;</li>
+        <li>(c) Sharing malware or malicious links;</li>
+        <li>(d) Phishing or attempting to obtain credentials;</li>
+        <li>(e) Fraud or deceptive practices;</li>
+        <li>(f) Violating export control laws;</li>
+        <li>(g) Any other illegal activity.</li>
+    </ul>
+    
+    <p><strong>4.4 Commercial Misuse.</strong> The following behavior is prohibited:</p>
+    <ul>
+        <li>(a) Unsolicited advertising or promotion;</li>
+        <li>(b) Soliciting business from other community members inappropriately;</li>
+        <li>(c) Pyramid schemes or multi-level marketing;</li>
+        <li>(d) Selling counterfeit products;</li>
+        <li>(e) Misrepresenting products or services.</li>
+    </ul>
 
-$w.onReady(function () {
-    if (typeof document !== 'undefined') {
-        // Page Title
-        document.title = 'Community Code of Conduct | HingeCraft Global';
-        
-        // Meta Description
-        let metaDesc = document.querySelector('meta[name="description"]');
-        if (!metaDesc) {
-            metaDesc = document.createElement('meta');
-            metaDesc.setAttribute('name', 'description');
-            document.head.appendChild(metaDesc);
-        }
-        metaDesc.setAttribute('content', 'HingeCraft Global Community Code of Conduct - Gen-Z aligned community rules, moderation policies, and safety guidelines');
-        
-        // Meta Keywords
-        let metaKeywords = document.querySelector('meta[name="keywords"]');
-        if (!metaKeywords) {
-            metaKeywords = document.createElement('meta');
-            metaKeywords.setAttribute('name', 'keywords');
-            document.head.appendChild(metaKeywords);
-        }
-        metaKeywords.setAttribute('content', 'charter of abundance, community resilience, terms of service, community code of conduct, community guidelines, community standards, code of conduct, community resilience framework, charter of abundance sign, hingecraft, hingecraft global, resilient design');
-        
-        // Open Graph Tags
-        const ogTags = {
-            'og:title': 'Community Code of Conduct | HingeCraft Global',
-            'og:description': 'HingeCraft Global Community Code of Conduct - Gen-Z aligned community rules, moderation policies, and safety guidelines',
-            'og:image': 'https://hingecraft-global.ai/og-image.jpg',
-            'og:url': 'https://hingecraft-global.ai/legal/community_code_of_conduct',
-            'og:type': 'website',
-            'og:site_name': 'HingeCraft Global'
-        };
-        
-        Object.keys(ogTags).forEach(prop => {
-            let ogMeta = document.querySelector(`meta[property="${prop}"]`);
-            if (!ogMeta) {
-                ogMeta = document.createElement('meta');
-                ogMeta.setAttribute('property', prop);
-                document.head.appendChild(ogMeta);
-            }
-            ogMeta.setAttribute('content', ogTags[prop]);
-        });
-        
-        // Twitter Card Tags
-        const twitterTags = {
-            'twitter:card': 'summary_large_image',
-            'twitter:title': 'Community Code of Conduct | HingeCraft Global',
-            'twitter:description': 'HingeCraft Global Community Code of Conduct - Gen-Z aligned community rules, moderation policies, and safety guidelines',
-            'twitter:image': 'https://hingecraft-global.ai/og-image.jpg'
-        };
-        
-        Object.keys(twitterTags).forEach(name => {
-            let twitterMeta = document.querySelector(`meta[name="${name}"]`);
-            if (!twitterMeta) {
-                twitterMeta = document.createElement('meta');
-                twitterMeta.setAttribute('name', name);
-                document.head.appendChild(twitterMeta);
-            }
-            twitterMeta.setAttribute('content', twitterTags[name]);
-        });
-        
-        // Canonical URL
-        let canonical = document.querySelector('link[rel="canonical"]');
-        if (!canonical) {
-            canonical = document.createElement('link');
-            canonical.setAttribute('rel', 'canonical');
-            document.head.appendChild(canonical);
-        }
-        canonical.setAttribute('href', 'https://hingecraft-global.ai/legal/community_code_of_conduct');
-        
-        // Robots Meta
-        let robots = document.querySelector('meta[name="robots"]');
-        if (!robots) {
-            robots = document.createElement('meta');
-            robots.setAttribute('name', 'robots');
-            document.head.appendChild(robots);
-        }
-        robots.setAttribute('content', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
-        
-        // Schema.org JSON-LD
-        let schemaScript = document.querySelector('script[type="application/ld+json"]');
-        if (!schemaScript) {
-            schemaScript = document.createElement('script');
-            schemaScript.setAttribute('type', 'application/ld+json');
-            document.head.appendChild(schemaScript);
-        }
-        schemaScript.textContent = JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "LegalDocument",
-            "name": "Community Code of Conduct | HingeCraft Global",
-            "description": "HingeCraft Global Community Code of Conduct - Gen-Z aligned community rules, moderation policies, and safety guidelines",
-            "url": "https://hingecraft-global.ai/legal/community_code_of_conduct",
-            "publisher": {
-                "@type": "Organization",
-                "name": "HingeCraft Global",
-                "url": "https://hingecraft-global.ai",
-                "logo": "https://hingecraft-global.ai/logo.png"
-            },
-            "datePublished": "2025-12-05",
-            "dateModified": "2025-12-05",
-            "inLanguage": "en-US",
-            "keywords": "charter of abundance, community resilience, terms of service, community code of conduct, community guidelines, community standards, code of conduct, community resilience framework, charter of abundance sign, hingecraft, hingecraft global, resilient design"
-        });
-    }
-});
+    <h2>5. REPORTING VIOLATIONS</h2>
+    
+    <h3>5.1 How to Report</h3>
+    <p>If you experience or witness a violation of this Code, please report it:</p>
+    <ul>
+        <li>(a) Email: community@hingecraft.com;</li>
+        <li>(b) Phone: (843) 555-0100;</li>
+        <li>(c) Use the "Report" function in community platforms;</li>
+        <li>(d) Contact any community moderator.</li>
+    </ul>
+    
+    <h3>5.2 What to Include</h3>
+    <p>When reporting, please include:</p>
+    <ul>
+        <li>(a) Your contact information (optional for anonymous reports);</li>
+        <li>(b) Names or usernames of those involved;</li>
+        <li>(c) Description of the incident;</li>
+        <li>(d) Date, time, and location (online or physical);</li>
+        <li>(e) Screenshots or other evidence if available;</li>
+        <li>(f) Names of any witnesses.</li>
+    </ul>
+    
+    <h3>5.3 Confidentiality</h3>
+    <p>Reports will be handled confidentially to the extent possible. We will not disclose the identity of reporters without their consent, except as required by law.</p>
+    
+    <h3>5.4 No Retaliation</h3>
+    <p>Retaliation against anyone who reports a violation in good faith is strictly prohibited and will be treated as a separate violation.</p>
 
+    <h2>6. ENFORCEMENT</h2>
+    
+    <h3>6.1 Investigation</h3>
+    <p>Upon receiving a report, the community team will:</p>
+    <ul>
+        <li>(a) Review the report promptly;</li>
+        <li>(b) Gather additional information as needed;</li>
+        <li>(c) Determine whether a violation occurred;</li>
+        <li>(d) Decide on appropriate action.</li>
+    </ul>
+    
+    <h3>6.2 Enforcement Actions</h3>
+    <p>Depending on the severity of the violation, enforcement actions may include:</p>
+    <ul>
+        <li>(a) <strong>Warning:</strong> A private warning to the individual;</li>
+        <li>(b) <strong>Content Removal:</strong> Removal of offending content;</li>
+        <li>(c) <strong>Temporary Suspension:</strong> Temporary ban from community spaces;</li>
+        <li>(d) <strong>Permanent Ban:</strong> Permanent removal from community;</li>
+        <li>(e) <strong>Account Termination:</strong> Termination of HingeCraft accounts;</li>
+        <li>(f) <strong>Legal Action:</strong> Referral to law enforcement for illegal activity.</li>
+    </ul>
+    
+    <h3>6.3 Appeals</h3>
+    <p>Individuals subject to enforcement action may appeal by emailing appeals@hingecraft.com within 14 days. Appeals will be reviewed by a different team member.</p>
 
-// API Reference: https://www.wix.com/velo/reference/api-overview/introduction
-// “Hello, World!” Example: https://learn-code.wix.com/en/article/hello-world
+    <h2>7. COMMUNITY MODERATION</h2>
+    
+    <p><strong>7.1 Moderators.</strong> Community moderators are responsible for enforcing this Code. They have the authority to remove content, warn members, and escalate issues.</p>
+    
+    <p><strong>7.2 Moderator Conduct.</strong> Moderators are also bound by this Code and must act impartially and professionally.</p>
 
-$w.onReady(function () {
-    // Write your JavaScript here
+    <h2>8. SAFETY</h2>
+    
+    <p><strong>8.1 Personal Safety.</strong> For in-person events, we are committed to providing a safe environment. If you feel unsafe, contact event staff immediately.</p>
+    
+    <p><strong>8.2 Online Safety.</strong> Protect yourself online by not sharing personal information publicly and using strong passwords.</p>
+    
+    <p><strong>8.3 Emergency.</strong> In case of imminent danger, contact local emergency services (911 in the U.S.) first, then notify HingeCraft.</p>
 
-    // To select an element by ID use: $w('#elementID')
+    <h2>9. ACKNOWLEDGMENT</h2>
+    
+    <p>By participating in the HingeCraft community, you acknowledge that you have read, understood, and agree to abide by this Community Code of Conduct.</p>
 
-    // Click 'Preview' to run your code
-});
+    <h2>10. CONTACT</h2>
+    
+    <p>For questions about this Code:</p>
+    <p>HingeCraft Global, LLC<br>
+    Community Team<br>
+    123 Innovation Drive, Suite 100<br>
+    Charleston, South Carolina 29401<br>
+    Email: community@hingecraft.com<br>
+    Phone: (843) 555-0100</p>
 
+    <div class="footer">
+        <p>HingeCraft Global, LLC | 123 Innovation Drive, Suite 100, Charleston, SC 29401</p>
+        <p>Community: community@hingecraft.com | Phone: (843) 555-0100</p>
+        <p>© 2025 HingeCraft Global, LLC. All Rights Reserved.</p>
+    </div>
+</body>
+</html>
 
-// Load Legal Page HTML Content
-
-$w.onReady(function () {
-    loadLegalPageContent();
-});
+`;
+}

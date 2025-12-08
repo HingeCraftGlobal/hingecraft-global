@@ -1,3 +1,69 @@
+// HingeCraft Global - SEO Optimized
+// Vision Presentation | HingeCraft Future
+// Generated: December 6, 2025
+
+import wixSeo from 'wix-seo';
+
+$w.onReady(function () {
+    // Set page title
+    wixSeo.setTitle("Vision Presentation | HingeCraft Future");
+    
+    // Set meta tags
+    wixSeo.setMetaTags([
+        { name: "description", content: "View HingeCraft's Vision Presentation - our roadmap for revolutionizing manufacturing and building the Age of Abundance." },
+        { name: "keywords", content: "vision presentation, company roadmap, future vision, strategic plan, company presentation" },
+        { name: "robots", content: "index, follow" },
+        { property: "og:title", content: "Vision Presentation | HingeCraft Future" },
+        { property: "og:description", content: "View HingeCraft's Vision Presentation - our roadmap for revolutionizing manufacturing and building the Age of Abundance." },
+        { property: "og:type", content: "website" },
+        { property: "og:site_name", content: "HingeCraft Global" },
+        { property: "twitter:card", content: "summary_large_image" },
+        { property: "twitter:title", content: "Vision Presentation | HingeCraft Future" },
+        { property: "twitter:description", content: "View HingeCraft's Vision Presentation - our roadmap for revolutionizing manufacturing and building the Age of Abundance." }
+    ]);
+    
+    // Set structured data (JSON-LD)
+    wixSeo.setStructuredData([
+        {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Vision Presentation | HingeCraft Future",
+        "description": "View HingeCraft's Vision Presentation - our roadmap for revolutionizing manufacturing and building the Age of Abundance.",
+        "url": "https://www.hingecraft.com/vision-presentation.kcukv",
+        "inLanguage": "en-US",
+        "dateModified": "2025-12-06",
+        "publisher": {
+                "@type": "Organization",
+                "name": "HingeCraft Global",
+                "url": "https://www.hingecraft.com",
+                "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://www.hingecraft.com/logo.png"
+                }
+        }
+},
+        {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+                {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "https://www.hingecraft.com"
+                },
+                {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "Vision Presentation",
+                        "item": "https://www.hingecraft.com/vision-presentation.kcukv"
+                }
+        ]
+}
+    ]);
+});
+
+
+// Original page code below
 // Comprehensive SEO Optimization - Vision Presentation
 // JSON-LD Schema.org | 100+ Keywords | Competitive Optimization
 

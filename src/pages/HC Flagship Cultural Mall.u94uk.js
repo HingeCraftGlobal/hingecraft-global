@@ -1,3 +1,69 @@
+// HingeCraft Global - SEO Optimized
+// HingeCraft Flagship Cultural Mall | Experience Center
+// Generated: December 6, 2025
+
+import wixSeo from 'wix-seo';
+
+$w.onReady(function () {
+    // Set page title
+    wixSeo.setTitle("HingeCraft Flagship Cultural Mall | Experience Center");
+    
+    // Set meta tags
+    wixSeo.setMetaTags([
+        { name: "description", content: "Visit HingeCraft's Flagship Cultural Mall - an immersive experience center showcasing innovation, culture, and the future of manufacturing." },
+        { name: "keywords", content: "experience center, flagship store, cultural mall, innovation showcase, visitor center" },
+        { name: "robots", content: "index, follow" },
+        { property: "og:title", content: "HingeCraft Flagship Cultural Mall | Experience Center" },
+        { property: "og:description", content: "Visit HingeCraft's Flagship Cultural Mall - an immersive experience center showcasing innovation, culture, and the future of manufacturing." },
+        { property: "og:type", content: "website" },
+        { property: "og:site_name", content: "HingeCraft Global" },
+        { property: "twitter:card", content: "summary_large_image" },
+        { property: "twitter:title", content: "HingeCraft Flagship Cultural Mall | Experience Center" },
+        { property: "twitter:description", content: "Visit HingeCraft's Flagship Cultural Mall - an immersive experience center showcasing innovation, culture, and the future of manufacturing." }
+    ]);
+    
+    // Set structured data (JSON-LD)
+    wixSeo.setStructuredData([
+        {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "HingeCraft Flagship Cultural Mall | Experience Center",
+        "description": "Visit HingeCraft's Flagship Cultural Mall - an immersive experience center showcasing innovation, culture, and the future of manufacturing.",
+        "url": "https://www.hingecraft.com/hc-flagship-cultural-mall.u94uk",
+        "inLanguage": "en-US",
+        "dateModified": "2025-12-06",
+        "publisher": {
+                "@type": "Organization",
+                "name": "HingeCraft Global",
+                "url": "https://www.hingecraft.com",
+                "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://www.hingecraft.com/logo.png"
+                }
+        }
+},
+        {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+                {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "https://www.hingecraft.com"
+                },
+                {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "HingeCraft Flagship Cultural Mall",
+                        "item": "https://www.hingecraft.com/hc-flagship-cultural-mall.u94uk"
+                }
+        ]
+}
+    ]);
+});
+
+
+// Original page code below
 // Comprehensive SEO Optimization - HC Flagship Cultural Mall
 // JSON-LD Schema.org | 100+ Keywords | Competitive Optimization
 

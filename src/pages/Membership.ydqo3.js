@@ -1,3 +1,69 @@
+// HingeCraft Global - SEO Optimized
+// HingeCraft Membership | Join Our Network
+// Generated: December 6, 2025
+
+import wixSeo from 'wix-seo';
+
+$w.onReady(function () {
+    // Set page title
+    wixSeo.setTitle("HingeCraft Membership | Join Our Network");
+    
+    // Set meta tags
+    wixSeo.setMetaTags([
+        { name: "description", content: "Become a HingeCraft member and access exclusive manufacturing resources, partner discounts, and community benefits." },
+        { name: "keywords", content: "membership, join hingecraft, member benefits, manufacturing network, exclusive access" },
+        { name: "robots", content: "index, follow" },
+        { property: "og:title", content: "HingeCraft Membership | Join Our Network" },
+        { property: "og:description", content: "Become a HingeCraft member and access exclusive manufacturing resources, partner discounts, and community benefits." },
+        { property: "og:type", content: "website" },
+        { property: "og:site_name", content: "HingeCraft Global" },
+        { property: "twitter:card", content: "summary_large_image" },
+        { property: "twitter:title", content: "HingeCraft Membership | Join Our Network" },
+        { property: "twitter:description", content: "Become a HingeCraft member and access exclusive manufacturing resources, partner discounts, and community benefits." }
+    ]);
+    
+    // Set structured data (JSON-LD)
+    wixSeo.setStructuredData([
+        {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "HingeCraft Membership | Join Our Network",
+        "description": "Become a HingeCraft member and access exclusive manufacturing resources, partner discounts, and community benefits.",
+        "url": "https://www.hingecraft.com/membership.ydqo3",
+        "inLanguage": "en-US",
+        "dateModified": "2025-12-06",
+        "publisher": {
+                "@type": "Organization",
+                "name": "HingeCraft Global",
+                "url": "https://www.hingecraft.com",
+                "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://www.hingecraft.com/logo.png"
+                }
+        }
+},
+        {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+                {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "https://www.hingecraft.com"
+                },
+                {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "HingeCraft Membership",
+                        "item": "https://www.hingecraft.com/membership.ydqo3"
+                }
+        ]
+}
+    ]);
+});
+
+
+// Original page code below
 // Comprehensive SEO Optimization - Membership
 // JSON-LD Schema.org | 100+ Keywords | Competitive Optimization
 

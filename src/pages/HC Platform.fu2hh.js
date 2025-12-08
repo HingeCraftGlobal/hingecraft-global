@@ -1,3 +1,69 @@
+// HingeCraft Global - SEO Optimized
+// HingeCraft Platform | Integrated Manufacturing Solutions
+// Generated: December 6, 2025
+
+import wixSeo from 'wix-seo';
+
+$w.onReady(function () {
+    // Set page title
+    wixSeo.setTitle("HingeCraft Platform | Integrated Manufacturing Solutions");
+    
+    // Set meta tags
+    wixSeo.setMetaTags([
+        { name: "description", content: "Access HingeCraft's integrated platform for manufacturing, logistics, materials sourcing, and AI-driven optimization. One platform for all your production needs." },
+        { name: "keywords", content: "manufacturing platform, integrated solutions, production management, supply chain platform, B2B platform" },
+        { name: "robots", content: "index, follow" },
+        { property: "og:title", content: "HingeCraft Platform | Integrated Manufacturing Solutions" },
+        { property: "og:description", content: "Access HingeCraft's integrated platform for manufacturing, logistics, materials sourcing, and AI-driven optimization. One platform for all your production needs." },
+        { property: "og:type", content: "website" },
+        { property: "og:site_name", content: "HingeCraft Global" },
+        { property: "twitter:card", content: "summary_large_image" },
+        { property: "twitter:title", content: "HingeCraft Platform | Integrated Manufacturing Solutions" },
+        { property: "twitter:description", content: "Access HingeCraft's integrated platform for manufacturing, logistics, materials sourcing, and AI-driven optimization. One platform for all your production needs." }
+    ]);
+    
+    // Set structured data (JSON-LD)
+    wixSeo.setStructuredData([
+        {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "HingeCraft Platform | Integrated Manufacturing Solutions",
+        "description": "Access HingeCraft's integrated platform for manufacturing, logistics, materials sourcing, and AI-driven optimization. One platform for all your production needs.",
+        "url": "https://www.hingecraft.com/hc-platform.fu2hh",
+        "inLanguage": "en-US",
+        "dateModified": "2025-12-06",
+        "publisher": {
+                "@type": "Organization",
+                "name": "HingeCraft Global",
+                "url": "https://www.hingecraft.com",
+                "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://www.hingecraft.com/logo.png"
+                }
+        }
+},
+        {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+                {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "https://www.hingecraft.com"
+                },
+                {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "HingeCraft Platform",
+                        "item": "https://www.hingecraft.com/hc-platform.fu2hh"
+                }
+        ]
+}
+    ]);
+});
+
+
+// Original page code below
 // Comprehensive SEO Optimization - HC Platform
 // JSON-LD Schema.org | 100+ Keywords | Competitive Optimization
 

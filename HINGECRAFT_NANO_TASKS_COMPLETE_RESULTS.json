@@ -1,0 +1,162 @@
+{
+  "session_id": "20251207_174104",
+  "start_time": "2025-12-07T17:41:04.452853",
+  "project": "HingeCraft Global",
+  "total_tasks": 1950,
+  "passed": 1943,
+  "failed": 7,
+  "sections": {
+    "agents": {
+      "files_count": 147,
+      "tasks_per_file": 4,
+      "total_tasks": 588,
+      "passed": 583,
+      "failed": 5,
+      "failed_items": [
+        {
+          "file": "agents/crypto/__init__.py",
+          "task": "not_empty"
+        },
+        {
+          "file": "agents/progress/__init__.py",
+          "task": "not_empty"
+        },
+        {
+          "file": "agents/tests/__init__.py",
+          "task": "not_empty"
+        },
+        {
+          "file": "agents/shared/__init__.py",
+          "task": "not_empty"
+        },
+        {
+          "file": "agents/base/__init__.py",
+          "task": "not_empty"
+        }
+      ]
+    },
+    "database_sql": {
+      "files_count": 52,
+      "tasks_per_file": 4,
+      "total_tasks": 208,
+      "passed": 207,
+      "failed": 1,
+      "failed_items": [
+        {
+          "file": "database/master_schema/00_master_schema_init.sql",
+          "task": "sql_valid"
+        }
+      ]
+    },
+    "database_json": {
+      "files_count": 7,
+      "tasks_per_file": 3,
+      "total_tasks": 21,
+      "passed": 21,
+      "failed": 0,
+      "failed_items": []
+    },
+    "database_csv": {
+      "files_count": 7,
+      "tasks_per_file": 2,
+      "total_tasks": 14,
+      "passed": 14,
+      "failed": 0,
+      "failed_items": []
+    },
+    "api": {
+      "files_count": 17,
+      "tasks_per_file": 4,
+      "total_tasks": 68,
+      "passed": 68,
+      "failed": 0,
+      "failed_items": []
+    },
+    "scripts_py": {
+      "files_count": 31,
+      "tasks_per_file": 3,
+      "total_tasks": 93,
+      "passed": 93,
+      "failed": 0,
+      "failed_items": []
+    },
+    "scripts_sh": {
+      "files_count": 45,
+      "tasks_per_file": 2,
+      "total_tasks": 90,
+      "passed": 90,
+      "failed": 0,
+      "failed_items": []
+    },
+    "legal_docs": {
+      "files_count": 35,
+      "tasks_per_file": 3,
+      "total_tasks": 105,
+      "passed": 105,
+      "failed": 0,
+      "failed_items": []
+    },
+    "wix_js": {
+      "files_count": 99,
+      "tasks_per_file": 3,
+      "total_tasks": 297,
+      "passed": 297,
+      "failed": 0,
+      "failed_items": []
+    },
+    "wix_jsw": {
+      "files_count": 2,
+      "tasks_per_file": 3,
+      "total_tasks": 6,
+      "passed": 6,
+      "failed": 0,
+      "failed_items": []
+    },
+    "notion_py": {
+      "files_count": 32,
+      "tasks_per_file": 3,
+      "total_tasks": 96,
+      "passed": 96,
+      "failed": 0,
+      "failed_items": []
+    },
+    "notion_json": {
+      "files_count": 25,
+      "tasks_per_file": 2,
+      "total_tasks": 50,
+      "passed": 50,
+      "failed": 0,
+      "failed_items": []
+    },
+    "config_json": {
+      "files_count": 20,
+      "tasks_per_file": 2,
+      "total_tasks": 40,
+      "passed": 40,
+      "failed": 0,
+      "failed_items": []
+    },
+    "config_md": {
+      "files_count": 115,
+      "tasks_per_file": 2,
+      "total_tasks": 230,
+      "passed": 229,
+      "failed": 1,
+      "failed_items": [
+        {
+          "file": "CONTINUATION_FROM_CHAT_EXPORT.md",
+          "task": "not_empty"
+        }
+      ]
+    },
+    "config_sh": {
+      "files_count": 22,
+      "tasks_per_file": 2,
+      "total_tasks": 44,
+      "passed": 44,
+      "failed": 0,
+      "failed_items": []
+    }
+  },
+  "end_time": "2025-12-07T17:41:40.153439"
+}

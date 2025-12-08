@@ -1,3 +1,69 @@
+// HingeCraft Global - SEO Optimized
+// HingeCraft Research Hub | Innovation & R&D
+// Generated: December 6, 2025
+
+import wixSeo from 'wix-seo';
+
+$w.onReady(function () {
+    // Set page title
+    wixSeo.setTitle("HingeCraft Research Hub | Innovation & R&D");
+    
+    // Set meta tags
+    wixSeo.setMetaTags([
+        { name: "description", content: "Explore HingeCraft's Research Hub - advancing manufacturing through cutting-edge R&D, AI research, and sustainable innovation programs." },
+        { name: "keywords", content: "research hub, R&D, manufacturing innovation, AI research, technology development" },
+        { name: "robots", content: "index, follow" },
+        { property: "og:title", content: "HingeCraft Research Hub | Innovation & R&D" },
+        { property: "og:description", content: "Explore HingeCraft's Research Hub - advancing manufacturing through cutting-edge R&D, AI research, and sustainable innovation programs." },
+        { property: "og:type", content: "website" },
+        { property: "og:site_name", content: "HingeCraft Global" },
+        { property: "twitter:card", content: "summary_large_image" },
+        { property: "twitter:title", content: "HingeCraft Research Hub | Innovation & R&D" },
+        { property: "twitter:description", content: "Explore HingeCraft's Research Hub - advancing manufacturing through cutting-edge R&D, AI research, and sustainable innovation programs." }
+    ]);
+    
+    // Set structured data (JSON-LD)
+    wixSeo.setStructuredData([
+        {
+        "@context": "https://schema.org",
+        "@type": "ResearchOrganization",
+        "name": "HingeCraft Research Hub | Innovation & R&D",
+        "description": "Explore HingeCraft's Research Hub - advancing manufacturing through cutting-edge R&D, AI research, and sustainable innovation programs.",
+        "url": "https://www.hingecraft.com/hc-research-hub.xskw5",
+        "inLanguage": "en-US",
+        "dateModified": "2025-12-06",
+        "publisher": {
+                "@type": "Organization",
+                "name": "HingeCraft Global",
+                "url": "https://www.hingecraft.com",
+                "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://www.hingecraft.com/logo.png"
+                }
+        }
+},
+        {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+                {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "https://www.hingecraft.com"
+                },
+                {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "HingeCraft Research Hub",
+                        "item": "https://www.hingecraft.com/hc-research-hub.xskw5"
+                }
+        ]
+}
+    ]);
+});
+
+
+// Original page code below
 // Comprehensive SEO Optimization - HC Research Hub
 // JSON-LD Schema.org | 100+ Keywords | Competitive Optimization
 

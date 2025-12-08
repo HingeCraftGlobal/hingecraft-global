@@ -1,3 +1,69 @@
+// HingeCraft Global - SEO Optimized
+// HingeCraft Community | Connect & Collaborate
+// Generated: December 6, 2025
+
+import wixSeo from 'wix-seo';
+
+$w.onReady(function () {
+    // Set page title
+    wixSeo.setTitle("HingeCraft Community | Connect & Collaborate");
+    
+    // Set meta tags
+    wixSeo.setMetaTags([
+        { name: "description", content: "Join the HingeCraft Community - connect with innovators, manufacturers, and partners building the future of sustainable production." },
+        { name: "keywords", content: "manufacturing community, industry network, professional community, collaboration, networking" },
+        { name: "robots", content: "index, follow" },
+        { property: "og:title", content: "HingeCraft Community | Connect & Collaborate" },
+        { property: "og:description", content: "Join the HingeCraft Community - connect with innovators, manufacturers, and partners building the future of sustainable production." },
+        { property: "og:type", content: "website" },
+        { property: "og:site_name", content: "HingeCraft Global" },
+        { property: "twitter:card", content: "summary_large_image" },
+        { property: "twitter:title", content: "HingeCraft Community | Connect & Collaborate" },
+        { property: "twitter:description", content: "Join the HingeCraft Community - connect with innovators, manufacturers, and partners building the future of sustainable production." }
+    ]);
+    
+    // Set structured data (JSON-LD)
+    wixSeo.setStructuredData([
+        {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "HingeCraft Community | Connect & Collaborate",
+        "description": "Join the HingeCraft Community - connect with innovators, manufacturers, and partners building the future of sustainable production.",
+        "url": "https://www.hingecraft.com/hc-community.zqk0v",
+        "inLanguage": "en-US",
+        "dateModified": "2025-12-06",
+        "publisher": {
+                "@type": "Organization",
+                "name": "HingeCraft Global",
+                "url": "https://www.hingecraft.com",
+                "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://www.hingecraft.com/logo.png"
+                }
+        }
+},
+        {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+                {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "https://www.hingecraft.com"
+                },
+                {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "HingeCraft Community",
+                        "item": "https://www.hingecraft.com/hc-community.zqk0v"
+                }
+        ]
+}
+    ]);
+});
+
+
+// Original page code below
 // Comprehensive SEO Optimization - HC Community
 // JSON-LD Schema.org | 100+ Keywords | Competitive Optimization
 

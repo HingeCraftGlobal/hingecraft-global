@@ -1,3 +1,69 @@
+// HingeCraft Global - SEO Optimized
+// Members Chat | Share Your Voice
+// Generated: December 6, 2025
+
+import wixSeo from 'wix-seo';
+
+$w.onReady(function () {
+    // Set page title
+    wixSeo.setTitle("Members Chat | Share Your Voice");
+    
+    // Set meta tags
+    wixSeo.setMetaTags([
+        { name: "description", content: "Members Chat - your platform to share ideas, feedback, and connect with the HingeCraft community. Your voice matters." },
+        { name: "keywords", content: "member chat, community voice, feedback platform, member discussion, community engagement" },
+        { name: "robots", content: "index, follow" },
+        { property: "og:title", content: "Members Chat | Share Your Voice" },
+        { property: "og:description", content: "Members Chat - your platform to share ideas, feedback, and connect with the HingeCraft community. Your voice matters." },
+        { property: "og:type", content: "website" },
+        { property: "og:site_name", content: "HingeCraft Global" },
+        { property: "twitter:card", content: "summary_large_image" },
+        { property: "twitter:title", content: "Members Chat | Share Your Voice" },
+        { property: "twitter:description", content: "Members Chat - your platform to share ideas, feedback, and connect with the HingeCraft community. Your voice matters." }
+    ]);
+    
+    // Set structured data (JSON-LD)
+    wixSeo.setStructuredData([
+        {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Members Chat | Share Your Voice",
+        "description": "Members Chat - your platform to share ideas, feedback, and connect with the HingeCraft community. Your voice matters.",
+        "url": "https://www.hingecraft.com/members-chat-let-your-voice-be-heard.zub2q",
+        "inLanguage": "en-US",
+        "dateModified": "2025-12-06",
+        "publisher": {
+                "@type": "Organization",
+                "name": "HingeCraft Global",
+                "url": "https://www.hingecraft.com",
+                "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://www.hingecraft.com/logo.png"
+                }
+        }
+},
+        {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+                {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "https://www.hingecraft.com"
+                },
+                {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "Members Chat",
+                        "item": "https://www.hingecraft.com/members-chat-let-your-voice-be-heard.zub2q"
+                }
+        ]
+}
+    ]);
+});
+
+
+// Original page code below
 // Comprehensive SEO Optimization - Members Chat-Let your Voice Be Heard
 // JSON-LD Schema.org | 100+ Keywords | Competitive Optimization
 

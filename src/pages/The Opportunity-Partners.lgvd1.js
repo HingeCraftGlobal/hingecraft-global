@@ -1,3 +1,69 @@
+// HingeCraft Global - SEO Optimized
+// Partner Programs | Join HingeCraft Network
+// Generated: December 6, 2025
+
+import wixSeo from 'wix-seo';
+
+$w.onReady(function () {
+    // Set page title
+    wixSeo.setTitle("Partner Programs | Join HingeCraft Network");
+    
+    // Set meta tags
+    wixSeo.setMetaTags([
+        { name: "description", content: "Explore HingeCraft partner programs for manufacturers, distributors, and technology providers. Grow together in our ecosystem." },
+        { name: "keywords", content: "partner program, business partners, manufacturing partners, distributor program, ecosystem" },
+        { name: "robots", content: "index, follow" },
+        { property: "og:title", content: "Partner Programs | Join HingeCraft Network" },
+        { property: "og:description", content: "Explore HingeCraft partner programs for manufacturers, distributors, and technology providers. Grow together in our ecosystem." },
+        { property: "og:type", content: "website" },
+        { property: "og:site_name", content: "HingeCraft Global" },
+        { property: "twitter:card", content: "summary_large_image" },
+        { property: "twitter:title", content: "Partner Programs | Join HingeCraft Network" },
+        { property: "twitter:description", content: "Explore HingeCraft partner programs for manufacturers, distributors, and technology providers. Grow together in our ecosystem." }
+    ]);
+    
+    // Set structured data (JSON-LD)
+    wixSeo.setStructuredData([
+        {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Partner Programs | Join HingeCraft Network",
+        "description": "Explore HingeCraft partner programs for manufacturers, distributors, and technology providers. Grow together in our ecosystem.",
+        "url": "https://www.hingecraft.com/the-opportunity-partners.lgvd1",
+        "inLanguage": "en-US",
+        "dateModified": "2025-12-06",
+        "publisher": {
+                "@type": "Organization",
+                "name": "HingeCraft Global",
+                "url": "https://www.hingecraft.com",
+                "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://www.hingecraft.com/logo.png"
+                }
+        }
+},
+        {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+                {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "https://www.hingecraft.com"
+                },
+                {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "Partner Programs",
+                        "item": "https://www.hingecraft.com/the-opportunity-partners.lgvd1"
+                }
+        ]
+}
+    ]);
+});
+
+
+// Original page code below
 // Comprehensive SEO Optimization - The Opportunity-Partners
 // JSON-LD Schema.org | 100+ Keywords | Competitive Optimization
 

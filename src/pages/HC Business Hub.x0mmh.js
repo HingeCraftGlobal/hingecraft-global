@@ -1,3 +1,69 @@
+// HingeCraft Global - SEO Optimized
+// HingeCraft Business Hub | Enterprise Manufacturing Solutions
+// Generated: December 6, 2025
+
+import wixSeo from 'wix-seo';
+
+$w.onReady(function () {
+    // Set page title
+    wixSeo.setTitle("HingeCraft Business Hub | Enterprise Manufacturing Solutions");
+    
+    // Set meta tags
+    wixSeo.setMetaTags([
+        { name: "description", content: "HingeCraft Business Hub - your central portal for enterprise manufacturing, B2B partnerships, and scalable production solutions worldwide." },
+        { name: "keywords", content: "business hub, enterprise manufacturing, B2B solutions, manufacturing portal, business platform" },
+        { name: "robots", content: "index, follow" },
+        { property: "og:title", content: "HingeCraft Business Hub | Enterprise Manufacturing Solutions" },
+        { property: "og:description", content: "HingeCraft Business Hub - your central portal for enterprise manufacturing, B2B partnerships, and scalable production solutions worldwide." },
+        { property: "og:type", content: "website" },
+        { property: "og:site_name", content: "HingeCraft Global" },
+        { property: "twitter:card", content: "summary_large_image" },
+        { property: "twitter:title", content: "HingeCraft Business Hub | Enterprise Manufacturing Solutions" },
+        { property: "twitter:description", content: "HingeCraft Business Hub - your central portal for enterprise manufacturing, B2B partnerships, and scalable production solutions worldwide." }
+    ]);
+    
+    // Set structured data (JSON-LD)
+    wixSeo.setStructuredData([
+        {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "HingeCraft Business Hub | Enterprise Manufacturing Solutions",
+        "description": "HingeCraft Business Hub - your central portal for enterprise manufacturing, B2B partnerships, and scalable production solutions worldwide.",
+        "url": "https://www.hingecraft.com/hc-business-hub.x0mmh",
+        "inLanguage": "en-US",
+        "dateModified": "2025-12-06",
+        "publisher": {
+                "@type": "Organization",
+                "name": "HingeCraft Global",
+                "url": "https://www.hingecraft.com",
+                "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://www.hingecraft.com/logo.png"
+                }
+        }
+},
+        {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+                {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "https://www.hingecraft.com"
+                },
+                {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "HingeCraft Business Hub",
+                        "item": "https://www.hingecraft.com/hc-business-hub.x0mmh"
+                }
+        ]
+}
+    ]);
+});
+
+
+// Original page code below
 // Comprehensive SEO Optimization - HC Business Hub
 // JSON-LD Schema.org | 100+ Keywords | Competitive Optimization
 

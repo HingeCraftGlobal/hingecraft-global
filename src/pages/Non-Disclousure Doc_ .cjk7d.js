@@ -1,3 +1,69 @@
+// HingeCraft Global - SEO Optimized
+// Non-Disclosure Agreement | HingeCraft NDA
+// Generated: December 6, 2025
+
+import wixSeo from 'wix-seo';
+
+$w.onReady(function () {
+    // Set page title
+    wixSeo.setTitle("Non-Disclosure Agreement | HingeCraft NDA");
+    
+    // Set meta tags
+    wixSeo.setMetaTags([
+        { name: "description", content: "Review and execute HingeCraft's Non-Disclosure Agreement for confidential business discussions and partnerships." },
+        { name: "keywords", content: "NDA, non-disclosure agreement, confidentiality, business agreement, legal document" },
+        { name: "robots", content: "index, follow" },
+        { property: "og:title", content: "Non-Disclosure Agreement | HingeCraft NDA" },
+        { property: "og:description", content: "Review and execute HingeCraft's Non-Disclosure Agreement for confidential business discussions and partnerships." },
+        { property: "og:type", content: "website" },
+        { property: "og:site_name", content: "HingeCraft Global" },
+        { property: "twitter:card", content: "summary_large_image" },
+        { property: "twitter:title", content: "Non-Disclosure Agreement | HingeCraft NDA" },
+        { property: "twitter:description", content: "Review and execute HingeCraft's Non-Disclosure Agreement for confidential business discussions and partnerships." }
+    ]);
+    
+    // Set structured data (JSON-LD)
+    wixSeo.setStructuredData([
+        {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Non-Disclosure Agreement | HingeCraft NDA",
+        "description": "Review and execute HingeCraft's Non-Disclosure Agreement for confidential business discussions and partnerships.",
+        "url": "https://www.hingecraft.com/non-disclousure-doc_-.cjk7d",
+        "inLanguage": "en-US",
+        "dateModified": "2025-12-06",
+        "publisher": {
+                "@type": "Organization",
+                "name": "HingeCraft Global",
+                "url": "https://www.hingecraft.com",
+                "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://www.hingecraft.com/logo.png"
+                }
+        }
+},
+        {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+                {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "https://www.hingecraft.com"
+                },
+                {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "Non-Disclosure Agreement",
+                        "item": "https://www.hingecraft.com/non-disclousure-doc_-.cjk7d"
+                }
+        ]
+}
+    ]);
+});
+
+
+// Original page code below
 // Comprehensive SEO Optimization - Non-Disclousure Doc_ 
 // JSON-LD Schema.org | 100+ Keywords | Competitive Optimization
 

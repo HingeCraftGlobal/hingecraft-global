@@ -108,3 +108,63 @@ COMMENT ON TABLE impact_reporting_periods IS 'Aggregated impact reports by perio
 
 
 
+
+
+
+
+-- ============================================
+-- TRIGGERS
+-- ============================================
+
+-- Auto-update updated_at timestamp for environmental_impact_records
+CREATE TRIGGER trigger_environmental_impact_records_updated_at
+    BEFORE UPDATE ON environmental_impact_records
+    FOR EACH ROW
+    WHEN (OLD.updated_at IS DISTINCT FROM NEW.updated_at OR OLD."_updatedDate" IS DISTINCT FROM NEW."_updatedDate")
+    EXECUTE FUNCTION update_updated_at_column();
+
+-- Audit logging trigger for environmental_impact_records
+CREATE TRIGGER trigger_environmental_impact_records_audit
+    AFTER INSERT OR UPDATE OR DELETE ON environmental_impact_records
+    FOR EACH ROW
+    EXECUTE FUNCTION log_audit_event();
+
+-- Auto-update updated_at timestamp for carbon_offsets
+CREATE TRIGGER trigger_carbon_offsets_updated_at
+    BEFORE UPDATE ON carbon_offsets
+    FOR EACH ROW
+    WHEN (OLD.updated_at IS DISTINCT FROM NEW.updated_at OR OLD."_updatedDate" IS DISTINCT FROM NEW."_updatedDate")
+    EXECUTE FUNCTION update_updated_at_column();
+
+-- Audit logging trigger for carbon_offsets
+CREATE TRIGGER trigger_carbon_offsets_audit
+    AFTER INSERT OR UPDATE OR DELETE ON carbon_offsets
+    FOR EACH ROW
+    EXECUTE FUNCTION log_audit_event();
+
+-- Auto-update updated_at timestamp for sustainability_goals
+CREATE TRIGGER trigger_sustainability_goals_updated_at
+    BEFORE UPDATE ON sustainability_goals
+    FOR EACH ROW
+    WHEN (OLD.updated_at IS DISTINCT FROM NEW.updated_at OR OLD."_updatedDate" IS DISTINCT FROM NEW."_updatedDate")
+    EXECUTE FUNCTION update_updated_at_column();
+
+-- Audit logging trigger for sustainability_goals
+CREATE TRIGGER trigger_sustainability_goals_audit
+    AFTER INSERT OR UPDATE OR DELETE ON sustainability_goals
+    FOR EACH ROW
+    EXECUTE FUNCTION log_audit_event();
+
+-- Auto-update updated_at timestamp for impact_reporting_periods
+CREATE TRIGGER trigger_impact_reporting_periods_updated_at
+    BEFORE UPDATE ON impact_reporting_periods
+    FOR EACH ROW
+    WHEN (OLD.updated_at IS DISTINCT FROM NEW.updated_at OR OLD."_updatedDate" IS DISTINCT FROM NEW."_updatedDate")
+    EXECUTE FUNCTION update_updated_at_column();
+
+-- Audit logging trigger for impact_reporting_periods
+CREATE TRIGGER trigger_impact_reporting_periods_audit
+    AFTER INSERT OR UPDATE OR DELETE ON impact_reporting_periods
+    FOR EACH ROW
+    EXECUTE FUNCTION log_audit_event();
+

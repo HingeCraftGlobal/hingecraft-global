@@ -32,6 +32,9 @@ done
 # Apply schema files in order
 SCHEMA_FILES=(
     "database/master_schema/01_core_extensions.sql"
+    "database/master_schema/00_helper_functions.sql"
+    "database/master_schema/00_trigger_functions.sql"
+    "database/master_schema/00_domain_functions.sql"
     "database/master_schema/02_users_identity.sql"
     "database/master_schema/03_design_metadata.sql"
     "database/master_schema/04_community_activity.sql"
@@ -41,6 +44,8 @@ SCHEMA_FILES=(
     "database/master_schema/08_crypto_treasury.sql"
     "database/master_schema/09_learning_skills.sql"
     "database/master_schema/10_webhooks_assets_prompts.sql"
+    "database/master_schema/00_views.sql"
+    "database/master_schema/00_additional_views.sql"
 )
 
 for schema_file in "${SCHEMA_FILES[@]}"; do

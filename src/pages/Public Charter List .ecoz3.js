@@ -1,3 +1,69 @@
+// HingeCraft Global - SEO Optimized
+// Public Charter List | HingeCraft Commitments
+// Generated: December 6, 2025
+
+import wixSeo from 'wix-seo';
+
+$w.onReady(function () {
+    // Set page title
+    wixSeo.setTitle("Public Charter List | HingeCraft Commitments");
+    
+    // Set meta tags
+    wixSeo.setMetaTags([
+        { name: "description", content: "View HingeCraft's Public Charter List - our public commitments to sustainability, ethics, and stakeholder value." },
+        { name: "keywords", content: "public charter, company commitments, corporate pledges, sustainability goals, ethical commitments" },
+        { name: "robots", content: "index, follow" },
+        { property: "og:title", content: "Public Charter List | HingeCraft Commitments" },
+        { property: "og:description", content: "View HingeCraft's Public Charter List - our public commitments to sustainability, ethics, and stakeholder value." },
+        { property: "og:type", content: "website" },
+        { property: "og:site_name", content: "HingeCraft Global" },
+        { property: "twitter:card", content: "summary_large_image" },
+        { property: "twitter:title", content: "Public Charter List | HingeCraft Commitments" },
+        { property: "twitter:description", content: "View HingeCraft's Public Charter List - our public commitments to sustainability, ethics, and stakeholder value." }
+    ]);
+    
+    // Set structured data (JSON-LD)
+    wixSeo.setStructuredData([
+        {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Public Charter List | HingeCraft Commitments",
+        "description": "View HingeCraft's Public Charter List - our public commitments to sustainability, ethics, and stakeholder value.",
+        "url": "https://www.hingecraft.com/public-charter-list-.ecoz3",
+        "inLanguage": "en-US",
+        "dateModified": "2025-12-06",
+        "publisher": {
+                "@type": "Organization",
+                "name": "HingeCraft Global",
+                "url": "https://www.hingecraft.com",
+                "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://www.hingecraft.com/logo.png"
+                }
+        }
+},
+        {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+                {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "https://www.hingecraft.com"
+                },
+                {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "Public Charter List",
+                        "item": "https://www.hingecraft.com/public-charter-list-.ecoz3"
+                }
+        ]
+}
+    ]);
+});
+
+
+// Original page code below
 // Comprehensive SEO Optimization - Public Charter List 
 // JSON-LD Schema.org | 100+ Keywords | Competitive Optimization
 

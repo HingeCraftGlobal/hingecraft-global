@@ -1,3 +1,69 @@
+// HingeCraft Global - SEO Optimized
+// Certifications | HingeCraft Quality Standards
+// Generated: December 6, 2025
+
+import wixSeo from 'wix-seo';
+
+$w.onReady(function () {
+    // Set page title
+    wixSeo.setTitle("Certifications | HingeCraft Quality Standards");
+    
+    // Set meta tags
+    wixSeo.setMetaTags([
+        { name: "description", content: "View HingeCraft's active certifications - ISO 9001, ISO 14001, and industry-specific quality and compliance certifications." },
+        { name: "keywords", content: "certifications, ISO certified, quality standards, compliance certifications, industry certifications" },
+        { name: "robots", content: "index, follow" },
+        { property: "og:title", content: "Certifications | HingeCraft Quality Standards" },
+        { property: "og:description", content: "View HingeCraft's active certifications - ISO 9001, ISO 14001, and industry-specific quality and compliance certifications." },
+        { property: "og:type", content: "website" },
+        { property: "og:site_name", content: "HingeCraft Global" },
+        { property: "twitter:card", content: "summary_large_image" },
+        { property: "twitter:title", content: "Certifications | HingeCraft Quality Standards" },
+        { property: "twitter:description", content: "View HingeCraft's active certifications - ISO 9001, ISO 14001, and industry-specific quality and compliance certifications." }
+    ]);
+    
+    // Set structured data (JSON-LD)
+    wixSeo.setStructuredData([
+        {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Certifications | HingeCraft Quality Standards",
+        "description": "View HingeCraft's active certifications - ISO 9001, ISO 14001, and industry-specific quality and compliance certifications.",
+        "url": "https://www.hingecraft.com/active-certifications.nc43m",
+        "inLanguage": "en-US",
+        "dateModified": "2025-12-06",
+        "publisher": {
+                "@type": "Organization",
+                "name": "HingeCraft Global",
+                "url": "https://www.hingecraft.com",
+                "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://www.hingecraft.com/logo.png"
+                }
+        }
+},
+        {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+                {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "https://www.hingecraft.com"
+                },
+                {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "Certifications",
+                        "item": "https://www.hingecraft.com/active-certifications.nc43m"
+                }
+        ]
+}
+    ]);
+});
+
+
+// Original page code below
 // Comprehensive SEO Optimization - Active Certifications
 // JSON-LD Schema.org | 100+ Keywords | Competitive Optimization
 

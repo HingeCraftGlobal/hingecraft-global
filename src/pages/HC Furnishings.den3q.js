@@ -1,3 +1,69 @@
+// HingeCraft Global - SEO Optimized
+// HingeCraft Furnishings | Custom Manufacturing Solutions
+// Generated: December 6, 2025
+
+import wixSeo from 'wix-seo';
+
+$w.onReady(function () {
+    // Set page title
+    wixSeo.setTitle("HingeCraft Furnishings | Custom Manufacturing Solutions");
+    
+    // Set meta tags
+    wixSeo.setMetaTags([
+        { name: "description", content: "HingeCraft Furnishings - custom furniture and interior manufacturing solutions combining craftsmanship with modern production techniques." },
+        { name: "keywords", content: "custom furnishings, furniture manufacturing, interior solutions, custom furniture, manufacturing" },
+        { name: "robots", content: "index, follow" },
+        { property: "og:title", content: "HingeCraft Furnishings | Custom Manufacturing Solutions" },
+        { property: "og:description", content: "HingeCraft Furnishings - custom furniture and interior manufacturing solutions combining craftsmanship with modern production techniques." },
+        { property: "og:type", content: "website" },
+        { property: "og:site_name", content: "HingeCraft Global" },
+        { property: "twitter:card", content: "summary_large_image" },
+        { property: "twitter:title", content: "HingeCraft Furnishings | Custom Manufacturing Solutions" },
+        { property: "twitter:description", content: "HingeCraft Furnishings - custom furniture and interior manufacturing solutions combining craftsmanship with modern production techniques." }
+    ]);
+    
+    // Set structured data (JSON-LD)
+    wixSeo.setStructuredData([
+        {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "HingeCraft Furnishings | Custom Manufacturing Solutions",
+        "description": "HingeCraft Furnishings - custom furniture and interior manufacturing solutions combining craftsmanship with modern production techniques.",
+        "url": "https://www.hingecraft.com/hc-furnishings.den3q",
+        "inLanguage": "en-US",
+        "dateModified": "2025-12-06",
+        "publisher": {
+                "@type": "Organization",
+                "name": "HingeCraft Global",
+                "url": "https://www.hingecraft.com",
+                "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://www.hingecraft.com/logo.png"
+                }
+        }
+},
+        {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+                {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "https://www.hingecraft.com"
+                },
+                {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "HingeCraft Furnishings",
+                        "item": "https://www.hingecraft.com/hc-furnishings.den3q"
+                }
+        ]
+}
+    ]);
+});
+
+
+// Original page code below
 // Comprehensive SEO Optimization - HC Furnishings
 // JSON-LD Schema.org | 100+ Keywords | Competitive Optimization
 

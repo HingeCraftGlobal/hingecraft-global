@@ -1,3 +1,69 @@
+// HingeCraft Global - SEO Optimized
+// Stories of 2045 | Future Living Vision
+// Generated: December 6, 2025
+
+import wixSeo from 'wix-seo';
+
+$w.onReady(function () {
+    // Set page title
+    wixSeo.setTitle("Stories of 2045 | Future Living Vision");
+    
+    // Set meta tags
+    wixSeo.setMetaTags([
+        { name: "description", content: "Explore stories of living in 2045 - HingeCraft's vision of future manufacturing, sustainable cities, and abundant living." },
+        { name: "keywords", content: "future stories, 2045 vision, future living, sustainable future, futurism" },
+        { name: "robots", content: "index, follow" },
+        { property: "og:title", content: "Stories of 2045 | Future Living Vision" },
+        { property: "og:description", content: "Explore stories of living in 2045 - HingeCraft's vision of future manufacturing, sustainable cities, and abundant living." },
+        { property: "og:type", content: "website" },
+        { property: "og:site_name", content: "HingeCraft Global" },
+        { property: "twitter:card", content: "summary_large_image" },
+        { property: "twitter:title", content: "Stories of 2045 | Future Living Vision" },
+        { property: "twitter:description", content: "Explore stories of living in 2045 - HingeCraft's vision of future manufacturing, sustainable cities, and abundant living." }
+    ]);
+    
+    // Set structured data (JSON-LD)
+    wixSeo.setStructuredData([
+        {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Stories of 2045 | Future Living Vision",
+        "description": "Explore stories of living in 2045 - HingeCraft's vision of future manufacturing, sustainable cities, and abundant living.",
+        "url": "https://www.hingecraft.com/stories-of-living-in-future-2045-.my1ka",
+        "inLanguage": "en-US",
+        "dateModified": "2025-12-06",
+        "publisher": {
+                "@type": "Organization",
+                "name": "HingeCraft Global",
+                "url": "https://www.hingecraft.com",
+                "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://www.hingecraft.com/logo.png"
+                }
+        }
+},
+        {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+                {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "https://www.hingecraft.com"
+                },
+                {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "Stories of 2045",
+                        "item": "https://www.hingecraft.com/stories-of-living-in-future-2045-.my1ka"
+                }
+        ]
+}
+    ]);
+});
+
+
+// Original page code below
 // Comprehensive SEO Optimization - Stories of Living in Future 2045 
 // JSON-LD Schema.org | 100+ Keywords | Competitive Optimization
 

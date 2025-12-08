@@ -1,3 +1,69 @@
+// HingeCraft Global - SEO Optimized
+// Entrepreneurial Hub | Startup Support
+// Generated: December 6, 2025
+
+import wixSeo from 'wix-seo';
+
+$w.onReady(function () {
+    // Set page title
+    wixSeo.setTitle("Entrepreneurial Hub | Startup Support");
+    
+    // Set meta tags
+    wixSeo.setMetaTags([
+        { name: "description", content: "HingeCraft Entrepreneurial Hub supports startups with manufacturing resources, mentorship, and go-to-market assistance." },
+        { name: "keywords", content: "entrepreneurial hub, startup support, incubator, startup resources, entrepreneur program" },
+        { name: "robots", content: "index, follow" },
+        { property: "og:title", content: "Entrepreneurial Hub | Startup Support" },
+        { property: "og:description", content: "HingeCraft Entrepreneurial Hub supports startups with manufacturing resources, mentorship, and go-to-market assistance." },
+        { property: "og:type", content: "website" },
+        { property: "og:site_name", content: "HingeCraft Global" },
+        { property: "twitter:card", content: "summary_large_image" },
+        { property: "twitter:title", content: "Entrepreneurial Hub | Startup Support" },
+        { property: "twitter:description", content: "HingeCraft Entrepreneurial Hub supports startups with manufacturing resources, mentorship, and go-to-market assistance." }
+    ]);
+    
+    // Set structured data (JSON-LD)
+    wixSeo.setStructuredData([
+        {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Entrepreneurial Hub | Startup Support",
+        "description": "HingeCraft Entrepreneurial Hub supports startups with manufacturing resources, mentorship, and go-to-market assistance.",
+        "url": "https://www.hingecraft.com/entrepreneurial-hub.wjapa",
+        "inLanguage": "en-US",
+        "dateModified": "2025-12-06",
+        "publisher": {
+                "@type": "Organization",
+                "name": "HingeCraft Global",
+                "url": "https://www.hingecraft.com",
+                "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://www.hingecraft.com/logo.png"
+                }
+        }
+},
+        {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+                {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "https://www.hingecraft.com"
+                },
+                {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "Entrepreneurial Hub",
+                        "item": "https://www.hingecraft.com/entrepreneurial-hub.wjapa"
+                }
+        ]
+}
+    ]);
+});
+
+
+// Original page code below
 // Comprehensive SEO Optimization - Entrepreneurial Hub
 // JSON-LD Schema.org | 100+ Keywords | Competitive Optimization
 

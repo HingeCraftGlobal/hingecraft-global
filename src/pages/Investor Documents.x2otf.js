@@ -1,3 +1,69 @@
+// HingeCraft Global - SEO Optimized
+// Investor Documents | HingeCraft Financials
+// Generated: December 6, 2025
+
+import wixSeo from 'wix-seo';
+
+$w.onReady(function () {
+    // Set page title
+    wixSeo.setTitle("Investor Documents | HingeCraft Financials");
+    
+    // Set meta tags
+    wixSeo.setMetaTags([
+        { name: "description", content: "Access HingeCraft investor documents, financial reports, and investment information for stakeholders and potential investors." },
+        { name: "keywords", content: "investor documents, financial reports, investor relations, annual report, investment info" },
+        { name: "robots", content: "index, follow" },
+        { property: "og:title", content: "Investor Documents | HingeCraft Financials" },
+        { property: "og:description", content: "Access HingeCraft investor documents, financial reports, and investment information for stakeholders and potential investors." },
+        { property: "og:type", content: "website" },
+        { property: "og:site_name", content: "HingeCraft Global" },
+        { property: "twitter:card", content: "summary_large_image" },
+        { property: "twitter:title", content: "Investor Documents | HingeCraft Financials" },
+        { property: "twitter:description", content: "Access HingeCraft investor documents, financial reports, and investment information for stakeholders and potential investors." }
+    ]);
+    
+    // Set structured data (JSON-LD)
+    wixSeo.setStructuredData([
+        {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Investor Documents | HingeCraft Financials",
+        "description": "Access HingeCraft investor documents, financial reports, and investment information for stakeholders and potential investors.",
+        "url": "https://www.hingecraft.com/investor-documents.x2otf",
+        "inLanguage": "en-US",
+        "dateModified": "2025-12-06",
+        "publisher": {
+                "@type": "Organization",
+                "name": "HingeCraft Global",
+                "url": "https://www.hingecraft.com",
+                "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://www.hingecraft.com/logo.png"
+                }
+        }
+},
+        {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+                {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "https://www.hingecraft.com"
+                },
+                {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "Investor Documents",
+                        "item": "https://www.hingecraft.com/investor-documents.x2otf"
+                }
+        ]
+}
+    ]);
+});
+
+
+// Original page code below
 // Comprehensive SEO Optimization - Investor Documents
 // JSON-LD Schema.org | 100+ Keywords | Competitive Optimization
 

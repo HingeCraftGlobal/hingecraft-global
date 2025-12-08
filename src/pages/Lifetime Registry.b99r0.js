@@ -1,3 +1,69 @@
+// HingeCraft Global - SEO Optimized
+// Lifetime Registry | Product Documentation
+// Generated: December 6, 2025
+
+import wixSeo from 'wix-seo';
+
+$w.onReady(function () {
+    // Set page title
+    wixSeo.setTitle("Lifetime Registry | Product Documentation");
+    
+    // Set meta tags
+    wixSeo.setMetaTags([
+        { name: "description", content: "HingeCraft Lifetime Registry - permanent documentation and traceability for all manufactured products throughout their lifecycle." },
+        { name: "keywords", content: "lifetime registry, product documentation, traceability, product lifecycle, documentation" },
+        { name: "robots", content: "index, follow" },
+        { property: "og:title", content: "Lifetime Registry | Product Documentation" },
+        { property: "og:description", content: "HingeCraft Lifetime Registry - permanent documentation and traceability for all manufactured products throughout their lifecycle." },
+        { property: "og:type", content: "website" },
+        { property: "og:site_name", content: "HingeCraft Global" },
+        { property: "twitter:card", content: "summary_large_image" },
+        { property: "twitter:title", content: "Lifetime Registry | Product Documentation" },
+        { property: "twitter:description", content: "HingeCraft Lifetime Registry - permanent documentation and traceability for all manufactured products throughout their lifecycle." }
+    ]);
+    
+    // Set structured data (JSON-LD)
+    wixSeo.setStructuredData([
+        {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Lifetime Registry | Product Documentation",
+        "description": "HingeCraft Lifetime Registry - permanent documentation and traceability for all manufactured products throughout their lifecycle.",
+        "url": "https://www.hingecraft.com/lifetime-registry.b99r0",
+        "inLanguage": "en-US",
+        "dateModified": "2025-12-06",
+        "publisher": {
+                "@type": "Organization",
+                "name": "HingeCraft Global",
+                "url": "https://www.hingecraft.com",
+                "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://www.hingecraft.com/logo.png"
+                }
+        }
+},
+        {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+                {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "https://www.hingecraft.com"
+                },
+                {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "Lifetime Registry",
+                        "item": "https://www.hingecraft.com/lifetime-registry.b99r0"
+                }
+        ]
+}
+    ]);
+});
+
+
+// Original page code below
 // Comprehensive SEO Optimization - Lifetime Registry
 // JSON-LD Schema.org | 100+ Keywords | Competitive Optimization
 

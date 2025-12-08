@@ -96,3 +96,23 @@ COMMENT ON TABLE user_identities IS 'Multiple identity providers per user';
 
 
 
+
+
+
+
+-- ============================================
+-- TRIGGERS FOR users
+-- ============================================
+
+-- Auto-update updated_at timestamp
+CREATE TRIGGER trigger_users_updated_at
+    BEFORE UPDATE ON users
+    FOR EACH ROW
+    EXECUTE FUNCTION update_updated_at_column();
+
+-- Audit logging trigger
+CREATE TRIGGER trigger_users_audit
+    AFTER INSERT OR UPDATE OR DELETE ON users
+    FOR EACH ROW
+    EXECUTE FUNCTION log_audit_event();
+

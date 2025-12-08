@@ -113,3 +113,23 @@ COMMENT ON TABLE content_contributions IS 'Contributor attribution and revenue s
 
 
 
+
+
+
+
+-- ============================================
+-- TRIGGERS FOR content_articles
+-- ============================================
+
+-- Auto-update updated_at timestamp
+CREATE TRIGGER trigger_content_articles_updated_at
+    BEFORE UPDATE ON content_articles
+    FOR EACH ROW
+    EXECUTE FUNCTION update_updated_at_column();
+
+-- Audit logging trigger
+CREATE TRIGGER trigger_content_articles_audit
+    AFTER INSERT OR UPDATE OR DELETE ON content_articles
+    FOR EACH ROW
+    EXECUTE FUNCTION log_audit_event();
+

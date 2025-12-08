@@ -1,3 +1,69 @@
+// HingeCraft Global - SEO Optimized
+// About HingeCraft Global | Our Mission & Vision
+// Generated: December 6, 2025
+
+import wixSeo from 'wix-seo';
+
+$w.onReady(function () {
+    // Set page title
+    wixSeo.setTitle("About HingeCraft Global | Our Mission & Vision");
+    
+    // Set meta tags
+    wixSeo.setMetaTags([
+        { name: "description", content: "Learn about HingeCraft Global's mission to revolutionize manufacturing through AI, sustainability, and ethical practices. Discover our journey toward the Age of Abundance." },
+        { name: "keywords", content: "about hingecraft, manufacturing company, company mission, sustainable business, AI manufacturing" },
+        { name: "robots", content: "index, follow" },
+        { property: "og:title", content: "About HingeCraft Global | Our Mission & Vision" },
+        { property: "og:description", content: "Learn about HingeCraft Global's mission to revolutionize manufacturing through AI, sustainability, and ethical practices. Discover our journey toward the Age of Abundance." },
+        { property: "og:type", content: "website" },
+        { property: "og:site_name", content: "HingeCraft Global" },
+        { property: "twitter:card", content: "summary_large_image" },
+        { property: "twitter:title", content: "About HingeCraft Global | Our Mission & Vision" },
+        { property: "twitter:description", content: "Learn about HingeCraft Global's mission to revolutionize manufacturing through AI, sustainability, and ethical practices. Discover our journey toward the Age of Abundance." }
+    ]);
+    
+    // Set structured data (JSON-LD)
+    wixSeo.setStructuredData([
+        {
+        "@context": "https://schema.org",
+        "@type": "AboutPage",
+        "name": "About HingeCraft Global | Our Mission & Vision",
+        "description": "Learn about HingeCraft Global's mission to revolutionize manufacturing through AI, sustainability, and ethical practices. Discover our journey toward the Age of Abundance.",
+        "url": "https://www.hingecraft.com/about.adg2f",
+        "inLanguage": "en-US",
+        "dateModified": "2025-12-06",
+        "publisher": {
+                "@type": "Organization",
+                "name": "HingeCraft Global",
+                "url": "https://www.hingecraft.com",
+                "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://www.hingecraft.com/logo.png"
+                }
+        }
+},
+        {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+                {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "https://www.hingecraft.com"
+                },
+                {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "About HingeCraft Global",
+                        "item": "https://www.hingecraft.com/about.adg2f"
+                }
+        ]
+}
+    ]);
+});
+
+
+// Original page code below
 // Comprehensive SEO Optimization - About
 // JSON-LD Schema.org | 100+ Keywords | Competitive Optimization
 

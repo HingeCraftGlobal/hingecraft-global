@@ -1,3 +1,69 @@
+// HingeCraft Global - SEO Optimized
+// Token Currencies | HingeCraft Digital Assets
+// Generated: December 6, 2025
+
+import wixSeo from 'wix-seo';
+
+$w.onReady(function () {
+    // Set page title
+    wixSeo.setTitle("Token Currencies | HingeCraft Digital Assets");
+    
+    // Set meta tags
+    wixSeo.setMetaTags([
+        { name: "description", content: "Learn about HingeCraft token currencies and digital assets for platform transactions, rewards, and ecosystem participation." },
+        { name: "keywords", content: "token currency, digital assets, platform tokens, rewards tokens, blockchain tokens" },
+        { name: "robots", content: "index, follow" },
+        { property: "og:title", content: "Token Currencies | HingeCraft Digital Assets" },
+        { property: "og:description", content: "Learn about HingeCraft token currencies and digital assets for platform transactions, rewards, and ecosystem participation." },
+        { property: "og:type", content: "website" },
+        { property: "og:site_name", content: "HingeCraft Global" },
+        { property: "twitter:card", content: "summary_large_image" },
+        { property: "twitter:title", content: "Token Currencies | HingeCraft Digital Assets" },
+        { property: "twitter:description", content: "Learn about HingeCraft token currencies and digital assets for platform transactions, rewards, and ecosystem participation." }
+    ]);
+    
+    // Set structured data (JSON-LD)
+    wixSeo.setStructuredData([
+        {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Token Currencies | HingeCraft Digital Assets",
+        "description": "Learn about HingeCraft token currencies and digital assets for platform transactions, rewards, and ecosystem participation.",
+        "url": "https://www.hingecraft.com/token-currencies.rnfe6",
+        "inLanguage": "en-US",
+        "dateModified": "2025-12-06",
+        "publisher": {
+                "@type": "Organization",
+                "name": "HingeCraft Global",
+                "url": "https://www.hingecraft.com",
+                "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://www.hingecraft.com/logo.png"
+                }
+        }
+},
+        {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+                {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "https://www.hingecraft.com"
+                },
+                {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "Token Currencies",
+                        "item": "https://www.hingecraft.com/token-currencies.rnfe6"
+                }
+        ]
+}
+    ]);
+});
+
+
+// Original page code below
 // Comprehensive SEO Optimization - Token Currencies
 // JSON-LD Schema.org | 100+ Keywords | Competitive Optimization
 
