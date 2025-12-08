@@ -366,6 +366,7 @@
         }
 
         // Redirect to Charter Page with amount
+        // Note: Mission Support form is now on Payment page URL (/payment)
         const charterUrl = `/charter?donationAmount=${encodeURIComponent(finalAmount)}&fromMissionSupport=true`;
         
         if (typeof wixLocation !== 'undefined' && wixLocation.to) {

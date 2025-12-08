@@ -161,7 +161,7 @@
         sessionStorage.setItem(CONFIG.SESSION_KEY, JSON.stringify({
           amount: amount,
           timestamp: new Date().toISOString(),
-          source: 'payment_page'
+          source: 'missionSupportForm'
         }));
       }
 
@@ -170,7 +170,7 @@
         wixStorage.setItem(CONFIG.STORAGE_KEY, JSON.stringify({
           amount: amount,
           timestamp: new Date().toISOString(),
-          source: 'payment_page'
+          source: 'missionSupportForm'
         }));
       }
 
