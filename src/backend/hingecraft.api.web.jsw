@@ -426,7 +426,7 @@ async function updateDonationStatusInExternal(donationId, status) {
 /**
  * T10 IMPLEMENTATION: Log Contribution Intent
  * 
- * Logs when a user enters "Other Amount" on Charter Page and redirects to Payment Page.
+ * Logs when a user enters "Other Amount" on Charter Page and redirects to Mission Support Form (Payment Page URL).
  * This function:
  * - Validates amount server-side (never trust client-side)
  * - Stores intent in ContributionIntent collection

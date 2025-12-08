@@ -745,7 +745,7 @@ async function storeDonationAmount(amount, isOtherAmount = false) {
         amount: amount,
         isOtherAmount: isOtherAmount,
         timestamp: new Date().toISOString(),
-        source: 'payment_page'
+        source: 'missionSupportForm'
     };
     
     // Store in Wix Storage
