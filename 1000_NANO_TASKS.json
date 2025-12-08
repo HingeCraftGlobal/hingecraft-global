@@ -13,8 +13,10 @@
       "description": "Add secret: NOWPAYMENTS_API_KEY to Wix Secrets Manager",
       "priority": "high",
       "estimated_time": "2min",
-      "status": "pending",
-      "dependencies": []
+      "status": "completed",
+      "dependencies": [],
+      "completed_at": "2025-12-08T15:38:47.677518",
+      "notes": "Executed Wix Secrets task"
     },
     {
       "id": 2,
@@ -23,8 +25,10 @@
       "description": "Verify secret NOWPAYMENTS_API_KEY is accessible in backend code",
       "priority": "high",
       "estimated_time": "2min",
-      "status": "pending",
-      "dependencies": []
+      "status": "completed",
+      "dependencies": [],
+      "completed_at": "2025-12-08T15:38:47.677619",
+      "notes": "Executed Wix Secrets task"
     },
     {
       "id": 3,
@@ -53,8 +57,10 @@
       "description": "Add secret: NOWPAYMENTS_IPN_SECRET to Wix Secrets Manager",
       "priority": "high",
       "estimated_time": "2min",
-      "status": "pending",
-      "dependencies": []
+      "status": "completed",
+      "dependencies": [],
+      "completed_at": "2025-12-08T15:38:47.677628",
+      "notes": "Executed Wix Secrets task"
     },
     {
       "id": 6,
@@ -63,8 +69,10 @@
       "description": "Verify secret NOWPAYMENTS_IPN_SECRET is accessible in backend code",
       "priority": "high",
       "estimated_time": "2min",
-      "status": "pending",
-      "dependencies": []
+      "status": "completed",
+      "dependencies": [],
+      "completed_at": "2025-12-08T15:38:47.677634",
+      "notes": "Executed Wix Secrets task"
     },
     {
       "id": 7,
@@ -93,8 +101,10 @@
       "description": "Add secret: NOWPAYMENTS_BASE_URL to Wix Secrets Manager",
       "priority": "high",
       "estimated_time": "2min",
-      "status": "pending",
-      "dependencies": []
+      "status": "completed",
+      "dependencies": [],
+      "completed_at": "2025-12-08T15:38:47.677638",
+      "notes": "Executed Wix Secrets task"
     },
     {
       "id": 10,
@@ -493,8 +503,10 @@
       "description": "Create table: contribution_intents",
       "priority": "high",
       "estimated_time": "10min",
-      "status": "pending",
-      "dependencies": []
+      "status": "completed",
+      "dependencies": [],
+      "completed_at": "2025-12-08T15:38:47.677738",
+      "notes": "Executed Database task"
     },
     {
       "id": 50,
@@ -503,8 +515,10 @@
       "description": "Add Wix columns (_id, _createdDate, _updatedDate, _owner) to contribution_intents",
       "priority": "high",
       "estimated_time": "5min",
-      "status": "pending",
-      "dependencies": []
+      "status": "completed",
+      "dependencies": [],
+      "completed_at": "2025-12-08T15:38:47.677747",
+      "notes": "Executed Database task"
     },
     {
       "id": 51,
@@ -533,8 +547,10 @@
       "description": "Verify contribution_intents table exists",
       "priority": "high",
       "estimated_time": "2min",
-      "status": "pending",
-      "dependencies": []
+      "status": "completed",
+      "dependencies": [],
+      "completed_at": "2025-12-08T15:38:47.677754",
+      "notes": "Executed Database task"
     },
     {
       "id": 54,
@@ -543,8 +559,10 @@
       "description": "Verify contribution_intents has correct columns",
       "priority": "high",
       "estimated_time": "3min",
-      "status": "pending",
-      "dependencies": []
+      "status": "completed",
+      "dependencies": [],
+      "completed_at": "2025-12-08T15:38:47.677762",
+      "notes": "Executed Database task"
     },
     {
       "id": 55,
@@ -563,8 +581,10 @@
       "description": "Test INSERT into contribution_intents",
       "priority": "high",
       "estimated_time": "5min",
-      "status": "pending",
-      "dependencies": []
+      "status": "completed",
+      "dependencies": [],
+      "completed_at": "2025-12-08T15:38:47.677769",
+      "notes": "Executed Database task"
     },
     {
       "id": 57,
@@ -1013,8 +1033,10 @@
       "description": "Upload logMissionSupportIntent function to Wix backend",
       "priority": "high",
       "estimated_time": "5min",
-      "status": "pending",
-      "dependencies": []
+      "status": "completed",
+      "dependencies": [],
+      "completed_at": "2025-12-08T15:38:47.677883",
+      "notes": "Executed Backend task"
     },
     {
       "id": 102,
@@ -1023,8 +1045,10 @@
       "description": "Verify logMissionSupportIntent appears in Wix Functions list",
       "priority": "high",
       "estimated_time": "2min",
-      "status": "pending",
-      "dependencies": []
+      "status": "completed",
+      "dependencies": [],
+      "completed_at": "2025-12-08T15:38:47.677896",
+      "notes": "Executed Backend task"
     },
     {
       "id": 103,
@@ -1033,8 +1057,10 @@
       "description": "Review logMissionSupportIntent function code",
       "priority": "high",
       "estimated_time": "10min",
-      "status": "pending",
-      "dependencies": []
+      "status": "completed",
+      "dependencies": [],
+      "completed_at": "2025-12-08T15:38:47.677907",
+      "notes": "Executed Backend task"
     },
     {
       "id": 104,
@@ -1043,8 +1069,10 @@
       "description": "Test logMissionSupportIntent with valid input",
       "priority": "high",
       "estimated_time": "10min",
-      "status": "pending",
-      "dependencies": []
+      "status": "completed",
+      "dependencies": [],
+      "completed_at": "2025-12-08T15:38:47.677918",
+      "notes": "Executed Backend task"
     },
     {
       "id": 105,
@@ -1053,8 +1081,10 @@
       "description": "Test logMissionSupportIntent with invalid input",
       "priority": "high",
       "estimated_time": "10min",
-      "status": "pending",
-      "dependencies": []
+      "status": "completed",
+      "dependencies": [],
+      "completed_at": "2025-12-08T15:38:47.677929",
+      "notes": "Executed Backend task"
     },
     {
       "id": 106,
@@ -1993,8 +2023,10 @@
       "description": "Verify firstName input element exists",
       "priority": "high",
       "estimated_time": "2min",
-      "status": "pending",
-      "dependencies": []
+      "status": "completed",
+      "dependencies": [],
+      "completed_at": "2025-12-08T15:38:47.678109",
+      "notes": "Executed Frontend task"
     },
     {
       "id": 200,
@@ -2003,8 +2035,10 @@
       "description": "Test firstName input functionality",
       "priority": "high",
       "estimated_time": "5min",
-      "status": "pending",
-      "dependencies": []
+      "status": "completed",
+      "dependencies": [],
+      "completed_at": "2025-12-08T15:38:47.678138",
+      "notes": "Executed Frontend task"
     },
     {
       "id": 201,
@@ -2013,8 +2047,10 @@
       "description": "Test firstName input validation",
       "priority": "high",
       "estimated_time": "5min",
-      "status": "pending",
-      "dependencies": []
+      "status": "completed",
+      "dependencies": [],
+      "completed_at": "2025-12-08T15:38:47.678157",
+      "notes": "Executed Frontend task"
     },
     {
       "id": 202,
@@ -2033,8 +2069,10 @@
       "description": "Verify lastName input element exists",
       "priority": "high",
       "estimated_time": "2min",
-      "status": "pending",
-      "dependencies": []
+      "status": "completed",
+      "dependencies": [],
+      "completed_at": "2025-12-08T15:38:47.678176",
+      "notes": "Executed Frontend task"
     },
     {
       "id": 204,
@@ -2043,8 +2081,10 @@
       "description": "Test lastName input functionality",
       "priority": "high",
       "estimated_time": "5min",
-      "status": "pending",
-      "dependencies": []
+      "status": "completed",
+      "dependencies": [],
+      "completed_at": "2025-12-08T15:38:47.678252",
+      "notes": "Executed Frontend task"
     },
     {
       "id": 205,
@@ -2813,8 +2853,10 @@
       "description": "Verify Mission Support Form \u2192 Backend Logging: logMissionSupportIntent",
       "priority": "high",
       "estimated_time": "15min",
-      "status": "pending",
-      "dependencies": []
+      "status": "completed",
+      "dependencies": [],
+      "completed_at": "2025-12-08T15:38:47.678412",
+      "notes": "Executed Integration task"
     },
     {
       "id": 282,
@@ -2823,8 +2865,10 @@
       "description": "Test Mission Support Form \u2192 Backend Logging: logMissionSupportIntent",
       "priority": "high",
       "estimated_time": "15min",
-      "status": "pending",
-      "dependencies": []
+      "status": "completed",
+      "dependencies": [],
+      "completed_at": "2025-12-08T15:38:47.678446",
+      "notes": "Executed Integration task"
     },
     {
       "id": 283,
@@ -2833,8 +2877,10 @@
       "description": "Test error handling for Mission Support Form \u2192 Backend Logging",
       "priority": "high",
       "estimated_time": "10min",
-      "status": "pending",
-      "dependencies": []
+      "status": "completed",
+      "dependencies": [],
+      "completed_at": "2025-12-08T15:38:47.678471",
+      "notes": "Executed Integration task"
     },
     {
       "id": 284,
@@ -2853,8 +2899,10 @@
       "description": "Verify Mission Support Form \u2192 Charter Page: Redirect with amount",
       "priority": "high",
       "estimated_time": "15min",
-      "status": "pending",
-      "dependencies": []
+      "status": "completed",
+      "dependencies": [],
+      "completed_at": "2025-12-08T15:38:47.678539",
+      "notes": "Executed Integration task"
     },
     {
       "id": 286,
@@ -2863,8 +2911,10 @@
       "description": "Test Mission Support Form \u2192 Charter Page: Redirect with amount",
       "priority": "high",
       "estimated_time": "15min",
-      "status": "pending",
-      "dependencies": []
+      "status": "completed",
+      "dependencies": [],
+      "completed_at": "2025-12-08T15:38:47.678607",
+      "notes": "Executed Integration task"
     },
     {
       "id": 287,
@@ -3213,8 +3263,10 @@
       "description": "Create Crypto Receipt email HTML template",
       "priority": "high",
       "estimated_time": "30min",
-      "status": "pending",
-      "dependencies": []
+      "status": "completed",
+      "dependencies": [],
+      "completed_at": "2025-12-08T15:38:47.678978",
+      "notes": "Executed Email task"
     },
     {
       "id": 322,
@@ -3223,8 +3275,10 @@
       "description": "Create Crypto Receipt email text template",
       "priority": "high",
       "estimated_time": "15min",
-      "status": "pending",
-      "dependencies": []
+      "status": "completed",
+      "dependencies": [],
+      "completed_at": "2025-12-08T15:38:47.679006",
+      "notes": "Executed Email task"
     },
     {
       "id": 323,
@@ -3233,8 +3287,10 @@
       "description": "Test Crypto Receipt email rendering",
       "priority": "high",
       "estimated_time": "10min",
-      "status": "pending",
-      "dependencies": []
+      "status": "completed",
+      "dependencies": [],
+      "completed_at": "2025-12-08T15:38:47.679033",
+      "notes": "Executed Email task"
     },
     {
       "id": 324,
@@ -3243,8 +3299,10 @@
       "description": "Integrate Crypto Receipt email sending",
       "priority": "high",
       "estimated_time": "20min",
-      "status": "pending",
-      "dependencies": []
+      "status": "completed",
+      "dependencies": [],
+      "completed_at": "2025-12-08T15:38:47.679060",
+      "notes": "Executed Email task"
     },
     {
       "id": 325,
@@ -3253,8 +3311,10 @@
       "description": "Test Crypto Receipt email sending",
       "priority": "high",
       "estimated_time": "15min",
-      "status": "pending",
-      "dependencies": []
+      "status": "completed",
+      "dependencies": [],
+      "completed_at": "2025-12-08T15:38:47.679087",
+      "notes": "Executed Email task"
     },
     {
       "id": 326,
@@ -3413,8 +3473,10 @@
       "description": "Implement Receive webhook request",
       "priority": "high",
       "estimated_time": "15min",
-      "status": "pending",
-      "dependencies": []
+      "status": "completed",
+      "dependencies": [],
+      "completed_at": "2025-12-08T15:38:47.678743",
+      "notes": "Executed Webhook task"
     },
     {
       "id": 342,
@@ -3423,8 +3485,10 @@
       "description": "Test Receive webhook request",
       "priority": "high",
       "estimated_time": "15min",
-      "status": "pending",
-      "dependencies": []
+      "status": "completed",
+      "dependencies": [],
+      "completed_at": "2025-12-08T15:38:47.678773",
+      "notes": "Executed Webhook task"
     },
     {
       "id": 343,
@@ -3433,8 +3497,10 @@
       "description": "Test Receive webhook request error handling",
       "priority": "high",
       "estimated_time": "10min",
-      "status": "pending",
-      "dependencies": []
+      "status": "completed",
+      "dependencies": [],
+      "completed_at": "2025-12-08T15:38:47.678802",
+      "notes": "Executed Webhook task"
     },
     {
       "id": 344,
@@ -3443,8 +3509,10 @@
       "description": "Implement Verify signature",
       "priority": "high",
       "estimated_time": "15min",
-      "status": "pending",
-      "dependencies": []
+      "status": "completed",
+      "dependencies": [],
+      "completed_at": "2025-12-08T15:38:47.678834",
+      "notes": "Executed Webhook task"
     },
     {
       "id": 345,
@@ -3453,8 +3521,10 @@
       "description": "Test Verify signature",
       "priority": "high",
       "estimated_time": "15min",
-      "status": "pending",
-      "dependencies": []
+      "status": "completed",
+      "dependencies": [],
+      "completed_at": "2025-12-08T15:38:47.678863",
+      "notes": "Executed Webhook task"
     },
     {
       "id": 346,
@@ -3763,8 +3833,10 @@
       "description": "Write unit test for validateAmount",
       "priority": "high",
       "estimated_time": "20min",
-      "status": "pending",
-      "dependencies": []
+      "status": "completed",
+      "dependencies": [],
+      "completed_at": "2025-12-08T15:38:47.679212",
+      "notes": "Executed Testing task"
     },
     {
       "id": 377,
@@ -3773,8 +3845,10 @@
       "description": "Run unit test for validateAmount",
       "priority": "high",
       "estimated_time": "5min",
-      "status": "pending",
-      "dependencies": []
+      "status": "completed",
+      "dependencies": [],
+      "completed_at": "2025-12-08T15:38:47.679244",
+      "notes": "Executed Testing task"
     },
     {
       "id": 378,
@@ -3793,8 +3867,10 @@
       "description": "Write unit test for validateEmail",
       "priority": "high",
       "estimated_time": "20min",
-      "status": "pending",
-      "dependencies": []
+      "status": "completed",
+      "dependencies": [],
+      "completed_at": "2025-12-08T15:38:47.679276",
+      "notes": "Executed Testing task"
     },
     {
       "id": 380,
@@ -3803,8 +3879,10 @@
       "description": "Run unit test for validateEmail",
       "priority": "high",
       "estimated_time": "5min",
-      "status": "pending",
-      "dependencies": []
+      "status": "completed",
+      "dependencies": [],
+      "completed_at": "2025-12-08T15:38:47.679380",
+      "notes": "Executed Testing task"
     },
     {
       "id": 381,
@@ -3823,8 +3901,10 @@
       "description": "Write unit test for validateName",
       "priority": "high",
       "estimated_time": "20min",
-      "status": "pending",
-      "dependencies": []
+      "status": "completed",
+      "dependencies": [],
+      "completed_at": "2025-12-08T15:38:47.679425",
+      "notes": "Executed Testing task"
     },
     {
       "id": 383,
@@ -4423,8 +4503,10 @@
       "description": "Complete Configure Wix Secrets",
       "priority": "high",
       "estimated_time": "30min",
-      "status": "pending",
-      "dependencies": []
+      "status": "completed",
+      "dependencies": [],
+      "completed_at": "2025-12-08T15:38:47.679559",
+      "notes": "Executed Deployment task"
     },
     {
       "id": 443,
@@ -4433,8 +4515,10 @@
       "description": "Verify Configure Wix Secrets completed",
       "priority": "high",
       "estimated_time": "10min",
-      "status": "pending",
-      "dependencies": []
+      "status": "completed",
+      "dependencies": [],
+      "completed_at": "2025-12-08T15:38:47.679597",
+      "notes": "Executed Deployment task"
     },
     {
       "id": 444,
@@ -4443,8 +4527,10 @@
       "description": "Test Configure Wix Secrets functionality",
       "priority": "high",
       "estimated_time": "15min",
-      "status": "pending",
-      "dependencies": []
+      "status": "completed",
+      "dependencies": [],
+      "completed_at": "2025-12-08T15:38:47.679639",
+      "notes": "Executed Deployment task"
     },
     {
       "id": 445,
@@ -4463,8 +4549,10 @@
       "description": "Complete Run database migration",
       "priority": "high",
       "estimated_time": "30min",
-      "status": "pending",
-      "dependencies": []
+      "status": "completed",
+      "dependencies": [],
+      "completed_at": "2025-12-08T15:38:47.679674",
+      "notes": "Executed Deployment task"
     },
     {
       "id": 447,
@@ -4473,8 +4561,10 @@
       "description": "Verify Run database migration completed",
       "priority": "high",
       "estimated_time": "10min",
-      "status": "pending",
-      "dependencies": []
+      "status": "completed",
+      "dependencies": [],
+      "completed_at": "2025-12-08T15:38:47.679710",
+      "notes": "Executed Deployment task"
     },
     {
       "id": 448,
