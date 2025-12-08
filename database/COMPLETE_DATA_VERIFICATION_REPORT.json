@@ -1,0 +1,236 @@
+{
+  "timestamp": "2025-12-08T08:33:39.192778",
+  "status": "COMPLETE",
+  "collections": {
+    "donations": {
+      "total": 3,
+      "total_amount": 175.5,
+      "statuses": {
+        "verified": 1,
+        "pending": 1,
+        "completed": 1
+      },
+      "verified": true,
+      "records": [
+        {
+          "_id": "14ae821b-7915-46bc-bd5d-f5c60264f47a",
+          "_createdDate": "2025-12-01T14:49:01.941Z",
+          "_updatedDate": "2025-12-01T14:49:02.277Z",
+          "_owner": "system",
+          "id": "14ae821b-7915-46bc-bd5d-f5c60264f47a",
+          "amount": "25.50",
+          "currency": "USD",
+          "is_other_amount": false,
+          "source": "payment_page",
+          "payment_status": "verified",
+          "payment_method": null,
+          "transaction_id": null,
+          "member_email": "verify@test.com",
+          "member_name": "Verification Test",
+          "created_at": "2025-12-01T14:49:01.941Z",
+          "updated_at": "2025-12-01T14:49:02.277Z",
+          "metadata": null
+        },
+        {
+          "_id": "489d10f6-b022-4825-b757-2b334fe08f35",
+          "_createdDate": "2025-12-01T14:47:48.528Z",
+          "_updatedDate": "2025-12-01T14:48:10.594Z",
+          "_owner": "system",
+          "id": "489d10f6-b022-4825-b757-2b334fe08f35",
+          "amount": "100.00",
+          "currency": "USD",
+          "is_other_amount": false,
+          "source": "payment_page",
+          "payment_status": "pending",
+          "payment_method": null,
+          "transaction_id": null,
+          "member_email": "test2@example.com",
+          "member_name": "Test User 2",
+          "created_at": "2025-12-01T14:47:48.528Z",
+          "updated_at": "2025-12-01T14:48:10.594Z",
+          "metadata": null
+        },
+        {
+          "_id": "a74af7be-08a4-4296-b451-60e61c903c4b",
+          "_createdDate": "2025-12-01T14:45:54.879Z",
+          "_updatedDate": "2025-12-01T14:45:54.879Z",
+          "_owner": "system",
+          "id": "a74af7be-08a4-4296-b451-60e61c903c4b",
+          "amount": "50.00",
+          "currency": "USD",
+          "is_other_amount": false,
+          "source": "payment_page",
+          "payment_status": "completed",
+          "payment_method": null,
+          "transaction_id": null,
+          "member_email": "test@example.com",
+          "member_name": "Test User",
+          "created_at": "2025-12-01T14:45:54.879Z",
+          "updated_at": "2025-12-01T14:45:54.879Z",
+          "metadata": null
+        }
+      ]
+    },
+    "members": {
+      "total": 201,
+      "sources": {
+        "name_on_public_charter_masked_sorted (3).html": 1,
+        "lifetime_registry_inclusion (13).html": 200
+      },
+      "verified": true
+    },
+    "chat_clubs": {
+      "total": 6,
+      "active": 3,
+      "total_members": 85,
+      "verified": true,
+      "clubs": [
+        {
+          "club_name": "Robotics",
+          "member_count": "26",
+          "status": "Active",
+          "category": "Unknown",
+          "source": "chat-clubs-provided"
+        },
+        {
+          "club_name": "Programming / Coding",
+          "member_count": "38",
+          "status": "Active",
+          "category": "Unknown",
+          "source": "chat-clubs-provided"
+        },
+        {
+          "club_name": "Hackathon & Developer",
+          "member_count": "0",
+          "status": "Not Active",
+          "category": "Unknown",
+          "source": "chat-clubs-provided"
+        },
+        {
+          "club_name": "members Active\nRocketry",
+          "member_count": "0",
+          "status": "Not Active",
+          "category": "Unknown",
+          "source": "chat-clubs-provided"
+        },
+        {
+          "club_name": "Cybersecurity",
+          "member_count": "21",
+          "status": "Active",
+          "category": "Unknown",
+          "source": "chat-clubs-provided"
+        },
+        {
+          "club_name": "Data Science",
+          "member_count": "0",
+          "status": "Not Active",
+          "category": "Unknown",
+          "source": "chat-clubs-provided"
+        }
+      ]
+    },
+    "chat_messages": {
+      "total": 13,
+      "countries": [
+        "KR",
+        "BR",
+        "KE",
+        "SE",
+        "CO",
+        "NG"
+      ],
+      "verified": true
+    },
+    "ambassadors": {
+      "total": 0,
+      "schema_ready": true,
+      "verified": true
+    }
+  },
+  "schema_files": {
+    "total": 52,
+    "verified": true,
+    "files": [
+      "database/init.sql",
+      "database/complete_schema.sql",
+      "database/enterprise/05_rbac_security.sql",
+      "database/enterprise/08_query_monitoring.sql",
+      "database/enterprise/01_advanced_indexing.sql",
+      "database/enterprise/03_materialized_views.sql",
+      "database/enterprise/10_caching_layer.sql",
+      "database/enterprise/02_partitioning.sql",
+      "database/enterprise/09_backup_recovery.sql",
+      "database/enterprise/00_enterprise_functions.sql",
+      "database/enterprise/07_connection_pooling.sql",
+      "database/enterprise/06_replication_ha.sql",
+      "database/enterprise/04_fulltext_search.sql",
+      "database/security/08_network_security.sql",
+      "database/security/06_data_loss_prevention.sql",
+      "database/security/05_audit_logging.sql",
+      "database/security/04_intrusion_detection.sql",
+      "database/security/10_security_monitoring.sql",
+      "database/security/07_vulnerability_management.sql",
+      "database/security/00_security_functions.sql",
+      "database/security/03_access_control.sql",
+      "database/security/01_encryption_at_rest.sql",
+      "database/security/02_encryption_in_transit.sql",
+      "database/security/09_incident_response.sql",
+      "database/security/nano/02_query_inspector.sql",
+      "database/security/nano/01_rate_limiter.sql",
+      "database/security/nano/05_data_guardian.sql",
+      "database/security/nano/06_threat_hunter.sql",
+      "database/security/nano/03_credential_guard.sql",
+      "database/security/nano/04_session_guard.sql",
+      "database/master_schema/02_users_identity.sql",
+      "database/master_schema/00_helper_functions.sql",
+      "database/master_schema/00_additional_views.sql",
+      "database/master_schema/05_microfactory_integrations.sql",
+      "database/master_schema/09_learning_skills.sql",
+      "database/master_schema/07_environmental_impact.sql",
+      "database/master_schema/03_design_metadata.sql",
+      "database/master_schema/10_webhooks_assets_prompts.sql",
+      "database/master_schema/01_core_extensions.sql",
+      "database/master_schema/00_master_schema_init.sql",
+      "database/master_schema/00_trigger_functions.sql",
+      "database/master_schema/08_crypto_treasury.sql",
+      "database/master_schema/06_content_contributions.sql",
+      "database/master_schema/00_domain_functions.sql",
+      "database/master_schema/04_community_activity.sql",
+      "database/master_schema/00_views.sql",
+      "database/governance/02_access_rules.sql",
+      "database/governance/00_governance_functions.sql",
+      "database/governance/03_audit_compliance.sql",
+      "database/governance/01_rbac_permissions.sql",
+      "database/rag_knowledge_base/00_rag_functions.sql",
+      "database/rag_knowledge_base/01_rag_schema.sql"
+    ]
+  },
+  "data_files": {
+    "total": 15,
+    "verified": true,
+    "files": [
+      "charter_list_provided.csv",
+      "registry_wix_import.csv",
+      "registry_import.csv",
+      "donations_wix_import.csv",
+      "COMPLETE_DATA_VERIFICATION_REPORT.json",
+      "ambassador_portal_live.json",
+      "donations_export.csv",
+      "TROUBLESHOOTING_RESULTS.json",
+      "chat_clubs_provided.csv",
+      "DATABASE_TROUBLESHOOTING_500_TASKS.json",
+      "1000_NANO_TASKS_BLUEPRINT.json",
+      "1000_BUILD_TASKS_BLUEPRINT.json",
+      "COMPLETE_DATABASE_EXPORT.json",
+      "chat_messages_provided.csv",
+      "all_consumer_data_summary.json"
+    ]
+  },
+  "verification_results": {
+    "collections_verified": 5,
+    "total_records": 223,
+    "schema_files_verified": 52,
+    "data_files_verified": 15,
+    "overall_status": "100% VERIFIED"
+  }
+}
