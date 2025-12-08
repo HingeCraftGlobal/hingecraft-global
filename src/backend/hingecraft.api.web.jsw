@@ -1,3 +1,4 @@
+const EXTERNAL_DB_ENDPOINT = 'YOUR_EXTERNAL_DB_ADAPTOR_URL'; // Update this to your database adaptor URL
 const EXTERNAL_DB_SECRET_KEY = 'YOUR_EXTERNAL_DB_ADAPTOR_SECRET_KEY'; // Your secret key
 const USE_EXTERNAL_DB = true; // Set to true if using external database adaptor, false for Wix Database
 
@@ -598,5 +599,153 @@ async function tagUserForCRM(sessionID, amount) {
     } catch (error) {
         console.error('Error tagging user for CRM:', error);
         throw error;
+    }
+}
+
+/**
+ * T10 MISSION SUPPORT: Log Mission Support Intent
+ * 
+ * Logs Mission Support form submissions with full form data.
+ * This function:
+ * - Validates all form fields server-side
+ * - Stores complete form data in ContributionIntent collection
+ * - Includes Mission Support specific fields (firstName, lastName, email, address, missionSupportName)
+ * - Triggers Notion sync
+ * - Tags user records for CRM
+ * - Fails silently for UI but logs deeply in backend
+ */
+export async function logMissionSupportIntent(requestData) {
+    try {
+        // Server-side validation (never trust client-side)
+        if (!requestData || !requestData.formData || !requestData.amountEntered) {
+            throw new Error('Invalid request data: formData and amountEntered required');
+        }
+
+        const formData = requestData.formData;
+        const amount = parseFloat(requestData.amountEntered);
+
+        // Validate amount
+        if (isNaN(amount) || amount < 1.00 || amount > 25000.00) {
+            throw new Error(`Invalid amount: ${amount} (must be between 1.00 and 25000.00)`);
+        }
+
+        // Validate form fields
+        const firstNamePattern = /^[a-zA-Z\-\s]{1,50}$/;
+        const lastNamePattern = /^[a-zA-Z\-\s]{1,50}$/;
+        const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        const addressPattern = /^[a-zA-Z0-9\s\-\.,#]{1,200}$/;
+        const missionSupportNamePattern = /^[a-zA-Z0-9\s\-\.,]{0,200}$/;
+
+        if (!firstNamePattern.test(formData.firstName || '')) {
+            throw new Error('Invalid firstName format');
+        }
+        if (!lastNamePattern.test(formData.lastName || '')) {
+            throw new Error('Invalid lastName format');
+        }
+        if (!emailPattern.test(formData.email || '')) {
+            throw new Error('Invalid email format');
+        }
+        if (!addressPattern.test(formData.address || '')) {
+            throw new Error('Invalid address format');
+        }
+        if (formData.missionSupportName && !missionSupportNamePattern.test(formData.missionSupportName)) {
+            throw new Error('Invalid missionSupportName format');
+        }
+
+        // Prepare intent record with Mission Support data
+        const intentRecord = {
+            amountEntered: amount,
+            timestamp: requestData.timestamp || new Date().toISOString(),
+            sessionID: requestData.sessionID || 'unknown',
+            anonymousFingerprint: requestData.anonymousFingerprint || 'unknown',
+            referrerSource: requestData.referrerSource || 'direct',
+            pageUrl: requestData.pageUrl || 'unknown',
+            userAgent: requestData.userAgent || 'unknown',
+            status: 'intent', // intent → pending → completed
+            source: 'missionSupportForm',
+            createdAt: new Date(),
+            
+            // Mission Support specific fields
+            firstName: formData.firstName.trim(),
+            lastName: formData.lastName.trim(),
+            email: formData.email.trim().toLowerCase(),
+            address: formData.address.trim(),
+            missionSupportName: formData.missionSupportName ? formData.missionSupportName.trim() : null,
+            
+            metadata: {
+                utm_source: extractUTM(requestData.referrerSource, 'utm_source'),
+                utm_medium: extractUTM(requestData.referrerSource, 'utm_medium'),
+                utm_campaign: extractUTM(requestData.referrerSource, 'utm_campaign'),
+                formSource: 'missionSupportForm',
+                formVersion: '1.0.0'
+            }
+        };
+
+        // Store in ContributionIntent collection
+        let intentId;
+        try {
+            if (USE_EXTERNAL_DB) {
+                // Store in external database
+                const response = await fetch(EXTERNAL_DB_ENDPOINT + '/contribution-intents', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${EXTERNAL_DB_SECRET_KEY}`,
+                        'X-API-Key': EXTERNAL_DB_SECRET_KEY
+                    },
+                    body: JSON.stringify(intentRecord)
+                });
+
+                if (!response.ok) {
+                    throw new Error(`External DB save failed: ${response.status}`);
+                }
+
+                const result = await response.json();
+                intentId = result.id || result._id;
+            } else {
+                // Store in Wix Database
+                const result = await wixData.save('ContributionIntent', intentRecord);
+                intentId = result._id;
+            }
+
+            console.log('✅ Mission Support intent logged:', intentId);
+        } catch (dbError) {
+            console.error('❌ Database save error (non-blocking):', dbError);
+            // Continue to Notion sync even if DB save fails
+        }
+
+        // Trigger Notion sync (with retry mechanism)
+        try {
+            await syncToNotionWithRetry(intentRecord, 3); // 3 retries
+        } catch (notionError) {
+            console.error('❌ Notion sync error (non-blocking):', notionError);
+            // Fail silently - don't block user flow
+        }
+
+        // Tag user records for CRM (if sessionID available)
+        if (requestData.sessionID && requestData.sessionID !== 'unknown') {
+            try {
+                await tagUserForCRM(requestData.sessionID, amount);
+            } catch (crmError) {
+                console.error('❌ CRM tagging error (non-blocking):', crmError);
+            }
+        }
+
+        return {
+            success: true,
+            intentId: intentId,
+            amount: amount
+        };
+
+    } catch (error) {
+        // Log deeply but fail silently for UI
+        console.error('❌ Error logging Mission Support intent:', error);
+        console.error('Request data:', JSON.stringify(requestData, null, 2));
+        
+        // Return error but don't throw (non-blocking)
+        return {
+            success: false,
+            error: error.message
+        };
     }
 }

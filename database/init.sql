@@ -268,3 +268,60 @@ CREATE TRIGGER set_ambassadors_wix_id
     BEFORE INSERT ON ambassadors
     FOR EACH ROW
     EXECUTE FUNCTION set_wix_id();
+
+-- ============================================
+-- TABLE: contribution_intents
+-- T10 Implementation: Stores contribution intent data from Mission Support form and Other Amount flow
+-- ============================================
+CREATE TABLE IF NOT EXISTS contribution_intents (
+    "_id" VARCHAR(255) PRIMARY KEY,
+    "_createdDate" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    "_updatedDate" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    "_owner" VARCHAR(255) DEFAULT 'system',
+    
+    -- Amount and status
+    amount_entered DECIMAL(10, 2) NOT NULL,
+    status VARCHAR(50) DEFAULT 'intent', -- intent → pending → completed
+    source VARCHAR(100) DEFAULT 'missionSupportForm', -- missionSupportForm, charterPage, paymentPage
+    
+    -- Mission Support form fields
+    first_name VARCHAR(255),
+    last_name VARCHAR(255),
+    email VARCHAR(255),
+    address VARCHAR(500),
+    mission_support_name VARCHAR(255), -- Attribution/dedication name
+    
+    -- Session and tracking
+    session_id VARCHAR(255),
+    anonymous_fingerprint VARCHAR(255),
+    referrer_source TEXT,
+    page_url TEXT,
+    user_agent TEXT,
+    
+    -- Timestamps
+    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    
+    -- Metadata (UTM params, form version, etc.)
+    metadata JSONB DEFAULT '{}'::jsonb
+);
+
+CREATE INDEX IF NOT EXISTS idx_contribution_intents_status ON contribution_intents(status);
+CREATE INDEX IF NOT EXISTS idx_contribution_intents_source ON contribution_intents(source);
+CREATE INDEX IF NOT EXISTS idx_contribution_intents_session_id ON contribution_intents(session_id);
+CREATE INDEX IF NOT EXISTS idx_contribution_intents_email ON contribution_intents(email);
+CREATE INDEX IF NOT EXISTS idx_contribution_intents_created_at ON contribution_intents("_createdDate" DESC);
+CREATE INDEX IF NOT EXISTS idx_contribution_intents_owner ON contribution_intents("_owner");
+
+DROP TRIGGER IF EXISTS update_contribution_intents_updated_date ON contribution_intents;
+CREATE TRIGGER update_contribution_intents_updated_date
+    BEFORE UPDATE ON contribution_intents
+    FOR EACH ROW
+    EXECUTE FUNCTION update_updated_date_column();
+
+DROP TRIGGER IF EXISTS set_contribution_intents_wix_id ON contribution_intents;
+CREATE TRIGGER set_contribution_intents_wix_id
+    BEFORE INSERT ON contribution_intents
+    FOR EACH ROW
+    EXECUTE FUNCTION set_wix_id();
