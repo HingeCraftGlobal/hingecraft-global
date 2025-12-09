@@ -9,6 +9,7 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "migrate": "node scripts/migrate.js",
+    "migrate:chat": "node scripts/apply_chat_migrations.js",
     "lint": "eslint ."
   },
   "keywords": [
