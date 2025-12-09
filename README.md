@@ -1,80 +1,261 @@
-# HingeCraft Mission Support System
+# HingeCraft Live Chat System
 
-**Complete Mission Support donation system with Card and Crypto payment options**
+Production-ready real-time chat system with WebSocket support, file uploads, content moderation, and full accessibility compliance.
 
----
+## Features
 
-## 📁 Project Structure
+- ✅ Real-time messaging with WebSocket (Socket.IO)
+- ✅ File attachments with S3-compatible storage
+- ✅ Threaded conversations
+- ✅ Message reactions
+- ✅ Pin messages (admin)
+- ✅ Typing indicators
+- ✅ Presence/online status
+- ✅ Read receipts
+- ✅ Full-text search
+- ✅ Content moderation
+- ✅ Idempotency protection
+- ✅ Rate limiting
+- ✅ Wix Velo integration
+- ✅ Accessibility (WCAG 2.1 AA)
 
-```
-hingecraft-global/
-├── backend-functions/      # Backend .jsw files (for Wix upload)
-│   ├── hingecraft.api.web.jsw
-│   ├── nowpayments.api.jsw
-│   ├── createNowPaymentsInvoice.jsw
-│   ├── email-templates.jsw
-│   ├── reconciliation-worker.jsw
-│   ├── notion-crm-sync.jsw
-│   └── webhooks/
-│       └── nowpayments.jsw
-│
-├── frontend-pages/          # Frontend HTML/JS files (for Wix pages)
-│   ├── mission-support-form.html
-│   ├── charter-page.html
-│   └── charter-page-other-amount.js
-│
-├── database-schema/        # Database SQL files
-│   └── init.sql
-│
-├── documentation/         # All documentation
-│   ├── FINAL_DEPLOYMENT_CHECKLIST.md
-│   ├── NOWPAYMENTS_DEPLOYMENT_GUIDE.md
-│   ├── 1000_NANO_TASKS.json
-│   └── ... (40+ docs)
-│
-├── deployment-scripts/     # Deployment automation
-│   ├── push-to-wix-dev.sh
-│   └── push-to-git.sh
-│
-├── src/backend/           # Wix backend structure (auto-synced)
-└── public/pages/          # Wix frontend structure (auto-synced)
+## Quick Start
+
+### Prerequisites
+
+- Node.js 16+
+- PostgreSQL 12+
+- Redis 6+ (optional, for scaling)
+- Docker & Docker Compose (for containerized setup)
+
+### Local Development
+
+1. **Clone and install:**
+```bash
+cd hingecraft-global
+npm install
 ```
 
----
+2. **Set up environment:**
+```bash
+cp .env.example .env
+# Edit .env with your configuration
+```
 
-## 🚀 Quick Start
+3. **Run database migrations:**
+```bash
+psql $DB_URL < migrations/001_init_chat_system.sql
+```
 
-### 1. Deploy Backend Functions
+4. **Start with Docker Compose:**
+```bash
+docker-compose up
+```
 
-Upload files from `backend-functions/` to Wix Editor → Backend folder
+Or start manually:
+```bash
+# Terminal 1: PostgreSQL
+docker run -d -p 5432:5432 -e POSTGRES_PASSWORD=changeme postgres:15
 
-### 2. Setup Frontend Pages
+# Terminal 2: Redis (optional)
+docker run -d -p 6379:6379 redis:7
 
-Add HTML elements to Wix pages and paste content from `frontend-pages/`
+# Terminal 3: Server
+npm run dev
+```
 
-### 3. Run Database Migration
+5. **Access:**
+- API: http://localhost:3000
+- WebSocket: ws://localhost:3000/ws
+- Health: http://localhost:3000/health
 
-Execute `database-schema/init.sql` on your database
+## API Endpoints
 
-### 4. Configure Secrets
+### Authentication
+- `POST /api/auth/anon` - Create anonymous session
+- `GET /api/auth/identify` - Identify user from token
 
-Add all secrets to Wix Secrets Manager (see `documentation/NOWPAYMENTS_CREDENTIALS_TEMPLATE.md`)
+### Messages
+- `POST /api/messages` - Create message
+- `GET /api/messages?channel=#general` - Get messages
+- `POST /api/messages/:id/edit` - Edit message
+- `POST /api/messages/:id/delete` - Delete message
+- `POST /api/messages/:id/reaction` - Toggle reaction
+- `POST /api/messages/:id/pin` - Pin message (admin)
+- `POST /api/messages/:id/read` - Mark as read
+- `GET /api/messages/:id/thread` - Get thread replies
 
----
+### Uploads
+- `POST /api/uploads/request` - Request upload URL
+- `POST /api/uploads/complete` - Complete upload
 
-## 📚 Documentation
+### Search
+- `GET /api/messages/search?q=query` - Search messages
 
-- **Deployment Guide:** `documentation/FINAL_DEPLOYMENT_CHECKLIST.md`
-- **Quick Start:** `documentation/README_DEPLOYMENT.md`
-- **NOWPayments Setup:** `documentation/NOWPAYMENTS_DEPLOYMENT_GUIDE.md`
-- **Task Breakdown:** `documentation/1000_NANO_TASKS.json`
+## WebSocket Events
 
----
+### Client → Server
+- `typing` - Send typing indicator
+- `presence` - Update presence status
+- `join` - Join channel(s)
+- `leave` - Leave channel
+- `ack` - Acknowledge message
 
-## ✅ Status
+### Server → Client
+- `message:new` - New message
+- `message:edit` - Message edited
+- `message:delete` - Message deleted
+- `reaction:update` - Reactions updated
+- `presence:update` - User presence changed
+- `typing:update` - Typing indicator
+- `pin:update` - Message pinned/unpinned
+- `thread:update` - Thread replies updated
+- `ack` - Message acknowledgment
 
-**Implementation:** ✅ Complete  
-**Integration:** ✅ Verified  
-**Deployment:** ⏳ Ready
+## Frontend Integration
 
-All files organized, committed to Git, and ready for Wix deployment.
+### Using the Client Library
+
+```html
+<script src="/js/hc-client.js"></script>
+<link rel="stylesheet" href="/css/hc-uix.css">
+```
+
+```javascript
+const client = new HingeCraftChatClient({
+  baseUrl: 'http://localhost:3000',
+  channels: ['#general', '#support'],
+  defaultChannel: '#general'
+});
+
+// Initialize
+await client.init();
+
+// Set up event handlers
+client.onMessageReceived = (message) => {
+  // Add message to UI
+  console.log('New message:', message);
+};
+
+client.onTypingUpdate = (channel, userId, ts) => {
+  // Show typing indicator
+  console.log('User typing:', userId);
+};
+
+// Send message
+await client.sendMessage('#general', 'Hello!');
+
+// Upload file
+const file = document.querySelector('input[type="file"]').files[0];
+await client.uploadFile(file, '#general', 'ct_temp_123');
+```
+
+## Wix Integration
+
+Use the Wix Velo middleware (`backend/hcProxy.jsw`):
+
+```javascript
+import { createMessage } from 'backend/hcProxy';
+
+// In your Wix page code
+const result = await createMessage({
+  channel: '#general',
+  text: 'Hello from Wix!',
+  clientTempId: 'ct_' + Date.now()
+});
+```
+
+## Environment Variables
+
+See `.env.example` for all required variables:
+
+- `BASE_URL` - Backend API URL
+- `DB_URL` - PostgreSQL connection string
+- `REDIS_URL` - Redis connection (optional)
+- `JWT_SECRET` - JWT signing secret
+- `S3_BUCKET` - S3 bucket name
+- `API_KEY` - API key for Wix proxy authentication
+- `RATE_LIMIT_REQ_PER_MIN` - Rate limit (default: 100)
+
+## Testing
+
+```bash
+npm test
+```
+
+## Deployment
+
+### Docker
+
+```bash
+docker build -t hingecraft-chat .
+docker run -p 3000:3000 --env-file .env hingecraft-chat
+```
+
+### Kubernetes
+
+See `k8s/` directory for Kubernetes manifests.
+
+### Render/Heroku
+
+1. Set environment variables
+2. Deploy: `git push heroku main`
+3. Run migrations: `heroku run npm run migrate`
+
+## Architecture
+
+```
+┌─────────────┐
+│  Wix Pages  │
+└──────┬──────┘
+       │
+       ▼
+┌─────────────┐
+│ Wix Velo    │
+│ (hcProxy)   │
+└──────┬──────┘
+       │ HMAC
+       ▼
+┌─────────────┐
+│ Node/Express│
+│   Backend   │
+└──────┬──────┘
+       │
+   ┌───┴───┐
+   ▼       ▼
+┌─────┐ ┌─────┐
+│Postgres│ │Redis│
+└─────┘ └─────┘
+       │
+       ▼
+┌─────────────┐
+│ Socket.IO   │
+│ WebSocket   │
+└─────────────┘
+```
+
+## Security
+
+- JWT authentication (30-day expiry)
+- HMAC-signed proxy requests
+- Rate limiting (Redis-based)
+- Content moderation (async queue)
+- XSS protection (input sanitization)
+- CORS configuration
+- SQL injection protection (parameterized queries)
+
+## Performance
+
+- Horizontal WebSocket scaling (Redis adapter)
+- Database connection pooling
+- Full-text search indexing
+- Optimistic UI updates
+- Idempotency protection
+
+## License
+
+MIT
+
+## Support
+
+For issues and questions, see the documentation or open an issue.

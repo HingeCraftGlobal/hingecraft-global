@@ -1,174 +1,91 @@
+version: '3.8'
+
 services:
-  # Primary Database
+  # PostgreSQL Database
   postgres:
-    image: postgres:15
-    container_name: hingecraft_postgres
-    restart: unless-stopped
+    image: postgres:15-alpine
+    container_name: hingecraft-chat-db
     environment:
-      POSTGRES_DB: hingecraft
-      POSTGRES_USER: hcuser
-      POSTGRES_PASSWORD: hcpass
+      POSTGRES_USER: hingecraft
+      POSTGRES_PASSWORD: changeme
+      POSTGRES_DB: hingecraft_chat
     ports:
       - "5432:5432"
     volumes:
-      - ./pgdata:/var/lib/postgresql/data
-      - ./database/init.sql:/docker-entrypoint-initdb.d/00-init.sql:ro
-      - ./database/master_schema:/docker-entrypoint-initdb.d/master_schema:ro
-      - ./database/rag_knowledge_base:/docker-entrypoint-initdb.d/rag_knowledge_base:ro
-      - ./database/governance:/docker-entrypoint-initdb.d/governance:ro
+      - postgres_data:/var/lib/postgresql/data
+      - ./migrations:/docker-entrypoint-initdb.d
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U hcuser -d hingecraft"]
-      interval: 5s
+      test: ["CMD-SHELL", "pg_isready -U hingecraft"]
+      interval: 10s
       timeout: 5s
-      retries: 10
+      retries: 5
 
-  # Redis for Celery, caching, rate limits
+  # Redis for pub/sub and rate limiting
   redis:
-    image: redis:7
-    container_name: hingecraft_redis
-    restart: unless-stopped
+    image: redis:7-alpine
+    container_name: hingecraft-chat-redis
     ports:
       - "6379:6379"
     volumes:
       - redis_data:/data
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
-      interval: 5s
-      timeout: 3s
+      interval: 10s
+      timeout: 5s
       retries: 5
 
-  # MinIO - S3-compatible object store
+  # MinIO for S3-compatible storage (local development)
   minio:
-    image: minio/minio
-    container_name: hingecraft_minio
-    restart: unless-stopped
-    command: server /data
+    image: minio/minio:latest
+    container_name: hingecraft-chat-minio
     environment:
-      MINIO_ROOT_USER: minio
-      MINIO_ROOT_PASSWORD: minio123
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin
     ports:
       - "9000:9000"
       - "9001:9001"
     volumes:
       - minio_data:/data
+    command: server /data --console-address ":9001"
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
       interval: 30s
       timeout: 20s
       retries: 3
 
-  # FastAPI Donation Service
-  fastapi:
-    build: ./api
-    container_name: hingecraft_fastapi
-    restart: unless-stopped
-    command: uvicorn api.main:app --host 0.0.0.0 --port 8000 --reload
-    env_file:
-      - .env
+  # Chat API Server
+  api:
+    build: .
+    container_name: hingecraft-chat-api
     environment:
-      DATABASE_URL: postgresql://hcuser:hcpass@postgres:5432/hingecraft
-      REDIS_URL: redis://redis:6379/0
-      MINIO_ENDPOINT: minio:9000
-      MINIO_ACCESS_KEY: minio
-      MINIO_SECRET_KEY: minio123
-      WC_API_KEY: ${WC_API_KEY:-changeme}
-      JWT_SECRET: ${JWT_SECRET:-your-secret-key-change-in-production}
-      WEBHOOK_SECRET: ${WEBHOOK_SECRET:-your-webhook-secret}
+      NODE_ENV: development
+      PORT: 3000
+      DB_URL: postgresql://hingecraft:changeme@postgres:5432/hingecraft_chat
+      REDIS_URL: redis://redis:6379
+      JWT_SECRET: your-super-secret-jwt-key-change-in-production-min-32-chars
+      S3_BUCKET: hingecraft-chat-uploads
+      S3_REGION: us-east-1
+      S3_ENDPOINT: http://minio:9000
+      S3_ACCESS_KEY_ID: minioadmin
+      S3_SECRET_ACCESS_KEY: minioadmin
+      CORS_ORIGINS: http://localhost:3000,http://localhost:8080
+      RATE_LIMIT_REQ_PER_MIN: 100
+      LOG_LEVEL: info
     ports:
-      - "8000:8000"
+      - "3000:3000"
     depends_on:
       postgres:
         condition: service_healthy
       redis:
-        condition: service_started
+        condition: service_healthy
       minio:
-        condition: service_started
+        condition: service_healthy
     volumes:
-      - ./api:/app/api
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-
-  # Celery Worker
-  worker:
-    build: ./api
-    container_name: hingecraft_worker
-    restart: unless-stopped
-    command: celery -A api.celery_app worker --loglevel=info
-    env_file:
-      - .env
-    environment:
-      DATABASE_URL: postgresql://hcuser:hcpass@postgres:5432/hingecraft
-      REDIS_URL: redis://redis:6379/0
-    depends_on:
-      - redis
-      - postgres
-    volumes:
-      - ./api:/app/api
-
-  # Celery Beat (Scheduler)
-  scheduler:
-    build: ./api
-    container_name: hingecraft_scheduler
-    restart: unless-stopped
-    command: celery -A api.celery_app beat --loglevel=info
-    env_file:
-      - .env
-    environment:
-      DATABASE_URL: postgresql://hcuser:hcpass@postgres:5432/hingecraft
-      REDIS_URL: redis://redis:6379/0
-    depends_on:
-      - redis
-      - postgres
-
-  # ngrok - Tunnel for Wix callbacks
-  ngrok:
-    image: wernight/ngrok
-    container_name: hingecraft_ngrok
-    restart: unless-stopped
-    environment:
-      NGROK_AUTHTOKEN: ${NGROK_TOKEN:-}
-    command: http fastapi:8000
-    ports:
-      - "4040:4040"
-    depends_on:
-      - fastapi
-
-  # pgAdmin - Database Admin UI
-  pgadmin:
-    image: dpage/pgadmin4
-    container_name: hingecraft_pgadmin
-    restart: unless-stopped
-    environment:
-      PGADMIN_DEFAULT_EMAIL: admin@hingecraft.ai
-      PGADMIN_DEFAULT_PASSWORD: admin123
-    ports:
-      - "5050:80"
-    depends_on:
-      - postgres
-    volumes:
-      - pgadmin_data:/var/lib/pgadmin
-
-  # Nginx (Optional - Reverse Proxy)
-  nginx:
-    image: nginx:alpine
-    container_name: hingecraft_nginx
-    restart: unless-stopped
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-      - ./nginx/ssl:/etc/nginx/ssl:ro
-    depends_on:
-      - fastapi
-    profiles:
-      - production
+      - ./:/app
+      - /app/node_modules
+    command: npm run dev
 
 volumes:
-  pgdata:
+  postgres_data:
   redis_data:
   minio_data:
-  pgadmin_data:
