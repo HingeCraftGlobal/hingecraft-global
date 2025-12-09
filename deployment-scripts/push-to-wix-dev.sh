@@ -40,3 +40,4 @@ echo "  2. Verify backend functions appear in Functions list"
 echo "  3. Test pages in Wix Editor"
 echo "  4. Publish when ready"
 
+
