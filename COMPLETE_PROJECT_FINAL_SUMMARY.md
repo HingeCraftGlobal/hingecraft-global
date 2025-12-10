@@ -318,3 +318,8 @@ docker exec -i postgres psql -U hcuser -d hingecraft -c "SELECT COUNT(*) FROM pg
 **Next Action:** Start Docker Desktop and run buildout scripts  
 **Target:** Complete all database buildout and finish all todos
 
+
+
+
+
+

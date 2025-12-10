@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<!--
+  HingeCraft Charter Page - WITH STRIPE PAYMENT BUTTON
+  Features:
+  - Existing crypto payment options
+  - NEW: Stripe payment button
+  - Complete payment flow
+-->
+
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+// Charter Page Integration - WITH STRIPE
+(function() {
+  'use strict';
+
+  const CONFIG = {
+    STORAGE_KEY: 'hingecraft_donation',
+    SESSION_KEY: 'hingecraft_donation',
+    CHECKOUT_PAGE_URL: '/checkout',
+    BACKEND_API: '/_functions/hingecraft.api',
+    STRIPE_API: '/_functions/stripe.api',
+    STRIPE_PUBLISHABLE_KEY: 'pk_live_YOUR_KEY_HERE' // Will be loaded from backend
+  };
+
+  let donationAmount = null;
+  let stripe = null;
+
+  /**
+   * Initialize Stripe
+   */
+  async function initStripe() {
+    try {
+      // Get publishable key from backend
+      const response = await fetch(CONFIG.STRIPE_API + '/getPublishableKey');
+      const data = await response.json();
+      
+      if (data.publishableKey) {
+        stripe = Stripe(data.publishableKey);
+        console.log('✅ Stripe initialized');
+      }
+    } catch (error) {
+      console.error('❌ Error initializing Stripe:', error);
+    }
+  }
+
+  /**
+   * Initialize charter page
+   */
+  async function init() {
+    console.log('🚀 HingeCraft Charter Page initialized (WITH STRIPE)');
+
+    // Initialize Stripe
+    await initStripe();
+
+    // Get donation amount
+    donationAmount = getDonationAmount();
+
+    if (donationAmount && donationAmount > 0) {
+      console.log('💰 Donation amount found:', donationAmount);
+      displayDonationAmount(donationAmount);
+      updateContributionsSection(donationAmount);
+      addStripePaymentButton(donationAmount);
+    }
+  }
+
+  /**
+   * Add Stripe payment button
+   */
+  function addStripePaymentButton(amount) {
+    if (document.getElementById('hingecraft-stripe-button')) {
+      return;
+    }
+
+    const buttonContainer = document.createElement('div');
+    buttonContainer.id = 'hingecraft-stripe-payment-container';
+    buttonContainer.style.cssText = `
+      margin: 20px 0;
+      padding: 20px;
+      background: #f9fafb;
+      border-radius: 8px;
+      border: 1px solid #e5e7eb;
+    `;
+
+    buttonContainer.innerHTML = `
+      <div style="text-align: center;">
+        <div style="font-weight: bold; font-size: 18px; color: #111827; margin-bottom: 12px;">
+          Complete Your Donation
+        </div>
+        <button id="hingecraft-stripe-button" style="
+          background: #635BFF;
+          color: white;
+          border: none;
+          border-radius: 8px;
+          padding: 16px 48px;
+          font-size: 18px;
+          font-weight: bold;
+          cursor: pointer;
+          transition: background 0.3s;
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+        ">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 12H20M4 6H20M4 18H20" stroke="white" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          Pay $${amount.toFixed(2)} with Stripe
+        </button>
+      </div>
+    `;
+
+    const displayEl = document.getElementById('hingecraft-donation-display');
+    if (displayEl) {
+      displayEl.appendChild(buttonContainer);
+    } else {
+      document.body.appendChild(buttonContainer);
+    }
+
+    // Add click handler
+    const stripeButton = document.getElementById('hingecraft-stripe-button');
+    stripeButton.addEventListener('mouseenter', function() {
+      this.style.background = '#0A2540';
+    });
+    stripeButton.addEventListener('mouseleave', function() {
+      this.style.background = '#635BFF';
+    });
+    stripeButton.addEventListener('click', function() {
+      handleStripePayment(amount);
+    });
+  }
+
+  /**
+   * Handle Stripe payment
+   */
+  async function handleStripePayment(amount) {
+    if (!stripe) {
+      showError('Stripe is not initialized. Please refresh the page.');
+      return;
+    }
+
+    try {
+      console.log('💳 Creating Stripe checkout session...');
+
+      // Show loading state
+      const button = document.getElementById('hingecraft-stripe-button');
+      const originalText = button.innerHTML;
+      button.innerHTML = '⏳ Processing...';
+      button.disabled = true;
+
+      // Create checkout session
+      const response = await fetch(CONFIG.STRIPE_API + '/createCheckoutSession', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          amount: amount,
+          successUrl: window.location.origin + '/payment-success?amount=' + amount + '&method=stripe',
+          cancelUrl: window.location.origin + '/charter?canceled=true'
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to create checkout session');
+      }
+
+      const session = await response.json();
+
+      // Redirect to Stripe Checkout
+      const result = await stripe.redirectToCheckout({
+        sessionId: session.sessionId
+      });
+
+      if (result.error) {
+        throw new Error(result.error.message);
+      }
+
+    } catch (error) {
+      console.error('❌ Stripe payment error:', error);
+      showError('Payment failed. Please try again.');
+      
+      // Restore button
+      const button = document.getElementById('hingecraft-stripe-button');
+      if (button) {
+        button.innerHTML = originalText;
+        button.disabled = false;
+      }
+    }
+  }
+
+  /**
+   * Get donation amount from multiple sources
+   */
+  function getDonationAmount() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const urlAmount = urlParams.get('donationAmount') || urlParams.get('amount');
+    if (urlAmount) {
+      const amount = parseFloat(urlAmount);
+      if (!isNaN(amount) && amount > 0) {
+        return amount;
+      }
+    }
+
+    try {
+      const stored = sessionStorage.getItem(CONFIG.SESSION_KEY);
+      if (stored) {
+        const data = JSON.parse(stored);
+        if (data.amount) {
+          return parseFloat(data.amount);
+        }
+      }
+    } catch (e) {}
+
+    return null;
+  }
+
+  /**
+   * Display donation amount
+   */
+  function displayDonationAmount(amount) {
+    let displayEl = document.getElementById('hingecraft-donation-display');
+    
+    if (!displayEl) {
+      displayEl = document.createElement('div');
+      displayEl.id = 'hingecraft-donation-display';
+      displayEl.style.cssText = `
+        background: #f0fdf4;
+        border: 2px solid #10b981;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 20px 0;
+        text-align: center;
+      `;
+      
+      const contributionsSection = document.querySelector('.contributions, [data-contributions], #contributions');
+      if (contributionsSection) {
+        contributionsSection.insertBefore(displayEl, contributionsSection.firstChild);
+      } else {
+        document.body.insertBefore(displayEl, document.body.firstChild);
+      }
+    }
+
+    displayEl.innerHTML = `
+      <div style="font-weight: bold; font-size: 28px; color: #10b981; margin-bottom: 8px;">
+        Donation Amount: $${amount.toFixed(2)}
+      </div>
+      <div style="font-size: 16px; color: #059669;">
+        Thank you for your contribution!
+      </div>
+    `;
+  }
+
+  /**
+   * Update contributions section
+   */
+  function updateContributionsSection(amount) {
+    if (!amount || amount <= 0) return;
+
+    const amountText = `$${amount.toFixed(2)}`;
+    const contributionSelectors = [
+      '.contribution-amount', '.donation-amount',
+      '#contribution-amount', '#donation-amount',
+      '[data-contribution]', '[data-donation]'
+    ];
+
+    contributionSelectors.forEach(selector => {
+      try {
+        const elements = document.querySelectorAll(selector);
+        elements.forEach(el => {
+          el.textContent = amountText;
+          el.style.color = '#10b981';
+          el.style.fontWeight = 'bold';
+        });
+      } catch (e) {}
+    });
+  }
+
+  /**
+   * Show error message
+   */
+  function showError(message) {
+    let errorEl = document.getElementById('hingecraft-error-message');
+    if (!errorEl) {
+      errorEl = document.createElement('div');
+      errorEl.id = 'hingecraft-error-message';
+      errorEl.style.cssText = `
+        background: #fee2e2;
+        border: 2px solid #ef4444;
+        border-radius: 8px;
+        padding: 12px 16px;
+        margin: 16px 0;
+        color: #991b1b;
+        font-size: 14px;
+        font-weight: 500;
+      `;
+      document.body.insertBefore(errorEl, document.body.firstChild);
+    }
+    errorEl.textContent = message;
+    errorEl.style.display = 'block';
+    setTimeout(() => {
+      if (errorEl) errorEl.style.display = 'none';
+    }, 5000);
+  }
+
+  // Initialize
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+
+  setTimeout(init, 1000);
+
+})();
+</script>
+

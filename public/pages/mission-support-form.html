@@ -5,6 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mission Support - HingeCraft Global</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- T10 HingeCraft Live Chat - CSS -->
+  <link rel="stylesheet" href="/css/hc-uix.css">
+  <!-- Socket.IO for WebSocket -->
+  <script src="https://cdn.socket.io/4.6.1/socket.io.min.js"></script>
+  <!-- T10 HingeCraft Live Chat - Client Library -->
+  <script src="/js/hc-client.js"></script>
   <style>
     .prose h1 { font-size: 1.5rem; font-weight: 700; margin-top: 1.25rem; }
     .prose h2 { font-size: 1.25rem; font-weight: 600; margin-top: 1rem; }
@@ -12,10 +18,194 @@
     .prose p { margin-top: 0.75rem; line-height: 1.6; }
     .prose ul, .prose ol { margin-left: 1.25rem; margin-top: 0.5rem; }
     .prose li { margin-top: 0.25rem; }
+    
+    /* Original chat styles from Prompt.md */
+    .chat-column {
+      width: 20%;
+      border-right: 1px solid #e0d8ff;
+      display: flex;
+      flex-direction: column;
+      padding: 10px;
+      box-sizing: border-box;
+      background: radial-gradient(circle at top left, #ffe9dd 0, #fdfbff 40%, #f2f8ff 100%);
+      position: fixed;
+      left: 0;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+    }
+    
+    .chat {
+      flex-grow: 1;
+      overflow-y: auto;
+      border-radius: 12px;
+      margin-bottom: 10px;
+      padding: 10px;
+      border: 1px solid rgba(106, 74, 216, 0.18);
+      background-color: #ffffff;
+      box-shadow: 0 2px 8px rgba(56, 37, 104, 0.05);
+      font-size: 14px;
+      display: flex;
+      flex-direction: column-reverse; /* New messages at top */
+    }
+    
+    .chat p {
+      margin: 6px 0;
+      padding: 4px 0;
+    }
+    
+    .chat-input {
+      width: 96%;
+      box-sizing: border-box;
+      padding: 7px 8px;
+      border-radius: 999px;
+      border: 1px solid #d7ccff;
+      outline: none;
+      display: block;
+      margin: 0 auto;
+      font-size: 14px;
+    }
+    
+    .chat-input:focus {
+      border-color: #6a4ad8;
+      box-shadow: 0 0 0 2px rgba(106, 74, 216, 0.2);
+    }
+    
+    .user-id {
+      font-size: 12px;
+      margin-top: 10px;
+      color: gray;
+      text-align: center;
+    }
+    
+    /* Main content wrapper */
+    .main-content-wrapper {
+      margin-left: 20%;
+      min-height: 100vh;
+    }
+    
+    /* Chat message styles */
+    .hc-message {
+      padding: 8px;
+      margin-bottom: 4px;
+      border-radius: 8px;
+    }
+    
+    .hc-message.pending {
+      opacity: 0.6;
+    }
+    
+    .hc-message.pinned {
+      background: #fff9e6;
+      border-left: 3px solid #ffc107;
+    }
+    
+    .hc-message-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+    
+    .hc-message-author {
+      font-weight: 600;
+      color: #2b2449;
+    }
+    
+    .hc-message-time {
+      font-size: 11px;
+      color: #666;
+    }
+    
+    .hc-message-text {
+      color: #333;
+      word-wrap: break-word;
+    }
+    
+    .hc-message-reactions {
+      display: flex;
+      gap: 4px;
+      margin-top: 4px;
+      flex-wrap: wrap;
+    }
+    
+    .hc-reaction {
+      padding: 2px 6px;
+      border: 1px solid #e0d8ff;
+      border-radius: 12px;
+      background: #f4ecff;
+      cursor: pointer;
+      font-size: 12px;
+    }
+    
+    .hc-reaction.active {
+      background: #6a4ad8;
+      color: white;
+      border-color: #6a4ad8;
+    }
+    
+    .hc-typing-indicator {
+      padding: 4px 10px;
+      font-size: 12px;
+      color: #666;
+      font-style: italic;
+    }
+    
+    .hc-attachment-preview {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 8px;
+      background: #f4ecff;
+      border-radius: 8px;
+      margin: 4px 0;
+    }
+    
+    .hc-attachment-preview img {
+      max-width: 60px;
+      max-height: 60px;
+      border-radius: 4px;
+    }
+    
+    .hc-attachment-remove {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 18px;
+      color: #666;
+      padding: 0 4px;
+    }
   </style>
 </head>
 <body class="bg-slate-100">
-  <div id="root" class="min-h-screen py-6"></div>
+  <!-- T10 Live Chat Column (Original Structure) -->
+  <div class="chat-column">
+    <div class="chat" id="chatBox" role="log" aria-live="polite" aria-label="Chat messages">
+      <div class="hc-loading" id="chatLoadingIndicator" style="text-align: center; padding: 20px; color: #666;">
+        Loading messages...
+      </div>
+    </div>
+    <input 
+      class="chat-input" 
+      type="text" 
+      id="chatInput"
+      placeholder="Type a message..." 
+      aria-label="Message input"
+      maxlength="5000"
+    />
+    <div class="user-id" id="userIdDisplay">User: Guest • Digital Twin #000 • 🌍</div>
+    
+    <!-- Typing Indicator -->
+    <div class="hc-typing-indicator" id="typingIndicator" aria-live="polite" style="display: none;"></div>
+    
+    <!-- Error Message -->
+    <div id="chatErrorMessage" class="hc-error" role="alert" aria-live="polite" style="display: none; margin-top: 8px; padding: 8px; background: #fee; border: 1px solid #fcc; border-radius: 4px; color: #c00; font-size: 12px;"></div>
+  </div>
+  
+  <!-- Main Content Wrapper -->
+  <div class="main-content-wrapper">
+    <div id="root" class="min-h-screen py-6"></div>
+  </div>
   
   <!-- Wix Velo API for storage integration -->
   <script src="https://static.parastorage.com/services/js-sdk/1.231.0/js/wix-private.js"></script>
@@ -706,6 +896,424 @@
   <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  
+  <!-- T10 HingeCraft Live Chat - Initialization Script -->
+  <script>
+    (function() {
+      'use strict';
+      
+      // Chat state
+      let chatClient = null;
+      let currentChannel = '#general';
+      let messages = [];
+      let typingUsers = new Set();
+      let pendingAttachments = [];
+      let typingTimeout = null;
+      
+      // DOM elements
+      const chatBox = document.getElementById('chatBox');
+      const chatInput = document.getElementById('chatInput');
+      const chatLoadingIndicator = document.getElementById('chatLoadingIndicator');
+      const typingIndicator = document.getElementById('typingIndicator');
+      const chatErrorMessage = document.getElementById('chatErrorMessage');
+      const userIdDisplay = document.getElementById('userIdDisplay');
+      
+      // Initialize chat client
+      async function initChat() {
+        try {
+          // Initialize HingeCraft Chat Client
+          chatClient = new HingeCraftChatClient({
+            baseUrl: window.location.origin,
+            channels: ['#general', '#support', '#mission-support'],
+            defaultChannel: '#general'
+          });
+          
+          // Initialize client
+          await chatClient.init();
+          console.log('Chat client initialized', chatClient.user);
+          
+          // Update user display
+          if (chatClient.user) {
+            const userName = chatClient.user.name || 'Guest';
+            const userFlag = '🌍';
+            userIdDisplay.textContent = `User: ${userName} • Digital Twin #${chatClient.user.id.slice(-3)} • ${userFlag}`;
+          }
+          
+          // Set up event handlers
+          setupChatEventHandlers();
+          
+          // Set up WebSocket callbacks
+          setupWebSocketCallbacks();
+          
+          // Load initial messages
+          await loadMessages();
+          
+          // Join channel
+          if (chatClient.socket && typeof io !== 'undefined') {
+            chatClient.socket.emit('join', currentChannel);
+          }
+          
+          // Start presence heartbeat
+          startPresenceHeartbeat();
+          
+          // Hide loading indicator
+          if (chatLoadingIndicator) {
+            chatLoadingIndicator.style.display = 'none';
+          }
+          
+        } catch (error) {
+          console.error('Failed to initialize chat:', error);
+          showChatError('Failed to initialize chat. Please refresh the page.');
+          if (chatLoadingIndicator) {
+            chatLoadingIndicator.textContent = 'Failed to load chat. Please refresh.';
+          }
+        }
+      }
+      
+      // Setup event handlers
+      function setupChatEventHandlers() {
+        // Send message on Enter (without Shift)
+        if (chatInput) {
+          chatInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+              e.preventDefault();
+              handleSendMessage();
+            }
+          });
+          
+          // Typing indicator
+          chatInput.addEventListener('input', function() {
+            clearTimeout(typingTimeout);
+            if (chatClient && chatInput.value.trim()) {
+              chatClient.sendTyping(currentChannel);
+              typingTimeout = setTimeout(() => {
+                // Typing stopped
+              }, 3000);
+            }
+          });
+        }
+      }
+      
+      // Setup WebSocket callbacks
+      function setupWebSocketCallbacks() {
+        if (!chatClient) return;
+        
+        chatClient.onMessageReceived = handleMessageReceived;
+        chatClient.onMessageEdit = handleMessageEdit;
+        chatClient.onMessageDelete = handleMessageDelete;
+        chatClient.onReactionUpdate = handleReactionUpdate;
+        chatClient.onTypingUpdate = handleTypingUpdate;
+        chatClient.onPresenceUpdate = handlePresenceUpdate;
+        chatClient.onPinUpdate = handlePinUpdate;
+        chatClient.onThreadUpdate = handleThreadUpdate;
+        chatClient.onMessageOptimistic = handleMessageOptimistic;
+        chatClient.onMessageError = handleMessageError;
+      }
+      
+      // Load messages
+      async function loadMessages() {
+        try {
+          if (!chatClient) return;
+          
+          const data = await chatClient.getMessages(currentChannel, { limit: 50 });
+          messages = data.messages || [];
+          renderMessages();
+        } catch (error) {
+          console.error('Failed to load messages:', error);
+          showChatError('Failed to load messages. Please try again.');
+        }
+      }
+      
+      // Render messages
+      function renderMessages() {
+        if (!chatBox) return;
+        
+        // Clear loading indicator
+        const loadingEl = chatBox.querySelector('.hc-loading');
+        if (loadingEl) loadingEl.remove();
+        
+        // Clear existing messages (except loading)
+        const existingMessages = chatBox.querySelectorAll('p, .hc-message');
+        existingMessages.forEach(el => {
+          if (!el.classList.contains('hc-loading')) {
+            el.remove();
+          }
+        });
+        
+        // Sort: pinned first, then by timestamp (newest first for reverse display)
+        const sorted = [...messages].sort((a, b) => {
+          if (a.pinned && !b.pinned) return -1;
+          if (!a.pinned && b.pinned) return 1;
+          return new Date(b.ts) - new Date(a.ts); // Reverse for top-to-bottom
+        });
+        
+        // Render messages
+        sorted.forEach(msg => {
+          const element = createMessageElement(msg);
+          chatBox.appendChild(element);
+        });
+        
+        // Scroll to top (since we're using reverse order)
+        chatBox.scrollTop = 0;
+      }
+      
+      // Create message element
+      function createMessageElement(message) {
+        const p = document.createElement('p');
+        p.className = 'hc-message' + (message.pending ? ' pending' : '') + (message.pinned ? ' pinned' : '');
+        p.id = `msg-${message.id}`;
+        p.setAttribute('data-message-id', message.id);
+        
+        // Build message HTML
+        let html = '';
+        
+        // Author and time
+        const author = message.user_name || 'Anonymous';
+        const time = formatTime(message.ts);
+        html += `<b>${escapeHtml(author)}</b> <span style="font-size: 11px; color: #666;">${time}</span>`;
+        
+        // Pinned indicator
+        if (message.pinned) {
+          html += ' 📌';
+        }
+        
+        html += ': ';
+        
+        // Message text
+        html += escapeHtml(message.text || '');
+        
+        // Edited indicator
+        if (message.edited) {
+          html += ' <span style="font-size: 11px; color: #999; font-style: italic;">(edited)</span>';
+        }
+        
+        // Attachments
+        if (message.attachments && message.attachments.length > 0) {
+          message.attachments.forEach(att => {
+            if (att.mime && att.mime.startsWith('image/')) {
+              html += `<br><img src="${escapeHtml(att.url || att.fileUrl)}" alt="${escapeHtml(att.name || 'Attachment')}" style="max-width: 200px; max-height: 200px; border-radius: 4px; margin-top: 4px;">`;
+            } else {
+              html += `<br><span style="font-size: 12px; color: #666;">📎 ${escapeHtml(att.name || 'Attachment')}</span>`;
+            }
+          });
+        }
+        
+        // Reactions
+        if (message.reactions && Object.keys(message.reactions).length > 0) {
+          const reactionGroups = {};
+          Object.values(message.reactions).forEach(r => {
+            const key = r.emoji;
+            if (!reactionGroups[key]) {
+              reactionGroups[key] = [];
+            }
+            reactionGroups[key].push(r);
+          });
+          
+          html += '<div class="hc-message-reactions" style="margin-top: 4px;">';
+          Object.entries(reactionGroups).forEach(([emoji, reactions]) => {
+            const isActive = reactions.some(r => r.userId === chatClient.user.id);
+            html += `<button class="hc-reaction ${isActive ? 'active' : ''}" onclick="toggleReaction('${message.id}', '${emoji}')" style="padding: 2px 6px; border: 1px solid #e0d8ff; border-radius: 12px; background: ${isActive ? '#6a4ad8' : '#f4ecff'}; color: ${isActive ? 'white' : '#333'}; cursor: pointer; font-size: 12px; margin-right: 4px;">${emoji} ${reactions.length}</button>`;
+          });
+          html += '</div>';
+        }
+        
+        p.innerHTML = html;
+        
+        return p;
+      }
+      
+      // Handle send message
+      async function handleSendMessage() {
+        const text = chatInput.value.trim();
+        if (!text && pendingAttachments.length === 0) return;
+        
+        // Validate
+        if (text.length > 5000) {
+          showChatError('Message cannot exceed 5000 characters');
+          return;
+        }
+        
+        if (!chatClient) {
+          showChatError('Chat not initialized. Please refresh the page.');
+          return;
+        }
+        
+        try {
+          // Upload attachments first
+          const attachments = [];
+          for (const file of pendingAttachments) {
+            try {
+              const uploadResult = await chatClient.uploadFile(file, currentChannel, 'ct_temp');
+              attachments.push({
+                name: file.name,
+                mime: file.type,
+                url: uploadResult.fileUrl,
+                size: file.size
+              });
+            } catch (error) {
+              showChatError('Failed to upload ' + file.name + ': ' + error.message);
+            }
+          }
+          
+          // Send message
+          await chatClient.sendMessage(currentChannel, text, {
+            attachments,
+            clientTempId: chatClient.generateClientTempId()
+          });
+          
+          // Clear input
+          chatInput.value = '';
+          pendingAttachments = [];
+          clearChatError();
+        } catch (error) {
+          console.error('Failed to send message:', error);
+          showChatError('Failed to send message: ' + error.message);
+        }
+      }
+      
+      // Event handlers
+      function handleMessageReceived(message) {
+        if (message.channel === currentChannel) {
+          const existingIndex = messages.findIndex(m => m.id === message.id);
+          if (existingIndex >= 0) {
+            messages[existingIndex] = message;
+          } else {
+            messages.push(message);
+          }
+          renderMessages();
+        }
+      }
+      
+      function handleMessageOptimistic(message) {
+        messages.push(message);
+        renderMessages();
+      }
+      
+      function handleMessageError(clientTempId, error) {
+        messages = messages.filter(m => m.clientTempId !== clientTempId);
+        renderMessages();
+        showChatError('Failed to send message: ' + error.message);
+      }
+      
+      function handleMessageEdit(message) {
+        const index = messages.findIndex(m => m.id === message.id);
+        if (index >= 0) {
+          messages[index] = message;
+          renderMessages();
+        }
+      }
+      
+      function handleMessageDelete(messageId) {
+        messages = messages.filter(m => m.id !== messageId);
+        renderMessages();
+      }
+      
+      function handleReactionUpdate(messageId, reactions) {
+        const message = messages.find(m => m.id === messageId);
+        if (message) {
+          message.reactions = reactions;
+          renderMessages();
+        }
+      }
+      
+      function handleTypingUpdate(channel, userId, ts) {
+        if (channel === currentChannel && userId !== chatClient.user.id) {
+          typingUsers.add(userId);
+          updateTypingIndicator();
+          setTimeout(() => {
+            typingUsers.delete(userId);
+            updateTypingIndicator();
+          }, 3000);
+        }
+      }
+      
+      function handlePresenceUpdate(userId, status, lastSeen) {
+        // Update presence indicators if needed
+        console.log('Presence update:', userId, status);
+      }
+      
+      function handlePinUpdate(messageId, pinned) {
+        const message = messages.find(m => m.id === messageId);
+        if (message) {
+          message.pinned = pinned;
+          renderMessages();
+        }
+      }
+      
+      function handleThreadUpdate(rootMessageId, replies) {
+        // Handle thread updates if needed
+        console.log('Thread update:', rootMessageId, replies);
+      }
+      
+      // Utility functions
+      function formatTime(isoString) {
+        const date = new Date(isoString);
+        return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      }
+      
+      function escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+      }
+      
+      function showChatError(message) {
+        if (chatErrorMessage) {
+          chatErrorMessage.textContent = message;
+          chatErrorMessage.style.display = 'block';
+          setTimeout(() => {
+            chatErrorMessage.style.display = 'none';
+          }, 5000);
+        }
+      }
+      
+      function clearChatError() {
+        if (chatErrorMessage) {
+          chatErrorMessage.style.display = 'none';
+        }
+      }
+      
+      function updateTypingIndicator() {
+        if (typingIndicator) {
+          if (typingUsers.size > 0) {
+            typingIndicator.textContent = `${typingUsers.size} user${typingUsers.size > 1 ? 's' : ''} typing...`;
+            typingIndicator.style.display = 'block';
+          } else {
+            typingIndicator.style.display = 'none';
+          }
+        }
+      }
+      
+      function startPresenceHeartbeat() {
+        if (!chatClient || !chatClient.socket) return;
+        
+        setInterval(() => {
+          if (chatClient.socket && chatClient.socket.connected) {
+            chatClient.socket.emit('presence', {
+              status: 'online',
+              ts: new Date().toISOString()
+            });
+          }
+        }, 8000); // Every 8 seconds
+      }
+      
+      // Global function for reaction toggle
+      window.toggleReaction = function(messageId, emoji) {
+        if (chatClient) {
+          chatClient.toggleReaction(messageId, emoji).catch(error => {
+            showChatError('Failed to toggle reaction: ' + error.message);
+          });
+        }
+      };
+      
+      // Initialize chat when DOM is ready
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initChat);
+      } else {
+        initChat();
+      }
+    })();
+  </script>
 </body>
 </html>
 

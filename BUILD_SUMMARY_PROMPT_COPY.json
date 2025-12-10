@@ -1,0 +1,48 @@
+{
+  "build_date": "2025-12-09T10:05:19.838418",
+  "source_file": "/Users/chandlerfergusen/Desktop/Prompt copy.txt",
+  "output_files": [
+    {
+      "file": "public/pages/charter-live-mission-from-prompt-copy.html",
+      "description": "Complete HTML file with all HingeCraft data",
+      "status": "complete"
+    },
+    {
+      "file": "public/pages/charter-live-mission-final-optimized.html",
+      "description": "Optimized and formatted version",
+      "status": "complete"
+    }
+  ],
+  "data_integrated": {
+    "donations": {
+      "count": 3,
+      "total": 175.5,
+      "source": "database/COMPLETE_DATABASE_EXPORT.json"
+    },
+    "members": {
+      "count": 10,
+      "countries": 2,
+      "source": "database/all_consumer_data_summary.json"
+    },
+    "chat_messages": {
+      "count": 13,
+      "source": "database/chat_messages_provided.csv"
+    }
+  },
+  "features": [
+    "3-column layout (chat, main content, sidebar)",
+    "Interactive photo gallery",
+    "Live chat functionality",
+    "Country member list",
+    "News feed",
+    "UN time display",
+    "Real-time statistics",
+    "Responsive design"
+  ],
+  "sections_populated": [
+    "Statistics section",
+    "Country list",
+    "Chat messages",
+    "News feed"
+  ]
+}

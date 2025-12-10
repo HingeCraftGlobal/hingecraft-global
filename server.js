@@ -51,7 +51,7 @@ db.initDB(process.env.DB_URL);
 console.log('Database initialized');
 
 // Initialize authentication
-auth.initAuth(process.env.JWT_SECRET);
+auth.initAuth(process.env.JWT_SECRET, process.env.API_KEY);
 console.log('Authentication initialized');
 
 // Initialize S3 uploads
@@ -152,6 +152,9 @@ io.use((socket, next) => {
 
 io.on('connection', (socket) => {
   console.log(`User connected: ${socket.userId}`);
+
+  // Join user-specific room for ack events
+  socket.join(`user:${socket.userId}`);
 
   // Join channel rooms
   socket.on('join', (channels) => {

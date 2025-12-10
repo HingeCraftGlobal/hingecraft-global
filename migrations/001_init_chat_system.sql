@@ -157,3 +157,7 @@ COMMENT ON TABLE uploads IS 'File upload tracking';
 COMMENT ON TABLE idempotency_keys IS 'Idempotency protection for API requests';
 COMMENT ON TABLE moderation_logs IS 'Content moderation audit trail';
 
+
+
+
+

@@ -381,3 +381,8 @@ print("\n📊 Task breakdown by category:")
 for cat, count in sorted(categories.items(), key=lambda x: x[1], reverse=True):
     print(f"  {cat}: {count} tasks")
 
+
+
+
+
+

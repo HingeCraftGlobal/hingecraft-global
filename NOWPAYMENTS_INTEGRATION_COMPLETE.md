@@ -236,3 +236,8 @@ https://www.hingecraft-global.ai/_functions/webhooks/nowpayments
 **Completion Date:** January 27, 2025  
 **Status:** ✅ **IMPLEMENTATION COMPLETE**
 
+
+
+
+
+

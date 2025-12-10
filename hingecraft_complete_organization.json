@@ -1,0 +1,742 @@
+{
+  "metadata": {
+    "generated_at": "2025-12-10T09:01:41.464864",
+    "organizer_version": "1.0.0",
+    "total_projects": 13,
+    "total_database_tables": 9
+  },
+  "projects": {
+    "database_system": {
+      "name": "Database System",
+      "description": "The core database system for HingeCraft Global. This project includes:\n                - PostgreSQL database with 10-layer master schema\n                - 50+ database tables covering all aspects of the platform\n                - Enterprise security modules\n                - Governance and compliance tables\n                - RAG knowledge base integration\n                - Complete data migration and management tools\n                \n                This is the foundation of all HingeCraft data storage and retrieval.",
+      "category": "Infrastructure",
+      "status": "in_progress",
+      "completion_percentage": 20.8,
+      "components": [
+        {
+          "name": "Master Schema",
+          "description": "Core database schema with all base tables",
+          "files": [
+            "database/init.sql",
+            "database/master_schema/"
+          ],
+          "status": "complete",
+          "completion_percentage": 100.0
+        },
+        {
+          "name": "Enterprise Security",
+          "description": "Security modules and access control",
+          "files": [
+            "database/security/"
+          ],
+          "status": "complete",
+          "completion_percentage": 100.0
+        },
+        {
+          "name": "Governance",
+          "description": "Governance, RBAC, and compliance tables",
+          "files": [
+            "database/governance/"
+          ],
+          "status": "complete",
+          "completion_percentage": 100.0
+        },
+        {
+          "name": "RAG Knowledge Base",
+          "description": "RAG knowledge base integration",
+          "files": [
+            "database/rag_knowledge_base/"
+          ],
+          "status": "complete",
+          "completion_percentage": 100.0
+        }
+      ],
+      "database_tables": [
+        "donations",
+        "members",
+        "chat_clubs",
+        "chat_messages",
+        "ambassadors",
+        "contribution_intents",
+        "crypto_payments",
+        "webhook_logs",
+        "kyc_verifications"
+      ],
+      "files": [
+        "database/governance/",
+        "database/init.sql",
+        "database/security/",
+        "database/rag_knowledge_base/",
+        "database/master_schema/"
+      ],
+      "data_summary": {
+        "donations": {
+          "record_count": 3,
+          "description": "Stores all donation transactions with payment details, amounts, and member information",
+          "schema_keys": [
+            "Wix"
+          ]
+        },
+        "members": {
+          "record_count": 2,
+          "description": "Member registry with charter members and lifetime registry members, including twin names",
+          "schema_keys": []
+        },
+        "chat_clubs": {
+          "record_count": 1,
+          "description": "Chat clubs/groups for community engagement",
+          "schema_keys": []
+        },
+        "chat_messages": {
+          "record_count": 1,
+          "description": "Chat messages from community members",
+          "schema_keys": []
+        },
+        "ambassadors": {
+          "record_count": 0,
+          "description": "Ambassador program participants and their campaigns",
+          "schema_keys": []
+        },
+        "contribution_intents": {
+          "record_count": 0,
+          "description": "Contribution intent data from Mission Support form and payment flows",
+          "schema_keys": []
+        },
+        "crypto_payments": {
+          "record_count": 0,
+          "description": "NOWPayments crypto payment invoices and transactions",
+          "schema_keys": []
+        },
+        "webhook_logs": {
+          "record_count": 0,
+          "description": "All webhook events for audit and debugging",
+          "schema_keys": []
+        },
+        "kyc_verifications": {
+          "record_count": 0,
+          "description": "KYC/AML verification tracking and compliance",
+          "schema_keys": []
+        }
+      }
+    },
+    "agents_system": {
+      "name": "Agents System",
+      "description": "AI Agent System with 6 specialized agents for HingeCraft Global:\n                \n                1. Legal Agent - Handles legal document analysis, compliance checking,\n                   regulatory tracking, contract review, and policy generation\n                2. Marketing Agent - Manages campaigns, brand voice, social content,\n                   email campaigns, and blog generation\n                3. Engineering Agent - Code generation, architecture design, bug detection,\n                   documentation, and AI code completion\n                4. Education Agent - Educational content creation and management\n                5. Community Agent - Community engagement and management\n                6. Crypto/Compliance Agent - KYC/AML processing, transaction monitoring,\n                   compliance reporting, treasury management, and blockchain integration\n                \n                Total: 600 agent tasks across all agents",
+      "category": "AI/ML",
+      "status": "in_progress",
+      "completion_percentage": 20.8,
+      "components": [
+        {
+          "name": "Legal Agent",
+          "description": "Legal document analysis and compliance",
+          "files": [
+            "agents/legal/"
+          ],
+          "status": "in_progress",
+          "completion_percentage": 20.0
+        },
+        {
+          "name": "Marketing Agent",
+          "description": "Marketing campaigns and content",
+          "files": [
+            "agents/marketing/"
+          ],
+          "status": "in_progress",
+          "completion_percentage": 20.0
+        },
+        {
+          "name": "Engineering Agent",
+          "description": "Code generation and architecture",
+          "files": [
+            "agents/engineering/"
+          ],
+          "status": "in_progress",
+          "completion_percentage": 20.0
+        },
+        {
+          "name": "Education Agent",
+          "description": "Educational content creation",
+          "files": [
+            "agents/education/"
+          ],
+          "status": "in_progress",
+          "completion_percentage": 20.0
+        },
+        {
+          "name": "Community Agent",
+          "description": "Community engagement",
+          "files": [
+            "agents/community/"
+          ],
+          "status": "in_progress",
+          "completion_percentage": 20.0
+        },
+        {
+          "name": "Crypto/Compliance Agent",
+          "description": "KYC/AML and compliance",
+          "files": [
+            "agents/crypto_compliance/"
+          ],
+          "status": "in_progress",
+          "completion_percentage": 20.0
+        }
+      ],
+      "database_tables": [],
+      "files": [
+        "agents/crypto_compliance/",
+        "agents/community/",
+        "agents/legal/",
+        "agents/engineering/",
+        "agents/marketing/",
+        "agents/education/"
+      ],
+      "data_summary": {}
+    },
+    "api_system": {
+      "name": "API System",
+      "description": "FastAPI-based REST API system for HingeCraft Global:\n                \n                - Auth Router: Authentication and authorization\n                - Donations Router: Donation processing and management\n                - Webhooks Router: Webhook handling (Stripe, NOWPayments)\n                - Admin Router: Administrative functions\n                - Compliance Router: Compliance and KYC endpoints\n                - Wallets Router: Crypto wallet management\n                - Receipts Router: Receipt generation and management\n                - Wix Router: Wix platform integration\n                \n                Includes middleware, authentication, database connections, and Celery workers.",
+      "category": "Backend",
+      "status": "in_progress",
+      "completion_percentage": 20.8,
+      "components": [
+        {
+          "name": "Core API",
+          "description": "Main FastAPI application",
+          "files": [
+            "api/main.py",
+            "api/database.py",
+            "api/auth.py"
+          ],
+          "status": "complete",
+          "completion_percentage": 100.0
+        },
+        {
+          "name": "Routers",
+          "description": "API route handlers",
+          "files": [
+            "api/routers/"
+          ],
+          "status": "complete",
+          "completion_percentage": 100.0
+        },
+        {
+          "name": "Workers",
+          "description": "Celery background workers",
+          "files": [
+            "api/workers/"
+          ],
+          "status": "complete",
+          "completion_percentage": 100.0
+        }
+      ],
+      "database_tables": [
+        "donations",
+        "contribution_intents",
+        "crypto_payments",
+        "webhook_logs"
+      ],
+      "files": [
+        "api/database.py",
+        "api/routers/",
+        "api/workers/",
+        "api/auth.py",
+        "api/main.py"
+      ],
+      "data_summary": {
+        "donations": {
+          "record_count": 3,
+          "description": "Stores all donation transactions with payment details, amounts, and member information",
+          "schema_keys": [
+            "Wix"
+          ]
+        },
+        "contribution_intents": {
+          "record_count": 0,
+          "description": "Contribution intent data from Mission Support form and payment flows",
+          "schema_keys": []
+        },
+        "crypto_payments": {
+          "record_count": 0,
+          "description": "NOWPayments crypto payment invoices and transactions",
+          "schema_keys": []
+        },
+        "webhook_logs": {
+          "record_count": 0,
+          "description": "All webhook events for audit and debugging",
+          "schema_keys": []
+        }
+      }
+    },
+    "security_system": {
+      "name": "Security System",
+      "description": "Comprehensive security system with 16 security modules:\n                \n                - Encryption at Rest/Transit\n                - Access Control (RBAC)\n                - Intrusion Detection\n                - Audit Logging\n                - Data Loss Prevention\n                - Vulnerability Management\n                - Network Security\n                - Incident Response\n                - Security Monitoring\n                - Rate Limiting\n                - Query Inspection\n                - And more...\n                \n                Protects all HingeCraft data and systems.",
+      "category": "Security",
+      "status": "in_progress",
+      "completion_percentage": 20.8,
+      "components": [
+        {
+          "name": "Encryption",
+          "description": "Data encryption modules",
+          "files": [
+            "database/security/"
+          ],
+          "status": "complete",
+          "completion_percentage": 100.0
+        },
+        {
+          "name": "Access Control",
+          "description": "RBAC and permissions",
+          "files": [
+            "database/governance/"
+          ],
+          "status": "complete",
+          "completion_percentage": 100.0
+        }
+      ],
+      "database_tables": [
+        "kyc_verifications",
+        "webhook_logs"
+      ],
+      "files": [
+        "database/governance/",
+        "database/security/"
+      ],
+      "data_summary": {
+        "kyc_verifications": {
+          "record_count": 0,
+          "description": "KYC/AML verification tracking and compliance",
+          "schema_keys": []
+        },
+        "webhook_logs": {
+          "record_count": 0,
+          "description": "All webhook events for audit and debugging",
+          "schema_keys": []
+        }
+      }
+    },
+    "wix_integration": {
+      "name": "Wix Integration",
+      "description": "Complete Wix platform integration:\n                \n                - External database adaptor for Wix\n                - Velo backend functions\n                - Frontend integration\n                - Payment page integration\n                - Charter page integration\n                - Legal pages deployment\n                - SEO optimization\n                \n                Enables HingeCraft to work seamlessly with Wix platform.",
+      "category": "Integration",
+      "status": "in_progress",
+      "completion_percentage": 20.8,
+      "components": [
+        {
+          "name": "Backend Functions",
+          "description": "Wix Velo backend functions",
+          "files": [
+            "backend-functions/",
+            "deployment-ready/"
+          ],
+          "status": "complete",
+          "completion_percentage": 100.0
+        },
+        {
+          "name": "Frontend Pages",
+          "description": "Wix frontend pages",
+          "files": [
+            "public/",
+            "src/"
+          ],
+          "status": "complete",
+          "completion_percentage": 100.0
+        }
+      ],
+      "database_tables": [
+        "donations",
+        "members",
+        "contribution_intents"
+      ],
+      "files": [
+        "public/",
+        "deployment-ready/",
+        "src/",
+        "backend-functions/"
+      ],
+      "data_summary": {
+        "donations": {
+          "record_count": 3,
+          "description": "Stores all donation transactions with payment details, amounts, and member information",
+          "schema_keys": [
+            "Wix"
+          ]
+        },
+        "members": {
+          "record_count": 2,
+          "description": "Member registry with charter members and lifetime registry members, including twin names",
+          "schema_keys": []
+        },
+        "contribution_intents": {
+          "record_count": 0,
+          "description": "Contribution intent data from Mission Support form and payment flows",
+          "schema_keys": []
+        }
+      }
+    },
+    "legal_pages": {
+      "name": "Legal Pages System",
+      "description": "34 legal compliance pages for HingeCraft Global:\n                \n                - Privacy Policy\n                - Terms of Service\n                - Cookie Policy\n                - GDPR Compliance\n                - CCPA Compliance\n                - And 29 more legal pages\n                \n                All pages are SEO optimized and ready for deployment.",
+      "category": "Compliance",
+      "status": "in_progress",
+      "completion_percentage": 20.8,
+      "components": [
+        {
+          "name": "Legal Pages",
+          "description": "34 legal compliance pages",
+          "files": [
+            "legal-pages/",
+            "ALL_LEGAL_PAGES_HTML/"
+          ],
+          "status": "complete",
+          "completion_percentage": 100.0
+        }
+      ],
+      "database_tables": [],
+      "files": [
+        "ALL_LEGAL_PAGES_HTML/",
+        "legal-pages/"
+      ],
+      "data_summary": {}
+    },
+    "notion_integration": {
+      "name": "Notion Integration",
+      "description": "Notion workspace integration for HingeCraft:\n                \n                - Database synchronization\n                - Project management\n                - Dashboard creation\n                - Automation workflows\n                - Webhook handlers\n                \n                Provides project management and collaboration tools.",
+      "category": "Integration",
+      "status": "in_progress",
+      "completion_percentage": 20.8,
+      "components": [
+        {
+          "name": "Notion Sync",
+          "description": "Database synchronization",
+          "files": [
+            "notion/sync/"
+          ],
+          "status": "complete",
+          "completion_percentage": 100.0
+        },
+        {
+          "name": "Notion Dashboard",
+          "description": "Project dashboard",
+          "files": [
+            "notion/"
+          ],
+          "status": "complete",
+          "completion_percentage": 100.0
+        }
+      ],
+      "database_tables": [],
+      "files": [
+        "notion/sync/",
+        "notion/"
+      ],
+      "data_summary": {}
+    },
+    "deployment_system": {
+      "name": "Deployment System",
+      "description": "Complete deployment infrastructure:\n                \n                - Docker containerization\n                - CI/CD pipelines\n                - Environment management (Dev, Staging, Production)\n                - Health checks\n                - Monitoring and observability\n                - Deployment scripts\n                \n                Enables reliable deployment across all environments.",
+      "category": "Infrastructure",
+      "status": "in_progress",
+      "completion_percentage": 20.8,
+      "components": [
+        {
+          "name": "Docker",
+          "description": "Docker configuration",
+          "files": [
+            "database-adaptor/",
+            "api/Dockerfile"
+          ],
+          "status": "complete",
+          "completion_percentage": 100.0
+        },
+        {
+          "name": "Deployment Scripts",
+          "description": "Deployment automation",
+          "files": [
+            "deployment-scripts/",
+            "scripts/"
+          ],
+          "status": "complete",
+          "completion_percentage": 100.0
+        }
+      ],
+      "database_tables": [],
+      "files": [
+        "scripts/",
+        "deployment-scripts/",
+        "api/Dockerfile"
+      ],
+      "data_summary": {}
+    },
+    "monitoring_system": {
+      "name": "Monitoring System",
+      "description": "Comprehensive monitoring and observability:\n                \n                - Performance monitoring\n                - Error tracking\n                - Usage analytics\n                - Security monitoring\n                - Health checks\n                \n                Ensures system reliability and performance.",
+      "category": "Infrastructure",
+      "status": "in_progress",
+      "completion_percentage": 20.8,
+      "components": [
+        {
+          "name": "Monitoring",
+          "description": "Monitoring tools",
+          "files": [
+            "monitoring/"
+          ],
+          "status": "complete",
+          "completion_percentage": 100.0
+        }
+      ],
+      "database_tables": [
+        "webhook_logs"
+      ],
+      "files": [
+        "monitoring/"
+      ],
+      "data_summary": {
+        "webhook_logs": {
+          "record_count": 0,
+          "description": "All webhook events for audit and debugging",
+          "schema_keys": []
+        }
+      }
+    },
+    "payment_system": {
+      "name": "Payment System",
+      "description": "Complete payment processing system:\n                \n                - Stripe integration\n                - NOWPayments crypto integration\n                - Payment page\n                - Donation tracking\n                - Receipt generation\n                - KYC/AML compliance\n                \n                Handles all payment processing for HingeCraft.",
+      "category": "Payment",
+      "status": "in_progress",
+      "completion_percentage": 20.8,
+      "components": [
+        {
+          "name": "Payment Processing",
+          "description": "Payment handlers",
+          "files": [
+            "api/routers/donations.py",
+            "api/routers/webhooks.py"
+          ],
+          "status": "complete",
+          "completion_percentage": 100.0
+        },
+        {
+          "name": "Crypto Payments",
+          "description": "NOWPayments integration",
+          "files": [
+            "api/routers/wallets.py"
+          ],
+          "status": "complete",
+          "completion_percentage": 100.0
+        }
+      ],
+      "database_tables": [
+        "donations",
+        "contribution_intents",
+        "crypto_payments",
+        "kyc_verifications",
+        "webhook_logs"
+      ],
+      "files": [
+        "api/routers/webhooks.py",
+        "api/routers/donations.py",
+        "api/routers/wallets.py"
+      ],
+      "data_summary": {
+        "donations": {
+          "record_count": 3,
+          "description": "Stores all donation transactions with payment details, amounts, and member information",
+          "schema_keys": [
+            "Wix"
+          ]
+        },
+        "contribution_intents": {
+          "record_count": 0,
+          "description": "Contribution intent data from Mission Support form and payment flows",
+          "schema_keys": []
+        },
+        "crypto_payments": {
+          "record_count": 0,
+          "description": "NOWPayments crypto payment invoices and transactions",
+          "schema_keys": []
+        },
+        "kyc_verifications": {
+          "record_count": 0,
+          "description": "KYC/AML verification tracking and compliance",
+          "schema_keys": []
+        },
+        "webhook_logs": {
+          "record_count": 0,
+          "description": "All webhook events for audit and debugging",
+          "schema_keys": []
+        }
+      }
+    },
+    "member_management": {
+      "name": "Member Management System",
+      "description": "Complete member management system:\n                \n                - Member registry\n                - Charter members\n                - Membership tracking\n                - Member profiles\n                - Twin name system\n                \n                Manages all HingeCraft members and their data.",
+      "category": "Core",
+      "status": "in_progress",
+      "completion_percentage": 20.8,
+      "components": [
+        {
+          "name": "Member Registry",
+          "description": "Member database",
+          "files": [
+            "database/init.sql"
+          ],
+          "status": "complete",
+          "completion_percentage": 100.0
+        }
+      ],
+      "database_tables": [
+        "members"
+      ],
+      "files": [
+        "database/init.sql"
+      ],
+      "data_summary": {
+        "members": {
+          "record_count": 2,
+          "description": "Member registry with charter members and lifetime registry members, including twin names",
+          "schema_keys": []
+        }
+      }
+    },
+    "community_system": {
+      "name": "Community System",
+      "description": "Community engagement system:\n                \n                - Chat clubs\n                - Chat messages\n                - Community forums\n                - Member interactions\n                \n                Facilitates community engagement and communication.",
+      "category": "Community",
+      "status": "in_progress",
+      "completion_percentage": 20.8,
+      "components": [
+        {
+          "name": "Chat System",
+          "description": "Chat clubs and messages",
+          "files": [
+            "database/init.sql"
+          ],
+          "status": "complete",
+          "completion_percentage": 100.0
+        }
+      ],
+      "database_tables": [
+        "chat_clubs",
+        "chat_messages"
+      ],
+      "files": [
+        "database/init.sql"
+      ],
+      "data_summary": {
+        "chat_clubs": {
+          "record_count": 1,
+          "description": "Chat clubs/groups for community engagement",
+          "schema_keys": []
+        },
+        "chat_messages": {
+          "record_count": 1,
+          "description": "Chat messages from community members",
+          "schema_keys": []
+        }
+      }
+    },
+    "ambassador_program": {
+      "name": "Ambassador Program",
+      "description": "Ambassador program management:\n                \n                - Ambassador tracking\n                - Campaign management\n                - Impact metrics\n                - Program administration\n                \n                Manages the HingeCraft ambassador program.",
+      "category": "Programs",
+      "status": "in_progress",
+      "completion_percentage": 20.8,
+      "components": [
+        {
+          "name": "Ambassador Management",
+          "description": "Ambassador tracking",
+          "files": [
+            "database/init.sql"
+          ],
+          "status": "complete",
+          "completion_percentage": 100.0
+        }
+      ],
+      "database_tables": [
+        "ambassadors"
+      ],
+      "files": [
+        "database/init.sql"
+      ],
+      "data_summary": {
+        "ambassadors": {
+          "record_count": 0,
+          "description": "Ambassador program participants and their campaigns",
+          "schema_keys": []
+        }
+      }
+    }
+  },
+  "database_tables": {
+    "donations": {
+      "name": "donations",
+      "description": "Stores all donation transactions with payment details, amounts, and member information",
+      "project_assignment": "payment_system",
+      "record_count": 3,
+      "schema_keys": [
+        "Wix"
+      ]
+    },
+    "members": {
+      "name": "members",
+      "description": "Member registry with charter members and lifetime registry members, including twin names",
+      "project_assignment": "member_management",
+      "record_count": 2,
+      "schema_keys": []
+    },
+    "chat_clubs": {
+      "name": "chat_clubs",
+      "description": "Chat clubs/groups for community engagement",
+      "project_assignment": "community_system",
+      "record_count": 1,
+      "schema_keys": []
+    },
+    "chat_messages": {
+      "name": "chat_messages",
+      "description": "Chat messages from community members",
+      "project_assignment": "community_system",
+      "record_count": 1,
+      "schema_keys": []
+    },
+    "ambassadors": {
+      "name": "ambassadors",
+      "description": "Ambassador program participants and their campaigns",
+      "project_assignment": "ambassador_program",
+      "record_count": 0,
+      "schema_keys": []
+    },
+    "contribution_intents": {
+      "name": "contribution_intents",
+      "description": "Contribution intent data from Mission Support form and payment flows",
+      "project_assignment": "payment_system",
+      "record_count": 0,
+      "schema_keys": []
+    },
+    "crypto_payments": {
+      "name": "crypto_payments",
+      "description": "NOWPayments crypto payment invoices and transactions",
+      "project_assignment": "payment_system",
+      "record_count": 0,
+      "schema_keys": []
+    },
+    "webhook_logs": {
+      "name": "webhook_logs",
+      "description": "All webhook events for audit and debugging",
+      "project_assignment": "payment_system",
+      "record_count": 0,
+      "schema_keys": []
+    },
+    "kyc_verifications": {
+      "name": "kyc_verifications",
+      "description": "KYC/AML verification tracking and compliance",
+      "project_assignment": "payment_system",
+      "record_count": 0,
+      "schema_keys": []
+    }
+  },
+  "summary": {
+    "total_files": 36,
+    "total_components": 28,
+    "total_database_records": 7
+  }
+}

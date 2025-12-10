@@ -1,7 +1,7 @@
 {
   "total": 1000,
-  "completed": 192,
-  "failed": 0,
+  "completed": 190,
+  "failed": 2,
   "pending": 808,
   "skipped": 0,
   "current_step": 1000

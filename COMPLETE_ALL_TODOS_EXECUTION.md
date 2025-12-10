@@ -175,3 +175,8 @@ docker exec -i postgres psql -U hcuser -d hingecraft -c "SELECT version();"
 **Next Action:** Run COMPLETE_DATABASE_BUILDOUT_EXECUTION.sh  
 **Target:** Complete all database buildout and finish all todos
 
+
+
+
+
+

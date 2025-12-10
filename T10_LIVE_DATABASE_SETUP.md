@@ -237,3 +237,7 @@ After setup, verify everything works:
 
 Once everything is set up, your chat system is ready to use! All messages and events are stored in the database and broadcast via WebSocket.
 
+
+
+
+

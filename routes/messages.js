@@ -93,11 +93,47 @@ router.post('/', idempotency.idempotencyMiddleware, async (req, res) => {
     // Store idempotency response
     await idempotency.storeIdempotency(req.idempotencyKey, req.path, response);
 
-    // Emit WebSocket event (handled by server.js)
-    req.app.get('io').to(channel).emit('message:new', {
+    const io = req.app.get('io');
+    const traceId = uuidv4();
+
+    // Emit WebSocket event to channel
+    io.to(channel).emit('message:new', {
       message: response.message,
-      traceId: uuidv4()
+      traceId
     });
+
+    // Emit ack to user's socket (for optimistic UI reconciliation)
+    // Use a user-specific room: `user:${userId}`
+    if (clientTempId) {
+      io.to(`user:${userId}`).emit('ack', {
+        clientTempId,
+        serverMessageId: fullMessage.id,
+        traceId
+      });
+    }
+
+    // If this is a thread reply, emit thread:update
+    if (parentId) {
+      const replies = await db.getThreadReplies(parentId);
+      io.to(channel).emit('thread:update', {
+        rootMessageId: parentId,
+        replies: replies.map(r => ({
+          id: r.id,
+          channel: r.channel,
+          user_id: r.user_id,
+          text: r.text,
+          ts: r.ts,
+          parent_id: r.parent_id,
+          attachments: typeof r.attachments === 'string' ? JSON.parse(r.attachments) : r.attachments,
+          reactions: typeof r.reactions === 'string' ? JSON.parse(r.reactions) : r.reactions,
+          pinned: r.pinned,
+          edited: r.edited,
+          user_name: r.user_name,
+          user_avatar: r.user_avatar
+        })),
+        traceId
+      });
+    }
 
     res.json(response);
   } catch (error) {
@@ -255,16 +291,21 @@ router.post('/:id/reaction', async (req, res) => {
       ? JSON.parse(message.reactions)
       : message.reactions || {};
 
-    // Toggle reaction
-    const reactionKey = `${emoji}_${userId}`;
-    if (reactions[reactionKey]) {
-      delete reactions[reactionKey];
+    // Toggle reaction - group by emoji with user IDs array
+    if (!reactions[emoji]) {
+      reactions[emoji] = [];
+    }
+    
+    const userIndex = reactions[emoji].indexOf(userId);
+    if (userIndex >= 0) {
+      // Remove reaction
+      reactions[emoji].splice(userIndex, 1);
+      if (reactions[emoji].length === 0) {
+        delete reactions[emoji];
+      }
     } else {
-      reactions[reactionKey] = {
-        emoji,
-        userId,
-        ts: new Date().toISOString()
-      };
+      // Add reaction
+      reactions[emoji].push(userId);
     }
 
     // Update reactions

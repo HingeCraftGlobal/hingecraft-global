@@ -86,3 +86,8 @@ EXTERNAL_DB_SECRET_KEY=your_db_secret
 - ✅ Use different keys for staging/production
 - ✅ Monitor API key usage in NOWPayments dashboard
 
+
+
+
+
+
