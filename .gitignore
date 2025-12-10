@@ -64,3 +64,5 @@ wix.lock
 *.tmp
 *.bak
 *.backup
+.wix/debug.log
+.wix/dev.log
