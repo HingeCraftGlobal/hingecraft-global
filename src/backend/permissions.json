@@ -1,17 +1,1 @@
-{
-  "web-methods": {
-    "*": {
-      "*": {
-        "siteOwner": {
-          "invoke": true
-        },
-        "siteMember": {
-          "invoke": true
-        },
-        "anonymous": {
-          "invoke": true
-        }
-      }
-    }
-  }
-}
+{"web-methods":{"*":{"*":{"siteOwner":{"invoke":true},"siteMember":{"invoke":true},"anonymous":{"invoke":true}}}}}

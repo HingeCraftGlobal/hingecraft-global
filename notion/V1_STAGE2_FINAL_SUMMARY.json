@@ -1,17 +1,1 @@
-{
-  "version": "1.0",
-  "stage": "2",
-  "completed": "2025-12-06T15:59:49.576301",
-  "databases_created": 5,
-  "donations_synced": 3,
-  "donations_total": 3,
-  "database_ids": {
-    "donations": "bc3848dc-aa7f-4b72-a228-ee7bb6249a61",
-    "projects": "83ef7fe8-cfb9-49d3-ad79-21e00604aa99",
-    "tasks": "6bf0d476-e9fe-4825-8e51-65cab3fdb032",
-    "system_status": "e1a2a7de-a557-4e5d-9a80-2d2deccadc8d",
-    "urls": "77ac9431-6b25-4067-8d7d-a059d871ea14"
-  },
-  "status": "complete",
-  "ready_for_launch": true
-}
+{"version":"1.0","stage":"2","completed":"2025-12-06T15:59:49.576301","databases_created":5,"donations_synced":3,"donations_total":3,"database_ids":{"donations":"bc3848dc-aa7f-4b72-a228-ee7bb6249a61","projects":"83ef7fe8-cfb9-49d3-ad79-21e00604aa99","tasks":"6bf0d476-e9fe-4825-8e51-65cab3fdb032","system_status":"e1a2a7de-a557-4e5d-9a80-2d2deccadc8d","urls":"77ac9431-6b25-4067-8d7d-a059d871ea14"},"status":"complete","ready_for_launch":true}
