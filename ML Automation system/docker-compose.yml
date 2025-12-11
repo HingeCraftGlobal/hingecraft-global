@@ -46,10 +46,11 @@ services:
       - POSTGRES_USER=hingecraft_user
       - POSTGRES_PASSWORD=hingecraft_password
     ports:
-      - "9543:5432"  # Changed to 9543 to avoid conflicts
+      - "7543:5432"  # Changed to 7543 to avoid conflicts
     volumes:
       - postgres-data:/var/lib/postgresql/data
-      - ./database/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+      - ./database/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql
+      - ./database/init-data.sql:/docker-entrypoint-initdb.d/02-init-data.sql
     restart: unless-stopped
     networks:
       - automation-network
@@ -72,7 +73,7 @@ services:
     image: redis:7-alpine
     container_name: hingecraft-redis
     ports:
-      - "9638:6379"  # Changed to 9638 to avoid conflicts
+      - "7638:6379"  # Changed to 7638 to avoid conflicts
     volumes:
       - redis-data:/data
     restart: unless-stopped
@@ -97,7 +98,7 @@ services:
     image: nginx:alpine
     container_name: hingecraft-dashboard
     ports:
-      - "9080:80"  # Changed from 8080 to 9080
+      - "7080:80"  # Changed to 7080 to avoid conflicts
     volumes:
       - ./public/dashboard:/usr/share/nginx/html
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
@@ -122,3 +123,6 @@ volumes:
 networks:
   automation-network:
     driver: bridge
+
+
+
