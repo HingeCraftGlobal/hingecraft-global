@@ -27,6 +27,14 @@ services:
     restart: unless-stopped
     networks:
       - automation-network
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'      # 1000 nano CPUs = 1 full CPU
+          memory: 512M
+        reservations:
+          cpus: '0.5'      # 500 nano CPUs minimum
+          memory: 256M
 
   # PostgreSQL Database
   postgres:
@@ -75,6 +83,14 @@ services:
       interval: 10s
       timeout: 3s
       retries: 5
+    deploy:
+      resources:
+        limits:
+          cpus: '0.1'      # 100 nano CPUs = 0.1 CPU
+          memory: 64M
+        reservations:
+          cpus: '0.05'     # 50 nano CPUs minimum
+          memory: 32M
 
   # Visual Dashboard (nginx + static files)
   dashboard:
@@ -98,20 +114,6 @@ services:
         reservations:
           cpus: '0.05'     # 50 nano CPUs minimum
           memory: 32M
-    cpu_shares: 128
-    cpu_period: 100000
-    cpu_quota: 10000
-    deploy:
-      resources:
-        limits:
-          cpus: '0.1'      # 100 nano CPUs = 0.1 CPU
-          memory: 64M
-        reservations:
-          cpus: '0.05'     # 50 nano CPUs minimum
-          memory: 32M
-    cpu_shares: 128
-    cpu_period: 100000
-    cpu_quota: 10000
 
 volumes:
   postgres-data:
