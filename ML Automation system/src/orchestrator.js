@@ -19,15 +19,38 @@ class Orchestrator {
    * Main pipeline: Process file from Google Drive
    */
   async processDriveFile(fileId) {
+    const pipelineId = uuidv4();
+    let fileMetadata = null;
+    let importId = null;
+
     try {
       logger.info(`Starting pipeline for file ${fileId}`);
 
       // Step 1: Get file metadata
-      const fileMetadata = await googleDrive.getFileMetadata(fileId);
+      const startTime = Date.now();
+      fileMetadata = await googleDrive.getFileMetadata(fileId);
       logger.info(`Processing file: ${fileMetadata.name}`);
+      
+      // TRIGGER: File detected - activate watcher and start tracking
+      systemWatcher.watchFileDetection(fileId, fileMetadata.name, fileMetadata.mimeType);
+      
+      // Initialize pipeline tracking AFTER file detection
+      systemWatcher.startPipelineTracking(pipelineId, fileId, fileMetadata.name);
+      
+      systemWatcher.updatePipelineStage(pipelineId, 'fileDetection', 'started', {
+        fileId,
+        fileName: fileMetadata.name,
+        mimeType: fileMetadata.mimeType
+      });
+      
+      systemWatcher.updatePipelineStage(pipelineId, 'fileDetection', 'completed', {
+        fileName: fileMetadata.name,
+        mimeType: fileMetadata.mimeType,
+        duration: Date.now() - startTime
+      });
 
       // Step 2: Create import batch record
-      const importId = uuidv4();
+      importId = uuidv4();
       await db.query(
         `INSERT INTO import_batches (id, source, file_id, filename, status)
          VALUES ($1, $2, $3, $4, $5)`,
