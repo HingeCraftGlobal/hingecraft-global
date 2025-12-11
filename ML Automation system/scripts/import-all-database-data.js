@@ -363,6 +363,7 @@ async function importAllData() {
       }
     } else {
       log('   ⚠️  No qualified leads for email sending', 'yellow');
+      emailResults = { sent: 0, failed: 0, waves: 0 };
     }
 
     // Final Summary
@@ -387,9 +388,9 @@ async function importAllData() {
     if (qualifiedLeads.length > 0) {
       log(`\n📧 Email Sending:`, 'bright');
       log(`   Qualified Leads: ${qualifiedLeads.length}`, 'cyan');
-      log(`   Emails Sent: ${waveResults?.sent || 0}`, 'green');
-      log(`   Emails Failed: ${waveResults?.failed || 0}`, waveResults?.failed > 0 ? 'red' : 'green');
-      log(`   Waves: ${waveResults?.waves || 0}`, 'cyan');
+      log(`   Emails Sent: ${emailResults?.sent || 0}`, 'green');
+      log(`   Emails Failed: ${emailResults?.failed || 0}`, emailResults?.failed > 0 ? 'red' : 'green');
+      log(`   Waves: ${emailResults?.waves || 0}`, 'cyan');
     }
 
     log('\n═══════════════════════════════════════════════════════════════════════════════\n', 'cyan');
