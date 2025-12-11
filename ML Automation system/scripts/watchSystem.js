@@ -44,23 +44,28 @@ async function startWatching() {
   log('🔍 HINGECRAFT ML AUTOMATION - SYSTEM WATCHER', 'bright');
   log('═══════════════════════════════════════════════════════════════════════════════\n', 'cyan');
 
-  // Start the watcher
+  // Start the watcher in standby mode
   await systemWatcher.startWatching();
 
-  log('✅ System watcher started', 'green');
-  log('📊 Monitoring all components:', 'blue');
-  log('   - Google Drive (file detection)', 'cyan');
-  log('   - File Processor (all formats)', 'cyan');
-  log('   - Lead Processor (normalization)', 'cyan');
-  log('   - Anymail (email collection)', 'cyan');
-  log('   - Database (integration)', 'cyan');
-  log('   - HubSpot (CRM sync)', 'cyan');
-  log('   - Sequence Engine (automation)', 'cyan');
-  log('   - Email Wave Sender (delivery)', 'cyan');
-  log('\n📝 All pipeline events are being logged to:', 'blue');
+  const status = systemWatcher.getStatus();
+  
+  log('✅ System watcher in STANDBY MODE', 'green');
+  log('⏸️  Status: WAITING ON INPUT STAGE', 'yellow');
+  log('\n📊 All components ready and waiting:', 'blue');
+  log('   - Google Drive (standby - waiting for file)', 'cyan');
+  log('   - File Processor (standby - ready)', 'cyan');
+  log('   - Lead Processor (standby - ready)', 'cyan');
+  log('   - Anymail (standby - ready)', 'cyan');
+  log('   - Database (standby - ready)', 'cyan');
+  log('   - HubSpot (standby - ready)', 'cyan');
+  log('   - Sequence Engine (standby - ready)', 'cyan');
+  log('   - Email Wave Sender (standby - ready)', 'cyan');
+  log('\n📝 All pipeline events will be logged to:', 'blue');
   log(`   ${require('path').join(__dirname, '../logs/pipeline.log')}`, 'cyan');
-  log('\n⏳ Waiting for file trigger...', 'yellow');
-  log('   Drop a file in Google Drive folder to start pipeline\n', 'yellow');
+  log('\n⏳ ═══════════════════════════════════════════════════════════════', 'yellow');
+  log('⏳ WAITING FOR FILE IN GOOGLE DRIVE...', 'bright');
+  log('⏳ Drop a file in Google Drive folder to activate tracking', 'yellow');
+  log('⏳ ═══════════════════════════════════════════════════════════════\n', 'yellow');
 
   // Monitor system status every 30 seconds
   const statusInterval = setInterval(() => {

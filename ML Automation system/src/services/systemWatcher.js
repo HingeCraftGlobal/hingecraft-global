@@ -12,10 +12,12 @@ const path = require('path');
 class SystemWatcher {
   constructor() {
     this.isWatching = false;
+    this.mode = 'standby'; // 'standby', 'active', 'stopped'
     this.pipelineLogs = [];
     this.componentStatus = {};
     this.activePipelines = new Map(); // Track active pipeline runs
     this.logFilePath = path.join(__dirname, '../../logs/pipeline.log');
+    this.waitingForFile = true; // Standby mode - waiting for file input
     this.ensureLogDirectory();
   }
 
@@ -32,30 +34,66 @@ class SystemWatcher {
   }
 
   /**
-   * Start watching the entire system
+   * Start watching the entire system (standby mode - waiting for file)
    */
   async startWatching() {
-    if (this.isWatching) {
+    if (this.isWatching && this.mode === 'active') {
       logger.warn('System watcher already running');
       return;
     }
 
     this.isWatching = true;
-    logger.info('🔍 SYSTEM WATCHER STARTED - Monitoring all components');
-    this.logPipelineEvent('SYSTEM', 'WATCHER_STARTED', { timestamp: new Date() });
+    this.mode = 'standby';
+    this.waitingForFile = true;
+    
+    logger.info('🔍 SYSTEM WATCHER IN STANDBY MODE - Waiting for file input');
+    logger.info('⏳ Status: WAITING ON INPUT STAGE');
+    this.logPipelineEvent('SYSTEM', 'WATCHER_STANDBY', { 
+      timestamp: new Date(),
+      status: 'waiting_for_file',
+      message: 'System ready - waiting for file in Google Drive'
+    });
 
-    // Initialize component status
+    // Initialize component status (all in standby)
     this.componentStatus = {
-      googleDrive: { status: 'monitoring', lastCheck: null },
-      leadProcessor: { status: 'monitoring', lastCheck: null },
-      hubspot: { status: 'monitoring', lastCheck: null },
-      anymail: { status: 'monitoring', lastCheck: null },
-      emailWaveSender: { status: 'monitoring', lastCheck: null },
-      sequenceEngine: { status: 'monitoring', lastCheck: null },
-      database: { status: 'monitoring', lastCheck: null }
+      googleDrive: { status: 'standby', lastCheck: null, waiting: true },
+      leadProcessor: { status: 'standby', lastCheck: null, waiting: true },
+      hubspot: { status: 'standby', lastCheck: null, waiting: true },
+      anymail: { status: 'standby', lastCheck: null, waiting: true },
+      emailWaveSender: { status: 'standby', lastCheck: null, waiting: true },
+      sequenceEngine: { status: 'standby', lastCheck: null, waiting: true },
+      database: { status: 'standby', lastCheck: null, waiting: true }
     };
 
     return true;
+  }
+
+  /**
+   * Activate watcher when file is detected
+   */
+  activateWatcher(fileId, fileName) {
+    if (this.mode === 'standby' && this.waitingForFile) {
+      this.mode = 'active';
+      this.waitingForFile = false;
+      
+      logger.info('🚀 SYSTEM WATCHER ACTIVATED - File detected!');
+      logger.info(`📁 File: ${fileName}`);
+      logger.info('🔍 Now tracking complete pipeline flow...');
+      
+      this.logPipelineEvent('SYSTEM', 'WATCHER_ACTIVATED', {
+        timestamp: new Date(),
+        fileId: fileId,
+        fileName: fileName,
+        status: 'tracking_active'
+      });
+
+      // Update component status to active
+      Object.keys(this.componentStatus).forEach(component => {
+        this.componentStatus[component].status = 'active';
+        this.componentStatus[component].waiting = false;
+        this.componentStatus[component].lastCheck = new Date();
+      });
+    }
   }
 
   /**
