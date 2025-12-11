@@ -454,6 +454,57 @@ const scanJob = new cron.CronJob('0 2 * * *', async () => {
   }
 });
 
+// Poll Google Drive folder every 30 seconds for new files
+let lastScanTime = new Date(0);
+let processedFileIds = new Set();
+
+const pollDriveFolder = async () => {
+  try {
+    const folderId = config.google.driveFolderId;
+    if (!folderId) {
+      logger.warn('No Google Drive folder ID configured, skipping poll');
+      return;
+    }
+
+    logger.debug('Polling Google Drive folder for new files...');
+    const files = await googleDrive.scanFolder(folderId);
+    
+    if (files && files.length > 0) {
+      for (const file of files) {
+        // Check if file was modified after last scan
+        const fileModified = new Date(file.modifiedTime || file.createdTime);
+        
+        // Only process if:
+        // 1. File is newer than last scan
+        // 2. We haven't processed this file ID yet
+        if (fileModified > lastScanTime && !processedFileIds.has(file.id)) {
+          logger.info(`🆕 New file detected: ${file.name} (${file.id})`);
+          
+          // Mark as processed
+          processedFileIds.add(file.id);
+          
+          // Process the file
+          await orchestrator.processDriveFile(file.id);
+        }
+      }
+    }
+    
+    // Update last scan time
+    lastScanTime = new Date();
+    
+    // Clean up old file IDs (keep last 100)
+    if (processedFileIds.size > 100) {
+      const idsArray = Array.from(processedFileIds);
+      processedFileIds = new Set(idsArray.slice(-100));
+    }
+  } catch (error) {
+    logger.error('Error polling Google Drive folder:', error);
+  }
+};
+
+// Start polling every 30 seconds
+let pollInterval = null;
+
 // Error handling middleware (must be last)
 app.use((err, req, res, next) => {
   logger.error('Unhandled error:', err);
@@ -540,6 +591,10 @@ process.on('SIGTERM', () => {
   logger.info('SIGTERM received, shutting down gracefully');
   sequenceJob.stop();
   scanJob.stop();
+  if (pollInterval) {
+    clearInterval(pollInterval);
+    pollInterval = null;
+  }
   process.exit(0);
 });
 
