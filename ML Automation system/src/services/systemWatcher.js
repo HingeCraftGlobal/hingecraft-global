@@ -274,6 +274,19 @@ class SystemWatcher {
   }
 
   /**
+   * Get current status (includes mode, waiting state, etc.)
+   */
+  getStatus() {
+    return {
+      isWatching: this.isWatching,
+      mode: this.mode,
+      waitingForFile: this.waitingForFile,
+      activePipelines: this.activePipelines.size,
+      componentStatus: this.componentStatus
+    };
+  }
+
+  /**
    * Get recent pipeline logs
    */
   getRecentLogs(limit = 100) {
@@ -434,3 +447,6 @@ class SystemWatcher {
 }
 
 module.exports = new SystemWatcher();
+
+
+
