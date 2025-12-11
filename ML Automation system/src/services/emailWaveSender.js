@@ -145,6 +145,32 @@ class EmailWaveSender {
    */
   async sendSingleEmail(emailData, waveNumber) {
     try {
+      // DRY RUN MODE: Validate email but don't send
+      if (config.app.dryRun) {
+        logger.info(`[DRY RUN] Would send email to ${emailData.to}: "${emailData.subject}"`);
+        
+        // Validate email format
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const isValid = emailRegex.test(emailData.to);
+        
+        if (!isValid) {
+          return {
+            success: false,
+            error: 'Invalid email format',
+            dryRun: true
+          };
+        }
+        
+        // Simulate successful send in dry run mode
+        return {
+          success: true,
+          messageId: `dry-run-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+          dryRun: true,
+          validated: true,
+          wouldSend: true
+        };
+      }
+
       // Check rate limit
       const rateLimit = anymailRateLimiter.isAllowed('anymail-api');
       if (!rateLimit.allowed) {
@@ -174,8 +200,8 @@ class EmailWaveSender {
       }
 
       if (sendResult.success) {
-        // Log email in database
-        if (emailData.lead_id) {
+        // Log email in database (skip in dry run for actual sends)
+        if (emailData.lead_id && !config.app.dryRun) {
           try {
             await db.insertEmailLog({
               lead_id: emailData.lead_id,

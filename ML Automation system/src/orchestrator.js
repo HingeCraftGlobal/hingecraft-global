@@ -19,38 +19,15 @@ class Orchestrator {
    * Main pipeline: Process file from Google Drive
    */
   async processDriveFile(fileId) {
-    const pipelineId = uuidv4();
-    let fileMetadata = null;
-    let importId = null;
-
     try {
       logger.info(`Starting pipeline for file ${fileId}`);
 
       // Step 1: Get file metadata
-      const startTime = Date.now();
-      fileMetadata = await googleDrive.getFileMetadata(fileId);
+      const fileMetadata = await googleDrive.getFileMetadata(fileId);
       logger.info(`Processing file: ${fileMetadata.name}`);
-      
-      // TRIGGER: File detected - activate watcher and start tracking
-      systemWatcher.watchFileDetection(fileId, fileMetadata.name, fileMetadata.mimeType);
-      
-      // Initialize pipeline tracking AFTER file detection
-      systemWatcher.startPipelineTracking(pipelineId, fileId, fileMetadata.name);
-      
-      systemWatcher.updatePipelineStage(pipelineId, 'fileDetection', 'started', {
-        fileId,
-        fileName: fileMetadata.name,
-        mimeType: fileMetadata.mimeType
-      });
-      
-      systemWatcher.updatePipelineStage(pipelineId, 'fileDetection', 'completed', {
-        fileName: fileMetadata.name,
-        mimeType: fileMetadata.mimeType,
-        duration: Date.now() - startTime
-      });
 
       // Step 2: Create import batch record
-      importId = uuidv4();
+      const importId = uuidv4();
       await db.query(
         `INSERT INTO import_batches (id, source, file_id, filename, status)
          VALUES ($1, $2, $3, $4, $5)`,
@@ -58,12 +35,39 @@ class Orchestrator {
       );
 
       // Step 3: Read and parse file
+      const fileProcessStart = Date.now();
+      systemWatcher.updatePipelineStage(pipelineId, 'fileProcessing', 'started');
+      
       const fileData = await googleDrive.processFile(fileId);
       logger.info(`File contains ${fileData.totalRows} rows`);
+      
+      const fileType = fileProcessor.detectFileType(fileMetadata.name, fileMetadata.mimeType);
+      systemWatcher.watchFileProcessing(fileId, fileType, fileData.totalRows, fileData.headers.length);
+      systemWatcher.updatePipelineStage(pipelineId, 'fileProcessing', 'completed', {
+        fileType,
+        rowCount: fileData.totalRows,
+        columnCount: fileData.headers.length,
+        duration: Date.now() - fileProcessStart
+      });
 
       // Step 4: Process leads
+      const leadProcessStart = Date.now();
+      systemWatcher.updatePipelineStage(pipelineId, 'leadProcessing', 'started');
+      
       const processResult = await leadProcessor.processFileLeads(fileData, fileId, importId);
       logger.info(`Processed ${processResult.processed} leads, ${processResult.errors} errors`);
+      
+      systemWatcher.watchLeadProcessing(
+        processResult.processed,
+        processResult.errors,
+        processResult.enriched || 0,
+        processResult.validated || 0
+      );
+      systemWatcher.updatePipelineStage(pipelineId, 'leadProcessing', 'completed', {
+        processed: processResult.processed,
+        errors: processResult.errors,
+        duration: Date.now() - leadProcessStart
+      });
 
       // Step 5: Email Collection (Anymail)
       const emailCollectionStart = Date.now();
@@ -249,12 +253,27 @@ class Orchestrator {
     } catch (error) {
       logger.error(`Error in pipeline for file ${fileId}:`, error);
       
+      // Mark pipeline as failed
+      if (pipelineId) {
+        systemWatcher.updatePipelineStage(pipelineId, 'fileProcessing', 'failed', {
+          error: error.message
+        });
+        systemWatcher.completePipelineTracking(pipelineId, { error: error.message });
+      }
+      
       // Update import batch with error
       try {
-        await db.query(
-          `UPDATE import_batches SET status = $1, error_message = $2 WHERE file_id = $3`,
-          ['error', error.message, fileId]
-        );
+        if (importId) {
+          await db.query(
+            `UPDATE import_batches SET status = $1, error_message = $2 WHERE id = $3`,
+            ['error', error.message, importId]
+          );
+        } else if (fileId) {
+          await db.query(
+            `UPDATE import_batches SET status = $1, error_message = $2 WHERE file_id = $3`,
+            ['error', error.message, fileId]
+          );
+        }
       } catch (updateError) {
         logger.error('Error updating import batch:', updateError);
       }

@@ -69,17 +69,22 @@ async function startWatching() {
 
   // Monitor system status every 30 seconds
   const statusInterval = setInterval(() => {
-    const componentStatus = systemWatcher.getComponentStatus();
+    const status = systemWatcher.getStatus();
     const activePipelines = systemWatcher.getAllActivePipelines();
     
-    if (activePipelines.length > 0) {
-      log(`\n📊 Active Pipelines: ${activePipelines.length}`, 'magenta');
-      activePipelines.forEach(pipeline => {
-        const duration = pipeline.endTime 
-          ? Math.round((pipeline.endTime - pipeline.startTime) / 1000)
-          : Math.round((new Date() - pipeline.startTime) / 1000);
-        log(`   ${pipeline.fileName} - ${pipeline.status} (${duration}s)`, 'cyan');
-      });
+    if (status.waitingForFile && status.mode === 'standby') {
+      log(`\n⏳ Status: STANDBY - Waiting for file input...`, 'yellow');
+    } else if (status.mode === 'active') {
+      log(`\n🚀 Status: ACTIVE - Tracking pipeline flow`, 'green');
+      if (activePipelines.length > 0) {
+        log(`📊 Active Pipelines: ${activePipelines.length}`, 'magenta');
+        activePipelines.forEach(pipeline => {
+          const duration = pipeline.endTime 
+            ? Math.round((pipeline.endTime - pipeline.startTime) / 1000)
+            : Math.round((new Date() - pipeline.startTime) / 1000);
+          log(`   ${pipeline.fileName} - ${pipeline.status} (${duration}s)`, 'cyan');
+        });
+      }
     }
   }, 30000);
 

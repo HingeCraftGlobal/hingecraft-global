@@ -299,14 +299,18 @@ class SystemWatcher {
   }
 
   /**
-   * Watch Google Drive file detection
+   * Watch Google Drive file detection (TRIGGER POINT)
    */
   watchFileDetection(fileId, fileName, mimeType) {
+    // Activate watcher when file is detected
+    this.activateWatcher(fileId, fileName);
+    
     this.logPipelineEvent('GOOGLE_DRIVE', 'FILE_DETECTED', {
       fileId,
       fileName,
       mimeType,
-      detectedAt: new Date()
+      detectedAt: new Date(),
+      trigger: 'pipeline_started'
     });
   }
 
