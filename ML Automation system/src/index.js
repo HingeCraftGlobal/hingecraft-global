@@ -564,6 +564,15 @@ async function start() {
       logger.error('✗ Failed to start scheduled jobs:', error);
     }
 
+    // Start Google Drive folder polling
+    if (!pollInterval) {
+      pollInterval = setInterval(pollDriveFolder, 30000); // Every 30 seconds
+      logger.info('✓ Google Drive folder polling started (every 30 seconds)');
+      
+      // Do initial scan immediately
+      setImmediate(pollDriveFolder);
+    }
+
     // Start server
     app.listen(PORT, () => {
       logger.info('');
