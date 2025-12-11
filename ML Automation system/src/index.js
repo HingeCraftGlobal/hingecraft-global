@@ -287,6 +287,93 @@ app.get('/api/supported-file-types', (req, res) => {
   }
 });
 
+// API: Get pipeline status
+app.get('/api/pipeline/status', (req, res) => {
+  try {
+    const status = systemWatcher.getStatus();
+    const activePipelines = systemWatcher.getAllActivePipelines();
+    
+    res.json({
+      success: true,
+      watcherActive: status.isWatching,
+      mode: status.mode,
+      waitingForFile: status.waitingForFile,
+      status: status.waitingForFile ? 'STANDBY - Waiting for file input' : 
+              status.mode === 'active' ? 'ACTIVE - Tracking pipeline' : 'STOPPED',
+      activePipelines: activePipelines.length,
+      pipelines: activePipelines,
+      componentStatus: status.componentStatus,
+      dryRun: config.app.dryRun || false
+    });
+  } catch (error) {
+    logger.error('Get pipeline status error:', error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// API: Get pipeline by ID
+app.get('/api/pipeline/:id', (req, res) => {
+  try {
+    const pipelineId = req.params.id;
+    const report = systemWatcher.generatePipelineReport(pipelineId);
+    
+    if (report.error) {
+      return res.status(404).json(report);
+    }
+    
+    res.json({
+      success: true,
+      ...report
+    });
+  } catch (error) {
+    logger.error('Get pipeline report error:', error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// API: Get recent pipeline logs
+app.get('/api/pipeline/logs', (req, res) => {
+  try {
+    const limit = parseInt(req.query.limit) || 100;
+    const component = req.query.component;
+    
+    let logs;
+    if (component) {
+      logs = systemWatcher.getLogsByComponent(component, limit);
+    } else {
+      logs = systemWatcher.getRecentLogs(limit);
+    }
+    
+    res.json({
+      success: true,
+      count: logs.length,
+      logs: logs
+    });
+  } catch (error) {
+    logger.error('Get pipeline logs error:', error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// API: Get logs for specific pipeline
+app.get('/api/pipeline/:id/logs', (req, res) => {
+  try {
+    const pipelineId = req.params.id;
+    const limit = parseInt(req.query.limit) || 1000;
+    const logs = systemWatcher.getLogsByPipeline(pipelineId, limit);
+    
+    res.json({
+      success: true,
+      pipelineId: pipelineId,
+      count: logs.length,
+      logs: logs
+    });
+  } catch (error) {
+    logger.error('Get pipeline logs error:', error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
 // API: Get health check details
 app.get('/api/health', async (req, res) => {
   try {
