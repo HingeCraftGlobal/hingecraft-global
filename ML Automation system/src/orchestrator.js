@@ -8,6 +8,8 @@ const leadProcessor = require('./services/leadProcessor');
 const hubspot = require('./services/hubspot');
 const sequenceEngine = require('./services/sequenceEngine');
 const emailWaveSender = require('./services/emailWaveSender');
+const systemWatcher = require('./services/systemWatcher');
+const fileProcessor = require('./services/fileProcessor');
 const db = require('./utils/database');
 const logger = require('./utils/logger');
 const { v4: uuidv4 } = require('uuid');
@@ -40,16 +42,49 @@ class Orchestrator {
       const processResult = await leadProcessor.processFileLeads(fileData, fileId, importId);
       logger.info(`Processed ${processResult.processed} leads, ${processResult.errors} errors`);
 
-      // Step 5: Sync to HubSpot and collect all emails for wave sending
+      // Step 5: Email Collection (Anymail)
+      const emailCollectionStart = Date.now();
+      systemWatcher.updatePipelineStage(pipelineId, 'emailCollection', 'started');
+      
+      // Collect emails from leads (Anymail enrichment happens in leadProcessor)
+      const totalEmails = processResult.leads.filter(l => l.email).length;
+      const enrichedEmails = processResult.enriched || 0;
+      
+      systemWatcher.watchEmailCollection(enrichedEmails, enrichedEmails, totalEmails);
+      systemWatcher.updatePipelineStage(pipelineId, 'emailCollection', 'completed', {
+        totalEmails,
+        enrichedEmails,
+        duration: Date.now() - emailCollectionStart
+      });
+
+      // Step 6: Database Integration
+      const dbStart = Date.now();
+      systemWatcher.updatePipelineStage(pipelineId, 'databaseIntegration', 'started');
+      
+      // Leads are already in database from leadProcessor, just track it
+      systemWatcher.watchDatabaseOperation('insert', 'leads', processResult.processed, 0);
+      systemWatcher.updatePipelineStage(pipelineId, 'databaseIntegration', 'completed', {
+        leadsInserted: processResult.processed,
+        duration: Date.now() - dbStart
+      });
+
+      // Step 7: Sync to HubSpot and collect all emails for wave sending
+      const hubspotStart = Date.now();
+      systemWatcher.updatePipelineStage(pipelineId, 'hubspotSync', 'started');
+      
       const syncResults = [];
       const qualifiedLeads = []; // Leads ready for email sequences
       
       for (const lead of processResult.leads) {
         try {
+          const syncStart = Date.now();
           // Sync to HubSpot
           const hubspotResult = await hubspot.upsertContact(lead);
           
           if (hubspotResult.success) {
+            const syncDuration = Date.now() - syncStart;
+            systemWatcher.watchHubSpotSync(hubspotResult.contactId, lead.id, 'synced', syncDuration);
+            
             // Store HubSpot sync record
             await db.query(
               `INSERT INTO hubspot_sync (lead_id, hubspot_contact_id, sync_status, last_sync_at)
@@ -79,6 +114,7 @@ class Orchestrator {
           }
         } catch (error) {
           logger.error(`Error syncing lead ${lead.id} to HubSpot:`, error);
+          systemWatcher.watchHubSpotSync(null, lead.id, 'failed', 0);
           syncResults.push({
             lead_id: lead.id,
             email: lead.email,
@@ -86,6 +122,12 @@ class Orchestrator {
           });
         }
       }
+      
+      systemWatcher.updatePipelineStage(pipelineId, 'hubspotSync', 'completed', {
+        synced: syncResults.filter(r => r.hubspot_contact_id).length,
+        failed: syncResults.filter(r => r.error).length,
+        duration: Date.now() - hubspotStart
+      });
 
       // Step 5b: Send initial welcome emails in waves (if any qualified leads)
       let emailResults = { sent: 0, failed: 0, waves: 0 };
@@ -119,7 +161,11 @@ class Orchestrator {
         logger.info(`Wave sending complete: ${emailResults.sent} sent, ${emailResults.failed} failed across ${emailResults.waves} waves`);
       }
 
-      // Step 6: Update import batch status
+      // Step 10: Event Tracking
+      const trackingStart = Date.now();
+      systemWatcher.updatePipelineStage(pipelineId, 'eventTracking', 'started');
+      
+      // Update import batch status
       await db.query(
         `UPDATE import_batches 
          SET status = $1, total_rows = $2, processed_rows = $3, finished_at = $4
@@ -127,7 +173,7 @@ class Orchestrator {
         ['completed', fileData.totalRows, processResult.processed, new Date(), importId]
       );
 
-      // Step 7: Audit log
+      // Audit log
       await db.insertAuditLog({
         action: 'file_processed',
         entity_type: 'import_batch',
@@ -141,18 +187,36 @@ class Orchestrator {
           synced_to_hubspot: syncResults.filter(r => r.hubspot_contact_id).length
         }
       });
+      
+      systemWatcher.updatePipelineStage(pipelineId, 'eventTracking', 'completed', {
+        duration: Date.now() - trackingStart
+      });
 
+      // Complete pipeline tracking
+      const summary = {
+        total_rows: fileData.totalRows,
+        processed: processResult.processed,
+        errors: processResult.errors,
+        hubspot_synced: syncResults.filter(r => r.hubspot_contact_id).length,
+        sequences_initialized: sequencesInitialized,
+        emails_sent: emailResults.sent || 0,
+        emails_failed: emailResults.failed || 0,
+        email_waves: emailResults.waves || 0
+      };
+      
+      systemWatcher.completePipelineTracking(pipelineId, summary);
       logger.info(`Pipeline completed for file ${fileId}`);
 
       return {
         success: true,
+        pipeline_id: pipelineId,
         import_id: importId,
         file: fileMetadata.name,
         total_rows: fileData.totalRows,
         processed: processResult.processed,
         errors: processResult.errors,
         hubspot_synced: syncResults.filter(r => r.hubspot_contact_id).length,
-        sequences_initialized: syncResults.filter(r => r.sequence_initialized).length,
+        sequences_initialized: sequencesInitialized,
         emails_sent: emailResults.sent || 0,
         emails_failed: emailResults.failed || 0,
         email_waves: emailResults.waves || 0,

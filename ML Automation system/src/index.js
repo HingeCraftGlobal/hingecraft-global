@@ -9,6 +9,7 @@ const cors = require('cors');
 const orchestrator = require('./orchestrator');
 const googleDrive = require('./services/googleDrive');
 const sequenceEngine = require('./services/sequenceEngine');
+const systemWatcher = require('./services/systemWatcher');
 const db = require('./utils/database');
 const logger = require('./utils/logger');
 const config = require('../config/api_keys');
@@ -141,9 +142,14 @@ app.get('/auth/status', (req, res) => {
   }
 });
 
-// Webhook: Google Drive file change
+// Webhook: Google Drive file change (TRIGGER POINT)
 app.post('/webhook/drive', async (req, res) => {
   try {
+    // Start system watcher if not already running
+    if (!systemWatcher.isWatching) {
+      await systemWatcher.startWatching();
+    }
+    
     // Verify webhook signature if secret is configured
     const webhookSecret = config.app.webhookSecret;
     if (webhookSecret) {
