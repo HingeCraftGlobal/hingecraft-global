@@ -7,6 +7,7 @@ const googleDrive = require('./services/googleDrive');
 const leadProcessor = require('./services/leadProcessor');
 const hubspot = require('./services/hubspot');
 const sequenceEngine = require('./services/sequenceEngine');
+const emailWaveSender = require('./services/emailWaveSender');
 const db = require('./utils/database');
 const logger = require('./utils/logger');
 const { v4: uuidv4 } = require('uuid');
@@ -39,8 +40,10 @@ class Orchestrator {
       const processResult = await leadProcessor.processFileLeads(fileData, fileId, importId);
       logger.info(`Processed ${processResult.processed} leads, ${processResult.errors} errors`);
 
-      // Step 5: Sync to HubSpot and initialize sequences
+      // Step 5: Sync to HubSpot and collect all emails for wave sending
       const syncResults = [];
+      const qualifiedLeads = []; // Leads ready for email sequences
+      
       for (const lead of processResult.leads) {
         try {
           // Sync to HubSpot
@@ -56,10 +59,15 @@ class Orchestrator {
               [lead.id, hubspotResult.contactId, 'synced', new Date()]
             );
 
-            // Initialize sequence
+            // Initialize sequence and collect for wave sending
             const score = leadProcessor.scoreLead(lead);
-            if (score >= 65) { // Only start sequence for qualified leads
+            if (score >= 65 && lead.email) { // Only start sequence for qualified leads with email
               await sequenceEngine.initializeSequence(lead.id, 'welcome');
+              qualifiedLeads.push({
+                ...lead,
+                hubspot_contact_id: hubspotResult.contactId,
+                score: score
+              });
             }
 
             syncResults.push({
@@ -77,6 +85,38 @@ class Orchestrator {
             error: error.message
           });
         }
+      }
+
+      // Step 5b: Send initial welcome emails in waves (if any qualified leads)
+      let emailResults = { sent: 0, failed: 0, waves: 0 };
+      if (qualifiedLeads.length > 0) {
+        logger.info(`Sending welcome emails to ${qualifiedLeads.length} qualified leads in waves`);
+        
+        // Get welcome email template
+        const welcomeTemplate = {
+          subject: 'Welcome to HingeCraft, {{first_name}}!',
+          html: `
+            <p>Hi {{first_name}},</p>
+            <p>Welcome to HingeCraft! We're excited to have you join our mission.</p>
+            <p>We're building something special, and we'd love for you to be part of it.</p>
+            <p>Best regards,<br>The HingeCraft Team</p>
+          `,
+          template_id: 'welcome_1'
+        };
+
+        // Collect all emails from leads
+        const emails = await emailWaveSender.collectEmailsFromLeads(
+          qualifiedLeads.map(lead => ({
+            ...lead,
+            sequence_id: null, // Will be set by sequence engine
+            step_number: 1
+          })),
+          welcomeTemplate
+        );
+
+        // Send in waves
+        emailResults = await emailWaveSender.sendInWaves(emails);
+        logger.info(`Wave sending complete: ${emailResults.sent} sent, ${emailResults.failed} failed across ${emailResults.waves} waves`);
       }
 
       // Step 6: Update import batch status
@@ -113,6 +153,9 @@ class Orchestrator {
         errors: processResult.errors,
         hubspot_synced: syncResults.filter(r => r.hubspot_contact_id).length,
         sequences_initialized: syncResults.filter(r => r.sequence_initialized).length,
+        emails_sent: emailResults.sent || 0,
+        emails_failed: emailResults.failed || 0,
+        email_waves: emailResults.waves || 0,
         sync_results: syncResults
       };
 

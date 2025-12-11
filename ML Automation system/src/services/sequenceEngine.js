@@ -7,6 +7,7 @@ const db = require('../utils/database');
 const anymail = require('./anymail');
 const gmail = require('./gmail');
 const hubspot = require('./hubspot');
+const emailWaveSender = require('./emailWaveSender');
 const logger = require('../utils/logger');
 
 class SequenceEngine {
