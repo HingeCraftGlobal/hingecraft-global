@@ -409,6 +409,14 @@ async function start() {
       logger.warn('Complete OAuth flow at /auth/google to enable full functionality');
     }
 
+    // Start system watcher
+    try {
+      await systemWatcher.startWatching();
+      logger.info('✓ System watcher started - monitoring all components');
+    } catch (error) {
+      logger.error('✗ Failed to start system watcher:', error);
+    }
+
     // Start scheduled jobs
     try {
       sequenceJob.start();
@@ -428,6 +436,9 @@ async function start() {
       logger.info(`✓ Health check: http://localhost:${PORT}/health`);
       logger.info(`✓ OAuth setup: http://localhost:${PORT}/auth/google`);
       logger.info(`✓ Statistics: http://localhost:${PORT}/api/statistics`);
+      logger.info(`✓ Pipeline status: http://localhost:${PORT}/api/pipeline/status`);
+      logger.info(`✓ Pipeline logs: http://localhost:${PORT}/api/pipeline/logs`);
+      logger.info('🔍 System watcher: ACTIVE - Monitoring all components');
       logger.info('═══════════════════════════════════════════════════════');
       logger.info('');
     });
