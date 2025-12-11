@@ -49,15 +49,20 @@ class FileProcessor {
    * Detect file type from filename or MIME type
    */
   detectFileType(filename, mimeType) {
-    // First try MIME type
+    // First try file extension (more specific)
+    const extension = filename.toLowerCase().substring(filename.lastIndexOf('.'));
+    if (extension && this.supportedExtensions.includes(extension)) {
+      return extension.substring(1); // Remove the dot
+    }
+
+    // Then try MIME type
     if (mimeType && this.mimeTypeMap[mimeType]) {
       return this.mimeTypeMap[mimeType];
     }
 
-    // Then try file extension
-    const extension = filename.toLowerCase().substring(filename.lastIndexOf('.'));
-    if (this.supportedExtensions.includes(extension)) {
-      return extension.substring(1); // Remove the dot
+    // For .tab files with text/plain, return 'tab'
+    if (extension === '.tab' && mimeType && mimeType.startsWith('text/')) {
+      return 'tab';
     }
 
     // Default to CSV for unknown text files
