@@ -58,9 +58,6 @@ services:
         reservations:
           cpus: '0.25'     # 250 nano CPUs minimum
           memory: 128M
-    cpu_shares: 512
-    cpu_period: 100000
-    cpu_quota: 50000
 
   # Redis for queues and caching
   redis:
@@ -93,6 +90,28 @@ services:
     restart: unless-stopped
     networks:
       - automation-network
+    deploy:
+      resources:
+        limits:
+          cpus: '0.1'      # 100 nano CPUs = 0.1 CPU
+          memory: 64M
+        reservations:
+          cpus: '0.05'     # 50 nano CPUs minimum
+          memory: 32M
+    cpu_shares: 128
+    cpu_period: 100000
+    cpu_quota: 10000
+    deploy:
+      resources:
+        limits:
+          cpus: '0.1'      # 100 nano CPUs = 0.1 CPU
+          memory: 64M
+        reservations:
+          cpus: '0.05'     # 50 nano CPUs minimum
+          memory: 32M
+    cpu_shares: 128
+    cpu_period: 100000
+    cpu_quota: 10000
 
 volumes:
   postgres-data:
