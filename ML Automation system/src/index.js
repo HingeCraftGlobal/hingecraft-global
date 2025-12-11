@@ -220,14 +220,27 @@ app.post('/api/process-file', async (req, res) => {
   }
 });
 
-// API: Scan folder
+// API: Manual trigger - Scan folder now
 app.post('/api/scan-folder', async (req, res) => {
   try {
     const { folderId } = req.body;
+    logger.info('Manual folder scan triggered');
     const result = await orchestrator.scanAndProcessFolder(folderId);
     res.json(result);
   } catch (error) {
     logger.error('Scan folder error:', error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// API: Trigger immediate poll
+app.post('/api/trigger-poll', async (req, res) => {
+  try {
+    logger.info('Manual poll triggered');
+    await pollDriveFolder();
+    res.json({ success: true, message: 'Poll completed' });
+  } catch (error) {
+    logger.error('Trigger poll error:', error);
     res.status(500).json({ error: error.message });
   }
 });
