@@ -31,13 +31,14 @@ services:
   # PostgreSQL Database
   postgres:
     image: postgres:15-alpine
+    platform: linux/amd64
     container_name: hingecraft-postgres
     environment:
       - POSTGRES_DB=hingecraft_automation
       - POSTGRES_USER=hingecraft_user
       - POSTGRES_PASSWORD=hingecraft_password
     ports:
-      - "5432:5432"
+      - "5433:5432"  # Changed external port to 5433 to avoid conflict
     volumes:
       - postgres-data:/var/lib/postgresql/data
       - ./database/schema.sql:/docker-entrypoint-initdb.d/schema.sql
@@ -49,13 +50,24 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'      # 500 nano CPUs = 0.5 CPU
+          memory: 256M
+        reservations:
+          cpus: '0.25'     # 250 nano CPUs minimum
+          memory: 128M
+    cpu_shares: 512
+    cpu_period: 100000
+    cpu_quota: 50000
 
   # Redis for queues and caching
   redis:
     image: redis:7-alpine
     container_name: hingecraft-redis
     ports:
-      - "6379:6379"
+      - "6380:6379"  # Changed external port to 6380 to avoid conflict
     volumes:
       - redis-data:/data
     restart: unless-stopped
