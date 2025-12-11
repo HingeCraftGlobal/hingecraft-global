@@ -348,16 +348,16 @@ async function importAllData() {
 
       // Step 8: Send in waves
       log('\n🌊 Step 8: Sending emails in waves (75 per wave)...', 'blue');
-      const waveResults = await emailWaveSender.sendInWaves(emails);
+      emailResults = await emailWaveSender.sendInWaves(emails);
 
       log(`\n   📊 Wave Sending Summary:`, 'cyan');
-      log(`      Total: ${waveResults.total}`, 'cyan');
-      log(`      Sent: ${waveResults.sent}`, 'green');
-      log(`      Failed: ${waveResults.failed}`, waveResults.failed > 0 ? 'red' : 'green');
-      log(`      Waves: ${waveResults.waves}`, 'cyan');
+      log(`      Total: ${emailResults.total}`, 'cyan');
+      log(`      Sent: ${emailResults.sent}`, 'green');
+      log(`      Failed: ${emailResults.failed}`, emailResults.failed > 0 ? 'red' : 'green');
+      log(`      Waves: ${emailResults.waves}`, 'cyan');
 
-      if (waveResults.waveResults) {
-        waveResults.waveResults.forEach((wave, index) => {
+      if (emailResults.waveResults) {
+        emailResults.waveResults.forEach((wave, index) => {
           log(`      Wave ${index + 1}: ${wave.sent}/${wave.total} sent`, 'cyan');
         });
       }
@@ -388,9 +388,9 @@ async function importAllData() {
     if (qualifiedLeads.length > 0) {
       log(`\n📧 Email Sending:`, 'bright');
       log(`   Qualified Leads: ${qualifiedLeads.length}`, 'cyan');
-      log(`   Emails Sent: ${emailResults?.sent || 0}`, 'green');
-      log(`   Emails Failed: ${emailResults?.failed || 0}`, emailResults?.failed > 0 ? 'red' : 'green');
-      log(`   Waves: ${emailResults?.waves || 0}`, 'cyan');
+      log(`   Emails Sent: ${waveResults?.sent || 0}`, 'green');
+      log(`   Emails Failed: ${waveResults?.failed || 0}`, waveResults?.failed > 0 ? 'red' : 'green');
+      log(`   Waves: ${waveResults?.waves || 0}`, 'cyan');
     }
 
     log('\n═══════════════════════════════════════════════════════════════════════════════\n', 'cyan');
@@ -402,7 +402,7 @@ async function importAllData() {
       leadsInserted: insertedCount,
       hubspotSynced: hubspotSynced,
       sequencesInitialized: sequencesInitialized,
-      emailsSent: waveResults?.sent || 0
+      emailsSent: emailResults?.sent || 0
     };
 
   } catch (error) {
