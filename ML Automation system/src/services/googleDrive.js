@@ -22,10 +22,14 @@ class GoogleDriveService {
    */
   async initialize() {
     try {
+      const redirectUri = process.env.OAUTH_REDIRECT_URI || 
+                         process.env.REDIRECT_URI || 
+                         'http://localhost:7101/oauth2callback';
+      
       const oauth2Client = new google.auth.OAuth2(
         config.google.clientId,
         config.google.clientSecret,
-        'http://localhost:3001/oauth2callback' // Redirect URI
+        redirectUri
       );
 
       // For service account or refresh token flow
@@ -64,10 +68,14 @@ class GoogleDriveService {
    * Get authorization URL for OAuth flow
    */
   getAuthUrl() {
+    const redirectUri = process.env.OAUTH_REDIRECT_URI || 
+                       process.env.REDIRECT_URI || 
+                       'http://localhost:7101/oauth2callback';
+    
     const oauth2Client = new google.auth.OAuth2(
       config.google.clientId,
       config.google.clientSecret,
-      'http://localhost:3001/oauth2callback'
+      redirectUri
     );
 
     return oauth2Client.generateAuthUrl({

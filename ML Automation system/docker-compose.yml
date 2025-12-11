@@ -11,6 +11,7 @@ services:
       - NODE_ENV=development
       - DRY_RUN=true
       - PORT=3001
+      - OAUTH_REDIRECT_URI=http://localhost:7101/oauth2callback
       - DB_HOST=postgres
       - DB_PORT=5432
       - DB_NAME=hingecraft_automation

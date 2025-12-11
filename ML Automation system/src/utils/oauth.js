@@ -21,10 +21,15 @@ class OAuthManager {
    * Initialize OAuth2 client
    */
   initialize() {
+    // Use environment variable for redirect URI, or default to external port
+    const redirectUri = process.env.OAUTH_REDIRECT_URI || 
+                       process.env.REDIRECT_URI || 
+                       'http://localhost:7101/oauth2callback';
+    
     this.oauth2Client = new google.auth.OAuth2(
       config.google.clientId,
       config.google.clientSecret,
-      'http://localhost:3001/oauth2callback'
+      redirectUri
     );
 
     // Load existing tokens
