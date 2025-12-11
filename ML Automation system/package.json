@@ -1,0 +1,47 @@
+{
+  "name": "hingecraft-ml-automation-system",
+  "version": "1.0.0",
+  "description": "HingeCraft ML Automation System - Complete end-to-end lead automation pipeline",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "test": "node scripts/test-system.js",
+    "test:unit": "jest",
+    "setup-db": "node database/setup.js",
+    "migrate": "node database/migrate.js",
+    "verify": "node scripts/verify-system.js",
+    "health": "curl http://localhost:3001/health || echo 'Server not running'",
+    "start:check": "./scripts/start.sh"
+  },
+  "keywords": [
+    "automation",
+    "crm",
+    "email",
+    "hubspot",
+    "lead-generation"
+  ],
+  "author": "HingeCraft",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "googleapis": "^126.0.1",
+    "axios": "^1.6.2",
+    "pg": "^8.11.3",
+    "redis": "^4.6.12",
+    "bull": "^4.12.0",
+    "dotenv": "^16.3.1",
+    "uuid": "^9.0.1",
+    "csv-parse": "^5.5.3",
+    "xlsx": "^0.18.5",
+    "nodemailer": "^6.9.7",
+    "winston": "^3.11.0",
+    "joi": "^17.11.0",
+    "cron": "^3.1.6",
+    "cors": "^2.8.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2",
+    "jest": "^29.7.0"
+  }
+}
