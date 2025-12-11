@@ -6,6 +6,8 @@
 const { google } = require('googleapis');
 const config = require('../../config/api_keys');
 const logger = require('../utils/logger');
+const fileProcessor = require('./fileProcessor');
+const fileTypeProcessor = require('./fileTypeProcessor');
 
 class GoogleDriveService {
   constructor() {
@@ -76,27 +78,62 @@ class GoogleDriveService {
   }
 
   /**
-   * Scan folder for new files
+   * Scan folder for new files (all supported spreadsheet types)
    */
   async scanFolder(folderId = null) {
     try {
       const targetFolderId = folderId || this.folderId;
       
+      // Build query to find all supported file types
+      const supportedExtensions = [
+        '.gsheet', '.xlsx', '.xls', '.xlsm', '.xltx', '.xltm',
+        '.ods', '.csv', '.tsv', '.tab', '.txt'
+      ];
+      
+      // Query for spreadsheet MIME types and common extensions
+      const mimeTypes = [
+        'application/vnd.google-apps.spreadsheet',
+        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+        'application/vnd.ms-excel',
+        'application/vnd.ms-excel.sheet.macroEnabled.12',
+        'application/vnd.oasis.opendocument.spreadsheet',
+        'text/csv',
+        'text/tab-separated-values',
+        'text/plain'
+      ];
+      
+      // Build query - find files with supported MIME types or extensions
+      const extensionQuery = supportedExtensions.map(ext => `name contains '${ext}'`).join(' or ');
+      const mimeQuery = mimeTypes.map(mime => `mimeType='${mime}'`).join(' or ');
+      const query = `'${targetFolderId}' in parents and trashed=false and (${mimeQuery} or ${extensionQuery})`;
+      
       const response = await this.drive.files.list({
-        q: `'${targetFolderId}' in parents and trashed=false`,
-        fields: 'files(id, name, mimeType, createdTime, modifiedTime)',
+        q: query,
+        fields: 'files(id, name, mimeType, createdTime, modifiedTime, size)',
         orderBy: 'modifiedTime desc'
       });
 
       const files = response.data.files || [];
-      logger.info(`Found ${files.length} files in folder ${targetFolderId}`);
+      logger.info(`Found ${files.length} supported spreadsheet files in folder ${targetFolderId}`);
       
-      return files.map(file => ({
+      // Filter to only supported files
+      const supportedFiles = files.filter(file => {
+        const isSupported = fileProcessor.isSupported(file.name, file.mimeType);
+        if (!isSupported) {
+          logger.warn(`Unsupported file type skipped: ${file.name} (${file.mimeType})`);
+        }
+        return isSupported;
+      });
+      
+      return supportedFiles.map(file => ({
         id: file.id,
         name: file.name,
         mimeType: file.mimeType,
         createdTime: file.createdTime,
-        modifiedTime: file.modifiedTime
+        modifiedTime: file.modifiedTime,
+        size: file.size,
+        fileType: fileProcessor.detectFileType(file.name, file.mimeType),
+        supported: true
       }));
     } catch (error) {
       logger.error('Error scanning folder:', error);
@@ -201,39 +238,48 @@ class GoogleDriveService {
   }
 
   /**
-   * Process file based on MIME type
+   * Process file - supports ALL spreadsheet file types
    */
   async processFile(fileId) {
     try {
       const metadata = await this.getFileMetadata(fileId);
       
-      if (metadata.mimeType === 'application/vnd.google-apps.spreadsheet') {
-        // Google Sheet
-        return await this.readSheet(fileId);
-      } else if (metadata.mimeType === 'text/csv' || metadata.name.endsWith('.csv')) {
-        // CSV file - download and parse
-        const buffer = await this.downloadFile(fileId);
-        const csv = require('csv-parse/sync');
-        const records = csv.parse(buffer.toString(), {
-          columns: true,
-          skip_empty_lines: true
-        });
-        
-        return {
-          headers: Object.keys(records[0] || {}),
-          rows: records.map((row, index) => ({
-            rowNumber: index + 2,
-            data: row
-          })),
-          totalRows: records.length
-        };
-      } else {
-        throw new Error(`Unsupported file type: ${metadata.mimeType}`);
+      // Check if file type is supported
+      if (!fileProcessor.isSupported(metadata.name, metadata.mimeType)) {
+        const supported = fileProcessor.getSupportedTypes();
+        throw new Error(`Unsupported file type: ${metadata.name} (${metadata.mimeType}). Supported types: ${supported.extensions.join(', ')}`);
       }
+
+      const fileType = fileProcessor.detectFileType(metadata.name, metadata.mimeType);
+      logger.info(`Processing file: ${metadata.name} (Type: ${fileType}, MIME: ${metadata.mimeType})`);
+      
+      // Google Sheets - use Sheets API
+      if (metadata.mimeType === 'application/vnd.google-apps.spreadsheet' || fileType === 'gsheet') {
+        logger.info(`Processing as Google Sheet: ${metadata.name}`);
+        return await this.readSheet(fileId);
+      }
+      
+      // All other file types - download and process
+      logger.info(`Downloading file for processing: ${metadata.name}`);
+      const buffer = await this.downloadFile(fileId);
+      
+      // Use universal file processor
+      const result = await fileProcessor.processFile(buffer, metadata.name, metadata.mimeType);
+      
+      logger.info(`Successfully processed ${metadata.name}: ${result.totalRows} rows, ${result.headers.length} columns`);
+      return result;
+      
     } catch (error) {
       logger.error(`Error processing file ${fileId}:`, error);
       throw error;
     }
+  }
+
+  /**
+   * Get supported file types information
+   */
+  getSupportedFileTypes() {
+    return fileProcessor.getSupportedTypes();
   }
 }
 

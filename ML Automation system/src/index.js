@@ -267,6 +267,20 @@ app.get('/api/statistics', async (req, res) => {
   }
 });
 
+// API: Get supported file types
+app.get('/api/supported-file-types', (req, res) => {
+  try {
+    const supportedTypes = googleDrive.getSupportedFileTypes();
+    res.json({
+      success: true,
+      supported: supportedTypes
+    });
+  } catch (error) {
+    logger.error('Get supported file types error:', error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
 // API: Get health check details
 app.get('/api/health', async (req, res) => {
   try {
