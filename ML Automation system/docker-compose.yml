@@ -51,6 +51,7 @@ services:
       - postgres-data:/var/lib/postgresql/data
       - ./database/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql
       - ./database/init-data.sql:/docker-entrypoint-initdb.d/02-init-data.sql
+      - ./database/migrate-existing-data.sql:/docker-entrypoint-initdb.d/03-migrate-data.sql
     restart: unless-stopped
     networks:
       - automation-network
