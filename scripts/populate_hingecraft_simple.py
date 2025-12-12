@@ -64,7 +64,7 @@ Create a complete description (250-350 words) with:
 4. Impact on HingeCraft's mission
 5. Next steps
 
-Use inspiring, action-oriented language aligned with: "Building resilient, abundant futures through accessible technology and sustainable design.""""
+Use inspiring, action-oriented language aligned with: Building resilient, abundant futures through accessible technology and sustainable design."""
         
         payload = {
             "model": "gpt-3.5-turbo",
