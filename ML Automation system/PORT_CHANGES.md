@@ -61,12 +61,16 @@ Only external ports changed to avoid conflicts.
 
 ## 🎯 Quick Access
 
-**Dashboard**: http://localhost:9080  
-**API**: http://localhost:9001  
-**Health Check**: http://localhost:9001/health
+**Dashboard**: http://localhost:7080  
+**API**: http://localhost:7101  
+**Health Check**: http://localhost:7101/health
 
 ---
 
 **Status**: ✅ **PORTS SWAPPED**  
 **Conflicts**: ✅ **RESOLVED**  
 **Dashboard**: ✅ **READY AT NEW PORT**
+
+
+
+

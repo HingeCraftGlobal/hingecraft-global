@@ -337,3 +337,7 @@ class EmailWaveSender {
 }
 
 module.exports = new EmailWaveSender();
+
+
+
+

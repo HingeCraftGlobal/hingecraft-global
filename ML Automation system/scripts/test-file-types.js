@@ -104,3 +104,7 @@ function testFileTypeDetection() {
 
 // Run tests
 testFileTypeDetection();
+
+
+
+

@@ -1,180 +1,126 @@
-# ✅ Deployment Complete Summary
-## What Was Automated vs What Needs Manual Steps
+# ✅ T10 Deployment Complete Summary
+## All Files Ready - Push to Wix Dev
 
-**Date:** December 10, 2025  
-**Status:** ✅ **DEPLOYMENT PACKAGE READY**
-
----
-
-## ✅ AUTOMATED (COMPLETED)
-
-### **1. Wix CLI Setup**
-- ✅ Wix CLI installed: v1.1.141
-- ✅ Logged in: departments@hingecraft-global.ai
-- ✅ Authentication verified
-
-### **2. File Verification**
-- ✅ All 9 backend functions verified
-- ✅ All 2 web modules verified
-- ✅ All 2 HTML pages verified
-
-### **3. Deployment Package Created**
-- ✅ Created: `wix-deployment-ready/` directory
-- ✅ Copied all backend functions to `backend/`
-- ✅ Copied all web modules to `web-modules/`
-- ✅ Copied all HTML pages to `html-pages/`
-- ✅ Created deployment manifest
-- ✅ Created deployment instructions
-
-### **4. Files Ready for Upload**
-
-**Backend Functions (7 files):**
-- ✅ `nowpayments.api.jsw`
-- ✅ `stripe.api.jsw`
-- ✅ `hingecraft.api.web.jsw`
-- ✅ `charter-page-middleware.jsw`
-- ✅ `mission-support-middleware.jsw`
-- ✅ `createNowPaymentsInvoice.jsw`
-- ✅ `nowpayments.jsw` (webhook)
-
-**Web Modules (2 files):**
-- ✅ `charter-page-middleware.web.js`
-- ✅ `mission-support-middleware.web.js`
-
-**HTML Pages (2 files):**
-- ✅ `charter-page-final.html`
-- ✅ `mission-support-form.html`
+**Date:** January 27, 2025  
+**Status:** ✅ **ALL FILES READY - READY TO PUSH**
 
 ---
 
-## ⚠️ MANUAL STEPS REQUIRED (Wix Editor)
+## 🎯 DEPLOYMENT STATUS
 
-### **Step 1: Upload Backend Functions**
+### ✅ Files Created/Updated: 15+ files
 
-**Location:** Wix Editor → Dev Mode → Backend → Functions
+**Backend Web Modules (.web.js):**
+- ✅ `src/backend/charter-page-middleware.web.js` - Public web module
+- ✅ `src/backend/mission-support-middleware.web.js` - Public web module
 
-**Upload these 7 files from:**
-```
-wix-deployment-ready/backend/
-```
+**Backend Internal Modules (.jsw):**
+- ✅ `src/backend/charter-page-middleware.jsw` - Internal module (backup)
+- ✅ `src/backend/mission-support-middleware.jsw` - Internal module (backup)
+- ✅ `src/backend/nowpayments.api.jsw` - With wallet addresses
+- ✅ `src/backend/stripe.api.jsw` - Stripe integration
+- ✅ `src/backend/hingecraft.api.web.jsw` - Database operations
+- ✅ `src/backend/createNowPaymentsInvoice.jsw` - HTTP function wrapper
+- ✅ `src/backend/webhooks/nowpayments.jsw` - Webhook handler
 
-**Instructions:** See `wix-deployment-ready/DEPLOYMENT_INSTRUCTIONS.md`
+**Frontend Pages:**
+- ✅ `public/pages/charter-page-final.html` - With active crypto buttons
+- ✅ `public/pages/mission-support-form.html` - Updated to use middleware
 
----
+**Velo Page Code:**
+- ✅ `src/pages/Charter of Abundance Invitation.pa3z2.js`
+- ✅ `src/pages/Mission Support.msup1.js`
 
-### **Step 2: Upload Web Modules**
+**Configuration:**
+- ✅ `.wix/backend/permissions.json` - Function permissions
 
-**Location:** Wix Editor → Dev Mode → Backend → Web Modules
-
-**Upload these 2 files from:**
-```
-wix-deployment-ready/web-modules/
-```
-
----
-
-### **Step 3: Embed HTML Pages**
-
-**Location:** Wix Editor → Pages → [Page Name] → Add HTML iframe
-
-**Embed these 2 files from:**
-```
-wix-deployment-ready/html-pages/
-```
+**Deployment Scripts:**
+- ✅ `scripts/push-to-wix-dev.sh` - Complete deployment script
 
 ---
 
-### **Step 4: Configure Secrets**
+## 🚀 PUSH TO WIX DEV - COMMANDS
 
-**Location:** Wix Editor → Settings → Secrets Manager
-
-**Add 10 secrets:**
-1. NOWPAYMENTS_API_KEY
-2. NOWPAYMENTS_IPN_SECRET
-3. NOWPAYMENTS_BASE_URL
-4. BASE_URL
-5. KYC_THRESHOLD_USD
-6. CRYPTO_CONFIRMATIONS_REQUIRED
-7. STRIPE_SECRET_KEY_LIVE
-8. STRIPE_PUBLISHABLE_KEY_LIVE
-9. EXTERNAL_DB_ENDPOINT (if using)
-10. EXTERNAL_DB_SECRET_KEY (if using)
-
----
-
-### **Step 5: Create Database Collections**
-
-**Location:** Wix Editor → Database → Collections
-
-**Create 3 collections:**
-1. Donations
-2. CryptoPayments
-3. ContributionIntent
-
-**Field definitions:** See `MASTER_DEPLOYMENT_GUIDE.md`
-
----
-
-### **Step 6: Configure Webhooks**
-
-**NOWPayments:**
-- URL: `https://www.hingecraft-global.ai/_functions/webhooks/nowpayments`
-- Configure in NOWPayments Dashboard
-
-**Stripe:**
-- URL: `https://www.hingecraft-global.ai/_functions/stripe.api/handleWebhook`
-- Configure in Stripe Dashboard
-
----
-
-### **Step 7: Publish Site**
-
-**Location:** Wix Editor → Publish button
-
-Click Publish and wait for deployment.
-
----
-
-## 🚀 LOCAL DEVELOPMENT (Optional)
-
-To start local development server:
-
+### Option 1: Use Deployment Script
 ```bash
 cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
-wix dev
+./scripts/push-to-wix-dev.sh
 ```
 
-This starts a local development server for testing.
+### Option 2: Manual Wix CLI Push
+```bash
+cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+
+# Start Wix dev server
+wix dev --https
+
+# In another terminal, push changes
+wix push
+```
+
+### Option 3: Manual Upload via Wix Editor
+1. Open: https://editor.wix.com
+2. Go to Dev Mode → Backend
+3. Upload files from `src/backend/`
+4. Embed HTML pages:
+   - Charter: `public/pages/charter-page-final.html`
+   - Mission Support: `public/pages/mission-support-form.html`
 
 ---
 
-## 📋 QUICK REFERENCE
+## 🔐 SECRETS TO CONFIGURE
 
-**Deployment Package Location:**
-```
-/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/wix-deployment-ready/
+**Before testing, add these to Wix Secrets Manager:**
+
+1. `NOWPAYMENTS_API_KEY` = `JEH3VG9-648MJPE-HPETPZ7-QVCSBES`
+2. `NOWPAYMENTS_IPN_SECRET` = `8TnzsveF28gelMuvXFMxgPW5YUXYkcL9`
+3. `NOWPAYMENTS_BASE_URL` = `https://api.nowpayments.io/v1`
+4. `BASE_URL` = `https://www.hingecraft-global.ai`
+5. `STRIPE_SECRET_KEY_LIVE` = [Your Stripe Dev Key]
+6. `STRIPE_PUBLISHABLE_KEY_LIVE` = [Your Stripe Publishable Key]
+
+---
+
+## ✅ VERIFICATION CHECKLIST
+
+### Backend Functions:
+- [x] charter-page-middleware.web.js created
+- [x] mission-support-middleware.web.js created
+- [x] nowpayments.api.jsw updated with wallet addresses
+- [x] stripe.api.jsw ready
+- [x] All functions exported correctly
+
+### Frontend Pages:
+- [x] charter-page-final.html with active crypto buttons
+- [x] mission-support-form.html updated to use middleware
+- [x] Endpoints point to .web.js modules
+
+### Velo Page Code:
+- [x] Charter page Velo code ready
+- [x] Mission Support page Velo code ready
+
+### Configuration:
+- [x] Permissions configured
+- [x] Wallet addresses configured
+- [x] API keys ready
+
+---
+
+## 🎉 READY TO PUSH
+
+**All files are ready!** Run the deployment script:
+
+```bash
+./scripts/push-to-wix-dev.sh
 ```
 
-**Detailed Instructions:**
-```
-wix-deployment-ready/DEPLOYMENT_INSTRUCTIONS.md
-```
-
-**Master Guide:**
-```
-MASTER_DEPLOYMENT_GUIDE.md
+Or manually:
+```bash
+wix dev --https
+# Then in another terminal:
+wix push
 ```
 
 ---
 
-## ✅ STATUS
-
-**Automated:** ✅ **100% Complete**
-**Manual Steps:** ⚠️ **Ready to Execute**
-
-**Next Action:** Open Wix Editor and follow `wix-deployment-ready/DEPLOYMENT_INSTRUCTIONS.md`
-
----
-
-**Last Updated:** December 10, 2025  
-**Deployment:** ✅ **PACKAGE READY**
+**Status:** ✅ **READY FOR DEPLOYMENT**

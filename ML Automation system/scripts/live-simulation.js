@@ -364,3 +364,7 @@ simulateCompleteFlow().catch(error => {
   console.error(`${colors.red}Simulation error:${colors.reset}`, error);
   process.exit(1);
 });
+
+
+
+

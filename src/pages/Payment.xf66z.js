@@ -4,9 +4,9 @@
 // This page REPLACES the old Payment page - Mission Support form is now the Payment page
 
 import wixSeo from 'wix-seo';
-import { logMissionSupportIntent } from 'backend/hingecraft.api.web.jsw';
+import { onReady, handleUserInputDonation, goToCharterAfterPayment } from 'backend/mission-support-middleware.web';
 
-$w.onReady(function () {
+$w.onReady(async function () {
     // Set SEO for Mission Support Form (on Payment page URL)
     wixSeo.setTitle("Mission Support | HingeCraft Global");
     

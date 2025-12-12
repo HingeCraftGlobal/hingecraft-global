@@ -28,7 +28,7 @@
     BACKEND_API: '/_functions/hingecraft.api',
     NOWPAYMENTS_API: '/_functions/nowpayments.api',
     STRIPE_API: '/_functions/stripe.api',
-    CHARTER_MIDDLEWARE: '/_functions/charter-page-middleware',
+    CHARTER_MIDDLEWARE: '/_functions/charter-page-middleware.web',
     PRESET_AMOUNTS: [1, 5, 20],
     CRYPTO_CHAINS: {
       'solana': { symbol: 'SOL', name: 'Solana', icon: '⚡' },
@@ -123,8 +123,7 @@
    */
   async function initMiddleware() {
     try {
-      const middlewareUrl = '/_functions/charter-page-middleware';
-      const response = await fetch(middlewareUrl + '/onReady', {
+      const response = await fetch(CONFIG.CHARTER_MIDDLEWARE + '/onReady', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({})
@@ -147,8 +146,7 @@
    */
   async function loadCumulativeTotal() {
     try {
-      const middlewareUrl = '/_functions/charter-page-middleware';
-      const response = await fetch(middlewareUrl + '/getCumulativeTotal', {
+      const response = await fetch(CONFIG.CHARTER_MIDDLEWARE + '/getCumulativeTotal', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({})
@@ -456,9 +454,8 @@
     try {
       console.log('💰 Creating crypto invoice:', { amount, chain });
 
-      // Call middleware (use web module for frontend access)
-      const middlewareUrl = '/_functions/charter-page-middleware';
-      const response = await fetch(middlewareUrl + '/cryptoButtonClick', {
+      // Call middleware
+      const response = await fetch(CONFIG.CHARTER_MIDDLEWARE + '/cryptoButtonClick', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ amount, coin: chain })
@@ -525,9 +522,8 @@
       button.innerHTML = '⏳ Processing...';
       button.disabled = true;
 
-      // Call middleware (use web module for frontend access)
-      const middlewareUrl = '/_functions/charter-page-middleware';
-      const response = await fetch(middlewareUrl + '/fiatButtonClick', {
+      // Call middleware
+      const response = await fetch(CONFIG.CHARTER_MIDDLEWARE + '/fiatButtonClick', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ preset: amount })
@@ -880,7 +876,7 @@
       const response = await (typeof wixFetch !== 'undefined' ? wixFetch.fetch : fetch)(`${CONFIG.NOWPAYMENTS_API}/getInvoiceStatus`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ invoiceId: invoiceId })
+        body: JSON.stringify({ invoiceId })
       });
 
       if (!response.ok) {

@@ -76,3 +76,4 @@ When you see:
 
 **Status**: ✅ **NORMAL WARNING - CLICK CONTINUE TO PROCEED**  
 **Action**: Click "Continue" or "Allow" to complete authorization
+

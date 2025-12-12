@@ -165,3 +165,4 @@ After successful OAuth:
 ---
 
 **Next Step**: Complete OAuth authorization using the `authUrl` from `/auth/google` endpoint!
+

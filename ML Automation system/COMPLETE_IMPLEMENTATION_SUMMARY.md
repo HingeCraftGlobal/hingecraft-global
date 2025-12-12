@@ -148,3 +148,7 @@ Event Tracking
 **HubSpot**: ✅ **SYNCED**  
 **Emails**: ✅ **WAVE SENDING**  
 **Status**: Production Ready
+
+
+
+

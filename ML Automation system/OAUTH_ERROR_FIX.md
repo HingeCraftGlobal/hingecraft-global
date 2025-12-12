@@ -144,3 +144,4 @@ grep -r "7101/oauth2callback" src/
 
 **Status**: ⚠️ **WAITING FOR OAUTH COMPLETION**  
 **Action**: Use the full `authUrl` from `/auth/google` response, don't access callback directly
+

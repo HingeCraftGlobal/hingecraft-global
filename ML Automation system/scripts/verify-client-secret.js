@@ -39,3 +39,4 @@ console.log('   OAuth Credentials: https://console.cloud.google.com/apis/credent
 console.log('   OAuth Consent Screen: https://console.cloud.google.com/apis/credentials/consent');
 
 console.log('\n' + '═'.repeat(60) + '\n');
+

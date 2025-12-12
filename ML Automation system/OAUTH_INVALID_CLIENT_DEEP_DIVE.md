@@ -165,3 +165,4 @@ If nothing works:
 
 **Status**: 🔍 **INVESTIGATING - CLIENT SECRET CONFIRMED CORRECT**  
 **Action**: Verify redirect URI match and try client ID format fix
+

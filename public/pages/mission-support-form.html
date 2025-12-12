@@ -145,7 +145,7 @@
     }
     
     .hc-typing-indicator {
-      padding: 4px 10px;
+      paddinname hingecraft g: 4px 10px;
       font-size: 12px;
       color: #666;
       font-style: italic;
@@ -643,7 +643,7 @@
         } else {
           // Card payment: Use middleware to redirect to Charter Page (T10 Implementation)
           try {
-            const redirectUrl = '/_functions/mission-support-middleware/goToCharterAfterPayment';
+            const redirectUrl = '/_functions/mission-support-middleware.web/goToCharterAfterPayment';
             const redirectResponse = await (typeof wixFetch !== 'undefined' ? wixFetch.fetch : fetch)(redirectUrl, {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },

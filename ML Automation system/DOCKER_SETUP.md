@@ -178,3 +178,7 @@ Key environment variables in `docker-compose.yml`:
 **Dry Run**: ✅ **ENABLED**  
 **Dashboard**: ✅ **AVAILABLE**  
 **Ready**: ✅ **YES - DROP FILE TO START**
+
+
+
+

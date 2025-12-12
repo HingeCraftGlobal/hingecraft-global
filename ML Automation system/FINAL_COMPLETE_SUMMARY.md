@@ -114,3 +114,7 @@ Track Events
 **Database**: ✅ **INTEGRATED**  
 **HubSpot**: ✅ **SYNCED**  
 **Emails**: ✅ **WAVE SENDING ACTIVE**
+
+
+
+

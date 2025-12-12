@@ -1,0 +1,37 @@
+{
+  "charter-page-middleware": {
+    "onReady": "Anyone",
+    "cryptoButtonClick": "Anyone",
+    "fiatButtonClick": "Anyone",
+    "afterPaymentWebhook": "Admin",
+    "redirectBackToCharter": "Anyone",
+    "getCumulativeTotal": "Anyone"
+  },
+  "mission-support-middleware": {
+    "onReady": "Anyone",
+    "handleUserInputDonation": "Anyone",
+    "goToCharterAfterPayment": "Anyone",
+    "databaseWrite": "Anyone",
+    "getDynamicUpdateReference": "Anyone"
+  },
+  "nowpayments.api": {
+    "createNowPaymentsInvoice": "Anyone",
+    "handleNowPaymentsWebhook": "Admin",
+    "getInvoiceStatus": "Anyone"
+  },
+  "stripe.api": {
+    "getPublishableKey": "Anyone",
+    "createCheckoutSession": "Anyone",
+    "handleWebhook": "Admin",
+    "getPaymentStatus": "Anyone"
+  },
+  "hingecraft.api.web": {
+    "getLatestDonation": "Anyone",
+    "saveDonation": "Anyone",
+    "getAllDonations": "Admin",
+    "getDonationById": "Anyone",
+    "updateDonationStatus": "Admin",
+    "logContributionIntent": "Anyone",
+    "logMissionSupportIntent": "Anyone"
+  }
+}

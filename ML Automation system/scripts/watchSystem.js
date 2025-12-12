@@ -106,3 +106,7 @@ startWatching().catch(error => {
   log(`\n❌ Error starting watcher: ${error.message}`, 'red');
   process.exit(1);
 });
+
+
+
+
