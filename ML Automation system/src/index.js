@@ -65,15 +65,56 @@ app.get('/api/statistics', async (req, res) => {
 // Google OAuth callback
 app.get('/oauth2callback', async (req, res) => {
   try {
-    const { code, error } = req.query;
+    const { code, error, error_description } = req.query;
+    
+    // Log all query parameters for debugging
+    logger.info('OAuth callback received:', { 
+      hasCode: !!code, 
+      hasError: !!error, 
+      error, 
+      error_description,
+      query: req.query 
+    });
     
     if (error) {
-      logger.error('OAuth error:', error);
-      return res.status(400).json({ error: `OAuth error: ${error}` });
+      logger.error('OAuth error from Google:', { error, error_description, fullQuery: req.query });
+      return res.status(400).send(`
+        <html>
+          <head><title>Authorization Failed</title></head>
+          <body style="font-family: Arial, sans-serif; text-align: center; padding: 50px;">
+            <h1 style="color: #f44336;">❌ Authorization Failed</h1>
+            <p><strong>Error:</strong> ${error}</p>
+            ${error_description ? `<p><strong>Details:</strong> ${error_description}</p>` : ''}
+            <p>Please check:</p>
+            <ul style="text-align: left; display: inline-block;">
+              <li>You are signed into Google with a test account</li>
+              <li>The account is in the test users list</li>
+              <li>The redirect URI matches exactly in Google Cloud Console</li>
+            </ul>
+            <p><a href="/auth/google">Try Again</a></p>
+          </body>
+        </html>
+      `);
     }
 
     if (!code) {
-      return res.status(400).json({ error: 'No authorization code provided' });
+      logger.error('OAuth callback missing authorization code', { query: req.query });
+      return res.status(400).send(`
+        <html>
+          <head><title>Authorization Failed</title></head>
+          <body style="font-family: Arial, sans-serif; text-align: center; padding: 50px;">
+            <h1 style="color: #f44336;">❌ Authorization Failed</h1>
+            <p>No authorization code provided.</p>
+            <p>This usually means:</p>
+            <ul style="text-align: left; display: inline-block;">
+              <li>You didn't complete the authorization</li>
+              <li>You denied access</li>
+              <li>The authorization was cancelled</li>
+            </ul>
+            <p><a href="/auth/google">Try Again</a></p>
+          </body>
+        </html>
+      `);
     }
 
     // Exchange code for tokens
