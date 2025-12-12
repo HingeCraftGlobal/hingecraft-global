@@ -11,18 +11,52 @@ import requests
 from pathlib import Path
 from datetime import datetime
 from dotenv import load_dotenv
-import openai
 
 load_dotenv()
 
-# Configuration
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
+# Configuration - Load OpenAI key from api_keys directory (NOT ferguson-system)
+def load_openai_key():
+    """Load OpenAI API key from api_keys directory, avoiding ferguson-system"""
+    # First try environment variable
+    key = os.getenv("OPENAI_API_KEY")
+    if key:
+        return key
+    
+    # Try api_keys directory in CURSOR root (NOT ferguson-system)
+    api_keys_path = Path("/Users/chandlerfergusen/Desktop/CURSOR/api_keys/openai.json")
+    if api_keys_path.exists():
+        try:
+            with open(api_keys_path, 'r') as f:
+                data = json.load(f)
+                key = data.get("api_key") or data.get("OPENAI_API_KEY")
+                if key:
+                    print(f"✅ Loaded OpenAI key from: {api_keys_path}")
+                    return key
+        except Exception as e:
+            print(f"⚠️  Could not read {api_keys_path}: {e}")
+    
+    # Try text file
+    api_keys_txt = Path("/Users/chandlerfergusen/Desktop/CURSOR/api_keys/openai.txt")
+    if api_keys_txt.exists():
+        try:
+            key = api_keys_txt.read_text().strip()
+            if key:
+                print(f"✅ Loaded OpenAI key from: {api_keys_txt}")
+                return key
+        except Exception as e:
+            print(f"⚠️  Could not read {api_keys_txt}: {e}")
+    
+    return None
+
+OPENAI_API_KEY = load_openai_key()
 DISCORD_WEBHOOK = os.getenv("DISCORD_WEBHOOK", "")
 NOTION_TOKEN = os.getenv("NOTION_TOKEN", "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")
 PARENT_PAGE = os.getenv("NOTION_PARENT_PAGE_ID", "2c1993783a3480e7b13be279941b67e0")
 
 if OPENAI_API_KEY:
-    openai.api_key = OPENAI_API_KEY
+    print(f"✅ OpenAI API key configured (length: {len(OPENAI_API_KEY)})")
+else:
+    print("⚠️  OpenAI API key not found")
 
 # Comprehensive prompt templates for Notion project
 NOTION_PROJECT_PROMPTS = [
@@ -296,7 +330,7 @@ def send_to_discord(message, title="HingeCraft Notion Update"):
         return False
 
 def execute_gpt4_prompt(prompt_data):
-    """Execute a GPT-4 prompt and get response"""
+    """Execute a GPT-4 prompt and get response using direct API calls"""
     if not OPENAI_API_KEY:
         print("⚠️  OpenAI API key not configured")
         return None
@@ -304,9 +338,15 @@ def execute_gpt4_prompt(prompt_data):
     try:
         print(f"\n🤖 Executing: {prompt_data['title']}")
         
-        response = openai.ChatCompletion.create(
-            model="gpt-4",
-            messages=[
+        url = "https://api.openai.com/v1/chat/completions"
+        headers = {
+            "Authorization": f"Bearer {OPENAI_API_KEY}",
+            "Content-Type": "application/json"
+        }
+        
+        payload = {
+            "model": "gpt-4o",  # Use gpt-4o (latest) or gpt-4-turbo-preview
+            "messages": [
                 {
                     "role": "system",
                     "content": "You are an expert Notion workspace architect and automation specialist working on the HingeCraft Global project. Provide detailed, actionable, and comprehensive responses."
@@ -316,21 +356,34 @@ def execute_gpt4_prompt(prompt_data):
                     "content": prompt_data['prompt']
                 }
             ],
-            max_tokens=4000,
-            temperature=0.7
-        )
+            "max_tokens": 4000,
+            "temperature": 0.7
+        }
         
-        result = response.choices[0].message.content.strip()
+        response = requests.post(url, headers=headers, json=payload, timeout=120)
+        response.raise_for_status()
+        
+        data = response.json()
+        result = data['choices'][0]['message']['content'].strip()
         print(f"✅ Generated response ({len(result)} chars)")
         
         return result
+    except requests.exceptions.RequestException as e:
+        print(f"❌ API request error: {e}")
+        if hasattr(e, 'response') and e.response is not None:
+            try:
+                error_data = e.response.json()
+                print(f"   Error details: {error_data}")
+            except:
+                print(f"   Response: {e.response.text}")
+        return None
     except Exception as e:
         print(f"❌ GPT-4 error: {e}")
         return None
 
 def save_prompt_result(prompt_id, result):
     """Save prompt result to file"""
-    output_dir = Path("notion/gpt4_outputs")
+    output_dir = Path(__file__).parent.parent / "notion" / "gpt4_outputs"
     output_dir.mkdir(parents=True, exist_ok=True)
     
     output_file = output_dir / f"{prompt_id}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.md"
@@ -391,7 +444,9 @@ def main():
     print(f"💾 Outputs saved to: notion/gpt4_outputs/")
     
     # Save summary
-    summary_file = Path("notion/gpt4_outputs/SUMMARY.json")
+    output_dir = Path(__file__).parent.parent / "notion" / "gpt4_outputs"
+    output_dir.mkdir(parents=True, exist_ok=True)
+    summary_file = output_dir / "SUMMARY.json"
     with open(summary_file, 'w') as f:
         json.dump({
             'timestamp': datetime.now().isoformat(),
