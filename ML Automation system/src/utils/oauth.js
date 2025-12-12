@@ -51,10 +51,16 @@ class OAuthManager {
       this.initialize();
     }
 
+    // Get redirect URI from environment or use default
+    const redirectUri = process.env.OAUTH_REDIRECT_URI || 
+                       process.env.REDIRECT_URI || 
+                       'http://localhost:7101/oauth2callback';
+
     return this.oauth2Client.generateAuthUrl({
       access_type: 'offline',
       scope: config.google.scopes,
-      prompt: 'consent'
+      prompt: 'consent',
+      redirect_uri: redirectUri // Explicitly include redirect_uri
     });
   }
 
