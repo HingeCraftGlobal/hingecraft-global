@@ -10,3 +10,4 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 -- Note: Actual data import will be handled by the application
 -- This is just for any required initial setup
 
+

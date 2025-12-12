@@ -100,3 +100,4 @@ docker-compose exec automation cat /app/tokens.json
 
 **Next Step**: Complete OAuth authorization to enable file detection!
 
+

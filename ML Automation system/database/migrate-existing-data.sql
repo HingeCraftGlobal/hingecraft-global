@@ -58,3 +58,4 @@ WHERE member_email IS NOT NULL AND member_email != '';
 -- Note: Actual migration will be done by import-all-database-data.js
 -- This SQL file is for reference and can be used for direct SQL imports
 
+

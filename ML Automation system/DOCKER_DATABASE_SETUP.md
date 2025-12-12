@@ -75,3 +75,4 @@ docker-compose exec postgres psql -U hingecraft_user -d hingecraft_automation -c
 **Docker**: ✅ **INTEGRATED**  
 **Schema**: ✅ **AUTO-INITIALIZED**
 
+
