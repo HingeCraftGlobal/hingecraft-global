@@ -39,7 +39,6 @@
 3. Add these emails (one per line):
    ```
    marketinghingecraft@gmail.com
-   aiguardian01@gmail.com
    ```
 4. Click **"ADD"**
 5. Click **"SAVE"**

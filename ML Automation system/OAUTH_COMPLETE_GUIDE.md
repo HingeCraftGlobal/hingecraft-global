@@ -46,7 +46,7 @@ curl http://localhost:7101/auth/google
 
 ### Step 4: Authorize
 
-1. **Sign in** to your Google account (`aiguardian01@gmail.com`)
+1. **Sign in** to your Google account (`marketinghingecraft@gmail.com`)
 2. **Review permissions**:
    - Gmail (send, modify, metadata)
    - Google Sheets (read/write)

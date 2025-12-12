@@ -26,8 +26,7 @@ The OAuth authorization will fail with "Something went wrong" or other errors.
 1. **Open a new incognito/private browser window**
 2. **Go to**: https://accounts.google.com
 3. **Sign in** with your test account:
-   - `marketinghingecraft@gmail.com` OR
-   - `aiguardian01@gmail.com`
+   - `marketinghingecraft@gmail.com`
 4. **Verify you're logged in** (check top right corner)
 5. **Keep this tab open** (don't close it)
 6. **Then** open the OAuth authorization URL in the same browser
@@ -49,8 +48,7 @@ When you open the OAuth URL:
 
 1. **If you see account chooser**:
    - Select the correct test account
-   - `marketinghingecraft@gmail.com` OR
-   - `aiguardian01@gmail.com`
+   - `marketinghingecraft@gmail.com`
 2. **If account is not listed**:
    - Click "Use another account"
    - Sign in with test account
@@ -78,7 +76,7 @@ When you open the OAuth URL:
 ```bash
 # 1. Open browser in incognito mode
 # 2. Go to: https://accounts.google.com
-# 3. Sign in with: marketinghingecraft@gmail.com or aiguardian01@gmail.com
+# 3. Sign in with: marketinghingecraft@gmail.com
 # 4. Verify you're logged in
 ```
 
@@ -110,7 +108,7 @@ curl http://localhost:7101/auth/google
 
 **Fix**: 
 - Click "Use another account"
-- Sign in with test account: `marketinghingecraft@gmail.com` or `aiguardian01@gmail.com`
+- Sign in with test account: `marketinghingecraft@gmail.com`
 
 ### Issue 2: "Sign in" Screen Appears
 
@@ -168,7 +166,6 @@ Before starting OAuth flow:
 2. Click "Test users" tab
 3. Verify:
    - `marketinghingecraft@gmail.com` is listed
-   - `aiguardian01@gmail.com` is listed
 
 ### Check OAuth Client Configuration
 
@@ -186,7 +183,7 @@ Before starting OAuth flow:
 1. Open incognito browser window
    ↓
 2. Sign into Google: https://accounts.google.com
-   (Use: marketinghingecraft@gmail.com or aiguardian01@gmail.com)
+   (Use: marketinghingecraft@gmail.com)
    ↓
 3. Verify logged in (check profile icon)
    ↓

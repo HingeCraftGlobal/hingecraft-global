@@ -8,7 +8,7 @@
 
 - ✅ OAuth Consent Screen: Configured
 - ✅ Publishing Status: Testing
-- ✅ Test Users: Added (`marketinghingecraft@gmail.com`, `aiguardian01@gmail.com`)
+- ✅ Test Users: Added (`marketinghingecraft@gmail.com`)
 - ✅ All 7 Scopes: Configured
 - ✅ Redirect URI: `http://localhost:7101/oauth2callback` (Added to Google Cloud Console)
 - ✅ System Code: All files updated with correct redirect URI
@@ -46,7 +46,7 @@ https://accounts.google.com/o/oauth2/v2/auth?access_type=offline&scope=...
 
 ### Step 4: Authorize
 
-1. **Sign in** with: `marketinghingecraft@gmail.com` (or `aiguardian01@gmail.com`)
+1. **Sign in** with: `marketinghingecraft@gmail.com`
 2. **Review permissions**:
    - Gmail (send, modify, metadata)
    - Google Sheets (read/write)

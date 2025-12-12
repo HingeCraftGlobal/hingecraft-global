@@ -91,7 +91,7 @@ But verify the client ID in Google Cloud Console matches.
 
 Verify:
 - ✅ Publishing status: **Testing**
-- ✅ Test users added: `marketinghingecraft@gmail.com`, `aiguardian01@gmail.com`
+- ✅ Test users added: `marketinghingecraft@gmail.com`
 - ✅ All 7 scopes listed
 
 ---

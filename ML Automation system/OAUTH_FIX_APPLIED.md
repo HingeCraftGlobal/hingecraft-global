@@ -45,8 +45,7 @@ Copy the entire `authUrl` from the response.
 
 1. **Open the authUrl** in your browser (don't modify it)
 2. **Sign in** with test user:
-   - `marketinghingecraft@gmail.com` OR
-   - `aiguardian01@gmail.com`
+   - `marketinghingecraft@gmail.com`
 3. **Click "Allow"** to grant permissions
 4. **Wait for redirect** to `http://localhost:7101/oauth2callback?code=...`
 5. **Don't copy/paste the code manually** - let the browser redirect automatically

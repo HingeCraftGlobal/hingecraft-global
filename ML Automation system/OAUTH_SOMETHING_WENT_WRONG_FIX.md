@@ -44,7 +44,6 @@ This error appears on Google's authorization page, indicating a configuration is
    - ✅ All 7 scopes are listed
 4. Check **"Test users"** tab:
    - ✅ `marketinghingecraft@gmail.com` is added
-   - ✅ `aiguardian01@gmail.com` is added
 5. Click **"SAVE"** after any changes
 
 ### 3. Client ID Format Issue
@@ -123,7 +122,7 @@ The authUrl should contain:
 - [ ] Redirect URI in Google Cloud Console: `http://localhost:7101/oauth2callback` (exact match)
 - [ ] OAuth Consent Screen: App name, support email, developer contact set
 - [ ] OAuth Consent Screen: All 7 scopes listed
-- [ ] OAuth Consent Screen: Test users added (`marketinghingecraft@gmail.com`, `aiguardian01@gmail.com`)
+- [ ] OAuth Consent Screen: Test users added (`marketinghingecraft@gmail.com`)
 - [ ] OAuth Client Type: "Web application"
 - [ ] All required APIs enabled
 - [ ] Browser cache cleared or using incognito mode
