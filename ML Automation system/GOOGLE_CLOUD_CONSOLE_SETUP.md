@@ -118,13 +118,13 @@ Enable all 5 APIs:
 **Current Configuration** (in `config/api_keys.js`):
 ```javascript
 email: {
-  fromAddress: 'hello@hingecraft.org',
+  fromAddress: 'marketinghingecraft@gmail.com',
   fromName: 'HingeCraft',
-  replyTo: 'hello@hingecraft.org',
+  replyTo: 'marketinghingecraft@gmail.com',
 }
 ```
 
-**Note**: Email addresses can remain as `hello@hingecraft.org` if that's your sending domain. The OAuth account (`marketinghingecraft@gmail.com`) is used for authentication, not necessarily for sending.
+**Note**: Email addresses are configured to use `marketinghingecraft@gmail.com` for sending emails through Gmail API.
 
 ---
 
