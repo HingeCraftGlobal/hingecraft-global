@@ -170,21 +170,19 @@ class GmailService {
   }
 
   /**
-   * Personalize email template with lead data
+   * Send payment receipt email (delegates to paymentReceipt service)
    */
-  personalizeTemplate(template, lead) {
-    let personalized = template;
-    
-    // Replace template variables
-    personalized = personalized.replace(/\{\{first_name\}\}/g, lead.first_name || '');
-    personalized = personalized.replace(/\{\{last_name\}\}/g, lead.last_name || '');
-    personalized = personalized.replace(/\{\{name\}\}/g, `${lead.first_name || ''} ${lead.last_name || ''}`.trim() || 'there');
-    personalized = personalized.replace(/\{\{organization\}\}/g, lead.organization || '');
-    personalized = personalized.replace(/\{\{email\}\}/g, lead.email || '');
-    personalized = personalized.replace(/\{\{city\}\}/g, lead.city || '');
-    personalized = personalized.replace(/\{\{country\}\}/g, lead.country || '');
-    
-    return personalized;
+  async sendPaymentReceipt({ paymentId, paymentData, to, from, replyTo }) {
+    const paymentReceipt = require('./paymentReceipt');
+    return await paymentReceipt.sendPaymentReceipt({ paymentId, paymentData, to, from, replyTo });
+  }
+
+  /**
+   * Personalize email template (uses templateRouter for full personalization)
+   */
+  personalizeTemplate(template, lead, options = {}) {
+    const templateRouter = require('./templateRouter');
+    return templateRouter.personalizeTemplate(template, lead, options);
   }
 
   /**

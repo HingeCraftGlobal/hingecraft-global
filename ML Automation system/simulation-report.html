@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>End-to-End Simulation Report - HingeCraft ML Automation</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; background: #f5f5f5; }
+    .container { max-width: 1400px; margin: 0 auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    h1 { color: #333; border-bottom: 3px solid #4CAF50; padding-bottom: 10px; }
+    h2 { color: #555; margin-top: 30px; }
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin: 20px 0; }
+    .stat-card { background: #f9f9f9; padding: 15px; border-radius: 5px; border-left: 4px solid #4CAF50; }
+    .stat-card.fail { border-left-color: #f44336; }
+    .stat-value { font-size: 2em; font-weight: bold; color: #4CAF50; }
+    .stat-card.fail .stat-value { color: #f44336; }
+    .stat-label { color: #666; margin-top: 5px; }
+    table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+    th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
+    th { background: #4CAF50; color: white; }
+    tr:hover { background: #f5f5f5; }
+    .success { color: #4CAF50; }
+    .fail { color: #f44336; }
+    .stage-card { background: #fff; border-left: 4px solid #ddd; padding: 15px; margin: 10px 0; border-radius: 4px; }
+    .stage-card.success { border-left-color: #4CAF50; }
+    .stage-card.fail { border-left-color: #f44336; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎯 End-to-End Simulation Report</h1>
+    <p><strong>Date:</strong> 12/12/2025, 4:42:41 PM</p>
+    <p><strong>Duration:</strong> 0.12 seconds</p>
+    
+    <h2>📊 Summary Statistics</h2>
+    <div class="stats-grid">
+      <div class="stat-card ">
+        <div class="stat-value">100.0%</div>
+        <div class="stat-label">Success Rate</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">8/8</div>
+        <div class="stat-label">Stages Passed</div>
+      </div>
+      <div class="stat-card ">
+        <div class="stat-value">0</div>
+        <div class="stat-label">Errors</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">0.12s</div>
+        <div class="stat-label">Duration</div>
+      </div>
+    </div>
+    
+    <h2>🔍 Stage Results</h2>
+    
+      <div class="stage-card success">
+        <strong>healthCheck</strong> - <span class="success">✅ PASS</span><br>
+        <small>Duration: 50ms</small>
+        
+      </div>
+    
+      <div class="stage-card success">
+        <strong>createTestFile</strong> - <span class="success">✅ PASS</span><br>
+        <small>Duration: 1ms</small>
+        
+      </div>
+    
+      <div class="stage-card success">
+        <strong>componentTesting</strong> - <span class="success">✅ PASS</span><br>
+        <small>Duration: 42ms</small>
+        
+      </div>
+    
+      <div class="stage-card success">
+        <strong>trackerVerification</strong> - <span class="success">✅ PASS</span><br>
+        <small>Duration: 1ms</small>
+        
+      </div>
+    
+      <div class="stage-card success">
+        <strong>fileProcessing</strong> - <span class="success">✅ PASS</span><br>
+        <small>Duration: 4ms</small>
+        
+      </div>
+    
+      <div class="stage-card success">
+        <strong>databaseOperations</strong> - <span class="success">✅ PASS</span><br>
+        <small>Duration: 19ms</small>
+        
+      </div>
+    
+      <div class="stage-card success">
+        <strong>pipelineFlow</strong> - <span class="success">✅ PASS</span><br>
+        <small>Duration: 2ms</small>
+        
+      </div>
+    
+      <div class="stage-card success">
+        <strong>endToEndVerification</strong> - <span class="success">✅ PASS</span><br>
+        <small>Duration: 1ms</small>
+        
+      </div>
+    
+    
+    
+    
+    <h2>📊 Tracker Status</h2>
+    <pre>{
+  "initial": {
+    "watcherActive": true,
+    "mode": "standby",
+    "waitingForFile": true,
+    "componentStatus": {
+      "googleDrive": {
+        "status": "standby",
+        "lastCheck": null,
+        "waiting": true
+      },
+      "leadProcessor": {
+        "status": "standby",
+        "lastCheck": null,
+        "waiting": true
+      },
+      "hubspot": {
+        "status": "standby",
+        "lastCheck": null,
+        "waiting": true
+      },
+      "anymail": {
+        "status": "standby",
+        "lastCheck": null,
+        "waiting": true
+      },
+      "emailWaveSender": {
+        "status": "standby",
+        "lastCheck": null,
+        "waiting": true
+      },
+      "sequenceEngine": {
+        "status": "standby",
+        "lastCheck": null,
+        "waiting": true
+      },
+      "database": {
+        "status": "standby",
+        "lastCheck": null,
+        "waiting": true
+      }
+    }
+  },
+  "components": {
+    "googleDrive": {
+      "status": "standby",
+      "waiting": true,
+      "lastCheck": null
+    },
+    "leadProcessor": {
+      "status": "standby",
+      "waiting": true,
+      "lastCheck": null
+    },
+    "hubspot": {
+      "status": "standby",
+      "waiting": true,
+      "lastCheck": null
+    },
+    "anymail": {
+      "status": "standby",
+      "waiting": true,
+      "lastCheck": null
+    },
+    "emailWaveSender": {
+      "status": "standby",
+      "waiting": true,
+      "lastCheck": null
+    },
+    "sequenceEngine": {
+      "status": "standby",
+      "waiting": true,
+      "lastCheck": null
+    },
+    "database": {
+      "status": "standby",
+      "waiting": true,
+      "lastCheck": null
+    }
+  }
+}</pre>
+    
+    <h2>🔧 Component Status</h2>
+    <pre>{
+  "supportedFileTypes": {
+    "success": true,
+    "types": {
+      "extensions": [
+        ".xlsx",
+        ".xls",
+        ".xlsm",
+        ".xltx",
+        ".xltm",
+        ".csv",
+        ".tsv",
+        ".txt",
+        ".tab",
+        ".ods",
+        ".gsheet"
+      ],
+      "mimeTypes": [
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        "application/vnd.ms-excel",
+        "application/vnd.ms-excel.sheet.macroEnabled.12",
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.template",
+        "application/vnd.ms-excel.template.macroEnabled.12",
+        "application/vnd.google-apps.spreadsheet",
+        "text/csv",
+        "application/csv",
+        "text/tab-separated-values",
+        "text/tsv",
+        "text/plain",
+        "application/vnd.oasis.opendocument.spreadsheet"
+      ],
+      "descriptions": {
+        "xlsx": "Excel 2007+ (Open XML)",
+        "xls": "Excel 97-2003",
+        "xlsm": "Excel Macro-Enabled",
+        "xltx": "Excel Template",
+        "xltm": "Excel Macro Template",
+        "csv": "Comma-Separated Values",
+        "tsv": "Tab-Separated Values",
+        "txt": "Text File (auto-detect delimiter)",
+        "tab": "Tab-Delimited",
+        "ods": "OpenDocument Spreadsheet",
+        "gsheet": "Google Sheets"
+      }
+    }
+  },
+  "statistics": {
+    "success": true,
+    "data": {
+      "leads": {
+        "total": "0",
+        "new": "0",
+        "enriched": "0",
+        "contacted": "0"
+      },
+      "sequences": {
+        "active": "0",
+        "completed": "0",
+        "paused": "0"
+      },
+      "emails": {
+        "sent": "0",
+        "delivered": "0",
+        "opened": "0",
+        "clicked": "0",
+        "bounced": "0"
+      },
+      "imports": {
+        "total": "0",
+        "completed": "0",
+        "processing": "0",
+        "errors": "0"
+      }
+    }
+  },
+  "pipelineLogs": {
+    "success": false,
+    "logCount": 0
+  }
+}</pre>
+  </div>
+</body>
+</html>

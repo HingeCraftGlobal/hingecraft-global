@@ -145,7 +145,7 @@
     }
     
     .hc-typing-indicator {
-      paddinname hingecraft g: 4px 10px;
+      padding: 4px 10px;
       font-size: 12px;
       color: #666;
       font-style: italic;
@@ -226,7 +226,7 @@
     const AMOUNT_CONFIG = {
       MIN: 1.00,
       MAX: 25000.00,
-      PRESETS: [1, 5, 10]
+      PRESETS: [1, 2, 5]  // Micro-payments: $1, $2, $5
     };
 
     function MissionSupportForm() {
@@ -240,6 +240,11 @@
         otherAmount: ''
       });
       
+      // Expose formData to window for chat integration
+      useEffect(() => {
+        window.formData = formData;
+      }, [formData]);
+      
       const [errors, setErrors] = useState({});
       const [selectedPreset, setSelectedPreset] = useState(null);
       const [showOtherInput, setShowOtherInput] = useState(false);
@@ -247,6 +252,11 @@
       const [sessionRestored, setSessionRestored] = useState(false);
       const [paymentMethod, setPaymentMethod] = useState('card'); // 'card' or 'crypto'
       const [cryptoInvoice, setCryptoInvoice] = useState(null); // NOWPayments invoice data
+
+      // Expose formData to window for chat integration
+      useEffect(() => {
+        window.formData = formData;
+      }, [formData]);
 
       // Restore form data from session on mount
       useEffect(() => {
@@ -458,7 +468,58 @@
         let amountValid = false;
         let finalAmount = null;
 
-        if (selectedPreset) {
+        // Handle micro-payments ($1, $2, $5) - create Stripe session immediately
+        // Only process micro-payments if payment method is 'card' (not crypto)
+        // Micro-payments bypass form submission and go directly to Stripe
+        if (selectedPreset && [1, 2, 5].includes(selectedPreset) && paymentMethod === 'card') {
+          finalAmount = selectedPreset;
+          amountValid = true;
+          
+          // For micro-payments, create Stripe session immediately (skip form submission)
+          try {
+            console.log('💰 Processing micro-payment:', finalAmount);
+            
+            const fetchFn = typeof wixFetch !== 'undefined' ? wixFetch.fetch : fetch;
+            const microResponse = await fetchFn('/_functions/mission-support-middleware/microPayment', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                amount: finalAmount,
+                userInfo: {
+                  email: submissionData.email,
+                  firstName: submissionData.firstName,
+                  lastName: submissionData.lastName
+                }
+              })
+            });
+            
+            if (!microResponse.ok) {
+              const errorText = await microResponse.text();
+              throw new Error(`Server error: ${microResponse.status} - ${errorText}`);
+            }
+            
+            const microData = await microResponse.json();
+            
+            if (microData.success && microData.url) {
+              // Redirect directly to Stripe checkout
+              console.log('🔄 Redirecting to Stripe micro-payment:', microData.url);
+              if (typeof wixLocation !== 'undefined' && wixLocation.to) {
+                wixLocation.to(microData.url);
+              } else {
+                window.location.href = microData.url;
+              }
+              setIsSubmitting(false);
+              return; // Exit early - redirecting
+            } else {
+              throw new Error(microData.error || 'Failed to create micro-payment');
+            }
+          } catch (microError) {
+            console.error('❌ Micro payment error:', microError);
+            setErrors(prev => ({ ...prev, payment: `Failed to create payment: ${microError.message || 'Please try again.'}` }));
+            setIsSubmitting(false);
+            return;
+          }
+        } else if (selectedPreset) {
           finalAmount = selectedPreset;
           amountValid = true;
         } else if (showOtherInput && formData.otherAmount) {
@@ -521,38 +582,21 @@
           const anonymousFingerprint = getAnonymousFingerprint();
           
           // Call backend function
-          if (typeof wixFetch !== 'undefined') {
-            wixFetch.fetch('/_functions/logMissionSupportIntent', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({
-                formData: submissionData,
-                amountEntered: finalAmount,
-                timestamp: submissionData.timestamp,
-                sessionID: sessionID,
-                anonymousFingerprint: anonymousFingerprint,
-                referrerSource: document.referrer || 'direct',
-                pageUrl: window.location.href,
-                userAgent: navigator.userAgent
-              })
-            }).catch(err => console.error('Backend logging error (non-blocking):', err));
-          } else {
-            // Fallback to fetch
-            fetch('/_functions/logMissionSupportIntent', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({
-                formData: submissionData,
-                amountEntered: finalAmount,
-                timestamp: submissionData.timestamp,
-                sessionID: sessionID,
-                anonymousFingerprint: anonymousFingerprint,
-                referrerSource: document.referrer || 'direct',
-                pageUrl: window.location.href,
-                userAgent: navigator.userAgent
-              })
-            }).catch(err => console.error('Backend logging error (non-blocking):', err));
-          }
+          const fetchFn = typeof wixFetch !== 'undefined' ? wixFetch.fetch : fetch;
+          fetchFn('/_functions/hingecraft.api/logMissionSupportIntent', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              formData: submissionData,
+              amountEntered: finalAmount,
+              timestamp: submissionData.timestamp,
+              sessionID: sessionID,
+              anonymousFingerprint: anonymousFingerprint,
+              referrerSource: document.referrer || 'direct',
+              pageUrl: window.location.href,
+              userAgent: navigator.userAgent
+            })
+          }).catch(err => console.error('Backend logging error (non-blocking):', err));
         } catch (e) {
           console.error('Error logging intent:', e);
         }
@@ -641,25 +685,41 @@
             return;
           }
         } else {
-          // Card payment: Use middleware to redirect to Charter Page (T10 Implementation)
-          try {
-            const redirectUrl = '/_functions/mission-support-middleware.web/goToCharterAfterPayment';
-            const redirectResponse = await (typeof wixFetch !== 'undefined' ? wixFetch.fetch : fetch)(redirectUrl, {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ value: finalAmount })
-            });
-            
-            const redirectData = await redirectResponse.json();
-            
-            if (redirectData.success && redirectData.redirectUrl) {
-              if (typeof wixLocation !== 'undefined' && wixLocation.to) {
-                wixLocation.to(redirectData.redirectUrl);
+          // Card payment: Check if "Other" amount - use prefill system
+          if (showOtherInput && formData.otherAmount) {
+            // "Other" amount - create prefill token and redirect to Charter
+            try {
+              const fetchFn = typeof wixFetch !== 'undefined' ? wixFetch.fetch : fetch;
+              const otherResponse = await fetchFn('/_functions/mission-support-middleware/otherAmount', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  amount: finalAmount,
+                  userInfo: {
+                    email: submissionData.email,
+                    firstName: submissionData.firstName,
+                    lastName: submissionData.lastName
+                  }
+                })
+              });
+              
+              const otherData = await otherResponse.json();
+              
+              if (otherData.success && otherData.redirectUrl) {
+                // Redirect to Charter page with prefill token
+                console.log('🔄 Redirecting to Charter with prefill:', otherData.redirectUrl);
+                if (typeof wixLocation !== 'undefined' && wixLocation.to) {
+                  wixLocation.to(otherData.redirectUrl);
+                } else {
+                  window.location.href = otherData.redirectUrl;
+                }
+                return; // Exit early - redirecting
               } else {
-                window.location.href = redirectData.redirectUrl;
+                throw new Error(otherData.error || 'Failed to create prefill');
               }
-            } else {
-              // Fallback to direct redirect
+            } catch (otherError) {
+              console.error('Other amount error:', otherError);
+              // Fallback to direct redirect with amount in URL
               const charterUrl = `/charter?donationAmount=${encodeURIComponent(finalAmount)}&fromMissionSupport=true&paymentMethod=card`;
               if (typeof wixLocation !== 'undefined' && wixLocation.to) {
                 wixLocation.to(charterUrl);
@@ -667,14 +727,42 @@
                 window.location.href = charterUrl;
               }
             }
-          } catch (redirectError) {
-            console.error('Redirect error, using fallback:', redirectError);
-            // Fallback to direct redirect
-            const charterUrl = `/charter?donationAmount=${encodeURIComponent(finalAmount)}&fromMissionSupport=true&paymentMethod=card`;
-            if (typeof wixLocation !== 'undefined' && wixLocation.to) {
-              wixLocation.to(charterUrl);
-            } else {
-              window.location.href = charterUrl;
+          } else {
+            // Regular preset amount (not micro) - redirect to Charter
+            try {
+              const redirectUrl = '/_functions/mission-support-middleware/goToCharterAfterPayment';
+              const redirectResponse = await (typeof wixFetch !== 'undefined' ? wixFetch.fetch : fetch)(redirectUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ value: finalAmount })
+              });
+              
+              const redirectData = await redirectResponse.json();
+              
+              if (redirectData.success && redirectData.redirectUrl) {
+                if (typeof wixLocation !== 'undefined' && wixLocation.to) {
+                  wixLocation.to(redirectData.redirectUrl);
+                } else {
+                  window.location.href = redirectData.redirectUrl;
+                }
+              } else {
+                // Fallback to direct redirect
+                const charterUrl = `/charter?donationAmount=${encodeURIComponent(finalAmount)}&fromMissionSupport=true&paymentMethod=card`;
+                if (typeof wixLocation !== 'undefined' && wixLocation.to) {
+                  wixLocation.to(charterUrl);
+                } else {
+                  window.location.href = charterUrl;
+                }
+              }
+            } catch (redirectError) {
+              console.error('Redirect error, using fallback:', redirectError);
+              // Fallback to direct redirect
+              const charterUrl = `/charter?donationAmount=${encodeURIComponent(finalAmount)}&fromMissionSupport=true&paymentMethod=card`;
+              if (typeof wixLocation !== 'undefined' && wixLocation.to) {
+                wixLocation.to(charterUrl);
+              } else {
+                window.location.href = charterUrl;
+              }
             }
           }
         }
@@ -1192,6 +1280,53 @@
             clientTempId: chatClient.generateClientTempId()
           });
           
+          // Notify marketing if message is a question (non-blocking)
+          try {
+            const fetchFn = typeof wixFetch !== 'undefined' ? wixFetch.fetch : fetch;
+            
+            // Get form data from window (set by React component) or storage
+            let formDataForChat = null;
+            try {
+              if (typeof window !== 'undefined' && window.formData) {
+                formDataForChat = window.formData;
+              } else if (typeof wixStorage !== 'undefined' && wixStorage.session) {
+                const stored = wixStorage.session.getItem('missionSupportFormData');
+                if (stored) formDataForChat = JSON.parse(stored);
+              } else if (typeof sessionStorage !== 'undefined') {
+                const stored = sessionStorage.getItem('missionSupportFormData');
+                if (stored) formDataForChat = JSON.parse(stored);
+              }
+            } catch (e) {
+              console.warn('Could not get form data for chat:', e);
+            }
+            
+            const userEmail = formDataForChat?.email || null;
+            const userName = formDataForChat?.firstName && formDataForChat?.lastName 
+              ? `${formDataForChat.firstName} ${formDataForChat.lastName}` 
+              : (chatClient.user?.name || 'Guest');
+            const userId = chatClient.user?.id || 'guest_' + Date.now();
+            const sessionId = generateSessionId();
+            
+            // Call notification endpoint (non-blocking)
+            fetchFn('/_functions/chat-notifications/notifyMarketingOnQuestion', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                message: text,
+                userId: userId,
+                userEmail: userEmail,
+                userName: userName,
+                sessionId: sessionId,
+                pageUrl: window.location.href,
+                userAgent: navigator.userAgent,
+                referrer: document.referrer || 'direct',
+                source: 'mission_support_form'
+              })
+            }).catch(err => console.warn('Chat notification error (non-blocking):', err));
+          } catch (notifyError) {
+            console.warn('⚠️ Error notifying marketing (non-blocking):', notifyError);
+          }
+          
           // Clear input
           chatInput.value = '';
           pendingAttachments = [];
@@ -1200,6 +1335,23 @@
           console.error('Failed to send message:', error);
           showChatError('Failed to send message: ' + error.message);
         }
+      }
+      
+      // Helper function to generate session ID
+      function generateSessionId() {
+        try {
+          if (typeof wixStorage !== 'undefined' && wixStorage.session) {
+            let sessionId = wixStorage.session.getItem('hingecraft_session_id');
+            if (!sessionId) {
+              sessionId = 'hc_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+              wixStorage.session.setItem('hingecraft_session_id', sessionId);
+            }
+            return sessionId;
+          }
+        } catch (e) {
+          // Fallback
+        }
+        return 'hc_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
       }
       
       // Event handlers

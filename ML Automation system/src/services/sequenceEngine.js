@@ -309,16 +309,11 @@ class SequenceEngine {
   }
 
   /**
-   * Personalize template
+   * Personalize template (uses templateRouter for full personalization)
    */
-  personalizeTemplate(template, lead) {
-    let personalized = template;
-    personalized = personalized.replace(/\{\{first_name\}\}/g, lead.first_name || '');
-    personalized = personalized.replace(/\{\{last_name\}\}/g, lead.last_name || '');
-    personalized = personalized.replace(/\{\{name\}\}/g, `${lead.first_name || ''} ${lead.last_name || ''}`.trim() || 'there');
-    personalized = personalized.replace(/\{\{organization\}\}/g, lead.organization || '');
-    personalized = personalized.replace(/\{\{email\}\}/g, lead.email || '');
-    return personalized;
+  personalizeTemplate(template, lead, options = {}) {
+    const templateRouter = require('./templateRouter');
+    return templateRouter.personalizeTemplate(template, lead, options);
   }
 }
 

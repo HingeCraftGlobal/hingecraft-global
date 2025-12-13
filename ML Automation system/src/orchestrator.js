@@ -10,6 +10,8 @@ const sequenceEngine = require('./services/sequenceEngine');
 const emailWaveSender = require('./services/emailWaveSender');
 const systemWatcher = require('./services/systemWatcher');
 const fileProcessor = require('./services/fileProcessor');
+const driveIngest = require('./services/driveIngest');
+const leadClassifier = require('./services/leadClassifier');
 const db = require('./utils/database');
 const logger = require('./utils/logger');
 const { v4: uuidv4 } = require('uuid');
@@ -17,10 +19,62 @@ const { v4: uuidv4 } = require('uuid');
 class Orchestrator {
   /**
    * Main pipeline: Process file from Google Drive
+   * NEW FLOW: Drive → Parse → AnyMail → HubSpot → Classify → Template Routing → Email
    */
   async processDriveFile(fileId) {
     try {
-      logger.info(`Starting pipeline for file ${fileId}`);
+      logger.info(`Starting NEW integrated pipeline for file ${fileId}`);
+
+      // Use new driveIngest service which handles:
+      // 1. File download & parsing
+      // 2. AnyMail enrichment
+      // 3. HubSpot sync
+      // 4. Lead classification
+      // 5. Template routing & sequence initialization
+      const result = await driveIngest.processDriveFile(fileId);
+
+      // Also create import_batch record for backward compatibility
+      const importId = uuidv4();
+      await db.query(
+        `INSERT INTO import_batches (id, source, file_id, filename, status, total_rows, processed_rows)
+         VALUES ($1, $2, $3, $4, $5, $6, $7)
+         ON CONFLICT (file_id) DO UPDATE
+         SET status = EXCLUDED.status, processed_rows = EXCLUDED.processed_rows`,
+        [
+          importId,
+          'google_drive',
+          fileId,
+          result.filename,
+          'completed',
+          result.total_rows,
+          result.processed
+        ]
+      );
+
+      logger.info(`NEW pipeline completed for file ${fileId}: ${result.processed} leads processed`);
+
+      return {
+        success: true,
+        import_id: importId,
+        ingest_id: result.ingest_id,
+        file: result.filename,
+        total_rows: result.total_rows,
+        processed: result.processed,
+        anymail_enriched: result.anymail_enriched || 0,
+        hubspot_synced: result.hubspot_synced || 0
+      };
+    } catch (error) {
+      logger.error(`Error in NEW pipeline for file ${fileId}:`, error);
+      throw error;
+    }
+  }
+
+  /**
+   * LEGACY pipeline: Process file from Google Drive (kept for backward compatibility)
+   */
+  async processDriveFileLegacy(fileId) {
+    try {
+      logger.info(`Starting LEGACY pipeline for file ${fileId}`);
 
       // Step 1: Get file metadata
       const fileMetadata = await googleDrive.getFileMetadata(fileId);

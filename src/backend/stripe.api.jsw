@@ -26,29 +26,47 @@ let STRIPE_PUBLISHABLE_KEY = null;
  */
 async function initStripeConfig() {
     try {
-        STRIPE_SECRET_KEY = await secrets.getSecret('STRIPE_SECRET_KEY_LIVE');
+        // Prioritize LIVE keys (for production), then fall back to TEST keys (for development)
+        try {
+            STRIPE_SECRET_KEY = await secrets.getSecret('STRIPE_SECRET_KEY_LIVE');
+            console.log('✅ Using Stripe LIVE keys');
+        } catch (e) {
+            try {
+                STRIPE_SECRET_KEY = await secrets.getSecret('STRIPE_SECRET_KEY_TEST');
+                console.log('✅ Using Stripe TEST keys');
+            } catch (e2) {
+                throw new Error('No Stripe keys found. Set STRIPE_SECRET_KEY_LIVE or STRIPE_SECRET_KEY_TEST in Wix Secrets');
+            }
+        }
         
         // Try to get publishable key from secrets, or derive from secret key
         try {
             STRIPE_PUBLISHABLE_KEY = await secrets.getSecret('STRIPE_PUBLISHABLE_KEY_LIVE');
         } catch (e) {
-            // Derive publishable key from secret key
-            // Format: sk_live_... -> pk_live_...
-            if (STRIPE_SECRET_KEY && STRIPE_SECRET_KEY.startsWith('sk_live_')) {
-                STRIPE_PUBLISHABLE_KEY = STRIPE_SECRET_KEY.replace('sk_live_', 'pk_live_');
-            } else if (STRIPE_SECRET_KEY && STRIPE_SECRET_KEY.startsWith('sk_test_')) {
-                STRIPE_PUBLISHABLE_KEY = STRIPE_SECRET_KEY.replace('sk_test_', 'pk_test_');
+            try {
+                STRIPE_PUBLISHABLE_KEY = await secrets.getSecret('STRIPE_PUBLISHABLE_KEY_TEST');
+            } catch (e2) {
+                // Derive publishable key from secret key
+                // Format: sk_live... -> pk_live... or sk_test... -> pk_test...
+                // Handle both formats: sk_live_... and sk_live...
+                if (STRIPE_SECRET_KEY) {
+                    if (STRIPE_SECRET_KEY.startsWith('sk_live')) {
+                        STRIPE_PUBLISHABLE_KEY = STRIPE_SECRET_KEY.replace('sk_live', 'pk_live');
+                    } else if (STRIPE_SECRET_KEY.startsWith('sk_test')) {
+                        STRIPE_PUBLISHABLE_KEY = STRIPE_SECRET_KEY.replace('sk_test', 'pk_test');
+                    }
+                }
             }
         }
         
         if (!STRIPE_SECRET_KEY) {
-            throw new Error('STRIPE_SECRET_KEY_LIVE not configured in Wix Secrets');
+            throw new Error('STRIPE_SECRET_KEY not configured in Wix Secrets');
         }
         
-        console.log('✅ Stripe configuration loaded');
+        console.log('✅ Stripe configuration loaded (mode: ' + (STRIPE_SECRET_KEY.includes('test') ? 'TEST' : 'LIVE') + ')');
     } catch (error) {
         console.error('❌ Error loading Stripe configuration:', error);
-        throw new Error('Stripe configuration missing. Please set STRIPE_SECRET_KEY_LIVE in Wix Secrets Manager.');
+        throw new Error('Stripe configuration missing. Please set STRIPE_SECRET_KEY_TEST or STRIPE_SECRET_KEY_LIVE in Wix Secrets Manager.');
     }
 }
 
@@ -109,27 +127,36 @@ export async function createCheckoutSession(requestData) {
         const amountInCents = Math.round(amount * 100);
 
         // Build checkout session payload
+        const baseUrl = requestData.baseUrl || 'https://www.hingecraft-global.ai';
+        const paymentMethod = requestData.paymentMethod || 'card';
+        
         const sessionData = {
-            payment_method_types: ['card'],
+            payment_method_types: paymentMethod === 'ACH' || paymentMethod === 'ach' ? ['us_bank_account'] : ['card'],
             line_items: [{
                 price_data: {
                     currency: 'usd',
                     product_data: {
-                        name: 'HingeCraft Donation',
-                        description: 'Mission Support Contribution'
+                        name: 'HingeCraft Charter Donation',
+                        description: 'Mission Support Contribution - Charter of Abundance'
                     },
                     unit_amount: amountInCents
                 },
                 quantity: 1
             }],
             mode: 'payment',
-            success_url: requestData.successUrl || `${requestData.baseUrl || 'https://www.hingecraft-global.ai'}/payment-success?amount=${amount}&method=stripe`,
-            cancel_url: requestData.cancelUrl || `${requestData.baseUrl || 'https://www.hingecraft-global.ai'}/charter?canceled=true`,
+            success_url: requestData.successUrl || `${baseUrl}/payment-success?amount=${amount}&method=${paymentMethod}&session_id={CHECKOUT_SESSION_ID}`,
+            cancel_url: requestData.cancelUrl || `${baseUrl}/charter?canceled=true&amount=${amount}`,
             metadata: {
                 donationId: requestData.donationId || '',
                 source: 'charter_page',
-                amount: amount.toString()
-            }
+                amount: amount.toString(),
+                currency: 'usd',
+                paymentMethod: paymentMethod
+            },
+            // Allow promotion codes
+            allow_promotion_codes: true,
+            // Customer email if provided
+            ...(requestData.email ? { customer_email: requestData.email } : {})
         };
 
         // Add customer email if provided
@@ -137,14 +164,14 @@ export async function createCheckoutSession(requestData) {
             sessionData.customer_email = requestData.email;
         }
 
-        // Call Stripe API
+        // Call Stripe API (use JSON format, not form-encoded)
         const response = await fetch(`${STRIPE_API_BASE}/checkout/sessions`, {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${STRIPE_SECRET_KEY}`,
-                'Content-Type': 'application/x-www-form-urlencoded'
+                'Content-Type': 'application/json'
             },
-            body: new URLSearchParams(sessionData).toString()
+            body: JSON.stringify(sessionData)
         });
 
         if (!response.ok) {
@@ -155,6 +182,10 @@ export async function createCheckoutSession(requestData) {
 
         const session = await response.json();
 
+        if (!session.id || !session.url) {
+            throw new Error('Invalid Stripe session response: missing id or url');
+        }
+
         // Store payment intent in database
         try {
             const paymentRecord = {
@@ -163,7 +194,7 @@ export async function createCheckoutSession(requestData) {
                 amount: amount,
                 currency: 'usd',
                 status: 'pending',
-                payment_method: 'stripe',
+                payment_method: requestData.paymentMethod || 'stripe',
                 donation_id: requestData.donationId || null,
                 email: requestData.email || null,
                 created_at: new Date(),
@@ -173,17 +204,22 @@ export async function createCheckoutSession(requestData) {
                 }
             };
 
-            await wixData.save('StripePayments', paymentRecord);
-        } catch (dbError) {
-            console.error('⚠️  Error saving payment record (non-blocking):', dbError);
-            // Don't fail the request if database save fails
-        }
+            // Try to save, but don't fail if collection doesn't exist yet
+            try {
+                await wixData.save('StripePayments', paymentRecord);
+                console.log('✅ Payment record saved to database');
+            } catch (dbError) {
+                console.warn('⚠️  Error saving payment record (non-blocking):', dbError.message);
+                // Don't fail the request if database save fails
+                // Collection might not exist yet - that's OK for now
+            }
 
         return {
             success: true,
             sessionId: session.id,
             url: session.url,
-            paymentIntent: session.payment_intent
+            paymentIntent: session.payment_intent,
+            checkoutUrl: session.url // Explicitly include checkout URL
         };
 
     } catch (error) {

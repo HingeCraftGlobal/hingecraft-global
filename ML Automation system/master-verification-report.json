@@ -1,0 +1,504 @@
+{
+  "timestamp": "2025-12-13T14:00:37.952Z",
+  "summary": {
+    "total": 105,
+    "passed": 104,
+    "failed": 1,
+    "successRate": "99.0%"
+  },
+  "phases": {
+    "Phase 0": {
+      "checks": [
+        {
+          "name": "OAuth Client ID exists",
+          "passed": true
+        },
+        {
+          "name": "OAuth Client Secret exists",
+          "passed": true
+        },
+        {
+          "name": "Google API Key exists",
+          "passed": true
+        },
+        {
+          "name": "Drive Folder ID configured",
+          "passed": true
+        },
+        {
+          "name": "OAuth scopes configured",
+          "passed": true
+        },
+        {
+          "name": "Gmail scopes present",
+          "passed": true
+        },
+        {
+          "name": "Drive scopes present",
+          "passed": true
+        },
+        {
+          "name": "Sheets scopes present",
+          "passed": true
+        },
+        {
+          "name": "OAuth status check (warning)",
+          "passed": true
+        },
+        {
+          "name": "Gmail API configured",
+          "passed": true
+        },
+        {
+          "name": "Drive API configured",
+          "passed": true
+        },
+        {
+          "name": "Sheets API configured",
+          "passed": true
+        },
+        {
+          "name": "Redirect URI configured",
+          "passed": true
+        },
+        {
+          "name": "Redirect URI format valid",
+          "passed": true
+        }
+      ],
+      "passed": 0,
+      "failed": 0
+    },
+    "Phase 1": {
+      "checks": [
+        {
+          "name": "Drive folder ID exists",
+          "passed": true
+        },
+        {
+          "name": "Drive folder ID format",
+          "passed": true
+        },
+        {
+          "name": "Drive folder accessible (warning)",
+          "passed": true
+        },
+        {
+          "name": "Google Drive service initialized",
+          "passed": true
+        },
+        {
+          "name": "File processor available",
+          "passed": true
+        },
+        {
+          "name": "CSV supported",
+          "passed": true
+        },
+        {
+          "name": "XLSX supported",
+          "passed": true
+        },
+        {
+          "name": "Google Sheets supported",
+          "passed": true
+        },
+        {
+          "name": "drive_ingests table exists",
+          "passed": true
+        },
+        {
+          "name": "drive_rows table exists",
+          "passed": true
+        }
+      ],
+      "passed": 0,
+      "failed": 0
+    },
+    "Phase 2": {
+      "checks": [
+        {
+          "name": "File processor available",
+          "passed": true
+        },
+        {
+          "name": "File processor has detectFileType method",
+          "passed": true
+        },
+        {
+          "name": "File processor has processFile method",
+          "passed": true
+        },
+        {
+          "name": "Email normalized (lowercase)",
+          "passed": false,
+          "error": null
+        },
+        {
+          "name": "First name trimmed",
+          "passed": true
+        },
+        {
+          "name": "Organization trimmed",
+          "passed": true
+        },
+        {
+          "name": "Email validation regex",
+          "passed": true
+        },
+        {
+          "name": "Email validation rejects invalid",
+          "passed": true
+        }
+      ],
+      "passed": 0,
+      "failed": 0
+    },
+    "Phase 3": {
+      "checks": [
+        {
+          "name": "suppression_list table exists",
+          "passed": true
+        },
+        {
+          "name": "leads.fingerprint column exists",
+          "passed": true
+        },
+        {
+          "name": "compute_fingerprint function exists",
+          "passed": true
+        },
+        {
+          "name": "suppression_list.email indexed",
+          "passed": true
+        }
+      ],
+      "passed": 0,
+      "failed": 0
+    },
+    "Phase 4": {
+      "checks": [
+        {
+          "name": "lead_classifications table exists",
+          "passed": true
+        },
+        {
+          "name": "classification_rules table exists",
+          "passed": true
+        },
+        {
+          "name": "Classification rules loaded",
+          "passed": true
+        },
+        {
+          "name": "template_mappings table exists",
+          "passed": true
+        },
+        {
+          "name": "Template mappings configured",
+          "passed": true
+        },
+        {
+          "name": "priority_donor mapped",
+          "passed": true
+        },
+        {
+          "name": "warm_prospect mapped",
+          "passed": true
+        },
+        {
+          "name": "cold_nurture mapped",
+          "passed": true
+        },
+        {
+          "name": "Classification working",
+          "passed": true
+        },
+        {
+          "name": "Template set assigned",
+          "passed": true
+        }
+      ],
+      "passed": 0,
+      "failed": 0
+    },
+    "Phase 5": {
+      "checks": [
+        {
+          "name": "HubSpot API key configured",
+          "passed": true
+        },
+        {
+          "name": "HubSpot portal ID configured",
+          "passed": true
+        },
+        {
+          "name": "hubspot_sync table exists",
+          "passed": true
+        },
+        {
+          "name": "HubSpot service available",
+          "passed": true
+        },
+        {
+          "name": "hubspot_sync.hubspot_contact_id unique",
+          "passed": true
+        }
+      ],
+      "passed": 0,
+      "failed": 0
+    },
+    "Phase 6": {
+      "checks": [
+        {
+          "name": "Gmail service available",
+          "passed": true
+        },
+        {
+          "name": "Gmail OAuth scopes",
+          "passed": true
+        },
+        {
+          "name": "Gmail modify scope",
+          "passed": true
+        },
+        {
+          "name": "Anymail API key configured",
+          "passed": true
+        },
+        {
+          "name": "Anymail service available",
+          "passed": true
+        },
+        {
+          "name": "sequences table exists",
+          "passed": true
+        },
+        {
+          "name": "sequence_steps table exists",
+          "passed": true
+        },
+        {
+          "name": "lead_sequences table exists",
+          "passed": true
+        },
+        {
+          "name": "email_logs table exists",
+          "passed": true
+        },
+        {
+          "name": "SET ONE exists (5 steps)",
+          "passed": true
+        },
+        {
+          "name": "SET TWO exists (1 step)",
+          "passed": true
+        },
+        {
+          "name": "SET THREE exists (5 steps)",
+          "passed": true
+        },
+        {
+          "name": "Template personalization works",
+          "passed": true
+        },
+        {
+          "name": "URL variables replaced",
+          "passed": true
+        }
+      ],
+      "passed": 0,
+      "failed": 0
+    },
+    "Phase 7": {
+      "checks": [
+        {
+          "name": "email_logs.status column",
+          "passed": true
+        },
+        {
+          "name": "email_logs.sent_at column",
+          "passed": true
+        },
+        {
+          "name": "email_logs.opened_at column",
+          "passed": true
+        },
+        {
+          "name": "email_logs.clicked_at column",
+          "passed": true
+        },
+        {
+          "name": "email_logs.replied_at column",
+          "passed": true
+        },
+        {
+          "name": "email_logs.bounced_at column",
+          "passed": true
+        },
+        {
+          "name": "message_logs table exists",
+          "passed": true
+        },
+        {
+          "name": "hubspot_sync table exists",
+          "passed": true
+        },
+        {
+          "name": "hubspot_sync.last_sync_at column",
+          "passed": true
+        }
+      ],
+      "passed": 0,
+      "failed": 0
+    },
+    "Phase 8": {
+      "checks": [
+        {
+          "name": "System watcher service available",
+          "passed": true
+        },
+        {
+          "name": "System watcher can start",
+          "passed": true
+        },
+        {
+          "name": "Pipeline status endpoint",
+          "passed": true
+        },
+        {
+          "name": "Statistics endpoint available",
+          "passed": true
+        },
+        {
+          "name": "Pipeline logs available",
+          "passed": true
+        }
+      ],
+      "passed": 0,
+      "failed": 0
+    },
+    "Phase 9": {
+      "checks": [
+        {
+          "name": "Retry utility exists",
+          "passed": true
+        },
+        {
+          "name": "Error logging configured",
+          "passed": true
+        },
+        {
+          "name": "OAuth manager available",
+          "passed": true
+        },
+        {
+          "name": "Token refresh method exists",
+          "passed": true
+        },
+        {
+          "name": "Rate limiter configured",
+          "passed": true
+        },
+        {
+          "name": "Wave sending configured",
+          "passed": true
+        },
+        {
+          "name": "Wave delay configured",
+          "passed": true
+        },
+        {
+          "name": "import_batches.status tracking",
+          "passed": true
+        },
+        {
+          "name": "drive_ingests.status tracking",
+          "passed": true
+        },
+        {
+          "name": "leads.email unique constraint",
+          "passed": true
+        },
+        {
+          "name": "hubspot_sync.hubspot_contact_id unique",
+          "passed": true
+        }
+      ],
+      "passed": 0,
+      "failed": 0
+    },
+    "Phase 10": {
+      "checks": [
+        {
+          "name": "Templates include unsubscribe links",
+          "passed": true
+        },
+        {
+          "name": "suppression_list table exists",
+          "passed": true
+        },
+        {
+          "name": "audit_log table exists",
+          "passed": true
+        },
+        {
+          "name": "Timestamps on all tables",
+          "passed": true
+        },
+        {
+          "name": "audit_log.actor column",
+          "passed": true
+        },
+        {
+          "name": "audit_log.action column",
+          "passed": true
+        },
+        {
+          "name": "audit_log.payload column",
+          "passed": true
+        }
+      ],
+      "passed": 0,
+      "failed": 0
+    },
+    "End-to-End": {
+      "checks": [
+        {
+          "name": "Test lead created",
+          "passed": true
+        },
+        {
+          "name": "Lead classified",
+          "passed": true
+        },
+        {
+          "name": "Template set assigned",
+          "passed": true
+        },
+        {
+          "name": "Lead routed to template",
+          "passed": true
+        },
+        {
+          "name": "Sequence initialized",
+          "passed": true
+        },
+        {
+          "name": "Lead type stored",
+          "passed": true
+        },
+        {
+          "name": "Template set stored",
+          "passed": true
+        },
+        {
+          "name": "End-to-end flow complete",
+          "passed": true
+        }
+      ],
+      "passed": 0,
+      "failed": 0
+    }
+  }
+}

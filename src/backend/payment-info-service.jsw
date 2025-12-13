@@ -1,0 +1,420 @@
+/**
+ * Payment Info Service - Wix Velo Backend Module
+ * Unified service for formatting and accessing payment information across all payment flows
+ * 
+ * Functions:
+ * - getPaymentInfo(paymentId, source) → Get complete payment information from any source
+ * - formatPaymentInfoForEmail(paymentData) → Format payment info for email templates
+ * - getPaymentSummary(paymentData) → Get concise payment summary
+ * - enrichPaymentData(paymentData) → Enrich payment data with additional context
+ * 
+ * IMPORTANT: This is a .jsw file - HTTP-accessible via /_functions/payment-info-service/[function-name]
+ * Permissions: Anyone (for public access)
+ */
+
+import wixData from 'wix-data';
+
+/**
+ * Get complete payment information from any source
+ * Aggregates data from ContributionIntent, Donations, CryptoPayments, and Receipts
+ * @public
+ * @param {string} paymentId - Payment ID (submission ID, donation ID, invoice ID, etc.)
+ * @param {string} source - Source type: 'contribution', 'donation', 'crypto', 'receipt', 'auto'
+ */
+export async function getPaymentInfo(paymentId, source = 'auto') {
+    try {
+        console.log('🔍 Getting payment info:', { paymentId, source });
+        
+        let paymentData = null;
+        
+        // Auto-detect source if not specified
+        if (source === 'auto') {
+            source = detectPaymentSource(paymentId);
+        }
+        
+        // Get payment data based on source
+        switch (source) {
+            case 'contribution':
+                paymentData = await getFromContributionIntent(paymentId);
+                break;
+            case 'donation':
+                paymentData = await getFromDonations(paymentId);
+                break;
+            case 'crypto':
+                paymentData = await getFromCryptoPayments(paymentId);
+                break;
+            case 'receipt':
+                paymentData = await getFromReceipts(paymentId);
+                break;
+            default:
+                // Try all sources
+                paymentData = await getFromContributionIntent(paymentId) ||
+                             await getFromDonations(paymentId) ||
+                             await getFromCryptoPayments(paymentId) ||
+                             await getFromReceipts(paymentId);
+        }
+        
+        if (!paymentData) {
+            throw new Error(`Payment not found: ${paymentId}`);
+        }
+        
+        // Enrich with additional data from related collections
+        const enrichedData = await enrichPaymentData(paymentData);
+        
+        return {
+            success: true,
+            paymentInfo: enrichedData,
+            source: source
+        };
+        
+    } catch (error) {
+        console.error('❌ Error getting payment info:', error);
+        return {
+            success: false,
+            error: error.message
+        };
+    }
+}
+
+/**
+ * Format payment information for email templates
+ * Creates a standardized format for use in email receipts, notifications, etc.
+ * @public
+ * @param {Object} paymentData - Payment data object
+ */
+export async function formatPaymentInfoForEmail(paymentData) {
+    try {
+        const formatted = {
+            // Basic Info
+            receiptNumber: paymentData.receiptNumber || paymentData._id || paymentData.submissionId || 'N/A',
+            paymentDate: formatDate(paymentData.created_at || paymentData.completed_at || new Date()),
+            amount: formatCurrency(paymentData.amount || 0, paymentData.currency || 'USD'),
+            currency: paymentData.currency || 'USD',
+            
+            // Donor Info
+            donorName: getDonorName(paymentData),
+            donorEmail: paymentData.email || paymentData.recipientEmail || 'N/A',
+            donorAddress: paymentData.address || 'N/A',
+            
+            // Payment Details
+            paymentMethod: formatPaymentMethod(paymentData.paymentMethod || paymentData.payment_method),
+            paymentStatus: formatPaymentStatus(paymentData.paymentStatus || paymentData.payment_status),
+            transactionId: paymentData.transactionId || paymentData.provider_id || paymentData.invoice_id || 'N/A',
+            invoiceId: paymentData.invoiceId || paymentData.invoice_id || null,
+            
+            // Source Info
+            source: paymentData.source || 'unknown',
+            missionSupportName: paymentData.missionSupportName || null,
+            
+            // Provider Info
+            provider: paymentData.provider || paymentData.gateway || 'N/A',
+            providerUrl: paymentData.provider_url || paymentData.payment_url || null,
+            
+            // Additional Context
+            metadata: paymentData.metadata || {}
+        };
+        
+        return formatted;
+        
+    } catch (error) {
+        console.error('❌ Error formatting payment info:', error);
+        throw error;
+    }
+}
+
+/**
+ * Get concise payment summary
+ * @public
+ * @param {Object} paymentData - Payment data object
+ */
+export async function getPaymentSummary(paymentData) {
+    try {
+        const formatted = await formatPaymentInfoForEmail(paymentData);
+        
+        return {
+            amount: formatted.amount,
+            donorName: formatted.donorName,
+            paymentMethod: formatted.paymentMethod,
+            paymentDate: formatted.paymentDate,
+            receiptNumber: formatted.receiptNumber,
+            status: formatted.paymentStatus
+        };
+        
+    } catch (error) {
+        console.error('❌ Error getting payment summary:', error);
+        throw error;
+    }
+}
+
+/**
+ * Enrich payment data with additional context from related collections
+ * @private
+ * @param {Object} paymentData - Base payment data
+ */
+async function enrichPaymentData(paymentData) {
+    try {
+        const enriched = { ...paymentData };
+        
+        // If we have a submission ID, try to get related data
+        const submissionId = paymentData._id || paymentData.submissionId || paymentData.metadata?.submissionId;
+        
+        if (submissionId) {
+            // Get from ContributionIntent
+            try {
+                const contribution = await wixData.get('ContributionIntent', submissionId);
+                if (contribution) {
+                    enriched.contributionData = contribution;
+                    // Fill in missing fields
+                    if (!enriched.firstName && contribution.firstName) enriched.firstName = contribution.firstName;
+                    if (!enriched.lastName && contribution.lastName) enriched.lastName = contribution.lastName;
+                    if (!enriched.email && contribution.email) enriched.email = contribution.email;
+                    if (!enriched.address && contribution.address) enriched.address = contribution.address;
+                    if (!enriched.missionSupportName && contribution.missionSupportName) enriched.missionSupportName = contribution.missionSupportName;
+                }
+            } catch (e) {
+                console.warn('Could not get ContributionIntent data:', e);
+            }
+            
+            // Get related Donation
+            try {
+                const donations = await wixData.query('Donations')
+                    .eq('metadata.submissionId', submissionId)
+                    .find();
+                if (donations.items.length > 0) {
+                    enriched.donationData = donations.items[0];
+                }
+            } catch (e) {
+                console.warn('Could not get Donations data:', e);
+            }
+            
+            // Get related CryptoPayment
+            try {
+                const cryptoPayments = await wixData.query('CryptoPayments')
+                    .eq('metadata.submissionId', submissionId)
+                    .find();
+                if (cryptoPayments.items.length > 0) {
+                    enriched.cryptoPaymentData = cryptoPayments.items[0];
+                }
+            } catch (e) {
+                console.warn('Could not get CryptoPayments data:', e);
+            }
+            
+            // Get related Receipt
+            try {
+                const receipts = await wixData.query('Receipts')
+                    .eq('submissionId', submissionId)
+                    .find();
+                if (receipts.items.length > 0) {
+                    enriched.receiptData = receipts.items[0];
+                }
+            } catch (e) {
+                console.warn('Could not get Receipts data:', e);
+            }
+        }
+        
+        return enriched;
+        
+    } catch (error) {
+        console.error('❌ Error enriching payment data:', error);
+        return paymentData; // Return original if enrichment fails
+    }
+}
+
+/**
+ * Get payment from ContributionIntent collection
+ * @private
+ */
+async function getFromContributionIntent(paymentId) {
+    try {
+        const record = await wixData.get('ContributionIntent', paymentId);
+        return record;
+    } catch (e) {
+        return null;
+    }
+}
+
+/**
+ * Get payment from Donations collection
+ * @private
+ */
+async function getFromDonations(paymentId) {
+    try {
+        // Try by ID first
+        try {
+            const record = await wixData.get('Donations', paymentId);
+            return record;
+        } catch (e) {
+            // Try by provider_id
+            const results = await wixData.query('Donations')
+                .eq('provider_id', paymentId)
+                .find();
+            if (results.items.length > 0) {
+                return results.items[0];
+            }
+            return null;
+        }
+    } catch (e) {
+        return null;
+    }
+}
+
+/**
+ * Get payment from CryptoPayments collection
+ * @private
+ */
+async function getFromCryptoPayments(paymentId) {
+    try {
+        // Try by ID first
+        try {
+            const record = await wixData.get('CryptoPayments', paymentId);
+            return record;
+        } catch (e) {
+            // Try by invoice_id
+            const results = await wixData.query('CryptoPayments')
+                .eq('invoice_id', paymentId)
+                .find();
+            if (results.items.length > 0) {
+                return results.items[0];
+            }
+            return null;
+        }
+    } catch (e) {
+        return null;
+    }
+}
+
+/**
+ * Get payment from Receipts collection
+ * @private
+ */
+async function getFromReceipts(paymentId) {
+    try {
+        // Try by ID first
+        try {
+            const record = await wixData.get('Receipts', paymentId);
+            return record;
+        } catch (e) {
+            // Try by receiptNumber
+            const results = await wixData.query('Receipts')
+                .eq('receiptNumber', paymentId)
+                .find();
+            if (results.items.length > 0) {
+                return results.items[0];
+            }
+            // Try by submissionId
+            const results2 = await wixData.query('Receipts')
+                .eq('submissionId', paymentId)
+                .find();
+            if (results2.items.length > 0) {
+                return results2.items[0];
+            }
+            return null;
+        }
+    } catch (e) {
+        return null;
+    }
+}
+
+/**
+ * Detect payment source from ID format
+ * @private
+ */
+function detectPaymentSource(paymentId) {
+    if (!paymentId) return 'contribution';
+    
+    if (paymentId.startsWith('ms_')) return 'contribution';
+    if (paymentId.startsWith('donation_')) return 'donation';
+    if (paymentId.startsWith('crypto_')) return 'crypto';
+    if (paymentId.startsWith('receipt_')) return 'receipt';
+    if (paymentId.startsWith('np_')) return 'crypto'; // NOWPayments invoice
+    
+    return 'contribution'; // Default
+}
+
+/**
+ * Format date for display
+ * @private
+ */
+function formatDate(date) {
+    if (!date) return 'N/A';
+    const d = new Date(date);
+    return d.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+    });
+}
+
+/**
+ * Format currency for display
+ * @private
+ */
+function formatCurrency(amount, currency = 'USD') {
+    return new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: currency
+    }).format(amount);
+}
+
+/**
+ * Format payment method for display
+ * @private
+ */
+function formatPaymentMethod(method) {
+    if (!method) return 'N/A';
+    
+    const methodMap = {
+        'card': 'Credit/Debit Card',
+        'crypto': 'Cryptocurrency',
+        'stripe': 'Credit/Debit Card (Stripe)',
+        'nowpayments': 'Cryptocurrency (NOWPayments)',
+        'ach': 'ACH Transfer',
+        'wire': 'Wire Transfer'
+    };
+    
+    return methodMap[method.toLowerCase()] || method;
+}
+
+/**
+ * Format payment status for display
+ * @private
+ */
+function formatPaymentStatus(status) {
+    if (!status) return 'Unknown';
+    
+    const statusMap = {
+        'pending': 'Pending',
+        'completed': 'Completed',
+        'failed': 'Failed',
+        'waiting': 'Waiting',
+        'confirmed': 'Confirmed',
+        'cancelled': 'Cancelled'
+    };
+    
+    return statusMap[status.toLowerCase()] || status;
+}
+
+/**
+ * Get donor name from payment data
+ * @private
+ */
+function getDonorName(paymentData) {
+    if (paymentData.recipientName) {
+        return paymentData.recipientName;
+    }
+    
+    const firstName = paymentData.firstName || '';
+    const lastName = paymentData.lastName || '';
+    
+    if (firstName && lastName) {
+        return `${firstName} ${lastName}`;
+    } else if (firstName) {
+        return firstName;
+    } else if (lastName) {
+        return lastName;
+    }
+    
+    return 'Anonymous Donor';
+}

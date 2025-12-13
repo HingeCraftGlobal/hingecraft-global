@@ -1,0 +1,113 @@
+HingeCraft Global - Full Deployment Manifest
+Generated: Fri Dec 12 18:21:43 MST 2025
+
+═══════════════════════════════════════════════════════════
+BACKEND FUNCTIONS TO DEPLOY
+═══════════════════════════════════════════════════════════
+
+1. mission-support-middleware.jsw
+   - submitMissionSupportForm() - Complete form submission
+   - microPayment() - // payments
+   - otherAmount() - Custom amounts with prefill
+   - getPrefill() - Retrieve prefill data
+   - sendPaymentReceiptEmail() - GPT-generated receipts
+
+2. charter-page-middleware.jsw
+   - onReady() - Page initialization
+   - cryptoButtonClick() - Crypto payments
+   - fiatButtonClick() - Stripe payments
+   - getCumulativeTotal() - Calculate totals
+
+3. stripe.api.jsw
+   - createCheckoutSession() - Stripe checkout
+   - getPublishableKey() - Get Stripe key
+   - handleWebhook() - Webhook handler
+
+4. nowpayments.api.jsw
+   - createNowPaymentsInvoice() - Crypto invoices
+   - getInvoiceStatus() - Check payment status
+
+5. chat-notifications.jsw (NEW)
+   - notifyMarketingOnQuestion() - Notify marketing on chat questions
+   - saveChatMessage() - Save chat to database
+   - getChatHistory() - Get chat history
+
+6. gpt-form-config.jsw (NEW)
+   - configureFormFromPrompt() - GPT form configuration
+   - updateFormConfiguration() - Update form config
+   - getFormConfiguration() - Get current config
+
+7. receipts-hook.jsw (NEW)
+   - saveReceipt() - Save receipt to database
+   - getReceipt() - Get receipt by ID
+   - resendReceipt() - Resend receipt email
+
+═══════════════════════════════════════════════════════════
+HTML PAGES TO EMBED
+═══════════════════════════════════════════════════════════
+
+1. mission-support-form.html
+   - Complete form with live chat
+   - Chat notifications to marketing
+   - All form fields
+   - Payment processing
+
+2. charter-page-wix-ready.html
+   - Charter page with payment options
+   - Slider functionality (2-20 years)
+   - Prefill support
+
+═══════════════════════════════════════════════════════════
+DATABASE COLLECTIONS REQUIRED
+═══════════════════════════════════════════════════════════
+
+1. ContributionIntent
+   - All form submissions
+   - Prefill tokens
+   - User flow tracking
+
+2. Donations
+   - Payment tracking
+   - Stripe sessions
+   - Payment reconciliation
+
+3. CryptoPayments
+   - Crypto invoice tracking
+   - NOWPayments integration
+
+4. Receipts (NEW)
+   - All email receipts
+   - GPT vs template tracking
+   - Email delivery status
+
+5. ChatMessages (NEW)
+   - All chat messages
+   - Intent analysis
+   - Marketing notifications
+
+6. FormConfigurations (NEW)
+   - GPT-generated form configs
+   - Version history
+   - Active configurations
+
+═══════════════════════════════════════════════════════════
+SECRETS TO CONFIGURE
+═══════════════════════════════════════════════════════════
+
+Required Secrets:
+- STRIPE_SECRET_KEY_LIVE
+- STRIPE_PUBLISHABLE_KEY_LIVE
+- NOWPAYMENTS_API_KEY
+- OPENAI_API_KEY (for GPT receipts and form config)
+- SENDGRID_API_KEY (for email sending)
+- MARKETING_EMAIL (for chat notifications)
+- BASE_URL (optional, default: https://www.hingecraft-global.ai)
+
+═══════════════════════════════════════════════════════════
+DEPLOYMENT STATUS
+═══════════════════════════════════════════════════════════
+
+- Wix Dev Mode: Running (PID: 66593)
+- Files Verified: ✅
+- Ready for Manual Upload: ✅
+

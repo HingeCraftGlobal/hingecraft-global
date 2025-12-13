@@ -1,0 +1,326 @@
+{
+  "summary": {
+    "total": 5,
+    "verified": 5,
+    "excellent": 0,
+    "good": 0,
+    "needsImprovement": 0,
+    "poor": 5,
+    "issues": 5,
+    "recommendations": 0
+  },
+  "timestamp": "2025-12-13T00:03:44.349Z",
+  "templates": [
+    {
+      "template": {
+        "sequence_id": "82b718b0-1718-4dc2-b6c5-2a2cc0902824",
+        "sequence_name": "Welcome Sequence",
+        "sequence_type": "welcome",
+        "step_number": 1,
+        "delay_hours": 0,
+        "subject": "Welcome to HingeCraft, {{first_name}}!",
+        "body": "<!DOCTYPE html>\n<html>\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n</head>\n<body style=\"font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;\">\n  <div style=\"background: #f9f9f9; padding: 20px; border-radius: 8px;\">\n    <h1 style=\"color: #4CAF50;\">Welcome to HingeCraft, {{first_name}}!</h1>\n    <p>Hi {{first_name}},</p>\n    <p>We're thrilled to have you join the HingeCraft community. We're building something special, and we'd love for you to be part of it.</p>\n    <p>Our mission is to create positive change through innovative solutions and collaborative efforts.</p>\n    <p>Over the next few days, we'll share more about what we're working on and how you can get involved.</p>\n    <p>Best regards,<br>The HingeCraft Team</p>\n    <hr style=\"border: none; border-top: 1px solid #ddd; margin: 20px 0;\">\n    <p style=\"font-size: 12px; color: #666;\">\n      You're receiving this because you expressed interest in HingeCraft.<br>\n      <a href=\"{{unsubscribe_url}}\">Unsubscribe</a> | \n      <a href=\"{{preferences_url}}\">Update Preferences</a>\n    </p>\n  </div>\n</body>\n</html>",
+        "html": "<!DOCTYPE html>\n<html>\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n</head>\n<body style=\"font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;\">\n  <div style=\"background: #f9f9f9; padding: 20px; border-radius: 8px;\">\n    <h1 style=\"color: #4CAF50;\">Welcome to HingeCraft, {{first_name}}!</h1>\n    <p>Hi {{first_name}},</p>\n    <p>We're thrilled to have you join the HingeCraft community. We're building something special, and we'd love for you to be part of it.</p>\n    <p>Our mission is to create positive change through innovative solutions and collaborative efforts.</p>\n    <p>Over the next few days, we'll share more about what we're working on and how you can get involved.</p>\n    <p>Best regards,<br>The HingeCraft Team</p>\n    <hr style=\"border: none; border-top: 1px solid #ddd; margin: 20px 0;\">\n    <p style=\"font-size: 12px; color: #666;\">\n      You're receiving this because you expressed interest in HingeCraft.<br>\n      <a href=\"{{unsubscribe_url}}\">Unsubscribe</a> | \n      <a href=\"{{preferences_url}}\">Update Preferences</a>\n    </p>\n  </div>\n</body>\n</html>",
+        "template_id": null,
+        "conditions": {}
+      },
+      "verification": {
+        "verified": true,
+        "analyses": {
+          "quality": {
+            "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors."
+          },
+          "compliance": {
+            "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors."
+          },
+          "personalization": {
+            "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors."
+          },
+          "subject": {
+            "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors."
+          },
+          "body": {
+            "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors."
+          },
+          "cta": {
+            "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors."
+          },
+          "tone": {
+            "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors."
+          },
+          "deliverability": {
+            "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors."
+          },
+          "segmentation": {
+            "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors."
+          },
+          "sequence": {
+            "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors."
+          }
+        },
+        "overallScore": 0,
+        "overallVerdict": "poor",
+        "issues": [],
+        "recommendations": []
+      },
+      "verified": true
+    },
+    {
+      "template": {
+        "sequence_id": "82b718b0-1718-4dc2-b6c5-2a2cc0902824",
+        "sequence_name": "Welcome Sequence",
+        "sequence_type": "welcome",
+        "step_number": 2,
+        "delay_hours": 24,
+        "subject": "Join the Movement, {{first_name}}",
+        "body": "<!DOCTYPE html>\n<html>\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n</head>\n<body style=\"font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;\">\n  <div style=\"background: #f9f9f9; padding: 20px; border-radius: 8px;\">\n    <h2 style=\"color: #4CAF50;\">Ready to Make an Impact?</h2>\n    <p>Hi {{first_name}},</p>\n    <p>Thousands of people are already part of the HingeCraft movement. Together, we're creating solutions that matter.</p>\n    <p><strong>Here's what we're working on:</strong></p>\n    <ul>\n      <li>Innovative automation solutions</li>\n      <li>Community-driven initiatives</li>\n      <li>Sustainable growth strategies</li>\n    </ul>\n    <p style=\"text-align: center; margin: 30px 0;\">\n      <a href=\"{{cta_url}}\" style=\"background: #4CAF50; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; display: inline-block;\">Learn More</a>\n    </p>\n    <p>Best regards,<br>The HingeCraft Team</p>\n  </div>\n</body>\n</html>",
+        "html": "<!DOCTYPE html>\n<html>\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n</head>\n<body style=\"font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;\">\n  <div style=\"background: #f9f9f9; padding: 20px; border-radius: 8px;\">\n    <h2 style=\"color: #4CAF50;\">Ready to Make an Impact?</h2>\n    <p>Hi {{first_name}},</p>\n    <p>Thousands of people are already part of the HingeCraft movement. Together, we're creating solutions that matter.</p>\n    <p><strong>Here's what we're working on:</strong></p>\n    <ul>\n      <li>Innovative automation solutions</li>\n      <li>Community-driven initiatives</li>\n      <li>Sustainable growth strategies</li>\n    </ul>\n    <p style=\"text-align: center; margin: 30px 0;\">\n      <a href=\"{{cta_url}}\" style=\"background: #4CAF50; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; display: inline-block;\">Learn More</a>\n    </p>\n    <p>Best regards,<br>The HingeCraft Team</p>\n  </div>\n</body>\n</html>",
+        "template_id": null,
+        "conditions": {
+          "requires_open": false
+        }
+      },
+      "verification": {
+        "verified": true,
+        "analyses": {
+          "quality": {
+            "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors."
+          },
+          "compliance": {
+            "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors."
+          },
+          "personalization": {
+            "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors."
+          },
+          "subject": {
+            "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors."
+          },
+          "body": {
+            "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors."
+          },
+          "cta": {
+            "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors."
+          },
+          "tone": {
+            "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors."
+          },
+          "deliverability": {
+            "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors."
+          },
+          "segmentation": {
+            "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors."
+          },
+          "sequence": {
+            "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors."
+          }
+        },
+        "overallScore": 0,
+        "overallVerdict": "poor",
+        "issues": [],
+        "recommendations": []
+      },
+      "verified": true
+    },
+    {
+      "template": {
+        "sequence_id": "82b718b0-1718-4dc2-b6c5-2a2cc0902824",
+        "sequence_name": "Welcome Sequence",
+        "sequence_type": "welcome",
+        "step_number": 3,
+        "delay_hours": 48,
+        "subject": "How HingeCraft Can Help {{organization}}",
+        "body": "<!DOCTYPE html>\n<html>\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n</head>\n<body style=\"font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;\">\n  <div style=\"background: #f9f9f9; padding: 20px; border-radius: 8px;\">\n    <h2 style=\"color: #4CAF50;\">Solutions for {{organization}}</h2>\n    <p>Hi {{first_name}},</p>\n    <p>We noticed you're with {{organization}}. Our solutions are designed to help organizations like yours achieve their goals more efficiently.</p>\n    <p><strong>Key Benefits:</strong></p>\n    <ul>\n      <li>Streamlined automation</li>\n      <li>Data-driven insights</li>\n      <li>Scalable solutions</li>\n    </ul>\n    <p>Would you like to learn more about how we can help {{organization}}?</p>\n    <p style=\"text-align: center; margin: 30px 0;\">\n      <a href=\"{{cta_url}}\" style=\"background: #4CAF50; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; display: inline-block;\">Schedule a Call</a>\n    </p>\n    <p>Best regards,<br>The HingeCraft Team</p>\n  </div>\n</body>\n</html>",
+        "html": "<!DOCTYPE html>\n<html>\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n</head>\n<body style=\"font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;\">\n  <div style=\"background: #f9f9f9; padding: 20px; border-radius: 8px;\">\n    <h2 style=\"color: #4CAF50;\">Solutions for {{organization}}</h2>\n    <p>Hi {{first_name}},</p>\n    <p>We noticed you're with {{organization}}. Our solutions are designed to help organizations like yours achieve their goals more efficiently.</p>\n    <p><strong>Key Benefits:</strong></p>\n    <ul>\n      <li>Streamlined automation</li>\n      <li>Data-driven insights</li>\n      <li>Scalable solutions</li>\n    </ul>\n    <p>Would you like to learn more about how we can help {{organization}}?</p>\n    <p style=\"text-align: center; margin: 30px 0;\">\n      <a href=\"{{cta_url}}\" style=\"background: #4CAF50; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; display: inline-block;\">Schedule a Call</a>\n    </p>\n    <p>Best regards,<br>The HingeCraft Team</p>\n  </div>\n</body>\n</html>",
+        "template_id": null,
+        "conditions": {
+          "requires_open": false
+        }
+      },
+      "verification": {
+        "verified": true,
+        "analyses": {
+          "quality": {
+            "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors."
+          },
+          "compliance": {
+            "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors."
+          },
+          "personalization": {
+            "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors."
+          },
+          "subject": {
+            "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors."
+          },
+          "body": {
+            "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors."
+          },
+          "cta": {
+            "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors."
+          },
+          "tone": {
+            "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors."
+          },
+          "deliverability": {
+            "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors."
+          },
+          "segmentation": {
+            "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors."
+          },
+          "sequence": {
+            "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors."
+          }
+        },
+        "overallScore": 0,
+        "overallVerdict": "poor",
+        "issues": [],
+        "recommendations": []
+      },
+      "verified": true
+    },
+    {
+      "template": {
+        "sequence_id": "82b718b0-1718-4dc2-b6c5-2a2cc0902824",
+        "sequence_name": "Welcome Sequence",
+        "sequence_type": "welcome",
+        "step_number": 4,
+        "delay_hours": 72,
+        "subject": "Join {{first_name}}, See What Others Are Saying",
+        "body": "<!DOCTYPE html>\n<html>\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n</head>\n<body style=\"font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;\">\n  <div style=\"background: #f9f9f9; padding: 20px; border-radius: 8px;\">\n    <h2 style=\"color: #4CAF50;\">You're in Good Company</h2>\n    <p>Hi {{first_name}},</p>\n    <p>We're proud to work with organizations that share our vision. Here's what our community is saying:</p>\n    <blockquote style=\"border-left: 4px solid #4CAF50; padding-left: 20px; margin: 20px 0; font-style: italic;\">\n      \"HingeCraft has transformed how we approach automation. The results speak for themselves.\"\n    </blockquote>\n    <p>Ready to see similar results for {{organization}}?</p>\n    <p style=\"text-align: center; margin: 30px 0;\">\n      <a href=\"{{cta_url}}\" style=\"background: #4CAF50; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; display: inline-block;\">Get Started</a>\n    </p>\n    <p>Best regards,<br>The HingeCraft Team</p>\n  </div>\n</body>\n</html>",
+        "html": "<!DOCTYPE html>\n<html>\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n</head>\n<body style=\"font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;\">\n  <div style=\"background: #f9f9f9; padding: 20px; border-radius: 8px;\">\n    <h2 style=\"color: #4CAF50;\">You're in Good Company</h2>\n    <p>Hi {{first_name}},</p>\n    <p>We're proud to work with organizations that share our vision. Here's what our community is saying:</p>\n    <blockquote style=\"border-left: 4px solid #4CAF50; padding-left: 20px; margin: 20px 0; font-style: italic;\">\n      \"HingeCraft has transformed how we approach automation. The results speak for themselves.\"\n    </blockquote>\n    <p>Ready to see similar results for {{organization}}?</p>\n    <p style=\"text-align: center; margin: 30px 0;\">\n      <a href=\"{{cta_url}}\" style=\"background: #4CAF50; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; display: inline-block;\">Get Started</a>\n    </p>\n    <p>Best regards,<br>The HingeCraft Team</p>\n  </div>\n</body>\n</html>",
+        "template_id": null,
+        "conditions": {
+          "requires_open": false
+        }
+      },
+      "verification": {
+        "verified": true,
+        "analyses": {
+          "quality": {
+            "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors."
+          },
+          "compliance": {
+            "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors."
+          },
+          "personalization": {
+            "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors."
+          },
+          "subject": {
+            "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors."
+          },
+          "body": {
+            "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors."
+          },
+          "cta": {
+            "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors."
+          },
+          "tone": {
+            "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors."
+          },
+          "deliverability": {
+            "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors."
+          },
+          "segmentation": {
+            "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors."
+          },
+          "sequence": {
+            "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors."
+          }
+        },
+        "overallScore": 0,
+        "overallVerdict": "poor",
+        "issues": [],
+        "recommendations": []
+      },
+      "verified": true
+    },
+    {
+      "template": {
+        "sequence_id": "82b718b0-1718-4dc2-b6c5-2a2cc0902824",
+        "sequence_name": "Welcome Sequence",
+        "sequence_type": "welcome",
+        "step_number": 5,
+        "delay_hours": 96,
+        "subject": "Last Chance, {{first_name}} - Don't Miss Out",
+        "body": "<!DOCTYPE html>\n<html>\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n</head>\n<body style=\"font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;\">\n  <div style=\"background: #f9f9f9; padding: 20px; border-radius: 8px;\">\n    <h2 style=\"color: #4CAF50;\">One Final Opportunity</h2>\n    <p>Hi {{first_name}},</p>\n    <p>This is our last email in this sequence, but we hope it's not the last time we connect.</p>\n    <p>If you're interested in learning more about how HingeCraft can help {{organization}}, we'd love to hear from you.</p>\n    <p style=\"text-align: center; margin: 30px 0;\">\n      <a href=\"{{cta_url}}\" style=\"background: #4CAF50; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; display: inline-block;\">Connect With Us</a>\n    </p>\n    <p>Thank you for being part of our community, {{first_name}}.</p>\n    <p>Best regards,<br>The HingeCraft Team</p>\n    <hr style=\"border: none; border-top: 1px solid #ddd; margin: 20px 0;\">\n    <p style=\"font-size: 12px; color: #666;\">\n      <a href=\"{{unsubscribe_url}}\">Unsubscribe</a> | \n      <a href=\"{{preferences_url}}\">Update Preferences</a>\n    </p>\n  </div>\n</body>\n</html>",
+        "html": "<!DOCTYPE html>\n<html>\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n</head>\n<body style=\"font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;\">\n  <div style=\"background: #f9f9f9; padding: 20px; border-radius: 8px;\">\n    <h2 style=\"color: #4CAF50;\">One Final Opportunity</h2>\n    <p>Hi {{first_name}},</p>\n    <p>This is our last email in this sequence, but we hope it's not the last time we connect.</p>\n    <p>If you're interested in learning more about how HingeCraft can help {{organization}}, we'd love to hear from you.</p>\n    <p style=\"text-align: center; margin: 30px 0;\">\n      <a href=\"{{cta_url}}\" style=\"background: #4CAF50; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; display: inline-block;\">Connect With Us</a>\n    </p>\n    <p>Thank you for being part of our community, {{first_name}}.</p>\n    <p>Best regards,<br>The HingeCraft Team</p>\n    <hr style=\"border: none; border-top: 1px solid #ddd; margin: 20px 0;\">\n    <p style=\"font-size: 12px; color: #666;\">\n      <a href=\"{{unsubscribe_url}}\">Unsubscribe</a> | \n      <a href=\"{{preferences_url}}\">Update Preferences</a>\n    </p>\n  </div>\n</body>\n</html>",
+        "template_id": null,
+        "conditions": {
+          "requires_open": false
+        }
+      },
+      "verification": {
+        "verified": true,
+        "analyses": {
+          "quality": {
+            "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors."
+          },
+          "compliance": {
+            "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors."
+          },
+          "personalization": {
+            "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors."
+          },
+          "subject": {
+            "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors."
+          },
+          "body": {
+            "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors."
+          },
+          "cta": {
+            "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors."
+          },
+          "tone": {
+            "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors."
+          },
+          "deliverability": {
+            "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors."
+          },
+          "segmentation": {
+            "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors."
+          },
+          "sequence": {
+            "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors."
+          }
+        },
+        "overallScore": 0,
+        "overallVerdict": "poor",
+        "issues": [],
+        "recommendations": []
+      },
+      "verified": true
+    }
+  ],
+  "issues": [
+    {
+      "template": "Welcome Sequence - Step 1",
+      "verdict": "poor",
+      "score": 0,
+      "issues": []
+    },
+    {
+      "template": "Welcome Sequence - Step 2",
+      "verdict": "poor",
+      "score": 0,
+      "issues": []
+    },
+    {
+      "template": "Welcome Sequence - Step 3",
+      "verdict": "poor",
+      "score": 0,
+      "issues": []
+    },
+    {
+      "template": "Welcome Sequence - Step 4",
+      "verdict": "poor",
+      "score": 0,
+      "issues": []
+    },
+    {
+      "template": "Welcome Sequence - Step 5",
+      "verdict": "poor",
+      "score": 0,
+      "issues": []
+    }
+  ],
+  "recommendations": []
+}

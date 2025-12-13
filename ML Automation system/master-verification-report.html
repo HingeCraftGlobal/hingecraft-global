@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Master Automation Verification Report</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; background: #f5f5f5; }
+    .container { max-width: 1400px; margin: 0 auto; background: white; padding: 20px; border-radius: 8px; }
+    h1 { color: #333; border-bottom: 3px solid #4CAF50; }
+    .summary { background: #f9f9f9; padding: 20px; border-radius: 5px; margin: 20px 0; }
+    .phase { margin: 20px 0; padding: 15px; border-left: 4px solid #4CAF50; background: #f9f9f9; }
+    .check { padding: 5px 0; }
+    .pass { color: #4CAF50; }
+    .fail { color: #f44336; }
+    table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+    th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
+    th { background: #4CAF50; color: white; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🔍 Master Automation Verification Report</h1>
+    <p><strong>Date:</strong> 12/13/2025, 7:00:37 AM</p>
+    
+    <div class="summary">
+      <h2>Summary</h2>
+      <p><strong>Total Checks:</strong> 105</p>
+      <p><strong>Passed:</strong> 104 ✅</p>
+      <p><strong>Failed:</strong> 1 ❌</p>
+      <p><strong>Success Rate:</strong> 99.0%</p>
+    </div>
+    
+    <h2>Phase Breakdown</h2>
+    
+        <div class="phase">
+          <h3>Phase 0</h3>
+          <p>14/14 checks passed (100.0%)</p>
+          <table>
+            <tr><th>Check</th><th>Status</th></tr>
+            
+              <tr>
+                <td>OAuth Client ID exists</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>OAuth Client Secret exists</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>Google API Key exists</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>Drive Folder ID configured</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>OAuth scopes configured</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>Gmail scopes present</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>Drive scopes present</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>Sheets scopes present</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>OAuth status check (warning)</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>Gmail API configured</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>Drive API configured</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>Sheets API configured</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>Redirect URI configured</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>Redirect URI format valid</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+          </table>
+        </div>
+      
+        <div class="phase">
+          <h3>Phase 1</h3>
+          <p>10/10 checks passed (100.0%)</p>
+          <table>
+            <tr><th>Check</th><th>Status</th></tr>
+            
+              <tr>
+                <td>Drive folder ID exists</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>Drive folder ID format</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>Drive folder accessible (warning)</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>Google Drive service initialized</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>File processor available</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>CSV supported</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>XLSX supported</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>Google Sheets supported</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>drive_ingests table exists</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>drive_rows table exists</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+          </table>
+        </div>
+      
+        <div class="phase">
+          <h3>Phase 2</h3>
+          <p>7/8 checks passed (87.5%)</p>
+          <table>
+            <tr><th>Check</th><th>Status</th></tr>
+            
+              <tr>
+                <td>File processor available</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>File processor has detectFileType method</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>File processor has processFile method</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>Email normalized (lowercase)</td>
+                <td class="fail">❌ FAIL</td>
+              </tr>
+            
+              <tr>
+                <td>First name trimmed</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>Organization trimmed</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>Email validation regex</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>Email validation rejects invalid</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+          </table>
+        </div>
+      
+        <div class="phase">
+          <h3>Phase 3</h3>
+          <p>4/4 checks passed (100.0%)</p>
+          <table>
+            <tr><th>Check</th><th>Status</th></tr>
+            
+              <tr>
+                <td>suppression_list table exists</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>leads.fingerprint column exists</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>compute_fingerprint function exists</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>suppression_list.email indexed</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+          </table>
+        </div>
+      
+        <div class="phase">
+          <h3>Phase 4</h3>
+          <p>10/10 checks passed (100.0%)</p>
+          <table>
+            <tr><th>Check</th><th>Status</th></tr>
+            
+              <tr>
+                <td>lead_classifications table exists</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>classification_rules table exists</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>Classification rules loaded</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>template_mappings table exists</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>Template mappings configured</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>priority_donor mapped</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>warm_prospect mapped</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>cold_nurture mapped</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>Classification working</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>Template set assigned</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+          </table>
+        </div>
+      
+        <div class="phase">
+          <h3>Phase 5</h3>
+          <p>5/5 checks passed (100.0%)</p>
+          <table>
+            <tr><th>Check</th><th>Status</th></tr>
+            
+              <tr>
+                <td>HubSpot API key configured</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>HubSpot portal ID configured</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>hubspot_sync table exists</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>HubSpot service available</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>hubspot_sync.hubspot_contact_id unique</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+          </table>
+        </div>
+      
+        <div class="phase">
+          <h3>Phase 6</h3>
+          <p>14/14 checks passed (100.0%)</p>
+          <table>
+            <tr><th>Check</th><th>Status</th></tr>
+            
+              <tr>
+                <td>Gmail service available</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>Gmail OAuth scopes</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>Gmail modify scope</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>Anymail API key configured</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>Anymail service available</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>sequences table exists</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>sequence_steps table exists</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>lead_sequences table exists</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>email_logs table exists</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>SET ONE exists (5 steps)</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>SET TWO exists (1 step)</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>SET THREE exists (5 steps)</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>Template personalization works</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>URL variables replaced</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+          </table>
+        </div>
+      
+        <div class="phase">
+          <h3>Phase 7</h3>
+          <p>9/9 checks passed (100.0%)</p>
+          <table>
+            <tr><th>Check</th><th>Status</th></tr>
+            
+              <tr>
+                <td>email_logs.status column</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>email_logs.sent_at column</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>email_logs.opened_at column</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>email_logs.clicked_at column</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>email_logs.replied_at column</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>email_logs.bounced_at column</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>message_logs table exists</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>hubspot_sync table exists</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>hubspot_sync.last_sync_at column</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+          </table>
+        </div>
+      
+        <div class="phase">
+          <h3>Phase 8</h3>
+          <p>5/5 checks passed (100.0%)</p>
+          <table>
+            <tr><th>Check</th><th>Status</th></tr>
+            
+              <tr>
+                <td>System watcher service available</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>System watcher can start</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>Pipeline status endpoint</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>Statistics endpoint available</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>Pipeline logs available</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+          </table>
+        </div>
+      
+        <div class="phase">
+          <h3>Phase 9</h3>
+          <p>11/11 checks passed (100.0%)</p>
+          <table>
+            <tr><th>Check</th><th>Status</th></tr>
+            
+              <tr>
+                <td>Retry utility exists</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>Error logging configured</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>OAuth manager available</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>Token refresh method exists</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>Rate limiter configured</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>Wave sending configured</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>Wave delay configured</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>import_batches.status tracking</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>drive_ingests.status tracking</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>leads.email unique constraint</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>hubspot_sync.hubspot_contact_id unique</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+          </table>
+        </div>
+      
+        <div class="phase">
+          <h3>Phase 10</h3>
+          <p>7/7 checks passed (100.0%)</p>
+          <table>
+            <tr><th>Check</th><th>Status</th></tr>
+            
+              <tr>
+                <td>Templates include unsubscribe links</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>suppression_list table exists</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>audit_log table exists</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>Timestamps on all tables</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>audit_log.actor column</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>audit_log.action column</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>audit_log.payload column</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+          </table>
+        </div>
+      
+        <div class="phase">
+          <h3>End-to-End</h3>
+          <p>8/8 checks passed (100.0%)</p>
+          <table>
+            <tr><th>Check</th><th>Status</th></tr>
+            
+              <tr>
+                <td>Test lead created</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>Lead classified</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>Template set assigned</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>Lead routed to template</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>Sequence initialized</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>Lead type stored</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>Template set stored</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+              <tr>
+                <td>End-to-end flow complete</td>
+                <td class="pass">✅ PASS</td>
+              </tr>
+            
+          </table>
+        </div>
+      
+  </div>
+</body>
+</html>

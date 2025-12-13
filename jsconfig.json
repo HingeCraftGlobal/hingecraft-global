@@ -4,16 +4,7 @@
   },
   "references": [
     {
-      "path": ".wix/types/a0hnk/jsconfig.json"
-    },
-    {
       "path": ".wix/types/adg2f/jsconfig.json"
-    },
-    {
-      "path": ".wix/types/auj04/jsconfig.json"
-    },
-    {
-      "path": ".wix/types/azbxk/jsconfig.json"
     },
     {
       "path": ".wix/types/b6v8z/jsconfig.json"
@@ -58,9 +49,6 @@
       "path": ".wix/types/ecwum/jsconfig.json"
     },
     {
-      "path": ".wix/types/f8x76/jsconfig.json"
-    },
-    {
       "path": ".wix/types/fc8xk/jsconfig.json"
     },
     {
@@ -77,12 +65,6 @@
     },
     {
       "path": ".wix/types/h98n7/jsconfig.json"
-    },
-    {
-      "path": ".wix/types/hh404/jsconfig.json"
-    },
-    {
-      "path": ".wix/types/htlsm/jsconfig.json"
     },
     {
       "path": ".wix/types/hukhs/jsconfig.json"
@@ -107,9 +89,6 @@
     },
     {
       "path": ".wix/types/j6i4e/jsconfig.json"
-    },
-    {
-      "path": ".wix/types/j9w8f/jsconfig.json"
     },
     {
       "path": ".wix/types/jcbc4/jsconfig.json"
@@ -154,12 +133,6 @@
       "path": ".wix/types/nx1d0/jsconfig.json"
     },
     {
-      "path": ".wix/types/o6f0e/jsconfig.json"
-    },
-    {
-      "path": ".wix/types/onmtb/jsconfig.json"
-    },
-    {
       "path": ".wix/types/oui8d/jsconfig.json"
     },
     {
@@ -181,9 +154,6 @@
       "path": ".wix/types/rnfe6/jsconfig.json"
     },
     {
-      "path": ".wix/types/tr26u/jsconfig.json"
-    },
-    {
       "path": ".wix/types/u5fe7/jsconfig.json"
     },
     {
@@ -191,9 +161,6 @@
     },
     {
       "path": ".wix/types/u94uk/jsconfig.json"
-    },
-    {
-      "path": ".wix/types/uhgf0/jsconfig.json"
     },
     {
       "path": ".wix/types/uljie/jsconfig.json"

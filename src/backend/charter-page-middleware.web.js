@@ -22,6 +22,7 @@ import { getLatestDonation, saveDonation } from 'backend/hingecraft.api.web';
 /**
  * Initialize charter page on ready
  * Checks dataset and updates totals dynamically
+ * FIXED: No longer uses deprecated import pattern - uses HTTP endpoint calls
  * @public
  */
 export async function onReady() {
@@ -31,18 +32,40 @@ export async function onReady() {
         // Get cumulative total from database
         const totalResult = await getCumulativeTotal();
         
-        // Update contributions section
-        await updateContributionsDisplay(totalResult.total);
+        // Check for prefill token in URL
+        let donationAmount = null;
+        let prefillId = null;
         
-        // Check for donation amount in URL or storage
-        const donationAmount = await getDonationAmountFromStorage();
+        try {
+            if (typeof wixLocation !== 'undefined' && wixLocation.query) {
+                prefillId = wixLocation.query.prefill;
+                const urlAmount = wixLocation.query.donationAmount || wixLocation.query.amount;
+                if (urlAmount) {
+                    donationAmount = parseFloat(urlAmount);
+                }
+            }
+        } catch (e) {
+            console.warn('Could not read URL params:', e);
+        }
         
-        if (donationAmount && donationAmount > 0) {
-            // Display donation amount
-            await displayDonationAmount(donationAmount);
-            
-            // Update contributions with new amount
-            await updateContributionsDisplay(totalResult.total + donationAmount);
+        // If prefill ID exists, get prefill data
+        if (prefillId) {
+            try {
+                // Import mission support middleware to get prefill
+                const { getPrefill } = await import('backend/mission-support-middleware');
+                const prefillResult = await getPrefill(prefillId);
+                if (prefillResult.success) {
+                    donationAmount = prefillResult.amount;
+                    console.log('✅ Prefill loaded:', donationAmount);
+                }
+            } catch (e) {
+                console.warn('Could not load prefill:', e);
+            }
+        }
+        
+        // Check session storage as fallback
+        if (!donationAmount) {
+            donationAmount = await getDonationAmountFromStorage();
         }
         
         // Setup database change listeners
@@ -51,7 +74,8 @@ export async function onReady() {
         return {
             success: true,
             cumulativeTotal: totalResult.total,
-            donationAmount: donationAmount
+            donationAmount: donationAmount,
+            prefillId: prefillId
         };
     } catch (error) {
         console.error('❌ Charter Page onReady error:', error);
@@ -69,8 +93,19 @@ export async function onReady() {
  * @param {number} amount - Donation amount
  * @param {string} coin - Cryptocurrency (solana, stellar, bitcoin, ethereum)
  */
-export async function cryptoButtonClick(amount, coin) {
+export async function cryptoButtonClick(requestData) {
     try {
+        // Support both object and positional parameters for backward compatibility
+        let amount, coin;
+        if (typeof requestData === 'object' && requestData !== null) {
+            amount = requestData.amount;
+            coin = requestData.coin;
+        } else {
+            // Legacy: positional parameters
+            amount = requestData;
+            coin = arguments[1];
+        }
+        
         console.log('💰 Crypto button clicked:', { amount, coin });
         
         // Validate amount
@@ -103,15 +138,34 @@ export async function cryptoButtonClick(amount, coin) {
         // Generate intent ID
         const intentId = 'hc_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
         
+        // Get session data if available
+        let email = '';
+        let firstName = '';
+        let lastName = '';
+        
+        try {
+            if (typeof wixStorage !== 'undefined' && wixStorage.session) {
+                const donationData = wixStorage.session.getItem('hingecraft_donation');
+                if (donationData) {
+                    const data = JSON.parse(donationData);
+                    email = data.email || '';
+                    firstName = data.firstName || '';
+                    lastName = data.lastName || '';
+                }
+            }
+        } catch (e) {
+            console.warn('Could not get session data:', e);
+        }
+        
         // Create NOWPayments invoice
         const invoiceResult = await createNowPaymentsInvoice({
             intentId: intentId,
             amount: validatedAmount,
             payCurrency: payCurrency,
-            email: '', // Will be filled from session if available
+            email: email,
             sessionId: await getSessionId(),
-            firstName: '',
-            lastName: ''
+            firstName: firstName,
+            lastName: lastName
         });
         
         if (!invoiceResult.success) {
@@ -144,29 +198,43 @@ export async function cryptoButtonClick(amount, coin) {
 
 /**
  * Handle fiat button click (Stripe)
- * Creates Stripe checkout session for preset amounts
+ * Creates Stripe checkout session for any amount
  * @public
- * @param {number} preset - Preset amount (1, 5, or 20)
+ * @param {number} amount - Payment amount (any valid amount between $1.00 and $25,000.00)
+ * @param {string} paymentMethod - Payment method: "card" or "ACH" (optional, defaults to "card")
  */
-export async function fiatButtonClick(preset) {
+export async function fiatButtonClick(requestData) {
     try {
-        console.log('💳 Fiat button clicked:', { preset });
-        
-        // Validate preset
-        const validPresets = [1, 5, 20];
-        const amount = parseFloat(preset);
-        
-        if (!validPresets.includes(amount)) {
-            throw new Error('Invalid preset amount. Must be 1, 5, or 20');
+        // Support both object and positional parameters for backward compatibility
+        let amount, paymentMethod;
+        if (typeof requestData === 'object' && requestData !== null) {
+            amount = requestData.amount;
+            paymentMethod = requestData.paymentMethod || 'card';
+        } else {
+            // Legacy: positional parameters
+            amount = requestData;
+            paymentMethod = arguments[1] || 'card';
         }
+        
+        console.log('💳 Fiat button clicked:', { amount, paymentMethod });
+        
+        // Validate amount
+        const validatedAmount = parseFloat(amount);
+        if (isNaN(validatedAmount) || validatedAmount < 1.00 || validatedAmount > 25000.00) {
+            throw new Error(`Invalid amount: ${amount} (must be between $1.00 and $25,000.00)`);
+        }
+        
+        const baseUrl = await getBaseUrl();
         
         // Create Stripe checkout session
         const sessionResult = await createCheckoutSession({
-            amount: amount,
-            successUrl: `${await getBaseUrl()}/payment-success?amount=${amount}&method=stripe`,
-            cancelUrl: `${await getBaseUrl()}/charter?canceled=true&amount=${amount}`,
+            amount: validatedAmount,
+            paymentMethod: paymentMethod,
+            successUrl: `${baseUrl}/payment-success?amount=${validatedAmount}&method=${paymentMethod}`,
+            cancelUrl: `${baseUrl}/charter?canceled=true&amount=${validatedAmount}`,
             donationId: null,
-            email: null
+            email: null,
+            baseUrl: baseUrl
         });
         
         if (!sessionResult.success) {
@@ -174,13 +242,14 @@ export async function fiatButtonClick(preset) {
         }
         
         // Store donation amount
-        await storeDonationAmount(amount, 'stripe', null);
+        await storeDonationAmount(validatedAmount, paymentMethod, null);
         
         return {
             success: true,
             sessionId: sessionResult.sessionId,
             url: sessionResult.url,
-            amount: amount
+            amount: validatedAmount,
+            paymentMethod: paymentMethod
         };
     } catch (error) {
         console.error('❌ Fiat button click error:', error);

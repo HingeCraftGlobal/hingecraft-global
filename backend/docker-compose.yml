@@ -1,0 +1,81 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database for HingeCraft Payment System
+  db:
+    image: postgres:15-alpine
+    container_name: hingecraft-payment-db
+    environment:
+      POSTGRES_DB: hingecraft
+      POSTGRES_USER: hingecraft_user
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-changeme}
+    ports:
+      - "${DB_PORT:-5432}:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./migrations:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U hingecraft_user -d hingecraft"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - hingecraft-network
+
+  # Node.js Backend API
+  api:
+    build:
+      context: ./src
+      dockerfile: ../Dockerfile
+    container_name: hingecraft-payment-api
+    environment:
+      NODE_ENV: ${NODE_ENV:-development}
+      PORT: 3000
+      DATABASE_URL: postgresql://hingecraft_user:${DB_PASSWORD:-changeme}@db:5432/hingecraft
+      STRIPE_SECRET: ${STRIPE_SECRET}
+      STRIPE_PUBLISHABLE: ${STRIPE_PUBLISHABLE}
+      NOWPAYMENTS_API_KEY: ${NOWPAYMENTS_API_KEY}
+      NOWPAYMENTS_IPN_SECRET: ${NOWPAYMENTS_IPN_SECRET}
+      BASE_URL: ${BASE_URL:-https://www.hingecraft-global.ai}
+      WIX_WEBHOOK_ENDPOINTS: ${WIX_WEBHOOK_ENDPOINTS:-}
+      WEBHOOK_SECRET: ${WEBHOOK_SECRET:-}
+    ports:
+      - "${API_PORT:-3000}:3000"
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./src:/app/src
+      - ./logs:/app/logs
+    restart: unless-stopped
+    networks:
+      - hingecraft-network
+
+  # Worker for reconciliation and scheduled tasks
+  worker:
+    build:
+      context: ./src
+      dockerfile: ../Dockerfile
+    container_name: hingecraft-payment-worker
+    environment:
+      NODE_ENV: ${NODE_ENV:-development}
+      DATABASE_URL: postgresql://hingecraft_user:${DB_PASSWORD:-changeme}@db:5432/hingecraft
+      STRIPE_SECRET: ${STRIPE_SECRET}
+      NOWPAYMENTS_API_KEY: ${NOWPAYMENTS_API_KEY}
+    command: ["node", "worker.js"]
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./src:/app/src
+      - ./logs:/app/logs
+    restart: unless-stopped
+    networks:
+      - hingecraft-network
+
+volumes:
+  db_data:
+
+networks:
+  hingecraft-network:
+    driver: bridge
