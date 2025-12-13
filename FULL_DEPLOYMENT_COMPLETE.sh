@@ -62,8 +62,9 @@ echo ""
 # Verify all files
 echo -e "${BLUE}📋 Verifying all deployment files...${NC}"
 
-# Backend Functions
+# Backend Functions (8 total - includes payment-info-service)
 BACKEND_FILES=(
+    "src/backend/payment-info-service.jsw"
     "src/backend/mission-support-middleware.jsw"
     "src/backend/charter-page-middleware.jsw"
     "src/backend/stripe.api.jsw"
