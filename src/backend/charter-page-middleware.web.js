@@ -103,12 +103,26 @@ export async function cryptoButtonClick(amount, coin) {
         // Generate intent ID
         const intentId = 'hc_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
         
+        // Get user email if available
+        let userEmail = '';
+        try {
+            if (typeof wixStorage !== 'undefined' && wixStorage.session) {
+                const stored = wixStorage.session.getItem('hingecraft_donation');
+                if (stored) {
+                    const data = JSON.parse(stored);
+                    userEmail = data.email || '';
+                }
+            }
+        } catch (e) {
+            console.warn('Could not get email from session:', e);
+        }
+        
         // Create NOWPayments invoice
         const invoiceResult = await createNowPaymentsInvoice({
             intentId: intentId,
             amount: validatedAmount,
             payCurrency: payCurrency,
-            email: '', // Will be filled from session if available
+            email: userEmail,
             sessionId: await getSessionId(),
             firstName: '',
             lastName: ''
@@ -123,6 +137,30 @@ export async function cryptoButtonClick(amount, coin) {
         
         // Store donation amount
         await storeDonationAmount(validatedAmount, 'crypto', coin);
+        
+        // Store in CryptoPayments collection
+        try {
+            const cryptoPaymentRecord = {
+                invoice_id: invoiceResult.invoiceId,
+                price_amount: validatedAmount,
+                status: 'pending',
+                pay_currency: payCurrency,
+                pay_address: invoiceResult.payAddress,
+                pay_amount_crypto: invoiceResult.payAmountCrypto,
+                payment_url: invoiceResult.paymentUrl,
+                expires_at: new Date(Date.now() + 15 * 60 * 1000), // 15 minutes
+                created_at: new Date(),
+                metadata: {
+                    intent_id: intentId,
+                    coin: coin,
+                    source: 'charter_page_membership'
+                }
+            };
+            
+            await wixData.save('CryptoPayments', cryptoPaymentRecord);
+        } catch (dbError) {
+            console.warn('⚠️  Error saving crypto payment to database (non-blocking):', dbError);
+        }
         
         return {
             success: true,
