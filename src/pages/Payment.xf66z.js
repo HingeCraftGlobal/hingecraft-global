@@ -1,10 +1,39 @@
 // HingeCraft Global - Mission Support Form (REPLACES Payment Page)
 // T10 Implementation: Mission Support Form with Database Integration
-// Generated: January 27, 2025
+// Updated: December 12, 2025 - Uses HTTP endpoints instead of imports
 // This page REPLACES the old Payment page - Mission Support form is now the Payment page
 
 import wixSeo from 'wix-seo';
-import { onReady, handleUserInputDonation, goToCharterAfterPayment } from 'backend/mission-support-middleware.web';
+
+// Velo API Configuration - Use HTTP endpoints (not imports)
+const VELO_CONFIG = {
+    MISSION_SUPPORT_MIDDLEWARE: '/_functions/mission-support-middleware',
+    PAYMENT_INFO_SERVICE: '/_functions/payment-info-service',
+    CHARTER_MIDDLEWARE: '/_functions/charter-page-middleware'
+};
+
+// Helper to call Velo functions via HTTP
+async function callVeloFunction(modulePath, functionName, data = {}) {
+    try {
+        const fetchFn = typeof wixFetch !== 'undefined' ? wixFetch.fetch : fetch;
+        const url = `${modulePath}/${functionName}`;
+        
+        const response = await fetchFn(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        });
+        
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+        
+        return await response.json();
+    } catch (error) {
+        console.error(`❌ Error calling ${modulePath}/${functionName}:`, error);
+        return { success: false, error: error.message };
+    }
+}
 
 $w.onReady(async function () {
     // Set SEO for Mission Support Form (on Payment page URL)
@@ -147,28 +176,31 @@ function initializeFormHandlers() {
 
 /**
  * Handle form submission (called from embedded form)
+ * Uses HTTP endpoint to submit form
  */
 async function handleFormSubmission(formData) {
     try {
-        // Call backend function to log Mission Support intent
-        const result = await logMissionSupportIntent({
-            formData: formData,
-            amountEntered: formData.amount,
-            timestamp: new Date().toISOString(),
-            sessionID: getSessionId(),
+        // Call backend function via HTTP endpoint
+        const result = await callVeloFunction(VELO_CONFIG.MISSION_SUPPORT_MIDDLEWARE, 'submitMissionSupportForm', {
+            ...formData,
+            sessionId: getSessionId(),
             anonymousFingerprint: getAnonymousFingerprint(),
             referrerSource: document.referrer || 'direct',
             pageUrl: window.location.href,
-            userAgent: navigator.userAgent
+            userAgent: navigator.userAgent,
+            timestamp: new Date().toISOString()
         });
         
         if (result.success) {
-            console.log('✅ Mission Support intent logged:', result.intentId);
+            console.log('✅ Mission Support form submitted:', result.submissionId);
         } else {
-            console.error('❌ Error logging intent:', result.error);
+            console.error('❌ Error submitting form:', result.error);
         }
+        
+        return result;
     } catch (error) {
         console.error('❌ Error in form submission:', error);
+        return { success: false, error: error.message };
     }
 }
 
