@@ -1,0 +1,443 @@
+/**
+ * Database Sync Utility
+ * Verifies and syncs all database collections
+ * Ensures data consistency across all systems
+ */
+
+import wixData from 'wix-data';
+
+/**
+ * Verify all database collections exist and have correct structure
+ * @returns {Promise<Object>} Verification results
+ */
+export async function verifyAllCollections() {
+    const results = {
+        success: true,
+        collections: {},
+        errors: []
+    };
+    
+    const requiredCollections = [
+        'Donations',
+        'CryptoPayments',
+        'StripePayments',
+        'ContributionIntent',
+        'Members',
+        'PaymentRoutes'
+    ];
+    
+    for (const collectionName of requiredCollections) {
+        try {
+            // Try to query the collection
+            const testQuery = await wixData.query(collectionName).limit(1).find();
+            
+            results.collections[collectionName] = {
+                exists: true,
+                accessible: true,
+                itemCount: testQuery.totalCount || 0
+            };
+        } catch (error) {
+            results.collections[collectionName] = {
+                exists: false,
+                accessible: false,
+                error: error.message
+            };
+            results.errors.push(`${collectionName}: ${error.message}`);
+        }
+    }
+    
+    if (results.errors.length > 0) {
+        results.success = false;
+    }
+    
+    return results;
+}
+
+/**
+ * Sync data between collections
+ * Ensures ContributionIntent → StripePayments/CryptoPayments → Donations → Members flow
+ */
+export async function syncPaymentData() {
+    const syncResults = {
+        success: true,
+        synced: {
+            intents: 0,
+            payments: 0,
+            donations: 0,
+            members: 0
+        },
+        errors: []
+    };
+    
+    try {
+        // 1. Sync ContributionIntent → StripePayments/CryptoPayments
+        const intents = await wixData.query('ContributionIntent')
+            .eq('status', 'intent')
+            .find();
+        
+        for (const intent of intents.items) {
+            try {
+                // Check if payment record exists
+                const existingPayment = await wixData.query('StripePayments')
+                    .eq('metadata.intent_id', intent._id)
+                    .find();
+                
+                if (existingPayment.items.length === 0) {
+                    // Check CryptoPayments
+                    const existingCrypto = await wixData.query('CryptoPayments')
+                        .eq('metadata.intent_id', intent._id)
+                        .find();
+                    
+                    if (existingCrypto.items.length === 0) {
+                        // Intent exists but no payment - this is OK for pending intents
+                        console.log(`Intent ${intent._id} has no payment record yet`);
+                    }
+                }
+                
+                syncResults.synced.intents++;
+            } catch (error) {
+                syncResults.errors.push(`Intent ${intent._id}: ${error.message}`);
+            }
+        }
+        
+        // 2. Sync StripePayments → Donations
+        const stripePayments = await wixData.query('StripePayments')
+            .eq('status', 'paid')
+            .find();
+        
+        for (const payment of stripePayments.items) {
+            try {
+                const existingDonation = await wixData.query('Donations')
+                    .eq('invoice_id', payment.invoice_id)
+                    .find();
+                
+                if (existingDonation.items.length === 0) {
+                    // Create donation record
+                    await wixData.save('Donations', {
+                        amount: payment.amount,
+                        payment_status: 'completed',
+                        payment_method: payment.payment_method || 'card',
+                        email: payment.email,
+                        transaction_id: payment.invoice_id,
+                        invoice_id: payment.invoice_id,
+                        created_at: payment.created_at || new Date(),
+                        metadata: {
+                            source: payment.metadata?.source || 'stripe',
+                            stripe_payment_id: payment._id
+                        }
+                    });
+                    
+                    syncResults.synced.donations++;
+                }
+                
+                syncResults.synced.payments++;
+            } catch (error) {
+                syncResults.errors.push(`Payment ${payment.invoice_id}: ${error.message}`);
+            }
+        }
+        
+        // 3. Sync CryptoPayments → Donations
+        const cryptoPayments = await wixData.query('CryptoPayments')
+            .eq('status', 'confirmed')
+            .find();
+        
+        for (const payment of cryptoPayments.items) {
+            try {
+                const existingDonation = await wixData.query('Donations')
+                    .eq('transaction_id', payment.invoice_id)
+                    .find();
+                
+                if (existingDonation.items.length === 0) {
+                    await wixData.save('Donations', {
+                        amount: payment.price_amount,
+                        payment_status: 'confirmed',
+                        payment_method: 'crypto',
+                        transaction_id: payment.invoice_id,
+                        invoice_id: payment.invoice_id,
+                        created_at: payment.created_at || new Date(),
+                        metadata: {
+                            source: 'crypto',
+                            crypto_payment_id: payment._id,
+                            pay_currency: payment.pay_currency
+                        }
+                    });
+                    
+                    syncResults.synced.donations++;
+                }
+                
+                syncResults.synced.payments++;
+            } catch (error) {
+                syncResults.errors.push(`Crypto payment ${payment.invoice_id}: ${error.message}`);
+            }
+        }
+        
+        // 4. Sync Donations → Members (for membership payments)
+        const donations = await wixData.query('Donations')
+            .eq('payment_status', 'completed')
+            .or(wixData.query('Donations').eq('payment_status', 'confirmed'))
+            .find();
+        
+        for (const donation of donations.items) {
+            try {
+                // Check if this is a membership payment
+                const metadata = donation.metadata || {};
+                const tier = metadata.tier;
+                
+                if (tier && ['BASIC', 'PREMIER', 'VIP'].includes(tier)) {
+                    // Check if member record exists
+                    const existingMember = await wixData.query('Members')
+                        .eq('payment_id', donation.transaction_id)
+                        .find();
+                    
+                    if (existingMember.items.length === 0) {
+                        // Create member record
+                        const years = metadata.years || 1;
+                        const startAt = new Date();
+                        const endAt = new Date();
+                        
+                        if (tier === 'BASIC') {
+                            endAt.setFullYear(endAt.getFullYear() + 1);
+                        } else if (tier === 'PREMIER') {
+                            endAt.setFullYear(endAt.getFullYear() + years);
+                        } else if (tier === 'VIP') {
+                            // Lifetime membership - set far future date
+                            endAt.setFullYear(endAt.getFullYear() + 100);
+                        }
+                        
+                        const memberId = 'member_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+                        
+                        await wixData.save('Members', {
+                            member_id: memberId,
+                            tier: tier,
+                            amount_paid: donation.amount,
+                            years: years || null,
+                            start_at: startAt,
+                            end_at: endAt,
+                            status: 'active',
+                            email: donation.email,
+                            payment_id: donation.transaction_id,
+                            payment_method: donation.payment_method,
+                            created_at: new Date(),
+                            metadata: {
+                                donation_id: donation._id,
+                                source: metadata.source || 'payment'
+                            }
+                        });
+                        
+                        syncResults.synced.members++;
+                    }
+                }
+            } catch (error) {
+                syncResults.errors.push(`Donation ${donation._id}: ${error.message}`);
+            }
+        }
+        
+        if (syncResults.errors.length > 0) {
+            syncResults.success = false;
+        }
+        
+    } catch (error) {
+        syncResults.success = false;
+        syncResults.errors.push(`Sync error: ${error.message}`);
+    }
+    
+    return syncResults;
+}
+
+/**
+ * Get comprehensive database statistics
+ */
+export async function getDatabaseStats() {
+    const stats = {
+        success: true,
+        collections: {},
+        totals: {
+            donations: 0,
+            cryptoPayments: 0,
+            stripePayments: 0,
+            intents: 0,
+            members: 0,
+            paymentRoutes: 0
+        },
+        amounts: {
+            totalDonations: 0,
+            totalCrypto: 0,
+            totalStripe: 0
+        }
+    };
+    
+    try {
+        // Donations
+        try {
+            const donations = await wixData.query('Donations').find();
+            stats.collections.Donations = {
+                total: donations.totalCount,
+                completed: 0,
+                pending: 0
+            };
+            
+            donations.items.forEach(d => {
+                if (d.payment_status === 'completed' || d.payment_status === 'confirmed') {
+                    stats.collections.Donations.completed++;
+                    stats.amounts.totalDonations += parseFloat(d.amount || 0);
+                } else {
+                    stats.collections.Donations.pending++;
+                }
+            });
+            
+            stats.totals.donations = donations.totalCount;
+        } catch (e) {
+            stats.collections.Donations = { error: e.message };
+        }
+        
+        // CryptoPayments
+        try {
+            const crypto = await wixData.query('CryptoPayments').find();
+            stats.collections.CryptoPayments = {
+                total: crypto.totalCount,
+                confirmed: 0,
+                pending: 0
+            };
+            
+            crypto.items.forEach(c => {
+                if (c.status === 'confirmed') {
+                    stats.collections.CryptoPayments.confirmed++;
+                    stats.amounts.totalCrypto += parseFloat(c.price_amount || 0);
+                } else {
+                    stats.collections.CryptoPayments.pending++;
+                }
+            });
+            
+            stats.totals.cryptoPayments = crypto.totalCount;
+        } catch (e) {
+            stats.collections.CryptoPayments = { error: e.message };
+        }
+        
+        // StripePayments
+        try {
+            const stripe = await wixData.query('StripePayments').find();
+            stats.collections.StripePayments = {
+                total: stripe.totalCount,
+                paid: 0,
+                open: 0
+            };
+            
+            stripe.items.forEach(s => {
+                if (s.status === 'paid') {
+                    stats.collections.StripePayments.paid++;
+                    stats.amounts.totalStripe += parseFloat(s.amount || 0);
+                } else {
+                    stats.collections.StripePayments.open++;
+                }
+            });
+            
+            stats.totals.stripePayments = stripe.totalCount;
+        } catch (e) {
+            stats.collections.StripePayments = { error: e.message };
+        }
+        
+        // ContributionIntent
+        try {
+            const intents = await wixData.query('ContributionIntent').find();
+            stats.totals.intents = intents.totalCount;
+            stats.collections.ContributionIntent = {
+                total: intents.totalCount,
+                intent: 0,
+                completed: 0,
+                expired: 0
+            };
+            
+            intents.items.forEach(i => {
+                if (i.status === 'intent') stats.collections.ContributionIntent.intent++;
+                else if (i.status === 'completed') stats.collections.ContributionIntent.completed++;
+                else if (i.status === 'expired') stats.collections.ContributionIntent.expired++;
+            });
+        } catch (e) {
+            stats.collections.ContributionIntent = { error: e.message };
+        }
+        
+        // Members
+        try {
+            const members = await wixData.query('Members').find();
+            stats.totals.members = members.totalCount;
+            stats.collections.Members = {
+                total: members.totalCount,
+                active: 0,
+                expired: 0
+            };
+            
+            members.items.forEach(m => {
+                if (m.status === 'active') stats.collections.Members.active++;
+                else stats.collections.Members.expired++;
+            });
+        } catch (e) {
+            stats.collections.Members = { error: e.message };
+        }
+        
+        // PaymentRoutes
+        try {
+            const routes = await wixData.query('PaymentRoutes').find();
+            stats.totals.paymentRoutes = routes.totalCount;
+            stats.collections.PaymentRoutes = {
+                total: routes.totalCount,
+                enabled: 0,
+                disabled: 0
+            };
+            
+            routes.items.forEach(r => {
+                if (r.enabled) stats.collections.PaymentRoutes.enabled++;
+                else stats.collections.PaymentRoutes.disabled++;
+            });
+        } catch (e) {
+            stats.collections.PaymentRoutes = { error: e.message };
+        }
+        
+        // Calculate grand total
+        stats.amounts.grandTotal = stats.amounts.totalDonations + stats.amounts.totalCrypto + stats.amounts.totalStripe;
+        
+    } catch (error) {
+        stats.success = false;
+        stats.error = error.message;
+    }
+    
+    return stats;
+}
+
+/**
+ * Clean up expired prefill tokens
+ */
+export async function cleanupExpiredPrefills() {
+    const results = {
+        success: true,
+        cleaned: 0,
+        errors: []
+    };
+    
+    try {
+        const expiredIntents = await wixData.query('ContributionIntent')
+            .lt('expires_at', new Date())
+            .eq('used', false)
+            .find();
+        
+        for (const intent of expiredIntents.items) {
+            try {
+                await wixData.update('ContributionIntent', {
+                    ...intent,
+                    status: 'expired'
+                });
+                results.cleaned++;
+            } catch (error) {
+                results.errors.push(`Intent ${intent._id}: ${error.message}`);
+            }
+        }
+        
+        if (results.errors.length > 0) {
+            results.success = false;
+        }
+    } catch (error) {
+        results.success = false;
+        results.errors.push(error.message);
+    }
+    
+    return results;
+}
