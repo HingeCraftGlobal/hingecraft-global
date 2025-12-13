@@ -233,10 +233,8 @@ export async function fiatButtonClick(preset) {
         // Import createCustomInvoice
         const { createCustomInvoice } = await import('backend/stripe.api');
         
-        // Import createCustomInvoice dynamically
-        const { createCustomInvoice } = await import('backend/stripe.api');
-        
         // Create custom Stripe invoice (works with DEV keys, instant creation, no email)
+        // createCustomInvoice is already imported at the top of the file
         const invoiceResult = await createCustomInvoice({
             amount: amount,
             email: email || 'member@hingecraft-global.ai', // Fallback email
