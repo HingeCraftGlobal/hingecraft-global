@@ -15,6 +15,7 @@ import { createNowPaymentsInvoice } from 'backend/nowpayments.api';
 import { createCustomInvoice } from 'backend/stripe.api';
 import { logMissionSupportIntent } from 'backend/hingecraft.api.web';
 import { redirectBackToCharter } from 'backend/charter-page-middleware';
+import { sendMissionSupportEmail } from 'backend/email-templates';
 
 /**
  * Initialize mission support page on ready
@@ -86,6 +87,23 @@ export async function handleUserInputDonation(formData) {
             console.warn('⚠️ Intent logging failed (non-blocking):', intentResult.error);
         }
         
+        // Send email notification to marketingcraft@gmail.com
+        try {
+            await sendMissionSupportEmail({
+                firstName: formData.firstName,
+                lastName: formData.lastName,
+                email: formData.email,
+                address: formData.address,
+                missionSupportName: formData.missionSupportName,
+                amount: amount,
+                paymentMethod: paymentMethod,
+                timestamp: new Date().toISOString()
+            });
+        } catch (emailError) {
+            console.warn('⚠️ Email notification failed (non-blocking):', emailError);
+            // Don't fail the submission if email fails
+        }
+        
         // Handle payment method
         if (paymentMethod === 'crypto') {
             // Create crypto invoice
@@ -116,20 +134,22 @@ export async function handleUserInputDonation(formData) {
                 payCurrency: invoiceResult.payCurrency
             };
         } else {
-            // Card payment: create custom invoice instantly (no email sent)
-            // createCustomInvoice is already imported at the top of the file
+            // Card/ACH payment: create custom invoice instantly (no email sent)
+            // Pass payment_method to enable ACH routing if selected
             const invoiceResult = await createCustomInvoice({
                 amount: amount,
                 email: formData.email,
                 description: `HingeCraft Donation - $${amount.toFixed(2)} Contribution from Mission Support Form`,
                 customerName: formData.firstName && formData.lastName 
                     ? `${formData.firstName} ${formData.lastName}` : null,
+                payment_method: paymentMethod || 'card', // Pass payment method for ACH routing
                 metadata: {
                     source: 'mission_support_form',
                     amount_entered: amount.toString(),
                     first_name: formData.firstName || null,
                     last_name: formData.lastName || null,
                     mission_support_name: formData.missionSupportName || null,
+                    payment_method: paymentMethod || 'card',
                     timestamp: new Date().toISOString()
                 }
             });

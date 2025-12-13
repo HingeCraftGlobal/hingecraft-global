@@ -316,6 +316,106 @@ export async function sendKYCRequestEmail(toEmail, payload) {
 }
 
 /**
+ * Generate Mission Support form submission email HTML
+ */
+export function generateMissionSupportEmail(payload) {
+    const { firstName, lastName, email, address, missionSupportName, amount, paymentMethod, timestamp } = payload;
+    const formattedAmount = `$${parseFloat(amount).toFixed(2)}`;
+    const formattedDate = new Date(timestamp).toLocaleString();
+    
+    const html = `
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+        .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+        .header { background: #6a4ad8; color: white; padding: 20px; border-radius: 8px 8px 0 0; }
+        .content { background: #f9f9f9; padding: 20px; border-radius: 0 0 8px 8px; }
+        .field { margin: 10px 0; }
+        .label { font-weight: bold; color: #555; }
+        .value { color: #333; }
+        .footer { margin-top: 20px; padding-top: 20px; border-top: 1px solid #ddd; font-size: 12px; color: #666; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>New Mission Support Form Submission</h2>
+        </div>
+        <div class="content">
+            <div class="field">
+                <span class="label">Name:</span>
+                <span class="value">${firstName} ${lastName}</span>
+            </div>
+            <div class="field">
+                <span class="label">Email:</span>
+                <span class="value">${email}</span>
+            </div>
+            <div class="field">
+                <span class="label">Address:</span>
+                <span class="value">${address || 'Not provided'}</span>
+            </div>
+            ${missionSupportName ? `
+            <div class="field">
+                <span class="label">Mission Support Name:</span>
+                <span class="value">${missionSupportName}</span>
+            </div>
+            ` : ''}
+            <div class="field">
+                <span class="label">Amount:</span>
+                <span class="value">${formattedAmount}</span>
+            </div>
+            <div class="field">
+                <span class="label">Payment Method:</span>
+                <span class="value">${paymentMethod === 'crypto' ? 'Cryptocurrency' : paymentMethod === 'ACH' ? 'ACH/Bank Transfer' : 'Card'}</span>
+            </div>
+            <div class="field">
+                <span class="label">Submitted:</span>
+                <span class="value">${formattedDate}</span>
+            </div>
+        </div>
+        <div class="footer">
+            <p>This is an automated notification from HingeCraft Global Mission Support Form.</p>
+            <p>Please review this submission and follow up with the contributor as needed.</p>
+        </div>
+    </div>
+</body>
+</html>
+    `;
+    
+    const text = `
+New Mission Support Form Submission
+
+Name: ${firstName} ${lastName}
+Email: ${email}
+Address: ${address || 'Not provided'}
+${missionSupportName ? `Mission Support Name: ${missionSupportName}\n` : ''}
+Amount: ${formattedAmount}
+Payment Method: ${paymentMethod === 'crypto' ? 'Cryptocurrency' : paymentMethod === 'ACH' ? 'ACH/Bank Transfer' : 'Card'}
+Submitted: ${formattedDate}
+
+This is an automated notification from HingeCraft Global Mission Support Form.
+    `;
+    
+    return {
+        subject: `New Mission Support Submission - ${formattedAmount} from ${firstName} ${lastName}`,
+        html: html,
+        text: text
+    };
+}
+
+/**
+ * Send Mission Support form submission email to marketingcraft@gmail.com
+ */
+export async function sendMissionSupportEmail(payload) {
+    const email = generateMissionSupportEmail(payload);
+    const marketingEmail = 'marketingcraft@gmail.com';
+    return await sendEmail(marketingEmail, email.subject, email.html, email.text);
+}
+
+/**
  * Helper: Get blockchain explorer link
  */
 function getExplorerLink(chain, txHash) {

@@ -708,13 +708,21 @@ export async function createCustomInvoice(invoiceData) {
         console.log('✅ Created invoice item:', invoiceItem.id);
 
         // Step 3: Create invoice (charge automatically, no email sent)
+        // Support ACH payments via payment_method_types
         const invoicePayload = {
             customer: customerId,
             collection_method: 'charge_automatically',
             auto_advance: false, // Don't automatically finalize
+            // Enable ACH payments if payment_method is ACH
+            payment_settings: {
+                payment_method_types: invoiceData.payment_method === 'ACH' 
+                    ? ['us_bank_account', 'card'] 
+                    : ['card']
+            },
             metadata: {
                 ...(invoiceData.metadata || {}),
                 source: 'custom_invoice',
+                payment_method: invoiceData.payment_method || 'card',
                 mode: STRIPE_MODE
             }
         };

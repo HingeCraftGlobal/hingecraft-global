@@ -84,10 +84,15 @@ export async function cryptoButtonClick(data) {
         
         console.log('💰 Crypto button clicked:', { amount, coin });
         
-        // Validate amount
+        // Validate amount - CRYPTO MINIMUM $30
         const validatedAmount = validateAmount(amount);
         if (!validatedAmount) {
             throw new Error('Invalid amount');
+        }
+        
+        // Enforce $30 minimum for crypto payments
+        if (validatedAmount < 30) {
+            throw new Error('Crypto contributions must be $30 or more. Please select a higher amount or use card/ACH payment.');
         }
         
         // Validate coin
@@ -292,11 +297,13 @@ export async function fiatButtonClick(preset) {
         }
         
         // Create custom Stripe invoice (works with DEV keys, instant creation, no email)
+        // Pass payment_method to enable ACH routing if selected
         const invoiceResult = await createCustomInvoice({
             amount: amount,
             email: email || 'member@hingecraft-global.ai', // Fallback email
             description: description,
             customerName: customerName,
+            payment_method: paymentMethod || 'card', // Pass payment method for ACH routing
             metadata: metadata
         });
         
