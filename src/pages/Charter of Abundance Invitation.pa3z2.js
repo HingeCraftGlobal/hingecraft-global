@@ -68,8 +68,8 @@ $w.onReady(async function () {
         }
     ]);
     
-    // Initialize middleware via HTTP endpoint
-    const middlewareResult = await callVeloFunction(VELO_CONFIG.CHARTER_MIDDLEWARE, 'onReady', {});
+    // Initialize middleware via direct import (no HTTP overhead)
+    const middlewareResult = await onReady();
     
     if (middlewareResult.success) {
         console.log('✅ Charter page middleware initialized');
@@ -129,14 +129,11 @@ function loadCharterPageContent() {
 
 /**
  * Handle crypto button click (called from frontend)
- * Uses HTTP endpoint for full stack sync
+ * Uses direct import - no HTTP overhead
  */
 export async function handleCryptoButtonClick(amount, coin) {
     try {
-        const result = await callVeloFunction(VELO_CONFIG.CHARTER_MIDDLEWARE, 'cryptoButtonClick', {
-            amount: amount,
-            coin: coin
-        });
+        const result = await cryptoButtonClick(amount, coin);
         return result;
     } catch (error) {
         console.error('❌ Crypto button click error:', error);
@@ -149,14 +146,16 @@ export async function handleCryptoButtonClick(amount, coin) {
 
 /**
  * Handle fiat button click (called from frontend)
- * Uses HTTP endpoint for full stack sync
+ * Uses direct import - no HTTP overhead
  */
 export async function handleFiatButtonClick(preset) {
     try {
-        const result = await callVeloFunction(VELO_CONFIG.CHARTER_MIDDLEWARE, 'fiatButtonClick', {
-            amount: preset.amount || preset,
+        // Handle both object and number inputs
+        const data = typeof preset === 'object' ? preset : {
+            amount: preset,
             paymentMethod: 'card'
-        });
+        };
+        const result = await fiatButtonClick(data);
         return result;
     } catch (error) {
         console.error('❌ Fiat button click error:', error);
@@ -169,11 +168,11 @@ export async function handleFiatButtonClick(preset) {
 
 /**
  * Get cumulative total (called from frontend)
- * Uses HTTP endpoint for full stack sync
+ * Uses direct import - no HTTP overhead
  */
 export async function getCumulativeTotalFromDB() {
     try {
-        const result = await callVeloFunction(VELO_CONFIG.CHARTER_MIDDLEWARE, 'getCumulativeTotal', {});
+        const result = await getCumulativeTotal();
         return result;
     } catch (error) {
         console.error('❌ Get cumulative total error:', error);
