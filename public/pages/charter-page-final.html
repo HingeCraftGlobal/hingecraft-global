@@ -29,6 +29,7 @@
     NOWPAYMENTS_API: '/_functions/nowpayments.api',
     STRIPE_API: '/_functions/stripe.api',
     CHARTER_MIDDLEWARE: '/_functions/charter-page-middleware.web',
+    MISSION_SUPPORT_MIDDLEWARE: '/_functions/mission-support-middleware.web',
     PRESET_AMOUNTS: [1, 5, 20],
     CRYPTO_CHAINS: {
       'solana': { symbol: 'SOL', name: 'Solana', icon: '⚡' },
@@ -80,8 +81,8 @@
     // Get cumulative total from database
     await loadCumulativeTotal();
 
-    // Get donation amount
-    donationAmount = getDonationAmount();
+    // Get donation amount (async - supports prefill tokens)
+    donationAmount = await getDonationAmount();
     
     // Get payment method
     paymentMethod = getPaymentMethod();
@@ -562,8 +563,10 @@
 
   /**
    * Get donation amount from multiple sources
+   * Includes prefill token support for Mission Support → Charter sync
    */
-  function getDonationAmount() {
+  async function getDonationAmount() {
+    // Check URL parameters first
     const urlParams = new URLSearchParams(window.location.search);
     const urlAmount = urlParams.get('donationAmount') || urlParams.get('amount');
     if (urlAmount) {
@@ -573,6 +576,29 @@
       }
     }
 
+    // Check for prefill token (from Mission Support form)
+    const prefillId = urlParams.get('prefill');
+    if (prefillId) {
+      try {
+        const response = await fetch(CONFIG.MISSION_SUPPORT_MIDDLEWARE + '/getPrefill', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ prefillId: prefillId })
+        });
+        
+        if (response.ok) {
+          const prefillData = await response.json();
+          if (prefillData.success && prefillData.amount) {
+            console.log('✅ Prefill data retrieved:', prefillData.amount);
+            return parseFloat(prefillData.amount);
+          }
+        }
+      } catch (e) {
+        console.warn('⚠️ Could not retrieve prefill data:', e);
+      }
+    }
+
+    // Check session storage
     try {
       const stored = sessionStorage.getItem(CONFIG.SESSION_KEY);
       if (stored) {
@@ -583,6 +609,7 @@
       }
     } catch (e) {}
 
+    // Check Wix storage
     try {
       if (typeof wixStorage !== 'undefined') {
         const stored = wixStorage.getItem(CONFIG.STORAGE_KEY);

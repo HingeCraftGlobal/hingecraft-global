@@ -1,12 +1,52 @@
 // HingeCraft Global - Mission Support Form (REPLACES Payment Page)
 // T10 Implementation: Mission Support Form with Database Integration
-// Generated: January 27, 2025
+// Updated: December 13, 2025 - Fully synced with Charter page
 // This page REPLACES the old Payment page - Mission Support form is now the Payment page
 
 import wixSeo from 'wix-seo';
-import { onReady, handleUserInputDonation, goToCharterAfterPayment } from 'backend/mission-support-middleware.web';
+
+// Velo API Configuration - Use HTTP endpoints (not imports)
+const VELO_CONFIG = {
+    MISSION_SUPPORT_MIDDLEWARE: '/_functions/mission-support-middleware.web',
+    CHARTER_MIDDLEWARE: '/_functions/charter-page-middleware.web',
+    STRIPE_API: '/_functions/stripe.api',
+    NOWPAYMENTS_API: '/_functions/nowpayments.api',
+    HINGECRAFT_API: '/_functions/hingecraft.api'
+};
+
+// Helper to call Velo functions via HTTP
+async function callVeloFunction(modulePath, functionName, data = {}) {
+    try {
+        const fetchFn = typeof wixFetch !== 'undefined' ? wixFetch.fetch : fetch;
+        const url = `${modulePath}/${functionName}`;
+        
+        const response = await fetchFn(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        });
+        
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+        
+        return await response.json();
+    } catch (error) {
+        console.error(`❌ Error calling ${modulePath}/${functionName}:`, error);
+        return { success: false, error: error.message };
+    }
+}
 
 $w.onReady(async function () {
+    // Initialize middleware via HTTP endpoint
+    const middlewareResult = await callVeloFunction(VELO_CONFIG.MISSION_SUPPORT_MIDDLEWARE, 'onReady', {});
+    
+    if (middlewareResult.success) {
+        console.log('✅ Mission Support middleware initialized');
+        console.log('💰 Cumulative total:', middlewareResult.cumulativeTotal);
+    } else {
+        console.error('❌ Mission Support middleware initialization failed:', middlewareResult.error);
+    }
     // Set SEO for Mission Support Form (on Payment page URL)
     wixSeo.setTitle("Mission Support | HingeCraft Global");
     

@@ -197,6 +197,25 @@ app.get('/auth/status', async (req, res) => {
 // NEW PIPELINE ENDPOINTS
 // ============================================
 
+// AnyMail webhook - Auto-fills prospect data and sends email with proper template
+app.post('/api/webhooks/anymail', async (req, res) => {
+  try {
+    logger.info('AnyMail webhook received');
+    
+    // Respond quickly to AnyMail
+    res.status(200).json({ received: true });
+    
+    // Process asynchronously
+    const anymailWebhookHandler = require('./services/anymailWebhookHandler');
+    const result = await anymailWebhookHandler.handleWebhook(req.body);
+    
+    logger.info('AnyMail webhook processed:', result);
+  } catch (error) {
+    logger.error('AnyMail webhook error:', error);
+    // Don't send error to AnyMail, just log it
+  }
+});
+
 // Google Drive webhook (for push notifications)
 app.post('/api/drive/webhook', async (req, res) => {
   try {

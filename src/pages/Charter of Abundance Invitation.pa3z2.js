@@ -1,9 +1,40 @@
 // HingeCraft Global - Charter Page Velo Code
 // T10 Implementation: Full middleware binding + dynamic totals + crypto payments
-// Generated: January 27, 2025
+// Updated: December 13, 2025 - Fully synced with Mission Support form
 
 import wixSeo from 'wix-seo';
-import { onReady, getCumulativeTotal } from 'backend/charter-page-middleware.web';
+
+// Velo API Configuration - Use HTTP endpoints (not imports)
+const VELO_CONFIG = {
+    CHARTER_MIDDLEWARE: '/_functions/charter-page-middleware.web',
+    MISSION_SUPPORT_MIDDLEWARE: '/_functions/mission-support-middleware.web',
+    STRIPE_API: '/_functions/stripe.api',
+    NOWPAYMENTS_API: '/_functions/nowpayments.api',
+    HINGECRAFT_API: '/_functions/hingecraft.api'
+};
+
+// Helper to call Velo functions via HTTP
+async function callVeloFunction(modulePath, functionName, data = {}) {
+    try {
+        const fetchFn = typeof wixFetch !== 'undefined' ? wixFetch.fetch : fetch;
+        const url = `${modulePath}/${functionName}`;
+        
+        const response = await fetchFn(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        });
+        
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+        
+        return await response.json();
+    } catch (error) {
+        console.error(`❌ Error calling ${modulePath}/${functionName}:`, error);
+        return { success: false, error: error.message };
+    }
+}
 
 $w.onReady(async function () {
     // Set SEO for Charter Page
@@ -123,11 +154,14 @@ function loadCharterPageContent() {
 
 /**
  * Handle crypto button click (called from frontend)
+ * Uses HTTP endpoint for full stack sync
  */
 export async function handleCryptoButtonClick(amount, coin) {
     try {
-        const { cryptoButtonClick } = await import('backend/charter-page-middleware');
-        const result = await cryptoButtonClick(amount, coin);
+        const result = await callVeloFunction(VELO_CONFIG.CHARTER_MIDDLEWARE, 'cryptoButtonClick', {
+            amount: amount,
+            coin: coin
+        });
         return result;
     } catch (error) {
         console.error('❌ Crypto button click error:', error);
@@ -140,11 +174,14 @@ export async function handleCryptoButtonClick(amount, coin) {
 
 /**
  * Handle fiat button click (called from frontend)
+ * Uses HTTP endpoint for full stack sync
  */
 export async function handleFiatButtonClick(preset) {
     try {
-        const { fiatButtonClick } = await import('backend/charter-page-middleware');
-        const result = await fiatButtonClick(preset);
+        const result = await callVeloFunction(VELO_CONFIG.CHARTER_MIDDLEWARE, 'fiatButtonClick', {
+            amount: preset.amount || preset,
+            paymentMethod: 'card'
+        });
         return result;
     } catch (error) {
         console.error('❌ Fiat button click error:', error);
@@ -157,10 +194,11 @@ export async function handleFiatButtonClick(preset) {
 
 /**
  * Get cumulative total (called from frontend)
+ * Uses HTTP endpoint for full stack sync
  */
 export async function getCumulativeTotalFromDB() {
     try {
-        const result = await getCumulativeTotal();
+        const result = await callVeloFunction(VELO_CONFIG.CHARTER_MIDDLEWARE, 'getCumulativeTotal', {});
         return result;
     } catch (error) {
         console.error('❌ Get cumulative total error:', error);

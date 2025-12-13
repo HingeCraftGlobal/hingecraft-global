@@ -381,6 +381,79 @@ async function getSessionId() {
 }
 
 /**
+ * Get prefill data by ID
+ * Used by Charter page to retrieve prefill amount from Mission Support form
+ * @public
+ * @param {string} prefillId - Prefill token ID
+ */
+export async function getPrefill(prefillId) {
+    try {
+        if (!prefillId) {
+            throw new Error('Prefill ID is required');
+        }
+        
+        // Try to get from ContributionIntent collection
+        let prefillData = null;
+        try {
+            const result = await wixData.get('ContributionIntent', prefillId);
+            if (result) {
+                // Check if expired
+                const expiresAt = new Date(result.expires_at);
+                if (expiresAt < new Date()) {
+                    throw new Error('Prefill token expired');
+                }
+                
+                // Check if already used
+                if (result.used) {
+                    throw new Error('Prefill token already used');
+                }
+                
+                prefillData = result;
+            }
+        } catch (dbError) {
+            if (dbError.message !== 'Item not found') {
+                throw dbError;
+            }
+        }
+        
+        if (!prefillData) {
+            throw new Error('Prefill token not found or expired');
+        }
+        
+        // Mark as used (if from DB)
+        if (prefillData._id) {
+            try {
+                await wixData.update('ContributionIntent', {
+                    ...prefillData,
+                    used: true,
+                    used_at: new Date()
+                });
+            } catch (updateError) {
+                console.warn('⚠️ Error marking prefill as used:', updateError);
+            }
+        }
+        
+        return {
+            success: true,
+            amount: prefillData.amount_entered || prefillData.amount,
+            prefillId: prefillId,
+            userInfo: {
+                firstName: prefillData.first_name || null,
+                lastName: prefillData.last_name || null,
+                email: prefillData.email || null,
+                address: prefillData.address || null
+            }
+        };
+    } catch (error) {
+        console.error('❌ Get prefill error:', error);
+        return {
+            success: false,
+            error: error.message
+        };
+    }
+}
+
+/**
  * Get anonymous fingerprint
  */
 async function getAnonymousFingerprint() {
