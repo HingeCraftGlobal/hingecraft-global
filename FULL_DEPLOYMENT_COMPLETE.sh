@@ -40,21 +40,29 @@ USER=$(wix whoami | head -1)
 echo -e "${GREEN}✅ Authenticated as: $USER${NC}"
 echo ""
 
-# Start Wix Dev Mode
-echo -e "${BLUE}📋 Starting Wix Dev Mode...${NC}"
+# Stop any existing Wix Dev processes
+echo -e "${BLUE}📋 Managing Wix Dev Mode...${NC}"
 if pgrep -f "wix dev" > /dev/null; then
-    echo -e "${GREEN}✅ Wix dev is already running${NC}"
-    WIX_DEV_PID=$(pgrep -f "wix dev" | head -1)
+    echo -e "${YELLOW}⚠️  Stopping existing Wix dev processes...${NC}"
+    pkill -f "wix dev" 2>/dev/null || true
+    sleep 2
+fi
+
+# Start fresh Wix Dev Mode
+echo -e "${BLUE}📋 Starting fresh Wix Dev Mode...${NC}"
+cd "$SCRIPT_DIR"
+nohup wix dev > /tmp/wix_dev.log 2>&1 &
+WIX_DEV_PID=$!
+sleep 5
+
+if ps -p $WIX_DEV_PID > /dev/null 2>&1 || pgrep -f "wix dev" > /dev/null; then
+    echo -e "${GREEN}✅ Wix dev started successfully${NC}"
+    echo -e "${BLUE}   Log file: /tmp/wix_dev.log${NC}"
+    echo -e "${BLUE}   Monitor with: tail -f /tmp/wix_dev.log${NC}"
 else
-    nohup wix dev > /tmp/wix_dev.log 2>&1 &
-    WIX_DEV_PID=$!
-    sleep 5
-    if ps -p $WIX_DEV_PID > /dev/null; then
-        echo -e "${GREEN}✅ Wix dev started (PID: $WIX_DEV_PID)${NC}"
-    else
-        echo -e "${RED}❌ Wix dev failed to start${NC}"
-        exit 1
-    fi
+    echo -e "${RED}❌ Wix dev failed to start${NC}"
+    echo -e "${YELLOW}   Check logs: cat /tmp/wix_dev.log${NC}"
+    exit 1
 fi
 
 echo ""
