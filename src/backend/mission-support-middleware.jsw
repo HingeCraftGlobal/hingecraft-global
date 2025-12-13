@@ -1,1085 +1,385 @@
 /**
- * Mission Support Middleware - Wix Velo Backend Module
- * Comprehensive backend for Mission Support form with full data collection, database sync, and GPT email receipts
+ * Mission Support Page Velo Middleware
+ * T10 Implementation: Full middleware binding + dynamic totals + 2-page sync
  * 
  * Functions:
- * - submitMissionSupportForm(formData) → Complete form submission with all fields, database sync, and email receipt
- * - microPayment(amount, userInfo) → Create Stripe session for $1/$2/$5 with email receipt
- * - otherAmount(amount, userInfo) → Create prefill token and return redirect URL
- * - getPrefill(prefillId) → Retrieve prefill data for Charter page
- * - sendPaymentReceiptEmail(email, paymentData) → Send GPT-generated detailed receipt email
- * 
- * IMPORTANT: This is a .jsw file - HTTP-accessible via /_functions/mission-support-middleware/[function-name]
- * Permissions: Anyone (for public access)
+ * - onReady() → load Stripe + crypto handlers
+ * - handleUserInputDonation() → validate → send to payment
+ * - goToCharterAfterPayment(value) → pass donation amount
+ * - databaseWrite() → store contribution
+ * - dynamic update reference → reflect accurate totals
  */
 
 import wixData from 'wix-data';
-import { createCheckoutSession } from 'backend/stripe.api';
 import { createNowPaymentsInvoice } from 'backend/nowpayments.api';
-import { secrets } from 'wix-secrets-backend';
-import { fetch } from 'wix-fetch';
-import { formatPaymentInfoForEmail } from 'backend/payment-info-service';
+import { logMissionSupportIntent } from 'backend/hingecraft.api.web';
+import { redirectBackToCharter } from 'backend/charter-page-middleware';
 
 /**
- * Complete Mission Support Form Submission
- * Handles all form fields, saves to database, processes payment, and sends email receipt
- * @public
- * @param {Object} formData - Complete form data
- * @param {string} formData.firstName - First name
- * @param {string} formData.lastName - Last name
- * @param {string} formData.email - Email address
- * @param {string} formData.address - Address
- * @param {string} formData.missionSupportName - Mission support name (optional)
- * @param {number} formData.amount - Donation amount
- * @param {string} formData.paymentMethod - Payment method: 'card' or 'crypto'
+ * Initialize mission support page on ready
+ * Loads Stripe and crypto handlers
  */
-export async function submitMissionSupportForm(formData) {
+export async function onReady() {
     try {
-        console.log('📝 Mission Support Form Submission:', formData);
+        console.log('🚀 Mission Support Page Middleware: onReady()');
         
-        // Validate required fields
-        if (!formData.firstName || !formData.lastName || !formData.email || !formData.address || !formData.amount) {
-            throw new Error('Missing required fields: firstName, lastName, email, address, amount');
+        // Get cumulative total from database
+        const { getCumulativeTotal } = await import('backend/charter-page-middleware');
+        const totalResult = await getCumulativeTotal();
+        
+        // Setup database change listeners
+        setupDatabaseListeners();
+        
+        return {
+            success: true,
+            cumulativeTotal: totalResult.total
+        };
+    } catch (error) {
+        console.error('❌ Mission Support onReady error:', error);
+        return {
+            success: false,
+            error: error.message
+        };
+    }
+}
+
+/**
+ * Handle user input donation
+ * Validates and sends to payment flow
+ */
+export async function handleUserInputDonation(formData) {
+    try {
+        console.log('💰 User input donation:', formData);
+        
+        // Validate form data
+        const validationResult = validateFormData(formData);
+        if (!validationResult.valid) {
+            throw new Error(validationResult.error);
         }
         
-        // Validate amount
         const amount = parseFloat(formData.amount);
-        if (isNaN(amount) || amount < 1.00 || amount > 25000.00) {
-            throw new Error('Invalid amount. Must be between $1.00 and $25,000.00');
-        }
+        const paymentMethod = formData.paymentMethod || 'card';
         
-        // Validate email
-        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-        if (!emailRegex.test(formData.email)) {
-            throw new Error('Invalid email address');
-        }
+        // Log mission support intent
+        const sessionId = await getSessionId();
+        const anonymousFingerprint = await getAnonymousFingerprint();
         
-        // Generate unique submission ID
-        const submissionId = 'ms_' + Date.now().toString(36) + '_' + Math.random().toString(36).substr(2, 9);
-        const timestamp = new Date();
-        
-        // Prepare complete submission record
-        const submissionRecord = {
-            _id: submissionId,
-            firstName: formData.firstName.trim(),
-            lastName: formData.lastName.trim(),
-            email: formData.email.trim().toLowerCase(),
-            address: formData.address.trim(),
-            missionSupportName: formData.missionSupportName ? formData.missionSupportName.trim() : null,
-            amount: amount,
-            currency: 'USD',
-            paymentMethod: formData.paymentMethod || 'card',
-            paymentStatus: 'pending',
-            source: 'mission_support_form',
-            created_at: timestamp,
-            updated_at: timestamp,
-            metadata: {
-                sessionId: formData.sessionId || null,
-                anonymousFingerprint: formData.anonymousFingerprint || null,
-                referrerSource: formData.referrerSource || 'direct',
-                pageUrl: formData.pageUrl || null,
-                userAgent: formData.userAgent || null
-            }
-        };
-        
-        // Save to ContributionIntent collection (primary storage)
-        try {
-            await wixData.save('ContributionIntent', submissionRecord);
-            console.log('✅ Saved to ContributionIntent:', submissionId);
-        } catch (dbError) {
-            console.error('❌ Error saving to ContributionIntent:', dbError);
-            // Continue - we'll try other collections
-        }
-        
-        // Also save to Donations collection for payment tracking
-        try {
-            const donationRecord = {
-                firstName: submissionRecord.firstName,
-                lastName: submissionRecord.lastName,
-                email: submissionRecord.email,
-                address: submissionRecord.address,
-                amount: submissionRecord.amount,
-                currency: submissionRecord.currency,
-                payment_method: submissionRecord.paymentMethod,
-                payment_status: submissionRecord.paymentStatus,
-                source: submissionRecord.source,
-                created_at: timestamp,
-                metadata: {
-                    submissionId: submissionId,
-                    missionSupportName: submissionRecord.missionSupportName,
-                    ...submissionRecord.metadata
-                }
-            };
-            
-            await wixData.save('Donations', donationRecord);
-            console.log('✅ Saved to Donations');
-        } catch (dbError) {
-            console.warn('⚠️ Error saving to Donations (non-blocking):', dbError);
-        }
-        
-        // Process payment based on method
-        let paymentResult = null;
-        
-        if (formData.paymentMethod === 'crypto') {
-            // Create crypto invoice
-            paymentResult = await processCryptoPayment(submissionRecord);
-        } else {
-            // Handle card payment
-            if ([1, 2, 5].includes(amount)) {
-                // Micro payment - create Stripe session immediately
-                paymentResult = await processMicroPayment(amount, {
-                    email: submissionRecord.email,
-                    firstName: submissionRecord.firstName,
-                    lastName: submissionRecord.lastName
-                });
-            } else {
-                // Other amount - create prefill token
-                paymentResult = await processOtherAmount(amount, {
-                    email: submissionRecord.email,
-                    firstName: submissionRecord.firstName,
-                    lastName: submissionRecord.lastName
-                });
-            }
-        }
-        
-        // Send confirmation email (non-blocking)
-        try {
-            await sendPaymentReceiptEmail(submissionRecord.email, {
-                ...submissionRecord,
-                paymentResult: paymentResult
-            });
-        } catch (emailError) {
-            console.warn('⚠️ Error sending email receipt (non-blocking):', emailError);
-        }
-        
-        return {
-            success: true,
-            submissionId: submissionId,
-            paymentResult: paymentResult,
-            message: 'Form submitted successfully'
-        };
-        
-    } catch (error) {
-        console.error('❌ Mission Support Form Submission Error:', error);
-        return {
-            success: false,
-            error: error.message
-        };
-    }
-}
-
-/**
- * Handle micro payment ($1, $2, $5)
- * Creates Stripe checkout session immediately with full form data
- * @public
- * @param {number|Object} amountOrData - Amount or object with amount and userInfo
- * @param {Object} userInfo - Optional user information
- */
-export async function microPayment(amountOrData, userInfo = {}) {
-    try {
-        // Support both object and positional parameters
-        let validatedAmount, validatedUserInfo;
-        if (typeof amountOrData === 'object' && amountOrData !== null) {
-            validatedAmount = amountOrData.amount || amountOrData;
-            validatedUserInfo = amountOrData.userInfo || amountOrData;
-        } else {
-            validatedAmount = amountOrData;
-            validatedUserInfo = userInfo || {};
-        }
-        
-        console.log('💰 Micro payment requested:', { amount: validatedAmount, userInfo: validatedUserInfo });
-        
-        // Validate amount
-        if (![1, 2, 5].includes(validatedAmount)) {
-            throw new Error('Invalid micro payment amount. Must be 1, 2, or 5.');
-        }
-        
-        return await processMicroPayment(validatedAmount, validatedUserInfo);
-        
-    } catch (error) {
-        console.error('❌ Micro payment error:', error);
-        return {
-            success: false,
-            error: error.message
-        };
-    }
-}
-
-/**
- * Process micro payment (internal)
- */
-async function processMicroPayment(amount, userInfo) {
-    const baseUrl = await getBaseUrl();
-    
-    // Create Stripe checkout session
-    const sessionResult = await createCheckoutSession({
-        amount: amount,
-        currency: 'USD',
-        paymentMethod: 'card',
-        successUrl: `${baseUrl}/payment-success?amount=${amount}&method=micro&source=mission_support`,
-        cancelUrl: `${baseUrl}/mission-support?canceled=true&amount=${amount}`,
-        donationId: null,
-        email: userInfo.email || null,
-        baseUrl: baseUrl,
-        metadata: {
-            source: 'mission_support_micro',
-            preset_amount: amount,
-            user_info: userInfo
-        }
-    });
-    
-    if (!sessionResult.success) {
-        throw new Error(sessionResult.error || 'Failed to create Stripe session');
-    }
-    
-    // Save payment record to database
-    try {
-        const paymentRecord = {
-            amount: amount,
-            currency: 'USD',
-            payment_method: 'stripe',
-            payment_status: 'pending',
-            gateway: 'stripe',
-            provider: 'stripe',
-            provider_id: sessionResult.sessionId,
-            provider_url: sessionResult.url,
-            source: 'mission_support_micro',
-            email: userInfo.email || null,
-            firstName: userInfo.firstName || null,
-            lastName: userInfo.lastName || null,
-            created_at: new Date(),
-            metadata: {
-                preset_amount: amount,
-                user_info: userInfo,
-                stripe_session_id: sessionResult.sessionId
-            }
-        };
-        
-        await wixData.save('Donations', paymentRecord);
-        console.log('✅ Payment record saved to Donations');
-    } catch (dbError) {
-        console.warn('⚠️ Error saving payment record (non-blocking):', dbError);
-    }
-    
-    return {
-        success: true,
-        url: sessionResult.url,
-        sessionId: sessionResult.sessionId,
-        amount: amount
-    };
-}
-
-/**
- * Handle "Other" amount - create prefill token and return redirect URL
- * @public
- * @param {number|Object} amountOrData - Custom donation amount, or object with amount and userInfo
- * @param {Object} userInfo - Optional user information (if first param is number)
- */
-export async function otherAmount(amountOrData, userInfo = {}) {
-    try {
-        // Support both object and positional parameters
-        let validatedAmount, validatedUserInfo;
-        if (typeof amountOrData === 'object' && amountOrData !== null) {
-            validatedAmount = amountOrData.amount || amountOrData;
-            validatedUserInfo = amountOrData.userInfo || amountOrData;
-        } else {
-            validatedAmount = amountOrData;
-            validatedUserInfo = userInfo || {};
-        }
-        
-        console.log('📝 Other amount requested:', { amount: validatedAmount, userInfo: validatedUserInfo });
-        
-        return await processOtherAmount(validatedAmount, validatedUserInfo);
-        
-    } catch (error) {
-        console.error('❌ Other amount error:', error);
-        return {
-            success: false,
-            error: error.message
-        };
-    }
-}
-
-/**
- * Process other amount (internal)
- */
-async function processOtherAmount(amount, userInfo) {
-    // Validate amount
-    const validatedAmount = parseFloat(amount);
-    if (isNaN(validatedAmount) || validatedAmount < 1.00 || validatedAmount > 25000.00) {
-        throw new Error('Invalid amount. Must be between $1.00 and $25,000.00');
-    }
-    
-    // Generate prefill token
-    const prefillId = 'prefill_' + Date.now().toString(36) + '_' + Math.random().toString(36).substr(2, 9);
-    
-    // Save prefill token to database (expires in 10 minutes)
-    const expiresAt = new Date();
-    expiresAt.setMinutes(expiresAt.getMinutes() + 10);
-    
-    try {
-        const prefillRecord = {
-            _id: prefillId,
-            amount: validatedAmount,
-            user_info: userInfo,
-            created_at: new Date(),
-            expires_at: expiresAt,
-            used: false,
-            source: 'mission_support_other'
-        };
-        
-        await wixData.save('ContributionIntent', prefillRecord);
-        console.log('✅ Prefill token saved:', prefillId);
-    } catch (dbError) {
-        console.warn('⚠️ Error saving prefill token (non-blocking):', dbError);
-    }
-    
-    // Get base URL
-    const baseUrl = await getBaseUrl();
-    
-    // Return redirect URL to Charter page
-    const redirectUrl = `${baseUrl}/charter?prefill=${prefillId}&donationAmount=${validatedAmount}`;
-    
-    return {
-        success: true,
-        redirectUrl: redirectUrl,
-        prefillId: prefillId,
-        amount: validatedAmount
-    };
-}
-
-/**
- * Process crypto payment (internal)
- */
-async function processCryptoPayment(submissionRecord) {
-    const intentId = 'hc_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
-    
-    // Create NOWPayments invoice
-    const invoiceResult = await createNowPaymentsInvoice({
-        intentId: intentId,
-        amount: submissionRecord.amount,
-        payCurrency: 'USDT', // Default, can be customized
-        email: submissionRecord.email,
-        sessionId: intentId,
-        firstName: submissionRecord.firstName,
-        lastName: submissionRecord.lastName
-    });
-    
-    if (!invoiceResult.success) {
-        throw new Error(invoiceResult.error || 'Failed to create crypto invoice');
-    }
-    
-    // Save crypto payment record
-    try {
-        const cryptoRecord = {
-            invoice_id: invoiceResult.invoiceId,
-            order_id: invoiceResult.orderId || intentId,
-            price_amount: submissionRecord.amount,
-            price_currency: 'USD',
-            pay_currency: invoiceResult.payCurrency || 'USDT',
-            pay_amount: invoiceResult.payAmountCrypto,
-            payment_address: invoiceResult.payAddress,
-            payment_url: invoiceResult.paymentUrl,
-            status: 'waiting',
-            email: submissionRecord.email,
-            firstName: submissionRecord.firstName,
-            lastName: submissionRecord.lastName,
-            created_at: new Date(),
-            metadata: {
-                submissionId: submissionRecord._id,
-                missionSupportName: submissionRecord.missionSupportName
-            }
-        };
-        
-        await wixData.save('CryptoPayments', cryptoRecord);
-        console.log('✅ Crypto payment saved');
-    } catch (dbError) {
-        console.warn('⚠️ Error saving crypto payment (non-blocking):', dbError);
-    }
-    
-    return {
-        success: true,
-        invoiceId: invoiceResult.invoiceId,
-        paymentUrl: invoiceResult.paymentUrl,
-        payAddress: invoiceResult.payAddress,
-        payAmountCrypto: invoiceResult.payAmountCrypto,
-        payCurrency: invoiceResult.payCurrency
-    };
-}
-
-/**
- * Get prefill data by ID
- * Used by Charter page to retrieve prefill amount
- * @public
- * @param {string|Object} prefillIdOrData - Prefill token ID, or object with prefillId
- */
-export async function getPrefill(prefillIdOrData) {
-    try {
-        // Support both object and positional parameters
-        let prefillId;
-        if (typeof prefillIdOrData === 'object' && prefillIdOrData !== null) {
-            prefillId = prefillIdOrData.prefillId || prefillIdOrData;
-        } else {
-            prefillId = prefillIdOrData;
-        }
-        
-        if (!prefillId) {
-            throw new Error('Prefill ID is required');
-        }
-        
-        // Try to get from ContributionIntent collection
-        let prefillData = null;
-        try {
-            const result = await wixData.get('ContributionIntent', prefillId);
-            if (result) {
-                // Check if expired
-                const expiresAt = new Date(result.expires_at);
-                if (expiresAt < new Date()) {
-                    throw new Error('Prefill token expired');
-                }
-                
-                // Check if already used
-                if (result.used) {
-                    throw new Error('Prefill token already used');
-                }
-                
-                prefillData = result;
-            }
-        } catch (dbError) {
-            if (dbError.message !== 'Item not found') {
-                throw dbError;
-            }
-        }
-        
-        if (!prefillData) {
-            throw new Error('Prefill token not found or expired');
-        }
-        
-        // Mark as used (if from DB)
-        if (prefillData._id) {
-            try {
-                await wixData.update('ContributionIntent', {
-                    ...prefillData,
-                    used: true,
-                    used_at: new Date()
-                });
-            } catch (updateError) {
-                console.warn('⚠️ Error marking prefill as used:', updateError);
-            }
-        }
-        
-        return {
-            success: true,
-            amount: prefillData.amount,
-            prefillId: prefillId,
-            userInfo: prefillData.user_info || {}
-        };
-    } catch (error) {
-        console.error('❌ Get prefill error:', error);
-        return {
-            success: false,
-            error: error.message
-        };
-    }
-}
-
-/**
- * Send GPT-generated payment receipt email
- * Creates highly detailed, professional receipt using GPT
- * Automatically saves receipt to database in Receipts collection
- * @public
- * @param {string} email - Recipient email
- * @param {Object} paymentData - Complete payment data
- */
-/**
- * Redirect to Charter page after payment
- * Creates prefill token and returns redirect URL
- * @public
- * @param {number|Object} amountOrData - Donation amount or object with amount
- */
-export async function goToCharterAfterPayment(amountOrData) {
-    try {
-        // Support both object and positional parameters
-        let amount;
-        let userInfo = {};
-        
-        if (typeof amountOrData === 'object' && amountOrData !== null) {
-            amount = amountOrData.value || amountOrData.amount || amountOrData;
-            userInfo = amountOrData.userInfo || {};
-        } else {
-            amount = amountOrData;
-        }
-        
-        if (!amount || isNaN(parseFloat(amount))) {
-            throw new Error('Valid amount is required');
-        }
-        
-        const finalAmount = parseFloat(amount);
-        if (finalAmount < 1.00 || finalAmount > 25000.00) {
-            throw new Error('Amount must be between $1.00 and $25,000.00');
-        }
-        
-        // Create prefill token using otherAmount function
-        const prefillResult = await otherAmount({ amount: finalAmount, userInfo: userInfo });
-        
-        if (prefillResult.success && prefillResult.redirectUrl) {
-            return {
-                success: true,
-                redirectUrl: prefillResult.redirectUrl,
-                prefillId: prefillResult.prefillId,
-                amount: finalAmount
-            };
-        } else {
-            // Fallback to direct URL with amount
-            const charterUrl = `/charter?donationAmount=${encodeURIComponent(finalAmount)}&fromMissionSupport=true&paymentMethod=card`;
-            return {
-                success: true,
-                redirectUrl: charterUrl,
-                prefillId: null,
-                amount: finalAmount
-            };
-        }
-    } catch (error) {
-        console.error('❌ Go to Charter error:', error);
-        // Fallback to direct URL
-        const amount = typeof amountOrData === 'object' ? (amountOrData.value || amountOrData.amount || 0) : amountOrData;
-        const charterUrl = `/charter?donationAmount=${encodeURIComponent(amount)}&fromMissionSupport=true&paymentMethod=card`;
-        return {
-            success: true,
-            redirectUrl: charterUrl,
-            prefillId: null,
-            amount: amount,
-            error: error.message
-        };
-    }
-}
-
-/**
- * Send GPT-generated payment receipt email
- * Creates highly detailed, professional receipt using GPT
- * Automatically saves receipt to database in Receipts collection
- * @public
- * @param {string} email - Recipient email
- * @param {Object} paymentData - Complete payment data
- */
-export async function sendPaymentReceiptEmail(email, paymentData) {
-    try {
-        console.log('📧 Generating GPT receipt email for:', email);
-        
-        // Format payment info using unified service (ensures consistency across all payment flows)
-        let formattedPayment;
-        try {
-            formattedPayment = await formatPaymentInfoForEmail(paymentData);
-            console.log('✅ Payment info formatted using unified service');
-        } catch (formatError) {
-            console.warn('⚠️ Could not format payment info, using raw data:', formatError);
-            formattedPayment = paymentData; // Fallback to raw data
-        }
-        
-        // Get OpenAI API key from secrets
-        let openaiKey;
-        let receiptEmail;
-        let isGPTGenerated = false;
-        
-        try {
-            openaiKey = await secrets.getSecret('OPENAI_API_KEY');
-            // Generate GPT receipt email with formatted payment info
-            receiptEmail = await generateGPTReceiptEmail(formattedPayment, openaiKey);
-            isGPTGenerated = true;
-        } catch (e) {
-            console.warn('⚠️ OpenAI API key not found, using template-based email');
-            receiptEmail = {
-                subject: `Thank you for your ${formattedPayment.amount || `$${paymentData.amount.toFixed(2)}`} contribution to HingeCraft`,
-                html: generateTemplateReceiptHTML(formattedPayment || paymentData),
-                text: generateTemplateReceiptText(formattedPayment || paymentData)
-            };
-            isGPTGenerated = false;
-        }
-        
-        // Send email via SendGrid or Wix Email
-        const emailResult = await sendEmail(email, receiptEmail.subject, receiptEmail.html, receiptEmail.text);
-        
-        // Save receipt to database (non-blocking) - use formatted payment data
-        try {
-            await saveReceiptToDatabase(email, formattedPayment || paymentData, receiptEmail, emailResult, isGPTGenerated);
-        } catch (dbError) {
-            console.warn('⚠️ Error saving receipt to database (non-blocking):', dbError);
-            // Don't fail the function if database save fails
-        }
-        
-        return emailResult;
-        
-    } catch (error) {
-        console.error('❌ Error sending receipt email:', error);
-        // Fallback to template-based email
-        try {
-            const fallbackEmail = {
-                subject: `Thank you for your $${paymentData.amount.toFixed(2)} contribution to HingeCraft`,
-                html: generateTemplateReceiptHTML(paymentData),
-                text: generateTemplateReceiptText(paymentData)
-            };
-            
-            const emailResult = await sendEmail(email, fallbackEmail.subject, fallbackEmail.html, fallbackEmail.text);
-            
-            // Try to save receipt even if email failed
-            try {
-                await saveReceiptToDatabase(email, paymentData, fallbackEmail, emailResult, false);
-            } catch (dbError) {
-                console.warn('⚠️ Error saving receipt to database (non-blocking):', dbError);
-            }
-            
-            return emailResult;
-        } catch (fallbackError) {
-            console.error('❌ Fallback email also failed:', fallbackError);
-            return { success: false, error: fallbackError.message };
-        }
-    }
-}
-
-/**
- * Save receipt to database in Receipts collection
- * Organizes receipts in their own dedicated collection
- * @private
- * @param {string} email - Recipient email
- * @param {Object} paymentData - Complete payment data
- * @param {Object} receiptEmail - Generated email content
- * @param {Object} emailResult - Email sending result
- * @param {boolean} isGPTGenerated - Whether receipt was GPT-generated
- */
-async function saveReceiptToDatabase(email, paymentData, receiptEmail, emailResult, isGPTGenerated) {
-    try {
-        const receiptId = 'receipt_' + Date.now().toString(36) + '_' + Math.random().toString(36).substr(2, 9);
-        const timestamp = new Date();
-        
-        // Generate receipt number
-        const receiptNumber = paymentData._id || 'MS-' + Date.now();
-        
-        // Prepare receipt record
-        const receiptRecord = {
-            _id: receiptId,
-            receiptNumber: receiptNumber,
-            recipientEmail: email,
-            recipientName: `${paymentData.firstName} ${paymentData.lastName}`,
-            firstName: paymentData.firstName,
-            lastName: paymentData.lastName,
-            address: paymentData.address,
-            missionSupportName: paymentData.missionSupportName || null,
-            amount: paymentData.amount,
-            currency: paymentData.currency || 'USD',
-            paymentMethod: paymentData.paymentMethod || 'card',
-            paymentStatus: paymentData.paymentStatus || 'pending',
-            transactionId: paymentData.paymentResult?.sessionId || paymentData.paymentResult?.invoiceId || null,
-            invoiceId: paymentData.paymentResult?.invoiceId || null,
-            source: paymentData.source || 'mission_support_form',
-            emailSubject: receiptEmail.subject,
-            emailHtml: receiptEmail.html,
-            emailText: receiptEmail.text,
-            isGPTGenerated: isGPTGenerated,
-            emailSent: emailResult.success || false,
-            emailSentAt: emailResult.success ? timestamp : null,
-            emailError: emailResult.error || null,
-            submissionId: paymentData._id || null,
-            created_at: timestamp,
-            metadata: {
-                paymentData: {
-                    paymentMethod: paymentData.paymentMethod,
-                    paymentResult: paymentData.paymentResult,
-                    created_at: paymentData.created_at
-                },
-                emailService: emailResult.service || 'unknown',
-                gptModel: isGPTGenerated ? 'gpt-4-turbo-preview' : null,
-                templateVersion: isGPTGenerated ? null : 'v1.0'
-            }
-        };
-        
-        // Save to Receipts collection
-        await wixData.save('Receipts', receiptRecord);
-        console.log('✅ Receipt saved to database:', receiptId);
-        
-        return {
-            success: true,
-            receiptId: receiptId,
-            receiptNumber: receiptNumber
-        };
-        
-    } catch (error) {
-        console.error('❌ Error saving receipt to database:', error);
-        throw error;
-    }
-}
-
-/**
- * Generate GPT-based receipt email (highest most detailed form)
- */
-async function generateGPTReceiptEmail(paymentData, openaiKey) {
-    const prompt = `Create a highly detailed, professional payment receipt email for HingeCraft Global Mission Support.
-
-Payment Details:
-- Donor Name: ${paymentData.firstName} ${paymentData.lastName}
-- Email: ${paymentData.email}
-- Address: ${paymentData.address}
-- Amount: $${paymentData.amount.toFixed(2)} USD
-- Payment Method: ${paymentData.paymentMethod || 'card'}
-- Date: ${new Date(paymentData.created_at || Date.now()).toLocaleDateString()}
-${paymentData.missionSupportName ? `- Mission Support Name: ${paymentData.missionSupportName}` : ''}
-${paymentData.paymentResult?.sessionId ? `- Transaction ID: ${paymentData.paymentResult.sessionId}` : ''}
-${paymentData.paymentResult?.invoiceId ? `- Invoice ID: ${paymentData.paymentResult.invoiceId}` : ''}
-
-Requirements:
-1. Professional, warm, and appreciative tone
-2. Include complete payment details in a well-formatted table
-3. Include tax-deductibility notice (HingeCraft Global PBC is not a registered 501(c)(3))
-4. Include contact information for questions
-5. Include unsubscribe and preference management links
-6. Use HTML email format with inline CSS for maximum compatibility
-7. Make it visually appealing with proper spacing and colors
-8. Include a clear call-to-action if applicable
-9. Ensure CAN-SPAM and GDPR compliance
-10. Include receipt number and date prominently
-
-Generate the email in JSON format with:
-{
-  "subject": "Email subject line",
-  "html": "Complete HTML email body with inline CSS",
-  "text": "Plain text version"
-}`;
-
-    try {
-        const response = await fetch('https://api.openai.com/v1/chat/completions', {
-            method: 'POST',
-            headers: {
-                'Authorization': `Bearer ${openaiKey}`,
-                'Content-Type': 'application/json'
+        const intentResult = await logMissionSupportIntent({
+            formData: {
+                firstName: formData.firstName,
+                lastName: formData.lastName,
+                email: formData.email,
+                address: formData.address,
+                missionSupportName: formData.missionSupportName || null
             },
-            body: JSON.stringify({
-                model: 'gpt-4-turbo-preview',
-                messages: [
-                    {
-                        role: 'system',
-                        content: 'You are an expert email copywriter specializing in payment receipts and donation confirmations. Create highly detailed, professional, and compliant email receipts.'
-                    },
-                    {
-                        role: 'user',
-                        content: prompt
-                    }
-                ],
-                temperature: 0.7,
-                max_tokens: 2000
-            })
+            amountEntered: amount,
+            timestamp: new Date().toISOString(),
+            sessionID: sessionId,
+            anonymousFingerprint: anonymousFingerprint,
+            referrerSource: formData.referrerSource || 'direct',
+            pageUrl: formData.pageUrl || 'unknown',
+            userAgent: formData.userAgent || 'unknown'
         });
         
-        if (!response.ok) {
-            throw new Error(`OpenAI API error: ${response.status}`);
+        if (!intentResult.success) {
+            console.warn('⚠️ Intent logging failed (non-blocking):', intentResult.error);
         }
         
-        const data = await response.json();
-        const content = data.choices[0].message.content;
-        
-        // Parse JSON from response
-        const emailData = JSON.parse(content);
-        
-        return {
-            subject: emailData.subject || `Thank you for your $${paymentData.amount.toFixed(2)} contribution to HingeCraft`,
-            html: emailData.html || generateTemplateReceiptHTML(paymentData),
-            text: emailData.text || generateTemplateReceiptText(paymentData)
-        };
-        
-    } catch (error) {
-        console.error('❌ GPT email generation error:', error);
-        // Fallback to template
-        return {
-            subject: `Thank you for your $${paymentData.amount.toFixed(2)} contribution to HingeCraft`,
-            html: generateTemplateReceiptHTML(paymentData),
-            text: generateTemplateReceiptText(paymentData)
-        };
-    }
-}
-
-/**
- * Send template-based receipt email (fallback)
- */
-async function sendTemplateReceiptEmail(email, paymentData) {
-    const receiptEmail = {
-        subject: `Thank you for your $${paymentData.amount.toFixed(2)} contribution to HingeCraft`,
-        html: generateTemplateReceiptHTML(paymentData),
-        text: generateTemplateReceiptText(paymentData)
-    };
-    
-    return await sendEmail(email, receiptEmail.subject, receiptEmail.html, receiptEmail.text);
-}
-
-/**
- * Generate template receipt HTML
- */
-function generateTemplateReceiptHTML(paymentData) {
-    const formattedAmount = new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD'
-    }).format(paymentData.amount);
-    
-    const receiptNumber = paymentData._id || 'MS-' + Date.now();
-    const date = new Date(paymentData.created_at || Date.now()).toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-    });
-    
-    return `
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f5f5f5;">
-    <div style="background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-        <!-- Header -->
-        <div style="text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 2px solid #10b981;">
-            <h1 style="color: #10b981; margin: 0; font-size: 28px;">Thank You for Your Contribution!</h1>
-            <p style="color: #666; margin: 10px 0 0 0;">HingeCraft Global Mission Support</p>
-        </div>
-        
-        <!-- Greeting -->
-        <p style="font-size: 16px; margin-bottom: 20px;">Dear ${paymentData.firstName} ${paymentData.lastName},</p>
-        
-        <p style="font-size: 16px; margin-bottom: 30px;">We are deeply grateful for your generous contribution of <strong style="color: #10b981; font-size: 20px;">${formattedAmount}</strong> to HingeCraft Global Mission Support. Your support helps us build resilient communities, provide AI training for students, and create sustainable furniture microfactories.</p>
-        
-        <!-- Payment Details Table -->
-        <div style="background: #f9fafb; padding: 20px; border-radius: 8px; margin: 30px 0;">
-            <h2 style="color: #333; margin-top: 0; font-size: 20px;">Payment Receipt</h2>
-            <table style="width: 100%; border-collapse: collapse;">
-                <tr>
-                    <td style="padding: 10px 0; border-bottom: 1px solid #e5e7eb; font-weight: bold; color: #666;">Receipt Number:</td>
-                    <td style="padding: 10px 0; border-bottom: 1px solid #e5e7eb; color: #333;">${receiptNumber}</td>
-                </tr>
-                <tr>
-                    <td style="padding: 10px 0; border-bottom: 1px solid #e5e7eb; font-weight: bold; color: #666;">Date:</td>
-                    <td style="padding: 10px 0; border-bottom: 1px solid #e5e7eb; color: #333;">${date}</td>
-                </tr>
-                <tr>
-                    <td style="padding: 10px 0; border-bottom: 1px solid #e5e7eb; font-weight: bold; color: #666;">Amount:</td>
-                    <td style="padding: 10px 0; border-bottom: 1px solid #e5e7eb; color: #333; font-size: 18px; font-weight: bold; color: #10b981;">${formattedAmount} USD</td>
-                </tr>
-                <tr>
-                    <td style="padding: 10px 0; border-bottom: 1px solid #e5e7eb; font-weight: bold; color: #666;">Payment Method:</td>
-                    <td style="padding: 10px 0; border-bottom: 1px solid #e5e7eb; color: #333;">${paymentData.paymentMethod === 'crypto' ? 'Cryptocurrency' : 'Credit/Debit Card'}</td>
-                </tr>
-                ${paymentData.paymentResult?.sessionId ? `
-                <tr>
-                    <td style="padding: 10px 0; border-bottom: 1px solid #e5e7eb; font-weight: bold; color: #666;">Transaction ID:</td>
-                    <td style="padding: 10px 0; border-bottom: 1px solid #e5e7eb; color: #333; font-family: monospace; font-size: 12px;">${paymentData.paymentResult.sessionId}</td>
-                </tr>
-                ` : ''}
-                ${paymentData.paymentResult?.invoiceId ? `
-                <tr>
-                    <td style="padding: 10px 0; border-bottom: 1px solid #e5e7eb; font-weight: bold; color: #666;">Invoice ID:</td>
-                    <td style="padding: 10px 0; border-bottom: 1px solid #e5e7eb; color: #333; font-family: monospace; font-size: 12px;">${paymentData.paymentResult.invoiceId}</td>
-                </tr>
-                ` : ''}
-                <tr>
-                    <td style="padding: 10px 0; font-weight: bold; color: #666;">Status:</td>
-                    <td style="padding: 10px 0; color: #10b981; font-weight: bold;">✓ Confirmed</td>
-                </tr>
-            </table>
-        </div>
-        
-        <!-- Donor Information -->
-        <div style="background: #f9fafb; padding: 20px; border-radius: 8px; margin: 30px 0;">
-            <h2 style="color: #333; margin-top: 0; font-size: 20px;">Donor Information</h2>
-            <p style="margin: 5px 0;"><strong>Name:</strong> ${paymentData.firstName} ${paymentData.lastName}</p>
-            <p style="margin: 5px 0;"><strong>Email:</strong> ${paymentData.email}</p>
-            <p style="margin: 5px 0;"><strong>Address:</strong> ${paymentData.address}</p>
-            ${paymentData.missionSupportName ? `<p style="margin: 5px 0;"><strong>Mission Support Name:</strong> ${paymentData.missionSupportName}</p>` : ''}
-        </div>
-        
-        <!-- Tax Notice -->
-        <div style="background: #fef3c7; border-left: 4px solid #f59e0b; padding: 15px; margin: 30px 0; border-radius: 4px;">
-            <p style="margin: 0; font-size: 14px; color: #92400e;">
-                <strong>Important Tax Information:</strong> At present, HingeCraft Global PBC is not a registered 501(c)(3) organization. Contributions may not be tax-deductible. Please consult with your tax advisor regarding the deductibility of your contribution. Please save this receipt for your records.
-            </p>
-        </div>
-        
-        <!-- Impact Statement -->
-        <div style="margin: 30px 0; padding: 20px; background: #ecfdf5; border-radius: 8px;">
-            <h3 style="color: #10b981; margin-top: 0;">Your Impact</h3>
-            <p style="margin: 10px 0;">Your contribution directly supports:</p>
-            <ul style="margin: 10px 0; padding-left: 20px;">
-                <li>Building resilient communities through innovative solutions</li>
-                <li>AI training programs for students worldwide</li>
-                <li>Sustainable furniture microfactories</li>
-                <li>Mission-driven initiatives that create positive change</li>
-            </ul>
-        </div>
-        
-        <!-- Contact Information -->
-        <div style="margin: 30px 0; padding-top: 20px; border-top: 1px solid #e5e7eb;">
-            <p style="margin: 10px 0;">If you have any questions about your contribution, please contact us:</p>
-            <p style="margin: 10px 0;">
-                <strong>Email:</strong> <a href="mailto:support@hingecraft-global.ai" style="color: #10b981;">support@hingecraft-global.ai</a><br>
-                <strong>Website:</strong> <a href="https://www.hingecraft-global.ai" style="color: #10b981;">www.hingecraft-global.ai</a>
-            </p>
-        </div>
-        
-        <!-- Footer -->
-        <div style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #e5e7eb; color: #666; font-size: 12px;">
-            <p style="margin: 5px 0;">© ${new Date().getFullYear()} HingeCraft Global. All rights reserved.</p>
-            <p style="margin: 5px 0;">
-                <a href="{{unsubscribe_url}}" style="color: #10b981; text-decoration: none;">Unsubscribe</a> | 
-                <a href="{{preferences_url}}" style="color: #10b981; text-decoration: none;">Update Preferences</a>
-            </p>
-            <p style="margin: 10px 0 0 0; font-size: 11px;">This is an automated receipt. Please do not reply directly to this email.</p>
-        </div>
-    </div>
-</body>
-</html>
-    `;
-}
-
-/**
- * Generate template receipt text (plain text version)
- */
-function generateTemplateReceiptText(paymentData) {
-    const formattedAmount = new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD'
-    }).format(paymentData.amount);
-    
-    const receiptNumber = paymentData._id || 'MS-' + Date.now();
-    const date = new Date(paymentData.created_at || Date.now()).toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-    });
-    
-    return `
-Thank You for Your Contribution!
-HingeCraft Global Mission Support
-
-Dear ${paymentData.firstName} ${paymentData.lastName},
-
-We are deeply grateful for your generous contribution of ${formattedAmount} to HingeCraft Global Mission Support. Your support helps us build resilient communities, provide AI training for students, and create sustainable furniture microfactories.
-
-PAYMENT RECEIPT
-===============
-Receipt Number: ${receiptNumber}
-Date: ${date}
-Amount: ${formattedAmount} USD
-Payment Method: ${paymentData.paymentMethod === 'crypto' ? 'Cryptocurrency' : 'Credit/Debit Card'}
-${paymentData.paymentResult?.sessionId ? `Transaction ID: ${paymentData.paymentResult.sessionId}` : ''}
-${paymentData.paymentResult?.invoiceId ? `Invoice ID: ${paymentData.paymentResult.invoiceId}` : ''}
-Status: Confirmed
-
-DONOR INFORMATION
-=================
-Name: ${paymentData.firstName} ${paymentData.lastName}
-Email: ${paymentData.email}
-Address: ${paymentData.address}
-${paymentData.missionSupportName ? `Mission Support Name: ${paymentData.missionSupportName}` : ''}
-
-IMPORTANT TAX INFORMATION
-=========================
-At present, HingeCraft Global PBC is not a registered 501(c)(3) organization. Contributions may not be tax-deductible. Please consult with your tax advisor regarding the deductibility of your contribution. Please save this receipt for your records.
-
-YOUR IMPACT
-===========
-Your contribution directly supports:
-- Building resilient communities through innovative solutions
-- AI training programs for students worldwide
-- Sustainable furniture microfactories
-- Mission-driven initiatives that create positive change
-
-CONTACT INFORMATION
-===================
-If you have any questions about your contribution, please contact us:
-Email: support@hingecraft-global.ai
-Website: www.hingecraft-global.ai
-
-© ${new Date().getFullYear()} HingeCraft Global. All rights reserved.
-
-Unsubscribe: {{unsubscribe_url}}
-Update Preferences: {{preferences_url}}
-
-This is an automated receipt. Please do not reply directly to this email.
-    `;
-}
-
-/**
- * Send email using SendGrid or Wix Email
- * Returns result with service information for database tracking
- */
-async function sendEmail(to, subject, html, text) {
-    try {
-        // Try SendGrid first
-        let sendgridKey;
-        try {
-            sendgridKey = await secrets.getSecret('SENDGRID_API_KEY');
-        } catch (e) {
-            console.warn('SendGrid not configured, trying Wix Email');
-        }
-        
-        if (sendgridKey) {
-            const response = await fetch('https://api.sendgrid.com/v3/mail/send', {
-                method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${sendgridKey}`,
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    personalizations: [{
-                        to: [{ email: to }]
-                    }],
-                    from: { email: 'no-reply@hingecraft-global.ai' },
-                    subject: subject,
-                    content: [
-                        { type: 'text/plain', value: text },
-                        { type: 'text/html', value: html }
-                    ]
-                })
+        // Handle payment method
+        if (paymentMethod === 'crypto') {
+            // Create crypto invoice
+            const invoiceResult = await createNowPaymentsInvoice({
+                intentId: intentResult.intentId || sessionId,
+                amount: amount,
+                email: formData.email,
+                sessionId: sessionId,
+                firstName: formData.firstName,
+                lastName: formData.lastName,
+                missionSupportName: formData.missionSupportName || null
             });
             
-            if (response.ok) {
-                console.log('✅ Email sent via SendGrid');
-                return { 
-                    success: true, 
-                    service: 'sendgrid',
-                    timestamp: new Date()
-                };
-            } else {
-                const error = await response.text();
-                console.error('SendGrid error:', error);
-                throw new Error('SendGrid failed');
+            if (!invoiceResult.success) {
+                throw new Error(invoiceResult.error || 'Failed to create crypto invoice');
             }
+            
+            // Store invoice data
+            await storeCryptoInvoiceData(invoiceResult);
+            
+            return {
+                success: true,
+                paymentMethod: 'crypto',
+                invoiceId: invoiceResult.invoiceId,
+                paymentUrl: invoiceResult.paymentUrl,
+                payAddress: invoiceResult.payAddress,
+                payAmountCrypto: invoiceResult.payAmountCrypto,
+                payCurrency: invoiceResult.payCurrency
+            };
+        } else {
+            // Card payment: redirect to charter page
+            const redirectResult = await goToCharterAfterPayment(amount);
+            
+            return {
+                success: true,
+                paymentMethod: 'card',
+                redirectUrl: redirectResult.redirectUrl,
+                amount: amount
+            };
         }
-        
-        // Fallback: Use Wix Email API (if available)
-        // Note: Wix doesn't have a direct email API, so this would need to be configured
-        console.warn('⚠️ Email sending not fully configured. Email would be sent to:', to);
-        return { 
-            success: false, 
-            error: 'Email service not configured',
-            service: 'none',
-            timestamp: new Date()
-        };
-        
     } catch (error) {
-        console.error('❌ Email send error:', error);
-        return { 
-            success: false, 
-            error: error.message,
-            service: 'sendgrid',
-            timestamp: new Date()
+        console.error('❌ Handle user input donation error:', error);
+        return {
+            success: false,
+            error: error.message
         };
     }
 }
 
 /**
- * Get base URL helper
+ * Go to charter page after payment
+ * Passes donation amount to charter page
  */
-async function getBaseUrl() {
+export async function goToCharterAfterPayment(value) {
     try {
-        const baseUrl = await secrets.getSecret('BASE_URL');
-        return baseUrl || 'https://www.hingecraft-global.ai';
-    } catch (e) {
-        return 'https://www.hingecraft-global.ai';
+        console.log('🔄 Redirecting to charter page with amount:', value);
+        
+        // Store donation amount
+        await storeDonationAmount(value, 'card', null);
+        
+        // Get redirect URL
+        const redirectResult = await redirectBackToCharter(value, 'card');
+        
+        return {
+            success: true,
+            redirectUrl: redirectResult.redirectUrl,
+            amount: value
+        };
+    } catch (error) {
+        console.error('❌ Go to charter error:', error);
+        return {
+            success: false,
+            error: error.message
+        };
+    }
+}
+
+/**
+ * Write to database
+ * Stores contribution intent
+ */
+export async function databaseWrite(contributionData) {
+    try {
+        console.log('💾 Writing to database:', contributionData);
+        
+        // Save to ContributionIntent collection
+        const intentRecord = {
+            amount_entered: parseFloat(contributionData.amount),
+            status: 'intent',
+            source: 'missionSupportForm',
+            first_name: contributionData.firstName || null,
+            last_name: contributionData.lastName || null,
+            email: contributionData.email || null,
+            address: contributionData.address || null,
+            mission_support_name: contributionData.missionSupportName || null,
+            session_id: contributionData.sessionId || await getSessionId(),
+            anonymous_fingerprint: contributionData.anonymousFingerprint || await getAnonymousFingerprint(),
+            timestamp: new Date().toISOString(),
+            metadata: contributionData.metadata || {}
+        };
+        
+        const result = await wixData.save('ContributionIntent', intentRecord);
+        
+        // Update cumulative total
+        const { getCumulativeTotal } = await import('backend/charter-page-middleware');
+        const totalResult = await getCumulativeTotal();
+        
+        return {
+            success: true,
+            intentId: result._id,
+            cumulativeTotal: totalResult.total
+        };
+    } catch (error) {
+        console.error('❌ Database write error:', error);
+        return {
+            success: false,
+            error: error.message
+        };
+    }
+}
+
+/**
+ * Get dynamic update reference
+ * Returns function to update totals dynamically
+ */
+export async function getDynamicUpdateReference() {
+    try {
+        const { getCumulativeTotal } = await import('backend/charter-page-middleware');
+        
+        return {
+            updateTotals: async () => {
+                const totalResult = await getCumulativeTotal();
+                return totalResult;
+            },
+            subscribeToChanges: (callback) => {
+                // Setup listeners
+                wixData.onChange('Donations', async () => {
+                    const totalResult = await getCumulativeTotal();
+                    if (callback) callback(totalResult);
+                });
+                
+                wixData.onChange('CryptoPayments', async () => {
+                    const totalResult = await getCumulativeTotal();
+                    if (callback) callback(totalResult);
+                });
+            }
+        };
+    } catch (error) {
+        console.error('❌ Error getting dynamic update reference:', error);
+        return null;
+    }
+}
+
+/**
+ * Validate form data
+ */
+function validateFormData(formData) {
+    const firstNamePattern = /^[a-zA-Z\-\s]{1,50}$/;
+    const lastNamePattern = /^[a-zA-Z\-\s]{1,50}$/;
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    const addressPattern = /^[a-zA-Z0-9\s\-\.,#]{1,200}$/;
+    const missionSupportNamePattern = /^[a-zA-Z0-9\s\-\.,]{0,200}$/;
+    const amountPattern = /^\d{1,5}(\.\d{1,2})?$/;
+    
+    if (!formData.firstName || !firstNamePattern.test(formData.firstName)) {
+        return { valid: false, error: 'Invalid first name' };
+    }
+    
+    if (!formData.lastName || !lastNamePattern.test(formData.lastName)) {
+        return { valid: false, error: 'Invalid last name' };
+    }
+    
+    if (!formData.email || !emailPattern.test(formData.email)) {
+        return { valid: false, error: 'Invalid email' };
+    }
+    
+    if (!formData.address || !addressPattern.test(formData.address)) {
+        return { valid: false, error: 'Invalid address' };
+    }
+    
+    if (formData.missionSupportName && !missionSupportNamePattern.test(formData.missionSupportName)) {
+        return { valid: false, error: 'Invalid mission support name' };
+    }
+    
+    if (!formData.amount) {
+        return { valid: false, error: 'Amount is required' };
+    }
+    
+    const amount = parseFloat(formData.amount);
+    if (isNaN(amount) || amount < 1.00 || amount > 25000.00) {
+        return { valid: false, error: 'Amount must be between $1.00 and $25,000.00' };
+    }
+    
+    if (!amountPattern.test(String(amount))) {
+        return { valid: false, error: 'Invalid amount format' };
+    }
+    
+    return { valid: true };
+}
+
+/**
+ * Setup database change listeners
+ */
+function setupDatabaseListeners() {
+    try {
+        // Listen for changes to ContributionIntent collection
+        wixData.onChange('ContributionIntent', async (changedItem) => {
+            console.log('📊 ContributionIntent collection changed:', changedItem);
+        });
+        
+        // Listen for changes to Donations collection
+        wixData.onChange('Donations', async (changedItem) => {
+            console.log('📊 Donations collection changed:', changedItem);
+        });
+        
+        // Listen for changes to CryptoPayments collection
+        wixData.onChange('CryptoPayments', async (changedItem) => {
+            console.log('📊 CryptoPayments collection changed:', changedItem);
+        });
+    } catch (error) {
+        console.error('Error setting up database listeners:', error);
+    }
+}
+
+/**
+ * Store crypto invoice data
+ */
+async function storeCryptoInvoiceData(invoiceData) {
+    try {
+        if (typeof wixStorage !== 'undefined' && wixStorage.session) {
+            wixStorage.session.setItem('hc_nowpay_invoice', JSON.stringify({
+                invoiceId: invoiceData.invoiceId,
+                paymentUrl: invoiceData.paymentUrl,
+                orderId: invoiceData.orderId,
+                intentId: invoiceData.intentId,
+                payAddress: invoiceData.payAddress,
+                payAmountCrypto: invoiceData.payAmountCrypto,
+                payCurrency: invoiceData.payCurrency,
+                timestamp: new Date().toISOString()
+            }));
+        }
+    } catch (error) {
+        console.error('Error storing crypto invoice:', error);
+    }
+}
+
+/**
+ * Store donation amount
+ */
+async function storeDonationAmount(amount, method, coin) {
+    try {
+        if (typeof wixStorage !== 'undefined' && wixStorage.session) {
+            wixStorage.session.setItem('hingecraft_donation', JSON.stringify({
+                amount: amount,
+                paymentMethod: method,
+                coin: coin,
+                timestamp: new Date().toISOString(),
+                source: 'mission_support_form'
+            }));
+        }
+    } catch (error) {
+        console.error('Error storing donation amount:', error);
+    }
+}
+
+/**
+ * Get session ID
+ */
+async function getSessionId() {
+    try {
+        if (typeof wixStorage !== 'undefined' && wixStorage.session) {
+            let sessionId = wixStorage.session.getItem('hingecraft_session_id');
+            if (!sessionId) {
+                sessionId = 'hc_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+                wixStorage.session.setItem('hingecraft_session_id', sessionId);
+            }
+            return sessionId;
+        }
+        return 'hc_' + Date.now();
+    } catch (error) {
+        return 'hc_' + Date.now();
+    }
+}
+
+/**
+ * Get anonymous fingerprint
+ */
+async function getAnonymousFingerprint() {
+    try {
+        // This would typically use canvas fingerprinting
+        // For backend, we'll use a simple hash
+        const timestamp = Date.now();
+        const random = Math.random().toString(36).substr(2, 9);
+        return 'fp_' + timestamp + '_' + random;
+    } catch (error) {
+        return 'fp_' + Date.now();
     }
 }

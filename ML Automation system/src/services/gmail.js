@@ -8,11 +8,14 @@ const config = require('../../config/api_keys');
 const logger = require('../utils/logger');
 const oauthManager = require('../utils/oauth');
 const { retry } = require('../utils/retry');
+const gmailMultiAccount = require('./gmailMultiAccount');
 
 class GmailService {
   constructor() {
     this.auth = null;
     this.gmail = null;
+    // Use multi-account service for sending
+    this.multiAccount = gmailMultiAccount;
   }
 
   /**
@@ -20,14 +23,10 @@ class GmailService {
    */
   async initialize(credentials) {
     try {
-      const redirectUri = process.env.OAUTH_REDIRECT_URI || 
-                         process.env.REDIRECT_URI || 
-                         'http://localhost:7101/oauth2callback';
-      
       const oauth2Client = new google.auth.OAuth2(
         config.google.gmailClientId,
         config.google.clientSecret,
-        redirectUri
+        'http://localhost:3001/oauth2callback'
       );
 
       if (credentials) {
@@ -59,14 +58,10 @@ class GmailService {
    * Get authorization URL for OAuth flow
    */
   getAuthUrl() {
-    const redirectUri = process.env.OAUTH_REDIRECT_URI || 
-                       process.env.REDIRECT_URI || 
-                       'http://localhost:7101/oauth2callback';
-    
     const oauth2Client = new google.auth.OAuth2(
       config.google.gmailClientId,
       config.google.clientSecret,
-      redirectUri
+      'http://localhost:3001/oauth2callback'
     );
 
     return oauth2Client.generateAuthUrl({
@@ -80,63 +75,12 @@ class GmailService {
   }
 
   /**
-   * Send email via Gmail API
+   * Send email via Gmail API (uses multi-account service)
    */
   async sendEmail({ to, subject, html, text, from, replyTo }) {
     try {
-      // Ensure we have valid auth
-      if (!this.gmail) {
-        await this.initialize();
-      }
-
-      // Refresh token if needed
-      if (oauthManager.needsRefresh()) {
-        await oauthManager.refreshToken();
-        this.auth = await oauthManager.getValidClient();
-        this.gmail = google.gmail({ version: 'v1', auth: this.auth });
-      }
-
-      const fromEmail = from || config.email.fromAddress;
-      const replyToEmail = replyTo || config.email.replyTo;
-
-      // Create email message in RFC 2822 format
-      const emailLines = [
-        `From: ${fromEmail}`,
-        `To: ${to}`,
-        `Reply-To: ${replyToEmail}`,
-        `Subject: ${subject}`,
-        `Content-Type: text/html; charset=UTF-8`,
-        '',
-        html || text
-      ];
-
-      const email = emailLines.join('\r\n');
-      
-      // Encode message in base64url format
-      const encodedMessage = Buffer.from(email)
-        .toString('base64')
-        .replace(/\+/g, '-')
-        .replace(/\//g, '_')
-        .replace(/=+$/, '');
-
-      const response = await retry(
-        () => this.gmail.users.messages.send({
-          userId: 'me',
-          requestBody: {
-            raw: encodedMessage
-          }
-        }),
-        { maxRetries: 3 }
-      );
-
-      logger.info(`Sent email via Gmail to ${to}, message ID: ${response.data.id}`);
-      
-      return {
-        success: true,
-        messageId: response.data.id,
-        provider: 'gmail',
-        status: 'sent'
-      };
+      // Use multi-account service which supports both Gmail accounts
+      return await this.multiAccount.sendEmail({ to, subject, html, text, from, replyTo });
     } catch (error) {
       logger.error('Error sending email via Gmail:', error.message);
       return {
@@ -170,19 +114,21 @@ class GmailService {
   }
 
   /**
-   * Send payment receipt email (delegates to paymentReceipt service)
+   * Personalize email template with lead data
    */
-  async sendPaymentReceipt({ paymentId, paymentData, to, from, replyTo }) {
-    const paymentReceipt = require('./paymentReceipt');
-    return await paymentReceipt.sendPaymentReceipt({ paymentId, paymentData, to, from, replyTo });
-  }
-
-  /**
-   * Personalize email template (uses templateRouter for full personalization)
-   */
-  personalizeTemplate(template, lead, options = {}) {
-    const templateRouter = require('./templateRouter');
-    return templateRouter.personalizeTemplate(template, lead, options);
+  personalizeTemplate(template, lead) {
+    let personalized = template;
+    
+    // Replace template variables
+    personalized = personalized.replace(/\{\{first_name\}\}/g, lead.first_name || '');
+    personalized = personalized.replace(/\{\{last_name\}\}/g, lead.last_name || '');
+    personalized = personalized.replace(/\{\{name\}\}/g, `${lead.first_name || ''} ${lead.last_name || ''}`.trim() || 'there');
+    personalized = personalized.replace(/\{\{organization\}\}/g, lead.organization || '');
+    personalized = personalized.replace(/\{\{email\}\}/g, lead.email || '');
+    personalized = personalized.replace(/\{\{city\}\}/g, lead.city || '');
+    personalized = personalized.replace(/\{\{country\}\}/g, lead.country || '');
+    
+    return personalized;
   }
 
   /**

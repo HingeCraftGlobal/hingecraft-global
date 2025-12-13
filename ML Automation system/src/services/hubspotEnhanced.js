@@ -13,7 +13,8 @@ const db = require('../utils/database');
 
 class HubSpotEnhanced {
   constructor() {
-    this.apiKey = config.hubspot.apiKey;
+    // Use Personal Access Key if available, otherwise fall back to API key
+    this.apiKey = config.hubspot.personalAccessKey || config.hubspot.apiKey;
     this.portalId = config.hubspot.portalId;
     this.baseUrl = config.hubspot.baseUrl || 'https://api.hubapi.com';
     this.client = axios.create({

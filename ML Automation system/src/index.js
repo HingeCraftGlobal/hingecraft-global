@@ -913,6 +913,173 @@ app.post('/api/pipeline-tracker/stop', async (req, res) => {
 });
 
 // ============================================
+// HUBSPOT DASHBOARD SYNC ENDPOINTS
+// ============================================
+
+const hubspotDashboardSync = require('./services/hubspotDashboardSync');
+
+// Initialize HubSpot custom objects
+app.post('/api/hubspot/init-custom-objects', async (req, res) => {
+  try {
+    const result = await hubspotDashboardSync.initializeCustomObjects();
+    res.json({ message: 'Custom objects initialized', result });
+  } catch (error) {
+    logger.error('HubSpot custom objects init error:', error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Sync pipeline run to HubSpot
+app.post('/api/hubspot/sync-pipeline-run/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const result = await hubspotDashboardSync.syncPipelineRun(id);
+    res.json(result);
+  } catch (error) {
+    logger.error('HubSpot pipeline run sync error:', error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Sync pipeline metrics to HubSpot
+app.post('/api/hubspot/sync-metrics', async (req, res) => {
+  try {
+    const timeframe = req.body.timeframe || '24 hours';
+    const result = await hubspotDashboardSync.syncPipelineMetrics(timeframe);
+    res.json(result);
+  } catch (error) {
+    logger.error('HubSpot metrics sync error:', error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Update contact with pipeline properties
+app.post('/api/hubspot/update-contact/:contactId', async (req, res) => {
+  try {
+    const { contactId } = req.params;
+    const { leadId } = req.body;
+    if (!leadId) {
+      return res.status(400).json({ error: 'leadId is required' });
+    }
+    const result = await hubspotDashboardSync.updateContactPipelineProperties(contactId, leadId);
+    res.json(result);
+  } catch (error) {
+    logger.error('HubSpot contact update error:', error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Sync all pipeline runs
+app.post('/api/hubspot/sync-all-pipeline-runs', async (req, res) => {
+  try {
+    const limit = parseInt(req.body.limit) || 100;
+    const result = await hubspotDashboardSync.syncAllPipelineRuns(limit);
+    res.json(result);
+  } catch (error) {
+    logger.error('HubSpot sync all pipeline runs error:', error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Sync all contacts with pipeline data
+app.post('/api/hubspot/sync-all-contacts', async (req, res) => {
+  try {
+    const limit = parseInt(req.body.limit) || 100;
+    const result = await hubspotDashboardSync.syncAllContactsPipelineData(limit);
+    res.json(result);
+  } catch (error) {
+    logger.error('HubSpot sync all contacts error:', error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Full sync - syncs everything to HubSpot
+app.post('/api/hubspot/full-sync', async (req, res) => {
+  try {
+    const result = await hubspotDashboardSync.fullSync();
+    res.json(result);
+  } catch (error) {
+    logger.error('HubSpot full sync error:', error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// HubSpot CLI sync
+const hubspotCLISync = require('./services/hubspotCLISync');
+
+// Full CLI sync
+app.post('/api/hubspot/cli/full-sync', async (req, res) => {
+  try {
+    const result = await hubspotCLISync.fullSync();
+    res.json(result);
+  } catch (error) {
+    logger.error('HubSpot CLI full sync error:', error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Create custom properties
+app.post('/api/hubspot/cli/create-properties', async (req, res) => {
+  try {
+    const result = await hubspotCLISync.createCustomProperties();
+    res.json(result);
+  } catch (error) {
+    logger.error('HubSpot CLI create properties error:', error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Sync all leads
+app.post('/api/hubspot/cli/sync-leads', async (req, res) => {
+  try {
+    const result = await hubspotCLISync.syncAllLeads();
+    res.json(result);
+  } catch (error) {
+    logger.error('HubSpot CLI sync leads error:', error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// ============================================
+// HUBSPOT OPTIMIZED SYNC (MINIMIZES API CALLS)
+// ============================================
+
+const hubspotOptimizedSync = require('./services/hubspotOptimizedSync');
+
+// Full optimized sync (minimizes API calls)
+app.post('/api/hubspot/optimized/full-sync', async (req, res) => {
+  try {
+    const result = await hubspotOptimizedSync.fullSyncOptimized();
+    res.json(result);
+  } catch (error) {
+    logger.error('HubSpot optimized sync error:', error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Test connection
+app.get('/api/hubspot/optimized/test', async (req, res) => {
+  try {
+    const result = await hubspotOptimizedSync.testConnection();
+    res.json(result);
+  } catch (error) {
+    logger.error('HubSpot connection test error:', error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Sync all leads (optimized)
+app.post('/api/hubspot/optimized/sync-leads', async (req, res) => {
+  try {
+    const result = await hubspotOptimizedSync.syncAllLeadsOptimized();
+    res.json(result);
+  } catch (error) {
+    logger.error('HubSpot optimized sync leads error:', error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// ============================================
 // CRON JOBS
 // ============================================
 

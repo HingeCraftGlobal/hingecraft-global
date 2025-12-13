@@ -39,6 +39,11 @@ module.exports = {
 
   // HubSpot CRM API
   hubspot: {
+    // Personal Access Key (Private App - MAIN)
+    personalAccessKey: 'pat-na2-a716f71a-1dfc-4004-9485-3e7df1919c39',
+    // Client Secret (Private App)
+    clientSecret: '0ad815f3-704e-4157-9135-f1e180c65b15',
+    // Developer API Key (legacy, for some endpoints)
     apiKey: 'na2-e523-6348-4407-a23a-d0c00f2ed0ca',
     portalId: '244560986',
     baseUrl: 'https://api.hubapi.com',
@@ -77,11 +82,22 @@ module.exports = {
     baseUrl: process.env.BASE_URL || 'https://hingecraft.global'
   },
 
-  // Email Configuration
+  // Email Configuration - Multi-Account Support
   email: {
-    fromAddress: 'marketinghingecraft@gmail.com',
+    // Primary account (default)
+    fromAddress: 'marketingecraft@gmail.com',
     fromName: 'HingeCraft',
-    replyTo: 'marketinghingecraft@gmail.com',
+    replyTo: 'marketingecraft@gmail.com',
+    // Secondary account
+    departmentsAddress: 'departments@hingecraft-global.ai',
+    departmentsName: 'HingeCraft Departments',
+    // Account selection rules
+    accountSelection: {
+      // Use departments account for these lead types
+      useDepartmentsFor: ['NGO', 'School', 'Government'],
+      // Default to marketing account
+      default: 'marketingecraft@gmail.com'
+    },
     // Email sending limits
     dailyLimit: 1000,
     hourlyLimit: 100,

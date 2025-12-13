@@ -1,130 +1,126 @@
-# HingeCraft Global - Deployment Complete Summary
+# ✅ T10 Deployment Complete Summary
+## All Files Ready - Push to Wix Dev
 
-## ✅ Issues Fixed
+**Date:** January 27, 2025  
+**Status:** ✅ **ALL FILES READY - READY TO PUSH**
 
-### 1. HTML Syntax Error - Fixed
-- **Issue:** Missing closing brace in donation amount handling (line 259)
-- **Status:** ✅ Fixed
-- **File:** `public/pages/charter-page-wix-ready.html`
+---
 
-### 2. Async/Await Error - Fixed
-- **Issue:** `await` used outside async function (line 285)
-- **Status:** ✅ Fixed - Wrapped in `loadPrefillData()` async function
-- **File:** `public/pages/charter-page-wix-ready.html`
+## 🎯 DEPLOYMENT STATUS
 
-### 3. Slider Functionality - Verified
-- **Issue:** Slider from 10-20 years for Premier tier
-- **Status:** ✅ Working - Range 2-20 with step=1, proper validation
-- **File:** `public/pages/charter-page-wix-ready.html`
+### ✅ Files Created/Updated: 15+ files
 
-## 📋 Deployment Scripts Created
+**Backend Web Modules (.web.js):**
+- ✅ `src/backend/charter-page-middleware.web.js` - Public web module
+- ✅ `src/backend/mission-support-middleware.web.js` - Public web module
 
-### 1. `DEPLOY_ALL_TO_WIX_CLI.sh`
-Complete deployment script that:
-- ✅ Verifies all files exist
-- ✅ Checks Wix CLI authentication
-- ✅ Starts Wix Dev mode
-- ✅ Provides step-by-step deployment instructions
-- ✅ Creates deployment manifest
-- ✅ Validates HTML structure
+**Backend Internal Modules (.jsw):**
+- ✅ `src/backend/charter-page-middleware.jsw` - Internal module (backup)
+- ✅ `src/backend/mission-support-middleware.jsw` - Internal module (backup)
+- ✅ `src/backend/nowpayments.api.jsw` - With wallet addresses
+- ✅ `src/backend/stripe.api.jsw` - Stripe integration
+- ✅ `src/backend/hingecraft.api.web.jsw` - Database operations
+- ✅ `src/backend/createNowPaymentsInvoice.jsw` - HTTP function wrapper
+- ✅ `src/backend/webhooks/nowpayments.jsw` - Webhook handler
 
-**Usage:**
+**Frontend Pages:**
+- ✅ `public/pages/charter-page-final.html` - With active crypto buttons
+- ✅ `public/pages/mission-support-form.html` - Updated to use middleware
+
+**Velo Page Code:**
+- ✅ `src/pages/Charter of Abundance Invitation.pa3z2.js`
+- ✅ `src/pages/Mission Support.msup1.js`
+
+**Configuration:**
+- ✅ `.wix/backend/permissions.json` - Function permissions
+
+**Deployment Scripts:**
+- ✅ `scripts/push-to-wix-dev.sh` - Complete deployment script
+
+---
+
+## 🚀 PUSH TO WIX DEV - COMMANDS
+
+### Option 1: Use Deployment Script
 ```bash
 cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
-./DEPLOY_ALL_TO_WIX_CLI.sh
+./scripts/push-to-wix-dev.sh
 ```
 
-## 📁 Files Ready for Deployment
+### Option 2: Manual Wix CLI Push
+```bash
+cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
 
-### HTML Pages
-1. `public/pages/charter-page-wix-ready.html` ✅
-   - All syntax errors fixed
-   - Async operations properly handled
-   - Slider functionality working (2-20 years)
-   - Ready for Wix embedding
+# Start Wix dev server
+wix dev --https
 
-2. `public/pages/mission-support-form.html` ✅
-   - Ready for deployment
+# In another terminal, push changes
+wix push
+```
 
-### Backend Velo Functions
-1. `src/backend/charter-page-middleware.web.js` ✅
-2. `src/backend/mission-support-middleware.web.js` ✅
-3. `src/backend/nowpayments.api.jsw` ✅
-4. `src/backend/stripe.api.jsw` ✅
-   - Configured for LIVE key prioritization
-   - Handles `sk_live51...` format correctly
+### Option 3: Manual Upload via Wix Editor
+1. Open: https://editor.wix.com
+2. Go to Dev Mode → Backend
+3. Upload files from `src/backend/`
+4. Embed HTML pages:
+   - Charter: `public/pages/charter-page-final.html`
+   - Mission Support: `public/pages/mission-support-form.html`
 
-### Page-Level Code
-1. `src/pages/masterPage.js` ✅
-   - Fixed to prevent `onReady` TypeError
-   - No direct imports to Velo modules
+---
 
-## 🔐 Secrets to Configure in Wix
+## 🔐 SECRETS TO CONFIGURE
 
-1. **STRIPE_SECRET_KEY_LIVE**
-   - Value: `sk_live51SSLTfB6IrLBi7R1bVy3pngb9CsfgIFfzu4ckLKKuuvxwjkQ2HPTwEEbjIWq6GMuI6o2SAHc53wDZsGSHeiuaadj00Kej7ixoy`
+**Before testing, add these to Wix Secrets Manager:**
 
-2. **STRIPE_PUBLISHABLE_KEY_LIVE**
-   - Value: `pk_live51SSLTfB6IrLBi7R1bVy3pngb9CsfgIFfzu4ckLKKuuvxwjkQ2HPTwEEbjIWq6GMuI6o2SAHc53wDZsGSHeiuaadj00Kej7ixoy`
-   - (Derived from secret key)
+1. `NOWPAYMENTS_API_KEY` = `JEH3VG9-648MJPE-HPETPZ7-QVCSBES`
+2. `NOWPAYMENTS_IPN_SECRET` = `8TnzsveF28gelMuvXFMxgPW5YUXYkcL9`
+3. `NOWPAYMENTS_BASE_URL` = `https://api.nowpayments.io/v1`
+4. `BASE_URL` = `https://www.hingecraft-global.ai`
+5. `STRIPE_SECRET_KEY_LIVE` = [Your Stripe Dev Key]
+6. `STRIPE_PUBLISHABLE_KEY_LIVE` = [Your Stripe Publishable Key]
 
-3. **NOWPAYMENTS_API_KEY**
-   - (Retrieve from database)
+---
 
-4. **DOCKER_BACKEND_URL** (optional)
-   - (If using external Docker backend)
+## ✅ VERIFICATION CHECKLIST
 
-## 📊 Database Collections Required
+### Backend Functions:
+- [x] charter-page-middleware.web.js created
+- [x] mission-support-middleware.web.js created
+- [x] nowpayments.api.jsw updated with wallet addresses
+- [x] stripe.api.jsw ready
+- [x] All functions exported correctly
 
-1. **Donations** - Store donation records
-2. **CryptoPayments** - Store crypto payment data
-3. **ContributionIntent** - Store contribution intents/prefill tokens
+### Frontend Pages:
+- [x] charter-page-final.html with active crypto buttons
+- [x] mission-support-form.html updated to use middleware
+- [x] Endpoints point to .web.js modules
 
-## 🚀 Deployment Steps
+### Velo Page Code:
+- [x] Charter page Velo code ready
+- [x] Mission Support page Velo code ready
 
-1. **Run Deployment Script:**
-   ```bash
-   cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
-   ./DEPLOY_ALL_TO_WIX_CLI.sh
-   ```
+### Configuration:
+- [x] Permissions configured
+- [x] Wallet addresses configured
+- [x] API keys ready
 
-2. **Follow Instructions:**
-   - Open Wix Editor
-   - Enable Dev Mode
-   - Upload backend functions
-   - Configure secrets
-   - Embed HTML pages
-   - Update page-level code
-   - Test functionality
-   - Publish
+---
 
-## ✅ Verification Checklist
+## 🎉 READY TO PUSH
 
-- [x] HTML syntax errors fixed
-- [x] Async/await errors fixed
-- [x] Slider functionality working (2-20 years)
-- [x] Deployment script created
-- [x] All files verified
-- [x] Stripe LIVE key configured
-- [x] Documentation created
+**All files are ready!** Run the deployment script:
 
-## 📝 Next Steps
+```bash
+./scripts/push-to-wix-dev.sh
+```
 
-1. Run `./DEPLOY_ALL_TO_WIX_CLI.sh`
-2. Follow the deployment instructions
-3. Test all payment flows
-4. Verify redirects work
-5. Check console for errors
-6. Publish when ready
+Or manually:
+```bash
+wix dev --https
+# Then in another terminal:
+wix push
+```
 
-## 🎯 Key Features Verified
+---
 
-- ✅ Charter page HTML loads correctly
-- ✅ Payment buttons redirect properly
-- ✅ Slider works for Premier tier (2-20 years)
-- ✅ Prefill from Mission Support works
-- ✅ Stripe LIVE key prioritization
-- ✅ Error handling for CloudFront 403
-- ✅ Dynamic button URL updates
-
-All fixes complete! Ready for deployment. 🚀
+**Status:** ✅ **READY FOR DEPLOYMENT**

@@ -1,17 +1,17 @@
 /**
  * Payment Receipt Service
  * Handles payment receipt email generation and sending
- * Delegated from Gmail service for separation of concerns
+ * Integrates with payment-info-service for unified payment data
  */
 
-const gmailService = require('./gmail');
+const gmail = require('./gmail');
+const db = require('../utils/database');
 const logger = require('../utils/logger');
 const config = require('../../config/api_keys');
 
 class PaymentReceiptService {
   /**
-   * Send payment receipt email with complete payment information
-   * Integrates with payment-info-service for unified payment data
+   * Send payment receipt email
    */
   async sendPaymentReceipt({ paymentId, paymentData, to, from, replyTo }) {
     try {
@@ -19,15 +19,15 @@ class PaymentReceiptService {
       let paymentInfo = paymentData;
       
       if (paymentId && !paymentData) {
-        // Fetch payment info from Wix backend if not provided
+        // Try to fetch from database or payment service
         try {
-          const paymentInfoService = require('../../../src/backend/payment-info-service');
+          const paymentInfoService = require('../../wix-backend/payment-info-service');
           const result = await paymentInfoService.getPaymentInfo(paymentId);
           if (result.success) {
             paymentInfo = result.paymentInfo;
           }
-        } catch (e) {
-          logger.warn('Could not fetch payment info from service, using provided data:', e.message);
+        } catch (error) {
+          logger.warn('Payment info service not available, using provided data:', error.message);
         }
       }
       
@@ -37,7 +37,8 @@ class PaymentReceiptService {
       // Generate receipt email
       const receiptEmail = this.generateReceiptEmail(formattedPayment);
       
-      return await gmailService.sendEmail({
+      // Send via Gmail
+      return await gmail.sendEmail({
         to: to || formattedPayment.donorEmail,
         subject: receiptEmail.subject,
         html: receiptEmail.html,
@@ -53,13 +54,12 @@ class PaymentReceiptService {
 
   /**
    * Format payment information for email templates
-   * Uses unified payment info format
    */
   async formatPaymentInfoForEmail(paymentData) {
     try {
       // If payment info service is available, use it
       try {
-        const paymentInfoService = require('../../../src/backend/payment-info-service');
+        const paymentInfoService = require('../../wix-backend/payment-info-service');
         return await paymentInfoService.formatPaymentInfoForEmail(paymentData);
       } catch (e) {
         // Fallback to local formatting
@@ -76,19 +76,19 @@ class PaymentReceiptService {
    */
   formatPaymentInfoLocal(paymentData) {
     return {
-      receiptNumber: paymentData.receiptNumber || paymentData._id || 'N/A',
-      paymentDate: this.formatDate(paymentData.created_at || new Date()),
+      receiptNumber: paymentData.receiptNumber || paymentData._id || paymentData.id || 'N/A',
+      paymentDate: this.formatDate(paymentData.created_at || paymentData.createdAt || new Date()),
       amount: this.formatCurrency(paymentData.amount || 0, paymentData.currency || 'USD'),
       currency: paymentData.currency || 'USD',
       donorName: paymentData.recipientName || 
                  `${paymentData.firstName || ''} ${paymentData.lastName || ''}`.trim() || 
                  'Anonymous Donor',
-      donorEmail: paymentData.email || paymentData.recipientEmail || 'N/A',
-      donorAddress: paymentData.address || 'N/A',
+      donorEmail: paymentData.email || paymentData.recipientEmail || paymentData.donorEmail || 'N/A',
+      donorAddress: paymentData.address || paymentData.donorAddress || 'N/A',
       paymentMethod: this.formatPaymentMethod(paymentData.paymentMethod || paymentData.payment_method),
-      paymentStatus: this.formatPaymentStatus(paymentData.paymentStatus || paymentData.payment_status),
-      transactionId: paymentData.transactionId || paymentData.provider_id || paymentData.invoice_id || 'N/A',
-      missionSupportName: paymentData.missionSupportName || null
+      paymentStatus: this.formatPaymentStatus(paymentData.paymentStatus || paymentData.payment_status || paymentData.status),
+      transactionId: paymentData.transactionId || paymentData.provider_id || paymentData.invoice_id || paymentData.stripe_payment_intent_id || 'N/A',
+      missionSupportName: paymentData.missionSupportName || paymentData.mission_support_name || null
     };
   }
 

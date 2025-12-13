@@ -1,45 +1,10 @@
 // HingeCraft Global - Mission Support Form (REPLACES Payment Page)
 // T10 Implementation: Mission Support Form with Database Integration
-// Updated: December 13, 2025 - Fully Wix-compatible with HTTP endpoints
-// IMPORTANT: All backend calls use HTTP endpoints via /_functions/[module]/[function]
+// Generated: January 27, 2025
 // This page REPLACES the old Payment page - Mission Support form is now the Payment page
 
 import wixSeo from 'wix-seo';
-
-// Velo API Configuration - Use HTTP endpoints (not imports)
-// All module names must match backend .jsw file names exactly
-const VELO_CONFIG = {
-    MISSION_SUPPORT_MIDDLEWARE: '/_functions/mission-support-middleware',
-    PAYMENT_INFO_SERVICE: '/_functions/payment-info-service',
-    CHARTER_MIDDLEWARE: '/_functions/charter-page-middleware',
-    STRIPE_API: '/_functions/stripe.api',
-    NOWPAYMENTS_API: '/_functions/nowpayments.api',
-    CHAT_NOTIFICATIONS: '/_functions/chat-notifications',
-    RECEIPTS_HOOK: '/_functions/receipts-hook'
-};
-
-// Helper to call Velo functions via HTTP
-async function callVeloFunction(modulePath, functionName, data = {}) {
-    try {
-        const fetchFn = typeof wixFetch !== 'undefined' ? wixFetch.fetch : fetch;
-        const url = `${modulePath}/${functionName}`;
-        
-        const response = await fetchFn(url, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
-        });
-        
-        if (!response.ok) {
-            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-        }
-        
-        return await response.json();
-    } catch (error) {
-        console.error(`❌ Error calling ${modulePath}/${functionName}:`, error);
-        return { success: false, error: error.message };
-    }
-}
+import { onReady, handleUserInputDonation, goToCharterAfterPayment } from 'backend/mission-support-middleware.web';
 
 $w.onReady(async function () {
     // Set SEO for Mission Support Form (on Payment page URL)

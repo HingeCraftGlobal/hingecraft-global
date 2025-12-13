@@ -9,9 +9,6 @@
  * - afterPaymentWebhook(payload) → update DB + totals
  * - redirectBackToCharter() → route with state
  * - getCumulativeTotal() → calculate total from database
- * 
- * IMPORTANT: This is a .jsw file - HTTP-accessible via /_functions/charter-page-middleware/[function-name]
- * Permissions: Anyone (for public access)
  */
 
 import wixData from 'wix-data';
@@ -20,58 +17,8 @@ import { createCheckoutSession } from 'backend/stripe.api';
 import { getLatestDonation, saveDonation } from 'backend/hingecraft.api.web';
 
 /**
- * Get payment routes from database
- * Retrieves NOWPayments URLs and wallet addresses from PaymentRoutes collection
- * @public
- * @returns {Promise<Object>} Payment routes with URLs and wallet addresses
- */
-export async function getPaymentRoutes() {
-    try {
-        const paymentRoutes = {};
-        
-        try {
-            // Query PaymentRoutes collection
-            const routes = await wixData.query('PaymentRoutes')
-                .find();
-            
-            if (routes.items && routes.items.length > 0) {
-                routes.items.forEach(route => {
-                    if (route.currency && route.routeKey) {
-                        paymentRoutes[route.routeKey] = {
-                            currency: route.currency,
-                            walletAddress: route.walletAddress || null,
-                            paymentUrl: route.paymentUrl || null,
-                            provider: route.provider || 'nowpayments',
-                            type: route.type || 'crypto'
-                        };
-                    }
-                });
-                console.log('✅ Loaded payment routes from database:', Object.keys(paymentRoutes).length, 'routes');
-            }
-        } catch (dbError) {
-            console.warn('⚠️ Could not load payment routes from database, using defaults:', dbError.message);
-        }
-        
-        // Return routes (empty object if database not available)
-        return {
-            success: true,
-            routes: paymentRoutes
-        };
-    } catch (error) {
-        console.error('❌ Error getting payment routes:', error);
-        return {
-            success: false,
-            routes: {},
-            error: error.message
-        };
-    }
-}
-
-/**
  * Initialize charter page on ready
  * Checks dataset and updates totals dynamically
- * FIXED: No longer uses deprecated import pattern - uses HTTP endpoint calls
- * @public
  */
 export async function onReady() {
     try {
@@ -80,40 +27,18 @@ export async function onReady() {
         // Get cumulative total from database
         const totalResult = await getCumulativeTotal();
         
-        // Check for prefill token in URL
-        let donationAmount = null;
-        let prefillId = null;
+        // Update contributions section
+        await updateContributionsDisplay(totalResult.total);
         
-        try {
-            if (typeof wixLocation !== 'undefined' && wixLocation.query) {
-                prefillId = wixLocation.query.prefill;
-                const urlAmount = wixLocation.query.donationAmount || wixLocation.query.amount;
-                if (urlAmount) {
-                    donationAmount = parseFloat(urlAmount);
-                }
-            }
-        } catch (e) {
-            console.warn('Could not read URL params:', e);
-        }
+        // Check for donation amount in URL or storage
+        const donationAmount = await getDonationAmountFromStorage();
         
-        // If prefill ID exists, get prefill data
-        if (prefillId) {
-            try {
-                // Import mission support middleware to get prefill
-                const { getPrefill } = await import('backend/mission-support-middleware');
-                const prefillResult = await getPrefill(prefillId);
-                if (prefillResult.success) {
-                    donationAmount = prefillResult.amount;
-                    console.log('✅ Prefill loaded:', donationAmount);
-                }
-            } catch (e) {
-                console.warn('Could not load prefill:', e);
-            }
-        }
-        
-        // Check session storage as fallback
-        if (!donationAmount) {
-            donationAmount = await getDonationAmountFromStorage();
+        if (donationAmount && donationAmount > 0) {
+            // Display donation amount
+            await displayDonationAmount(donationAmount);
+            
+            // Update contributions with new amount
+            await updateContributionsDisplay(totalResult.total + donationAmount);
         }
         
         // Setup database change listeners
@@ -122,8 +47,7 @@ export async function onReady() {
         return {
             success: true,
             cumulativeTotal: totalResult.total,
-            donationAmount: donationAmount,
-            prefillId: prefillId
+            donationAmount: donationAmount
         };
     } catch (error) {
         console.error('❌ Charter Page onReady error:', error);
@@ -137,24 +61,9 @@ export async function onReady() {
 /**
  * Handle crypto button click
  * Creates NOWPayments invoice for selected crypto
- * @public
- * @param {Object|number} requestData - Donation amount and coin, or just amount (for backward compatibility)
- * @param {number} requestData.amount - Donation amount
- * @param {string} requestData.coin - Cryptocurrency (solana, stellar, bitcoin, ethereum)
  */
-export async function cryptoButtonClick(requestData) {
+export async function cryptoButtonClick(amount, coin) {
     try {
-        // Support both object and positional parameters for backward compatibility
-        let amount, coin;
-        if (typeof requestData === 'object' && requestData !== null) {
-            amount = requestData.amount;
-            coin = requestData.coin;
-        } else {
-            // Legacy: positional parameters
-            amount = requestData;
-            coin = arguments[1];
-        }
-        
         console.log('💰 Crypto button clicked:', { amount, coin });
         
         // Validate amount
@@ -187,34 +96,15 @@ export async function cryptoButtonClick(requestData) {
         // Generate intent ID
         const intentId = 'hc_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
         
-        // Get session data if available
-        let email = '';
-        let firstName = '';
-        let lastName = '';
-        
-        try {
-            if (typeof wixStorage !== 'undefined' && wixStorage.session) {
-                const donationData = wixStorage.session.getItem('hingecraft_donation');
-                if (donationData) {
-                    const data = JSON.parse(donationData);
-                    email = data.email || '';
-                    firstName = data.firstName || '';
-                    lastName = data.lastName || '';
-                }
-            }
-        } catch (e) {
-            console.warn('Could not get session data:', e);
-        }
-        
         // Create NOWPayments invoice
         const invoiceResult = await createNowPaymentsInvoice({
             intentId: intentId,
             amount: validatedAmount,
             payCurrency: payCurrency,
-            email: email,
+            email: '', // Will be filled from session if available
             sessionId: await getSessionId(),
-            firstName: firstName,
-            lastName: lastName
+            firstName: '',
+            lastName: ''
         });
         
         if (!invoiceResult.success) {
@@ -247,44 +137,27 @@ export async function cryptoButtonClick(requestData) {
 
 /**
  * Handle fiat button click (Stripe)
- * Creates Stripe checkout session for any amount
- * @public
- * @param {Object|number} requestData - Payment amount and method, or just amount (for backward compatibility)
- * @param {number} requestData.amount - Payment amount (any valid amount between $1.00 and $25,000.00)
- * @param {string} requestData.paymentMethod - Payment method: "card" or "ACH" (optional, defaults to "card")
+ * Creates Stripe checkout session for preset amounts
  */
-export async function fiatButtonClick(requestData) {
+export async function fiatButtonClick(preset) {
     try {
-        // Support both object and positional parameters for backward compatibility
-        let amount, paymentMethod;
-        if (typeof requestData === 'object' && requestData !== null) {
-            amount = requestData.amount;
-            paymentMethod = requestData.paymentMethod || 'card';
-        } else {
-            // Legacy: positional parameters
-            amount = requestData;
-            paymentMethod = arguments[1] || 'card';
+        console.log('💳 Fiat button clicked:', { preset });
+        
+        // Validate preset
+        const validPresets = [1, 5, 20];
+        const amount = parseFloat(preset);
+        
+        if (!validPresets.includes(amount)) {
+            throw new Error('Invalid preset amount. Must be 1, 5, or 20');
         }
-        
-        console.log('💳 Fiat button clicked:', { amount, paymentMethod });
-        
-        // Validate amount
-        const validatedAmount = parseFloat(amount);
-        if (isNaN(validatedAmount) || validatedAmount < 1.00 || validatedAmount > 25000.00) {
-            throw new Error(`Invalid amount: ${amount} (must be between $1.00 and $25,000.00)`);
-        }
-        
-        const baseUrl = await getBaseUrl();
         
         // Create Stripe checkout session
         const sessionResult = await createCheckoutSession({
-            amount: validatedAmount,
-            paymentMethod: paymentMethod,
-            successUrl: `${baseUrl}/payment-success?amount=${validatedAmount}&method=${paymentMethod}`,
-            cancelUrl: `${baseUrl}/charter?canceled=true&amount=${validatedAmount}`,
+            amount: amount,
+            successUrl: `${await getBaseUrl()}/payment-success?amount=${amount}&method=stripe`,
+            cancelUrl: `${await getBaseUrl()}/charter?canceled=true&amount=${amount}`,
             donationId: null,
-            email: null,
-            baseUrl: baseUrl
+            email: null
         });
         
         if (!sessionResult.success) {
@@ -292,14 +165,13 @@ export async function fiatButtonClick(requestData) {
         }
         
         // Store donation amount
-        await storeDonationAmount(validatedAmount, paymentMethod, null);
+        await storeDonationAmount(amount, 'stripe', null);
         
         return {
             success: true,
             sessionId: sessionResult.sessionId,
             url: sessionResult.url,
-            amount: validatedAmount,
-            paymentMethod: paymentMethod
+            amount: amount
         };
     } catch (error) {
         console.error('❌ Fiat button click error:', error);
@@ -313,8 +185,6 @@ export async function fiatButtonClick(requestData) {
 /**
  * Handle payment webhook
  * Updates database and totals after payment
- * @public
- * @param {Object} payload - Webhook payload
  */
 export async function afterPaymentWebhook(payload) {
     try {
@@ -361,9 +231,6 @@ export async function afterPaymentWebhook(payload) {
 
 /**
  * Redirect back to charter page with state
- * @public
- * @param {number} donationAmount - Donation amount
- * @param {string} paymentMethod - Payment method
  */
 export async function redirectBackToCharter(donationAmount, paymentMethod) {
     try {
@@ -386,7 +253,6 @@ export async function redirectBackToCharter(donationAmount, paymentMethod) {
 /**
  * Get cumulative total from database
  * Sums all completed donations (crypto + fiat)
- * @public
  */
 export async function getCumulativeTotal() {
     try {

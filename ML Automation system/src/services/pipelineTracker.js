@@ -432,9 +432,9 @@ class PipelineTracker {
         SELECT 
           COUNT(*) FILTER (WHERE status = 'completed') as completed,
           COUNT(*) FILTER (WHERE status = 'failed') as failed,
-          MAX(updated_at) as last_activity
+          MAX(inserted_at) as last_activity
         FROM drive_ingests
-        WHERE DATE(updated_at) = CURRENT_DATE
+        WHERE DATE(inserted_at) = CURRENT_DATE
       `);
 
       // Get current stage
@@ -448,6 +448,7 @@ class PipelineTracker {
         FROM drive_ingests di
         LEFT JOIN drive_rows dr ON di.id = dr.ingest_id
         WHERE di.status IN ('processing', 'pending')
+        GROUP BY di.id, di.status, di.filename
         ORDER BY di.inserted_at DESC
         LIMIT 1
       `);
@@ -508,11 +509,12 @@ class PipelineTracker {
         // Lead metrics
         db.query(`
           SELECT 
-            COUNT(*) as total,
-            COUNT(*) FILTER (WHERE lead_type IS NOT NULL) as classified,
-            COUNT(*) FILTER (WHERE hubspot_contact_id IS NOT NULL) as hubspot_synced
-          FROM leads
-          WHERE created_at >= NOW() - INTERVAL '${timeframe}'
+            COUNT(DISTINCT l.id) as total,
+            COUNT(DISTINCT l.id) FILTER (WHERE l.lead_type IS NOT NULL) as classified,
+            COUNT(DISTINCT dr.hubspot_contact_id) FILTER (WHERE dr.hubspot_contact_id IS NOT NULL) as hubspot_synced
+          FROM leads l
+          LEFT JOIN drive_rows dr ON l.drive_row_id = dr.id
+          WHERE l.created_at >= NOW() - INTERVAL '${timeframe}'
         `),
         // Email metrics
         db.query(`
