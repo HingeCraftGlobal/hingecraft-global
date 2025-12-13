@@ -1,14 +1,19 @@
 // HingeCraft Global - Charter Page Velo Code
 // T10 Implementation: Full middleware binding + dynamic totals + crypto payments
-// Updated: December 12, 2025 - Uses HTTP endpoints instead of imports
+// Updated: December 13, 2025 - Fully Wix-compatible with HTTP endpoints
+// IMPORTANT: All backend calls use HTTP endpoints via /_functions/[module]/[function]
 
 import wixSeo from 'wix-seo';
 
 // Velo API Configuration - Use HTTP endpoints (not imports)
+// All module names must match backend .jsw file names exactly
 const VELO_CONFIG = {
     CHARTER_MIDDLEWARE: '/_functions/charter-page-middleware',
     PAYMENT_INFO_SERVICE: '/_functions/payment-info-service',
-    MISSION_SUPPORT_MIDDLEWARE: '/_functions/mission-support-middleware'
+    MISSION_SUPPORT_MIDDLEWARE: '/_functions/mission-support-middleware',
+    STRIPE_API: '/_functions/stripe.api',
+    NOWPAYMENTS_API: '/_functions/nowpayments.api',
+    CHAT_NOTIFICATIONS: '/_functions/chat-notifications'
 };
 
 // Helper to call Velo functions via HTTP

@@ -1,15 +1,21 @@
 // HingeCraft Global - Mission Support Form (REPLACES Payment Page)
 // T10 Implementation: Mission Support Form with Database Integration
-// Updated: December 12, 2025 - Uses HTTP endpoints instead of imports
+// Updated: December 13, 2025 - Fully Wix-compatible with HTTP endpoints
+// IMPORTANT: All backend calls use HTTP endpoints via /_functions/[module]/[function]
 // This page REPLACES the old Payment page - Mission Support form is now the Payment page
 
 import wixSeo from 'wix-seo';
 
 // Velo API Configuration - Use HTTP endpoints (not imports)
+// All module names must match backend .jsw file names exactly
 const VELO_CONFIG = {
     MISSION_SUPPORT_MIDDLEWARE: '/_functions/mission-support-middleware',
     PAYMENT_INFO_SERVICE: '/_functions/payment-info-service',
-    CHARTER_MIDDLEWARE: '/_functions/charter-page-middleware'
+    CHARTER_MIDDLEWARE: '/_functions/charter-page-middleware',
+    STRIPE_API: '/_functions/stripe.api',
+    NOWPAYMENTS_API: '/_functions/nowpayments.api',
+    CHAT_NOTIFICATIONS: '/_functions/chat-notifications',
+    RECEIPTS_HOOK: '/_functions/receipts-hook'
 };
 
 // Helper to call Velo functions via HTTP

@@ -1,14 +1,20 @@
 // HingeCraft Global - Mission Support Page
-// Updated: December 12, 2025 - Integrated with unified middleware
+// Updated: December 13, 2025 - Fully Wix-compatible with HTTP endpoints
+// IMPORTANT: All backend calls use HTTP endpoints via /_functions/[module]/[function]
 // API Reference: https://www.wix.com/velo/reference/api-overview/introduction
 
 import wixSeo from 'wix-seo';
 
 // Velo API Configuration - Use HTTP endpoints
+// All module names must match backend .jsw file names exactly
 const VELO_CONFIG = {
     MISSION_SUPPORT_MIDDLEWARE: '/_functions/mission-support-middleware',
     PAYMENT_INFO_SERVICE: '/_functions/payment-info-service',
-    CHAT_NOTIFICATIONS: '/_functions/chat-notifications'
+    CHAT_NOTIFICATIONS: '/_functions/chat-notifications',
+    STRIPE_API: '/_functions/stripe.api',
+    NOWPAYMENTS_API: '/_functions/nowpayments.api',
+    RECEIPTS_HOOK: '/_functions/receipts-hook',
+    CHARTER_MIDDLEWARE: '/_functions/charter-page-middleware'
 };
 
 // Helper to call Velo functions via HTTP

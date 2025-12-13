@@ -2,7 +2,17 @@
  * Pipeline Step-by-Step Test
  * Tests the complete pipeline after Google OAuth authentication
  * Each step is tested individually to verify full functionality
+ * 
+ * Usage: DB_HOST=localhost DB_PORT=7543 node tests/pipeline-step-by-step-test.js
  */
+
+// Set database connection if not already set
+if (!process.env.DB_PORT) {
+  process.env.DB_PORT = '7543'; // Docker mapped port
+}
+if (!process.env.DB_HOST) {
+  process.env.DB_HOST = 'localhost';
+}
 
 const db = require('../src/utils/database');
 const logger = require('../src/utils/logger');
