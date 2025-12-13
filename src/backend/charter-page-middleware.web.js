@@ -16,7 +16,7 @@
 
 import wixData from 'wix-data';
 import { createNowPaymentsInvoice } from 'backend/nowpayments.api';
-import { createCheckoutSession } from 'backend/stripe.api';
+import { createCheckoutSession, createCustomInvoice } from 'backend/stripe.api';
 import { getLatestDonation, saveDonation } from 'backend/hingecraft.api.web';
 
 /**
@@ -144,29 +144,91 @@ export async function cryptoButtonClick(amount, coin) {
 
 /**
  * Handle fiat button click (Stripe)
- * Creates Stripe checkout session for preset amounts
+ * Creates custom Stripe invoice for preset amounts
  * @public
- * @param {number} preset - Preset amount (1, 5, or 20)
+ * @param {number|Object} preset - Preset amount (1, 5, 20) or object with amount and user data
  */
 export async function fiatButtonClick(preset) {
     try {
         console.log('💳 Fiat button clicked:', { preset });
         
-        // Validate preset
-        const validPresets = [1, 5, 20];
-        const amount = parseFloat(preset);
+        // Handle both number and object inputs
+        let amount, email, customerName, metadata;
         
-        if (!validPresets.includes(amount)) {
-            throw new Error('Invalid preset amount. Must be 1, 5, or 20');
+        if (typeof preset === 'object' && preset !== null) {
+            amount = parseFloat(preset.amount || preset);
+            email = preset.email || null;
+            customerName = preset.customerName || preset.name || null;
+            metadata = preset.metadata || {};
+        } else {
+            amount = parseFloat(preset);
+            email = null;
+            customerName = null;
+            metadata = {};
         }
         
-        // Create Stripe checkout session
-        const sessionResult = await createCheckoutSession({
+        // Validate amount
+        const validPresets = [1, 5, 20];
+        if (!validPresets.includes(amount) && (amount < 1 || amount > 25000)) {
+            throw new Error('Invalid amount. Must be 1, 5, 20, or between $1-$25,000');
+        }
+        
+        // Get user data from session if available
+        let sessionData = null;
+        try {
+            if (typeof wixStorage !== 'undefined' && wixStorage.session) {
+                const stored = wixStorage.session.getItem('hingecraft_donation');
+                if (stored) {
+                    sessionData = JSON.parse(stored);
+                }
+            }
+        } catch (e) {
+            console.warn('Could not retrieve session data:', e);
+        }
+        
+        // Use email from session if not provided
+        if (!email && sessionData && sessionData.email) {
+            email = sessionData.email;
+        }
+        
+        // If no email, we need to get it from the database or form
+        // For now, create invoice with email if available, otherwise use a placeholder
+        if (!email) {
+            // Try to get from ContributionIntent if available
+            try {
+                const intentResults = await wixData.query('ContributionIntent')
+                    .eq('status', 'intent')
+                    .descending('timestamp')
+                    .limit(1)
+                    .find();
+                
+                if (intentResults.items.length > 0) {
+                    const latestIntent = intentResults.items[0];
+                    email = latestIntent.email || null;
+                    customerName = customerName || (latestIntent.first_name && latestIntent.last_name 
+                        ? `${latestIntent.first_name} ${latestIntent.last_name}` : null);
+                }
+            } catch (dbError) {
+                console.warn('Could not retrieve email from database:', dbError);
+            }
+        }
+        
+        // Add metadata
+        metadata = {
+            ...metadata,
+            source: 'charter_page_button',
+            amount_entered: amount.toString(),
+            timestamp: new Date().toISOString()
+        };
+        
+        // Create custom Stripe invoice
+        const { createCustomInvoice } = await import('backend/stripe.api');
+        const invoiceResult = await createCustomInvoice({
             amount: amount,
-            successUrl: `${await getBaseUrl()}/payment-success?amount=${amount}&method=stripe`,
-            cancelUrl: `${await getBaseUrl()}/charter?canceled=true&amount=${amount}`,
-            donationId: null,
-            email: null
+            email: email || 'donor@hingecraft-global.ai', // Fallback email if none provided
+            description: `HingeCraft Donation - $${amount.toFixed(2)} Contribution`,
+            customerName: customerName,
+            metadata: metadata
         });
         
         if (!sessionResult.success) {

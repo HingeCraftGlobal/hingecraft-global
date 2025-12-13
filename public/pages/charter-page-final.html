@@ -507,51 +507,116 @@
   }
 
   /**
-   * Handle Stripe payment
+   * Handle Stripe payment - Creates custom invoice
    */
   async function handleStripePayment(amount) {
-    if (!stripe) {
-      showError('Stripe is not initialized. Please refresh the page.');
-      return;
-    }
-
     try {
-      console.log('💳 Creating Stripe checkout session...');
+      console.log('💳 Creating custom Stripe invoice...');
 
       const button = document.getElementById('hingecraft-stripe-button');
-      const originalText = button.innerHTML;
-      button.innerHTML = '⏳ Processing...';
-      button.disabled = true;
+      const originalText = button ? button.innerHTML : 'Pay with Card';
+      if (button) {
+        button.innerHTML = '⏳ Creating Invoice...';
+        button.disabled = true;
+      }
 
-      // Call middleware
+      // Get user email if available (from form or session)
+      let userEmail = null;
+      let userName = null;
+      
+      try {
+        const stored = sessionStorage.getItem(CONFIG.SESSION_KEY);
+        if (stored) {
+          const data = JSON.parse(stored);
+          userEmail = data.email || null;
+          userName = (data.firstName && data.lastName) ? `${data.firstName} ${data.lastName}` : null;
+        }
+      } catch (e) {
+        console.warn('Could not get user data from session:', e);
+      }
+
+      // Call middleware to create custom invoice
       const response = await fetch(CONFIG.CHARTER_MIDDLEWARE + '/fiatButtonClick', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ preset: amount })
+        body: JSON.stringify({ 
+          preset: amount,
+          email: userEmail,
+          customerName: userName,
+          metadata: {
+            source: 'charter_page',
+            button_amount: amount.toString()
+          }
+        })
       });
 
       if (!response.ok) {
-        throw new Error('Failed to create checkout session');
+        throw new Error('Failed to create custom invoice');
       }
 
-      const session = await response.json();
+      const invoiceResult = await response.json();
 
-      if (!session.success) {
-        throw new Error(session.error || 'Failed to create checkout session');
+      if (!invoiceResult.success) {
+        throw new Error(invoiceResult.error || 'Failed to create custom invoice');
       }
 
-      // Redirect to Stripe Checkout
-      const result = await stripe.redirectToCheckout({
-        sessionId: session.sessionId
-      });
+      // Show success message with invoice link
+      const successMessage = `
+        <div style="padding: 20px; background: #d1fae5; border: 2px solid #10b981; border-radius: 8px; margin: 20px 0;">
+          <h3 style="color: #065f46; margin: 0 0 12px 0;">✅ Invoice Created Successfully!</h3>
+          <p style="color: #047857; margin: 0 0 16px 0;">
+            A custom invoice for $${amount.toFixed(2)} has been created and sent to your email.
+            ${userEmail ? `(${userEmail})` : 'Please check your email inbox.'}
+          </p>
+          <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+            <a href="${invoiceResult.invoiceUrl}" target="_blank" 
+               style="padding: 12px 24px; background: #10b981; color: white; text-decoration: none; border-radius: 6px; font-weight: 600; display: inline-block;">
+              📄 View Invoice Online
+            </a>
+            ${invoiceResult.invoicePdf ? `
+            <a href="${invoiceResult.invoicePdf}" target="_blank" 
+               style="padding: 12px 24px; background: #3b82f6; color: white; text-decoration: none; border-radius: 6px; font-weight: 600; display: inline-block;">
+              📥 Download PDF
+            </a>
+            ` : ''}
+          </div>
+          <p style="color: #047857; margin: 16px 0 0 0; font-size: 14px;">
+            💡 You can pay the invoice directly from the link above or wait for the email.
+          </p>
+        </div>
+      `;
 
-      if (result.error) {
-        throw new Error(result.error.message);
+      // Display success message
+      const displayEl = document.getElementById('hingecraft-donation-display') || document.body;
+      const successDiv = document.createElement('div');
+      successDiv.id = 'hingecraft-invoice-success';
+      successDiv.innerHTML = successMessage;
+      displayEl.appendChild(successDiv);
+
+      // Hide payment options
+      const paymentOptions = document.getElementById('hingecraft-payment-options');
+      if (paymentOptions) {
+        paymentOptions.style.display = 'none';
       }
+
+      // Store invoice data
+      if (typeof sessionStorage !== 'undefined') {
+        sessionStorage.setItem('hingecraft_invoice', JSON.stringify({
+          invoiceId: invoiceResult.invoiceId,
+          invoiceUrl: invoiceResult.invoiceUrl,
+          amount: amount,
+          timestamp: new Date().toISOString()
+        }));
+      }
+
+      // Update cumulative total after a delay (invoice payment is async)
+      setTimeout(() => {
+        loadCumulativeTotal();
+      }, 2000);
 
     } catch (error) {
-      console.error('❌ Stripe payment error:', error);
-      showError('Payment failed. Please try again.');
+      console.error('❌ Stripe invoice creation error:', error);
+      showError('Failed to create invoice. Please try again.');
       
       const button = document.getElementById('hingecraft-stripe-button');
       if (button) {
