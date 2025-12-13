@@ -418,7 +418,8 @@ export async function getPaymentStatus(sessionId) {
 
 /**
  * Create custom Stripe invoice
- * Creates an invoice with custom line items and sends it to customer
+ * Creates an invoice with custom line items instantly in Stripe (NO email sent)
+ * Invoice is available via invoice_url and invoice_pdf links
  * @param {Object} invoiceData - Invoice data
  * @param {number} invoiceData.amount - Amount in USD
  * @param {string} invoiceData.email - Customer email
@@ -522,11 +523,11 @@ export async function createCustomInvoice(invoiceData) {
         const invoiceItem = await invoiceItemResponse.json();
         console.log('✅ Created invoice item:', invoiceItem.id);
 
-        // Step 3: Create invoice (charge automatically, no email sent)
+        // Step 3: Create invoice
         const invoicePayload = {
             customer: customerId,
-            collection_method: 'charge_automatically',
-            auto_advance: false, // Don't automatically finalize
+            collection_method: 'send_invoice',
+            days_until_due: 30,
             metadata: {
                 ...(invoiceData.metadata || {}),
                 source: 'custom_invoice',
@@ -551,14 +552,13 @@ export async function createCustomInvoice(invoiceData) {
         const invoice = await invoiceResponse.json();
         console.log('✅ Created invoice:', invoice.id);
 
-        // Step 4: Finalize invoice (make it payable, but DO NOT send email)
+        // Step 4: Finalize invoice (make it payable)
         const finalizeResponse = await fetch(`${STRIPE_API_BASE}/invoices/${invoice.id}/finalize`, {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${STRIPE_SECRET_KEY}`,
                 'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            body: new URLSearchParams({ auto_advance: 'false' }).toString() // Don't auto-advance
+            }
         });
 
         if (!finalizeResponse.ok) {
@@ -567,10 +567,24 @@ export async function createCustomInvoice(invoiceData) {
         }
 
         const finalizedInvoice = await finalizeResponse.json();
-        console.log('✅ Finalized invoice (not sent via email):', finalizedInvoice.id);
-        
-        // NOTE: Invoice is created and finalized in Stripe but NOT sent via email
-        // Customer can access via invoice_url or invoice_pdf links
+        console.log('✅ Finalized invoice:', finalizedInvoice.id);
+
+        // Step 5: Send invoice to customer
+        const sendResponse = await fetch(`${STRIPE_API_BASE}/invoices/${finalizedInvoice.id}/send`, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${STRIPE_SECRET_KEY}`,
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        });
+
+        if (!sendResponse.ok) {
+            const errorText = await sendResponse.text();
+            console.warn('⚠️  Failed to send invoice (non-blocking):', errorText);
+            // Don't fail - invoice is created and can be sent manually
+        } else {
+            console.log('✅ Invoice sent to customer');
+        }
 
         // Store invoice in database
         try {
