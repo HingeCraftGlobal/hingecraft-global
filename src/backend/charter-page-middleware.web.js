@@ -251,14 +251,6 @@ export async function fiatButtonClick(preset) {
             }
         }
         
-        // Add metadata
-        metadata = {
-            ...metadata,
-            source: 'charter_page_button',
-            amount_entered: amount.toString(),
-            timestamp: new Date().toISOString()
-        };
-        
         // Add metadata with membership and database reference
         metadata = {
             ...metadata,
