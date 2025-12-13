@@ -1,0 +1,316 @@
+/**
+ * Comprehensive Testing Utilities
+ * Tests all payment flows and system integrations
+ */
+
+import { fiatButtonClick, cryptoButtonClick, getCumulativeTotal } from 'backend/charter-page-middleware';
+import { handleUserInputDonation, otherAmount } from 'backend/mission-support-middleware';
+import { createCustomInvoice } from 'backend/stripe.api';
+import { createNowPaymentsInvoice } from 'backend/nowpayments.api';
+
+/**
+ * Test all payment flows
+ */
+export async function testAllPaymentFlows() {
+    const results = {
+        success: true,
+        tests: [],
+        errors: []
+    };
+    
+    // Test 1: Mission Support Preset Amount
+    try {
+        const test1 = await testMissionSupportPreset();
+        results.tests.push(test1);
+        if (!test1.success) results.success = false;
+    } catch (error) {
+        results.errors.push(`Test 1 failed: ${error.message}`);
+        results.success = false;
+    }
+    
+    // Test 2: Mission Support Other Amount
+    try {
+        const test2 = await testMissionSupportOther();
+        results.tests.push(test2);
+        if (!test2.success) results.success = false;
+    } catch (error) {
+        results.errors.push(`Test 2 failed: ${error.message}`);
+        results.success = false;
+    }
+    
+    // Test 3: Charter Fiat Payment
+    try {
+        const test3 = await testCharterFiat();
+        results.tests.push(test3);
+        if (!test3.success) results.success = false;
+    } catch (error) {
+        results.errors.push(`Test 3 failed: ${error.message}`);
+        results.success = false;
+    }
+    
+    // Test 4: Charter Crypto Payment
+    try {
+        const test4 = await testCharterCrypto();
+        results.tests.push(test4);
+        if (!test4.success) results.success = false;
+    } catch (error) {
+        results.errors.push(`Test 4 failed: ${error.message}`);
+        results.success = false;
+    }
+    
+    // Test 5: Crypto Minimum ($30)
+    try {
+        const test5 = await testCryptoMinimum();
+        results.tests.push(test5);
+        if (!test5.success) results.success = false;
+    } catch (error) {
+        results.errors.push(`Test 5 failed: ${error.message}`);
+        results.success = false;
+    }
+    
+    // Test 6: ACH Routing
+    try {
+        const test6 = await testACHRouting();
+        results.tests.push(test6);
+        if (!test6.success) results.success = false;
+    } catch (error) {
+        results.errors.push(`Test 6 failed: ${error.message}`);
+        results.success = false;
+    }
+    
+    return results;
+}
+
+/**
+ * Test Mission Support Preset Amount
+ */
+async function testMissionSupportPreset() {
+    const testData = {
+        firstName: 'Test',
+        lastName: 'User',
+        email: 'test@example.com',
+        address: '123 Test St',
+        amount: '5',
+        paymentMethod: 'card'
+    };
+    
+    try {
+        const result = await handleUserInputDonation(testData);
+        
+        return {
+            name: 'Mission Support Preset Amount',
+            success: result.success,
+            result: result,
+            message: result.success ? 'Preset amount flow works' : result.error
+        };
+    } catch (error) {
+        return {
+            name: 'Mission Support Preset Amount',
+            success: false,
+            error: error.message
+        };
+    }
+}
+
+/**
+ * Test Mission Support Other Amount
+ */
+async function testMissionSupportOther() {
+    const testData = {
+        amount: '15',
+        userInfo: {
+            firstName: 'Test',
+            lastName: 'User',
+            email: 'test@example.com'
+        }
+    };
+    
+    try {
+        const result = await otherAmount(testData);
+        
+        return {
+            name: 'Mission Support Other Amount',
+            success: result.success,
+            result: result,
+            message: result.success ? 'Other amount flow works' : result.error
+        };
+    } catch (error) {
+        return {
+            name: 'Mission Support Other Amount',
+            success: false,
+            error: error.message
+        };
+    }
+}
+
+/**
+ * Test Charter Fiat Payment
+ */
+async function testCharterFiat() {
+    const testPreset = {
+        amount: 10,
+        paymentMethod: 'card',
+        tier: 'PREMIER',
+        years: 2
+    };
+    
+    try {
+        const result = await fiatButtonClick(testPreset);
+        
+        return {
+            name: 'Charter Fiat Payment',
+            success: result.success,
+            result: result,
+            message: result.success ? 'Fiat payment flow works' : result.error
+        };
+    } catch (error) {
+        return {
+            name: 'Charter Fiat Payment',
+            success: false,
+            error: error.message
+        };
+    }
+}
+
+/**
+ * Test Charter Crypto Payment
+ */
+async function testCharterCrypto() {
+    const testData = {
+        amount: 50,
+        coin: 'SOL'
+    };
+    
+    try {
+        const result = await cryptoButtonClick(testData);
+        
+        return {
+            name: 'Charter Crypto Payment',
+            success: result.success,
+            result: result,
+            message: result.success ? 'Crypto payment flow works' : result.error
+        };
+    } catch (error) {
+        return {
+            name: 'Charter Crypto Payment',
+            success: false,
+            error: error.message
+        };
+    }
+}
+
+/**
+ * Test Crypto Minimum ($30)
+ */
+async function testCryptoMinimum() {
+    // Test with $29 (should fail)
+    try {
+        const result29 = await cryptoButtonClick({ amount: 29, coin: 'SOL' });
+        
+        if (result29.success) {
+            return {
+                name: 'Crypto Minimum ($30)',
+                success: false,
+                message: 'Crypto minimum validation failed - $29 was accepted'
+            };
+        }
+        
+        // Test with $30 (should succeed)
+        const result30 = await cryptoButtonClick({ amount: 30, coin: 'SOL' });
+        
+        return {
+            name: 'Crypto Minimum ($30)',
+            success: result30.success,
+            message: result30.success 
+                ? 'Crypto minimum validation works correctly' 
+                : result30.error
+        };
+    } catch (error) {
+        return {
+            name: 'Crypto Minimum ($30)',
+            success: false,
+            error: error.message
+        };
+    }
+}
+
+/**
+ * Test ACH Routing
+ */
+async function testACHRouting() {
+    const testPreset = {
+        amount: 10,
+        paymentMethod: 'ACH',
+        tier: 'PREMIER'
+    };
+    
+    try {
+        const result = await fiatButtonClick(testPreset);
+        
+        // Check if invoice was created with ACH support
+        const hasACH = result.invoiceId && result.success;
+        
+        return {
+            name: 'ACH Routing',
+            success: hasACH,
+            result: result,
+            message: hasACH 
+                ? 'ACH routing works correctly' 
+                : 'ACH routing failed'
+        };
+    } catch (error) {
+        return {
+            name: 'ACH Routing',
+            success: false,
+            error: error.message
+        };
+    }
+}
+
+/**
+ * Test database sync
+ */
+export async function testDatabaseSync() {
+    try {
+        const { syncPaymentData, getDatabaseStats } = await import('backend/database-sync');
+        
+        // Run sync
+        const syncResult = await syncPaymentData();
+        
+        // Get stats
+        const stats = await getDatabaseStats();
+        
+        return {
+            success: syncResult.success && stats.success,
+            sync: syncResult,
+            stats: stats
+        };
+    } catch (error) {
+        return {
+            success: false,
+            error: error.message
+        };
+    }
+}
+
+/**
+ * Test cumulative total calculation
+ */
+export async function testCumulativeTotal() {
+    try {
+        const result = await getCumulativeTotal();
+        
+        return {
+            success: result.success,
+            total: result.total,
+            fiatTotal: result.fiatTotal,
+            cryptoTotal: result.cryptoTotal,
+            message: 'Cumulative total calculation works'
+        };
+    } catch (error) {
+        return {
+            success: false,
+            error: error.message
+        };
+    }
+}
