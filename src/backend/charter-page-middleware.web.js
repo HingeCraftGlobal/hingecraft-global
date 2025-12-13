@@ -202,18 +202,24 @@ export async function fiatButtonClick(preset) {
         console.log('💳 Fiat button clicked:', { preset });
         
         // Handle both number and object inputs
-        let amount, email, customerName, metadata;
+        let amount, email, customerName, metadata, tier, years, paymentMethod;
         
         if (typeof preset === 'object' && preset !== null) {
             amount = parseFloat(preset.amount || preset);
             email = preset.email || null;
             customerName = preset.customerName || preset.name || null;
             metadata = preset.metadata || {};
+            tier = preset.tier || null;
+            years = preset.years || null;
+            paymentMethod = preset.paymentMethod || 'card';
         } else {
             amount = parseFloat(preset);
             email = null;
             customerName = null;
             metadata = {};
+            tier = null;
+            years = null;
+            paymentMethod = 'card';
         }
         
         // Validate amount

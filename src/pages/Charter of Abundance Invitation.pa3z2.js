@@ -133,7 +133,11 @@ function loadCharterPageContent() {
  */
 export async function handleCryptoButtonClick(amount, coin) {
     try {
-        const result = await cryptoButtonClick(amount, coin);
+        // Handle both object and separate parameters
+        const data = typeof amount === 'object' && amount !== null 
+            ? amount 
+            : { amount, coin };
+        const result = await cryptoButtonClick(data);
         return result;
     } catch (error) {
         console.error('❌ Crypto button click error:', error);
