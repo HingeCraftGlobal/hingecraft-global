@@ -115,14 +115,61 @@ export async function handleUserInputDonation(formData) {
                 payCurrency: invoiceResult.payCurrency
             };
         } else {
-            // Card payment: redirect to charter page
-            const redirectResult = await goToCharterAfterPayment(amount);
+            // Card payment: create custom invoice instantly (no email sent)
+            const { createCustomInvoice } = await import('backend/stripe.api');
+            const invoiceResult = await createCustomInvoice({
+                amount: amount,
+                email: formData.email,
+                description: `HingeCraft Donation - $${amount.toFixed(2)} Contribution from Mission Support Form`,
+                customerName: formData.firstName && formData.lastName 
+                    ? `${formData.firstName} ${formData.lastName}` : null,
+                metadata: {
+                    source: 'mission_support_form',
+                    amount_entered: amount.toString(),
+                    first_name: formData.firstName || null,
+                    last_name: formData.lastName || null,
+                    mission_support_name: formData.missionSupportName || null,
+                    timestamp: new Date().toISOString()
+                }
+            });
+            
+            if (!invoiceResult.success) {
+                throw new Error(invoiceResult.error || 'Failed to create invoice');
+            }
+            
+            // Store invoice data
+            try {
+                const invoiceRecord = {
+                    invoice_id: invoiceResult.invoiceId,
+                    customer_id: invoiceResult.customerId,
+                    amount: amount,
+                    currency: 'usd',
+                    status: invoiceResult.status,
+                    invoice_url: invoiceResult.invoiceUrl,
+                    invoice_pdf: invoiceResult.invoicePdf,
+                    email: formData.email,
+                    created_at: new Date(),
+                    metadata: {
+                        source: 'mission_support_form',
+                        stripe_mode: invoiceResult.mode
+                    }
+                };
+                
+                await wixData.save('StripePayments', invoiceRecord);
+            } catch (dbError) {
+                console.warn('⚠️  Error saving invoice to database (non-blocking):', dbError);
+            }
             
             return {
                 success: true,
                 paymentMethod: 'card',
-                redirectUrl: redirectResult.redirectUrl,
-                amount: amount
+                invoiceId: invoiceResult.invoiceId,
+                invoiceUrl: invoiceResult.invoiceUrl,
+                invoicePdf: invoiceResult.invoicePdf,
+                customerId: invoiceResult.customerId,
+                amount: amount,
+                status: invoiceResult.status,
+                mode: invoiceResult.mode
             };
         }
     } catch (error) {
@@ -381,5 +428,81 @@ async function getAnonymousFingerprint() {
         return 'fp_' + timestamp + '_' + random;
     } catch (error) {
         return 'fp_' + Date.now();
+    }
+}
+
+/**
+ * Get prefill data by ID
+ * Used by Charter page to retrieve prefill amount from Mission Support form
+ * @public
+ * @param {string} prefillId - Prefill token ID
+ */
+export async function getPrefill(prefillId) {
+    try {
+        if (!prefillId) {
+            throw new Error('Prefill ID is required');
+        }
+        
+        // Try to get from ContributionIntent collection
+        let prefillData = null;
+        try {
+            const result = await wixData.get('ContributionIntent', prefillId);
+            if (result) {
+                // Check if expired
+                if (result.expires_at) {
+                    const expiresAt = new Date(result.expires_at);
+                    if (expiresAt < new Date()) {
+                        throw new Error('Prefill token expired');
+                    }
+                }
+                
+                // Check if already used
+                if (result.used) {
+                    throw new Error('Prefill token already used');
+                }
+                
+                prefillData = result;
+            }
+        } catch (dbError) {
+            if (dbError.message !== 'Item not found' && !dbError.message.includes('expired') && !dbError.message.includes('used')) {
+                throw dbError;
+            }
+            throw new Error('Prefill token not found or expired');
+        }
+        
+        if (!prefillData) {
+            throw new Error('Prefill token not found or expired');
+        }
+        
+        // Mark as used (if from DB)
+        if (prefillData._id) {
+            try {
+                await wixData.update('ContributionIntent', {
+                    ...prefillData,
+                    used: true,
+                    used_at: new Date()
+                });
+            } catch (updateError) {
+                console.warn('⚠️ Error marking prefill as used:', updateError);
+            }
+        }
+        
+        return {
+            success: true,
+            amount: prefillData.amount_entered || prefillData.amount,
+            prefillId: prefillId,
+            userInfo: {
+                firstName: prefillData.first_name || null,
+                lastName: prefillData.last_name || null,
+                email: prefillData.email || null,
+                address: prefillData.address || null
+            }
+        };
+    } catch (error) {
+        console.error('❌ Get prefill error:', error);
+        return {
+            success: false,
+            error: error.message
+        };
     }
 }
