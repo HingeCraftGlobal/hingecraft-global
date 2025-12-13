@@ -11,34 +11,78 @@ const templateRouter = require('./templateRouter');
 const gmailMultiAccount = require('./gmailMultiAccount');
 const hubspotEnhanced = require('./hubspotEnhanced');
 const sequenceEngine = require('./sequenceEngine');
+const crypto = require('crypto');
+const config = require('../../config/api_keys');
 
 class AnyMailWebhookHandler {
   /**
-   * Handle incoming AnyMail webhook
-   * Auto-fills prospect data and triggers email with proper template
+   * Verify webhook signature for security
    */
-  async handleWebhook(webhookData) {
+  verifyWebhookSignature(payload, signature, secret) {
+    if (!secret) {
+      logger.warn('Webhook secret not configured, skipping signature verification');
+      return true; // Allow if no secret configured
+    }
+
     try {
-      logger.info('Received AnyMail webhook:', webhookData);
+      const hmac = crypto.createHmac('sha256', secret);
+      const digest = hmac.update(JSON.stringify(payload)).digest('hex');
+      return crypto.timingSafeEqual(
+        Buffer.from(signature),
+        Buffer.from(digest)
+      );
+    } catch (error) {
+      logger.error('Error verifying webhook signature:', error);
+      return false;
+    }
+  }
+
+  /**
+   * Handle incoming AnyMail webhook
+   * EXACT ORDER:
+   * 1. Receive AnyMail webhooks
+   * 2. Auto-fill prospect data
+   * 3. Select template from database
+   * 4. Send personalized email
+   * 5. Segment and sync to HubSpot
+   */
+  async handleWebhook(webhookData, signature = null) {
+    try {
+      logger.info('Step 1: Received AnyMail webhook');
+
+      // Verify webhook signature if provided
+      const webhookSecret = process.env.ANYMAIL_WEBHOOK_SECRET || config.anymail.webhookSecret;
+      if (signature && webhookSecret) {
+        const isValid = this.verifyWebhookSignature(webhookData, signature, webhookSecret);
+        if (!isValid) {
+          throw new Error('Invalid webhook signature');
+        }
+        logger.info('Webhook signature verified');
+      }
 
       const { event, email, contact_data, metadata } = webhookData;
 
-      // Step 1: Find or create lead in database
-      let lead = await this.findOrCreateLead(email, contact_data);
+      // STEP 1: Receive AnyMail webhooks (already received)
+      if (!email) {
+        throw new Error('Email is required in webhook data');
+      }
 
-      // Step 2: Enrich with AnyMail data if provided
+      // STEP 2: Auto-fill prospect data
+      logger.info('Step 2: Auto-filling prospect data');
+      let lead = await this.findOrCreateLead(email, contact_data);
+      
+      // Enrich with AnyMail data
       if (contact_data) {
         lead = await this.enrichLeadWithAnymailData(lead, contact_data);
       }
 
-      // Step 3: Classify lead if not already classified
+      // Classify lead if not already classified
       if (!lead.lead_type) {
         const classification = await leadClassifier.classifyLead(lead);
         lead.lead_type = classification.lead_type;
         lead.template_set = classification.template_set;
         lead.lead_score = classification.score;
 
-        // Update lead in database
         await db.query(
           `UPDATE leads 
            SET lead_type = $1, template_set = $2, lead_score = $3, updated_at = NOW()
@@ -47,19 +91,19 @@ class AnyMailWebhookHandler {
         );
       }
 
-      // Step 4: Sync to HubSpot
-      await hubspotEnhanced.upsertContact(lead);
-
-      // Step 5: Get appropriate template based on lead type
+      // STEP 3: Select template from database
+      logger.info('Step 3: Selecting template from database');
       const template = await this.getTemplateForLead(lead);
+      
+      if (!template) {
+        throw new Error(`No template found for lead type: ${lead.lead_type}, template_set: ${lead.template_set}`);
+      }
 
-      // Step 6: Personalize template with lead data
+      // STEP 4: Send personalized email
+      logger.info('Step 4: Sending personalized email');
       const personalizedTemplate = await this.personalizeTemplate(template, lead);
-
-      // Step 7: Determine sending account based on lead type
       const fromEmail = this.selectSendingAccount(lead);
 
-      // Step 8: Send email via Gmail
       const emailResult = await gmailMultiAccount.sendEmail({
         to: lead.email,
         subject: personalizedTemplate.subject,
@@ -68,25 +112,31 @@ class AnyMailWebhookHandler {
         replyTo: fromEmail
       });
 
-      // Step 9: Log email send
+      // Log email send
       await this.logEmailSend(lead.id, emailResult, personalizedTemplate);
 
-      // Step 10: Initialize sequence if needed
-      if (!lead.sequence_initialized) {
-        await sequenceEngine.initializeSequence(lead.id, lead.template_set);
-      }
-
-      // Step 11: Segment lead
+      // STEP 5: Segment and sync to HubSpot
+      logger.info('Step 5: Segmenting and syncing to HubSpot');
+      
+      // Segment lead
       await this.segmentLead(lead);
+      
+      // Sync to HubSpot
+      await hubspotEnhanced.upsertContact(lead);
+      
+      // Sync segment to HubSpot list
+      const hubspotUnifiedSync = require('./hubspotUnifiedSync');
+      await hubspotUnifiedSync.syncSegmentsToLists();
 
-      logger.info(`Webhook processed: Lead ${lead.id}, Email sent: ${emailResult.success}`);
+      logger.info(`Webhook processed successfully: Lead ${lead.id}, Email sent: ${emailResult.success}`);
 
       return {
         success: true,
         lead_id: lead.id,
         email_sent: emailResult.success,
-        template_used: template.name,
-        segment: lead.lead_type
+        template_used: template.name || template.id,
+        segment: lead.lead_type,
+        hubspot_synced: true
       };
     } catch (error) {
       logger.error('Error handling AnyMail webhook:', error);

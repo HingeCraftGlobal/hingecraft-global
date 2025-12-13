@@ -4,12 +4,15 @@
  * This module handles:
  * - Stripe checkout session creation
  * - Payment processing
+ * - Custom invoice creation
  * - Webhook handling
  * - Publishable key retrieval
  * 
- * Required Wix Secrets:
- * - STRIPE_SECRET_KEY_LIVE
- * - STRIPE_PUBLISHABLE_KEY_LIVE (optional, can be derived)
+ * Required Wix Secrets (TEST keys prioritized for dev):
+ * - STRIPE_SECRET_KEY_TEST (DEV - prioritized)
+ * - STRIPE_PUBLISHABLE_KEY_TEST (DEV - prioritized)
+ * - STRIPE_SECRET_KEY_LIVE (PROD - fallback)
+ * - STRIPE_PUBLISHABLE_KEY_LIVE (PROD - fallback)
  */
 
 import { fetch } from 'wix-fetch';
@@ -20,35 +23,63 @@ import wixData from 'wix-data';
 const STRIPE_API_BASE = 'https://api.stripe.com/v1';
 let STRIPE_SECRET_KEY = null;
 let STRIPE_PUBLISHABLE_KEY = null;
+let STRIPE_MODE = 'test'; // 'test' or 'live'
 
 /**
  * Initialize Stripe configuration from secrets
+ * Prioritizes TEST keys for development
  */
 async function initStripeConfig() {
     try {
-        STRIPE_SECRET_KEY = await secrets.getSecret('STRIPE_SECRET_KEY_LIVE');
+        // Try TEST keys first (DEV mode)
+        try {
+            STRIPE_SECRET_KEY = await secrets.getSecret('STRIPE_SECRET_KEY_TEST');
+            STRIPE_MODE = 'test';
+            console.log('🔧 Using Stripe TEST keys (DEV mode)');
+        } catch (testError) {
+            // Fallback to LIVE keys (PROD mode)
+            try {
+                STRIPE_SECRET_KEY = await secrets.getSecret('STRIPE_SECRET_KEY_LIVE');
+                STRIPE_MODE = 'live';
+                console.log('🔧 Using Stripe LIVE keys (PROD mode)');
+            } catch (liveError) {
+                throw new Error('No Stripe keys found. Please set STRIPE_SECRET_KEY_TEST (dev) or STRIPE_SECRET_KEY_LIVE (prod) in Wix Secrets Manager.');
+            }
+        }
         
         // Try to get publishable key from secrets, or derive from secret key
         try {
-            STRIPE_PUBLISHABLE_KEY = await secrets.getSecret('STRIPE_PUBLISHABLE_KEY_LIVE');
+            if (STRIPE_MODE === 'test') {
+                STRIPE_PUBLISHABLE_KEY = await secrets.getSecret('STRIPE_PUBLISHABLE_KEY_TEST');
+            } else {
+                STRIPE_PUBLISHABLE_KEY = await secrets.getSecret('STRIPE_PUBLISHABLE_KEY_LIVE');
+            }
         } catch (e) {
             // Derive publishable key from secret key
-            // Format: sk_live_... -> pk_live_...
-            if (STRIPE_SECRET_KEY && STRIPE_SECRET_KEY.startsWith('sk_live_')) {
-                STRIPE_PUBLISHABLE_KEY = STRIPE_SECRET_KEY.replace('sk_live_', 'pk_live_');
-            } else if (STRIPE_SECRET_KEY && STRIPE_SECRET_KEY.startsWith('sk_test_')) {
+            // Format: sk_test_... -> pk_test_... or sk_live_... -> pk_live_...
+            if (STRIPE_SECRET_KEY && STRIPE_SECRET_KEY.startsWith('sk_test_')) {
                 STRIPE_PUBLISHABLE_KEY = STRIPE_SECRET_KEY.replace('sk_test_', 'pk_test_');
+            } else if (STRIPE_SECRET_KEY && STRIPE_SECRET_KEY.startsWith('sk_live_')) {
+                STRIPE_PUBLISHABLE_KEY = STRIPE_SECRET_KEY.replace('sk_live_', 'pk_live_');
+            } else {
+                throw new Error('Could not derive publishable key from secret key');
             }
         }
         
         if (!STRIPE_SECRET_KEY) {
-            throw new Error('STRIPE_SECRET_KEY_LIVE not configured in Wix Secrets');
+            throw new Error('STRIPE_SECRET_KEY not configured in Wix Secrets');
         }
         
-        console.log('✅ Stripe configuration loaded');
+        if (!STRIPE_PUBLISHABLE_KEY) {
+            throw new Error('STRIPE_PUBLISHABLE_KEY not configured in Wix Secrets');
+        }
+        
+        console.log(`✅ Stripe configuration loaded (${STRIPE_MODE.toUpperCase()} mode)`);
+        console.log(`   Secret key: ${STRIPE_SECRET_KEY.substring(0, 12)}...`);
+        console.log(`   Publishable key: ${STRIPE_PUBLISHABLE_KEY.substring(0, 12)}...`);
     } catch (error) {
         console.error('❌ Error loading Stripe configuration:', error);
-        throw new Error('Stripe configuration missing. Please set STRIPE_SECRET_KEY_LIVE in Wix Secrets Manager.');
+        throw new Error(`Stripe configuration missing: ${error.message}`);
     }
 }
 
@@ -382,6 +413,243 @@ export async function getPaymentStatus(sessionId) {
     } catch (error) {
         console.error('❌ Error getting payment status:', error);
         throw error;
+    }
+}
+
+/**
+ * Create custom Stripe invoice
+ * Creates an invoice with custom line items and sends it to customer
+ * @param {Object} invoiceData - Invoice data
+ * @param {number} invoiceData.amount - Amount in USD
+ * @param {string} invoiceData.email - Customer email
+ * @param {string} invoiceData.description - Invoice description
+ * @param {string} invoiceData.customerName - Optional customer name
+ * @param {Object} invoiceData.metadata - Optional metadata
+ * @returns {Promise<Object>} Invoice creation response
+ */
+export async function createCustomInvoice(invoiceData) {
+    try {
+        // Ensure config is loaded
+        if (!STRIPE_SECRET_KEY) {
+            await initStripeConfig();
+        }
+
+        // Validate required fields
+        if (!invoiceData || !invoiceData.amount || !invoiceData.email) {
+            throw new Error('Amount and email are required');
+        }
+
+        const amount = parseFloat(invoiceData.amount);
+        if (isNaN(amount) || amount < 1.00 || amount > 25000.00) {
+            throw new Error('Invalid amount (must be between $1.00 and $25,000.00)');
+        }
+
+        // Convert to cents (Stripe uses cents)
+        const amountInCents = Math.round(amount * 100);
+
+        // Step 1: Create or retrieve customer
+        let customerId = null;
+        try {
+            // Try to find existing customer by email
+            const customerSearchResponse = await fetch(`${STRIPE_API_BASE}/customers/search?query=email:'${encodeURIComponent(invoiceData.email)}'`, {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${STRIPE_SECRET_KEY}`
+                }
+            });
+
+            if (customerSearchResponse.ok) {
+                const customerSearch = await customerSearchResponse.json();
+                if (customerSearch.data && customerSearch.data.length > 0) {
+                    customerId = customerSearch.data[0].id;
+                    console.log('✅ Found existing customer:', customerId);
+                }
+            }
+
+            // If no customer found, create one
+            if (!customerId) {
+                const customerData = {
+                    email: invoiceData.email,
+                    name: invoiceData.customerName || null,
+                    metadata: invoiceData.metadata || {}
+                };
+
+                const customerResponse = await fetch(`${STRIPE_API_BASE}/customers`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${STRIPE_SECRET_KEY}`,
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: new URLSearchParams(customerData).toString()
+                });
+
+                if (!customerResponse.ok) {
+                    const errorText = await customerResponse.text();
+                    throw new Error(`Failed to create customer: ${errorText}`);
+                }
+
+                const customer = await customerResponse.json();
+                customerId = customer.id;
+                console.log('✅ Created new customer:', customerId);
+            }
+        } catch (customerError) {
+            console.error('❌ Error with customer:', customerError);
+            throw new Error(`Customer creation/retrieval failed: ${customerError.message}`);
+        }
+
+        // Step 2: Create invoice item
+        const invoiceItemData = {
+            customer: customerId,
+            amount: amountInCents,
+            currency: 'usd',
+            description: invoiceData.description || 'HingeCraft Donation - Mission Support Contribution'
+        };
+
+        const invoiceItemResponse = await fetch(`${STRIPE_API_BASE}/invoiceitems`, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${STRIPE_SECRET_KEY}`,
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: new URLSearchParams(invoiceItemData).toString()
+        });
+
+        if (!invoiceItemResponse.ok) {
+            const errorText = await invoiceItemResponse.text();
+            throw new Error(`Failed to create invoice item: ${errorText}`);
+        }
+
+        const invoiceItem = await invoiceItemResponse.json();
+        console.log('✅ Created invoice item:', invoiceItem.id);
+
+        // Step 3: Create invoice
+        const invoicePayload = {
+            customer: customerId,
+            collection_method: 'send_invoice',
+            days_until_due: 30,
+            metadata: {
+                ...(invoiceData.metadata || {}),
+                source: 'custom_invoice',
+                mode: STRIPE_MODE
+            }
+        };
+
+        const invoiceResponse = await fetch(`${STRIPE_API_BASE}/invoices`, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${STRIPE_SECRET_KEY}`,
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: new URLSearchParams(invoicePayload).toString()
+        });
+
+        if (!invoiceResponse.ok) {
+            const errorText = await invoiceResponse.text();
+            throw new Error(`Failed to create invoice: ${errorText}`);
+        }
+
+        const invoice = await invoiceResponse.json();
+        console.log('✅ Created invoice:', invoice.id);
+
+        // Step 4: Finalize invoice (make it payable)
+        const finalizeResponse = await fetch(`${STRIPE_API_BASE}/invoices/${invoice.id}/finalize`, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${STRIPE_SECRET_KEY}`,
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        });
+
+        if (!finalizeResponse.ok) {
+            const errorText = await finalizeResponse.text();
+            throw new Error(`Failed to finalize invoice: ${errorText}`);
+        }
+
+        const finalizedInvoice = await finalizeResponse.json();
+        console.log('✅ Finalized invoice:', finalizedInvoice.id);
+
+        // Step 5: Send invoice to customer
+        const sendResponse = await fetch(`${STRIPE_API_BASE}/invoices/${finalizedInvoice.id}/send`, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${STRIPE_SECRET_KEY}`,
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        });
+
+        if (!sendResponse.ok) {
+            const errorText = await sendResponse.text();
+            console.warn('⚠️  Failed to send invoice (non-blocking):', errorText);
+            // Don't fail - invoice is created and can be sent manually
+        } else {
+            console.log('✅ Invoice sent to customer');
+        }
+
+        // Store invoice in database
+        try {
+            const invoiceRecord = {
+                _id: finalizedInvoice.id,
+                invoice_id: finalizedInvoice.id,
+                customer_id: customerId,
+                amount: amount,
+                currency: 'usd',
+                status: finalizedInvoice.status,
+                invoice_url: finalizedInvoice.hosted_invoice_url,
+                invoice_pdf: finalizedInvoice.invoice_pdf,
+                email: invoiceData.email,
+                created_at: new Date(),
+                metadata: {
+                    stripe_invoice_id: finalizedInvoice.id,
+                    stripe_customer_id: customerId,
+                    mode: STRIPE_MODE,
+                    ...(invoiceData.metadata || {})
+                }
+            };
+
+            await wixData.save('StripePayments', invoiceRecord);
+        } catch (dbError) {
+            console.error('⚠️  Error saving invoice record (non-blocking):', dbError);
+        }
+
+        return {
+            success: true,
+            invoiceId: finalizedInvoice.id,
+            invoiceUrl: finalizedInvoice.hosted_invoice_url,
+            invoicePdf: finalizedInvoice.invoice_pdf,
+            customerId: customerId,
+            amount: amount,
+            status: finalizedInvoice.status,
+            mode: STRIPE_MODE
+        };
+
+    } catch (error) {
+        console.error('❌ Error creating custom invoice:', error);
+        throw error;
+    }
+}
+
+/**
+ * Get Stripe mode (test or live)
+ * @returns {Promise<Object>} Stripe mode information
+ */
+export async function getStripeMode() {
+    try {
+        if (!STRIPE_SECRET_KEY) {
+            await initStripeConfig();
+        }
+
+        return {
+            success: true,
+            mode: STRIPE_MODE,
+            isTestMode: STRIPE_MODE === 'test',
+            isLiveMode: STRIPE_MODE === 'live'
+        };
+    } catch (error) {
+        console.error('❌ Error getting Stripe mode:', error);
+        return {
+            success: false,
+            error: error.message
+        };
     }
 }
 

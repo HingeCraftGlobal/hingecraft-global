@@ -197,19 +197,27 @@ app.get('/auth/status', async (req, res) => {
 // NEW PIPELINE ENDPOINTS
 // ============================================
 
-// AnyMail webhook - Auto-fills prospect data and sends email with proper template
+// AnyMail webhook - EXACT ORDER: Receive → Auto-fill → Select template → Send email → Segment & Sync
 app.post('/api/webhooks/anymail', async (req, res) => {
   try {
-    logger.info('AnyMail webhook received');
+    logger.info('Step 1: Received AnyMail webhook');
+    
+    // Get webhook signature for verification
+    const signature = req.headers['x-anymail-signature'] || req.headers['x-signature'];
     
     // Respond quickly to AnyMail
     res.status(200).json({ received: true });
     
-    // Process asynchronously
+    // Process asynchronously (exact order maintained in handler)
     const anymailWebhookHandler = require('./services/anymailWebhookHandler');
-    const result = await anymailWebhookHandler.handleWebhook(req.body);
+    const result = await anymailWebhookHandler.handleWebhook(req.body, signature);
     
-    logger.info('AnyMail webhook processed:', result);
+    logger.info('AnyMail webhook processed successfully:', {
+      lead_id: result.lead_id,
+      email_sent: result.email_sent,
+      template: result.template_used,
+      segment: result.segment
+    });
   } catch (error) {
     logger.error('AnyMail webhook error:', error);
     // Don't send error to AnyMail, just log it
