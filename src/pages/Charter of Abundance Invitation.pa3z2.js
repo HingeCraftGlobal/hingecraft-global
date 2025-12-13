@@ -1,42 +1,15 @@
 // HingeCraft Global - Charter Page Velo Code
 // T10 Implementation: Full middleware binding + dynamic totals + crypto payments
 // Updated: December 13, 2025 - Fully synced with Mission Support form
+// Using direct imports from .jsw files (no HTTP overhead, works immediately)
 
 import wixSeo from 'wix-seo';
-
-// Velo API Configuration - Use HTTP endpoints (not imports)
-// IMPORTANT: Wix automatically strips .web.js from module names for HTTP endpoints
-// So charter-page-middleware.web.js becomes /_functions/charter-page-middleware
-const VELO_CONFIG = {
-    CHARTER_MIDDLEWARE: '/_functions/charter-page-middleware',
-    MISSION_SUPPORT_MIDDLEWARE: '/_functions/mission-support-middleware',
-    STRIPE_API: '/_functions/stripe.api',
-    NOWPAYMENTS_API: '/_functions/nowpayments.api',
-    HINGECRAFT_API: '/_functions/hingecraft.api'
-};
-
-// Helper to call Velo functions via HTTP
-async function callVeloFunction(modulePath, functionName, data = {}) {
-    try {
-        const fetchFn = typeof wixFetch !== 'undefined' ? wixFetch.fetch : fetch;
-        const url = `${modulePath}/${functionName}`;
-        
-        const response = await fetchFn(url, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
-        });
-        
-        if (!response.ok) {
-            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-        }
-        
-        return await response.json();
-    } catch (error) {
-        console.error(`❌ Error calling ${modulePath}/${functionName}:`, error);
-        return { success: false, error: error.message };
-    }
-}
+import { 
+    onReady, 
+    fiatButtonClick, 
+    cryptoButtonClick, 
+    getCumulativeTotal 
+} from 'backend/charter-page-middleware';
 
 $w.onReady(async function () {
     // Set SEO for Charter Page
