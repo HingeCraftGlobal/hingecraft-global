@@ -491,6 +491,77 @@ export async function getPrefill(prefillIdOrData) {
  * @param {string} email - Recipient email
  * @param {Object} paymentData - Complete payment data
  */
+/**
+ * Redirect to Charter page after payment
+ * Creates prefill token and returns redirect URL
+ * @public
+ * @param {number|Object} amountOrData - Donation amount or object with amount
+ */
+export async function goToCharterAfterPayment(amountOrData) {
+    try {
+        // Support both object and positional parameters
+        let amount;
+        let userInfo = {};
+        
+        if (typeof amountOrData === 'object' && amountOrData !== null) {
+            amount = amountOrData.value || amountOrData.amount || amountOrData;
+            userInfo = amountOrData.userInfo || {};
+        } else {
+            amount = amountOrData;
+        }
+        
+        if (!amount || isNaN(parseFloat(amount))) {
+            throw new Error('Valid amount is required');
+        }
+        
+        const finalAmount = parseFloat(amount);
+        if (finalAmount < 1.00 || finalAmount > 25000.00) {
+            throw new Error('Amount must be between $1.00 and $25,000.00');
+        }
+        
+        // Create prefill token using otherAmount function
+        const prefillResult = await otherAmount({ amount: finalAmount, userInfo: userInfo });
+        
+        if (prefillResult.success && prefillResult.redirectUrl) {
+            return {
+                success: true,
+                redirectUrl: prefillResult.redirectUrl,
+                prefillId: prefillResult.prefillId,
+                amount: finalAmount
+            };
+        } else {
+            // Fallback to direct URL with amount
+            const charterUrl = `/charter?donationAmount=${encodeURIComponent(finalAmount)}&fromMissionSupport=true&paymentMethod=card`;
+            return {
+                success: true,
+                redirectUrl: charterUrl,
+                prefillId: null,
+                amount: finalAmount
+            };
+        }
+    } catch (error) {
+        console.error('❌ Go to Charter error:', error);
+        // Fallback to direct URL
+        const amount = typeof amountOrData === 'object' ? (amountOrData.value || amountOrData.amount || 0) : amountOrData;
+        const charterUrl = `/charter?donationAmount=${encodeURIComponent(amount)}&fromMissionSupport=true&paymentMethod=card`;
+        return {
+            success: true,
+            redirectUrl: charterUrl,
+            prefillId: null,
+            amount: amount,
+            error: error.message
+        };
+    }
+}
+
+/**
+ * Send GPT-generated payment receipt email
+ * Creates highly detailed, professional receipt using GPT
+ * Automatically saves receipt to database in Receipts collection
+ * @public
+ * @param {string} email - Recipient email
+ * @param {Object} paymentData - Complete payment data
+ */
 export async function sendPaymentReceiptEmail(email, paymentData) {
     try {
         console.log('📧 Generating GPT receipt email for:', email);

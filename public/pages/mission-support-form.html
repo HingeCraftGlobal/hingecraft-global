@@ -1307,7 +1307,7 @@
             const userId = chatClient.user?.id || 'guest_' + Date.now();
             const sessionId = generateSessionId();
             
-            // Call notification endpoint (non-blocking)
+            // Call notification endpoint (non-blocking) - notifies marketing
             fetchFn('/_functions/chat-notifications/notifyMarketingOnQuestion', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
@@ -1323,6 +1323,33 @@
                 source: 'mission_support_form'
               })
             }).catch(err => console.warn('Chat notification error (non-blocking):', err));
+            
+            // NEW FEATURE: Send custom categorized email response to user (if email available)
+            if (userEmail) {
+              try {
+                fetchFn('/_functions/chat-notifications/sendUserChatResponseEmail', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({
+                    message: text,
+                    userEmail: userEmail,
+                    userName: userName,
+                    userId: userId,
+                    sessionId: sessionId,
+                    pageUrl: window.location.href,
+                    userAgent: navigator.userAgent,
+                    referrer: document.referrer || 'direct',
+                    source: 'mission_support_form'
+                  })
+                }).then(response => {
+                  if (response.ok) {
+                    console.log('✅ Custom email response sent to user');
+                  }
+                }).catch(err => console.warn('Chat email response error (non-blocking):', err));
+              } catch (emailError) {
+                console.warn('⚠️ Error sending user email response (non-blocking):', emailError);
+              }
+            }
           } catch (notifyError) {
             console.warn('⚠️ Error notifying marketing (non-blocking):', notifyError);
           }

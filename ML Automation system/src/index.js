@@ -828,6 +828,91 @@ app.post('/api/leads/:id/reconcile-segments', async (req, res) => {
 });
 
 // ============================================
+// PIPELINE TRACKER ENDPOINTS
+// ============================================
+
+const pipelineTracker = require('./services/pipelineTracker');
+
+// Get pipeline tracker status
+app.get('/api/pipeline-tracker/status', async (req, res) => {
+  try {
+    const status = await pipelineTracker.getStatus();
+    res.json(status);
+  } catch (error) {
+    logger.error('Pipeline tracker status error:', error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Get pipeline metrics
+app.get('/api/pipeline-tracker/metrics', async (req, res) => {
+  try {
+    const timeframe = req.query.timeframe || '24 hours';
+    const metrics = await pipelineTracker.getMetrics(timeframe);
+    res.json(metrics);
+  } catch (error) {
+    logger.error('Pipeline tracker metrics error:', error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Get sync status
+app.get('/api/pipeline-tracker/sync', async (req, res) => {
+  try {
+    const syncStatus = {
+      database: await pipelineTracker.checkDatabaseSync(),
+      files: await pipelineTracker.checkFileSync(),
+      services: await pipelineTracker.checkServiceSync()
+    };
+    res.json(syncStatus);
+  } catch (error) {
+    logger.error('Pipeline tracker sync check error:', error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Force full sync check
+app.post('/api/pipeline-tracker/sync-check', async (req, res) => {
+  try {
+    await pipelineTracker.performFullSyncCheck();
+    const status = await pipelineTracker.getStatus();
+    res.json({ 
+      message: 'Full sync check completed',
+      status: status.sync 
+    });
+  } catch (error) {
+    logger.error('Pipeline tracker sync check error:', error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Start pipeline tracker
+app.post('/api/pipeline-tracker/start', async (req, res) => {
+  try {
+    const interval = parseInt(req.body.interval) || 5000;
+    await pipelineTracker.start(interval);
+    res.json({ 
+      message: 'Pipeline tracker started',
+      interval: interval 
+    });
+  } catch (error) {
+    logger.error('Pipeline tracker start error:', error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Stop pipeline tracker
+app.post('/api/pipeline-tracker/stop', async (req, res) => {
+  try {
+    pipelineTracker.stop();
+    res.json({ message: 'Pipeline tracker stopped' });
+  } catch (error) {
+    logger.error('Pipeline tracker stop error:', error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// ============================================
 // CRON JOBS
 // ============================================
 
@@ -898,6 +983,10 @@ async function startServer() {
     // Initialize OAuth
     await oauthManager.initialize();
 
+    // Start pipeline tracker
+    await pipelineTracker.start(5000); // Check every 5 seconds
+    logger.info('Pipeline tracker started');
+
     // Start server
     app.listen(PORT, () => {
       logger.info(`🚀 HingeCraft ML Automation System running on port ${PORT}`);
@@ -924,6 +1013,7 @@ process.on('SIGTERM', () => {
   clearInterval(drivePollInterval);
   sequenceCron.stop();
   if (alertCron) alertCron.stop();
+  pipelineTracker.stop();
   process.exit(0);
 });
 
@@ -932,6 +1022,7 @@ process.on('SIGINT', () => {
   clearInterval(drivePollInterval);
   sequenceCron.stop();
   if (alertCron) alertCron.stop();
+  pipelineTracker.stop();
   process.exit(0);
 });
 
