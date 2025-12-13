@@ -11,6 +11,7 @@ const googleDrive = require('./services/googleDrive');
 const sequenceEngine = require('./services/sequenceEngine');
 const systemWatcher = require('./services/systemWatcher');
 const driveIngest = require('./services/driveIngest');
+const driveIngestWithAnymail = require('./services/driveIngestWithAnymail');
 const leadClassifier = require('./services/leadClassifier');
 const templateRouter = require('./services/templateRouter');
 const db = require('./utils/database');
@@ -1127,7 +1128,7 @@ const drivePollInterval = setInterval(async () => {
         if (existing.rows.length === 0) {
           logger.info(`New file detected: ${file.name} (${file.id})`);
           try {
-            await driveIngest.processDriveFile(file.id);
+            await driveIngestWithAnymail.processDriveFileWithAnymail(file.id);
           } catch (error) {
             logger.error(`Error processing file ${file.id}:`, error);
           }

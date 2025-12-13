@@ -10,7 +10,8 @@ process.env.DB_HOST = process.env.DB_HOST || 'localhost';
 process.env.DB_PORT = process.env.DB_PORT || '7543';
 
 const { execSync } = require('child_process');
-const config = require('../../config/api_keys');
+const path = require('path');
+const config = require('../config/api_keys');
 const hubspotOptimizedSync = require('../src/services/hubspotOptimizedSync');
 const hubspotCompleteSetup = require('../src/services/hubspotCompleteSetup');
 const db = require('../src/utils/database');
