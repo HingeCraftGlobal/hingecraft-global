@@ -454,31 +454,63 @@ export async function redirectBackToCharter(donationAmount, paymentMethod) {
  */
 export async function getCumulativeTotal() {
     try {
-        // Get all completed donations
-        const donations = await wixData.query('Donations')
-            .eq('payment_status', 'completed')
-            .or(wixData.query('Donations').eq('payment_status', 'confirmed'))
-            .find();
-        
-        // Get all confirmed crypto payments
-        const cryptoPayments = await wixData.query('CryptoPayments')
-            .eq('status', 'confirmed')
-            .find();
-        
-        // Calculate totals
         let fiatTotal = 0;
-        donations.items.forEach(donation => {
-            if (donation.amount) {
-                fiatTotal += parseFloat(donation.amount);
-            }
-        });
-        
         let cryptoTotal = 0;
-        cryptoPayments.items.forEach(payment => {
-            if (payment.price_amount) {
-                cryptoTotal += parseFloat(payment.price_amount);
-            }
-        });
+        let fiatCount = 0;
+        let cryptoCount = 0;
+        
+        // Get all completed donations (if collection exists)
+        try {
+            const donations = await wixData.query('Donations')
+                .eq('payment_status', 'completed')
+                .or(wixData.query('Donations').eq('payment_status', 'confirmed'))
+                .find();
+            
+            donations.items.forEach(donation => {
+                if (donation.amount) {
+                    fiatTotal += parseFloat(donation.amount);
+                }
+            });
+            fiatCount = donations.items.length;
+        } catch (donationsError) {
+            // Collection may not exist yet - this is OK
+            console.warn('⚠️ Donations collection not found or not accessible:', donationsError.message);
+            // Continue with other collections
+        }
+        
+        // Get all confirmed crypto payments (if collection exists)
+        try {
+            const cryptoPayments = await wixData.query('CryptoPayments')
+                .eq('status', 'confirmed')
+                .find();
+            
+            cryptoPayments.items.forEach(payment => {
+                if (payment.price_amount) {
+                    cryptoTotal += parseFloat(payment.price_amount);
+                }
+            });
+            cryptoCount = cryptoPayments.items.length;
+        } catch (cryptoError) {
+            // Collection may not exist yet - this is OK
+            console.warn('⚠️ CryptoPayments collection not found or not accessible:', cryptoError.message);
+            // Continue with calculation
+        }
+        
+        // Also check StripePayments collection for paid invoices
+        try {
+            const stripePayments = await wixData.query('StripePayments')
+                .eq('status', 'paid')
+                .find();
+            
+            stripePayments.items.forEach(payment => {
+                if (payment.amount) {
+                    fiatTotal += parseFloat(payment.amount);
+                }
+            });
+            fiatCount += stripePayments.items.length;
+        } catch (stripeError) {
+            console.warn('⚠️ StripePayments collection not found or not accessible:', stripeError.message);
+        }
         
         const total = fiatTotal + cryptoTotal;
         
@@ -493,8 +525,8 @@ export async function getCumulativeTotal() {
             total: total,
             fiatTotal: fiatTotal,
             cryptoTotal: cryptoTotal,
-            fiatCount: donations.items.length,
-            cryptoCount: cryptoPayments.items.length
+            fiatCount: fiatCount,
+            cryptoCount: cryptoCount
         };
     } catch (error) {
         console.error('❌ Error calculating cumulative total:', error);
@@ -566,26 +598,40 @@ async function displayDonationAmount(amount) {
 
 /**
  * Setup database change listeners
+ * Note: wixData.onChange may not be available in all Wix environments
  */
 function setupDatabaseListeners() {
     try {
-        // Listen for changes to Donations collection
-        wixData.onChange('Donations', async (changedItem) => {
-            console.log('📊 Donations collection changed:', changedItem);
+        // Check if onChange is available (may not be in all Wix environments)
+        if (typeof wixData.onChange === 'function') {
+            // Listen for changes to Donations collection (if it exists)
+            try {
+                wixData.onChange('Donations', async (changedItem) => {
+                    console.log('📊 Donations collection changed:', changedItem);
+                    
+                    // Recalculate total
+                    const totalResult = await getCumulativeTotal();
+                    await updateContributionsDisplay(totalResult.total);
+                });
+            } catch (donationsError) {
+                console.warn('⚠️ Could not set up Donations listener (collection may not exist):', donationsError.message);
+            }
             
-            // Recalculate total
-            const totalResult = await getCumulativeTotal();
-            await updateContributionsDisplay(totalResult.total);
-        });
-        
-        // Listen for changes to CryptoPayments collection
-        wixData.onChange('CryptoPayments', async (changedItem) => {
-            console.log('📊 CryptoPayments collection changed:', changedItem);
-            
-            // Recalculate total
-            const totalResult = await getCumulativeTotal();
-            await updateContributionsDisplay(totalResult.total);
-        });
+            // Listen for changes to CryptoPayments collection (if it exists)
+            try {
+                wixData.onChange('CryptoPayments', async (changedItem) => {
+                    console.log('📊 CryptoPayments collection changed:', changedItem);
+                    
+                    // Recalculate total
+                    const totalResult = await getCumulativeTotal();
+                    await updateContributionsDisplay(totalResult.total);
+                });
+            } catch (cryptoError) {
+                console.warn('⚠️ Could not set up CryptoPayments listener (collection may not exist):', cryptoError.message);
+            }
+        } else {
+            console.warn('⚠️ wixData.onChange is not available in this environment. Database listeners not set up.');
+        }
     } catch (error) {
         console.error('Error setting up database listeners:', error);
     }
@@ -651,11 +697,28 @@ async function getSessionId() {
 /**
  * Get base URL
  */
+/**
+ * Get base URL
+ * Uses wixLocation if available, otherwise falls back to default
+ */
 async function getBaseUrl() {
     try {
-        const { secrets } = await import('wix-secrets-backend');
-        const baseUrl = await secrets.getSecret('BASE_URL');
-        return baseUrl || 'https://www.hingecraft-global.ai';
+        // Try to use wixLocation if available (frontend context)
+        if (typeof wixLocation !== 'undefined' && wixLocation.baseUrl) {
+            return wixLocation.baseUrl;
+        }
+        
+        // Try secrets (backend context)
+        try {
+            const { secrets } = await import('wix-secrets-backend');
+            const baseUrl = await secrets.getSecret('BASE_URL');
+            if (baseUrl) return baseUrl;
+        } catch (secretsError) {
+            // Secrets not available - continue to fallback
+        }
+        
+        // Fallback to default
+        return 'https://www.hingecraft-global.ai';
     } catch (error) {
         return 'https://www.hingecraft-global.ai';
     }
