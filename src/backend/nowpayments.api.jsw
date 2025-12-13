@@ -134,13 +134,32 @@ export async function createNowPaymentsInvoice(requestData) {
             console.log('No existing invoice found, creating new one');
         }
 
-        // Crypto wallet addresses (from database/config)
-        const WALLET_ADDRESSES = {
+        // Get crypto wallet addresses from database (PaymentRoutes collection)
+        // Fallback to hardcoded addresses if database not available
+        let WALLET_ADDRESSES = {
             'SOL': 'E42RZJc4e8UQ5fFi8QkPtRSuJXZ1pQmPVMX91LYAAT2H',
             'XLM': '', // Stellar address if available
             'BTC': 'bc1qgpe8zk87xxs90gd7jqqndxct4ttlj2mrt2rs6w',
             'ETH': '0xbf907088116868986c014f9662a8efcbeb168237'
         };
+        
+        try {
+            // Try to get wallet addresses from PaymentRoutes collection
+            const paymentRoutes = await wixData.query('PaymentRoutes')
+                .find();
+            
+            if (paymentRoutes.items && paymentRoutes.items.length > 0) {
+                paymentRoutes.items.forEach(route => {
+                    if (route.currency && route.walletAddress) {
+                        WALLET_ADDRESSES[route.currency.toUpperCase()] = route.walletAddress;
+                    }
+                });
+                console.log('✅ Loaded wallet addresses from database:', WALLET_ADDRESSES);
+            }
+        } catch (dbError) {
+            console.warn('⚠️ Could not load wallet addresses from database, using defaults:', dbError.message);
+            // Continue with default addresses
+        }
 
         // Build NOWPayments invoice payload
         const invoicePayload = {

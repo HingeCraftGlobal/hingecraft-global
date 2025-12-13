@@ -26,34 +26,36 @@ let STRIPE_PUBLISHABLE_KEY = null;
  */
 async function initStripeConfig() {
     try {
-        // Prioritize LIVE keys (for production), then fall back to TEST keys (for development)
+        // For development: Prioritize TEST keys, then fall back to LIVE keys (for production)
+        // This ensures Stripe dev mode works properly
         try {
-            STRIPE_SECRET_KEY = await secrets.getSecret('STRIPE_SECRET_KEY_LIVE');
-            console.log('✅ Using Stripe LIVE keys');
+            STRIPE_SECRET_KEY = await secrets.getSecret('STRIPE_SECRET_KEY_TEST');
+            console.log('✅ Using Stripe TEST keys (dev mode)');
         } catch (e) {
             try {
-                STRIPE_SECRET_KEY = await secrets.getSecret('STRIPE_SECRET_KEY_TEST');
-                console.log('✅ Using Stripe TEST keys');
+                STRIPE_SECRET_KEY = await secrets.getSecret('STRIPE_SECRET_KEY_LIVE');
+                console.log('✅ Using Stripe LIVE keys (production)');
             } catch (e2) {
-                throw new Error('No Stripe keys found. Set STRIPE_SECRET_KEY_LIVE or STRIPE_SECRET_KEY_TEST in Wix Secrets');
+                throw new Error('No Stripe keys found. Set STRIPE_SECRET_KEY_TEST (for dev) or STRIPE_SECRET_KEY_LIVE (for production) in Wix Secrets');
             }
         }
         
         // Try to get publishable key from secrets, or derive from secret key
+        // For dev: Prioritize TEST keys
         try {
-            STRIPE_PUBLISHABLE_KEY = await secrets.getSecret('STRIPE_PUBLISHABLE_KEY_LIVE');
+            STRIPE_PUBLISHABLE_KEY = await secrets.getSecret('STRIPE_PUBLISHABLE_KEY_TEST');
         } catch (e) {
             try {
-                STRIPE_PUBLISHABLE_KEY = await secrets.getSecret('STRIPE_PUBLISHABLE_KEY_TEST');
+                STRIPE_PUBLISHABLE_KEY = await secrets.getSecret('STRIPE_PUBLISHABLE_KEY_LIVE');
             } catch (e2) {
                 // Derive publishable key from secret key
                 // Format: sk_live... -> pk_live... or sk_test... -> pk_test...
                 // Handle both formats: sk_live_... and sk_live...
                 if (STRIPE_SECRET_KEY) {
-                    if (STRIPE_SECRET_KEY.startsWith('sk_live')) {
-                        STRIPE_PUBLISHABLE_KEY = STRIPE_SECRET_KEY.replace('sk_live', 'pk_live');
-                    } else if (STRIPE_SECRET_KEY.startsWith('sk_test')) {
+                    if (STRIPE_SECRET_KEY.startsWith('sk_test')) {
                         STRIPE_PUBLISHABLE_KEY = STRIPE_SECRET_KEY.replace('sk_test', 'pk_test');
+                    } else if (STRIPE_SECRET_KEY.startsWith('sk_live')) {
+                        STRIPE_PUBLISHABLE_KEY = STRIPE_SECRET_KEY.replace('sk_live', 'pk_live');
                     }
                 }
             }

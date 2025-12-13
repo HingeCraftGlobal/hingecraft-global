@@ -515,6 +515,11 @@
             if (data.paymentUrl) {
               setPaymentButtonUrl(data.paymentUrl);
               setPaymentButtonText(`💳 Pay with NOWPayments →`);
+              
+              // Automatically redirect to NOWPayments if URL is available
+              console.log('🔄 Redirecting to NOWPayments:', data.paymentUrl);
+              window.location.href = data.paymentUrl;
+              return; // Exit early - redirecting
             }
             
             console.log('✅ Crypto invoice created:', {
@@ -575,11 +580,12 @@
           if (data.success && data.url) {
             // Update payment button URL to Stripe checkout URL
             setPaymentButtonUrl(data.url);
-            setPaymentButtonText(`💳 Pay with Stripe →`);
+            setPaymentButtonText(paymentMethod === 'ACH' ? `🏦 Pay with ACH →` : `💳 Pay with Card →`);
             
-            // Redirect directly to Stripe checkout URL
-            console.log('🔄 Redirecting to Stripe checkout:', data.url);
+            // Redirect directly to Stripe checkout URL (works for both Card and ACH)
+            console.log(`🔄 Redirecting to Stripe checkout (${paymentMethod}):`, data.url);
             window.location.href = data.url;
+            return; // Exit early - redirecting
           } else {
             const errorMsg = data.error || 'Failed to create Stripe session';
             console.error('❌ Stripe error:', errorMsg);

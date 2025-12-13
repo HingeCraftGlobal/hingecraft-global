@@ -20,6 +20,54 @@ import { createCheckoutSession } from 'backend/stripe.api';
 import { getLatestDonation, saveDonation } from 'backend/hingecraft.api.web';
 
 /**
+ * Get payment routes from database
+ * Retrieves NOWPayments URLs and wallet addresses from PaymentRoutes collection
+ * @public
+ * @returns {Promise<Object>} Payment routes with URLs and wallet addresses
+ */
+export async function getPaymentRoutes() {
+    try {
+        const paymentRoutes = {};
+        
+        try {
+            // Query PaymentRoutes collection
+            const routes = await wixData.query('PaymentRoutes')
+                .find();
+            
+            if (routes.items && routes.items.length > 0) {
+                routes.items.forEach(route => {
+                    if (route.currency && route.routeKey) {
+                        paymentRoutes[route.routeKey] = {
+                            currency: route.currency,
+                            walletAddress: route.walletAddress || null,
+                            paymentUrl: route.paymentUrl || null,
+                            provider: route.provider || 'nowpayments',
+                            type: route.type || 'crypto'
+                        };
+                    }
+                });
+                console.log('✅ Loaded payment routes from database:', Object.keys(paymentRoutes).length, 'routes');
+            }
+        } catch (dbError) {
+            console.warn('⚠️ Could not load payment routes from database, using defaults:', dbError.message);
+        }
+        
+        // Return routes (empty object if database not available)
+        return {
+            success: true,
+            routes: paymentRoutes
+        };
+    } catch (error) {
+        console.error('❌ Error getting payment routes:', error);
+        return {
+            success: false,
+            routes: {},
+            error: error.message
+        };
+    }
+}
+
+/**
  * Initialize charter page on ready
  * Checks dataset and updates totals dynamically
  * FIXED: No longer uses deprecated import pattern - uses HTTP endpoint calls
