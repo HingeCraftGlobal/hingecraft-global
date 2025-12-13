@@ -428,6 +428,73 @@ async function getSessionId() {
 }
 
 /**
+ * Handle "Other Amount" from Mission Support Form
+ * Creates prefill token and returns redirect URL to Charter page
+ * @public
+ * @param {Object} data - Request data with amount and userInfo
+ * @returns {Promise<Object>} Redirect URL with prefill token
+ */
+export async function otherAmount(data) {
+    try {
+        const { amount, userInfo } = data;
+        
+        if (!amount || amount <= 0) {
+            throw new Error('Invalid amount');
+        }
+        
+        // Generate unique prefill ID
+        const prefillId = 'prefill_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+        
+        // Calculate expiration (24 hours from now)
+        const expiresAt = new Date();
+        expiresAt.setHours(expiresAt.getHours() + 24);
+        
+        // Create ContributionIntent record with prefill token
+        const intentRecord = {
+            amount_entered: parseFloat(amount),
+            status: 'intent',
+            first_name: userInfo?.firstName || null,
+            last_name: userInfo?.lastName || null,
+            email: userInfo?.email || null,
+            prefill_id: prefillId,
+            expires_at: expiresAt,
+            used: false,
+            session_id: await getSessionId(),
+            anonymous_fingerprint: await getAnonymousFingerprint(),
+            timestamp: new Date(),
+            metadata: {
+                source: 'mission_support_other_amount',
+                created_at: new Date().toISOString()
+            }
+        };
+        
+        // Save to ContributionIntent collection
+        const result = await wixData.save('ContributionIntent', intentRecord);
+        
+        // Build redirect URL with prefill token
+        const baseUrl = typeof wixLocation !== 'undefined' && wixLocation.baseUrl 
+            ? wixLocation.baseUrl 
+            : 'https://www.hingecraft-global.ai';
+        const redirectUrl = `${baseUrl}/charter?prefill=${prefillId}`;
+        
+        console.log('✅ Prefill token created:', prefillId);
+        
+        return {
+            success: true,
+            prefillId: prefillId,
+            redirectUrl: redirectUrl,
+            amount: amount
+        };
+    } catch (error) {
+        console.error('❌ Other amount error:', error);
+        return {
+            success: false,
+            error: error.message
+        };
+    }
+}
+
+/**
  * Get prefill data by ID
  * Used by Charter page to retrieve prefill amount from Mission Support form
  * @public
