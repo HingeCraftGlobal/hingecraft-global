@@ -1,0 +1,190 @@
+/**
+ * Master Initialization Script
+ * One-stop initialization for all systems
+ * Run this after deploying to Wix to set up everything
+ */
+
+import { verifyAllCollections, syncPaymentData, getDatabaseStats } from 'backend/database-sync';
+import { initializeAllCollections } from 'backend/data-initialization';
+import { checkAllAPIs } from 'backend/api-health-check';
+import { autoIndexAllPages } from 'backend/rag-system';
+
+/**
+ * Master initialization - sets up everything
+ */
+export async function masterInitialize() {
+    const results = {
+        success: true,
+        timestamp: new Date().toISOString(),
+        steps: [],
+        errors: []
+    };
+    
+    // Step 1: Verify API health
+    console.log('🔍 Step 1: Checking API health...');
+    try {
+        const apiHealth = await checkAllAPIs();
+        results.steps.push({
+            step: 'API Health Check',
+            success: apiHealth.success,
+            details: apiHealth
+        });
+        
+        if (!apiHealth.success) {
+            results.errors.push('Some APIs are unhealthy - check configuration');
+        }
+    } catch (error) {
+        results.steps.push({
+            step: 'API Health Check',
+            success: false,
+            error: error.message
+        });
+        results.errors.push(`API Health Check: ${error.message}`);
+    }
+    
+    // Step 2: Verify database collections
+    console.log('🔍 Step 2: Verifying database collections...');
+    try {
+        const collectionCheck = await verifyAllCollections();
+        results.steps.push({
+            step: 'Database Collections Verification',
+            success: collectionCheck.success,
+            details: collectionCheck
+        });
+        
+        if (!collectionCheck.success) {
+            results.errors.push('Some collections are missing - create them in Wix Database');
+        }
+    } catch (error) {
+        results.steps.push({
+            step: 'Database Collections Verification',
+            success: false,
+            error: error.message
+        });
+        results.errors.push(`Collection Verification: ${error.message}`);
+    }
+    
+    // Step 3: Initialize collections with default data
+    console.log('🔧 Step 3: Initializing collections...');
+    try {
+        const initResult = await initializeAllCollections();
+        results.steps.push({
+            step: 'Collections Initialization',
+            success: initResult.success,
+            details: initResult
+        });
+        
+        if (!initResult.success) {
+            results.errors.push('Collection initialization had errors');
+        }
+    } catch (error) {
+        results.steps.push({
+            step: 'Collections Initialization',
+            success: false,
+            error: error.message
+        });
+        results.errors.push(`Collection Initialization: ${error.message}`);
+    }
+    
+    // Step 4: Sync payment data
+    console.log('🔄 Step 4: Syncing payment data...');
+    try {
+        const syncResult = await syncPaymentData();
+        results.steps.push({
+            step: 'Payment Data Sync',
+            success: syncResult.success,
+            details: syncResult
+        });
+        
+        if (!syncResult.success) {
+            results.errors.push('Payment data sync had errors');
+        }
+    } catch (error) {
+        results.steps.push({
+            step: 'Payment Data Sync',
+            success: false,
+            error: error.message
+        });
+        results.errors.push(`Payment Data Sync: ${error.message}`);
+    }
+    
+    // Step 5: Index pages for RAG
+    console.log('📚 Step 5: Indexing pages for RAG...');
+    try {
+        const ragResult = await autoIndexAllPages();
+        results.steps.push({
+            step: 'RAG Page Indexing',
+            success: ragResult.success,
+            details: ragResult
+        });
+        
+        if (!ragResult.success) {
+            results.errors.push('RAG indexing had errors');
+        }
+    } catch (error) {
+        results.steps.push({
+            step: 'RAG Page Indexing',
+            success: false,
+            error: error.message
+        });
+        results.errors.push(`RAG Indexing: ${error.message}`);
+    }
+    
+    // Step 6: Get final database stats
+    console.log('📊 Step 6: Getting database statistics...');
+    try {
+        const stats = await getDatabaseStats();
+        results.steps.push({
+            step: 'Database Statistics',
+            success: stats.success,
+            details: stats
+        });
+    } catch (error) {
+        results.steps.push({
+            step: 'Database Statistics',
+            success: false,
+            error: error.message
+        });
+        results.errors.push(`Database Stats: ${error.message}`);
+    }
+    
+    // Determine overall success
+    if (results.errors.length > 0) {
+        results.success = false;
+    }
+    
+    return results;
+}
+
+/**
+ * Quick health check - fast verification
+ */
+export async function quickHealthCheck() {
+    const health = {
+        success: true,
+        timestamp: new Date().toISOString(),
+        checks: {}
+    };
+    
+    // Check APIs
+    try {
+        const apiHealth = await checkAllAPIs();
+        health.checks.apis = apiHealth.overall;
+        if (apiHealth.overall !== 'healthy') health.success = false;
+    } catch (error) {
+        health.checks.apis = 'error';
+        health.success = false;
+    }
+    
+    // Check database
+    try {
+        const collections = await verifyAllCollections();
+        health.checks.database = collections.success ? 'healthy' : 'degraded';
+        if (!collections.success) health.success = false;
+    } catch (error) {
+        health.checks.database = 'error';
+        health.success = false;
+    }
+    
+    return health;
+}

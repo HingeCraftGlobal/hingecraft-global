@@ -1,0 +1,140 @@
+/**
+ * Stripe Webhook Handler
+ * Processes Stripe webhook events
+ */
+
+import { handleWebhook } from 'backend/stripe.api';
+import wixData from 'wix-data';
+
+/**
+ * Stripe Webhook Endpoint
+ * 
+ * URL: /_functions/webhooks/stripe
+ * Method: POST
+ * 
+ * Webhook events handled:
+ * - invoice.paid
+ * - checkout.session.completed
+ * - payment_intent.succeeded
+ * - payment_intent.payment_failed
+ */
+export async function post(request) {
+    try {
+        // Get webhook signature for verification
+        const signature = request.headers['stripe-signature'] || null;
+        
+        // Parse webhook data
+        let eventData;
+        if (typeof request.body === 'string') {
+            eventData = JSON.parse(request.body);
+        } else {
+            eventData = request.body;
+        }
+        
+        if (!eventData || !eventData.type) {
+            return {
+                status: 400,
+                body: {
+                    success: false,
+                    error: 'Invalid webhook payload'
+                }
+            };
+        }
+        
+        // Process webhook
+        const result = await handleWebhook(eventData);
+        
+        // If invoice.paid, create member record if applicable
+        if (eventData.type === 'invoice.paid') {
+            await handleInvoicePaidForMembership(eventData.data.object);
+        }
+        
+        return {
+            status: 200,
+            body: {
+                success: true,
+                processed: true,
+                eventType: eventData.type
+            }
+        };
+    } catch (error) {
+        console.error('Stripe webhook error:', error);
+        return {
+            status: 500,
+            body: {
+                success: false,
+                error: error.message
+            }
+        };
+    }
+}
+
+/**
+ * Handle invoice.paid event for membership creation
+ */
+async function handleInvoicePaidForMembership(invoice) {
+    try {
+        // Get invoice metadata
+        const metadata = invoice.metadata || {};
+        const tier = metadata.tier;
+        
+        // Only create member if this is a membership payment
+        if (!tier || !['BASIC', 'PREMIER', 'VIP'].includes(tier)) {
+            return;
+        }
+        
+        // Check if member already exists
+        const existingMember = await wixData.query('Members')
+            .eq('payment_id', invoice.id)
+            .find();
+        
+        if (existingMember.items.length > 0) {
+            // Member already exists
+            return;
+        }
+        
+        // Create member record
+        const years = metadata.years ? parseInt(metadata.years) : 1;
+        const startAt = new Date();
+        const endAt = new Date();
+        
+        if (tier === 'BASIC') {
+            endAt.setFullYear(endAt.getFullYear() + 1);
+        } else if (tier === 'PREMIER') {
+            endAt.setFullYear(endAt.getFullYear() + years);
+        } else if (tier === 'VIP') {
+            // Lifetime membership
+            endAt.setFullYear(endAt.getFullYear() + 100);
+        }
+        
+        const memberId = 'member_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+        
+        const memberRecord = {
+            member_id: memberId,
+            tier: tier,
+            amount_paid: invoice.amount_paid / 100, // Convert from cents
+            years: years || null,
+            start_at: startAt,
+            end_at: endAt,
+            status: 'active',
+            email: invoice.customer_email || metadata.email,
+            first_name: metadata.first_name || null,
+            last_name: metadata.last_name || null,
+            payment_id: invoice.id,
+            payment_method: metadata.payment_method || 'card',
+            created_at: new Date(),
+            metadata: {
+                invoice_id: invoice.id,
+                customer_id: invoice.customer,
+                source: metadata.source || 'stripe_webhook'
+            }
+        };
+        
+        await wixData.save('Members', memberRecord);
+        
+        console.log('✅ Member record created:', memberId);
+    } catch (error) {
+        console.error('Error creating member record:', error);
+        // Don't throw - webhook should still succeed
+    }
+}
