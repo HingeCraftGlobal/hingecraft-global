@@ -93,6 +93,23 @@ export async function handleUserInputDonation(formData) {
             console.warn('⚠️ Intent logging failed (non-blocking):', intentResult.error);
         }
         
+        // Send email notification to marketingcraft@gmail.com
+        try {
+            await sendMissionSupportEmail({
+                firstName: formData.firstName,
+                lastName: formData.lastName,
+                email: formData.email,
+                address: formData.address,
+                missionSupportName: formData.missionSupportName,
+                amount: amount,
+                paymentMethod: paymentMethod,
+                timestamp: new Date().toISOString()
+            });
+        } catch (emailError) {
+            console.warn('⚠️ Email notification failed (non-blocking):', emailError);
+            // Don't fail the submission if email fails
+        }
+        
         // Handle payment method
         if (paymentMethod === 'crypto') {
             // Create crypto invoice
