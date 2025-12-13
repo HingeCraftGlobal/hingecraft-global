@@ -116,7 +116,7 @@ export async function handleUserInputDonation(formData) {
             };
         } else {
             // Card payment: create custom invoice instantly (no email sent)
-            const { createCustomInvoice } = await import('backend/stripe.api');
+            // createCustomInvoice is already imported at the top of the file
             const invoiceResult = await createCustomInvoice({
                 amount: amount,
                 email: formData.email,
