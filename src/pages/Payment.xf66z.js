@@ -6,9 +6,11 @@
 import wixSeo from 'wix-seo';
 
 // Velo API Configuration - Use HTTP endpoints (not imports)
+// IMPORTANT: Wix automatically strips .web.js from module names for HTTP endpoints
+// So mission-support-middleware.web.js becomes /_functions/mission-support-middleware
 const VELO_CONFIG = {
-    MISSION_SUPPORT_MIDDLEWARE: '/_functions/mission-support-middleware.web',
-    CHARTER_MIDDLEWARE: '/_functions/charter-page-middleware.web',
+    MISSION_SUPPORT_MIDDLEWARE: '/_functions/mission-support-middleware',
+    CHARTER_MIDDLEWARE: '/_functions/charter-page-middleware',
     STRIPE_API: '/_functions/stripe.api',
     NOWPAYMENTS_API: '/_functions/nowpayments.api',
     HINGECRAFT_API: '/_functions/hingecraft.api'
