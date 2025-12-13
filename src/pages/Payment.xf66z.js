@@ -2,46 +2,14 @@
 // T10 Implementation: Mission Support Form with Database Integration
 // Updated: December 13, 2025 - Fully synced with Charter page
 // This page REPLACES the old Payment page - Mission Support form is now the Payment page
+// Using direct imports from .jsw files (no HTTP overhead, works immediately)
 
 import wixSeo from 'wix-seo';
-
-// Velo API Configuration - Use HTTP endpoints (not imports)
-// IMPORTANT: Wix automatically strips .web.js from module names for HTTP endpoints
-// So mission-support-middleware.web.js becomes /_functions/mission-support-middleware
-const VELO_CONFIG = {
-    MISSION_SUPPORT_MIDDLEWARE: '/_functions/mission-support-middleware',
-    CHARTER_MIDDLEWARE: '/_functions/charter-page-middleware',
-    STRIPE_API: '/_functions/stripe.api',
-    NOWPAYMENTS_API: '/_functions/nowpayments.api',
-    HINGECRAFT_API: '/_functions/hingecraft.api'
-};
-
-// Helper to call Velo functions via HTTP
-async function callVeloFunction(modulePath, functionName, data = {}) {
-    try {
-        const fetchFn = typeof wixFetch !== 'undefined' ? wixFetch.fetch : fetch;
-        const url = `${modulePath}/${functionName}`;
-        
-        const response = await fetchFn(url, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
-        });
-        
-        if (!response.ok) {
-            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-        }
-        
-        return await response.json();
-    } catch (error) {
-        console.error(`❌ Error calling ${modulePath}/${functionName}:`, error);
-        return { success: false, error: error.message };
-    }
-}
+import { onReady } from 'backend/mission-support-middleware';
 
 $w.onReady(async function () {
-    // Initialize middleware via HTTP endpoint
-    const middlewareResult = await callVeloFunction(VELO_CONFIG.MISSION_SUPPORT_MIDDLEWARE, 'onReady', {});
+    // Initialize middleware via direct import (no HTTP overhead)
+    const middlewareResult = await onReady();
     
     if (middlewareResult.success) {
         console.log('✅ Mission Support middleware initialized');
@@ -189,12 +157,12 @@ function initializeFormHandlers() {
 
 /**
  * Handle form submission (called from embedded form)
- * Uses HTTP endpoint to submit form
+ * Uses direct import - no HTTP overhead
  */
 async function handleFormSubmission(formData) {
     try {
-        // Call backend function via HTTP endpoint
-        const result = await callVeloFunction(VELO_CONFIG.MISSION_SUPPORT_MIDDLEWARE, 'submitMissionSupportForm', {
+        // Call backend function via direct import
+        const result = await handleUserInputDonation({
             ...formData,
             sessionId: getSessionId(),
             anonymousFingerprint: getAnonymousFingerprint(),
@@ -205,7 +173,7 @@ async function handleFormSubmission(formData) {
         });
         
         if (result.success) {
-            console.log('✅ Mission Support form submitted:', result.submissionId);
+            console.log('✅ Mission Support form submitted');
         } else {
             console.error('❌ Error submitting form:', result.error);
         }
