@@ -62,8 +62,19 @@ export async function onReady() {
  * Handle crypto button click
  * Creates NOWPayments invoice for selected crypto
  */
-export async function cryptoButtonClick(amount, coin) {
+export async function cryptoButtonClick(data) {
     try {
+        // Handle both object and separate parameters (for direct imports, can be either)
+        let amount, coin;
+        if (typeof data === 'object' && data !== null && data.amount !== undefined) {
+            amount = data.amount;
+            coin = data.coin;
+        } else {
+            // Legacy support: if called with separate params
+            amount = arguments[0];
+            coin = arguments[1];
+        }
+        
         console.log('💰 Crypto button clicked:', { amount, coin });
         
         // Validate amount

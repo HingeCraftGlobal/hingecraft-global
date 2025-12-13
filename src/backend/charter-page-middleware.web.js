@@ -69,8 +69,19 @@ export async function onReady() {
  * @param {number} amount - Donation amount
  * @param {string} coin - Cryptocurrency (solana, stellar, bitcoin, ethereum)
  */
-export async function cryptoButtonClick(amount, coin) {
+export async function cryptoButtonClick(data) {
     try {
+        // Handle both object and separate parameters (for HTTP calls, data is an object)
+        let amount, coin;
+        if (typeof data === 'object' && data !== null) {
+            amount = data.amount;
+            coin = data.coin;
+        } else {
+            // Legacy support: if called with separate params (shouldn't happen via HTTP)
+            amount = arguments[0];
+            coin = arguments[1];
+        }
+        
         console.log('💰 Crypto button clicked:', { amount, coin });
         
         // Validate amount
