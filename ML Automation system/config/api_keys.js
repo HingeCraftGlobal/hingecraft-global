@@ -82,22 +82,12 @@ module.exports = {
     baseUrl: process.env.BASE_URL || 'https://hingecraft.global'
   },
 
-  // Email Configuration - Multi-Account Support
+  // Email Configuration
   email: {
-    // Primary account (default)
+    // Single account - marketingecraft@gmail.com only
     fromAddress: 'marketingecraft@gmail.com',
     fromName: 'HingeCraft',
     replyTo: 'marketingecraft@gmail.com',
-    // Secondary account
-    departmentsAddress: 'departments@hingecraft-global.ai',
-    departmentsName: 'HingeCraft Departments',
-    // Account selection rules
-    accountSelection: {
-      // Use departments account for these lead types
-      useDepartmentsFor: ['NGO', 'School', 'Government'],
-      // Default to marketing account
-      default: 'marketingecraft@gmail.com'
-    },
     // Email sending limits
     dailyLimit: 1000,
     hourlyLimit: 100,

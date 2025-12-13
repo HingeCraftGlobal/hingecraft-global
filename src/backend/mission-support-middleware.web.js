@@ -121,14 +121,61 @@ export async function handleUserInputDonation(formData) {
                 payCurrency: invoiceResult.payCurrency
             };
         } else {
-            // Card payment: redirect to charter page
-            const redirectResult = await goToCharterAfterPayment(amount);
+            // Card payment: create custom invoice instantly (no email sent)
+            const { createCustomInvoice } = await import('backend/stripe.api');
+            const invoiceResult = await createCustomInvoice({
+                amount: amount,
+                email: formData.email,
+                description: `HingeCraft Donation - $${amount.toFixed(2)} Contribution from Mission Support Form`,
+                customerName: formData.firstName && formData.lastName 
+                    ? `${formData.firstName} ${formData.lastName}` : null,
+                metadata: {
+                    source: 'mission_support_form',
+                    amount_entered: amount.toString(),
+                    first_name: formData.firstName || null,
+                    last_name: formData.lastName || null,
+                    mission_support_name: formData.missionSupportName || null,
+                    timestamp: new Date().toISOString()
+                }
+            });
+            
+            if (!invoiceResult.success) {
+                throw new Error(invoiceResult.error || 'Failed to create invoice');
+            }
+            
+            // Store invoice data
+            try {
+                const invoiceRecord = {
+                    invoice_id: invoiceResult.invoiceId,
+                    customer_id: invoiceResult.customerId,
+                    amount: amount,
+                    currency: 'usd',
+                    status: invoiceResult.status,
+                    invoice_url: invoiceResult.invoiceUrl,
+                    invoice_pdf: invoiceResult.invoicePdf,
+                    email: formData.email,
+                    created_at: new Date(),
+                    metadata: {
+                        source: 'mission_support_form',
+                        stripe_mode: invoiceResult.mode
+                    }
+                };
+                
+                await wixData.save('StripePayments', invoiceRecord);
+            } catch (dbError) {
+                console.warn('⚠️  Error saving invoice to database (non-blocking):', dbError);
+            }
             
             return {
                 success: true,
                 paymentMethod: 'card',
-                redirectUrl: redirectResult.redirectUrl,
-                amount: amount
+                invoiceId: invoiceResult.invoiceId,
+                invoiceUrl: invoiceResult.invoiceUrl,
+                invoicePdf: invoiceResult.invoicePdf,
+                customerId: invoiceResult.customerId,
+                amount: amount,
+                status: invoiceResult.status,
+                mode: invoiceResult.mode
             };
         }
     } catch (error) {

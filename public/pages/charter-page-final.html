@@ -560,18 +560,18 @@
         throw new Error(invoiceResult.error || 'Failed to create custom invoice');
       }
 
-      // Show success message with invoice link
+      // Show success message with invoice link (invoice created instantly, no email sent)
       const successMessage = `
         <div style="padding: 20px; background: #d1fae5; border: 2px solid #10b981; border-radius: 8px; margin: 20px 0;">
           <h3 style="color: #065f46; margin: 0 0 12px 0;">✅ Invoice Created Successfully!</h3>
           <p style="color: #047857; margin: 0 0 16px 0;">
-            A custom invoice for $${amount.toFixed(2)} has been created and sent to your email.
-            ${userEmail ? `(${userEmail})` : 'Please check your email inbox.'}
+            A custom invoice for $${amount.toFixed(2)} has been created instantly in Stripe.
+            Click the link below to view and pay your invoice.
           </p>
           <div style="display: flex; gap: 12px; flex-wrap: wrap;">
             <a href="${invoiceResult.invoiceUrl}" target="_blank" 
                style="padding: 12px 24px; background: #10b981; color: white; text-decoration: none; border-radius: 6px; font-weight: 600; display: inline-block;">
-              📄 View Invoice Online
+              💳 Pay Invoice Now
             </a>
             ${invoiceResult.invoicePdf ? `
             <a href="${invoiceResult.invoicePdf}" target="_blank" 
@@ -581,7 +581,7 @@
             ` : ''}
           </div>
           <p style="color: #047857; margin: 16px 0 0 0; font-size: 14px;">
-            💡 You can pay the invoice directly from the link above or wait for the email.
+            💡 Invoice is ready to pay. Click "Pay Invoice Now" to complete your donation.
           </p>
         </div>
       `;

@@ -76,7 +76,7 @@ class DriveIngestWithAnymail {
           continue;
         }
 
-        // Enrich with AnyMail
+        // Enrich with AnyMail (with webhook - results come async)
         const enrichmentResults = await this.batchEnrichWithAnymail(emails);
 
         // Map enrichment results back to rows
@@ -118,42 +118,60 @@ class DriveIngestWithAnymail {
   }
 
   /**
-   * Batch enrich emails with AnyMail
+   * Batch enrich emails with AnyMail (with webhook)
+   * Uses AnyMail API with x-webhook-url header for async results
    */
   async batchEnrichWithAnymail(emails) {
     try {
-      // Use AnyMail API to find/enrich emails
+      const anymail = require('./anymail');
       const results = {};
       
-      for (const email of emails) {
-        try {
-          // Call AnyMail find API
-          const response = await anymailEnhanced.findEmail({
-            domain: email.split('@')[1],
-            firstName: null, // Will be filled from row data
-            lastName: null
-          });
+      // Extract domains and names from emails
+      const contacts = emails.map(email => {
+        const parts = email.split('@');
+        return {
+          email: email,
+          domain: parts[1] || '',
+          firstName: null, // Will be enriched from AnyMail
+          lastName: null
+        };
+      });
 
-          if (response && response.email) {
-            results[email.toLowerCase()] = {
-              email: response.email,
-              firstName: response.firstName,
-              lastName: response.lastName,
-              company: response.company,
-              title: response.title,
-              phone: response.phone,
-              website: response.website,
-              city: response.city,
-              state: response.state,
-              country: response.country,
-              verified: response.verified || false,
-              confidence: response.confidence || 0
+      // Use AnyMail batch find with webhook (auto-configured)
+      // Results will come via webhook to /api/webhooks/anymail
+      const batchResult = await anymail.batchFindEmails(contacts, true);
+
+      if (batchResult.queued) {
+        logger.info(`AnyMail batch request queued, results will arrive via webhook: ${batchResult.webhook_url}`);
+        // Results will be processed when webhook receives them
+        // Return queued status
+        return {
+          queued: true,
+          webhook_url: batchResult.webhook_url,
+          contact_count: contacts.length
+        };
+      }
+
+      // If synchronous results (fallback)
+      if (Array.isArray(batchResult)) {
+        batchResult.forEach((result, index) => {
+          if (result && result.email) {
+            results[contacts[index].email.toLowerCase()] = {
+              email: result.email,
+              firstName: result.first_name || result.firstName,
+              lastName: result.last_name || result.lastName,
+              company: result.company,
+              title: result.title,
+              phone: result.phone,
+              website: result.website,
+              city: result.city,
+              state: result.state,
+              country: result.country,
+              verified: result.verified || false,
+              confidence: result.confidence || 0
             };
           }
-        } catch (error) {
-          logger.warn(`Failed to enrich ${email}:`, error.message);
-          results[email.toLowerCase()] = null;
-        }
+        });
       }
 
       return results;

@@ -60,7 +60,47 @@ class AnyMailWebhookHandler {
         logger.info('Webhook signature verified');
       }
 
-      const { event, email, contact_data, metadata } = webhookData;
+      let { event, email, contact_data, metadata, result, request_id } = webhookData;
+
+      // Handle AnyMail API webhook responses (from find/verify endpoints)
+      // AnyMail sends webhook when API request completes (async)
+      if (result) {
+        // This is a response from an AnyMail API call (find/verify)
+        logger.info('Received AnyMail API result via webhook');
+        
+        // Process the result
+        if (result.email) {
+          // Email found - create/update lead
+          const lead = await this.findOrCreateLead(result.email, {
+            first_name: result.first_name || contact_data?.first_name,
+            last_name: result.last_name || contact_data?.last_name,
+            company: result.company || contact_data?.company,
+            title: result.title || contact_data?.title,
+            phone: result.phone || contact_data?.phone,
+            website: result.website || contact_data?.website,
+            city: result.city || contact_data?.city,
+            state: result.state || contact_data?.state,
+            country: result.country || contact_data?.country
+          });
+
+          // Continue with normal flow
+          return await this.processLeadThroughFlow(lead);
+        } else if (result.valid !== undefined) {
+          // Email verification result
+          logger.info(`Email verification result: ${result.valid ? 'valid' : 'invalid'}`);
+          // Handle verification result if needed
+        }
+        
+        // If we have email from result, use it
+        if (!email && result.email) {
+          email = result.email;
+        }
+        
+        // Merge result data into contact_data
+        if (result && !contact_data) {
+          contact_data = result;
+        }
+      }
 
       // STEP 1: Receive AnyMail webhooks (already received)
       if (!email) {
@@ -142,6 +182,54 @@ class AnyMailWebhookHandler {
       logger.error('Error handling AnyMail webhook:', error);
       throw error;
     }
+  }
+
+  /**
+   * Process lead through complete flow (helper method)
+   */
+  async processLeadThroughFlow(lead) {
+    // Classify if needed
+    if (!lead.lead_type) {
+      const classification = await leadClassifier.classifyLead(lead);
+      lead.lead_type = classification.lead_type;
+      lead.template_set = classification.template_set;
+      lead.lead_score = classification.score;
+
+      await db.query(
+        `UPDATE leads 
+         SET lead_type = $1, template_set = $2, lead_score = $3, updated_at = NOW()
+         WHERE id = $4`,
+        [lead.lead_type, lead.template_set, lead.lead_score, lead.id]
+      );
+    }
+
+    // Get template
+    const template = await this.getTemplateForLead(lead);
+    if (!template) {
+      throw new Error(`No template found for lead type: ${lead.lead_type}`);
+    }
+
+    // Personalize and send
+    const personalizedTemplate = await this.personalizeTemplate(template, lead);
+    const fromEmail = this.selectSendingAccount(lead);
+
+    const emailResult = await gmailMultiAccount.sendEmail({
+      to: lead.email,
+      subject: personalizedTemplate.subject,
+      html: personalizedTemplate.body,
+      from: fromEmail,
+      replyTo: fromEmail
+    });
+
+    await this.logEmailSend(lead.id, emailResult, personalizedTemplate);
+    await this.segmentLead(lead);
+    await hubspotEnhanced.upsertContact(lead);
+
+    return {
+      success: true,
+      lead_id: lead.id,
+      email_sent: emailResult.success
+    };
   }
 
   /**
@@ -328,17 +416,11 @@ class AnyMailWebhookHandler {
   }
 
   /**
-   * Select sending account based on lead type
+   * Select sending account - always marketingecraft@gmail.com
    */
   selectSendingAccount(lead) {
     const config = require('../../config/api_keys');
-    
-    // Use departments account for NGO/School leads
-    if (lead.lead_type === 'NGO' || lead.lead_type === 'School') {
-      return config.email.departmentsAddress || 'departments@hingecraft-global.ai';
-    }
-
-    // Default to marketing account
+    // Always use marketing account
     return config.email.fromAddress || 'marketingecraft@gmail.com';
   }
 

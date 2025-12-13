@@ -178,15 +178,10 @@ class GmailMultiAccountService {
   }
 
   /**
-   * Get account for email address
+   * Get account for email address - always marketingecraft@gmail.com
    */
   getAccountForEmail(email) {
-    if (email === 'departments@hingecraft-global.ai') {
-      return 'departments@hingecraft-global.ai';
-    } else if (email === 'marketingecraft@gmail.com' || email === 'marketinghingecraft@gmail.com') {
-      return 'marketingecraft@gmail.com';
-    }
-    // Default to marketing account
+    // Always use marketing account
     return 'marketingecraft@gmail.com';
   }
 
@@ -215,14 +210,10 @@ class GmailMultiAccountService {
   }
 
   /**
-   * Select appropriate account for lead
+   * Select appropriate account for lead - always marketingecraft@gmail.com
    */
   selectAccountForLead(lead) {
-    // Use departments account for certain lead types
-    if (lead.lead_type === 'NGO' || lead.lead_type === 'School') {
-      return 'departments@hingecraft-global.ai';
-    }
-    // Default to marketing account
+    // Always use marketing account
     return 'marketingecraft@gmail.com';
   }
 
