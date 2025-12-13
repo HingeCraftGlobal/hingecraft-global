@@ -239,6 +239,9 @@ export async function handleWebhook(eventData) {
             case 'checkout.session.completed':
                 await handleCheckoutSessionCompleted(eventDataObj);
                 break;
+            case 'invoice.paid':
+                await handleInvoicePaid(eventDataObj);
+                break;
             case 'payment_intent.succeeded':
                 await handlePaymentIntentSucceeded(eventDataObj);
                 break;
@@ -306,9 +309,126 @@ async function handleCheckoutSessionCompleted(session) {
             }
         }
 
+        // Create membership record if this is a membership payment
+        if (session.metadata?.tier || session.metadata?.donation_type === 'membership') {
+            try {
+                await createMembershipFromPayment(session);
+            } catch (membershipError) {
+                console.error('Error creating membership (non-blocking):', membershipError);
+                // Don't fail the webhook if membership creation fails
+            }
+        }
+
         console.log('✅ Checkout session completed:', sessionId);
     } catch (error) {
         console.error('❌ Error handling checkout session completed:', error);
+        throw error;
+    }
+}
+
+/**
+ * Create membership record from payment
+ * Called when invoice.paid webhook fires
+ */
+async function createMembershipFromPayment(sessionOrInvoice) {
+    try {
+        const amount = sessionOrInvoice.amount_total ? sessionOrInvoice.amount_total / 100 : sessionOrInvoice.amount_paid / 100;
+        const email = sessionOrInvoice.customer_email || sessionOrInvoice.customer?.email;
+        const metadata = sessionOrInvoice.metadata || {};
+        
+        // Determine tier and years from metadata or amount
+        let tier = metadata.tier;
+        let years = metadata.years ? parseInt(metadata.years) : null;
+        
+        if (!tier) {
+            if (amount === 1) {
+                tier = 'BASIC';
+                years = 1;
+            } else if (amount >= 2 && amount <= 20) {
+                tier = 'PREMIER';
+                years = years || amount;
+            } else if (amount >= 30) {
+                tier = 'VIP';
+                years = null; // Lifetime
+            }
+        }
+        
+        // Generate member ID
+        const memberId = 'mem_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+        
+        // Calculate start and end dates
+        const startAt = new Date();
+        let endAt = null;
+        
+        if (tier === 'BASIC') {
+            endAt = new Date(startAt);
+            endAt.setFullYear(endAt.getFullYear() + 1);
+        } else if (tier === 'PREMIER' && years) {
+            endAt = new Date(startAt);
+            endAt.setFullYear(endAt.getFullYear() + years);
+        } else if (tier === 'VIP') {
+            endAt = null; // Lifetime
+        }
+        
+        // Create membership record
+        const membershipRecord = {
+            member_id: memberId,
+            tier: tier,
+            amount_paid: amount,
+            years: years,
+            start_at: startAt,
+            end_at: endAt,
+            status: 'active',
+            email: email,
+            payment_id: sessionOrInvoice.id,
+            payment_method: metadata.payment_method || 'stripe',
+            created_at: new Date(),
+            metadata: {
+                ...metadata,
+                invoice_id: sessionOrInvoice.id,
+                customer_id: sessionOrInvoice.customer || metadata.customer_id
+            }
+        };
+        
+        // Check if Members collection exists, create if needed
+        try {
+            await wixData.save('Members', membershipRecord);
+            console.log('✅ Membership created:', memberId);
+        } catch (dbError) {
+            // If Members collection doesn't exist, log warning but don't fail
+            console.warn('⚠️  Members collection not found. Membership record not created:', dbError.message);
+            // Store in metadata of StripePayments as fallback
+            try {
+                const paymentResults = await wixData.query('StripePayments')
+                    .eq('invoice_id', sessionOrInvoice.id)
+                    .find();
+                
+                if (paymentResults.items.length > 0) {
+                    const payment = paymentResults.items[0];
+                    await wixData.update('StripePayments', {
+                        ...payment,
+                        metadata: {
+                            ...payment.metadata,
+                            membership_created: true,
+                            member_id: memberId,
+                            tier: tier,
+                            years: years
+                        }
+                    });
+                }
+            } catch (updateError) {
+                console.error('Error updating payment with membership data:', updateError);
+            }
+        }
+        
+        return {
+            success: true,
+            memberId: memberId,
+            tier: tier,
+            years: years
+        };
+    } catch (error) {
+        console.error('❌ Error creating membership:', error);
         throw error;
     }
 }
@@ -341,6 +461,70 @@ async function handlePaymentIntentSucceeded(paymentIntent) {
         console.log('✅ Payment intent succeeded:', paymentIntentId);
     } catch (error) {
         console.error('❌ Error handling payment intent succeeded:', error);
+        throw error;
+    }
+}
+
+/**
+ * Handle invoice paid (for instant invoices)
+ */
+async function handleInvoicePaid(invoice) {
+    try {
+        const invoiceId = invoice.id;
+        const amount = invoice.amount_paid / 100;
+        const email = invoice.customer_email || invoice.customer_details?.email;
+
+        // Update invoice record in StripePayments
+        const results = await wixData.query('StripePayments')
+            .eq('invoice_id', invoiceId)
+            .find();
+
+        if (results.items.length > 0) {
+            const payment = results.items[0];
+            await wixData.update('StripePayments', {
+                ...payment,
+                status: 'paid',
+                email: email || payment.email,
+                paid_at: new Date(),
+                metadata: {
+                    ...payment.metadata,
+                    invoice_paid: true,
+                    paid_at: new Date().toISOString()
+                }
+            });
+            
+            // Create membership record if this is a membership payment
+            if (payment.metadata?.tier || payment.metadata?.donation_type === 'membership') {
+                try {
+                    await createMembershipFromPayment(invoice);
+                } catch (membershipError) {
+                    console.error('Error creating membership (non-blocking):', membershipError);
+                }
+            }
+        }
+
+        // Update donation record if exists
+        try {
+            const donationResults = await wixData.query('Donations')
+                .contains('metadata.stripe_invoice_id', invoiceId)
+                .find();
+            
+            for (const donation of donationResults.items) {
+                await wixData.update('Donations', {
+                    ...donation,
+                    payment_status: 'completed',
+                    payment_method: 'stripe',
+                    transaction_id: invoice.payment_intent,
+                    updated_at: new Date()
+                });
+            }
+        } catch (e) {
+            console.error('Error updating donation:', e);
+        }
+
+        console.log('✅ Invoice paid:', invoiceId);
+    } catch (error) {
+        console.error('❌ Error handling invoice paid:', error);
         throw error;
     }
 }

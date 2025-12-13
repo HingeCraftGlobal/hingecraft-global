@@ -221,28 +221,95 @@ export async function fiatButtonClick(preset) {
             timestamp: new Date().toISOString()
         };
         
-        // Create custom Stripe invoice
-        const { createCustomInvoice } = await import('backend/stripe.api');
+        // Add metadata with membership and database reference
+        metadata = {
+            ...metadata,
+            source: 'charter_page_membership',
+            amount_entered: amount.toString(),
+            timestamp: new Date().toISOString(),
+            donation_type: 'membership',
+            tier: tier || (amount === 1 ? 'BASIC' : amount >= 2 && amount <= 20 ? 'PREMIER' : amount >= 30 ? 'VIP' : null),
+            years: years || (amount === 1 ? 1 : amount >= 2 && amount <= 20 ? amount : amount >= 30 ? null : null),
+            payment_method: paymentMethod
+        };
+        
+        // Determine membership tier description
+        let description = `HingeCraft Membership - $${amount.toFixed(2)}`;
+        if (tier === 'BASIC' || amount === 1) {
+            description = `HingeCraft Basic Membership - $${amount.toFixed(2)} (1 year)`;
+        } else if (tier === 'PREMIER' || (amount >= 2 && amount <= 20)) {
+            const membershipYears = years || amount;
+            description = `HingeCraft Premier Membership - $${amount.toFixed(2)} (${membershipYears} years)`;
+        } else if (tier === 'VIP' || amount >= 30) {
+            description = `HingeCraft VIP Membership - $${amount.toFixed(2)} (Lifetime)`;
+        }
+        
+        // Create custom Stripe invoice (works with DEV keys, instant creation, no email)
         const invoiceResult = await createCustomInvoice({
             amount: amount,
-            email: email || 'donor@hingecraft-global.ai', // Fallback email if none provided
-            description: `HingeCraft Donation - $${amount.toFixed(2)} Contribution`,
+            email: email || 'member@hingecraft-global.ai', // Fallback email
+            description: description,
             customerName: customerName,
             metadata: metadata
         });
         
-        if (!sessionResult.success) {
-            throw new Error(sessionResult.error || 'Failed to create Stripe session');
+        if (!invoiceResult.success) {
+            throw new Error(invoiceResult.error || 'Failed to create custom invoice');
         }
         
-        // Store donation amount
+        // Store donation amount and invoice data
         await storeDonationAmount(amount, 'stripe', null);
+        
+        // Store invoice data in session for reference
+        try {
+            if (typeof wixStorage !== 'undefined' && wixStorage.session) {
+                wixStorage.session.setItem('hingecraft_invoice', JSON.stringify({
+                    invoiceId: invoiceResult.invoiceId,
+                    invoiceUrl: invoiceResult.invoiceUrl,
+                    invoicePdf: invoiceResult.invoicePdf,
+                    amount: amount,
+                    customerId: invoiceResult.customerId,
+                    timestamp: new Date().toISOString()
+                }));
+            }
+        } catch (e) {
+            console.warn('Could not store invoice data in session:', e);
+        }
+        
+        // Save invoice reference to database
+        try {
+            const invoiceRecord = {
+                invoice_id: invoiceResult.invoiceId,
+                customer_id: invoiceResult.customerId,
+                amount: amount,
+                currency: 'usd',
+                status: invoiceResult.status,
+                invoice_url: invoiceResult.invoiceUrl,
+                invoice_pdf: invoiceResult.invoicePdf,
+                email: email,
+                payment_method: paymentMethod,
+                created_at: new Date(),
+                metadata: {
+                    ...metadata,
+                    stripe_mode: invoiceResult.mode
+                }
+            };
+            
+            await wixData.save('StripePayments', invoiceRecord);
+        } catch (dbError) {
+            console.warn('⚠️  Error saving invoice to database (non-blocking):', dbError);
+        }
         
         return {
             success: true,
-            sessionId: sessionResult.sessionId,
-            url: sessionResult.url,
-            amount: amount
+            invoiceId: invoiceResult.invoiceId,
+            invoiceUrl: invoiceResult.invoiceUrl,
+            invoicePdf: invoiceResult.invoicePdf,
+            customerId: invoiceResult.customerId,
+            amount: amount,
+            status: invoiceResult.status,
+            mode: invoiceResult.mode,
+            message: 'Custom invoice created instantly in Stripe'
         };
     } catch (error) {
         console.error('❌ Fiat button click error:', error);

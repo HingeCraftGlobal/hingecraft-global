@@ -759,3 +759,109 @@ async function initExternalDBConfig() {
 // Initialize external DB config
 initExternalDBConfig();
 
+/**
+ * Get invoice status
+ * Used by frontend to poll payment status
+ * @public
+ * @param {string} invoiceId - NOWPayments invoice ID
+ * @returns {Promise<Object>} Invoice status
+ */
+export async function getInvoiceStatus(invoiceId) {
+    try {
+        if (!NOWPAYMENTS_API_KEY) {
+            await initNowPaymentsConfig();
+        }
+
+        if (!invoiceId) {
+            throw new Error('Invoice ID is required');
+        }
+
+        // Get invoice from NOWPayments API
+        const response = await fetch(`${NOWPAYMENTS_BASE_URL}/payment`, {
+            method: 'GET',
+            headers: {
+                'x-api-key': NOWPAYMENTS_API_KEY,
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (!response.ok) {
+            // Try to get specific invoice
+            try {
+                const invoiceResponse = await fetch(`${NOWPAYMENTS_BASE_URL}/invoice/${invoiceId}`, {
+                    method: 'GET',
+                    headers: {
+                        'x-api-key': NOWPAYMENTS_API_KEY,
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                if (invoiceResponse.ok) {
+                    const invoiceData = await invoiceResponse.json();
+                    return {
+                        success: true,
+                        status: invoiceData.status || 'waiting',
+                        invoiceId: invoiceId,
+                        amount: invoiceData.price_amount || null,
+                        currency: invoiceData.pay_currency || null
+                    };
+                }
+            } catch (invoiceError) {
+                console.warn('Could not get invoice status:', invoiceError);
+            }
+
+            throw new Error(`NOWPayments API error: ${response.status}`);
+        }
+
+        // Search for invoice in payments list
+        const payments = await response.json();
+        const invoicePayment = payments.find(p => p.invoice_id === invoiceId || p.order_id === invoiceId);
+
+        if (invoicePayment) {
+            return {
+                success: true,
+                status: invoicePayment.payment_status === 'confirmed' ? 'confirmed' : 
+                       invoicePayment.payment_status === 'waiting' ? 'pending' : 
+                       invoicePayment.payment_status || 'pending',
+                invoiceId: invoiceId,
+                amount: invoicePayment.price_amount || null,
+                currency: invoicePayment.pay_currency || null
+            };
+        }
+
+        // Check database for invoice status
+        try {
+            const dbResults = await wixData.query('CryptoPayments')
+                .eq('invoice_id', invoiceId)
+                .find();
+
+            if (dbResults.items.length > 0) {
+                const payment = dbResults.items[0];
+                return {
+                    success: true,
+                    status: payment.status === 'confirmed' ? 'confirmed' : 'pending',
+                    invoiceId: invoiceId,
+                    amount: payment.price_amount || null,
+                    currency: payment.pay_currency || null
+                };
+            }
+        } catch (dbError) {
+            console.warn('Could not check database for invoice:', dbError);
+        }
+
+        return {
+            success: true,
+            status: 'pending',
+            invoiceId: invoiceId
+        };
+
+    } catch (error) {
+        console.error('❌ Error getting invoice status:', error);
+        return {
+            success: false,
+            status: 'error',
+            error: error.message
+        };
+    }
+}
+
