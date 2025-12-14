@@ -140,20 +140,22 @@ export async function handleUserInputDonation(formData) {
                 payCurrency: invoiceResult.payCurrency
             };
         } else {
-            // Card payment: create custom invoice instantly (no email sent)
-            const { createCustomInvoice } = await import('backend/stripe.api');
+            // Card/ACH payment: create custom invoice instantly (no email sent)
+            // Pass payment_method to enable ACH routing if selected
             const invoiceResult = await createCustomInvoice({
                 amount: amount,
                 email: formData.email,
                 description: `HingeCraft Donation - $${amount.toFixed(2)} Contribution from Mission Support Form`,
                 customerName: formData.firstName && formData.lastName 
                     ? `${formData.firstName} ${formData.lastName}` : null,
+                payment_method: paymentMethod || 'card', // Pass payment method for ACH routing
                 metadata: {
                     source: 'mission_support_form',
                     amount_entered: amount.toString(),
                     first_name: formData.firstName || null,
                     last_name: formData.lastName || null,
                     mission_support_name: formData.missionSupportName || null,
+                    payment_method: paymentMethod || 'card',
                     timestamp: new Date().toISOString()
                 }
             });
@@ -173,6 +175,7 @@ export async function handleUserInputDonation(formData) {
                     invoice_url: invoiceResult.invoiceUrl,
                     invoice_pdf: invoiceResult.invoicePdf,
                     email: formData.email,
+                    payment_method: paymentMethod || 'card',
                     created_at: new Date(),
                     metadata: {
                         source: 'mission_support_form',
@@ -183,6 +186,31 @@ export async function handleUserInputDonation(formData) {
                 await wixData.save('StripePayments', invoiceRecord);
             } catch (dbError) {
                 console.warn('⚠️  Error saving invoice to database (non-blocking):', dbError);
+            }
+            
+            // Store donation data in database for contributions display
+            try {
+                // Save to ContributionIntent if not already saved
+                const intentRecord = {
+                    amount_entered: amount,
+                    status: 'intent',
+                    first_name: formData.firstName || null,
+                    last_name: formData.lastName || null,
+                    email: formData.email || null,
+                    address: formData.address || null,
+                    mission_support_name: formData.missionSupportName || null,
+                    session_id: await getSessionId(),
+                    anonymous_fingerprint: await getAnonymousFingerprint(),
+                    timestamp: new Date(),
+                    metadata: {
+                        source: 'mission_support_form',
+                        payment_method: paymentMethod || 'card',
+                        invoice_id: invoiceResult.invoiceId
+                    }
+                };
+                await wixData.save('ContributionIntent', intentRecord);
+            } catch (dbError) {
+                console.warn('⚠️ Error saving intent to database (non-blocking):', dbError);
             }
             
             return {
