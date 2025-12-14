@@ -367,22 +367,40 @@ function validateFormData(formData) {
  */
 function setupDatabaseListeners() {
     try {
+        // Check if onChange is available
+        if (typeof wixData.onChange !== 'function') {
+            console.warn('⚠️ wixData.onChange is not available. Skipping database listeners.');
+            return;
+        }
+        
         // Listen for changes to ContributionIntent collection
-        wixData.onChange('ContributionIntent', async (changedItem) => {
-            console.log('📊 ContributionIntent collection changed:', changedItem);
-        });
+        try {
+            wixData.onChange('ContributionIntent', async (changedItem) => {
+                console.log('📊 ContributionIntent collection changed:', changedItem);
+            });
+        } catch (e) {
+            console.warn('⚠️ Could not set up ContributionIntent listener:', e.message);
+        }
         
         // Listen for changes to Donations collection
-        wixData.onChange('Donations', async (changedItem) => {
-            console.log('📊 Donations collection changed:', changedItem);
-        });
+        try {
+            wixData.onChange('Donations', async (changedItem) => {
+                console.log('📊 Donations collection changed:', changedItem);
+            });
+        } catch (e) {
+            console.warn('⚠️ Could not set up Donations listener:', e.message);
+        }
         
         // Listen for changes to CryptoPayments collection
-        wixData.onChange('CryptoPayments', async (changedItem) => {
-            console.log('📊 CryptoPayments collection changed:', changedItem);
-        });
+        try {
+            wixData.onChange('CryptoPayments', async (changedItem) => {
+                console.log('📊 CryptoPayments collection changed:', changedItem);
+            });
+        } catch (e) {
+            console.warn('⚠️ Could not set up CryptoPayments listener:', e.message);
+        }
     } catch (error) {
-        console.error('Error setting up database listeners:', error);
+        console.warn('⚠️ Error setting up database listeners (non-blocking):', error.message);
     }
 }
 
@@ -490,11 +508,8 @@ export async function otherAmount(data) {
         // Save to ContributionIntent collection
         const result = await wixData.save('ContributionIntent', intentRecord);
         
-        // Build redirect URL with prefill token
-        const baseUrl = typeof wixLocation !== 'undefined' && wixLocation.baseUrl 
-            ? wixLocation.baseUrl 
-            : 'https://www.hingecraft-global.ai';
-        const redirectUrl = `${baseUrl}/charter?prefill=${prefillId}`;
+        // Build redirect URL with prefill token (production URL)
+        const redirectUrl = `https://hingecraft-global.ai/charter?prefill=${prefillId}`;
         
         console.log('✅ Prefill token created:', prefillId);
         

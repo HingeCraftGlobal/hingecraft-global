@@ -31,6 +31,14 @@ let STRIPE_MODE = 'test'; // 'test' or 'live'
  */
 async function initStripeConfig() {
     try {
+        // Check if secrets is available
+        if (typeof secrets === 'undefined' || !secrets || typeof secrets.getSecret !== 'function') {
+            console.warn('⚠️ Secrets manager not available. Stripe will be disabled.');
+            STRIPE_SECRET_KEY = null;
+            STRIPE_PUBLISHABLE_KEY = null;
+            return;
+        }
+        
         // Try TEST keys first (DEV mode)
         try {
             STRIPE_SECRET_KEY = await secrets.getSecret('STRIPE_SECRET_KEY_TEST');
@@ -43,7 +51,10 @@ async function initStripeConfig() {
                 STRIPE_MODE = 'live';
                 console.log('🔧 Using Stripe LIVE keys (PROD mode)');
             } catch (liveError) {
-                throw new Error('No Stripe keys found. Please set STRIPE_SECRET_KEY_TEST (dev) or STRIPE_SECRET_KEY_LIVE (prod) in Wix Secrets Manager.');
+                console.warn('⚠️ No Stripe keys found. Stripe payments will be disabled.');
+                STRIPE_SECRET_KEY = null;
+                STRIPE_PUBLISHABLE_KEY = null;
+                return;
             }
         }
         

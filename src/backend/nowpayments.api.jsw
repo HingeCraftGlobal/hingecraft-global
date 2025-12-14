@@ -30,9 +30,16 @@ let CRYPTO_CONFIRMATIONS_REQUIRED = 3;
 // Initialize configuration from secrets
 async function initNowPaymentsConfig() {
     try {
+        // Check if secrets is available
+        if (typeof secrets === 'undefined' || !secrets || typeof secrets.getSecret !== 'function') {
+            console.warn('⚠️ Secrets manager not available. NOWPayments will be disabled.');
+            NOWPAYMENTS_API_KEY = null;
+            return;
+        }
+        
         NOWPAYMENTS_API_KEY = await secrets.getSecret('NOWPAYMENTS_API_KEY');
         NOWPAYMENTS_IPN_SECRET = await secrets.getSecret('NOWPAYMENTS_IPN_SECRET');
-        BASE_URL = await secrets.getSecret('BASE_URL') || 'https://www.hingecraft-global.ai';
+        BASE_URL = await secrets.getSecret('BASE_URL') || 'https://hingecraft-global.ai';
         
         const baseUrl = await secrets.getSecret('NOWPAYMENTS_BASE_URL');
         if (baseUrl) NOWPAYMENTS_BASE_URL = baseUrl;
@@ -43,9 +50,9 @@ async function initNowPaymentsConfig() {
         const confirmations = await secrets.getSecret('CRYPTO_CONFIRMATIONS_REQUIRED');
         if (confirmations) CRYPTO_CONFIRMATIONS_REQUIRED = parseInt(confirmations);
     } catch (error) {
-        console.warn('⚠️ Could not load NOWPayments secrets:', error);
-        // In production, throw error - secrets are required
-        throw new Error('NOWPayments configuration missing. Please set secrets in Wix Secrets Manager.');
+        console.warn('⚠️ Could not load NOWPayments secrets:', error.message);
+        // Don't throw - allow system to continue without crypto payments
+        NOWPAYMENTS_API_KEY = null;
     }
 }
 

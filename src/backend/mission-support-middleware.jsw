@@ -154,6 +154,31 @@ export async function handleUserInputDonation(formData) {
                 }
             });
             
+            // Store donation data in database for contributions display
+            try {
+                // Save to ContributionIntent if not already saved
+                const intentRecord = {
+                    amount_entered: amount,
+                    status: 'intent',
+                    first_name: formData.firstName || null,
+                    last_name: formData.lastName || null,
+                    email: formData.email || null,
+                    address: formData.address || null,
+                    mission_support_name: formData.missionSupportName || null,
+                    session_id: await getSessionId(),
+                    anonymous_fingerprint: await getAnonymousFingerprint(),
+                    timestamp: new Date(),
+                    metadata: {
+                        source: 'mission_support_form',
+                        payment_method: paymentMethod || 'card',
+                        invoice_id: invoiceResult.invoiceId
+                    }
+                };
+                await wixData.save('ContributionIntent', intentRecord);
+            } catch (dbError) {
+                console.warn('⚠️ Error saving intent to database (non-blocking):', dbError);
+            }
+            
             if (!invoiceResult.success) {
                 throw new Error(invoiceResult.error || 'Failed to create invoice');
             }
@@ -204,22 +229,33 @@ export async function handleUserInputDonation(formData) {
 
 /**
  * Go to charter page after payment
- * Passes donation amount to charter page
+ * Passes donation amount and payment method to charter page
  */
-export async function goToCharterAfterPayment(value) {
+export async function goToCharterAfterPayment(data) {
     try {
-        console.log('🔄 Redirecting to charter page with amount:', value);
+        // Handle both object and value parameter
+        let value, paymentMethod;
+        if (typeof data === 'object' && data !== null) {
+            value = data.value || data.amount;
+            paymentMethod = data.paymentMethod || 'card';
+        } else {
+            value = data;
+            paymentMethod = 'card';
+        }
         
-        // Store donation amount
-        await storeDonationAmount(value, 'card', null);
+        console.log('🔄 Redirecting to charter page with amount:', value, 'payment method:', paymentMethod);
         
-        // Get redirect URL
-        const redirectResult = await redirectBackToCharter(value, 'card');
+        // Store donation amount and payment method
+        await storeDonationAmount(value, paymentMethod, null);
+        
+        // Get redirect URL (production URL)
+        const redirectUrl = `https://hingecraft-global.ai/charter?donationAmount=${value}&paymentMethod=${paymentMethod}&fromMissionSupport=true`;
         
         return {
             success: true,
-            redirectUrl: redirectResult.redirectUrl,
-            amount: value
+            redirectUrl: redirectUrl,
+            amount: value,
+            paymentMethod: paymentMethod
         };
     } catch (error) {
         console.error('❌ Go to charter error:', error);
@@ -358,22 +394,40 @@ function validateFormData(formData) {
  */
 function setupDatabaseListeners() {
     try {
+        // Check if onChange is available
+        if (typeof wixData.onChange !== 'function') {
+            console.warn('⚠️ wixData.onChange is not available. Skipping database listeners.');
+            return;
+        }
+        
         // Listen for changes to ContributionIntent collection
-        wixData.onChange('ContributionIntent', async (changedItem) => {
-            console.log('📊 ContributionIntent collection changed:', changedItem);
-        });
+        try {
+            wixData.onChange('ContributionIntent', async (changedItem) => {
+                console.log('📊 ContributionIntent collection changed:', changedItem);
+            });
+        } catch (e) {
+            console.warn('⚠️ Could not set up ContributionIntent listener:', e.message);
+        }
         
         // Listen for changes to Donations collection
-        wixData.onChange('Donations', async (changedItem) => {
-            console.log('📊 Donations collection changed:', changedItem);
-        });
+        try {
+            wixData.onChange('Donations', async (changedItem) => {
+                console.log('📊 Donations collection changed:', changedItem);
+            });
+        } catch (e) {
+            console.warn('⚠️ Could not set up Donations listener:', e.message);
+        }
         
         // Listen for changes to CryptoPayments collection
-        wixData.onChange('CryptoPayments', async (changedItem) => {
-            console.log('📊 CryptoPayments collection changed:', changedItem);
-        });
+        try {
+            wixData.onChange('CryptoPayments', async (changedItem) => {
+                console.log('📊 CryptoPayments collection changed:', changedItem);
+            });
+        } catch (e) {
+            console.warn('⚠️ Could not set up CryptoPayments listener:', e.message);
+        }
     } catch (error) {
-        console.error('Error setting up database listeners:', error);
+        console.warn('⚠️ Error setting up database listeners (non-blocking):', error.message);
     }
 }
 
@@ -496,11 +550,8 @@ export async function otherAmount(data) {
         // Save to ContributionIntent collection
         const result = await wixData.save('ContributionIntent', intentRecord);
         
-        // Build redirect URL with prefill token
-        const baseUrl = typeof wixLocation !== 'undefined' && wixLocation.baseUrl 
-            ? wixLocation.baseUrl 
-            : 'https://www.hingecraft-global.ai';
-        const redirectUrl = `${baseUrl}/charter?prefill=${prefillId}`;
+        // Build redirect URL with prefill token (production URL)
+        const redirectUrl = `https://hingecraft-global.ai/charter?prefill=${prefillId}`;
         
         console.log('✅ Prefill token created:', prefillId);
         

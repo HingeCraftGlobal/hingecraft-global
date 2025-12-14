@@ -221,7 +221,7 @@
     function HingeCraftMembershipWidget({ apiBaseUrl = "", railMultipliers } = {}) {
       const [selectedTier, setSelectedTier] = useState("BASIC");
       const [years, setYears] = useState(2); // Default to 2 for PREMIER tier (2-20 range)
-      const [rail, setRail] = useState("CARD");
+      const [rail, setRail] = useState("USD_CARD"); // Default to USD_CARD
       const [amount, setAmount] = useState(1);
       const [quote, setQuote] = useState(null);
       const [quoteError, setQuoteError] = useState(null);
@@ -279,6 +279,8 @@
           const urlParams = new URLSearchParams(window.location.search);
           const prefillId = urlParams.get('prefill');
           const urlAmount = urlParams.get('donationAmount') || urlParams.get('amount');
+          const urlPaymentMethod = urlParams.get('paymentMethod'); // Get payment method from URL
+          const fromMissionSupport = urlParams.get('fromMissionSupport') === 'true';
           
           // Priority 1: Prefill token (from Mission Support "Other" amount)
           if (prefillId) {
@@ -289,6 +291,7 @@
                 if (!isNaN(amt) && amt > 0) {
                   setDonationAmount(amt);
                   setAmount(amt);
+                  // Auto-match tier and years based on amount
                   if (amt === 1) {
                     setSelectedTier("BASIC");
                     setYears(1);
@@ -297,8 +300,20 @@
                     setYears(amt); // Set years to match amount (2-20)
                   } else if (amt >= 30) {
                     setSelectedTier("VIP");
+                    setYears(null); // VIP is lifetime
                   }
-                  console.log('✅ Prefill loaded:', amt);
+                  // Set payment method from URL or default to card
+                  if (urlPaymentMethod) {
+                    // Update rail based on payment method
+                    if (urlPaymentMethod === 'crypto') {
+                      setRail('SOL_USDC'); // Default to SOL for crypto
+                    } else if (urlPaymentMethod === 'ACH') {
+                      setRail('USD_ACH');
+                    } else {
+                      setRail('USD_CARD');
+                    }
+                  }
+                  console.log('✅ Prefill loaded:', amt, 'Payment method:', urlPaymentMethod);
                   return; // Exit early if prefill loaded
                 }
               }
@@ -314,6 +329,7 @@
             if (!isNaN(amt) && amt > 0) {
               setDonationAmount(amt);
               setAmount(amt);
+              // Auto-match tier and years based on amount
               if (amt === 1) {
                 setSelectedTier("BASIC");
                 setYears(1);
@@ -322,7 +338,22 @@
                 setYears(amt); // Set years to match amount (2-20)
               } else if (amt >= 30) {
                 setSelectedTier("VIP");
+                setYears(null); // VIP is lifetime
               }
+              // Set payment method from URL
+              if (urlPaymentMethod) {
+                if (urlPaymentMethod === 'crypto') {
+                  setRail('SOL_USDC'); // Default to SOL for crypto
+                } else if (urlPaymentMethod === 'ACH' || urlPaymentMethod === 'ach') {
+                  setRail('USD_ACH');
+                } else {
+                  setRail('USD_CARD');
+                }
+              } else {
+                // Default to card if no payment method specified
+                setRail('USD_CARD');
+              }
+              console.log('✅ URL amount loaded:', amt, 'Payment method:', urlPaymentMethod);
               return; // Exit early if URL amount loaded
             }
           }
@@ -338,15 +369,31 @@
                   if (!isNaN(amt) && amt > 0) {
                     setDonationAmount(amt);
                     setAmount(amt);
+                    // Auto-match tier and years
                     if (amt === 1) {
                       setSelectedTier("BASIC");
                       setYears(1);
                     } else if (amt >= 2 && amt <= 20) {
                       setSelectedTier("PREMIER");
-                      setYears(amt); // Set years to match amount (2-20)
+                      setYears(amt);
                     } else if (amt >= 30) {
                       setSelectedTier("VIP");
+                      setYears(null);
                     }
+                    // Set payment method from stored data
+                    if (data.paymentMethod) {
+                      if (data.paymentMethod === 'crypto') {
+                        setRail('SOL_USDC');
+                      } else if (data.paymentMethod === 'ACH' || data.paymentMethod === 'ach') {
+                        setRail('USD_ACH');
+                      } else {
+                        setRail('USD_CARD');
+                      }
+                    } else {
+                      // Default to card if no payment method in stored data
+                      setRail('USD_CARD');
+                    }
+                    console.log('✅ Session data loaded:', amt, 'Payment method:', data.paymentMethod);
                   }
                 }
               }
@@ -462,7 +509,7 @@
         }
         
         // Handle Stripe payments (Card or ACH) - Create instant invoice
-        if (rail === "CARD" || rail === "ACH") {
+        if (rail === "USD_CARD" || rail === "USD_ACH" || rail === "CARD" || rail === "ACH") {
           await handleStripePayment(amt);
           return;
         }
@@ -539,7 +586,8 @@
         try {
           console.log('💳 Creating Stripe instant invoice for amount:', amount, 'rail:', rail);
           
-          const paymentMethod = rail === 'ACH' ? 'ACH' : 'card';
+          // Determine payment method from rail
+          const paymentMethod = (rail === 'USD_ACH' || rail === 'ACH') ? 'ACH' : 'card';
           
           // Create instant invoice (no email sending)
           const data = await callVeloFunction(VELO_CONFIG.CHARTER_MIDDLEWARE, 'fiatButtonClick', {

@@ -185,6 +185,12 @@
         Loading messages...
       </div>
     </div>
+    
+    <!-- Previous Message Display (Inline Text Box) -->
+    <div id="previousMessageBox" style="display: none; margin-bottom: 8px; padding: 8px; background: #f0f0f0; border: 1px solid #ddd; border-radius: 4px; font-size: 12px; color: #666;">
+      <strong>Previous:</strong> <span id="previousMessageText"></span>
+    </div>
+    
     <input 
       class="chat-input" 
       type="text" 
@@ -546,21 +552,23 @@
         // Store in session
         saveFormToSession(submissionData);
 
-        // Store amount separately for payment flow
+          // Store amount and payment method separately for payment flow
         try {
+          const donationData = {
+            amount: finalAmount,
+            paymentMethod: paymentMethod || 'card',
+            timestamp: new Date().toISOString(),
+            source: 'mission_support_form',
+            formData: submissionData
+          };
+          
           if (typeof wixStorage !== 'undefined' && wixStorage.session) {
-            wixStorage.session.setItem('hingecraft_donation', JSON.stringify({
-              amount: finalAmount,
-              timestamp: new Date().toISOString(),
-              source: 'mission_support_form'
-            }));
+            wixStorage.session.setItem('hingecraft_donation', JSON.stringify(donationData));
+            wixStorage.session.setItem('mission_support_payment_method', paymentMethod || 'card');
           }
           if (typeof sessionStorage !== 'undefined') {
-            sessionStorage.setItem('hingecraft_donation', JSON.stringify({
-              amount: finalAmount,
-              timestamp: new Date().toISOString(),
-              source: 'mission_support_form'
-            }));
+            sessionStorage.setItem('hingecraft_donation', JSON.stringify(donationData));
+            sessionStorage.setItem('mission_support_payment_method', paymentMethod || 'card');
           }
         } catch (e) {
           console.error('Error storing donation amount:', e);
@@ -696,12 +704,21 @@
               const otherData = await otherResponse.json();
               
               if (otherData.success && otherData.redirectUrl) {
+                // Ensure production URL is used and payment method is included
+                let redirectUrl = otherData.redirectUrl;
+                if (!redirectUrl.startsWith('http')) {
+                  redirectUrl = `https://hingecraft-global.ai${redirectUrl}`;
+                }
+                // Add payment method if not present
+                if (!redirectUrl.includes('paymentMethod=')) {
+                  redirectUrl += (redirectUrl.includes('?') ? '&' : '?') + `paymentMethod=${paymentMethod || 'card'}`;
+                }
                 // Redirect to Charter page with prefill token
-                console.log('🔄 Redirecting to Charter with prefill:', otherData.redirectUrl);
+                console.log('🔄 Redirecting to Charter with prefill:', redirectUrl);
                 if (typeof wixLocation !== 'undefined' && wixLocation.to) {
-                  wixLocation.to(otherData.redirectUrl);
+                  wixLocation.to(redirectUrl);
                 } else {
-                  window.location.href = otherData.redirectUrl;
+                  window.location.href = redirectUrl;
                 }
                 return; // Exit early - redirecting
               } else {
@@ -709,8 +726,8 @@
               }
             } catch (otherError) {
               console.error('Other amount error:', otherError);
-              // Fallback to direct redirect with amount in URL
-              const charterUrl = `/charter?donationAmount=${encodeURIComponent(finalAmount)}&fromMissionSupport=true&paymentMethod=card`;
+              // Fallback to direct redirect with amount in URL (production URL)
+              const charterUrl = `https://hingecraft-global.ai/charter?donationAmount=${encodeURIComponent(finalAmount)}&fromMissionSupport=true&paymentMethod=${paymentMethod || 'card'}`;
               if (typeof wixLocation !== 'undefined' && wixLocation.to) {
                 wixLocation.to(charterUrl);
               } else {
@@ -724,7 +741,11 @@
               const redirectResponse = await (typeof wixFetch !== 'undefined' ? wixFetch.fetch : fetch)(redirectUrl, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ value: finalAmount })
+                body: JSON.stringify({ 
+                  value: finalAmount,
+                  amount: finalAmount,
+                  paymentMethod: paymentMethod || 'card'
+                })
               });
               
               const redirectData = await redirectResponse.json();
@@ -736,8 +757,8 @@
                   window.location.href = redirectData.redirectUrl;
                 }
               } else {
-                // Fallback to direct redirect
-                const charterUrl = `/charter?donationAmount=${encodeURIComponent(finalAmount)}&fromMissionSupport=true&paymentMethod=card`;
+                // Fallback to direct redirect (production URL)
+                const charterUrl = `https://hingecraft-global.ai/charter?donationAmount=${encodeURIComponent(finalAmount)}&fromMissionSupport=true&paymentMethod=${selectedPaymentMethod || 'card'}`;
                 if (typeof wixLocation !== 'undefined' && wixLocation.to) {
                   wixLocation.to(charterUrl);
                 } else {
@@ -746,8 +767,8 @@
               }
             } catch (redirectError) {
               console.error('Redirect error, using fallback:', redirectError);
-              // Fallback to direct redirect
-              const charterUrl = `/charter?donationAmount=${encodeURIComponent(finalAmount)}&fromMissionSupport=true&paymentMethod=card`;
+              // Fallback to direct redirect (production URL)
+              const charterUrl = `https://hingecraft-global.ai/charter?donationAmount=${encodeURIComponent(finalAmount)}&fromMissionSupport=true&paymentMethod=${selectedPaymentMethod || 'card'}`;
               if (typeof wixLocation !== 'undefined' && wixLocation.to) {
                 wixLocation.to(charterUrl);
               } else {
@@ -1030,6 +1051,23 @@
       // Initialize chat client
       async function initChat() {
         try {
+          // Check if HingeCraftChatClient is available
+          if (typeof HingeCraftChatClient === 'undefined') {
+            console.warn('⚠️ HingeCraftChatClient not loaded. Chat will use fallback mode.');
+            // Fallback: Create simple chat interface
+            if (chatLoadingIndicator) {
+              chatLoadingIndicator.textContent = 'Chat loading...';
+            }
+            // Show message that chat is in fallback mode
+            if (chatBox) {
+              const fallbackMsg = document.createElement('p');
+              fallbackMsg.textContent = 'Chat system initializing...';
+              fallbackMsg.style.color = '#666';
+              chatBox.appendChild(fallbackMsg);
+            }
+            return; // Exit early - chat not available
+          }
+          
           // Initialize HingeCraft Chat Client
           chatClient = new HingeCraftChatClient({
             baseUrl: window.location.origin,
@@ -1240,6 +1278,21 @@
         if (text.length > 5000) {
           showChatError('Message cannot exceed 5000 characters');
           return;
+        }
+        
+        // Store previous message in inline text box before sending
+        const previousMessageBox = document.getElementById('previousMessageBox');
+        const previousMessageText = document.getElementById('previousMessageText');
+        if (previousMessageBox && previousMessageText && text) {
+          // Get last message from chat box before sending new one
+          const lastMessage = chatBox.querySelector('p:last-child, .hc-message:last-child');
+          if (lastMessage) {
+            const lastText = lastMessage.textContent || lastMessage.innerText || '';
+            if (lastText.trim()) {
+              previousMessageText.textContent = lastText.trim().substring(0, 100) + (lastText.length > 100 ? '...' : '');
+              previousMessageBox.style.display = 'block';
+            }
+          }
         }
         
         if (!chatClient) {

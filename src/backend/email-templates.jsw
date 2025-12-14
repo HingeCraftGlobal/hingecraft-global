@@ -14,11 +14,19 @@ let EMAIL_FROM = 'no-reply@hingecraft-global.ai';
 
 async function initEmailConfig() {
     try {
+        // Check if secrets is available
+        if (typeof secrets === 'undefined' || !secrets || typeof secrets.getSecret !== 'function') {
+            console.warn('⚠️ Secrets manager not available. Email sending will be disabled.');
+            SENDGRID_API_KEY = null;
+            return;
+        }
+        
         SENDGRID_API_KEY = await secrets.getSecret('SENDGRID_API_KEY');
         const fromEmail = await secrets.getSecret('EMAIL_FROM');
         if (fromEmail) EMAIL_FROM = fromEmail;
     } catch (error) {
-        console.warn('Email configuration not available:', error);
+        console.warn('⚠️ Email configuration not available (non-blocking):', error.message);
+        SENDGRID_API_KEY = null;
     }
 }
 

@@ -376,8 +376,8 @@ export async function afterPaymentWebhook(payload) {
  */
 export async function redirectBackToCharter(donationAmount, paymentMethod) {
     try {
-        const baseUrl = await getBaseUrl();
-        const redirectUrl = `${baseUrl}/charter?donationAmount=${donationAmount}&paymentMethod=${paymentMethod}&fromMissionSupport=true`;
+        // Use production URL
+        const redirectUrl = `https://hingecraft-global.ai/charter?donationAmount=${donationAmount}&paymentMethod=${paymentMethod || 'card'}&fromMissionSupport=true`;
         
         return {
             success: true,
@@ -545,25 +545,39 @@ async function displayDonationAmount(amount) {
  */
 function setupDatabaseListeners() {
     try {
+        // Check if onChange is available
+        if (typeof wixData.onChange !== 'function') {
+            console.warn('⚠️ wixData.onChange is not available. Skipping database listeners.');
+            return;
+        }
+        
         // Listen for changes to Donations collection
-        wixData.onChange('Donations', async (changedItem) => {
-            console.log('📊 Donations collection changed:', changedItem);
-            
-            // Recalculate total
-            const totalResult = await getCumulativeTotal();
-            await updateContributionsDisplay(totalResult.total);
-        });
+        try {
+            wixData.onChange('Donations', async (changedItem) => {
+                console.log('📊 Donations collection changed:', changedItem);
+                
+                // Recalculate total
+                const totalResult = await getCumulativeTotal();
+                await updateContributionsDisplay(totalResult.total);
+            });
+        } catch (e) {
+            console.warn('⚠️ Could not set up Donations listener:', e.message);
+        }
         
         // Listen for changes to CryptoPayments collection
-        wixData.onChange('CryptoPayments', async (changedItem) => {
-            console.log('📊 CryptoPayments collection changed:', changedItem);
-            
-            // Recalculate total
-            const totalResult = await getCumulativeTotal();
-            await updateContributionsDisplay(totalResult.total);
-        });
+        try {
+            wixData.onChange('CryptoPayments', async (changedItem) => {
+                console.log('📊 CryptoPayments collection changed:', changedItem);
+                
+                // Recalculate total
+                const totalResult = await getCumulativeTotal();
+                await updateContributionsDisplay(totalResult.total);
+            });
+        } catch (e) {
+            console.warn('⚠️ Could not set up CryptoPayments listener:', e.message);
+        }
     } catch (error) {
-        console.error('Error setting up database listeners:', error);
+        console.warn('⚠️ Error setting up database listeners (non-blocking):', error.message);
     }
 }
 
