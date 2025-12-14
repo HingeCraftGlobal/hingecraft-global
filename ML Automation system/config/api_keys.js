@@ -33,7 +33,7 @@ module.exports = {
 
   // Anymail API (Email Finding Service)
   anymail: {
-    apiKey: 'g5Z72bVPvvfdrWjWLmbBVIJs',
+    apiKey: 'pRUtyDRHSPageC2jHGbnWGpD',
     baseUrl: 'https://api.anymail.com/v1' // Update with actual Anymail API URL
   },
 
@@ -104,5 +104,13 @@ module.exports = {
     maxSequenceLength: 5,
     autoApproveScore: 85,
     qaReviewScore: 65
+  },
+
+  // Google Gemini AI Configuration
+  gemini: {
+    apiKey: process.env.GEMINI_API_KEY || 'AIzaSyAngHYLqf83H-hT7tqYhaEaEMq01FFyN2U',
+    projectId: process.env.GEMINI_PROJECT_ID || '560092674546',
+    clientId: process.env.GEMINI_CLIENT_ID || 'gen-lang-client-0591481817',
+    model: 'gemini-pro'
   }
 };

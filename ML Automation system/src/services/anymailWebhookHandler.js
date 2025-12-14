@@ -155,18 +155,23 @@ class AnyMailWebhookHandler {
       // Log email send
       await this.logEmailSend(lead.id, emailResult, personalizedTemplate);
 
-      // STEP 5: Segment and sync to HubSpot
-      logger.info('Step 5: Segmenting and syncing to HubSpot');
+      // STEP 5: Segment and sync to HubSpot (for list maintenance)
+      logger.info('Step 5: Segmenting and syncing to HubSpot for list maintenance');
       
       // Segment lead
       await this.segmentLead(lead);
       
-      // Sync to HubSpot
-      await hubspotEnhanced.upsertContact(lead);
+      // Sync to HubSpot for list maintenance (not email sending)
+      const hubspotListMaintenance = require('./hubspotListMaintenance');
+      await hubspotListMaintenance.syncAllDataForListMaintenance();
       
-      // Sync segment to HubSpot list
-      const hubspotUnifiedSync = require('./hubspotUnifiedSync');
-      await hubspotUnifiedSync.syncSegmentsToLists();
+      // Mark as ready to send if conditions met
+      if (lead.email && lead.lead_type && lead.template_set) {
+        await db.query(
+          `UPDATE leads SET status = 'ready_to_send' WHERE id = $1`,
+          [lead.id]
+        );
+      }
 
       logger.info(`Webhook processed successfully: Lead ${lead.id}, Email sent: ${emailResult.success}`);
 

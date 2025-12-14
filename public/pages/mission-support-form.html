@@ -253,6 +253,7 @@
       const [sessionRestored, setSessionRestored] = useState(false);
       const [paymentMethod, setPaymentMethod] = useState('card'); // 'card' or 'crypto'
       const [cryptoInvoice, setCryptoInvoice] = useState(null); // NOWPayments invoice data
+      const CRYPTO_MINIMUM = 30; // Crypto payments require minimum $30
 
       // Restore form data from session on mount
       useEffect(() => {

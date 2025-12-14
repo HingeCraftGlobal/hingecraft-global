@@ -197,6 +197,24 @@ app.get('/auth/status', async (req, res) => {
 // NEW PIPELINE ENDPOINTS
 // ============================================
 
+// Email sending from HubSpot lists (backend automation)
+app.post('/api/email/send-from-hubspot-list', async (req, res) => {
+  try {
+    const { listName = 'Ready to Send', limit = 100 } = req.body;
+    
+    const emailSender = require('./services/emailSenderFromHubSpotLists');
+    const result = await emailSender.sendEmailsFromHubSpotList(listName, limit);
+    
+    res.json({
+      success: true,
+      ...result
+    });
+  } catch (error) {
+    logger.error('Error sending emails from HubSpot list:', error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
 // AnyMail webhook - EXACT ORDER: Receive → Auto-fill → Select template → Send email → Segment & Sync
 app.post('/api/webhooks/anymail', async (req, res) => {
   try {
@@ -221,6 +239,31 @@ app.post('/api/webhooks/anymail', async (req, res) => {
   } catch (error) {
     logger.error('AnyMail webhook error:', error);
     // Don't send error to AnyMail, just log it
+  }
+});
+
+// HubSpot webhook - Receives updates from HubSpot
+app.post('/api/webhooks/hubspot', async (req, res) => {
+  try {
+    logger.info('Received HubSpot webhook');
+    
+    // Get webhook signature for verification
+    const signature = req.headers['x-hubspot-signature'] || req.headers['x-hubspot-signature-2'];
+    
+    // Respond quickly to HubSpot
+    res.status(200).json({ received: true });
+    
+    // Process asynchronously
+    const hubspotWorkflowWebhook = require('./services/hubspotWorkflowWebhook');
+    const result = await hubspotWorkflowWebhook.handleWebhook(req.body, signature);
+    
+    logger.info('HubSpot webhook processed successfully:', {
+      eventType: result.eventType,
+      objectId: result.objectId
+    });
+  } catch (error) {
+    logger.error('HubSpot webhook error:', error);
+    // Don't send error to HubSpot, just log it
   }
 });
 
@@ -1131,6 +1174,20 @@ const alertCron = new cron.CronJob('*/5 * * * *', async () => {
   }
 }, null, true, 'America/Los_Angeles');
 
+// Email sending from HubSpot lists (every 5 minutes)
+const emailSendCron = new cron.CronJob('*/5 * * * *', async () => {
+  try {
+    logger.info('📧 Checking HubSpot lists for email sending...');
+    const emailSender = require('./services/emailSenderFromHubSpotLists');
+    const result = await emailSender.sendEmailsFromHubSpotList('Ready to Send', 50);
+    if (result.sent > 0) {
+      logger.info(`✅ Sent ${result.sent} emails from HubSpot list`);
+    }
+  } catch (error) {
+    logger.error('Error in scheduled email send:', error);
+  }
+}, null, true, 'America/Los_Angeles');
+
 // Poll Google Drive folder every 30 seconds
 let lastScanTime = new Date();
 const drivePollInterval = setInterval(async () => {
@@ -1155,7 +1212,12 @@ const drivePollInterval = setInterval(async () => {
         if (existing.rows.length === 0) {
           logger.info(`New file detected: ${file.name} (${file.id})`);
           try {
+            // Process file with AnyMail enrichment
             await driveIngestWithAnymail.processDriveFileWithAnymail(file.id);
+            
+            // Sync to HubSpot for list maintenance
+            const hubspotListMaintenance = require('./services/hubspotListMaintenance');
+            await hubspotListMaintenance.syncAllDataForListMaintenance();
           } catch (error) {
             logger.error(`Error processing file ${file.id}:`, error);
           }
@@ -1208,6 +1270,7 @@ process.on('SIGTERM', () => {
   clearInterval(drivePollInterval);
   sequenceCron.stop();
   if (alertCron) alertCron.stop();
+  if (emailSendCron) emailSendCron.stop();
   pipelineTracker.stop();
   process.exit(0);
 });
@@ -1217,6 +1280,7 @@ process.on('SIGINT', () => {
   clearInterval(drivePollInterval);
   sequenceCron.stop();
   if (alertCron) alertCron.stop();
+  if (emailSendCron) emailSendCron.stop();
   pipelineTracker.stop();
   process.exit(0);
 });

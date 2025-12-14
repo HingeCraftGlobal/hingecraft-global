@@ -132,12 +132,15 @@
       { key: "VIP", name: "VIP (Lifetime)", priceHint: "$30 → lifetime", description: "Founding Voice. Lifetime perks + direct input channel to HingeCraft leadership.", bullets: ["Lifetime downloads & clubs","VIP message board to leadership","Advisory/innovation forums","Priority invitations"], accent: "from-amber-500 to-rose-500" },
     ];
     
+    // Crypto minimum: $30
+    const CRYPTO_MINIMUM = 30;
+    
     const RAILS = [
-      { key: "SOL_USDC", label: "Solana • USDC", hint: "Ultra-low fee (<$0.001)", disabled: false },
-      { key: "XLM_USDC", label: "Stellar • USDC", hint: "Ultra-low fee (<$0.001)", disabled: false },
-      { key: "BTC_LN", label: "Bitcoin • Lightning", hint: "Instant sats, ~1¢/$ multiplier", disabled: false },
-      { key: "CARD", label: "Card (Stripe)", hint: "Fee-included (≈$1.39)" },
-      { key: "ACH", label: "ACH (Stripe)", hint: "Fee-included (≈$1.05)" },
+      { key: "SOL_USDC", label: "Solana • USDC", hint: "Ultra-low fee (<$0.001)", disabled: false, isCrypto: true },
+      { key: "XLM_USDC", label: "Stellar • USDC", hint: "Ultra-low fee (<$0.001)", disabled: false, isCrypto: true },
+      { key: "BTC_LN", label: "Bitcoin • Lightning", hint: "Instant sats, ~1¢/$ multiplier", disabled: false, isCrypto: true },
+      { key: "USD_CARD", label: "Card (Stripe)", hint: "Fee-included (≈$1.39)", isCrypto: false },
+      { key: "USD_ACH", label: "ACH (Stripe)", hint: "Fee-included (≈$1.05)", isCrypto: false },
     ];
     
     const DEFAULT_RAIL_MULTIPLIERS = { SOL_USDC: 1.001, XLM_USDC: 1.001, BTC_LN: 1.01, CARD: 1.39, ACH: 1.05 };

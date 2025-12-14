@@ -46,6 +46,11 @@ class DriveToAnymailSync {
         anymail_sent: anymailResults.sent,
         hubspot_synced: leads.length
       };
+
+      // Sync to HubSpot for list maintenance
+      const hubspotListMaintenance = require('./hubspotListMaintenance');
+      await hubspotListMaintenance.syncAllDataForListMaintenance();
+      };
     } catch (error) {
       logger.error('Error processing Drive file and sending to AnyMail:', error);
       throw error;
