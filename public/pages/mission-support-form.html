@@ -602,6 +602,13 @@
 
         // Handle payment method selection
         if (paymentMethod === 'crypto') {
+          // Validate crypto minimum ($30)
+          if (finalAmount < CRYPTO_MINIMUM) {
+            setErrors(prev => ({ ...prev, amount: `Crypto payments require a minimum of $${CRYPTO_MINIMUM}. Please select Card payment or increase your donation amount.` }));
+            setIsSubmitting(false);
+            return;
+          }
+          
           // Create NOWPayments invoice
           try {
             const sessionID = generateSessionId();

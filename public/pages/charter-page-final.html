@@ -346,7 +346,14 @@
               // Set payment method from URL
               if (urlPaymentMethod) {
                 if (urlPaymentMethod === 'crypto') {
-                  setRail('SOL_USDC'); // Default to SOL for crypto
+                  // Only set crypto rail if amount >= $30
+                  if (amt >= CRYPTO_MINIMUM) {
+                    setRail('SOL_USDC'); // Default to SOL for crypto
+                  } else {
+                    // Amount < $30, force card payment
+                    console.warn(`⚠️ Amount $${amt} is below crypto minimum $${CRYPTO_MINIMUM}. Defaulting to card payment.`);
+                    setRail('USD_CARD');
+                  }
                 } else if (urlPaymentMethod === 'ACH' || urlPaymentMethod === 'ach') {
                   setRail('USD_ACH');
                 } else {
@@ -386,7 +393,14 @@
                     // Set payment method from stored data
                     if (data.paymentMethod) {
                       if (data.paymentMethod === 'crypto') {
-                        setRail('SOL_USDC');
+                        // Only set crypto rail if amount >= $30
+                        if (amt >= CRYPTO_MINIMUM) {
+                          setRail('SOL_USDC');
+                        } else {
+                          // Amount < $30, force card payment
+                          console.warn(`⚠️ Amount $${amt} is below crypto minimum $${CRYPTO_MINIMUM}. Defaulting to card payment.`);
+                          setRail('USD_CARD');
+                        }
                       } else if (data.paymentMethod === 'ACH' || data.paymentMethod === 'ach') {
                         setRail('USD_ACH');
                       } else {
@@ -505,8 +519,13 @@
         
         console.log('🚀 Starting payment flow:', { amount: amt, rail, tier: selectedTier });
         
-        // Handle crypto payments
+        // Handle crypto payments (with $30 minimum validation)
         if (rail === "SOL_USDC" || rail === "XLM_USDC" || rail === "BTC_LN") {
+          // Double-check minimum before processing
+          if (amt < CRYPTO_MINIMUM) {
+            setQuoteError(`Crypto payments require a minimum of $${CRYPTO_MINIMUM}. Please select Card or ACH payment.`);
+            return;
+          }
           await handleCryptoPayment(amt, rail);
           return;
         }
@@ -678,29 +697,44 @@
               <div className="mt-4">
                 <div className="text-sm font-medium mb-2 text-slate-700">Select Payment Method:</div>
                 <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
-                  {RAILS.map((r) => (
-                    <button 
-                      key={r.key} 
-                      disabled={r.disabled} 
-                      onClick={() => { 
-                        if (!r.disabled) {
-                          console.log('Payment method selected:', r.key);
-                          setRail(r.key);
-                          setQuoteError(null); // Clear any previous errors
-                          updatePaymentButtonForRail(r.key); // Update button immediately
-                        }
-                      }} 
-                      className={`w-full text-left px-3 py-2 border rounded-lg transition ${
-                        rail === r.key 
-                          ? "border-slate-900 bg-slate-900 text-white" 
-                          : "border-slate-200 hover:border-slate-400"
-                      } ${r.disabled ? "opacity-50 cursor-not-allowed" : "hover:shadow cursor-pointer"}`} 
-                      aria-disabled={r.disabled ? "true" : "false"}
-                    >
-                      <div className="font-semibold text-sm leading-snug">{r.label}</div>
-                      <div className={`text-[11px] leading-snug ${rail === r.key ? "text-slate-200" : "text-slate-600"}`}>{r.hint}</div>
-                    </button>
-                  ))}
+                  {RAILS.map((r) => {
+                    // Check if crypto rail should be disabled (amount < $30)
+                    const isCryptoDisabled = r.isCrypto && amount < CRYPTO_MINIMUM;
+                    const isDisabled = r.disabled || isCryptoDisabled;
+                    const disabledReason = isCryptoDisabled ? `Minimum $${CRYPTO_MINIMUM} required for crypto payments` : null;
+                    
+                    return (
+                      <button 
+                        key={r.key} 
+                        disabled={isDisabled} 
+                        onClick={() => { 
+                          if (!isDisabled) {
+                            console.log('Payment method selected:', r.key);
+                            setRail(r.key);
+                            setQuoteError(null); // Clear any previous errors
+                            updatePaymentButtonForRail(r.key); // Update button immediately
+                          }
+                        }} 
+                        className={`w-full text-left px-3 py-2 border rounded-lg transition ${
+                          rail === r.key 
+                            ? "border-slate-900 bg-slate-900 text-white" 
+                            : isDisabled
+                            ? "border-slate-200 bg-slate-100 text-slate-400 cursor-not-allowed"
+                            : "border-slate-200 hover:border-slate-400"
+                        } ${isDisabled ? "opacity-50 cursor-not-allowed" : "hover:shadow cursor-pointer"}`} 
+                        aria-disabled={isDisabled ? "true" : "false"}
+                        title={disabledReason || r.hint}
+                      >
+                        <div className="font-semibold text-sm leading-snug">{r.label}</div>
+                        {!isCryptoDisabled && r.hint && (
+                          <div className={`text-[11px] leading-snug ${rail === r.key ? "text-slate-200" : "text-slate-600"}`}>{r.hint}</div>
+                        )}
+                        {isCryptoDisabled && (
+                          <div className="text-[11px] leading-snug text-rose-500">Minimum ${CRYPTO_MINIMUM} required</div>
+                        )}
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
             )}
