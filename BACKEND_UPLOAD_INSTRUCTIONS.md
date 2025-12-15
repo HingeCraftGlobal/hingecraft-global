@@ -164,3 +164,8 @@ hingecraft-global/
 ---
 
 **Next Action:** Upload all 5 backend files to Wix Dev Mode → Backend → Functions
+
+
+
+
+

@@ -1,0 +1,272 @@
+/**
+ * System Troubleshooting & Verification
+ * Comprehensive system check using entire database
+ * Run this to verify all components are functional
+ */
+
+import wixData from 'wix-data';
+import { secrets } from 'wix-secrets-backend';
+import { verifyAllCollections, syncPaymentData, getDatabaseStats } from 'backend/database-sync';
+import { checkAllAPIs } from 'backend/api-health-check';
+
+/**
+ * Complete system troubleshooting
+ * Checks all database collections, functions, and integrations
+ */
+export async function troubleshootSystem() {
+    const report = {
+        timestamp: new Date().toISOString(),
+        success: true,
+        database: {},
+        functions: {},
+        integrations: {},
+        errors: [],
+        warnings: []
+    };
+    
+    // 1. Database Collections Check
+    console.log('🔍 Checking database collections...');
+    try {
+        const collections = await verifyAllCollections();
+        report.database.collections = collections;
+        
+        if (!collections.success) {
+            report.errors.push('Some database collections are missing or inaccessible');
+            report.success = false;
+        }
+        
+        // Check each collection individually
+        const requiredCollections = [
+            'Donations',
+            'CryptoPayments',
+            'StripePayments',
+            'ContributionIntent',
+            'Members',
+            'PaymentRoutes',
+            'PageContent'
+        ];
+        
+        for (const collectionName of requiredCollections) {
+            try {
+                const testQuery = await wixData.query(collectionName).limit(1).find();
+                report.database[collectionName] = {
+                    exists: true,
+                    accessible: true,
+                    count: testQuery.totalCount || 0
+                };
+            } catch (error) {
+                report.database[collectionName] = {
+                    exists: false,
+                    accessible: false,
+                    error: error.message
+                };
+                report.errors.push(`${collectionName}: ${error.message}`);
+                report.success = false;
+            }
+        }
+    } catch (error) {
+        report.errors.push(`Database check failed: ${error.message}`);
+        report.success = false;
+    }
+    
+    // 2. Function Availability Check
+    console.log('🔍 Checking backend functions...');
+    try {
+        // Test critical functions
+        const functionTests = {
+            'charter-page-middleware': ['onReady', 'cryptoButtonClick', 'fiatButtonClick', 'getCumulativeTotal'],
+            'mission-support-middleware': ['onReady', 'handleUserInputDonation', 'otherAmount', 'getPrefill'],
+            'stripe.api': ['createCustomInvoice', 'getPublishableKey'],
+            'nowpayments.api': ['createNowPaymentsInvoice', 'getInvoiceStatus'],
+            'database-sync': ['verifyAllCollections', 'syncPaymentData', 'getDatabaseStats'],
+            'master-initialization': ['masterInitialize', 'quickHealthCheck']
+        };
+        
+        for (const [module, functions] of Object.entries(functionTests)) {
+            report.functions[module] = {
+                available: true,
+                functions: {}
+            };
+            
+            for (const funcName of functions) {
+                try {
+                    // Try to import and check if function exists
+                    const moduleImport = await import(`backend/${module}`);
+                    if (typeof moduleImport[funcName] === 'function') {
+                        report.functions[module].functions[funcName] = 'available';
+                    } else {
+                        report.functions[module].functions[funcName] = 'missing';
+                        report.warnings.push(`${module}.${funcName} is not exported`);
+                    }
+                } catch (error) {
+                    report.functions[module].functions[funcName] = 'error';
+                    report.warnings.push(`${module}.${funcName}: ${error.message}`);
+                }
+            }
+        }
+    } catch (error) {
+        report.errors.push(`Function check failed: ${error.message}`);
+        report.success = false;
+    }
+    
+    // 3. API Integrations Check
+    console.log('🔍 Checking API integrations...');
+    try {
+        const apiHealth = await checkAllAPIs();
+        report.integrations = apiHealth;
+        
+        if (!apiHealth.success) {
+            report.warnings.push('Some API integrations are unhealthy');
+        }
+    } catch (error) {
+        report.errors.push(`API check failed: ${error.message}`);
+        report.success = false;
+    }
+    
+    // 4. Secrets Configuration Check
+    console.log('🔍 Checking secrets configuration...');
+    try {
+        const requiredSecrets = [
+            'STRIPE_SECRET_KEY_TEST',
+            'STRIPE_PUBLISHABLE_KEY_TEST',
+            'NOWPAYMENTS_API_KEY',
+            'SENDGRID_API_KEY'
+        ];
+        
+        report.secrets = {};
+        for (const secretName of requiredSecrets) {
+            try {
+                const secret = await secrets.getSecret(secretName);
+                report.secrets[secretName] = secret ? 'configured' : 'missing';
+                if (!secret) {
+                    report.warnings.push(`Secret ${secretName} is not configured`);
+                }
+            } catch (error) {
+                report.secrets[secretName] = 'error';
+                report.warnings.push(`Secret ${secretName}: ${error.message}`);
+            }
+        }
+    } catch (error) {
+        report.errors.push(`Secrets check failed: ${error.message}`);
+        report.success = false;
+    }
+    
+    // 5. Data Flow Verification
+    console.log('🔍 Verifying data flow...');
+    try {
+        const stats = await getDatabaseStats();
+        report.database.stats = stats;
+        
+        // Check for orphaned records
+        const intents = await wixData.query('ContributionIntent')
+            .eq('status', 'intent')
+            .limit(10)
+            .find();
+        
+        report.dataFlow = {
+            pendingIntents: intents.items.length,
+            orphanedIntents: 0
+        };
+        
+        for (const intent of intents.items) {
+            // Check if intent has corresponding payment
+            try {
+                const stripePayment = await wixData.query('StripePayments')
+                    .contains('metadata.intent_id', intent._id)
+                    .find();
+                
+                const cryptoPayment = await wixData.query('CryptoPayments')
+                    .contains('metadata.intent_id', intent._id)
+                    .find();
+                
+                if (stripePayment.items.length === 0 && cryptoPayment.items.length === 0) {
+                    report.dataFlow.orphanedIntents++;
+                }
+            } catch (error) {
+                // Ignore individual errors
+            }
+        }
+    } catch (error) {
+        report.errors.push(`Data flow check failed: ${error.message}`);
+        report.success = false;
+    }
+    
+    return report;
+}
+
+/**
+ * Quick system health check
+ */
+export async function quickSystemCheck() {
+    const health = {
+        timestamp: new Date().toISOString(),
+        healthy: true,
+        checks: {}
+    };
+    
+    // Check database
+    try {
+        const collections = await verifyAllCollections();
+        health.checks.database = collections.success ? 'healthy' : 'degraded';
+        if (!collections.success) health.healthy = false;
+    } catch (error) {
+        health.checks.database = 'error';
+        health.healthy = false;
+    }
+    
+    // Check APIs
+    try {
+        const apis = await checkAllAPIs();
+        health.checks.apis = apis.overall;
+        if (apis.overall !== 'healthy') health.healthy = false;
+    } catch (error) {
+        health.checks.apis = 'error';
+        health.healthy = false;
+    }
+    
+    return health;
+}
+
+/**
+ * Fix common issues
+ */
+export async function fixCommonIssues() {
+    const fixes = {
+        timestamp: new Date().toISOString(),
+        fixed: [],
+        errors: []
+    };
+    
+    // Fix 1: Sync payment data
+    try {
+        await syncPaymentData();
+        fixes.fixed.push('Payment data synced');
+    } catch (error) {
+        fixes.errors.push(`Payment sync failed: ${error.message}`);
+    }
+    
+    // Fix 2: Clean up expired prefill tokens
+    try {
+        const expiredIntents = await wixData.query('ContributionIntent')
+            .lt('expires_at', new Date())
+            .eq('used', false)
+            .find();
+        
+        for (const intent of expiredIntents.items) {
+            try {
+                await wixData.update('ContributionIntent', {
+                    ...intent,
+                    status: 'expired'
+                });
+            } catch (error) {
+                // Ignore individual errors
+            }
+        }
+        
+        fixes.fixed.push(`Cleaned up ${expiredIntents.items.length} expired prefill tokens`);
+    } catch (error) {
+        fixes.errors.push(`Cleanup failed: ${error.message}`);
+    }
+    
+    return fixes;
+}

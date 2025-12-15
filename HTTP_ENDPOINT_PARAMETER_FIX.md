@@ -142,3 +142,8 @@ After this fix:
 ---
 
 **Note:** The same pattern applies to `fiatButtonClick` - it already handles object parameters correctly via the `preset` parameter.
+
+
+
+
+

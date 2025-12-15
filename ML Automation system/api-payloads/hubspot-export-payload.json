@@ -1,0 +1,30 @@
+{
+  "objectType": "contacts",
+  "format": "CSV",
+  "properties": [
+    "email",
+    "firstname",
+    "lastname",
+    "company",
+    "jobtitle",
+    "hs_object_id",
+    "send_email_ready",
+    "anymail_source_type",
+    "original_sheet_data_segment_1",
+    "original_sheet_data_segment_2",
+    "original_sheet_data_segment_3",
+    "original_sheet_data_segment_4",
+    "original_sheet_data_segment_5"
+  ],
+  "filterGroups": [
+    {
+      "filters": [
+        {
+          "propertyName": "send_email_ready",
+          "operator": "EQ",
+          "value": "true"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,475 @@
+{
+  "timestamp": "2025-12-15T00:23:41.352Z",
+  "version": "1.0.0",
+  "stats": {
+    "filesScanned": 87,
+    "errorsFound": 11,
+    "warningsFound": 51,
+    "checksPerformed": 62
+  },
+  "errors": [
+    {
+      "level": "error",
+      "message": "Incorrect FROM email in /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/comprehensive-error-scan.js",
+      "timestamp": "2025-12-15T00:23:41.341Z",
+      "file": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/comprehensive-error-scan.js",
+      "issue": "Should use marketingecraft@gmail.com as FROM address",
+      "found": "chandlerferguson319@gmail.com"
+    },
+    {
+      "level": "error",
+      "message": "Mismatched braces in /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/comprehensive-error-scan.js",
+      "timestamp": "2025-12-15T00:23:41.341Z",
+      "file": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/comprehensive-error-scan.js",
+      "open": 142,
+      "close": 140
+    },
+    {
+      "level": "error",
+      "message": "Incorrect FROM email in /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/final-system-completion.js",
+      "timestamp": "2025-12-15T00:23:41.341Z",
+      "file": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/final-system-completion.js",
+      "issue": "Should use marketingecraft@gmail.com as FROM address",
+      "found": "chandlerferguson319@gmail.com"
+    },
+    {
+      "level": "error",
+      "message": "Incorrect FROM email in /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/live-test-setup.js",
+      "timestamp": "2025-12-15T00:23:41.342Z",
+      "file": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/live-test-setup.js",
+      "issue": "Should use marketingecraft@gmail.com as FROM address",
+      "found": "chandlerferguson319@gmail.com"
+    },
+    {
+      "level": "error",
+      "message": "Mismatched braces in /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/simulate-full-pipeline.js",
+      "timestamp": "2025-12-15T00:23:41.346Z",
+      "file": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/simulate-full-pipeline.js",
+      "open": 209,
+      "close": 210
+    },
+    {
+      "level": "error",
+      "message": "Incorrect FROM email in /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/update-all-components.js",
+      "timestamp": "2025-12-15T00:23:41.346Z",
+      "file": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/update-all-components.js",
+      "issue": "Should use marketingecraft@gmail.com as FROM address",
+      "found": "chandlerferguson319@gmail.com"
+    },
+    {
+      "level": "error",
+      "message": "Incorrect FROM email in /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/✅_LIVE_TEST_READY.md",
+      "timestamp": "2025-12-15T00:23:41.350Z",
+      "file": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/✅_LIVE_TEST_READY.md",
+      "issue": "Should use marketingecraft@gmail.com as FROM address",
+      "found": "chandlerferguson319@gmail.com"
+    },
+    {
+      "level": "error",
+      "message": "Incorrect FROM email in /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/🎯_FINAL_LAUNCH_STATUS.md",
+      "timestamp": "2025-12-15T00:23:41.350Z",
+      "file": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/🎯_FINAL_LAUNCH_STATUS.md",
+      "issue": "Should use marketingecraft@gmail.com as FROM address",
+      "found": "chandlerferguson319@gmail.com"
+    },
+    {
+      "level": "error",
+      "message": "Incorrect FROM email in /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/🎯_SYSTEM_COMPLETE.md",
+      "timestamp": "2025-12-15T00:23:41.350Z",
+      "file": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/🎯_SYSTEM_COMPLETE.md",
+      "issue": "Should use marketingecraft@gmail.com as FROM address",
+      "found": "chandlerferguson319@gmail.com"
+    },
+    {
+      "level": "error",
+      "message": "Incorrect FROM email in /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/🚀_FINAL_LAUNCH_CHECKLIST.md",
+      "timestamp": "2025-12-15T00:23:41.351Z",
+      "file": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/🚀_FINAL_LAUNCH_CHECKLIST.md",
+      "issue": "Should use marketingecraft@gmail.com as FROM address",
+      "found": "chandlerferguson319@gmail.com"
+    },
+    {
+      "level": "error",
+      "message": "Incorrect FROM email in /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/🚀_LIVE_TEST_LAUNCH_GUIDE.md",
+      "timestamp": "2025-12-15T00:23:41.351Z",
+      "file": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/🚀_LIVE_TEST_LAUNCH_GUIDE.md",
+      "issue": "Should use marketingecraft@gmail.com as FROM address",
+      "found": "chandlerferguson319@gmail.com"
+    }
+  ],
+  "warnings": [
+    {
+      "level": "warning",
+      "message": "Deprecated function onNewFileAdded found in /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/FINAL_COMPLETION_REPORT.json",
+      "timestamp": "2025-12-15T00:23:41.317Z",
+      "file": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/FINAL_COMPLETION_REPORT.json",
+      "recommendation": "Should redirect to checkFolderForNewFiles"
+    },
+    {
+      "level": "warning",
+      "message": "Missing memory optimization in /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/api-payloads/anymail-payload-template.json",
+      "timestamp": "2025-12-15T00:23:41.325Z",
+      "file": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/api-payloads/anymail-payload-template.json",
+      "recommendation": "Add memory limits for Docker"
+    },
+    {
+      "level": "warning",
+      "message": "Missing memory optimization in /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/api-payloads/gas-execution-payload.json",
+      "timestamp": "2025-12-15T00:23:41.326Z",
+      "file": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/api-payloads/gas-execution-payload.json",
+      "recommendation": "Add memory limits for Docker"
+    },
+    {
+      "level": "warning",
+      "message": "Missing memory optimization in /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/api-payloads/hubspot-batch-update-template.json",
+      "timestamp": "2025-12-15T00:23:41.326Z",
+      "file": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/api-payloads/hubspot-batch-update-template.json",
+      "recommendation": "Add memory limits for Docker"
+    },
+    {
+      "level": "warning",
+      "message": "Missing memory optimization in /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/api-payloads/hubspot-export-payload.json",
+      "timestamp": "2025-12-15T00:23:41.326Z",
+      "file": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/api-payloads/hubspot-export-payload.json",
+      "recommendation": "Add memory limits for Docker"
+    },
+    {
+      "level": "warning",
+      "message": "Missing memory optimization in /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/api-payloads/hubspot-ready-to-send-list.json",
+      "timestamp": "2025-12-15T00:23:41.327Z",
+      "file": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/api-payloads/hubspot-ready-to-send-list.json",
+      "recommendation": "Add memory limits for Docker"
+    },
+    {
+      "level": "warning",
+      "message": "Missing memory optimization in /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/api-scripts/gas-execute-function.sh",
+      "timestamp": "2025-12-15T00:23:41.328Z",
+      "file": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/api-scripts/gas-execute-function.sh",
+      "recommendation": "Add memory limits for Docker"
+    },
+    {
+      "level": "warning",
+      "message": "Missing memory optimization in /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/api-scripts/hubspot-batch-update.sh",
+      "timestamp": "2025-12-15T00:23:41.329Z",
+      "file": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/api-scripts/hubspot-batch-update.sh",
+      "recommendation": "Add memory limits for Docker"
+    },
+    {
+      "level": "warning",
+      "message": "Missing memory optimization in /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/api-scripts/hubspot-create-list.sh",
+      "timestamp": "2025-12-15T00:23:41.330Z",
+      "file": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/api-scripts/hubspot-create-list.sh",
+      "recommendation": "Add memory limits for Docker"
+    },
+    {
+      "level": "warning",
+      "message": "Missing memory optimization in /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/api-scripts/hubspot-export-contacts.sh",
+      "timestamp": "2025-12-15T00:23:41.331Z",
+      "file": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/api-scripts/hubspot-export-contacts.sh",
+      "recommendation": "Add memory limits for Docker"
+    },
+    {
+      "level": "warning",
+      "message": "Missing memory optimization in /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/api-scripts/hubspot-export.js",
+      "timestamp": "2025-12-15T00:23:41.333Z",
+      "file": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/api-scripts/hubspot-export.js",
+      "recommendation": "Add memory limits for Docker"
+    },
+    {
+      "level": "warning",
+      "message": "Missing memory optimization in /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/config/api_keys.js",
+      "timestamp": "2025-12-15T00:23:41.334Z",
+      "file": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/config/api_keys.js",
+      "recommendation": "Add memory limits for Docker"
+    },
+    {
+      "level": "warning",
+      "message": "Potential missing error handling in /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/examples/example-usage.js",
+      "timestamp": "2025-12-15T00:23:41.336Z",
+      "file": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/examples/example-usage.js",
+      "asyncFunctions": 8,
+      "tryCatchBlocks": 1
+    },
+    {
+      "level": "warning",
+      "message": "Potential missing error handling in /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/google-apps-script/HubSpotSetup.gs",
+      "timestamp": "2025-12-15T00:23:41.337Z",
+      "file": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/google-apps-script/HubSpotSetup.gs",
+      "asyncFunctions": 3,
+      "tryCatchBlocks": 1
+    },
+    {
+      "level": "warning",
+      "message": "Potential missing config: GMAIL_FROM_ADDRESS in /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/apply-database-and-verify-flow.js",
+      "timestamp": "2025-12-15T00:23:41.340Z",
+      "file": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/apply-database-and-verify-flow.js",
+      "config": "GMAIL_FROM_ADDRESS"
+    },
+    {
+      "level": "warning",
+      "message": "Potential missing error handling in /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/cleanup-old-files.js",
+      "timestamp": "2025-12-15T00:23:41.340Z",
+      "file": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/cleanup-old-files.js",
+      "asyncFunctions": 4,
+      "tryCatchBlocks": 1
+    },
+    {
+      "level": "warning",
+      "message": "Potential missing config: HUBSPOT_TOKEN in /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/final-system-completion.js",
+      "timestamp": "2025-12-15T00:23:41.341Z",
+      "file": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/final-system-completion.js",
+      "config": "HUBSPOT_TOKEN"
+    },
+    {
+      "level": "warning",
+      "message": "Potential missing config: ANYMAIL_API_KEY in /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/final-system-completion.js",
+      "timestamp": "2025-12-15T00:23:41.341Z",
+      "file": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/final-system-completion.js",
+      "config": "ANYMAIL_API_KEY"
+    },
+    {
+      "level": "warning",
+      "message": "Potential missing config: MONITORED_FOLDER_ID in /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/final-system-completion.js",
+      "timestamp": "2025-12-15T00:23:41.341Z",
+      "file": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/final-system-completion.js",
+      "config": "MONITORED_FOLDER_ID"
+    },
+    {
+      "level": "warning",
+      "message": "Deprecated function onNewFileAdded found in /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/final-system-completion.js",
+      "timestamp": "2025-12-15T00:23:41.341Z",
+      "file": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/final-system-completion.js",
+      "recommendation": "Should redirect to checkFolderForNewFiles"
+    },
+    {
+      "level": "warning",
+      "message": "Potential missing error handling in /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/final-system-completion.js",
+      "timestamp": "2025-12-15T00:23:41.341Z",
+      "file": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/final-system-completion.js",
+      "asyncFunctions": 11,
+      "tryCatchBlocks": 3
+    },
+    {
+      "level": "warning",
+      "message": "Potential missing error handling in /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/live-test-setup.js",
+      "timestamp": "2025-12-15T00:23:41.342Z",
+      "file": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/live-test-setup.js",
+      "asyncFunctions": 10,
+      "tryCatchBlocks": 1
+    },
+    {
+      "level": "warning",
+      "message": "Potential missing config: GMAIL_FROM_ADDRESS in /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/master-deployment-verification.js",
+      "timestamp": "2025-12-15T00:23:41.345Z",
+      "file": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/master-deployment-verification.js",
+      "config": "GMAIL_FROM_ADDRESS"
+    },
+    {
+      "level": "warning",
+      "message": "Potential missing error handling in /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/master-deployment-verification.js",
+      "timestamp": "2025-12-15T00:23:41.345Z",
+      "file": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/master-deployment-verification.js",
+      "asyncFunctions": 10,
+      "tryCatchBlocks": 3
+    },
+    {
+      "level": "warning",
+      "message": "Potential missing error handling in /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/prepare-api-imports-exports.js",
+      "timestamp": "2025-12-15T00:23:41.345Z",
+      "file": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/prepare-api-imports-exports.js",
+      "asyncFunctions": 11,
+      "tryCatchBlocks": 1
+    },
+    {
+      "level": "warning",
+      "message": "Missing memory optimization in /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/prepare-api-imports-exports.js",
+      "timestamp": "2025-12-15T00:23:41.345Z",
+      "file": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/prepare-api-imports-exports.js",
+      "recommendation": "Add memory limits for Docker"
+    },
+    {
+      "level": "warning",
+      "message": "Potential missing config: HUBSPOT_TOKEN in /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/simulate-full-pipeline.js",
+      "timestamp": "2025-12-15T00:23:41.346Z",
+      "file": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/simulate-full-pipeline.js",
+      "config": "HUBSPOT_TOKEN"
+    },
+    {
+      "level": "warning",
+      "message": "Potential missing config: ANYMAIL_API_KEY in /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/simulate-full-pipeline.js",
+      "timestamp": "2025-12-15T00:23:41.346Z",
+      "file": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/simulate-full-pipeline.js",
+      "config": "ANYMAIL_API_KEY"
+    },
+    {
+      "level": "warning",
+      "message": "Potential missing config: GMAIL_FROM_ADDRESS in /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/simulate-full-pipeline.js",
+      "timestamp": "2025-12-15T00:23:41.346Z",
+      "file": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/simulate-full-pipeline.js",
+      "config": "GMAIL_FROM_ADDRESS"
+    },
+    {
+      "level": "warning",
+      "message": "Deprecated function onNewFileAdded found in /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/simulate-full-pipeline.js",
+      "timestamp": "2025-12-15T00:23:41.346Z",
+      "file": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/simulate-full-pipeline.js",
+      "recommendation": "Should redirect to checkFolderForNewFiles"
+    },
+    {
+      "level": "warning",
+      "message": "Potential missing error handling in /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/simulate-full-pipeline.js",
+      "timestamp": "2025-12-15T00:23:41.346Z",
+      "file": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/simulate-full-pipeline.js",
+      "asyncFunctions": 9,
+      "tryCatchBlocks": 1
+    },
+    {
+      "level": "warning",
+      "message": "Potential missing config: ANYMAIL_API_KEY in /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/test-system.js",
+      "timestamp": "2025-12-15T00:23:41.346Z",
+      "file": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/test-system.js",
+      "config": "ANYMAIL_API_KEY"
+    },
+    {
+      "level": "warning",
+      "message": "Incomplete qualification logic in /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/update-all-components.js",
+      "timestamp": "2025-12-15T00:23:41.346Z",
+      "file": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/update-all-components.js",
+      "hasStudent": false,
+      "hasB2B": false,
+      "hasReferral": true
+    },
+    {
+      "level": "warning",
+      "message": "Potential missing config: ANYMAIL_API_KEY in /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/verify-system.js",
+      "timestamp": "2025-12-15T00:23:41.347Z",
+      "file": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/verify-system.js",
+      "config": "ANYMAIL_API_KEY"
+    },
+    {
+      "level": "warning",
+      "message": "Potential missing error handling in /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/src/middleware/rateLimiter.js",
+      "timestamp": "2025-12-15T00:23:41.347Z",
+      "file": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/src/middleware/rateLimiter.js",
+      "asyncFunctions": 1,
+      "tryCatchBlocks": 0
+    },
+    {
+      "level": "warning",
+      "message": "Potential missing config: ANYMAIL_API_KEY in /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/src/services/anymail.js",
+      "timestamp": "2025-12-15T00:23:41.347Z",
+      "file": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/src/services/anymail.js",
+      "config": "ANYMAIL_API_KEY"
+    },
+    {
+      "level": "warning",
+      "message": "Potential missing error handling in /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/src/utils/emailTemplates.js",
+      "timestamp": "2025-12-15T00:23:41.348Z",
+      "file": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/src/utils/emailTemplates.js",
+      "asyncFunctions": 2,
+      "tryCatchBlocks": 0
+    },
+    {
+      "level": "warning",
+      "message": "Potential missing error handling in /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/src/utils/validators.js",
+      "timestamp": "2025-12-15T00:23:41.348Z",
+      "file": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/src/utils/validators.js",
+      "asyncFunctions": 7,
+      "tryCatchBlocks": 1
+    },
+    {
+      "level": "warning",
+      "message": "Potential missing config: GMAIL_FROM_ADDRESS in /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/tests/full-system-simulation.js",
+      "timestamp": "2025-12-15T00:23:41.348Z",
+      "file": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/tests/full-system-simulation.js",
+      "config": "GMAIL_FROM_ADDRESS"
+    },
+    {
+      "level": "warning",
+      "message": "Potential missing config: ANYMAIL_API_KEY in /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/tests/master-automation-verification.js",
+      "timestamp": "2025-12-15T00:23:41.348Z",
+      "file": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/tests/master-automation-verification.js",
+      "config": "ANYMAIL_API_KEY"
+    },
+    {
+      "level": "warning",
+      "message": "Potential missing error handling in /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/tests/master-automation-verification.js",
+      "timestamp": "2025-12-15T00:23:41.349Z",
+      "file": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/tests/master-automation-verification.js",
+      "asyncFunctions": 22,
+      "tryCatchBlocks": 8
+    },
+    {
+      "level": "warning",
+      "message": "Potential missing config: GMAIL_FROM_ADDRESS in /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/tests/quick-system-check.js",
+      "timestamp": "2025-12-15T00:23:41.349Z",
+      "file": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/tests/quick-system-check.js",
+      "config": "GMAIL_FROM_ADDRESS"
+    },
+    {
+      "level": "warning",
+      "message": "Deprecated function onNewFileAdded found in /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/🎯_SYSTEM_COMPLETE.md",
+      "timestamp": "2025-12-15T00:23:41.350Z",
+      "file": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/🎯_SYSTEM_COMPLETE.md",
+      "recommendation": "Should redirect to checkFolderForNewFiles"
+    },
+    {
+      "level": "warning",
+      "message": "Deprecated function onNewFileAdded found in /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/📊_SIMULATION_RESULTS.md",
+      "timestamp": "2025-12-15T00:23:41.351Z",
+      "file": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/📊_SIMULATION_RESULTS.md",
+      "recommendation": "Should redirect to checkFolderForNewFiles"
+    },
+    {
+      "level": "warning",
+      "message": "Deprecated function onNewFileAdded found in /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/🔧_TRIGGER_FIX_INSTRUCTIONS.md",
+      "timestamp": "2025-12-15T00:23:41.351Z",
+      "file": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/🔧_TRIGGER_FIX_INSTRUCTIONS.md",
+      "recommendation": "Should redirect to checkFolderForNewFiles"
+    },
+    {
+      "level": "warning",
+      "message": "Deprecated function onNewFileAdded found in /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/🚀_FINAL_LAUNCH_CHECKLIST.md",
+      "timestamp": "2025-12-15T00:23:41.351Z",
+      "file": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/🚀_FINAL_LAUNCH_CHECKLIST.md",
+      "recommendation": "Should redirect to checkFolderForNewFiles"
+    },
+    {
+      "level": "warning",
+      "message": "Database schema missing table: leads",
+      "timestamp": "2025-12-15T00:23:41.352Z",
+      "table": "leads"
+    },
+    {
+      "level": "warning",
+      "message": "Database schema missing table: staging_leads",
+      "timestamp": "2025-12-15T00:23:41.352Z",
+      "table": "staging_leads"
+    },
+    {
+      "level": "warning",
+      "message": "Database schema missing table: import_batches",
+      "timestamp": "2025-12-15T00:23:41.352Z",
+      "table": "import_batches"
+    },
+    {
+      "level": "warning",
+      "message": "Database schema missing table: sequences",
+      "timestamp": "2025-12-15T00:23:41.352Z",
+      "table": "sequences"
+    },
+    {
+      "level": "warning",
+      "message": "Database schema missing table: email_logs",
+      "timestamp": "2025-12-15T00:23:41.352Z",
+      "table": "email_logs"
+    }
+  ],
+  "summary": {
+    "totalFiles": 87,
+    "totalChecks": 62,
+    "errors": 11,
+    "warnings": 51,
+    "successRate": "0.00%"
+  }
+}

@@ -309,12 +309,22 @@
                   if (urlPaymentMethod) {
                     // Update rail based on payment method
                     if (urlPaymentMethod === 'crypto') {
-                      setRail('SOL_USDC'); // Default to SOL for crypto
-                    } else if (urlPaymentMethod === 'ACH') {
+                      // Only set crypto rail if amount >= $30
+                      if (amt >= CRYPTO_MINIMUM) {
+                        setRail('SOL_USDC'); // Default to SOL for crypto
+                      } else {
+                        // Amount < $30, force card payment
+                        console.warn(`⚠️ Amount $${amt} is below crypto minimum $${CRYPTO_MINIMUM}. Defaulting to card payment.`);
+                        setRail('USD_CARD');
+                      }
+                    } else if (urlPaymentMethod === 'ACH' || urlPaymentMethod === 'ach') {
                       setRail('USD_ACH');
                     } else {
                       setRail('USD_CARD');
                     }
+                  } else {
+                    // Default to card if no payment method specified
+                    setRail('USD_CARD');
                   }
                   console.log('✅ Prefill loaded:', amt, 'Payment method:', urlPaymentMethod);
                   return; // Exit early if prefill loaded

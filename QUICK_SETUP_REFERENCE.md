@@ -182,3 +182,8 @@ NOWPAYMENTS_API_KEY
 - `DATABASE_COLLECTIONS_SETUP.md` - Complete field-by-field setup
 - `WIX_SECRETS_CONFIGURATION.md` - All secrets with sources
 - `WIX_DEPLOYMENT_AUTOMATION.md` - Full deployment guide
+
+
+
+
+

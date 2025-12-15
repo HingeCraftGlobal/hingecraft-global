@@ -438,3 +438,8 @@ if __name__ == "__main__":
     print(f"\n📊 Prompt Distribution:")
     for cat in prompt_table['prompt_categories']:
         print(f"   - {cat['category_name']}: {len(cat['prompts'])} prompts")
+
+
+
+
+

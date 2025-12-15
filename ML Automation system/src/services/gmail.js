@@ -8,14 +8,11 @@ const config = require('../../config/api_keys');
 const logger = require('../utils/logger');
 const oauthManager = require('../utils/oauth');
 const { retry } = require('../utils/retry');
-const gmailMultiAccount = require('./gmailMultiAccount');
 
 class GmailService {
   constructor() {
     this.auth = null;
     this.gmail = null;
-    // Use multi-account service for sending
-    this.multiAccount = gmailMultiAccount;
   }
 
   /**
@@ -75,12 +72,63 @@ class GmailService {
   }
 
   /**
-   * Send email via Gmail API (uses multi-account service)
+   * Send email via Gmail API
    */
   async sendEmail({ to, subject, html, text, from, replyTo }) {
     try {
-      // Use multi-account service which supports both Gmail accounts
-      return await this.multiAccount.sendEmail({ to, subject, html, text, from, replyTo });
+      // Ensure we have valid auth
+      if (!this.gmail) {
+        await this.initialize();
+      }
+
+      // Refresh token if needed
+      if (oauthManager.needsRefresh()) {
+        await oauthManager.refreshToken();
+        this.auth = await oauthManager.getValidClient();
+        this.gmail = google.gmail({ version: 'v1', auth: this.auth });
+      }
+
+      const fromEmail = from || config.email.fromAddress;
+      const replyToEmail = replyTo || config.email.replyTo;
+
+      // Create email message in RFC 2822 format
+      const emailLines = [
+        `From: ${fromEmail}`,
+        `To: ${to}`,
+        `Reply-To: ${replyToEmail}`,
+        `Subject: ${subject}`,
+        `Content-Type: text/html; charset=UTF-8`,
+        '',
+        html || text
+      ];
+
+      const email = emailLines.join('\r\n');
+      
+      // Encode message in base64url format
+      const encodedMessage = Buffer.from(email)
+        .toString('base64')
+        .replace(/\+/g, '-')
+        .replace(/\//g, '_')
+        .replace(/=+$/, '');
+
+      const response = await retry(
+        () => this.gmail.users.messages.send({
+          userId: 'me',
+          requestBody: {
+            raw: encodedMessage
+          }
+        }),
+        { maxRetries: 3 }
+      );
+
+      logger.info(`Sent email via Gmail to ${to}, message ID: ${response.data.id}`);
+      
+      return {
+        success: true,
+        messageId: response.data.id,
+        provider: 'gmail',
+        status: 'sent'
+      };
     } catch (error) {
       logger.error('Error sending email via Gmail:', error.message);
       return {

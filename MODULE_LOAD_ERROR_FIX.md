@@ -94,3 +94,8 @@ After this fix, the module should load without errors:
 ---
 
 **Next Step:** Test in Wix Editor - the ModuleLoadError should be resolved!
+
+
+
+
+

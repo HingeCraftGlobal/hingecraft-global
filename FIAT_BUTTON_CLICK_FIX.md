@@ -150,3 +150,8 @@ metadata = {
 ---
 
 **Next Step:** Upload the updated `charter-page-middleware.web.js` file to Wix Dev Mode and test the fiat button click.
+
+
+
+
+

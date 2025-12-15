@@ -1,0 +1,7 @@
+{
+  "function": "importAndStageLeads",
+  "parameters": [
+    "CSV_FILE_ID_HERE",
+    "TARGET_FOLDER_ID_HERE"
+  ]
+}

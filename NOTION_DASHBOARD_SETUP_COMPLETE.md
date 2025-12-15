@@ -242,3 +242,8 @@ Once you run the Notion sync script to create the database properties, then run 
 ---
 
 *All scripts are committed to git and ready to use!*
+
+
+
+
+

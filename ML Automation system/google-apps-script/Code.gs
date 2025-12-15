@@ -1,214 +1,199 @@
-/**
- * HingeCraft Automation - Google Apps Script
- * Fully automated flow: Google Drive → AnyMail → HubSpot → Gmail Send
- * 
- * Setup Instructions:
- * 1. Set Script Properties (Project Settings → Script Properties):
- *    - HUBSPOT_TOKEN: pat-na2-a716f71a-1dfc-4004-9485-3e7df1919c39
- *    - ANYMAIL_KEY: pRUtyDRHSPageC2jHGbnWGpD
- *    - GMAIL_FROM_ADDRESS: marketingecraft@gmail.com
- *    - MONITORED_FOLDER_ID: 1MpKKqjpabi10iDh1vWliaiLQsj8wktiz
- * 2. Run createHubSpotProperties() once (manual)
- * 3. Set up Time-Driven Trigger for checkFolderForNewFiles (every 5 minutes)
- */
 
-// ============================================
-// CONFIGURATION - Loaded from Script Properties
-// ============================================
-
-/**
- * Get configuration from Script Properties
- */
-function getConfig() {
-  const scriptProperties = PropertiesService.getScriptProperties();
-  return {
-    // HubSpot Configuration
-    HUBSPOT_ACCESS_TOKEN: scriptProperties.getProperty('HUBSPOT_TOKEN') || 'pat-na2-a716f71a-1dfc-4004-9485-3e7df1919c39',
-    HUBSPOT_PORTAL_ID: '244560986',
-    HUBSPOT_API_BASE: 'https://api.hubapi.com',
-    
-    // AnyMail Configuration
-    ANYMAIL_API_KEY: scriptProperties.getProperty('ANYMAIL_KEY') || 'pRUtyDRHSPageC2jHGbnWGpD',
-    ANYMAIL_API_BASE: 'https://api.anymail.com/v1',
-    ANYMAIL_WEBHOOK_URL: 'https://your-domain.com/api/webhooks/anymail', // Your backend webhook
-    
-    // Google Drive Configuration
-    MONITORED_FOLDER_ID: scriptProperties.getProperty('MONITORED_FOLDER_ID') || '1MpKKqjpabi10iDh1vWliaiLQsj8wktiz',
-    MONITORED_FOLDER_NAME: 'HubSpot_Leads_Input',
-    
-    // Gmail Configuration
-    GMAIL_FROM_ADDRESS: scriptProperties.getProperty('GMAIL_FROM_ADDRESS') || 'marketingecraft@gmail.com',
-    GMAIL_FROM_NAME: 'HingeCraft',
-    
-    // Email Templates (from database)
-    TEMPLATES: {
-      'set_one_student': {
-        step_1: {
-          subject: "You're Invited: Help Build the Future of Creativity + Sustainable Design",
-          body: getStudentTemplate1()
-        },
-        step_2: {
-          subject: "You're now part of a growing creative movement — here's what's happening",
-          body: getStudentTemplate2()
-        },
-        step_3: {
-          subject: "Follow the journey: See what students are building",
-          body: getStudentTemplate3()
-        },
-        step_4: {
-          subject: "Your turn: Join the creative challenge",
-          body: getStudentTemplate4()
-        },
-        step_5: {
-          subject: "Keep building: Resources and next steps",
-          body: getStudentTemplate5()
-        }
+const CONFIG = {
+  // HubSpot Configuration
+  HUBSPOT_ACCESS_TOKEN: 'pat-na2-a716f71a-1dfc-4004-9485-3e7df1919c39', // Your Private App Token
+  HUBSPOT_PORTAL_ID: '244560986',
+  HUBSPOT_API_BASE: 'https://api.hubapi.com',
+  
+  // AnyMail Configuration
+  ANYMAIL_API_KEY: 'pRUtyDRHSPageC2jHGbnWGpD',
+  ANYMAIL_API_BASE: 'https://api.anymail.com/v1',
+  ANYMAIL_WEBHOOK_URL: 'https://your-domain.com/api/webhooks/anymail', // Your backend webhook
+  
+  // Google Drive Configuration
+  MONITORED_FOLDER_ID: '1MpKKqjpabi10iDh1vWliaiLQsj8wktiz', // Your Drive folder ID
+  MONITORED_FOLDER_NAME: 'HubSpot_Leads_Input',
+  
+  // Gmail Configuration
+  GMAIL_FROM_ADDRESS: 'marketingecraft@gmail.com',
+  GMAIL_FROM_NAME: 'HingeCraft',
+  
+  // Email Templates (from database)
+  TEMPLATES: {
+    'set_one_student': {
+      step_1: {
+        subject: "You're Invited: Help Build the Future of Creativity + Sustainable Design",
+        body: getStudentTemplate1()
       },
-      'set_two_referral': {
-        step_1: {
-          subject: "Partnership Opportunity: Join Our Network",
-          body: getReferralTemplate1()
-        }
+      step_2: {
+        subject: "You're now part of a growing creative movement — here's what's happening",
+        body: getStudentTemplate2()
       },
-      'set_three_b2b': {
-        step_1: {
-          subject: "Partnership Opportunity: Let's Build Together",
-          body: getB2BTemplate1()
-        },
-        step_2: {
-          subject: "Why HingeCraft? The Value Proposition",
-          body: getB2BTemplate2()
-        },
-        step_3: {
-          subject: "Success Stories: What Partners Are Saying",
-          body: getB2BTemplate3()
-        },
-        step_4: {
-          subject: "Next Steps: How to Get Started",
-          body: getB2BTemplate4()
-        },
-        step_5: {
-          subject: "Final Call: Don't Miss This Opportunity",
-          body: getB2BTemplate5()
-        }
+      step_3: {
+        subject: "Follow the journey: See what students are building",
+        body: getStudentTemplate3()
+      },
+      step_4: {
+        subject: "Your turn: Join the creative challenge",
+        body: getStudentTemplate4()
+      },
+      step_5: {
+        subject: "Keep building: Resources and next steps",
+        body: getStudentTemplate5()
+      }
+    },
+    'set_two_referral': {
+      step_1: {
+        subject: "Partnership Opportunity: Join Our Network",
+        body: getReferralTemplate1()
+      }
+    },
+    'set_three_b2b': {
+      step_1: {
+        subject: "Partnership Opportunity: Let's Build Together",
+        body: getB2BTemplate1()
+      },
+      step_2: {
+        subject: "Why HingeCraft? The Value Proposition",
+        body: getB2BTemplate2()
+      },
+      step_3: {
+        subject: "Success Stories: What Partners Are Saying",
+        body: getB2BTemplate3()
+      },
+      step_4: {
+        subject: "Next Steps: How to Get Started",
+        body: getB2BTemplate4()
+      },
+      step_5: {
+        subject: "Final Call: Don't Miss This Opportunity",
+        body: getB2BTemplate5()
       }
     }
-  };
-}
+  }
+};
 
 // ============================================
 // PHASE 1: TRIGGER AND DATA INGESTION
 // ============================================
 
 /**
- * NOTE: onNewFileAdded trigger is unreliable in Google Apps Script
- * Use checkFolderForNewFiles (Time-Driven Trigger) instead
- * This function is kept for reference but should NOT be used as a trigger
+ * Installable Trigger: onNewFileAdded
+ * DEPRECATED: Use checkFolderForNewFiles with time-driven trigger instead
+ * This function is kept for backward compatibility but redirects to checkFolderForNewFiles
  */
+function onNewFileAdded(e) {
+  try {
+    Logger.log('⚠️ onNewFileAdded called - redirecting to checkFolderForNewFiles');
+    Logger.log('⚠️ RECOMMENDATION: Use time-driven trigger on checkFolderForNewFiles instead');
+    
+    // Redirect to the main function
+    checkFolderForNewFiles();
+    
+  } catch (error) {
+    Logger.log(`Error in onNewFileAdded: ${error.toString()}`);
+    sendErrorNotification(error);
+  }
+}
 
 /**
  * Time-Driven Trigger: checkFolderForNewFiles
  * Runs every 5 minutes to check for new files
  * Backup trigger in case onChange doesn't fire
  */
-/**
- * Time-Driven Trigger: checkFolderForNewFiles
- * Runs every 5 minutes to check for new files
- * THIS IS THE PRIMARY AUTOMATION TRIGGER
- * 
- * Set up trigger:
- * - Function: checkFolderForNewFiles
- * - Event source: Time-driven
- * - Type: Minutes timer
- * - Interval: Every 5 minutes
- * 
- * FIXED: Enhanced error handling and file type checking
- */
 function checkFolderForNewFiles() {
   try {
-    const CONFIG = getConfig();
-    Logger.log('🔍 [Drive Trigger] Checking folder for new files...');
-    Logger.log(`📁 Folder ID: ${CONFIG.MONITORED_FOLDER_ID}`);
+    Logger.log('🔍 Checking folder for new files...');
     
-    // Get folder with error handling
-    let folder;
-    try {
-      folder = DriveApp.getFolderById(CONFIG.MONITORED_FOLDER_ID);
-      Logger.log(`✅ Folder found: ${folder.getName()}`);
-    } catch (e) {
-      Logger.log(`❌ Error accessing folder: ${e.toString()}`);
-      Logger.log(`   Make sure folder ID is correct and script has access`);
+    // Get folder ID from Script Properties (preferred) or use CONFIG
+    const scriptProperties = PropertiesService.getScriptProperties();
+    const folderId = scriptProperties.getProperty('MONITORED_FOLDER_ID') || CONFIG.MONITORED_FOLDER_ID;
+    
+    if (!folderId) {
+      Logger.log('⚠️ MONITORED_FOLDER_ID not configured. Please set it in Script Properties.');
+      Logger.log('📝 To fix: Go to Project Settings → Script Properties → Add MONITORED_FOLDER_ID');
+      // Still run sequence manager even if folder check fails
+      sequenceManager();
       return;
     }
     
-    const files = folder.getFiles();
-    const processedFileIds = getProcessedFileIds();
-    
-    let newFilesFound = 0;
-    let processedCount = 0;
-    
-    while (files.hasNext()) {
-      try {
-        const file = files.next();
-        const fileId = file.getId();
-        const fileName = file.getName();
-        const mimeType = file.getMimeType();
+    try {
+      const folder = DriveApp.getFolderById(folderId);
+      const folderName = folder.getName();
+      Logger.log(`📁 Accessing folder: ${folderName} (${folderId})`);
+      
+      // NEW: Bulk Processing Workflow
+      // Step 1: Prepare bulk payload from all new files
+      Logger.log('📦 Preparing bulk AnyMail payload from all new files...');
+      const bulkData = prepareAnyMailBulkPayload();
+      
+      if (bulkData.payload && bulkData.payload.length > 0) {
+        Logger.log(`✅ Prepared ${bulkData.payload.length} unique contacts for bulk enrichment`);
         
-        // Skip if already processed
-        if (processedFileIds.includes(fileId)) {
-          continue;
+        // Step 2: Run bulk AnyMail enrichment
+        Logger.log('📧 Running bulk AnyMail enrichment...');
+        const enrichedResults = runAnyMailBulkEnrichment(bulkData.payload);
+        
+        if (enrichedResults && enrichedResults.length > 0) {
+          Logger.log(`✅ Enriched ${enrichedResults.length} contacts`);
+          
+          // Step 3: Process bulk results, segment, and push to HubSpot
+          Logger.log('📦 Processing bulk results and pushing to HubSpot...');
+          const processResults = processBulkResults(enrichedResults, bulkData.rowData);
+          
+          Logger.log(`✅ Bulk processing complete: ${processResults.processed} processed, ${processResults.created} created, ${processResults.updated} updated`);
+          
+          // Mark all processed files
+          const processedFileIds = getProcessedFileIds();
+          const newFileIds = [...new Set(bulkData.rowData.map(r => r.file_id))];
+          newFileIds.forEach(fileId => {
+            if (!processedFileIds.includes(fileId)) {
+              markFileAsProcessed(fileId);
+            }
+          });
+        } else {
+          Logger.log('⚠️ No enriched results from AnyMail bulk API');
         }
-        
-        // Check file type
-        if (!isSupportedFileType(mimeType)) {
-          Logger.log(`⚠️  Unsupported file type: ${fileName} (${mimeType})`);
-          markFileAsProcessed(fileId); // Mark to skip in future
-          continue;
-        }
-        
-        Logger.log(`📄 New file detected: ${fileName} (${fileId})`);
-        
-        // Process the file
-        processDriveFile(fileId, fileName, mimeType);
-        markFileAsProcessed(fileId);
-        newFilesFound++;
-        processedCount++;
-        
-        // Limit processing per run to avoid timeout
-        if (processedCount >= 10) {
-          Logger.log(`⚠️  Reached processing limit (10 files). Remaining files will be processed in next run.`);
-          break;
-        }
-        
-      } catch (fileError) {
-        Logger.log(`❌ Error processing file: ${fileError.toString()}`);
-        continue;
+      } else {
+        Logger.log('✅ No new contacts to process');
       }
+      
+    } catch (folderError) {
+      Logger.log(`❌ Error accessing folder: ${folderError.toString()}`);
+      Logger.log(`📝 Folder ID: ${folderId}`);
+      Logger.log('💡 Possible issues:');
+      Logger.log('   1. Folder ID is incorrect');
+      Logger.log('   2. Script does not have permission to access the folder');
+      Logger.log('   3. Folder does not exist or was deleted');
+      Logger.log('📝 To fix:');
+      Logger.log('   1. Get the correct folder ID from the folder URL');
+      Logger.log('   2. Share the folder with the script\'s service account');
+      Logger.log('   3. Update MONITORED_FOLDER_ID in Script Properties');
+      // Continue to sequence manager even if folder access fails
     }
     
-    if (newFilesFound === 0) {
-      Logger.log('✅ No new files found');
-    } else {
-      Logger.log(`✅ Processing complete: ${newFilesFound} new file(s) processed`);
+    // After processing files, run sequence manager for follow-up emails
+    Logger.log('📧 Running sequence manager for follow-up emails...');
+    sequenceManager();
+    
+    // Also scan drafts for outbound tracking
+    Logger.log('📧 Scanning drafts for outbound tracking...');
+    try {
+      scanDraftsForOutbound();
+    } catch (draftError) {
+      Logger.log(`⚠️ Error scanning drafts: ${draftError.toString()}`);
     }
     
   } catch (error) {
     Logger.log(`❌ Error in checkFolderForNewFiles: ${error.toString()}`);
-    Logger.log(`Stack: ${error.stack || 'No stack trace'}`);
+    Logger.log('📧 Attempting to run sequence manager anyway...');
+    try {
+      sequenceManager();
+      scanDraftsForOutbound();
+    } catch (seqError) {
+      Logger.log(`❌ Error in sequenceManager: ${seqError.toString()}`);
+    }
   }
-}
-
-/**
- * Check if file type is supported
- */
-function isSupportedFileType(mimeType) {
-  const supportedTypes = [
-    'application/vnd.google-apps.spreadsheet',
-    'text/csv',
-    'application/vnd.ms-excel',
-    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-  ];
-  return supportedTypes.includes(mimeType) || mimeType.includes('csv') || mimeType.includes('spreadsheet');
 }
 
 /**
@@ -216,19 +201,18 @@ function isSupportedFileType(mimeType) {
  */
 function processDriveFile(fileId, fileName, mimeType) {
   try {
-    const CONFIG = getConfig();
     Logger.log(`📄 Processing file: ${fileName}`);
     
     // Step 1: Read file content
     const fileData = readDriveFile(fileId, mimeType);
     if (!fileData || fileData.length === 0) {
-      Logger.log('⚠️ No data found in file');
+      Logger.log('No data found in file');
       return;
     }
     
-    Logger.log(`📊 Found ${fileData.length} rows`);
+    Logger.log(`Found ${fileData.length} rows`);
     
-    // Step 2: Process each row
+    // Step 2: Process each row (BATCH PROCESSING FOR THOUSANDS OF LEADS)
     const results = {
       processed: 0,
       enriched: 0,
@@ -236,52 +220,66 @@ function processDriveFile(fileId, fileName, mimeType) {
       errors: []
     };
     
-    for (let i = 0; i < fileData.length; i++) {
-      try {
-        const row = fileData[i];
-        
-        // Step 3: Initial segmentation
-        const segmented = segmentRowData(row);
-        
-        // Step 4: Enrichment with AnyMail
-        const enriched = enrichWithAnyMail(segmented, CONFIG);
-        
-        // Store file_id for reference
-        enriched.file_id = fileId;
-        
-        // Step 5: Sync to HubSpot
-        const synced = syncToHubSpot(enriched, CONFIG);
-        
-        if (synced.success) {
-          results.processed++;
-          if (enriched.email) results.enriched++;
-          if (synced.contactId) results.synced++;
+    const BATCH_SIZE = 100; // Process in batches to avoid timeout
+    const totalRows = fileData.length;
+    Logger.log(`Processing ${totalRows} rows in batches of ${BATCH_SIZE}`);
+    
+    for (let batchStart = 0; batchStart < totalRows; batchStart += BATCH_SIZE) {
+      const batchEnd = Math.min(batchStart + BATCH_SIZE, totalRows);
+      Logger.log(`Processing batch: rows ${batchStart + 1} to ${batchEnd} of ${totalRows}`);
+      
+      for (let i = batchStart; i < batchEnd; i++) {
+        try {
+          const row = fileData[i];
+          
+          // Step 3: Initial segmentation
+          const segmented = segmentRowData(row);
+          
+          // Step 4: Enrichment with AnyMail
+          const enriched = enrichWithAnyMail(segmented);
+          
+          // Step 5: Sync to HubSpot
+          const synced = syncToHubSpot(enriched);
+          
+          // Store file_id for reference
+          enriched.file_id = fileId;
+          
+          if (synced.success) {
+            results.processed++;
+            if (enriched.email) results.enriched++;
+            if (synced.contactId) results.synced++;
+          }
+          
+          // Small delay to avoid rate limits
+          if (i % 10 === 0) {
+            Utilities.sleep(100); // 100ms delay every 10 rows
+          }
+          
+        } catch (error) {
+          Logger.log(`Error processing row ${i}: ${error.toString()}`);
+          results.errors.push({ row: i, error: error.toString() });
         }
-        
-      } catch (error) {
-        Logger.log(`❌ Error processing row ${i}: ${error.toString()}`);
-        results.errors.push({ row: i, error: error.toString() });
+      }
+      
+      // Log progress after each batch
+      Logger.log(`Batch complete: ${results.processed}/${totalRows} processed`);
+      
+      // If we're not at the end, add a longer pause between batches
+      if (batchEnd < totalRows) {
+        Utilities.sleep(1000); // 1 second pause between batches
       }
     }
     
     Logger.log(`✅ Processing complete: ${results.processed} processed, ${results.enriched} enriched, ${results.synced} synced`);
     
-    if (results.errors.length > 0) {
-      Logger.log(`⚠️ ${results.errors.length} errors occurred`);
-    }
-    
-    // Step 6: Trigger email sending for ready contacts
-    triggerEmailSending(CONFIG);
+    // Step 6: Trigger sequence manager for time-based sequences (B2B/Student)
+    // and process referral sequences (individual triggers)
+    Logger.log('📧 Triggering sequence management...');
+    sequenceManager(); // Handles both time-based and referral sequences
     
   } catch (error) {
-    Logger.log(`❌ Error processing file: ${error.toString()}`);
-    Logger.log(`Stack: ${error.stack || 'No stack trace'}`);
-    // Don't send error notification if Gmail is not configured
-    try {
-      sendErrorNotification(error);
-    } catch (e) {
-      Logger.log(`Could not send error notification: ${e.toString()}`);
-    }
+    Logger.log(`Error processing file: ${error.toString()}`);
+    sendErrorNotification(error);
   }
 }
 
@@ -366,11 +364,11 @@ function segmentRowData(row) {
 /**
  * Enrich contact with AnyMail API
  */
-function enrichWithAnyMail(segmented, CONFIG) {
+function enrichWithAnyMail(segmented) {
   try {
     if (!segmented.website) {
-      Logger.log('⚠️ No website URL, skipping AnyMail enrichment');
-      return Object.assign({}, segmented, { email: null });
+      Logger.log('No website URL, skipping AnyMail enrichment');
+      return { ...segmented, email: null };
     }
     
     Logger.log(`🔍 Enriching with AnyMail: ${segmented.website}`);
@@ -378,7 +376,7 @@ function enrichWithAnyMail(segmented, CONFIG) {
     // Extract domain from website
     const domain = extractDomain(segmented.website);
     if (!domain) {
-      return Object.assign({}, segmented, { email: null });
+      return { ...segmented, email: null };
     }
     
     // Call AnyMail API with webhook
@@ -397,34 +395,27 @@ function enrichWithAnyMail(segmented, CONFIG) {
         'Content-Type': 'application/json',
         'x-webhook-url': CONFIG.ANYMAIL_WEBHOOK_URL // Auto-configured webhook
       },
-      payload: JSON.stringify(payload),
-      muteHttpExceptions: true
+      payload: JSON.stringify(payload)
     };
     
     const response = UrlFetchApp.fetch(url, options);
-    const responseCode = response.getResponseCode();
-    const responseText = response.getContentText();
+    const result = JSON.parse(response.getContentText());
     
-    if (responseCode >= 200 && responseCode < 300) {
-      const result = JSON.parse(responseText);
-      
-      if (result.email) {
-        Logger.log(`✅ Email found: ${result.email}`);
-        return Object.assign({}, segmented, {
-          email: result.email,
-          anymail_source_type: result.verified ? 'verified' : 'guessed',
-          anymail_enriched: true
-        });
-      }
-    } else {
-      Logger.log(`⚠️ AnyMail API error ${responseCode}: ${responseText}`);
+    if (result.email) {
+      Logger.log(`✅ Email found: ${result.email}`);
+      return {
+        ...segmented,
+        email: result.email,
+        anymail_source_type: result.verified ? 'verified' : 'guessed',
+        anymail_enriched: true
+      };
     }
     
-    return Object.assign({}, segmented, { email: null, anymail_enriched: false });
+    return { ...segmented, email: null, anymail_enriched: false };
     
   } catch (error) {
-    Logger.log(`❌ Error enriching with AnyMail: ${error.toString()}`);
-    return Object.assign({}, segmented, { email: null, anymail_enriched: false });
+    Logger.log(`Error enriching with AnyMail: ${error.toString()}`);
+    return { ...segmented, email: null, anymail_enriched: false };
   }
 }
 
@@ -449,10 +440,10 @@ function extractDomain(url) {
 /**
  * Sync enriched data to HubSpot
  */
-function syncToHubSpot(enriched, CONFIG) {
+function syncToHubSpot(enriched) {
   try {
     if (!enriched.email && !enriched.company) {
-      Logger.log('⚠️ No email or company, skipping HubSpot sync');
+      Logger.log('No email or company, skipping HubSpot sync');
       return { success: false };
     }
     
@@ -461,11 +452,11 @@ function syncToHubSpot(enriched, CONFIG) {
     // Step 1: Create/Update Company
     let companyId = null;
     if (enriched.company) {
-      companyId = createOrUpdateCompany(enriched, CONFIG);
+      companyId = createOrUpdateCompany(enriched);
     }
     
     // Step 2: Create/Update Contact
-    const contactId = createOrUpdateContact(enriched, companyId, CONFIG);
+    const contactId = createOrUpdateContact(enriched, companyId);
     
     if (contactId) {
       Logger.log(`✅ Synced to HubSpot: Contact ${contactId}`);
@@ -475,7 +466,7 @@ function syncToHubSpot(enriched, CONFIG) {
     return { success: false };
     
   } catch (error) {
-    Logger.log(`❌ Error syncing to HubSpot: ${error.toString()}`);
+    Logger.log(`Error syncing to HubSpot: ${error.toString()}`);
     return { success: false, error: error.toString() };
   }
 }
@@ -483,7 +474,7 @@ function syncToHubSpot(enriched, CONFIG) {
 /**
  * Create or update HubSpot company
  */
-function createOrUpdateCompany(data, CONFIG) {
+function createOrUpdateCompany(data) {
   try {
     const url = `${CONFIG.HUBSPOT_API_BASE}/crm/v3/objects/companies`;
     
@@ -507,8 +498,7 @@ function createOrUpdateCompany(data, CONFIG) {
         'Authorization': `Bearer ${CONFIG.HUBSPOT_ACCESS_TOKEN}`,
         'Content-Type': 'application/json'
       },
-      payload: JSON.stringify(searchPayload),
-      muteHttpExceptions: true
+      payload: JSON.stringify(searchPayload)
     };
     
     const searchResponse = UrlFetchApp.fetch(searchUrl, searchOptions);
@@ -531,8 +521,7 @@ function createOrUpdateCompany(data, CONFIG) {
           'Authorization': `Bearer ${CONFIG.HUBSPOT_ACCESS_TOKEN}`,
           'Content-Type': 'application/json'
         },
-        payload: JSON.stringify({ properties: properties }),
-        muteHttpExceptions: true
+        payload: JSON.stringify({ properties: properties })
       };
       
       UrlFetchApp.fetch(updateUrl, updateOptions);
@@ -545,8 +534,7 @@ function createOrUpdateCompany(data, CONFIG) {
           'Authorization': `Bearer ${CONFIG.HUBSPOT_ACCESS_TOKEN}`,
           'Content-Type': 'application/json'
         },
-        payload: JSON.stringify({ properties: properties }),
-        muteHttpExceptions: true
+        payload: JSON.stringify({ properties: properties })
       };
       
       const createResponse = UrlFetchApp.fetch(url, createOptions);
@@ -555,7 +543,7 @@ function createOrUpdateCompany(data, CONFIG) {
     }
     
   } catch (error) {
-    Logger.log(`❌ Error creating/updating company: ${error.toString()}`);
+    Logger.log(`Error creating/updating company: ${error.toString()}`);
     return null;
   }
 }
@@ -563,10 +551,10 @@ function createOrUpdateCompany(data, CONFIG) {
 /**
  * Create or update HubSpot contact
  */
-function createOrUpdateContact(data, companyId, CONFIG) {
+function createOrUpdateContact(data, companyId) {
   try {
     if (!data.email) {
-      Logger.log('⚠️ No email, cannot create contact');
+      Logger.log('No email, cannot create contact');
       return null;
     }
     
@@ -592,12 +580,20 @@ function createOrUpdateContact(data, companyId, CONFIG) {
         'Authorization': `Bearer ${CONFIG.HUBSPOT_ACCESS_TOKEN}`,
         'Content-Type': 'application/json'
       },
-      payload: JSON.stringify(searchPayload),
-      muteHttpExceptions: true
+      payload: JSON.stringify(searchPayload)
     };
     
     const searchResponse = UrlFetchApp.fetch(searchUrl, searchOptions);
     const searchResult = JSON.parse(searchResponse.getContentText());
+    
+    // Determine template set and lead type through qualification
+    // Enhanced qualification to properly distinguish B2B vs Students
+    const qualification = qualifyLeadFromData(data);
+    const templateSet = qualification.templateSet;
+    const leadType = qualification.leadType;
+    const currentTime = new Date().getTime();
+    
+    Logger.log(`Qualified lead: ${data.email || data.first_name} → ${leadType} (${templateSet})`);
     
     // Build properties
     const properties = {
@@ -615,19 +611,24 @@ function createOrUpdateContact(data, companyId, CONFIG) {
       // Automation properties
       automation_source: 'google_drive',
       automation_source_file_id: data.file_id || '',
-      automation_ingested_at: new Date().getTime().toString(),
+      automation_ingested_at: currentTime.toString(),
       anymail_source_type: data.anymail_source_type || '',
       automation_anymail_enriched: data.anymail_enriched ? 'true' : 'false',
-      send_email_ready: (data.email && data.anymail_enriched) ? 'true' : 'false'
+      send_email_ready: (data.email && data.anymail_enriched) ? 'true' : 'false',
+      
+      // Sequence Management Properties (CRITICAL for 24-hour timing)
+      automation_template_set: templateSet,
+      automation_lead_type: leadType,
+      automation_next_email_step: '1', // Start at step 1
+      automation_next_send_timestamp: currentTime.toString(), // Send immediately (timestamp < now)
+      automation_emails_sent: '0'
     };
     
     // Add segmented data
     if (data.segmented_data) {
       Object.keys(data.segmented_data).forEach((key, index) => {
-        if (index < 10) { // Limit to 10 segments
-          const propName = `original_sheet_data_segment_${index + 1}`;
-          properties[propName] = data.segmented_data[key] || '';
-        }
+        const propName = `original_sheet_data_segment_${index + 1}`;
+        properties[propName] = data.segmented_data[key] || '';
       });
     }
     
@@ -641,15 +642,14 @@ function createOrUpdateContact(data, companyId, CONFIG) {
           'Authorization': `Bearer ${CONFIG.HUBSPOT_ACCESS_TOKEN}`,
           'Content-Type': 'application/json'
         },
-        payload: JSON.stringify({ properties: properties }),
-        muteHttpExceptions: true
+        payload: JSON.stringify({ properties: properties })
       };
       
       UrlFetchApp.fetch(updateUrl, updateOptions);
       
       // Associate with company if provided
       if (companyId) {
-        associateContactWithCompany(contactId, companyId, CONFIG);
+        associateContactWithCompany(contactId, companyId);
       }
       
       return contactId;
@@ -661,8 +661,7 @@ function createOrUpdateContact(data, companyId, CONFIG) {
           'Authorization': `Bearer ${CONFIG.HUBSPOT_ACCESS_TOKEN}`,
           'Content-Type': 'application/json'
         },
-        payload: JSON.stringify({ properties: properties }),
-        muteHttpExceptions: true
+        payload: JSON.stringify({ properties: properties })
       };
       
       const createResponse = UrlFetchApp.fetch(url, createOptions);
@@ -671,14 +670,14 @@ function createOrUpdateContact(data, companyId, CONFIG) {
       
       // Associate with company if provided
       if (companyId) {
-        associateContactWithCompany(contactId, companyId, CONFIG);
+        associateContactWithCompany(contactId, companyId);
       }
       
       return contactId;
     }
     
   } catch (error) {
-    Logger.log(`❌ Error creating/updating contact: ${error.toString()}`);
+    Logger.log(`Error creating/updating contact: ${error.toString()}`);
     return null;
   }
 }
@@ -686,7 +685,7 @@ function createOrUpdateContact(data, companyId, CONFIG) {
 /**
  * Associate contact with company
  */
-function associateContactWithCompany(contactId, companyId, CONFIG) {
+function associateContactWithCompany(contactId, companyId) {
   try {
     const url = `${CONFIG.HUBSPOT_API_BASE}/crm/v3/objects/contacts/${contactId}/associations/companies/${companyId}/0`;
     const options = {
@@ -694,13 +693,12 @@ function associateContactWithCompany(contactId, companyId, CONFIG) {
       headers: {
         'Authorization': `Bearer ${CONFIG.HUBSPOT_ACCESS_TOKEN}`,
         'Content-Type': 'application/json'
-      },
-      muteHttpExceptions: true
+      }
     };
     
     UrlFetchApp.fetch(url, options);
   } catch (error) {
-    Logger.log(`⚠️ Error associating contact with company: ${error.toString()}`);
+    Logger.log(`Error associating contact with company: ${error.toString()}`);
   }
 }
 
@@ -712,19 +710,19 @@ function associateContactWithCompany(contactId, companyId, CONFIG) {
  * Trigger email sending for ready contacts
  * Pulls from HubSpot "Ready to Send" list and sends emails
  */
-function triggerEmailSending(CONFIG) {
+function triggerEmailSending() {
   try {
     Logger.log('📧 Triggering email sending from HubSpot list...');
     
     // Get contacts from "Ready to Send" list
-    const contacts = getContactsFromHubSpotList('Ready to Send', CONFIG);
+    const contacts = getContactsFromHubSpotList('Ready to Send');
     
     if (contacts.length === 0) {
-      Logger.log('ℹ️ No contacts in "Ready to Send" list');
+      Logger.log('No contacts in "Ready to Send" list');
       return;
     }
     
-    Logger.log(`📬 Found ${contacts.length} contacts ready to send`);
+    Logger.log(`Found ${contacts.length} contacts ready to send`);
     
     // Process each contact
     let sent = 0;
@@ -732,17 +730,16 @@ function triggerEmailSending(CONFIG) {
     
     for (const contact of contacts.slice(0, 50)) { // Limit to 50 per run
       try {
-        const result = sendPersonalizedEmail(contact, CONFIG);
+        const result = sendPersonalizedEmail(contact);
         if (result.success) {
           sent++;
           // Update HubSpot
-          updateContactAfterEmailSend(contact, result, CONFIG);
+          updateContactAfterEmailSend(contact, result);
         } else {
           failed++;
-          Logger.log(`⚠️ Failed to send to ${contact.properties?.email || 'unknown'}: ${result.error}`);
         }
       } catch (error) {
-        Logger.log(`❌ Error sending email: ${error.toString()}`);
+        Logger.log(`Error sending email to ${contact.properties.email}: ${error.toString()}`);
         failed++;
       }
     }
@@ -750,14 +747,14 @@ function triggerEmailSending(CONFIG) {
     Logger.log(`✅ Email sending complete: ${sent} sent, ${failed} failed`);
     
   } catch (error) {
-    Logger.log(`❌ Error in triggerEmailSending: ${error.toString()}`);
+    Logger.log(`Error in triggerEmailSending: ${error.toString()}`);
   }
 }
 
 /**
  * Get contacts from HubSpot list
  */
-function getContactsFromHubSpotList(listName, CONFIG) {
+function getContactsFromHubSpotList(listName) {
   try {
     // First, find the list
     const listsUrl = `${CONFIG.HUBSPOT_API_BASE}/contacts/v1/lists`;
@@ -766,16 +763,15 @@ function getContactsFromHubSpotList(listName, CONFIG) {
       headers: {
         'Authorization': `Bearer ${CONFIG.HUBSPOT_ACCESS_TOKEN}`,
         'Content-Type': 'application/json'
-      },
-      muteHttpExceptions: true
+      }
     };
     
     const listsResponse = UrlFetchApp.fetch(listsUrl, listsOptions);
     const listsResult = JSON.parse(listsResponse.getContentText());
     
-    const list = listsResult.lists ? listsResult.lists.find(function(l) { return l.name === listName; }) : null;
+    const list = listsResult.lists?.find(l => l.name === listName);
     if (!list) {
-      Logger.log(`⚠️ List "${listName}" not found`);
+      Logger.log(`List "${listName}" not found`);
       return [];
     }
     
@@ -786,8 +782,7 @@ function getContactsFromHubSpotList(listName, CONFIG) {
       headers: {
         'Authorization': `Bearer ${CONFIG.HUBSPOT_ACCESS_TOKEN}`,
         'Content-Type': 'application/json'
-      },
-      muteHttpExceptions: true
+      }
     };
     
     const contactsResponse = UrlFetchApp.fetch(contactsUrl, contactsOptions);
@@ -796,38 +791,38 @@ function getContactsFromHubSpotList(listName, CONFIG) {
     return contactsResult.contacts || [];
     
   } catch (error) {
-    Logger.log(`❌ Error getting contacts from list: ${error.toString()}`);
+    Logger.log(`Error getting contacts from list: ${error.toString()}`);
     return [];
   }
 }
 
 /**
- * Send personalized email via Gmail
+ * Send personalized email via Gmail with GA4 tracking
+ * Includes tracking pixel for opens and wrapped links for clicks
  */
-function sendPersonalizedEmail(contact, CONFIG) {
+function sendPersonalizedEmail(contact, config, template) {
   try {
-    const email = contact.properties ? contact.properties.email : null;
+    const email = contact.properties?.email || contact.email;
     if (!email) {
       return { success: false, error: 'No email' };
     }
     
-    // Determine template set
-    const templateSet = (contact.properties && contact.properties.automation_template_set) || 
-                       determineTemplateSet(contact);
-    
-    if (!templateSet) {
-      return { success: false, error: 'No template set' };
-    }
-    
-    // Get template from CONFIG
-    const template = getTemplate(templateSet, 1, CONFIG); // Start with step 1
-    
     if (!template) {
-      return { success: false, error: 'Template not found' };
+      return { success: false, error: 'No template provided' };
     }
+    
+    const contactId = contact.id || contact.vid;
+    const templateSet = contact.properties?.automation_template_set || 'set_three_b2b';
+    const currentStep = parseInt(contact.properties?.automation_next_email_step || '1');
     
     // Personalize template
-    const personalized = personalizeTemplate(template, contact);
+    let personalized = personalizeTemplate(template, contact);
+    
+    // Add tracking: Wrap all links with tracking URLs
+    personalized.body = wrapLinksWithTracking(personalized.body, contactId, templateSet, currentStep);
+    
+    // Add tracking: Insert tracking pixel for open tracking
+    personalized.body = addTrackingPixel(personalized.body, contactId, templateSet, currentStep);
     
     // Send via Gmail
     const emailResult = GmailApp.sendEmail(
@@ -841,43 +836,178 @@ function sendPersonalizedEmail(contact, CONFIG) {
       }
     );
     
-    Logger.log(`✅ Email sent to ${email}`);
+    Logger.log(`✅ Email sent to ${email} with tracking enabled`);
+    Logger.log(`   Contact ID: ${contactId}, Template: ${templateSet}, Step: ${currentStep}`);
     
     return {
       success: true,
       messageId: emailResult.getMessage().getId(),
-      template: templateSet
+      contactId: contactId,
+      templateSet: templateSet,
+      step: currentStep
     };
     
   } catch (error) {
-    Logger.log(`❌ Error sending email: ${error.toString()}`);
+    Logger.log(`Error sending email: ${error.toString()}`);
     return { success: false, error: error.toString() };
   }
 }
 
 /**
  * Determine template set based on contact properties
+ * Enhanced qualification to properly distinguish B2B vs Students
  */
 function determineTemplateSet(contact) {
-  const leadType = contact.properties ? contact.properties.automation_lead_type : null;
+  const leadType = contact.properties?.automation_lead_type || contact.properties?.lead_type;
+  const company = (contact.properties?.company || '').toLowerCase();
+  const title = (contact.properties?.jobtitle || '').toLowerCase();
+  const email = (contact.properties?.email || '').toLowerCase();
   
-  if (leadType === 'Student' || leadType === 'School') {
+  // Student Indicators (High Priority)
+  const studentIndicators = [
+    'school', 'university', 'college', 'academy', 'education',
+    'student', 'teacher', 'professor', 'educator', 'campus'
+  ];
+  
+  const hasStudentIndicator = studentIndicators.some(ind => 
+    company.includes(ind) || title.includes(ind) || email.includes('.edu')
+  );
+  
+  if (hasStudentIndicator || leadType === 'Student' || leadType === 'School') {
+    Logger.log(`Qualified as Student: ${contact.properties?.email}`);
     return 'set_one_student';
-  } else if (leadType === 'NGO') {
-    return 'set_two_referral';
-  } else {
-    return 'set_three_b2b';
   }
+  
+  // NGO/Referral Indicators
+  const ngoIndicators = [
+    'ngo', 'nonprofit', 'non-profit', 'foundation', 'charity',
+    'organization', 'association', 'society', 'mission'
+  ];
+  
+  const hasNgoIndicator = ngoIndicators.some(ind => 
+    company.includes(ind) || title.includes(ind)
+  );
+  
+  if (hasNgoIndicator || leadType === 'NGO' || leadType === 'Referral') {
+    Logger.log(`Qualified as Referral: ${contact.properties?.email}`);
+    return 'set_two_referral';
+  }
+  
+  // Default to B2B
+  Logger.log(`Qualified as B2B: ${contact.properties?.email}`);
+  return 'set_three_b2b';
+}
+
+/**
+ * Qualify lead from raw data (during ingestion)
+ * Enhanced qualification to properly distinguish B2B vs Students
+ * Returns full qualification object with template set, lead type, score, and indicators
+ */
+function qualifyLeadFromData(data) {
+  const company = (data.company || '').toLowerCase();
+  const title = (data.title || '').toLowerCase();
+  const website = (data.website || '').toLowerCase();
+  const email = (data.email || '').toLowerCase();
+  const segmentData = data.segmented_data || {};
+  const segmentValues = Object.values(segmentData).join(' ').toLowerCase();
+  
+  let leadType = 'B2B';
+  let templateSet = 'set_three_b2b';
+  let score = 0;
+  const indicators = [];
+  
+  // Student Indicators (High Priority - Check First)
+  const studentIndicators = [
+    'school', 'university', 'college', 'academy', 'education',
+    'student', 'teacher', 'professor', 'educator', 'campus',
+    'high school', 'elementary', 'middle school'
+  ];
+  
+  const hasStudentIndicator = studentIndicators.some(ind => 
+    company.includes(ind) || 
+    title.includes(ind) || 
+    website.includes(ind) ||
+    segmentValues.includes(ind) ||
+    email.includes('.edu')
+  );
+  
+  if (hasStudentIndicator) {
+    leadType = 'Student';
+    templateSet = 'set_one_student';
+    score = email.includes('.edu') ? 90 : 85;
+    indicators.push('Student/Education detected');
+    if (email.includes('.edu')) {
+      indicators.push('Educational email domain (.edu)');
+    }
+  }
+  
+  // NGO/Referral Indicators (Check if not Student)
+  if (!hasStudentIndicator) {
+    const ngoIndicators = [
+      'ngo', 'nonprofit', 'non-profit', 'foundation', 'charity',
+      'organization', 'association', 'society', 'mission'
+    ];
+    
+    const hasNgoIndicator = ngoIndicators.some(ind => 
+      company.includes(ind) || 
+      title.includes(ind) || 
+      website.includes(ind) ||
+      segmentValues.includes(ind)
+    );
+    
+    if (hasNgoIndicator) {
+      leadType = 'NGO';
+      templateSet = 'set_two_referral';
+      score = 80;
+      indicators.push('NGO/Nonprofit detected');
+    }
+  }
+  
+  // B2B Indicators (Default if not Student or NGO)
+  if (!hasStudentIndicator && leadType === 'B2B') {
+    const b2bIndicators = [
+      'corp', 'corporation', 'inc', 'llc', 'ltd', 'company',
+      'business', 'enterprise', 'tech', 'software', 'solutions',
+      'global', 'group', 'partners', 'consulting'
+    ];
+    
+    const hasB2bIndicator = b2bIndicators.some(ind => 
+      company.includes(ind) || 
+      title.includes(ind) || 
+      website.includes(ind) ||
+      segmentValues.includes(ind)
+    );
+    
+    if (hasB2bIndicator) {
+      leadType = 'B2B';
+      templateSet = 'set_three_b2b';
+      score = 75;
+      indicators.push('B2B company detected');
+    } else {
+      // Default B2B if no clear indicators
+      score = 50;
+      indicators.push('Default B2B classification');
+    }
+  }
+  
+  return {
+    leadType: leadType,
+    templateSet: templateSet,
+    score: score,
+    indicators: indicators,
+    qualified: true,
+    timestamp: new Date().toISOString()
+  };
 }
 
 /**
  * Get template from CONFIG
  */
-function getTemplate(templateSet, step, CONFIG) {
+function getTemplate(templateSet, step) {
   const templates = CONFIG.TEMPLATES[templateSet];
   if (!templates) return null;
   
-  const stepKey = 'step_' + step;
+  const stepKey = `step_${step}`;
   return templates[stepKey] || templates.step_1 || null;
 }
 
@@ -888,18 +1018,13 @@ function personalizeTemplate(template, contact) {
   let subject = template.subject || '';
   let body = template.body || '';
   
-  const props = contact.properties || {};
-  
-  // Build name
-  const firstName = props.firstname || '';
-  const lastName = props.lastname || '';
-  const fullName = (firstName + ' ' + lastName).trim() || 'there';
+  const props = contact.properties;
   
   // Replace tokens
   const replacements = {
-    '{{first_name}}': firstName,
-    '{{last_name}}': lastName,
-    '{{name}}': fullName,
+    '{{first_name}}': props.firstname || '',
+    '{{last_name}}': props.lastname || '',
+    '{{name}}': `${props.firstname || ''} ${props.lastname || ''}`.trim() || 'there',
     '{{organization}}': props.company || '',
     '{{company}}': props.company || '',
     '{{email}}': props.email || '',
@@ -912,68 +1037,49 @@ function personalizeTemplate(template, contact) {
     '{{mission_support_url}}': 'https://hingecraft.global/mission-support',
     '{{student_page_url}}': 'https://hingecraft.global/student',
     '{{build_log_url}}': 'https://hingecraft.global/build-log',
-    '{{submit_creation_url}}': 'https://hingecraft.global/submit',
-    '{{unsubscribe_url}}': 'https://hingecraft.global/unsubscribe',
-    '{{preferences_url}}': 'https://hingecraft.global/preferences'
+    '{{submit_creation_url}}': 'https://hingecraft.global/submit'
   };
   
-  Object.keys(replacements).forEach(function(token) {
-    const regex = new RegExp(token.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g');
-    subject = subject.replace(regex, replacements[token]);
-    body = body.replace(regex, replacements[token]);
+  Object.keys(replacements).forEach(token => {
+    subject = subject.replace(new RegExp(token, 'g'), replacements[token]);
+    body = body.replace(new RegExp(token, 'g'), replacements[token]);
   });
   
-  return { subject: subject, body: body };
+  return { subject, body };
 }
 
 /**
  * Update HubSpot contact after email send
+ * Now uses advanceContactSequence for proper 24-hour timing
  */
-function updateContactAfterEmailSend(contact, emailResult, CONFIG) {
+function updateContactAfterEmailSend(contact, emailResult) {
   try {
     const contactId = contact.id || contact.vid;
     if (!contactId) {
-      Logger.log('⚠️ No contact ID for update');
+      Logger.log('No contact ID for update');
       return;
     }
-
-    const url = `${CONFIG.HUBSPOT_API_BASE}/crm/v3/objects/contacts/${contactId}`;
-    const props = contact.properties || {};
-    const currentCount = parseInt(props.automation_emails_sent || '0') || 0;
-    const properties = {
-      automation_last_email_sent: new Date().getTime().toString(),
-      automation_emails_sent: (currentCount + 1).toString(),
-      last_contact_sent_date: new Date().toISOString()
-    };
     
-    const options = {
-      method: 'patch',
-      headers: {
-        'Authorization': `Bearer ${CONFIG.HUBSPOT_ACCESS_TOKEN}`,
-        'Content-Type': 'application/json'
-      },
-      payload: JSON.stringify({ properties: properties }),
-      muteHttpExceptions: true
-    };
+    // Get current step
+    const currentStep = parseInt(contact.properties?.automation_next_email_step || '1');
     
-    UrlFetchApp.fetch(url, options);
-    Logger.log(`✅ Updated contact ${contactId} after email send`);
+    // Advance sequence (sets next step and 24-hour timestamp)
+    advanceContactSequence(contact, currentStep, CONFIG);
+    
+    Logger.log(`✅ Updated contact ${contactId} after email send, advanced to step ${currentStep + 1}`);
     
   } catch (error) {
-    Logger.log(`❌ Error updating contact after email send: ${error.toString()}`);
+    Logger.log(`Error updating contact after email send: ${error.toString()}`);
   }
 }
 
 // ============================================
 // EMAIL TEMPLATES (From Database)
 // ============================================
-// NOTE: All template functions have been moved to Templates.gs
-// They are still accessible here since all .gs files share the same global scope
 
 /**
  * Student Template 1: Welcome to the Movement
  * From database: set_one_student, step 1
- * MOVED TO Templates.gs - This is kept for reference only
  */
 function getStudentTemplate1() {
   return `<!DOCTYPE html>
@@ -1433,14 +1539,384 @@ function markFileAsProcessed(fileId) {
  */
 function sendErrorNotification(error) {
   try {
-    const CONFIG = getConfig();
     GmailApp.sendEmail(
       CONFIG.GMAIL_FROM_ADDRESS,
       'HingeCraft Automation Error',
-      'Error in automation: ' + error.toString(),
+      `Error in automation: ${error.toString()}`,
       { from: CONFIG.GMAIL_FROM_ADDRESS }
     );
   } catch (e) {
-    Logger.log('⚠️ Could not send error notification: ' + e.toString());
+    Logger.log(`Could not send error notification: ${e.toString()}`);
   }
+}
+
+// ============================================
+// PHASE 5: SEQUENCE MANAGEMENT (24-HOUR TIMING)
+// ============================================
+
+/**
+ * Retrieves contacts eligible for the next sequence step using the HubSpot Search API.
+ * This filters for contacts with TIME-BASED sequences (B2B and Student):
+ * 1. Who are NOT finished (next_step < 6)
+ * 2. Whose next_send_timestamp is LESS than the current time (timing met)
+ * 3. Template set is set_one_student OR set_three_b2b (NOT set_two_referral)
+ * NOTE: This is critical for 100% accurate timing (24-hour delay for B2B and Student).
+ * NOTE: Referral sequences (set_two_referral) are handled separately via individual triggers.
+ */
+function getContactsReadyForNextStep() {
+  const currentTime = new Date().getTime();
+  
+  // Properties needed for sequence logic, personalization, and template selection
+  const requiredProperties = [
+    'email', 'firstname', 'lastname', 'company', 
+    'automation_template_set', 'automation_next_email_step', 
+    'automation_next_send_timestamp', 'original_sheet_data_segment_1',
+    'original_sheet_data_segment_2', 'original_sheet_data_segment_3',
+    'original_sheet_data_segment_4', 'original_sheet_data_segment_5',
+    'automation_emails_sent', 'last_contact_sent_date', 'automation_lead_type'
+  ];
+
+  const searchUrl = `${CONFIG.HUBSPOT_API_BASE}/crm/v3/objects/contacts/search`;
+  
+  const searchPayload = {
+    filterGroups: [
+      {
+        filters: [
+          // Filter 1: Contact must NOT be finished (Step < 6)
+          {
+            propertyName: 'automation_next_email_step',
+            operator: 'LT', // Less Than
+            value: '6' // Step 6 means FINISHED
+          },
+          // Filter 2: The current time (in ms) must be PAST the next eligible send time
+          {
+            propertyName: 'automation_next_send_timestamp',
+            operator: 'LT', // Less Than
+            value: currentTime.toString() 
+          },
+          // Filter 3: Template set must be B2B or Student (NOT Referral)
+          // Referral sequences are handled separately via individual triggers
+          {
+            propertyName: 'automation_template_set',
+            operator: 'IN',
+            values: ['set_one_student', 'set_three_b2b'] // Only time-based sequences
+          }
+        ]
+      }
+    ],
+    properties: requiredProperties,
+    limit: 1000 // Increased limit for large batches - process up to 1000 contacts per run
+  };
+  
+  try {
+    const options = {
+      method: 'post',
+      headers: {
+        'Authorization': `Bearer ${CONFIG.HUBSPOT_ACCESS_TOKEN}`,
+        'Content-Type': 'application/json'
+      },
+      payload: JSON.stringify(searchPayload)
+    };
+    
+    const response = UrlFetchApp.fetch(searchUrl, options);
+    const result = JSON.parse(response.getContentText());
+    
+    Logger.log(`Found ${result?.results?.length || 0} contacts ready for the next sequence step.`);
+    
+    return result?.results?.map(contact => ({
+      id: contact.id,
+      properties: contact.properties
+    })) || [];
+    
+  } catch (error) {
+    Logger.log(`Error retrieving contacts via Search API: ${error.toString()}`);
+    return [];
+  }
+}
+
+/**
+ * Executes the entire sequence management flow.
+ * Handles TIME-BASED sequences (B2B and Student) with 24-hour timing.
+ * Referral sequences are handled separately via processReferralSequences().
+ */
+function sequenceManager() {
+  Logger.log('📧 Starting sequence manager (Time-Based: B2B & Student)...');
+  
+  // Step 1: Query HubSpot for all eligible contacts (B2B and Student only)
+  const contacts = getContactsReadyForNextStep(); // Uses the HubSpot Search API
+  
+  if (contacts.length === 0) {
+    Logger.log('No contacts ready to advance sequence (B2B/Student).');
+    // Now process referral sequences (individual triggers)
+    processReferralSequences();
+    return;
+  }
+  
+  let sent = 0;
+  const BATCH_SIZE_EMAIL = 50; // Send emails in batches to avoid Gmail limits
+  
+  Logger.log(`Processing ${contacts.length} contacts in batches of ${BATCH_SIZE_EMAIL}`);
+  Logger.log(`Sequence Types: B2B (set_three_b2b) and Student (set_one_student)`);
+  Logger.log(`Timing: 24 hours between each step`);
+  
+  for (let i = 0; i < contacts.length; i++) {
+    const contact = contacts[i];
+    // All timing and completion checks are handled by getContactsReadyForNextStep() filters.
+    
+    const nextStep = parseInt(contact.properties.automation_next_email_step || '1');
+    const templateSet = contact.properties.automation_template_set || determineTemplateSet(contact);
+    const leadType = contact.properties.automation_lead_type || 'Unknown';
+    
+    Logger.log(`Processing: ${contact.properties.email} (${leadType}, ${templateSet}, step ${nextStep})`);
+    
+    // 1. Template Fetch
+    const template = getTemplate(templateSet, nextStep); 
+    
+    if (!template) {
+      Logger.log(`Skipping ${contact.properties.email}: Template for set '${templateSet}' step ${nextStep} not found.`);
+      // Optionally, set next_step to 6 here to prevent endless checking
+      advanceContactSequence(contact, 5, CONFIG); 
+      continue; 
+    }
+    
+    try {
+      // 2. Execution
+      const result = sendPersonalizedEmail(contact, CONFIG, template); 
+      
+      if (result.success) {
+        sent++;
+        // 3. Update: Advance step counter and set next 24-hour timestamp
+        // Both B2B and Student use the same 24-hour timing
+        advanceContactSequence(contact, nextStep, CONFIG);
+        Logger.log(`✅ Email sent to ${contact.properties.email} (${leadType}, step ${nextStep})`);
+      }
+      
+      // Be mindful of Gmail limits: adding pauses
+      Utilities.sleep(500); // 500ms between emails
+      
+      // Longer pause every 50 emails to respect Gmail rate limits
+      if ((i + 1) % BATCH_SIZE_EMAIL === 0) {
+        Logger.log(`Sent ${sent} emails so far. Pausing to respect rate limits...`);
+        Utilities.sleep(2000); // 2 second pause every 50 emails
+      } 
+      
+    } catch (error) {
+      Logger.log(`Error processing sequence for ${contact.properties.email}: ${error.toString()}`);
+    }
+  }
+  Logger.log(`✅ Time-based sequence run complete: ${sent} emails sent/advanced.`);
+  
+  // After processing time-based sequences, process referral sequences
+  processReferralSequences();
+}
+
+/**
+ * Processes Referral sequences (set_two_referral) with individual triggers.
+ * Referral sequences are NOT time-based - they trigger individually for each lead.
+ * This function finds all referral contacts ready to send and processes them.
+ */
+function processReferralSequences() {
+  Logger.log('📧 Processing Referral sequences (Individual Triggers)...');
+  
+  const currentTime = new Date().getTime();
+  const requiredProperties = [
+    'email', 'firstname', 'lastname', 'company',
+    'automation_template_set', 'automation_next_email_step',
+    'automation_emails_sent', 'automation_lead_type'
+  ];
+  
+  const searchUrl = `${CONFIG.HUBSPOT_API_BASE}/crm/v3/objects/contacts/search`;
+  
+  // Find all referral contacts that haven't been sent yet (step = 1, emails_sent = 0)
+  const searchPayload = {
+    filterGroups: [
+      {
+        filters: [
+          // Filter 1: Template set is referral
+          {
+            propertyName: 'automation_template_set',
+            operator: 'EQ',
+            value: 'set_two_referral'
+          },
+          // Filter 2: Still on step 1 (hasn't been sent yet)
+          {
+            propertyName: 'automation_next_email_step',
+            operator: 'EQ',
+            value: '1'
+          },
+          // Filter 3: No emails sent yet (or emails_sent = 0)
+          {
+            propertyName: 'automation_emails_sent',
+            operator: 'EQ',
+            value: '0'
+          }
+        ]
+      }
+    ],
+    properties: requiredProperties,
+    limit: 1000
+  };
+  
+  try {
+    const options = {
+      method: 'post',
+      headers: {
+        'Authorization': `Bearer ${CONFIG.HUBSPOT_ACCESS_TOKEN}`,
+        'Content-Type': 'application/json'
+      },
+      payload: JSON.stringify(searchPayload)
+    };
+    
+    const response = UrlFetchApp.fetch(searchUrl, options);
+    const result = JSON.parse(response.getContentText());
+    const referralContacts = result?.results || [];
+    
+    Logger.log(`Found ${referralContacts.length} referral contacts ready to send.`);
+    
+    if (referralContacts.length === 0) {
+      Logger.log('No referral contacts ready.');
+      return;
+    }
+    
+    let sent = 0;
+    const BATCH_SIZE_EMAIL = 50;
+    
+    Logger.log(`Processing ${referralContacts.length} referral contacts in batches of ${BATCH_SIZE_EMAIL}`);
+    
+    for (let i = 0; i < referralContacts.length; i++) {
+      const contact = {
+        id: referralContacts[i].id,
+        properties: referralContacts[i].properties
+      };
+      
+      const templateSet = 'set_two_referral';
+      const nextStep = 1; // Referral only has 1 step
+      
+      // Get template
+      const template = getTemplate(templateSet, nextStep);
+      
+      if (!template) {
+        Logger.log(`Skipping ${contact.properties.email}: Referral template not found.`);
+        continue;
+      }
+      
+      try {
+        // Send email
+        const result = sendPersonalizedEmail(contact, CONFIG, template);
+        
+        if (result.success) {
+          sent++;
+          // Mark referral sequence as complete (step 2 = finished for referral)
+          const contactId = contact.id;
+          const updateUrl = `${CONFIG.HUBSPOT_API_BASE}/crm/v3/objects/contacts/${contactId}`;
+          const properties = {
+            automation_next_email_step: '2', // Step 2 = finished for referral (only 1 step)
+            automation_next_send_timestamp: '9999999999999', // Far future (no more sends)
+            last_contact_sent_date: new Date().toISOString(),
+            automation_emails_sent: '1'
+          };
+          
+          const updateOptions = {
+            method: 'patch',
+            headers: {
+              'Authorization': `Bearer ${CONFIG.HUBSPOT_ACCESS_TOKEN}`,
+              'Content-Type': 'application/json'
+            },
+            payload: JSON.stringify({ properties: properties })
+          };
+          
+          UrlFetchApp.fetch(updateUrl, updateOptions);
+          Logger.log(`✅ Referral email sent to ${contact.properties.email}`);
+        }
+        
+        Utilities.sleep(500); // 500ms between emails
+        
+        if ((i + 1) % BATCH_SIZE_EMAIL === 0) {
+          Logger.log(`Sent ${sent} referral emails so far. Pausing...`);
+          Utilities.sleep(2000);
+        }
+        
+      } catch (error) {
+        Logger.log(`Error processing referral for ${contact.properties.email}: ${error.toString()}`);
+      }
+    }
+    
+    Logger.log(`✅ Referral sequence run complete: ${sent} emails sent.`);
+    
+  } catch (error) {
+    Logger.log(`Error retrieving referral contacts: ${error.toString()}`);
+  }
+}
+
+/**
+ * Sequence Advancement Logic (24-Hour Enforcement)
+ * This function runs after a successful send and calculates the exact timestamp for the next step.
+ * Applies to BOTH B2B (set_three_b2b) and Student (set_one_student) sequences.
+ * Both use the same 24-hour timing between steps.
+ */
+const MILLIS_IN_24_HOURS = 24 * 60 * 60 * 1000;
+
+function advanceContactSequence(contact, currentStep, config) {
+  const contactId = contact.id;
+  const nextStep = currentStep + 1;
+  const currentTime = new Date().getTime();
+  const templateSet = contact.properties.automation_template_set || 'set_three_b2b';
+  
+  // Calculate the next send time: Current time + 24 hours
+  // This value is used by the Search API filter (getContactsReadyForNextStep)
+  // BOTH B2B and Student sequences use 24-hour timing
+  const nextSendTime = currentTime + MILLIS_IN_24_HOURS;
+  
+  // Determine if sequence is complete:
+  // - B2B (set_three_b2b): 5 steps, so step 6 = finished
+  // - Student (set_one_student): 5 steps, so step 6 = finished
+  // - Referral (set_two_referral): 1 step, so step 2 = finished (handled separately)
+  const isComplete = nextStep > 5;
+  const finalStepValue = (isComplete ? 6 : nextStep).toString();
+  
+  const properties = {
+    // Log the completion status and advance the step counter
+    automation_next_email_step: finalStepValue,
+    
+    // If the sequence is not finished, set the next timestamp; otherwise, set a very high timestamp (far future)
+    automation_next_send_timestamp: (isComplete ? '9999999999999' : nextSendTime).toString(), 
+    
+    // Mark when the last email was physically sent
+    last_contact_sent_date: new Date().toISOString(), 
+    
+    // Increment the total count
+    automation_emails_sent: (parseInt(contact.properties.automation_emails_sent || '0') + 1).toString(),
+    
+    // Reset the ready flag (it's no longer needed once the sequence starts)
+    send_email_ready: 'false'
+  };
+  
+  // Execute HubSpot patch request (API call to update properties)
+  const updateUrl = `${config.HUBSPOT_API_BASE}/crm/v3/objects/contacts/${contactId}`;
+  const options = {
+    method: 'patch',
+    headers: {
+      'Authorization': `Bearer ${config.HUBSPOT_ACCESS_TOKEN}`,
+      'Content-Type': 'application/json'
+    },
+    payload: JSON.stringify({ properties: properties })
+  };
+  
+  try {
+    UrlFetchApp.fetch(updateUrl, options);
+    const sequenceType = templateSet === 'set_one_student' ? 'Student' : 
+                        templateSet === 'set_three_b2b' ? 'B2B' : 'Unknown';
+    Logger.log(`✅ Advanced ${sequenceType} contact ${contactId} to step ${finalStepValue}, next send: ${new Date(nextSendTime).toISOString()}`);
+  } catch (error) {
+    Logger.log(`Error advancing contact sequence: ${error.toString()}`);
+  }
+}
+
+/**
+ * Wrapper function to run HubSpot property creation
+ * This makes it easier to find in the function dropdown
+ * Simply run this function to create all HubSpot properties
+ */
+function runHubSpotSetup() {
+  createHubSpotProperties();
 }

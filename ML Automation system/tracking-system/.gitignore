@@ -1,0 +1,11 @@
+# Ignore .env file with secrets
+.env
+.env.local
+.env.*.local
+
+# Ignore logs
+*.log
+
+# Ignore OS files
+.DS_Store
+Thumbs.db

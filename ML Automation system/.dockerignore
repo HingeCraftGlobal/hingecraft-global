@@ -4,12 +4,24 @@ npm-debug.log
 .gitignore
 .env
 .env.local
-logs/*.log
-.DS_Store
 *.md
 !README.md
-
-
-
+.DS_Store
+.vscode
+.idea
+coverage
+.nyc_output
+*.log
+dist
+build
+.cache
+.clasp.json
+google-apps-script/.clasp.json
+tests
+examples
+api-payloads
+api-scripts
+*.html
+!📧_EMAIL_PREVIEW.html
 
 

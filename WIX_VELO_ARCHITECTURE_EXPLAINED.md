@@ -267,3 +267,8 @@ const data = await callVeloFunction(VELO_CONFIG.CHARTER_MIDDLEWARE, 'fiatButtonC
 ---
 
 **Next Step:** Choose an option and I'll help implement it!
+
+
+
+
+

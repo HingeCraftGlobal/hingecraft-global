@@ -1,0 +1,298 @@
+{
+  "timestamp": "2025-12-15T16:27:43.296Z",
+  "summary": {
+    "tablesApplied": 0,
+    "emailNodesConnected": 4,
+    "phasesComplete": 1,
+    "phasesPartial": 8,
+    "phasesIncomplete": 0
+  },
+  "results": {
+    "tablesApplied": [],
+    "emailNodesConnected": [
+      {
+        "table": "leads",
+        "emailColumns": [
+          "last_contacted_at",
+          "email"
+        ],
+        "connected": true
+      },
+      {
+        "table": "email_logs",
+        "emailColumns": [
+          "to_email"
+        ],
+        "connected": true
+      },
+      {
+        "table": "sequences",
+        "emailColumns": [],
+        "connected": true
+      },
+      {
+        "table": "lead_sequences",
+        "emailColumns": [],
+        "connected": true
+      }
+    ],
+    "phasesVerified": {
+      "Phase 1-2": {
+        "phase": "Phase 1-2",
+        "name": "Data Ingestion and Standardization",
+        "tables": {
+          "leads": {
+            "exists": true,
+            "columns": {
+              "email": true,
+              "first_name": true,
+              "last_name": true,
+              "source": true
+            }
+          },
+          "staging_leads": {
+            "exists": true,
+            "columns": {
+              "email": false,
+              "segment_key": false,
+              "send_status": false
+            }
+          },
+          "import_batches": {
+            "exists": true,
+            "columns": {
+              "file_id": true,
+              "status": true,
+              "row_count": false
+            }
+          }
+        },
+        "allTablesExist": true,
+        "allColumnsExist": false,
+        "status": "partial"
+      },
+      "Phase 3": {
+        "phase": "Phase 3",
+        "name": "Core Execution and Hyper-Personalization",
+        "tables": {
+          "sequences": {
+            "exists": true,
+            "columns": {
+              "segment_key": false,
+              "template_id": false,
+              "outreach_angle": false
+            }
+          },
+          "sequence_steps": {
+            "exists": true,
+            "columns": {
+              "sequence_id": true,
+              "step_number": true,
+              "template_id": true
+            }
+          }
+        },
+        "allTablesExist": true,
+        "allColumnsExist": false,
+        "status": "partial"
+      },
+      "Phase 4-5": {
+        "phase": "Phase 4-5",
+        "name": "Audit Trail and HubSpot Sync",
+        "tables": {
+          "email_logs": {
+            "exists": true,
+            "columns": {
+              "email": false,
+              "gmail_send_id": false,
+              "send_status": false,
+              "segment_key": false
+            }
+          },
+          "hubspot_sync": {
+            "exists": true,
+            "columns": {
+              "contact_id": false,
+              "gmail_send_id": false,
+              "sync_status": true
+            }
+          }
+        },
+        "allTablesExist": true,
+        "allColumnsExist": false,
+        "status": "partial"
+      },
+      "Phase 10-12": {
+        "phase": "Phase 10-12",
+        "name": "Resilience and Error Handling",
+        "tables": {
+          "message_logs": {
+            "exists": true,
+            "columns": {
+              "level": false,
+              "message": false,
+              "timestamp": false
+            }
+          },
+          "audit_log": {
+            "exists": true,
+            "columns": {
+              "action": true,
+              "entity_type": true,
+              "entity_id": true,
+              "timestamp": false
+            }
+          }
+        },
+        "allTablesExist": true,
+        "allColumnsExist": false,
+        "status": "partial"
+      },
+      "Phase 19": {
+        "phase": "Phase 19",
+        "name": "Compliance",
+        "tables": {
+          "suppression_list": {
+            "exists": true,
+            "columns": {
+              "email": true,
+              "reason": true,
+              "suppressed_at": true
+            }
+          }
+        },
+        "allTablesExist": true,
+        "allColumnsExist": true,
+        "status": "complete"
+      },
+      "Phase 20": {
+        "phase": "Phase 20",
+        "name": "Drive Trigger",
+        "tables": {
+          "import_batches": {
+            "exists": true,
+            "columns": {
+              "file_id": true,
+              "triggered_at": false,
+              "status": true
+            }
+          }
+        },
+        "allTablesExist": true,
+        "allColumnsExist": false,
+        "status": "partial"
+      },
+      "Phase 21": {
+        "phase": "Phase 21",
+        "name": "File Parsing",
+        "tables": {
+          "staging_leads": {
+            "exists": true,
+            "columns": {
+              "raw_data": false,
+              "parsed_data": false,
+              "file_id": true
+            }
+          }
+        },
+        "allTablesExist": true,
+        "allColumnsExist": false,
+        "status": "partial"
+      },
+      "Phase 22": {
+        "phase": "Phase 22",
+        "name": "Segmentation Logic",
+        "tables": {
+          "leads": {
+            "exists": true,
+            "columns": {
+              "segment_key": false,
+              "enrichment_data": true
+            }
+          },
+          "sequences": {
+            "exists": true,
+            "columns": {
+              "segment_key": false,
+              "filter_criteria": false
+            }
+          }
+        },
+        "allTablesExist": true,
+        "allColumnsExist": false,
+        "status": "partial"
+      },
+      "Phase 23": {
+        "phase": "Phase 23",
+        "name": "Reporting",
+        "tables": {
+          "email_logs": {
+            "exists": true,
+            "columns": {
+              "segment_key": false,
+              "send_status": false,
+              "sent_at": true
+            }
+          },
+          "lead_sequences": {
+            "exists": true,
+            "columns": {
+              "lead_id": true,
+              "sequence_id": true,
+              "current_step": true
+            }
+          }
+        },
+        "allTablesExist": true,
+        "allColumnsExist": false,
+        "status": "partial"
+      }
+    },
+    "errors": [
+      {
+        "statement": "RETURN NEW",
+        "error": "syntax error at or near \"RETURN\""
+      },
+      {
+        "statement": "$$ LANGUAGE plpgsql",
+        "error": "unterminated dollar-quoted string at or near \"$$ LANGUAGE plpgsql\""
+      },
+      {
+        "statement": "normalized_name VARCHAR",
+        "error": "syntax error at or near \"normalized_name\""
+      },
+      {
+        "statement": "normalized_org VARCHAR",
+        "error": "syntax error at or near \"normalized_org\""
+      },
+      {
+        "statement": "normalized_domain VARCHAR",
+        "error": "syntax error at or near \"normalized_domain\""
+      },
+      {
+        "statement": "fingerprint_string TEXT",
+        "error": "syntax error at or near \"fingerprint_string\""
+      },
+      {
+        "statement": "BEGIN\n    -- Normalize inputs\n    normalized_email := LOWER(TRIM(COALESCE(p_email, '')))",
+        "error": "syntax error at or near \"normalized_email\""
+      },
+      {
+        "statement": "normalized_name := LOWER(REGEXP_REPLACE(COALESCE(p_name, ''), '[^a-z0-9]', '', 'g'))",
+        "error": "syntax error at or near \"normalized_name\""
+      },
+      {
+        "statement": "normalized_org := LOWER(REGEXP_REPLACE(COALESCE(p_org, ''), '[^a-z0-9]', '', 'g'))",
+        "error": "syntax error at or near \"normalized_org\""
+      },
+      {
+        "statement": "normalized_domain := LOWER(REGEXP_REPLACE(COALESCE(p_domain, ''), '^www\\.', '', 'g'))",
+        "error": "syntax error at or near \"normalized_domain\""
+      },
+      {
+        "statement": "$$ LANGUAGE plpgsql",
+        "error": "unterminated dollar-quoted string at or near \"$$ LANGUAGE plpgsql\""
+      }
+    ]
+  }
+}

@@ -93,3 +93,8 @@ After deploying, test these endpoints:
 ---
 
 **Note:** The embedded HTML files (`charter-page-final.html` and `mission-support-form.html`) already use the correct paths (without `.web`), so they don't need changes.
+
+
+
+
+

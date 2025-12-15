@@ -1,0 +1,1013 @@
+{
+  "timestamp": "2025-12-15T13:05:56.524Z",
+  "summary": {
+    "database": {
+      "tables": 0,
+      "totalRows": 0,
+      "totalWords": 0,
+      "totalCharacters": 0
+    },
+    "files": {
+      "scanned": 126,
+      "totalWords": 312026,
+      "totalCharacters": 6627404,
+      "byType": 12
+    },
+    "network": {
+      "emailNodes": 0,
+      "connections": 0
+    },
+    "audit": {
+      "phasesAudited": 12,
+      "completePhases": 0
+    }
+  },
+  "database": {
+    "tables": {},
+    "totalRows": 0,
+    "totalWords": 0,
+    "totalCharacters": 0
+  },
+  "files": {
+    "scanned": 126,
+    "totalWords": 312026,
+    "totalCharacters": 6627404,
+    "byType": {
+      ".api": {
+        "count": 1,
+        "totalWords": 97,
+        "totalCharacters": 719,
+        "files": [
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/Dockerfile.api",
+            "wordCount": 97,
+            "charCount": 719,
+            "size": 719
+          }
+        ]
+      },
+      ".json": {
+        "count": 16,
+        "totalWords": 17007,
+        "totalCharacters": 311435,
+        "files": [
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/FINAL_COMPLETION_REPORT.json",
+            "wordCount": 467,
+            "charCount": 4465,
+            "size": 4615
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/api-payloads/anymail-payload-template.json",
+            "wordCount": 29,
+            "charCount": 386,
+            "size": 386
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/api-payloads/gas-execution-payload.json",
+            "wordCount": 9,
+            "charCount": 114,
+            "size": 114
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/api-payloads/hubspot-batch-update-template.json",
+            "wordCount": 18,
+            "charCount": 232,
+            "size": 232
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/api-payloads/hubspot-export-payload.json",
+            "wordCount": 38,
+            "charCount": 588,
+            "size": 588
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/api-payloads/hubspot-ready-to-send-list.json",
+            "wordCount": 28,
+            "charCount": 304,
+            "size": 304
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/comprehensive-database-crawl-report.json",
+            "wordCount": 1730,
+            "charCount": 30764,
+            "size": 30804
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/comprehensive-error-scan-report.json",
+            "wordCount": 1441,
+            "charCount": 26383,
+            "size": 26419
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/deployment-verification-report.json",
+            "wordCount": 12,
+            "charCount": 91,
+            "size": 91
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/email-nodes-connection-report.json",
+            "wordCount": 302,
+            "charCount": 5892,
+            "size": 5892
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/google-apps-script/.clasp.json",
+            "wordCount": 6,
+            "charCount": 98,
+            "size": 98
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/google-apps-script/appsscript.json",
+            "wordCount": 44,
+            "charCount": 651,
+            "size": 651
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/master-integration-verification-report.json",
+            "wordCount": 203,
+            "charCount": 2667,
+            "size": 2667
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/master-verification-report.json",
+            "wordCount": 997,
+            "charCount": 10997,
+            "size": 10997
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/package-lock.json",
+            "wordCount": 11575,
+            "charCount": 226524,
+            "size": 226524
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/package.json",
+            "wordCount": 108,
+            "charCount": 1279,
+            "size": 1279
+          }
+        ]
+      },
+      ".txt": {
+        "count": 2,
+        "totalWords": 247,
+        "totalCharacters": 1921,
+        "files": [
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/FINAL_STATUS_REPORT.txt",
+            "wordCount": 168,
+            "charCount": 1097,
+            "size": 1113
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/QUICK_START.txt",
+            "wordCount": 79,
+            "charCount": 824,
+            "size": 832
+          }
+        ]
+      },
+      ".md": {
+        "count": 30,
+        "totalWords": 28136,
+        "totalCharacters": 221427,
+        "files": [
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/README.md",
+            "wordCount": 559,
+            "charCount": 3783,
+            "size": 3809
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/tests/verification-checklist.md",
+            "wordCount": 1081,
+            "charCount": 6825,
+            "size": 6905
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/✅_CLI_PUSH_COMPLETE.md",
+            "wordCount": 450,
+            "charCount": 3157,
+            "size": 3221
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/✅_COMPLETE_DATABASE_INTEGRATION.md",
+            "wordCount": 1021,
+            "charCount": 7358,
+            "size": 7628
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/✅_DATABASE_AND_FLOW_COMPLETE.md",
+            "wordCount": 781,
+            "charCount": 7166,
+            "size": 9114
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/✅_EVERYTHING_PREPARED.md",
+            "wordCount": 1327,
+            "charCount": 12772,
+            "size": 15292
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/✅_FUNCTION_ADDED.md",
+            "wordCount": 224,
+            "charCount": 1618,
+            "size": 1644
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/✅_INTEGRATION_COMPLETE.md",
+            "wordCount": 1109,
+            "charCount": 7863,
+            "size": 7967
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/✅_LIVE_TEST_READY.md",
+            "wordCount": 947,
+            "charCount": 6613,
+            "size": 6769
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/✅_SEQUENCE_TIMING_COMPLETE.md",
+            "wordCount": 844,
+            "charCount": 5800,
+            "size": 5850
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/✅_SYSTEM_UPDATE_COMPLETE.md",
+            "wordCount": 552,
+            "charCount": 4166,
+            "size": 4260
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/🎯_FINAL_LAUNCH_STATUS.md",
+            "wordCount": 436,
+            "charCount": 2962,
+            "size": 3050
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/🎯_FINAL_TODO_LIST.md",
+            "wordCount": 750,
+            "charCount": 5502,
+            "size": 5638
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/🎯_MASTER_INTEGRATION_STATUS.md",
+            "wordCount": 907,
+            "charCount": 6466,
+            "size": 6712
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/🎯_SYSTEM_COMPLETE.md",
+            "wordCount": 728,
+            "charCount": 4900,
+            "size": 5030
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/📊_LARGE_BATCH_PROCESSING.md",
+            "wordCount": 633,
+            "charCount": 4292,
+            "size": 4348
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/📊_SIMULATION_RESULTS.md",
+            "wordCount": 780,
+            "charCount": 5443,
+            "size": 5585
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/📋_COMPLETE_FLOW_EXPLANATION.md",
+            "wordCount": 1862,
+            "charCount": 15964,
+            "size": 19684
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/📋_COMPLETE_REMAINING_TASKS.md",
+            "wordCount": 1230,
+            "charCount": 8725,
+            "size": 8873
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/📋_COMPLETE_SYSTEM_FLOW.md",
+            "wordCount": 2092,
+            "charCount": 21107,
+            "size": 24465
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/📧_SEQUENCE_TIMING_GUIDE.md",
+            "wordCount": 766,
+            "charCount": 5141,
+            "size": 5227
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/🔄_COMPLETE_FLOW_EXPLANATION.md",
+            "wordCount": 2729,
+            "charCount": 24374,
+            "size": 30598
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/🔄_HOW_IT_WORKS.md",
+            "wordCount": 1876,
+            "charCount": 18797,
+            "size": 22377
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/🔧_FIND_CREATEHUBSPOTPROPERTIES.md",
+            "wordCount": 340,
+            "charCount": 2142,
+            "size": 2170
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/🔧_FOLDER_ACCESS_FIX.md",
+            "wordCount": 627,
+            "charCount": 3978,
+            "size": 4024
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/🔧_TRIGGER_FIX_INSTRUCTIONS.md",
+            "wordCount": 565,
+            "charCount": 3819,
+            "size": 3845
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/🚀_FINAL_LAUNCH_CHECKLIST.md",
+            "wordCount": 791,
+            "charCount": 5662,
+            "size": 5822
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/🚀_LIVE_TEST_EXECUTION.md",
+            "wordCount": 539,
+            "charCount": 3955,
+            "size": 3995
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/🚀_LIVE_TEST_LAUNCH_GUIDE.md",
+            "wordCount": 908,
+            "charCount": 6557,
+            "size": 6671
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/🧪_SIMULATION_TEST_RESULTS.md",
+            "wordCount": 682,
+            "charCount": 4520,
+            "size": 4644
+          }
+        ]
+      },
+      ".sh": {
+        "count": 13,
+        "totalWords": 2598,
+        "totalCharacters": 20053,
+        "files": [
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/api-scripts/gas-execute-function.sh",
+            "wordCount": 27,
+            "charCount": 395,
+            "size": 395
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/api-scripts/hubspot-batch-update.sh",
+            "wordCount": 25,
+            "charCount": 318,
+            "size": 318
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/api-scripts/hubspot-create-list.sh",
+            "wordCount": 27,
+            "charCount": 297,
+            "size": 297
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/api-scripts/hubspot-export-contacts.sh",
+            "wordCount": 45,
+            "charCount": 513,
+            "size": 513
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/execute-live-test.sh",
+            "wordCount": 175,
+            "charCount": 1160,
+            "size": 1174
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/launch-live-test.sh",
+            "wordCount": 258,
+            "charCount": 1919,
+            "size": 1949
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/apply-database-complete.sh",
+            "wordCount": 303,
+            "charCount": 2454,
+            "size": 2486
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/deploy.sh",
+            "wordCount": 631,
+            "charCount": 4529,
+            "size": 4597
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/push-all-clis.sh",
+            "wordCount": 318,
+            "charCount": 2652,
+            "size": 2674
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/push-all-updates.sh",
+            "wordCount": 366,
+            "charCount": 2633,
+            "size": 2677
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/quick-start.sh",
+            "wordCount": 156,
+            "charCount": 1061,
+            "size": 1081
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/run-master-verification.sh",
+            "wordCount": 88,
+            "charCount": 775,
+            "size": 1005
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/start.sh",
+            "wordCount": 179,
+            "charCount": 1347,
+            "size": 1363
+          }
+        ]
+      },
+      ".js": {
+        "count": 50,
+        "totalWords": 35605,
+        "totalCharacters": 372282,
+        "files": [
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/api-scripts/hubspot-export.js",
+            "wordCount": 121,
+            "charCount": 1394,
+            "size": 1394
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/config/api_keys.js",
+            "wordCount": 226,
+            "charCount": 2622,
+            "size": 2622
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/database/setup.js",
+            "wordCount": 149,
+            "charCount": 1539,
+            "size": 1549
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/examples/example-usage.js",
+            "wordCount": 473,
+            "charCount": 4849,
+            "size": 4849
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/apply-database-and-verify-flow.js",
+            "wordCount": 892,
+            "charCount": 8779,
+            "size": 8849
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/apply-entire-database.js",
+            "wordCount": 952,
+            "charCount": 11204,
+            "size": 11242
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/cleanup-old-files.js",
+            "wordCount": 311,
+            "charCount": 2943,
+            "size": 2967
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/comprehensive-database-crawler.js",
+            "wordCount": 1335,
+            "charCount": 15251,
+            "size": 15299
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/comprehensive-error-scan.js",
+            "wordCount": 1346,
+            "charCount": 14552,
+            "size": 14574
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/connect-email-nodes.js",
+            "wordCount": 695,
+            "charCount": 7692,
+            "size": 7728
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/execute-live-test-via-api.js",
+            "wordCount": 485,
+            "charCount": 5142,
+            "size": 5170
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/final-system-completion.js",
+            "wordCount": 1601,
+            "charCount": 16622,
+            "size": 16844
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/live-test-setup.js",
+            "wordCount": 1356,
+            "charCount": 14276,
+            "size": 14330
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/master-deployment-verification.js",
+            "wordCount": 849,
+            "charCount": 8710,
+            "size": 8780
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/master-integration-verification.js",
+            "wordCount": 951,
+            "charCount": 12261,
+            "size": 12305
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/prepare-api-imports-exports.js",
+            "wordCount": 769,
+            "charCount": 8852,
+            "size": 8870
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/segmentation-analysis.js",
+            "wordCount": 928,
+            "charCount": 8771,
+            "size": 8789
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/send-live-test-email.js",
+            "wordCount": 582,
+            "charCount": 5267,
+            "size": 5305
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/simulate-full-pipeline.js",
+            "wordCount": 2379,
+            "charCount": 26553,
+            "size": 26755
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/test-folder-access.js",
+            "wordCount": 125,
+            "charCount": 1114,
+            "size": 1126
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/test-system.js",
+            "wordCount": 631,
+            "charCount": 6580,
+            "size": 7170
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/update-all-components.js",
+            "wordCount": 613,
+            "charCount": 6378,
+            "size": 6408
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/verify-hubspot-setup.js",
+            "wordCount": 213,
+            "charCount": 2239,
+            "size": 2263
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/verify-system.js",
+            "wordCount": 624,
+            "charCount": 6438,
+            "size": 7032
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/src/index.js",
+            "wordCount": 264,
+            "charCount": 2230,
+            "size": 2236
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/src/middleware/rateLimiter.js",
+            "wordCount": 95,
+            "charCount": 958,
+            "size": 958
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/src/monitoring/healthCheck.js",
+            "wordCount": 481,
+            "charCount": 4319,
+            "size": 4319
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/src/orchestrator.js",
+            "wordCount": 683,
+            "charCount": 7155,
+            "size": 7163
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/src/services/anymail.js",
+            "wordCount": 431,
+            "charCount": 4337,
+            "size": 4337
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/src/services/gmail.js",
+            "wordCount": 549,
+            "charCount": 5885,
+            "size": 5885
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/src/services/googleDrive.js",
+            "wordCount": 655,
+            "charCount": 6303,
+            "size": 6303
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/src/services/hubspot.js",
+            "wordCount": 829,
+            "charCount": 8340,
+            "size": 8340
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/src/services/leadProcessor.js",
+            "wordCount": 793,
+            "charCount": 8138,
+            "size": 8138
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/src/services/paymentReceipt.js",
+            "wordCount": 683,
+            "charCount": 7690,
+            "size": 7690
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/src/services/qualification.js",
+            "wordCount": 318,
+            "charCount": 3232,
+            "size": 3232
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/src/services/sequenceEngine.js",
+            "wordCount": 970,
+            "charCount": 9714,
+            "size": 9714
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/src/utils/cache.js",
+            "wordCount": 251,
+            "charCount": 1928,
+            "size": 1928
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/src/utils/database.js",
+            "wordCount": 578,
+            "charCount": 5761,
+            "size": 5761
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/src/utils/emailTemplates.js",
+            "wordCount": 881,
+            "charCount": 8843,
+            "size": 8873
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/src/utils/logger.js",
+            "wordCount": 84,
+            "charCount": 960,
+            "size": 960
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/src/utils/oauth.js",
+            "wordCount": 397,
+            "charCount": 3943,
+            "size": 3943
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/src/utils/oauthManager.js",
+            "wordCount": 17,
+            "charCount": 130,
+            "size": 130
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/src/utils/queue.js",
+            "wordCount": 320,
+            "charCount": 3130,
+            "size": 3130
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/src/utils/rateLimiter.js",
+            "wordCount": 307,
+            "charCount": 2605,
+            "size": 2605
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/src/utils/retry.js",
+            "wordCount": 329,
+            "charCount": 2669,
+            "size": 2669
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/src/utils/validators.js",
+            "wordCount": 658,
+            "charCount": 5580,
+            "size": 5580
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/tests/full-system-simulation.js",
+            "wordCount": 1320,
+            "charCount": 12132,
+            "size": 12162
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/tests/master-automation-verification.js",
+            "wordCount": 2629,
+            "charCount": 30546,
+            "size": 33794
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/tests/quick-system-check.js",
+            "wordCount": 585,
+            "charCount": 5723,
+            "size": 5747
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/tests/test-pipeline-interactive.js",
+            "wordCount": 1892,
+            "charCount": 20003,
+            "size": 20027
+          }
+        ]
+      },
+      ".sql": {
+        "count": 1,
+        "totalWords": 1066,
+        "totalCharacters": 10745,
+        "files": [
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/database/schema.sql",
+            "wordCount": 1066,
+            "charCount": 10745,
+            "size": 10745
+          }
+        ]
+      },
+      ".yml": {
+        "count": 1,
+        "totalWords": 188,
+        "totalCharacters": 2417,
+        "files": [
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/docker-compose.yml",
+            "wordCount": 188,
+            "charCount": 2417,
+            "size": 2417
+          }
+        ]
+      },
+      ".html": {
+        "count": 3,
+        "totalWords": 1906,
+        "totalCharacters": 27755,
+        "files": [
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/email-template-gpt-verification-report.html",
+            "wordCount": 235,
+            "charCount": 2772,
+            "size": 2778
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/master-verification-report.html",
+            "wordCount": 1137,
+            "charCount": 19501,
+            "size": 19717
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/📧_EMAIL_PREVIEW.html",
+            "wordCount": 534,
+            "charCount": 5482,
+            "size": 5500
+          }
+        ]
+      },
+      ".csv": {
+        "count": 3,
+        "totalWords": 30,
+        "totalCharacters": 918,
+        "files": [
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/examples/test-file.csv",
+            "wordCount": 11,
+            "charCount": 392,
+            "size": 392
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/test-leads.csv",
+            "wordCount": 14,
+            "charCount": 375,
+            "size": 375
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/test-live-single-email.csv",
+            "wordCount": 5,
+            "charCount": 151,
+            "size": 151
+          }
+        ]
+      },
+      ".gs": {
+        "count": 3,
+        "totalWords": 7977,
+        "totalCharacters": 79308,
+        "files": [
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/google-apps-script/Code.gs",
+            "wordCount": 6869,
+            "charCount": 67508,
+            "size": 67648
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/google-apps-script/HubSpotSetup.gs",
+            "wordCount": 585,
+            "charCount": 5808,
+            "size": 5818
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/google-apps-script/TEST_CONFIG.gs",
+            "wordCount": 523,
+            "charCount": 5992,
+            "size": 6000
+          }
+        ]
+      },
+      ".log": {
+        "count": 3,
+        "totalWords": 217169,
+        "totalCharacters": 5578424,
+        "files": [
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/logs/combined.log",
+            "wordCount": 134823,
+            "charCount": 3636144,
+            "size": 3643930
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/logs/error.log",
+            "wordCount": 82157,
+            "charCount": 1937114,
+            "size": 1937114
+          },
+          {
+            "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/logs/pipeline.log",
+            "wordCount": 189,
+            "charCount": 5166,
+            "size": 5166
+          }
+        ]
+      }
+    }
+  },
+  "network": {
+    "connections": [],
+    "nodes": [],
+    "emailNodes": []
+  },
+  "audit": {
+    "phases": {
+      "Phase 1-2": {
+        "phase": "Phase 1-2",
+        "components": [
+          "Data Ingestion",
+          "Standardization"
+        ],
+        "databaseConnected": false,
+        "emailNodesConnected": false,
+        "filesFound": true,
+        "status": "pending"
+      },
+      "Phase 3": {
+        "phase": "Phase 3",
+        "components": [
+          "Core Execution",
+          "Hyper-Personalization"
+        ],
+        "databaseConnected": false,
+        "emailNodesConnected": false,
+        "filesFound": true,
+        "status": "pending"
+      },
+      "Phase 4-5": {
+        "phase": "Phase 4-5",
+        "components": [
+          "Audit Trail",
+          "HubSpot Sync"
+        ],
+        "databaseConnected": false,
+        "emailNodesConnected": false,
+        "filesFound": true,
+        "status": "pending"
+      },
+      "Phase 10-12": {
+        "phase": "Phase 10-12",
+        "components": [
+          "Resilience",
+          "Error Handling"
+        ],
+        "databaseConnected": true,
+        "emailNodesConnected": false,
+        "filesFound": true,
+        "status": "partial"
+      },
+      "Phase 19": {
+        "phase": "Phase 19",
+        "components": [
+          "Compliance"
+        ],
+        "databaseConnected": true,
+        "emailNodesConnected": false,
+        "filesFound": true,
+        "status": "partial"
+      },
+      "Phase 20": {
+        "phase": "Phase 20",
+        "components": [
+          "Drive Trigger"
+        ],
+        "databaseConnected": true,
+        "emailNodesConnected": false,
+        "filesFound": true,
+        "status": "partial"
+      },
+      "Phase 21": {
+        "phase": "Phase 21",
+        "components": [
+          "File Parsing"
+        ],
+        "databaseConnected": false,
+        "emailNodesConnected": false,
+        "filesFound": true,
+        "status": "pending"
+      },
+      "Phase 22": {
+        "phase": "Phase 22",
+        "components": [
+          "Segmentation Logic"
+        ],
+        "databaseConnected": false,
+        "emailNodesConnected": false,
+        "filesFound": true,
+        "status": "pending"
+      },
+      "Phase 23": {
+        "phase": "Phase 23",
+        "components": [
+          "Reporting"
+        ],
+        "databaseConnected": false,
+        "emailNodesConnected": false,
+        "filesFound": true,
+        "status": "pending"
+      },
+      "Phase 24": {
+        "phase": "Phase 24",
+        "components": [
+          "Go-Live Readiness"
+        ],
+        "databaseConnected": true,
+        "emailNodesConnected": false,
+        "filesFound": true,
+        "status": "partial"
+      },
+      "Phase 25": {
+        "phase": "Phase 25",
+        "components": [
+          "Training"
+        ],
+        "databaseConnected": true,
+        "emailNodesConnected": false,
+        "filesFound": true,
+        "status": "partial"
+      },
+      "Phase 26": {
+        "phase": "Phase 26",
+        "components": [
+          "Post-Mortem"
+        ],
+        "databaseConnected": true,
+        "emailNodesConnected": false,
+        "filesFound": true,
+        "status": "partial"
+      }
+    },
+    "integrations": {},
+    "completeness": {}
+  }
+}

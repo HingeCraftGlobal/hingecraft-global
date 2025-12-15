@@ -11,8 +11,7 @@ const { hubspotRateLimiter } = require('../utils/rateLimiter');
 
 class HubSpotService {
   constructor() {
-    // Use Personal Access Key if available, otherwise fall back to API key
-    this.apiKey = config.hubspot.personalAccessKey || config.hubspot.apiKey;
+    this.apiKey = config.hubspot.apiKey;
     this.portalId = config.hubspot.portalId;
     this.baseUrl = config.hubspot.baseUrl;
     this.client = axios.create({
@@ -23,6 +22,23 @@ class HubSpotService {
       },
       timeout: 30000
     });
+  }
+
+  /**
+   * Test HubSpot API connection
+   */
+  async testConnection() {
+    try {
+      const response = await this.client.get('/crm/v3/objects/contacts', {
+        params: { limit: 1 }
+      });
+      return { success: true, data: response.data };
+    } catch (error) {
+      return { 
+        success: false, 
+        error: error.response?.data?.message || error.message 
+      };
+    }
   }
 
   /**

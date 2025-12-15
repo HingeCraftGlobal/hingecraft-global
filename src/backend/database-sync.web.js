@@ -7,3 +7,8 @@ import { verifyAllCollections, syncPaymentData, getDatabaseStats, cleanupExpired
 
 // Re-export all functions for HTTP access
 export { verifyAllCollections, syncPaymentData, getDatabaseStats, cleanupExpiredPrefills };
+
+
+
+
+

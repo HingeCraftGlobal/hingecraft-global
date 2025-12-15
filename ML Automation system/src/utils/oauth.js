@@ -21,15 +21,10 @@ class OAuthManager {
    * Initialize OAuth2 client
    */
   initialize() {
-    // Use environment variable for redirect URI, or default to external port
-    const redirectUri = process.env.OAUTH_REDIRECT_URI || 
-                       process.env.REDIRECT_URI || 
-                       'http://localhost:7101/oauth2callback';
-    
     this.oauth2Client = new google.auth.OAuth2(
       config.google.clientId,
       config.google.clientSecret,
-      redirectUri
+      'http://localhost:3001/oauth2callback'
     );
 
     // Load existing tokens
@@ -51,16 +46,10 @@ class OAuthManager {
       this.initialize();
     }
 
-    // Get redirect URI from environment or use default
-    const redirectUri = process.env.OAUTH_REDIRECT_URI || 
-                       process.env.REDIRECT_URI || 
-                       'http://localhost:7101/oauth2callback';
-
     return this.oauth2Client.generateAuthUrl({
       access_type: 'offline',
       scope: config.google.scopes,
-      prompt: 'consent',
-      redirect_uri: redirectUri // Explicitly include redirect_uri
+      prompt: 'consent'
     });
   }
 

@@ -215,3 +215,8 @@ import { fiatButtonClick } from 'backend/charter-page-middleware.web'; // ❌ Wr
 ---
 
 **Next Step:** The page-level code should now work immediately. Test it in Wix Editor!
+
+
+
+
+

@@ -1,0 +1,27 @@
+🚀 QUICK START GUIDE
+====================
+
+1. LOGIN TO CLASP:
+   clasp login
+
+2. PUSH TO GOOGLE APPS SCRIPT:
+   cd google-apps-script && clasp push
+
+3. UPDATE SCRIPT PROPERTIES:
+   Go to: https://script.google.com/home/projects/1H7rqzgDUSZHvDU2YPM_WJFjuLwdjhOo3HYwf4Ya-9wBR26Fz2tSTmFsS/edit
+   Add: MONITORED_FOLDER_ID = 1iTirAf6yGxP9ef2sxXfohJRmQEJoF-gF
+
+4. GRANT SERVICE ACCOUNT ACCESS:
+   Share folder: https://drive.google.com/drive/folders/1iTirAf6yGxP9ef2sxXfohJRmQEJoF-gF
+   With: hingecraft-hubspot-automation@automations-ml.iam.gserviceaccount.com
+   Permission: Viewer
+
+5. SET UP TRIGGER:
+   In Apps Script: Triggers → Add Trigger
+   Function: checkFolderForNewFiles
+   Event: Time-driven, Every 5 minutes
+
+6. CREATE HUBSPOT LIST:
+   Contacts → Lists → Create "Ready to Send"
+   Criteria: send_email_ready = true
+

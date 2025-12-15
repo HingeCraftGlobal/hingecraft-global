@@ -1,0 +1,12 @@
+{
+  "inputs": [
+    {
+      "id": "CONTACT_ID_HERE",
+      "properties": {
+        "last_gmail_send_id": "GMAIL_SEND_ID_HERE",
+        "last_email_sent_date": "TIMESTAMP_HERE",
+        "send_email_ready": "false"
+      }
+    }
+  ]
+}

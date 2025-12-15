@@ -160,19 +160,9 @@ class LeadProcessor {
             status: 'validated'
           });
 
-          // Enrich lead if email is missing - use Anymail to find email
+          // Enrich lead if email is missing
           if (!normalized.email && normalized.website) {
-            logger.info(`Email missing for lead, attempting enrichment via Anymail: ${normalized.website}`);
             await this.enrichLead(normalized);
-          }
-          
-          // Also try to find email if we have organization/name but no email
-          if (!normalized.email && (normalized.organization || normalized.first_name || normalized.last_name)) {
-            const domain = normalized.website ? normalized.website.replace(/^https?:\/\//, '').split('/')[0] : null;
-            if (domain) {
-              logger.info(`Attempting to find email via Anymail for: ${normalized.first_name} ${normalized.last_name} at ${domain}`);
-              await this.enrichLead(normalized);
-            }
           }
 
           // Insert into leads table
@@ -239,29 +229,12 @@ class LeadProcessor {
 
   /**
    * Enrich lead with missing email using Anymail
-   * Collects emails from lead sheet data using Anymail API
    */
   async enrichLead(lead) {
     try {
-      // Extract domain from website if available
-      let domain = null;
-      if (lead.website) {
-        domain = lead.website.replace(/^https?:\/\//, '').split('/')[0].toLowerCase();
-      }
-      
-      // If no domain, try to extract from organization name
-      if (!domain && lead.organization) {
-        // Try common domain patterns
-        const orgLower = lead.organization.toLowerCase().replace(/\s+/g, '');
-        domain = orgLower + '.com'; // Fallback pattern
-      }
-      
-      if (!domain) {
-        logger.warn('No domain available for email enrichment');
-        return lead;
-      }
-      
-      logger.info(`Finding email via Anymail for: ${lead.first_name} ${lead.last_name} at ${domain}`);
+      if (!lead.website) return lead;
+
+      const domain = lead.website.replace(/^https?:\/\//, '').split('/')[0];
       
       const emailResult = await anymail.findEmail(
         domain,
@@ -271,91 +244,18 @@ class LeadProcessor {
       );
 
       if (emailResult && emailResult.email) {
-        lead.email = emailResult.email.toLowerCase().trim();
+        lead.email = emailResult.email;
         lead.enrichment_data = {
           email_found: true,
-          confidence: emailResult.confidence || 0,
-          sources: emailResult.sources || [],
-          enriched_at: new Date().toISOString(),
-          enriched_via: 'anymail'
-        };
-        logger.info(`Email found via Anymail: ${lead.email} (confidence: ${emailResult.confidence})`);
-      } else {
-        logger.warn(`No email found via Anymail for ${lead.first_name} ${lead.last_name} at ${domain}`);
-        lead.enrichment_data = {
-          email_found: false,
-          attempted_at: new Date().toISOString(),
-          enriched_via: 'anymail'
+          confidence: emailResult.confidence,
+          sources: emailResult.sources
         };
       }
 
       return lead;
     } catch (error) {
-      logger.error('Error enriching lead via Anymail:', error);
-      lead.enrichment_data = {
-        email_found: false,
-        error: error.message,
-        attempted_at: new Date().toISOString()
-      };
+      logger.error('Error enriching lead:', error);
       return lead;
-    }
-  }
-  
-  /**
-   * Batch enrich multiple leads using Anymail
-   * More efficient for processing multiple leads at once
-   */
-  async batchEnrichLeads(leads) {
-    try {
-      const leadsToEnrich = leads.filter(lead => !lead.email && (lead.website || lead.organization));
-      
-      if (leadsToEnrich.length === 0) {
-        return leads;
-      }
-      
-      logger.info(`Batch enriching ${leadsToEnrich.length} leads via Anymail`);
-      
-      // Prepare contacts for batch find
-      const contacts = leadsToEnrich.map(lead => {
-        let domain = null;
-        if (lead.website) {
-          domain = lead.website.replace(/^https?:\/\//, '').split('/')[0].toLowerCase();
-        } else if (lead.organization) {
-          domain = lead.organization.toLowerCase().replace(/\s+/g, '') + '.com';
-        }
-        
-        return {
-          domain: domain,
-          firstName: lead.first_name,
-          lastName: lead.last_name,
-          company: lead.organization,
-          lead: lead
-        };
-      });
-      
-      // Use Anymail batch find
-      const results = await anymail.batchFindEmails(contacts);
-      
-      // Update leads with found emails
-      results.forEach((result, index) => {
-        if (result && result.email) {
-          const lead = leadsToEnrich[index];
-          lead.email = result.email.toLowerCase().trim();
-          lead.enrichment_data = {
-            email_found: true,
-            confidence: result.confidence || 0,
-            sources: result.sources || [],
-            enriched_at: new Date().toISOString(),
-            enriched_via: 'anymail_batch'
-          };
-          logger.info(`Batch enriched: Found email ${lead.email} for ${lead.first_name} ${lead.last_name}`);
-        }
-      });
-      
-      return leads;
-    } catch (error) {
-      logger.error('Error batch enriching leads:', error);
-      return leads;
     }
   }
 
