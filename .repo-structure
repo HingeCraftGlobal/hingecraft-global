@@ -1,0 +1,21 @@
+# HingeCraft Global Repository Structure
+
+## Core Directories
+- src/backend/ - Backend Velo functions
+- public/pages/ - Frontend HTML pages
+- docs/ - All documentation organized by category
+- scripts/ - All scripts organized by purpose
+- legal-pages/ - Legal page HTML files
+- database/ - Database schemas and migrations
+
+## Documentation Organization
+- docs/deployment/ - Deployment guides
+- docs/database/ - Database documentation
+- docs/api/ - API integration docs
+- docs/troubleshooting/ - Troubleshooting guides
+- docs/guides/ - User guides
+- docs/reference/ - Quick reference docs
+
+## Archive
+- archive/old-docs/ - Old/duplicate documentation
+- archive/old-scripts/ - Old/duplicate scripts

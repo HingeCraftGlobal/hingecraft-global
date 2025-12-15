@@ -1,0 +1,133 @@
+{
+  "timestamp": "2025-12-15T17:14:59.252Z",
+  "phases": {
+    "phase1": {
+      "steps": [
+        {
+          "step": 1,
+          "name": "Set Trigger",
+          "action": "Set checkFolderForNewFiles to run every 5 minutes",
+          "expected": "Script executes automatically",
+          "verification": "Check Apps Script Executions log for successful run",
+          "status": "pending"
+        },
+        {
+          "step": 2,
+          "name": "Create Test File",
+          "action": "Drop test file and wait for processing",
+          "expected": "Email 1 sent immediately, step set to 2, timestamp set",
+          "verification": [
+            "Gmail Sent folder contains Email 1",
+            "HubSpot: automation_next_email_step = 2",
+            "HubSpot: automation_next_send_timestamp = Now + 24 hours"
+          ],
+          "status": "pending"
+        },
+        {
+          "step": 3,
+          "name": "Test Tracking",
+          "action": "Open email and click link",
+          "expected": "Tracking events logged to GA4 and HubSpot",
+          "verification": [
+            "HubSpot: total_emails_opened incremented",
+            "HubSpot: total_clicks incremented",
+            "GA4: email_opened event",
+            "GA4: link_clicked event"
+          ],
+          "status": "pending"
+        }
+      ],
+      "passed": 0,
+      "failed": 0
+    },
+    "phase2": {
+      "steps": [
+        {
+          "step": 4,
+          "name": "Observe Timer",
+          "action": "Monitor trigger runs for several hours",
+          "expected": "Email 2 NOT sent, skipping messages in log",
+          "verification": "Execution log shows skipping messages",
+          "status": "pending"
+        }
+      ],
+      "passed": 0,
+      "failed": 0
+    },
+    "phase3": {
+      "steps": [
+        {
+          "step": 5,
+          "name": "Wait 24 Hours",
+          "action": "Wait for 24-hour timestamp to pass",
+          "expected": "Contact identified as eligible",
+          "verification": "Execution log shows successful run without skipping",
+          "status": "pending"
+        },
+        {
+          "step": 6,
+          "name": "Send Email 2",
+          "action": "sequenceManager() sends Email 2",
+          "expected": "Email 2 sent, step advanced to 3, timestamp updated",
+          "verification": [
+            "Gmail Sent folder contains Email 2",
+            "HubSpot: automation_next_email_step = 3",
+            "HubSpot: automation_next_send_timestamp = Now + 24 hours"
+          ],
+          "status": "pending"
+        }
+      ],
+      "passed": 0,
+      "failed": 0
+    }
+  },
+  "checklist": {
+    "phase1": {
+      "trigger": {
+        "action": "Set checkFolderForNewFiles trigger to Every 5 minutes",
+        "verification": "Apps Script Executions log shows successful run",
+        "status": "pending"
+      },
+      "testFile": {
+        "action": "Upload test_contact_1.csv to monitored Drive folder",
+        "verification": [
+          "Gmail Sent folder: Email 1 present",
+          "HubSpot: Contact created",
+          "HubSpot: automation_next_email_step = 2",
+          "HubSpot: automation_next_send_timestamp set"
+        ],
+        "status": "pending"
+      },
+      "tracking": {
+        "action": "Open Email 1, click link",
+        "verification": [
+          "HubSpot: total_emails_opened > 0",
+          "HubSpot: total_clicks > 0",
+          "GA4 Realtime: email_opened event",
+          "GA4 Realtime: link_clicked event"
+        ],
+        "status": "pending"
+      }
+    },
+    "phase2": {
+      "delay": {
+        "action": "Monitor for several hours",
+        "verification": "Execution log shows skipping messages",
+        "status": "pending"
+      }
+    },
+    "phase3": {
+      "advancement": {
+        "action": "Wait 24 hours, monitor next run",
+        "verification": [
+          "Execution log: No skipping message",
+          "Gmail Sent folder: Email 2 present",
+          "HubSpot: automation_next_email_step = 3",
+          "HubSpot: automation_next_send_timestamp updated"
+        ],
+        "status": "pending"
+      }
+    }
+  },
+  "testFile": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/test_contact_1.csv"
+}

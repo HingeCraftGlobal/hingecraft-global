@@ -1,204 +1,177 @@
-# HingeCraft Global - Complete Payment & Membership System
+# HingeCraft Global - Payment & Membership System
+
+**Production-Ready Wix Velo Application**
+
+[![Status](https://img.shields.io/badge/status-production--ready-success)](https://github.com/departments-commits/hingecraft-global)
+[![Wix Dev](https://img.shields.io/badge/wix--dev-active-blue)](https://www.wix.com/velo)
+
+---
 
 ## 🚀 Quick Start
 
-### 1. Upload Backend Files
-Upload all files from `src/backend/` to Wix Dev Mode → Backend → Functions
+### **For Developers:**
+```bash
+# Clone repository
+git clone https://github.com/departments-commits/hingecraft-global.git
+cd hingecraft-global
 
-### 2. Run Master Initialization
-```javascript
-POST /_functions/master-initialization/masterInitialize
+# Start Wix Dev Mode
+wix dev
 ```
 
-### 3. Verify Health
-```javascript
-GET /_functions/master-initialization/quickHealthCheck
-```
-
-### 4. Publish Site
-Publish to Test Site or Live Site in Wix Editor
+### **For Deployment:**
+See [docs/deployment/COMPLETE_DEPLOYMENT_GUIDE.md](docs/deployment/COMPLETE_DEPLOYMENT_GUIDE.md)
 
 ---
 
-## 📋 System Overview
+## 📋 Project Overview
 
-**HingeCraft Global** is a complete payment and membership system built for Wix, featuring:
+HingeCraft Global is a comprehensive payment and membership system built on Wix Velo, supporting:
 
-- 💳 **Stripe Integration** - Card and ACH payments
-- ₿ **Crypto Payments** - NOWPayments integration (SOL, XLM, BTC, ETH)
-- 📧 **Email Notifications** - SendGrid integration
-- 💬 **Chat System** - Real-time chat functionality
-- 📚 **RAG System** - Content indexing and retrieval
-- 🔄 **Database Sync** - Automated data synchronization
-- 🧪 **Testing Suite** - Comprehensive test coverage
-- 📊 **Health Monitoring** - API and system health checks
+- **Payment Methods:** Stripe (Card/ACH), NOWPayments (Crypto)
+- **Membership Tiers:** BASIC ($1), PREMIER ($2-$20), VIP ($30+)
+- **Crypto Minimum:** $30 enforced across all payment flows
+- **Data Flow:** Mission Support Form → Charter Page → Payment Processing
+- **Database:** 7 collections for payments, members, intents, and content
 
 ---
 
-## 🏗️ Architecture
-
-```
-Frontend (HTML/React)
-    ↓
-HTTP Endpoints (.web.js) OR Direct Imports (.jsw)
-    ↓
-Backend Functions
-    ├─ Payment Processing (Stripe/NOWPayments)
-    ├─ Database Operations (Wix Collections)
-    ├─ Email Notifications (SendGrid)
-    └─ System Management
-    ↓
-Webhook Handlers
-    ↓
-Data Sync
-    ↓
-Member Creation
-```
-
----
-
-## 📁 Project Structure
+## 📁 Repository Structure
 
 ```
 hingecraft-global/
-├── src/backend/          # Backend functions
-│   ├── *.jsw            # Direct import modules
-│   ├── *.web.js         # HTTP-callable modules
-│   └── webhooks/        # Webhook handlers
-├── public/pages/        # Frontend HTML pages
-├── Documentation/       # Complete documentation
-└── README.md           # This file
+├── src/backend/          # Velo backend functions (32 files)
+├── public/pages/         # Frontend HTML pages
+├── docs/                 # Documentation (organized by category)
+│   ├── deployment/       # Deployment guides
+│   ├── database/         # Database documentation
+│   ├── api/              # API integration docs
+│   ├── troubleshooting/  # Troubleshooting guides
+│   ├── guides/           # User guides
+│   └── reference/        # Quick reference
+├── scripts/              # Utility scripts
+├── legal-pages/          # Legal page HTML files
+└── database/             # Database schemas
 ```
 
 ---
 
-## 🔑 Required Configuration
+## 🔧 Core Features
 
-### Secrets (Wix Secrets Manager)
-- `STRIPE_SECRET_KEY_TEST`
-- `STRIPE_PUBLISHABLE_KEY_TEST`
-- `NOWPAYMENTS_API_KEY`
-- `SENDGRID_API_KEY`
-- `EMAIL_FROM` (optional)
+### **Payment Processing:**
+- ✅ Stripe custom invoices (instant, no email)
+- ✅ NOWPayments crypto invoices
+- ✅ ACH payment support
+- ✅ $30 crypto minimum enforcement
+- ✅ Webhook handling for payment completion
 
-### Database Collections (6 required)
-- `Donations`
-- `CryptoPayments`
-- `StripePayments`
-- `ContributionIntent`
-- `Members`
-- `PaymentRoutes`
+### **Data Flow:**
+- ✅ Mission Support Form → Charter Page redirect
+- ✅ Amount and payment method persistence
+- ✅ Auto-matching tier/years from amount
+- ✅ Prefill token system for "other" amounts
+
+### **Database:**
+- ✅ 7 required collections
+- ✅ Real-time cumulative totals
+- ✅ Contribution tracking
+- ✅ Membership management
 
 ---
 
 ## 📚 Documentation
 
-### Essential Guides
-- **[COMPLETE_DEPLOYMENT_GUIDE.md](./COMPLETE_DEPLOYMENT_GUIDE.md)** - Step-by-step deployment
-- **[QUICK_REFERENCE.md](./QUICK_REFERENCE.md)** - Quick reference card
-- **[ALL_SYSTEMS_SUMMARY.md](./ALL_SYSTEMS_SUMMARY.md)** - System overview
+### **Essential Guides:**
+- [Complete Deployment Guide](docs/deployment/COMPLETE_DEPLOYMENT_GUIDE.md)
+- [Database Schema](docs/database/DATABASE_SCHEMA_COMPLETE.md)
+- [API Configuration](docs/api/WIX_SECRETS_CONFIGURATION.md)
+- [Troubleshooting Guide](docs/troubleshooting/TROUBLESHOOTING_GUIDE.md)
 
-### Technical Docs
-- **[DATABASE_COLLECTIONS_SETUP.md](./DATABASE_COLLECTIONS_SETUP.md)** - Database setup
-- **[WIX_SECRETS_CONFIGURATION.md](./WIX_SECRETS_CONFIGURATION.md)** - API keys
-- **[COMPLETE_SYSTEM_FLOW.md](./COMPLETE_SYSTEM_FLOW.md)** - User flows
+### **Quick Reference:**
+- [Quick Reference](docs/reference/QUICK_REFERENCE.md)
+- [All Redirect URLs](docs/reference/ALL_REDIRECT_URLS.md)
+- [Example Usage](docs/reference/EXAMPLE_USAGE.md)
 
-### Status & Reference
-- **[FINAL_SYSTEM_STATUS.md](./FINAL_SYSTEM_STATUS.md)** - Current status
-- **[CHANGELOG.md](./CHANGELOG.md)** - Version history
-- **[FRONTEND_INTEGRATION_CHECK.md](./FRONTEND_INTEGRATION_CHECK.md)** - Frontend integration
+### **Full Documentation Index:**
+See [DOCUMENTATION_INDEX.md](DOCUMENTATION_INDEX.md)
 
 ---
 
 ## 🧪 Testing
 
-### Run All Tests
+### **In Wix Local Editor:**
 ```javascript
-POST /_functions/comprehensive-testing/testAllPaymentFlows
-```
+// Quick health check
+fetch('/_functions/master-initialization/quickHealthCheck')
+  .then(r => r.json())
+  .then(data => console.log('Health:', data));
 
-### Test Individual Systems
-```javascript
-// Database sync
-POST /_functions/database-sync/syncPaymentData
-
-// Health check
-GET /_functions/api-health-check/checkAllAPIs
-
-// System validation
-GET /_functions/system-utilities/validateSystemSetup
+// Complete troubleshooting
+fetch('/_functions/system-troubleshoot/troubleshootSystem')
+  .then(r => r.json())
+  .then(data => console.log('System Status:', data));
 ```
 
 ---
 
-## 🔧 System Endpoints
+## 🔑 Required Secrets (Wix Secrets Manager)
 
-### Master Initialization
-- `POST /_functions/master-initialization/masterInitialize`
-- `GET /_functions/master-initialization/quickHealthCheck`
+- `STRIPE_SECRET_KEY_TEST` - Stripe test secret key
+- `STRIPE_PUBLISHABLE_KEY_TEST` - Stripe test publishable key
+- `NOWPAYMENTS_API_KEY` - NOWPayments API key (optional)
+- `SENDGRID_API_KEY` - SendGrid API key (optional)
 
-### Database Sync
-- `POST /_functions/database-sync/verifyAllCollections`
-- `POST /_functions/database-sync/syncPaymentData`
-- `GET /_functions/database-sync/getDatabaseStats`
-
-### RAG System
-- `POST /_functions/rag-system/indexPageContent`
-- `POST /_functions/rag-system/queryRAG`
-- `POST /_functions/rag-system/autoIndexAllPages`
-
-### Health & Monitoring
-- `GET /_functions/api-health-check/checkAllAPIs`
-- `GET /_functions/system-utilities/getSystemStatus`
-- `GET /_functions/system-utilities/validateSystemSetup`
-
-### Testing
-- `POST /_functions/comprehensive-testing/testAllPaymentFlows`
-- `POST /_functions/comprehensive-testing/testDatabaseSync`
+See [API Configuration Guide](docs/api/WIX_SECRETS_CONFIGURATION.md) for details.
 
 ---
 
-## 🛠️ Troubleshooting
+## 📊 Database Collections
 
-### "Function not accessible"
-→ Upload `.web.js` file and publish site
+1. **Donations** - Fiat payment records
+2. **CryptoPayments** - Crypto payment records
+3. **StripePayments** - Stripe invoice records
+4. **ContributionIntent** - Form intents and prefill tokens
+5. **Members** - Membership records
+6. **PaymentRoutes** - Payment method configurations
+7. **PageContent** - RAG system content index
 
-### "Collection does not exist"
-→ Create collection in Wix Database (see DATABASE_COLLECTIONS_SETUP.md)
-
-### "API key not found"
-→ Add secret in Wix Secrets Manager (see WIX_SECRETS_CONFIGURATION.md)
-
-### "Payment not syncing"
-→ Run `syncPaymentData()` endpoint
+See [Database Schema](docs/database/DATABASE_SCHEMA_COMPLETE.md) for complete details.
 
 ---
 
-## 📊 System Status
+## 🚀 Current Status
 
-**Current Version:** 2.0.0  
-**Status:** ✅ Production Ready  
-**Systems:** 9 complete  
-**Files:** 18 backend + 6 documentation  
-**Functions:** 35+  
-**Endpoints:** 25+
+**✅ All Systems Operational:**
+- Payment processing (Stripe + NOWPayments)
+- Crypto minimum ($30) enforcement
+- Redirect flow (Mission Support → Charter)
+- Data persistence
+- Error handling
+- System troubleshooting
 
----
-
-## 🤝 Support
-
-For detailed setup instructions, see:
-- `COMPLETE_DEPLOYMENT_GUIDE.md` - Full deployment guide
-- `QUICK_REFERENCE.md` - Quick commands
-- `ALL_SYSTEMS_SUMMARY.md` - System details
+**📝 Latest Updates:**
+- Crypto minimum restriction implemented
+- Mission support form fixes complete
+- System troubleshooting added
+- Repository organization in progress
 
 ---
 
-## 📝 License
+## 📞 Support
+
+For issues or questions:
+1. Check [Troubleshooting Guide](docs/troubleshooting/TROUBLESHOOTING_GUIDE.md)
+2. Run `troubleshootSystem()` in Wix
+3. Review [Documentation Index](DOCUMENTATION_INDEX.md)
+
+---
+
+## 📄 License
 
 Proprietary - HingeCraft Global
 
 ---
 
 **Last Updated:** December 13, 2025  
-**Maintained by:** HingeCraft Development Team
+**Version:** 1.0.0  
+**Status:** Production Ready ✅
