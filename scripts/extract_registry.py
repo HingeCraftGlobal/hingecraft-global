@@ -3,11 +3,11 @@
 Extract registry/membership data from provided HTML files into CSV for DB + Wix CMS.
 
 Inputs (local paths):
-  - /Users/chandlerfergusen/Downloads/name_on_public_charter_masked_sorted (3).html
-  - /Users/chandlerfergusen/Downloads/membership_portal_full V3.html
-  - /Users/chandlerfergusen/Downloads/portal_login_social_participation.html
-  - /Users/chandlerfergusen/Downloads/lifetime_registry_inclusion (13).html
-  - /Users/chandlerfergusen/Downloads/lifetime_registry_inclusion (13) (1).html
+  - os.getenv('DOWNLOADS_DIR', os.path.join(os.path.expanduser('~'), 'Downloads'))/name_on_public_charter_masked_sorted (3).html
+  - os.getenv('DOWNLOADS_DIR', os.path.join(os.path.expanduser('~'), 'Downloads'))/membership_portal_full V3.html
+  - os.getenv('DOWNLOADS_DIR', os.path.join(os.path.expanduser('~'), 'Downloads'))/portal_login_social_participation.html
+  - os.getenv('DOWNLOADS_DIR', os.path.join(os.path.expanduser('~'), 'Downloads'))/lifetime_registry_inclusion (13).html
+  - os.getenv('DOWNLOADS_DIR', os.path.join(os.path.expanduser('~'), 'Downloads'))/lifetime_registry_inclusion (13) (1).html
 
 Outputs:
   - database/registry_import.csv        (normalized)
@@ -236,11 +236,11 @@ def dedupe(rows):
 
 def main():
     sources = [
-        "/Users/chandlerfergusen/Downloads/name_on_public_charter_masked_sorted (3).html",
-        "/Users/chandlerfergusen/Downloads/membership_portal_full V3.html",
-        "/Users/chandlerfergusen/Downloads/portal_login_social_participation.html",
-        "/Users/chandlerfergusen/Downloads/lifetime_registry_inclusion (13).html",
-        "/Users/chandlerfergusen/Downloads/lifetime_registry_inclusion (13) (1).html",
+        "os.getenv('DOWNLOADS_DIR', os.path.join(os.path.expanduser('~'), 'Downloads'))/name_on_public_charter_masked_sorted (3).html",
+        "os.getenv('DOWNLOADS_DIR', os.path.join(os.path.expanduser('~'), 'Downloads'))/membership_portal_full V3.html",
+        "os.getenv('DOWNLOADS_DIR', os.path.join(os.path.expanduser('~'), 'Downloads'))/portal_login_social_participation.html",
+        "os.getenv('DOWNLOADS_DIR', os.path.join(os.path.expanduser('~'), 'Downloads'))/lifetime_registry_inclusion (13).html",
+        "os.getenv('DOWNLOADS_DIR', os.path.join(os.path.expanduser('~'), 'Downloads'))/lifetime_registry_inclusion (13) (1).html",
     ]
 
     all_rows = []
