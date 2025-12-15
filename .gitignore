@@ -50,6 +50,11 @@ secrets/
 *.key
 *.pem
 *.env
+*.env.local
+.env
+.env.local
+!*.env.example
+!env.example
 !*.example.env
 
 # Node
@@ -66,3 +71,8 @@ wix.lock
 *.backup
 .wix/debug.log
 .wix/dev.log
+# Environment files (DO NOT COMMIT)
+.env
+.env.local
+notion/.env
+notion/.env.local

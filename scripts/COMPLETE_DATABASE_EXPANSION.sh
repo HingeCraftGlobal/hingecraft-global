@@ -6,7 +6,7 @@ set -e
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
-HINGECRAFT_DIR="/Users/chandlerfergusen/Desktop/CURSOR/HingeCraft"
+HINGECRAFT_DIR="../HingeCraft"
 
 echo "═══════════════════════════════════════════════════════════"
 echo "🚀 COMPLETE HINGECRAFT DATABASE EXPANSION"

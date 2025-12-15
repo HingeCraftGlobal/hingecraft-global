@@ -11,8 +11,8 @@ from datetime import datetime
 from pathlib import Path
 from typing import Dict, List
 
-# Base directory
-BASE_DIR = Path("/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global")
+# Base directory (use current directory or environment variable)
+BASE_DIR = Path(os.getenv("HINGECRAFT_GLOBAL_DIR", os.path.dirname(os.path.abspath(__file__))))
 
 # Master task tracker
 MASTER_RESULTS = {

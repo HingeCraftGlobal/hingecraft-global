@@ -17,7 +17,7 @@ echo -e "${BLUE}🚀 Move Everything to hingecraft-global Repository${NC}"
 echo -e "${BLUE}═══════════════════════════════════════════════════════════${NC}"
 echo ""
 
-BASE_DIR="/Users/chandlerfergusen/Desktop/CURSOR"
+BASE_DIR=".."
 HINGECRAFT_DIR="$BASE_DIR/HingeCraft"
 REPO_DIR="$BASE_DIR/hingecraft-global"
 REPO_URL="git@github.com:departments-commits/hingecraft-global.git"

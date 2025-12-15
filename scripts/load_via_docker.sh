@@ -3,8 +3,8 @@
 
 set -e
 
-PROJECT_ROOT="/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global"
-HINGECRAFT_DIR="/Users/chandlerfergusen/Desktop/CURSOR/HingeCraft"
+PROJECT_ROOT="$(pwd)"
+HINGECRAFT_DIR="../HingeCraft"
 
 echo "🚀 Loading data via Docker..."
 

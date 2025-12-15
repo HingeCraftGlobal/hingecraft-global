@@ -18,7 +18,7 @@ RED='\033[0;31m'
 NC='\033[0m' # No Color
 
 # Project root
-PROJECT_ROOT="/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global"
+PROJECT_ROOT="$(pwd)"
 cd "$PROJECT_ROOT"
 
 # Check if Wix CLI is installed

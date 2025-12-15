@@ -13,7 +13,7 @@ from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 # Base directory
-BASE_DIR = Path("/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global")
+BASE_DIR = Path("os.path.dirname(os.path.abspath(__file__))")
 
 # Results tracking
 RESULTS = {

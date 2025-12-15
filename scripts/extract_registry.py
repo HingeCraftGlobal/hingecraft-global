@@ -14,7 +14,7 @@ Outputs:
   - database/registry_wix_import.csv    (same headers; Wix-friendly)
 
 Run:
-  cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+  cd ../hingecraft-global
   python3 scripts/extract_registry.py
 """
 

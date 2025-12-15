@@ -431,7 +431,7 @@ def main():
     script_dir = os.path.dirname(os.path.abspath(__file__))
     project_root = os.path.dirname(script_dir)
     database_dir = os.path.join(project_root, 'database')
-    prompt_file = '/Users/chandlerfergusen/Desktop/Prompt.txt'
+    prompt_file = os.getenv('PROMPT_FILE', os.path.join(os.path.dirname(__file__), '../../Prompt.txt'))
     output_file = os.path.join(project_root, 'public', 'pages', 'charter-live-mission-populated.html')
     
     try:
