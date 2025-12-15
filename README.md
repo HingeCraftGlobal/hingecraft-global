@@ -1,8 +1,8 @@
-# HingeCraft Global - Complete Project Repository
+# HingeCraft Global - Automation Project
 
-**Complete HingeCraft Global System with Charter Project, Database, and All Keys**
+**Complete Automation Project Repository**
 
-This repository contains the complete HingeCraft Global system including the charter project, full database with all keys, and all project files. Automation pipeline and ML work have been backed up separately.
+This repository contains ALL data for the automation project, including the Notion automation system and ML automation pipeline.
 
 ---
 
@@ -10,190 +10,155 @@ This repository contains the complete HingeCraft Global system including the cha
 
 ```
 hingecraft-global/
-├── projects/              # All HingeCraft Global Projects
-│   ├── charter/           # Charter Project (Complete)
-│   ├── backend/           # Backend Functions (.jsw files)
-│   └── frontend/          # Frontend Pages (.html, .js files)
+├── notion/                # Notion Automation System
+│   ├── sync/              # Notion sync scripts
+│   ├── triggers/          # Automation triggers
+│   ├── monitoring/        # Monitoring systems
+│   ├── webhooks/          # Webhook handlers
+│   └── [102 files]        # Complete Notion automation project
 │
-├── database/              # Complete Database System
-│   ├── master_schema/     # Master database schema
-│   ├── enterprise/        # Enterprise features
-│   ├── security/          # Security modules
-│   ├── governance/        # Governance functions
-│   ├── rag_knowledge_base/ # RAG system
-│   ├── keys_database.json  # Complete keys index
-│   └── api_keys_consolidated.json
+├── ml-automation/         # ML Automation Pipeline System
+│   ├── src/               # Core automation services
+│   │   ├── services/      # Automation services
+│   │   ├── utils/         # Utility functions
+│   │   └── orchestrator.js
+│   ├── scripts/           # Automation scripts
+│   ├── database/          # Database schemas
+│   ├── config/            # Configuration files
+│   ├── webhooks/          # Webhook handlers
+│   ├── workers/           # Background workers
+│   └── [165+ files]       # Complete ML automation system
 │
-├── api-keys/              # All API Keys
-│   ├── api_keys.js
-│   ├── api_key.py
-│   ├── api_keys_manager.py
-│   └── [all key files]
-│
-└── backup/                # Backed Up Components
-    ├── automation-pipeline/  # Notion automation (backed up)
-    ├── ml-work/             # ML pipelines (backed up)
-    └── database/            # Database backups
+└── database/              # Automation Database
+    └── automation/         # Automation-specific database files
+        ├── schema.sql
+        ├── init-data.sql
+        └── setup.js
 ```
 
 ---
 
 ## 🚀 Quick Start
 
-### Charter Project
+### Notion Automation System
 
-The complete charter project is located in `projects/charter/`:
-
-```bash
-cd projects/charter
-# View charter project files
-ls -la
-```
-
-### Database
-
-All database schemas, keys, and configurations:
+Complete 24/7 sync system for HingeCraft → Notion dashboard.
 
 ```bash
-cd database
-# View database structure
-ls -la
-# Check keys database
-cat keys_database.json
+cd notion
+pip install -r requirements.txt
+python sync/hingecraft_notion_sync.py
 ```
 
-### API Keys
+See [notion/README.md](notion/README.md) for detailed setup instructions.
 
-All API keys are stored in `api-keys/`:
+### ML Automation Pipeline
+
+Complete end-to-end lead automation pipeline that processes Google Drive files, enriches leads, syncs to HubSpot, and sends automated email sequences.
 
 ```bash
-cd api-keys
-# View available keys
-ls -la
+cd ml-automation
+npm install
+npm start
 ```
 
----
-
-## 🔑 Keys and Configuration
-
-### Database Keys
-
-- **Master Schema**: `database/master_schema/`
-- **Enterprise Features**: `database/enterprise/`
-- **Security Modules**: `database/security/`
-- **Governance**: `database/governance/`
-- **RAG System**: `database/rag_knowledge_base/`
-
-### API Keys Index
-
-All API keys are indexed in:
-- `database/keys_database.json` - Complete keys database
-- `database/api_keys_consolidated.json` - Consolidated keys index
-
-### Key Locations
-
-- **API Keys**: `api-keys/` directory
-- **Database Keys**: `database/` directory
-- **Project Keys**: `projects/` directory
+See [ml-automation/README.md](ml-automation/README.md) for detailed setup instructions.
 
 ---
 
-## 📊 Projects Included
+## 🔧 Automation Components
 
-### 1. Charter Project
-- Complete charter page implementations
-- Payment integration files
-- Frontend and backend components
-- Documentation and configuration
+### 1. Notion Automation System
+- **Project Management** → Syncs all HingeCraft data to Notion dashboard
+- **Real-time Monitoring** → Cursor activity monitoring
+- **Automation Triggers** → Automatic progress tracking
+- **Data Synchronization** → Chat history, timeline, and deadline sync
+- **10,000 nano tasks** for complete implementation
 
-### 2. Backend Functions
-- All `.jsw` backend functions
-- API integrations
-- Webhook handlers
-- Database sync functions
-
-### 3. Frontend Pages
-- All HTML pages
-- JavaScript components
-- Payment pages
-- Mission support forms
+### 2. ML Automation Pipeline
+- **Google Drive** → Scans folder for new files (CSV/Sheets)
+- **Lead Processing** → Extracts, normalizes, and deduplicates leads
+- **Anymail API** → Finds missing emails and verifies addresses
+- **HubSpot CRM** → Creates/updates contacts and companies
+- **Email Sequences** → Sends automated email sequences via Anymail/Gmail
+- **Tracking** → Monitors opens, clicks, replies, and bounces
 
 ---
 
-## 🗄️ Database System
+## 📊 Database
 
-### Complete Database Structure
+### Automation Database
 
-- **Master Schema**: Core database structure
-- **Enterprise**: Advanced enterprise features
-- **Security**: Security and encryption modules
-- **Governance**: RBAC and access control
-- **RAG**: Knowledge base system
+All automation-related database files are in `database/automation/`:
 
-### Database Files
+- `schema.sql` - Database schema
+- `init-data.sql` - Initial data
+- `migrate-existing-data.sql` - Migration scripts
+- `setup.js` - Setup script
 
-- `init.sql` - Initialization script
-- `complete_schema.sql` - Complete schema
-- `insert_all_hingecraft_data.sql` - Data insertion
-- All schema files in respective directories
+### Database Integration
 
----
-
-## 🔒 Security
-
-**Important Security Notes:**
-
-- All keys are stored in `api-keys/` directory
-- Database keys are in `database/` directory
-- Never commit actual key values to public repositories
-- Use environment variables in production
-- Rotate keys regularly
-
----
-
-## 📦 Backed Up Components
-
-The following components have been backed up and are available in `backup/`:
-
-- **Automation Pipeline**: `backup/automation-pipeline/` (Notion integration)
-- **ML Work**: `backup/ml-work/` (ML pipelines)
-- **Database Backups**: `backup/database/`
+- **Notion**: Database sync scripts in `notion/sync/`
+- **ML Automation**: Database utilities in `ml-automation/src/utils/database.js`
 
 ---
 
 ## 📚 Documentation
 
-- **Charter Project**: See `projects/charter/` for documentation
-- **Database**: See `database/` for schema documentation
-- **API Keys**: See `api-keys/` for key management
+- [Notion Automation](notion/README.md) - Complete Notion integration documentation
+- [ML Automation](ml-automation/README.md) - Complete ML automation pipeline documentation
 
 ---
 
-## 🔧 Configuration
+## 🔑 Configuration
 
-### Database Configuration
+### Notion Automation
+- Configuration: `notion/env.example` - Copy to `.env` and configure
+- API keys: Configured in environment variables
 
-All database configurations are in `database/`:
-- Schema files in respective subdirectories
-- Keys indexed in `keys_database.json`
-
-### API Configuration
-
-All API keys are in `api-keys/`:
-- JavaScript keys: `api_keys.js`, `api_keys_1.js`
-- Python keys: `api_key.py`, `api_key_1.py`, etc.
-- Key managers: `api_keys_manager.py`
+### ML Automation
+- Configuration: `ml-automation/config/api_keys.js`
+- API keys: Google OAuth, HubSpot, Anymail
 
 ---
 
 ## 📊 System Status
 
-**✅ Complete System:**
-- Charter project (fully implemented)
-- Complete database with all keys
-- All API keys indexed and stored
-- All project files included
-- Backups of automation and ML work
+**✅ Notion Automation:** Complete
+- Project management automation
+- Data synchronization
+- Task automation triggers
+- Database integration
+- 10,000 nano tasks ready
+
+**✅ ML Automation Pipeline:** Complete
+- Lead processing pipeline
+- HubSpot sync
+- Email sequences
+- Tracking system
+- All features implemented
+
+---
+
+## 🧪 Testing
+
+- **Notion**: Test scripts included in `notion/` directory
+- **ML Automation**: Test suite in `ml-automation/tests/`
+
+---
+
+## 📦 Project Data
+
+This repository contains **ALL** automation project data:
+
+- ✅ Complete Notion automation system (102 files)
+- ✅ Complete ML automation pipeline (165+ files)
+- ✅ All database schemas and migrations
+- ✅ All configuration files
+- ✅ All scripts and utilities
+- ✅ All documentation
+
+**No other project data is included** - this repository is dedicated exclusively to the automation project.
 
 ---
 
@@ -204,5 +169,5 @@ Proprietary - HingeCraft Global
 ---
 
 **Last Updated:** December 15, 2025  
-**Version:** 4.0.0  
-**Status:** Complete System with All Keys ✅
+**Version:** 5.0.0  
+**Status:** Complete Automation Project ✅

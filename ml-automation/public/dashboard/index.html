@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HingeCraft Automation - Pipeline Tracker</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .status-standby {
+            background: #ffc107;
+            color: #000;
+        }
+
+        .status-active {
+            background: #28a745;
+            color: white;
+        }
+
+        .status-completed {
+            background: #17a2b8;
+            color: white;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .pipeline-view {
+            margin-bottom: 40px;
+        }
+
+        .pipeline-stage {
+            background: #f8f9fa;
+            border-left: 4px solid #dee2e6;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .pipeline-stage.active {
+            border-left-color: #667eea;
+            background: #e7f3ff;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+        }
+
+        .pipeline-stage.completed {
+            border-left-color: #28a745;
+            background: #d4edda;
+        }
+
+        .pipeline-stage.failed {
+            border-left-color: #dc3545;
+            background: #f8d7da;
+        }
+
+        .stage-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .stage-name {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .stage-status {
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            font-weight: bold;
+        }
+
+        .stage-details {
+            color: #666;
+            font-size: 0.9em;
+            margin-top: 10px;
+        }
+
+        .stage-duration {
+            color: #999;
+            font-size: 0.85em;
+            margin-top: 5px;
+        }
+
+        .logs-section {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 8px;
+            max-height: 400px;
+            overflow-y: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85em;
+        }
+
+        .log-entry {
+            padding: 5px 0;
+            border-bottom: 1px solid #333;
+        }
+
+        .log-entry:last-child {
+            border-bottom: none;
+        }
+
+        .log-time {
+            color: #858585;
+            margin-right: 10px;
+        }
+
+        .log-component {
+            color: #4ec9b0;
+            margin-right: 10px;
+        }
+
+        .log-event {
+            color: #dcdcaa;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        .dry-run-banner {
+            background: #ffc107;
+            color: #000;
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+            border-bottom: 3px solid #ff9800;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔍 HingeCraft Automation Pipeline Tracker</h1>
+            <div id="statusBadge" class="status-badge status-standby">⏸️ STANDBY - Waiting for File</div>
+        </div>
+
+        <div id="dryRunBanner" class="dry-run-banner" style="display: none;">
+            ⚠️ DRY RUN MODE: Emails will be validated but NOT sent
+        </div>
+
+        <div class="content">
+            <div class="stats-grid" id="statsGrid">
+                <div class="stat-card">
+                    <div class="stat-label">Active Pipelines</div>
+                    <div class="stat-value" id="activePipelines">0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Leads Processed</div>
+                    <div class="stat-value" id="leadsProcessed">0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Emails Ready</div>
+                    <div class="stat-value" id="emailsReady">0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">HubSpot Synced</div>
+                    <div class="stat-value" id="hubspotSynced">0</div>
+                </div>
+            </div>
+
+            <div class="pipeline-view">
+                <h2 style="margin-bottom: 20px;">Pipeline Stages</h2>
+                <div id="pipelineStages"></div>
+            </div>
+
+            <div style="margin-top: 30px;">
+                <h2 style="margin-bottom: 20px;">Live Logs</h2>
+                <div class="logs-section" id="logsSection"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = window.location.origin.replace(':7080', ':7101');
+        let currentPipelineId = null;
+        let logCount = 0;
+        const maxLogs = 100;
+
+        // Check for dry run mode
+        fetch(`${API_BASE}/api/pipeline/status`)
+            .then(r => r.json())
+            .then(data => {
+                if (data.dryRun) {
+                    document.getElementById('dryRunBanner').style.display = 'block';
+                }
+            });
+
+        // Initialize pipeline stages
+        const stages = [
+            { id: 'fileDetection', name: 'File Detection', status: 'pending' },
+            { id: 'fileProcessing', name: 'File Processing', status: 'pending' },
+            { id: 'leadProcessing', name: 'Lead Processing', status: 'pending' },
+            { id: 'emailCollection', name: 'Email Collection', status: 'pending' },
+            { id: 'databaseIntegration', name: 'Database Integration', status: 'pending' },
+            { id: 'hubspotSync', name: 'HubSpot Sync', status: 'pending' },
+            { id: 'sequenceInit', name: 'Sequence Init', status: 'pending' },
+            { id: 'emailSending', name: 'Email Sending', status: 'pending' },
+            { id: 'eventTracking', name: 'Event Tracking', status: 'pending' }
+        ];
+
+        function renderStages() {
+            const container = document.getElementById('pipelineStages');
+            container.innerHTML = stages.map(stage => `
+                <div class="pipeline-stage ${stage.status}" id="stage-${stage.id}">
+                    <div class="stage-header">
+                        <div class="stage-name">${stage.name}</div>
+                        <div class="stage-status" id="status-${stage.id}">⏸️ Pending</div>
+                    </div>
+                    <div class="stage-details" id="details-${stage.id}">Waiting...</div>
+                    <div class="stage-duration" id="duration-${stage.id}"></div>
+                </div>
+            `).join('');
+        }
+
+        function updateStage(stageId, status, data = {}) {
+            const stage = stages.find(s => s.id === stageId);
+            if (!stage) return;
+
+            stage.status = status;
+            const stageEl = document.getElementById(`stage-${stageId}`);
+            const statusEl = document.getElementById(`status-${stageId}`);
+            const detailsEl = document.getElementById(`details-${stageId}`);
+            const durationEl = document.getElementById(`duration-${stageId}`);
+
+            stageEl.className = `pipeline-stage ${status}`;
+            
+            const statusIcons = {
+                'pending': '⏸️ Pending',
+                'started': '⏳ In Progress',
+                'completed': '✅ Completed',
+                'failed': '❌ Failed'
+            };
+
+            statusEl.textContent = statusIcons[status] || status;
+            
+            if (data.duration) {
+                durationEl.textContent = `Duration: ${(data.duration / 1000).toFixed(2)}s`;
+            }
+
+            if (data.rowCount) detailsEl.textContent = `${data.rowCount} rows processed`;
+            if (data.processed) detailsEl.textContent = `${data.processed} leads processed`;
+            if (data.sent) detailsEl.textContent = `${data.sent} emails ready (DRY RUN - not sent)`;
+            if (data.synced) detailsEl.textContent = `${data.synced} contacts synced`;
+        }
+
+        function addLog(entry) {
+            const logsSection = document.getElementById('logsSection');
+            const logEl = document.createElement('div');
+            logEl.className = 'log-entry';
+            
+            const time = new Date(entry.timestamp).toLocaleTimeString();
+            logEl.innerHTML = `
+                <span class="log-time">[${time}]</span>
+                <span class="log-component">[${entry.component}]</span>
+                <span class="log-event">${entry.event}</span>
+            `;
+            
+            logsSection.insertBefore(logEl, logsSection.firstChild);
+            logCount++;
+            
+            if (logCount > maxLogs) {
+                logsSection.removeChild(logsSection.lastChild);
+                logCount--;
+            }
+        }
+
+        function updateStats(data) {
+            if (data.activePipelines !== undefined) {
+                document.getElementById('activePipelines').textContent = data.activePipelines;
+            }
+            if (data.leadsProcessed !== undefined) {
+                document.getElementById('leadsProcessed').textContent = data.leadsProcessed;
+            }
+            if (data.emailsReady !== undefined) {
+                document.getElementById('emailsReady').textContent = data.emailsReady;
+            }
+            if (data.hubspotSynced !== undefined) {
+                document.getElementById('hubspotSynced').textContent = data.hubspotSynced;
+            }
+        }
+
+        function updateStatus(data) {
+            const badge = document.getElementById('statusBadge');
+            if (data.waitingForFile) {
+                badge.className = 'status-badge status-standby';
+                badge.textContent = '⏸️ STANDBY - Waiting for File';
+            } else if (data.mode === 'active') {
+                badge.className = 'status-badge status-active pulse';
+                badge.textContent = '🚀 ACTIVE - Tracking Pipeline';
+            } else if (data.mode === 'completed') {
+                badge.className = 'status-badge status-completed';
+                badge.textContent = '✅ COMPLETED';
+            }
+        }
+
+        async function fetchStatus() {
+            try {
+                const response = await fetch(`${API_BASE}/api/pipeline/status`);
+                const data = await response.json();
+                
+                updateStatus(data);
+                
+                if (data.pipelines && data.pipelines.length > 0) {
+                    const pipeline = data.pipelines[0];
+                    currentPipelineId = pipeline.id;
+                    
+                    // Update stages
+                    Object.entries(pipeline.stages).forEach(([stageId, stageData]) => {
+                        updateStage(stageId, stageData.status, stageData.data);
+                    });
+                    
+                    // Update stats
+                    updateStats({
+                        activePipelines: data.activePipelines,
+                        leadsProcessed: pipeline.summary?.processed || 0,
+                        emailsReady: pipeline.summary?.emails_sent || 0,
+                        hubspotSynced: pipeline.summary?.hubspot_synced || 0
+                    });
+                }
+            } catch (error) {
+                console.error('Error fetching status:', error);
+            }
+        }
+
+        async function fetchLogs() {
+            try {
+                const response = await fetch(`${API_BASE}/api/pipeline/logs?limit=20`);
+                const data = await response.json();
+                
+                if (data.logs && data.logs.length > 0) {
+                    data.logs.reverse().forEach(entry => {
+                        addLog(entry);
+                    });
+                }
+            } catch (error) {
+                console.error('Error fetching logs:', error);
+            }
+        }
+
+        // Initialize
+        renderStages();
+        fetchStatus();
+        fetchLogs();
+
+        // Poll for updates
+        setInterval(fetchStatus, 2000); // Every 2 seconds
+        setInterval(fetchLogs, 5000); // Every 5 seconds
+    </script>
+</body>
+</html>
+
+
+
