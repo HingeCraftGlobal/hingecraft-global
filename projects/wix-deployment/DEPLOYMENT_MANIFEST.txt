@@ -1,0 +1,42 @@
+HingeCraft Global - Wix Deployment Manifest
+Generated: Thu Dec 11 08:06:00 MST 2025
+==========================================
+
+BACKEND FUNCTIONS (Upload to: Wix Editor → Dev Mode → Backend → Functions)
+1. nowpayments.api.jsw
+2. stripe.api.jsw
+3. hingecraft.api.web.jsw
+4. charter-page-middleware.jsw
+5. mission-support-middleware.jsw
+6. createNowPaymentsInvoice.jsw
+7. webhooks/nowpayments.jsw
+
+WEB MODULES (Upload to: Wix Editor → Dev Mode → Backend → Web Modules)
+1. charter-page-middleware.web.js
+2. mission-support-middleware.web.js
+
+HTML PAGES (Embed in: Wix Editor → Pages → Add HTML iframe)
+1. charter-page-final.html
+2. mission-support-form.html
+
+SECRETS (Configure in: Wix Editor → Settings → Secrets Manager)
+1. NOWPAYMENTS_API_KEY
+2. NOWPAYMENTS_IPN_SECRET
+3. NOWPAYMENTS_BASE_URL
+4. BASE_URL
+5. KYC_THRESHOLD_USD
+6. CRYPTO_CONFIRMATIONS_REQUIRED
+7. STRIPE_SECRET_KEY_LIVE
+8. STRIPE_PUBLISHABLE_KEY_LIVE
+9. EXTERNAL_DB_ENDPOINT (if using external DB)
+10. EXTERNAL_DB_SECRET_KEY (if using external DB)
+
+DATABASE COLLECTIONS (Create in: Wix Editor → Database → Collections)
+1. Donations
+2. CryptoPayments
+3. ContributionIntent
+
+WEBHOOKS (Configure in external services)
+1. NOWPayments: https://www.hingecraft-global.ai/_functions/webhooks/nowpayments
+2. Stripe: https://www.hingecraft-global.ai/_functions/stripe.api/handleWebhook
+

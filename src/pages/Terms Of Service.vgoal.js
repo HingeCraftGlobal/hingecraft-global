@@ -1,0 +1,445 @@
+// HingeCraft Global, LLC - Legal Document
+// Universal Terms Of Service
+// State of South Carolina | December 6, 2025
+// Auto-generated - All URLs are HTTPS only
+
+import wixSeo from 'wix-seo';
+
+$w.onReady(function () {
+    // Set SEO
+    wixSeo.setTitle("Universal Terms Of Service | HingeCraft Global");
+    wixSeo.setMetaTags([
+        { name: "description", content: "Universal Terms Of Service - HingeCraft Global, LLC legal document for South Carolina" },
+        { name: "robots", content: "index, follow" },
+        { property: "og:title", content: "Universal Terms Of Service | HingeCraft Global" },
+        { property: "og:type", content: "website" }
+    ]);
+    
+    // Load legal document content
+    loadLegalContent();
+});
+
+function loadLegalContent() {
+    const legalContent = `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Universal Terms of Service - HingeCraft Global, LLC</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Times New Roman', Times, serif; font-size: 12pt; line-height: 1.6; color: #000; background: #fff; max-width: 8.5in; margin: 0 auto; padding: 1in; }
+        h1 { font-size: 18pt; font-weight: bold; text-align: center; margin-bottom: 24pt; text-transform: uppercase; border-bottom: 2px solid #000; padding-bottom: 12pt; }
+        h2 { font-size: 14pt; font-weight: bold; margin-top: 24pt; margin-bottom: 12pt; text-transform: uppercase; }
+        h3 { font-size: 12pt; font-weight: bold; margin-top: 18pt; margin-bottom: 9pt; }
+        p { margin-bottom: 12pt; text-align: justify; }
+        ul, ol { margin-left: 36pt; margin-bottom: 12pt; }
+        li { margin-bottom: 6pt; }
+        .header { text-align: center; margin-bottom: 36pt; }
+        .company-name { font-size: 16pt; font-weight: bold; }
+        .footer { margin-top: 48pt; padding-top: 12pt; border-top: 1px solid #000; font-size: 10pt; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="company-name">HINGECRAFT GLOBAL, LLC</div>
+        <h1>UNIVERSAL TERMS OF SERVICE</h1>
+        <p>Effective Date: _________________, 20____<br>State of South Carolina</p>
+    </div>
+
+    <p><strong>PLEASE READ THESE TERMS OF SERVICE CAREFULLY BEFORE USING OUR SERVICES.</strong></p>
+
+    <h2>1. ACCEPTANCE OF TERMS</h2>
+    
+    <p><strong>1.1 Agreement.</strong> These Universal Terms of Service (the "Terms") constitute a legally binding agreement between you ("User," "you," or "your") and HingeCraft Global, LLC, a South Carolina limited liability company ("HingeCraft," "Company," "we," "us," or "our"), governing your access to and use of our website at https://www.hingecraft.com, our mobile applications, our products, and any related services (collectively, the "Services").</p>
+    
+    <p><strong>1.2 Acceptance.</strong> By accessing or using the Services, you agree to be bound by these Terms. If you do not agree to these Terms, you may not access or use the Services. Your continued use of the Services after any modifications to these Terms constitutes your acceptance of such modifications.</p>
+    
+    <p><strong>1.3 Eligibility.</strong> You must be at least 18 years of age, or the age of legal majority in your jurisdiction, to use the Services. By using the Services, you represent and warrant that you meet these eligibility requirements.</p>
+    
+    <p><strong>1.4 Authority.</strong> If you are using the Services on behalf of an organization, you represent and warrant that you have the authority to bind that organization to these Terms, and references to "you" include the organization.</p>
+
+    <h2>2. DESCRIPTION OF SERVICES</h2>
+    
+    <p><strong>2.1 Services.</strong> HingeCraft provides:</p>
+    <ul>
+        <li>(a) Hinge mechanisms, hardware components, and related mechanical products;</li>
+        <li>(b) An e-commerce platform for purchasing products;</li>
+        <li>(c) Product information and specifications;</li>
+        <li>(d) Customer support and technical assistance;</li>
+        <li>(e) User accounts and order management;</li>
+        <li>(f) Design tools and configurators;</li>
+        <li>(g) Educational content and resources.</li>
+    </ul>
+    
+    <p><strong>2.2 Modifications.</strong> We reserve the right to modify, suspend, or discontinue any aspect of the Services at any time, with or without notice. We shall not be liable to you or any third party for any modification, suspension, or discontinuation of the Services.</p>
+
+    <h2>3. USER ACCOUNTS</h2>
+    
+    <p><strong>3.1 Account Creation.</strong> To access certain features of the Services, you may be required to create a user account. You agree to provide accurate, current, and complete information during registration and to update such information to keep it accurate, current, and complete.</p>
+    
+    <p><strong>3.2 Account Security.</strong> You are responsible for maintaining the confidentiality of your account credentials and for all activities that occur under your account. You agree to notify us immediately of any unauthorized use of your account. We are not liable for any loss or damage arising from your failure to protect your account credentials.</p>
+    
+    <p><strong>3.3 Account Termination.</strong> We reserve the right to suspend or terminate your account at any time for any reason, including violation of these Terms, without prior notice or liability.</p>
+
+    <h2>4. PURCHASES AND PAYMENTS</h2>
+    
+    <p><strong>4.1 Orders.</strong> When you place an order through the Services, you are making an offer to purchase the products. All orders are subject to acceptance by us. We reserve the right to refuse or cancel any order for any reason, including product availability, errors in pricing or product information, or suspected fraud.</p>
+    
+    <p><strong>4.2 Pricing.</strong> All prices are displayed in U.S. dollars unless otherwise indicated. Prices are subject to change without notice. We are not responsible for typographical errors in pricing. If a product is listed at an incorrect price, we may cancel orders placed at that price.</p>
+    
+    <p><strong>4.3 Payment.</strong> You agree to pay all charges at the prices in effect when incurred. You authorize us to charge your selected payment method for all amounts due. All payments are non-refundable except as expressly stated in our Refund Policy.</p>
+    
+    <p><strong>4.4 Taxes.</strong> You are responsible for all applicable taxes. Prices do not include taxes unless expressly stated. South Carolina sales tax will be applied to orders shipped to South Carolina addresses, and other state taxes may apply based on your location.</p>
+    
+    <p><strong>4.5 Shipping.</strong> Shipping costs and delivery times are estimates and may vary. Risk of loss and title for products pass to you upon delivery to the carrier. We are not responsible for delays caused by carriers or customs.</p>
+
+    <h2>5. INTELLECTUAL PROPERTY</h2>
+    
+    <p><strong>5.1 Company IP.</strong> The Services and all content, features, and functionality thereof, including but not limited to text, graphics, logos, icons, images, audio clips, video clips, data compilations, software, and the compilation thereof (collectively, "Company Content"), are the exclusive property of HingeCraft or its licensors and are protected by copyright, trademark, patent, trade secret, and other intellectual property laws.</p>
+    
+    <p><strong>5.2 Limited License.</strong> Subject to your compliance with these Terms, we grant you a limited, non-exclusive, non-transferable, revocable license to access and use the Services and Company Content for your personal, non-commercial purposes. This license does not include the right to:</p>
+    <ul>
+        <li>(a) Modify, copy, or create derivative works;</li>
+        <li>(b) Use any data mining, robots, or similar data gathering methods;</li>
+        <li>(c) Download any content except as expressly permitted;</li>
+        <li>(d) Use the Services or content for any commercial purpose without our prior written consent;</li>
+        <li>(e) Remove any copyright or proprietary notices.</li>
+    </ul>
+    
+    <p><strong>5.3 Trademarks.</strong> "HingeCraft," the HingeCraft logo, and other marks are trademarks of HingeCraft Global, LLC. You may not use any of our trademarks without our prior written permission.</p>
+    
+    <p><strong>5.4 Feedback.</strong> If you provide feedback, suggestions, or ideas regarding the Services ("Feedback"), you grant us a non-exclusive, worldwide, royalty-free, perpetual, irrevocable license to use, modify, and incorporate such Feedback without any obligation to you.</p>
+
+    <h2>6. USER CONTENT</h2>
+    
+    <p><strong>6.1 User Content.</strong> The Services may allow you to submit, post, or upload content, including text, images, reviews, and other materials ("User Content"). You retain ownership of your User Content but grant us a non-exclusive, worldwide, royalty-free, perpetual, irrevocable license to use, reproduce, modify, publish, distribute, and display your User Content in connection with the Services.</p>
+    
+    <p><strong>6.2 Content Standards.</strong> You agree that your User Content will not:</p>
+    <ul>
+        <li>(a) Violate any applicable law or regulation;</li>
+        <li>(b) Infringe any intellectual property or other rights of any third party;</li>
+        <li>(c) Contain any defamatory, obscene, offensive, or objectionable material;</li>
+        <li>(d) Contain any viruses, malware, or harmful code;</li>
+        <li>(e) Impersonate any person or entity;</li>
+        <li>(f) Constitute spam, advertising, or unauthorized solicitation;</li>
+        <li>(g) Violate the privacy of others.</li>
+    </ul>
+    
+    <p><strong>6.3 Monitoring.</strong> We have no obligation to monitor User Content but reserve the right to remove or modify any User Content for any reason without notice.</p>
+
+    <h2>7. PROHIBITED CONDUCT</h2>
+    
+    <p><strong>7.1 Prohibited Activities.</strong> You agree not to:</p>
+    <ul>
+        <li>(a) Use the Services for any illegal purpose or in violation of any laws;</li>
+        <li>(b) Violate or attempt to violate the security of the Services;</li>
+        <li>(c) Access data or areas of the Services not intended for you;</li>
+        <li>(d) Interfere with or disrupt the Services or servers;</li>
+        <li>(e) Use any automated system to access the Services;</li>
+        <li>(f) Attempt to probe, scan, or test the vulnerability of the Services;</li>
+        <li>(g) Circumvent any security measures;</li>
+        <li>(h) Harass, abuse, or harm others;</li>
+        <li>(i) Engage in fraudulent or deceptive practices;</li>
+        <li>(j) Use the Services to transmit spam or unsolicited communications;</li>
+        <li>(k) Reverse engineer, decompile, or disassemble any part of the Services;</li>
+        <li>(l) Frame or mirror any part of the Services without authorization.</li>
+    </ul>
+
+    <h2>8. THIRD-PARTY LINKS AND SERVICES</h2>
+    
+    <p><strong>8.1 Third-Party Links.</strong> The Services may contain links to third-party websites or services. We do not control and are not responsible for the content, privacy policies, or practices of any third-party websites or services. Your use of third-party websites is at your own risk.</p>
+    
+    <p><strong>8.2 Third-Party Services.</strong> The Services may integrate with or use third-party services. Your use of such third-party services is subject to the terms and privacy policies of those third parties.</p>
+
+    <h2>9. DISCLAIMERS</h2>
+    
+    <p><strong>9.1 AS-IS BASIS.</strong> THE SERVICES ARE PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, WHETHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, NON-INFRINGEMENT, AND ANY WARRANTIES ARISING FROM COURSE OF DEALING OR USAGE OF TRADE.</p>
+    
+    <p><strong>9.2 NO WARRANTY.</strong> WE DO NOT WARRANT THAT THE SERVICES WILL BE UNINTERRUPTED, ERROR-FREE, SECURE, OR FREE OF VIRUSES OR OTHER HARMFUL COMPONENTS. WE DO NOT WARRANT THE ACCURACY, COMPLETENESS, OR RELIABILITY OF ANY CONTENT OR INFORMATION PROVIDED THROUGH THE SERVICES.</p>
+    
+    <p><strong>9.3 PRODUCT DISCLAIMERS.</strong> PRODUCT DESCRIPTIONS, SPECIFICATIONS, AND IMAGES ARE FOR INFORMATIONAL PURPOSES ONLY. ACTUAL PRODUCTS MAY VARY. WE DO NOT WARRANT THAT PRODUCTS WILL MEET YOUR SPECIFIC REQUIREMENTS OR EXPECTATIONS.</p>
+
+    <h2>10. LIMITATION OF LIABILITY</h2>
+    
+    <p><strong>10.1 EXCLUSION OF DAMAGES.</strong> TO THE MAXIMUM EXTENT PERMITTED BY LAW, IN NO EVENT SHALL HINGECRAFT, ITS MEMBERS, MANAGERS, OFFICERS, EMPLOYEES, AGENTS, OR AFFILIATES BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING BUT NOT LIMITED TO LOSS OF PROFITS, DATA, USE, GOODWILL, OR OTHER INTANGIBLE LOSSES, ARISING OUT OF OR RELATED TO YOUR USE OF OR INABILITY TO USE THE SERVICES, REGARDLESS OF THE THEORY OF LIABILITY.</p>
+    
+    <p><strong>10.2 CAP ON LIABILITY.</strong> TO THE MAXIMUM EXTENT PERMITTED BY LAW, OUR TOTAL LIABILITY TO YOU FOR ANY CLAIMS ARISING OUT OF OR RELATED TO THESE TERMS OR THE SERVICES SHALL NOT EXCEED THE GREATER OF (A) THE AMOUNTS YOU PAID TO US IN THE TWELVE (12) MONTHS PRECEDING THE CLAIM, OR (B) ONE HUNDRED DOLLARS ($100.00).</p>
+    
+    <p><strong>10.3 ESSENTIAL PURPOSE.</strong> THE LIMITATIONS IN THIS SECTION SHALL APPLY EVEN IF ANY LIMITED REMEDY FAILS OF ITS ESSENTIAL PURPOSE.</p>
+
+    <h2>11. INDEMNIFICATION</h2>
+    
+    <p>You agree to indemnify, defend, and hold harmless HingeCraft and its members, managers, officers, employees, agents, and affiliates from and against any and all claims, damages, losses, liabilities, costs, and expenses (including reasonable attorneys' fees) arising out of or related to: (a) your use of the Services; (b) your User Content; (c) your violation of these Terms; (d) your violation of any rights of another party; or (e) your violation of any applicable law.</p>
+
+    <h2>12. DISPUTE RESOLUTION</h2>
+    
+    <p><strong>12.1 Governing Law.</strong> These Terms shall be governed by and construed in accordance with the laws of the State of South Carolina, without regard to its conflict of law provisions.</p>
+    
+    <p><strong>12.2 Arbitration.</strong> Any dispute arising out of or relating to these Terms or the Services shall be resolved by binding arbitration administered by the American Arbitration Association under its Commercial Arbitration Rules. The arbitration shall take place in Charleston, South Carolina, and the arbitrator's decision shall be final and binding.</p>
+    
+    <p><strong>12.3 Class Action Waiver.</strong> YOU AGREE THAT ANY ARBITRATION OR LEGAL PROCEEDING SHALL BE CONDUCTED ONLY ON AN INDIVIDUAL BASIS AND NOT AS A CLASS, CONSOLIDATED, OR REPRESENTATIVE ACTION.</p>
+    
+    <p><strong>12.4 Exceptions.</strong> Notwithstanding the above, either party may seek injunctive relief in any court of competent jurisdiction to protect its intellectual property rights.</p>
+    
+    <p><strong>12.5 Time Limit.</strong> Any claim arising out of or relating to these Terms or the Services must be brought within one (1) year after the cause of action arises, or such claim is permanently barred.</p>
+
+    <h2>13. GENERAL PROVISIONS</h2>
+    
+    <p><strong>13.1 Entire Agreement.</strong> These Terms, together with any additional terms you agree to, constitute the entire agreement between you and HingeCraft regarding the Services.</p>
+    
+    <p><strong>13.2 Modifications.</strong> We reserve the right to modify these Terms at any time. We will provide notice of material changes by posting the updated Terms on the Services with a new effective date. Your continued use of the Services after any modifications constitutes your acceptance.</p>
+    
+    <p><strong>13.3 Waiver.</strong> Our failure to enforce any right or provision shall not be deemed a waiver of such right or provision.</p>
+    
+    <p><strong>13.4 Severability.</strong> If any provision is found to be invalid, the remaining provisions shall remain in full force and effect.</p>
+    
+    <p><strong>13.5 Assignment.</strong> You may not assign these Terms without our prior written consent. We may assign these Terms without restriction.</p>
+    
+    <p><strong>13.6 Notices.</strong> We may provide notice to you by email, posting on the Services, or other reasonable means. Notices to us should be sent to legal@hingecraft.com.</p>
+    
+    <p><strong>13.7 Force Majeure.</strong> We shall not be liable for any delay or failure in performance due to causes beyond our reasonable control.</p>
+    
+    <p><strong>13.8 No Third-Party Beneficiaries.</strong> These Terms do not create any third-party beneficiary rights.</p>
+
+    <h2>14. CONTACT INFORMATION</h2>
+    
+    <p>If you have any questions about these Terms, please contact us at:</p>
+    <p>HingeCraft Global, LLC<br>
+    123 Innovation Drive, Suite 100<br>
+    Charleston, South Carolina 29401<br>
+    Email: legal@hingecraft.com<br>
+    Phone: (843) 555-0100</p>
+
+    <div class="footer">
+        <p>HingeCraft Global, LLC | 123 Innovation Drive, Suite 100, Charleston, SC 29401</p>
+        <p>Email: legal@hingecraft.com | Phone: (843) 555-0100</p>
+        <p>© 2025 HingeCraft Global, LLC. All Rights Reserved.</p>
+    </div>
+</body>
+</html>
+
+`;
+    
+    // Try to find the legalContent element
+    if ($w('#legalContent')) {
+        try {
+            $w('#legalContent').html = legalContent;
+        } catch (e) {
+            console.log("HTML element not configured - content ready for manual embed");
+        }
+    }
+    
+    // Also try text element fallback
+    if ($w('#legalText')) {
+        try {
+            $w('#legalText').html = legalContent;
+        } catch (e) {
+            console.log("Using text element fallback");
+        }
+    }
+}
+
+// Export for potential use in other contexts
+export function getLegalDocumentHTML() {
+    return `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Universal Terms of Service - HingeCraft Global, LLC</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Times New Roman', Times, serif; font-size: 12pt; line-height: 1.6; color: #000; background: #fff; max-width: 8.5in; margin: 0 auto; padding: 1in; }
+        h1 { font-size: 18pt; font-weight: bold; text-align: center; margin-bottom: 24pt; text-transform: uppercase; border-bottom: 2px solid #000; padding-bottom: 12pt; }
+        h2 { font-size: 14pt; font-weight: bold; margin-top: 24pt; margin-bottom: 12pt; text-transform: uppercase; }
+        h3 { font-size: 12pt; font-weight: bold; margin-top: 18pt; margin-bottom: 9pt; }
+        p { margin-bottom: 12pt; text-align: justify; }
+        ul, ol { margin-left: 36pt; margin-bottom: 12pt; }
+        li { margin-bottom: 6pt; }
+        .header { text-align: center; margin-bottom: 36pt; }
+        .company-name { font-size: 16pt; font-weight: bold; }
+        .footer { margin-top: 48pt; padding-top: 12pt; border-top: 1px solid #000; font-size: 10pt; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="company-name">HINGECRAFT GLOBAL, LLC</div>
+        <h1>UNIVERSAL TERMS OF SERVICE</h1>
+        <p>Effective Date: _________________, 20____<br>State of South Carolina</p>
+    </div>
+
+    <p><strong>PLEASE READ THESE TERMS OF SERVICE CAREFULLY BEFORE USING OUR SERVICES.</strong></p>
+
+    <h2>1. ACCEPTANCE OF TERMS</h2>
+    
+    <p><strong>1.1 Agreement.</strong> These Universal Terms of Service (the "Terms") constitute a legally binding agreement between you ("User," "you," or "your") and HingeCraft Global, LLC, a South Carolina limited liability company ("HingeCraft," "Company," "we," "us," or "our"), governing your access to and use of our website at https://www.hingecraft.com, our mobile applications, our products, and any related services (collectively, the "Services").</p>
+    
+    <p><strong>1.2 Acceptance.</strong> By accessing or using the Services, you agree to be bound by these Terms. If you do not agree to these Terms, you may not access or use the Services. Your continued use of the Services after any modifications to these Terms constitutes your acceptance of such modifications.</p>
+    
+    <p><strong>1.3 Eligibility.</strong> You must be at least 18 years of age, or the age of legal majority in your jurisdiction, to use the Services. By using the Services, you represent and warrant that you meet these eligibility requirements.</p>
+    
+    <p><strong>1.4 Authority.</strong> If you are using the Services on behalf of an organization, you represent and warrant that you have the authority to bind that organization to these Terms, and references to "you" include the organization.</p>
+
+    <h2>2. DESCRIPTION OF SERVICES</h2>
+    
+    <p><strong>2.1 Services.</strong> HingeCraft provides:</p>
+    <ul>
+        <li>(a) Hinge mechanisms, hardware components, and related mechanical products;</li>
+        <li>(b) An e-commerce platform for purchasing products;</li>
+        <li>(c) Product information and specifications;</li>
+        <li>(d) Customer support and technical assistance;</li>
+        <li>(e) User accounts and order management;</li>
+        <li>(f) Design tools and configurators;</li>
+        <li>(g) Educational content and resources.</li>
+    </ul>
+    
+    <p><strong>2.2 Modifications.</strong> We reserve the right to modify, suspend, or discontinue any aspect of the Services at any time, with or without notice. We shall not be liable to you or any third party for any modification, suspension, or discontinuation of the Services.</p>
+
+    <h2>3. USER ACCOUNTS</h2>
+    
+    <p><strong>3.1 Account Creation.</strong> To access certain features of the Services, you may be required to create a user account. You agree to provide accurate, current, and complete information during registration and to update such information to keep it accurate, current, and complete.</p>
+    
+    <p><strong>3.2 Account Security.</strong> You are responsible for maintaining the confidentiality of your account credentials and for all activities that occur under your account. You agree to notify us immediately of any unauthorized use of your account. We are not liable for any loss or damage arising from your failure to protect your account credentials.</p>
+    
+    <p><strong>3.3 Account Termination.</strong> We reserve the right to suspend or terminate your account at any time for any reason, including violation of these Terms, without prior notice or liability.</p>
+
+    <h2>4. PURCHASES AND PAYMENTS</h2>
+    
+    <p><strong>4.1 Orders.</strong> When you place an order through the Services, you are making an offer to purchase the products. All orders are subject to acceptance by us. We reserve the right to refuse or cancel any order for any reason, including product availability, errors in pricing or product information, or suspected fraud.</p>
+    
+    <p><strong>4.2 Pricing.</strong> All prices are displayed in U.S. dollars unless otherwise indicated. Prices are subject to change without notice. We are not responsible for typographical errors in pricing. If a product is listed at an incorrect price, we may cancel orders placed at that price.</p>
+    
+    <p><strong>4.3 Payment.</strong> You agree to pay all charges at the prices in effect when incurred. You authorize us to charge your selected payment method for all amounts due. All payments are non-refundable except as expressly stated in our Refund Policy.</p>
+    
+    <p><strong>4.4 Taxes.</strong> You are responsible for all applicable taxes. Prices do not include taxes unless expressly stated. South Carolina sales tax will be applied to orders shipped to South Carolina addresses, and other state taxes may apply based on your location.</p>
+    
+    <p><strong>4.5 Shipping.</strong> Shipping costs and delivery times are estimates and may vary. Risk of loss and title for products pass to you upon delivery to the carrier. We are not responsible for delays caused by carriers or customs.</p>
+
+    <h2>5. INTELLECTUAL PROPERTY</h2>
+    
+    <p><strong>5.1 Company IP.</strong> The Services and all content, features, and functionality thereof, including but not limited to text, graphics, logos, icons, images, audio clips, video clips, data compilations, software, and the compilation thereof (collectively, "Company Content"), are the exclusive property of HingeCraft or its licensors and are protected by copyright, trademark, patent, trade secret, and other intellectual property laws.</p>
+    
+    <p><strong>5.2 Limited License.</strong> Subject to your compliance with these Terms, we grant you a limited, non-exclusive, non-transferable, revocable license to access and use the Services and Company Content for your personal, non-commercial purposes. This license does not include the right to:</p>
+    <ul>
+        <li>(a) Modify, copy, or create derivative works;</li>
+        <li>(b) Use any data mining, robots, or similar data gathering methods;</li>
+        <li>(c) Download any content except as expressly permitted;</li>
+        <li>(d) Use the Services or content for any commercial purpose without our prior written consent;</li>
+        <li>(e) Remove any copyright or proprietary notices.</li>
+    </ul>
+    
+    <p><strong>5.3 Trademarks.</strong> "HingeCraft," the HingeCraft logo, and other marks are trademarks of HingeCraft Global, LLC. You may not use any of our trademarks without our prior written permission.</p>
+    
+    <p><strong>5.4 Feedback.</strong> If you provide feedback, suggestions, or ideas regarding the Services ("Feedback"), you grant us a non-exclusive, worldwide, royalty-free, perpetual, irrevocable license to use, modify, and incorporate such Feedback without any obligation to you.</p>
+
+    <h2>6. USER CONTENT</h2>
+    
+    <p><strong>6.1 User Content.</strong> The Services may allow you to submit, post, or upload content, including text, images, reviews, and other materials ("User Content"). You retain ownership of your User Content but grant us a non-exclusive, worldwide, royalty-free, perpetual, irrevocable license to use, reproduce, modify, publish, distribute, and display your User Content in connection with the Services.</p>
+    
+    <p><strong>6.2 Content Standards.</strong> You agree that your User Content will not:</p>
+    <ul>
+        <li>(a) Violate any applicable law or regulation;</li>
+        <li>(b) Infringe any intellectual property or other rights of any third party;</li>
+        <li>(c) Contain any defamatory, obscene, offensive, or objectionable material;</li>
+        <li>(d) Contain any viruses, malware, or harmful code;</li>
+        <li>(e) Impersonate any person or entity;</li>
+        <li>(f) Constitute spam, advertising, or unauthorized solicitation;</li>
+        <li>(g) Violate the privacy of others.</li>
+    </ul>
+    
+    <p><strong>6.3 Monitoring.</strong> We have no obligation to monitor User Content but reserve the right to remove or modify any User Content for any reason without notice.</p>
+
+    <h2>7. PROHIBITED CONDUCT</h2>
+    
+    <p><strong>7.1 Prohibited Activities.</strong> You agree not to:</p>
+    <ul>
+        <li>(a) Use the Services for any illegal purpose or in violation of any laws;</li>
+        <li>(b) Violate or attempt to violate the security of the Services;</li>
+        <li>(c) Access data or areas of the Services not intended for you;</li>
+        <li>(d) Interfere with or disrupt the Services or servers;</li>
+        <li>(e) Use any automated system to access the Services;</li>
+        <li>(f) Attempt to probe, scan, or test the vulnerability of the Services;</li>
+        <li>(g) Circumvent any security measures;</li>
+        <li>(h) Harass, abuse, or harm others;</li>
+        <li>(i) Engage in fraudulent or deceptive practices;</li>
+        <li>(j) Use the Services to transmit spam or unsolicited communications;</li>
+        <li>(k) Reverse engineer, decompile, or disassemble any part of the Services;</li>
+        <li>(l) Frame or mirror any part of the Services without authorization.</li>
+    </ul>
+
+    <h2>8. THIRD-PARTY LINKS AND SERVICES</h2>
+    
+    <p><strong>8.1 Third-Party Links.</strong> The Services may contain links to third-party websites or services. We do not control and are not responsible for the content, privacy policies, or practices of any third-party websites or services. Your use of third-party websites is at your own risk.</p>
+    
+    <p><strong>8.2 Third-Party Services.</strong> The Services may integrate with or use third-party services. Your use of such third-party services is subject to the terms and privacy policies of those third parties.</p>
+
+    <h2>9. DISCLAIMERS</h2>
+    
+    <p><strong>9.1 AS-IS BASIS.</strong> THE SERVICES ARE PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, WHETHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, NON-INFRINGEMENT, AND ANY WARRANTIES ARISING FROM COURSE OF DEALING OR USAGE OF TRADE.</p>
+    
+    <p><strong>9.2 NO WARRANTY.</strong> WE DO NOT WARRANT THAT THE SERVICES WILL BE UNINTERRUPTED, ERROR-FREE, SECURE, OR FREE OF VIRUSES OR OTHER HARMFUL COMPONENTS. WE DO NOT WARRANT THE ACCURACY, COMPLETENESS, OR RELIABILITY OF ANY CONTENT OR INFORMATION PROVIDED THROUGH THE SERVICES.</p>
+    
+    <p><strong>9.3 PRODUCT DISCLAIMERS.</strong> PRODUCT DESCRIPTIONS, SPECIFICATIONS, AND IMAGES ARE FOR INFORMATIONAL PURPOSES ONLY. ACTUAL PRODUCTS MAY VARY. WE DO NOT WARRANT THAT PRODUCTS WILL MEET YOUR SPECIFIC REQUIREMENTS OR EXPECTATIONS.</p>
+
+    <h2>10. LIMITATION OF LIABILITY</h2>
+    
+    <p><strong>10.1 EXCLUSION OF DAMAGES.</strong> TO THE MAXIMUM EXTENT PERMITTED BY LAW, IN NO EVENT SHALL HINGECRAFT, ITS MEMBERS, MANAGERS, OFFICERS, EMPLOYEES, AGENTS, OR AFFILIATES BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING BUT NOT LIMITED TO LOSS OF PROFITS, DATA, USE, GOODWILL, OR OTHER INTANGIBLE LOSSES, ARISING OUT OF OR RELATED TO YOUR USE OF OR INABILITY TO USE THE SERVICES, REGARDLESS OF THE THEORY OF LIABILITY.</p>
+    
+    <p><strong>10.2 CAP ON LIABILITY.</strong> TO THE MAXIMUM EXTENT PERMITTED BY LAW, OUR TOTAL LIABILITY TO YOU FOR ANY CLAIMS ARISING OUT OF OR RELATED TO THESE TERMS OR THE SERVICES SHALL NOT EXCEED THE GREATER OF (A) THE AMOUNTS YOU PAID TO US IN THE TWELVE (12) MONTHS PRECEDING THE CLAIM, OR (B) ONE HUNDRED DOLLARS ($100.00).</p>
+    
+    <p><strong>10.3 ESSENTIAL PURPOSE.</strong> THE LIMITATIONS IN THIS SECTION SHALL APPLY EVEN IF ANY LIMITED REMEDY FAILS OF ITS ESSENTIAL PURPOSE.</p>
+
+    <h2>11. INDEMNIFICATION</h2>
+    
+    <p>You agree to indemnify, defend, and hold harmless HingeCraft and its members, managers, officers, employees, agents, and affiliates from and against any and all claims, damages, losses, liabilities, costs, and expenses (including reasonable attorneys' fees) arising out of or related to: (a) your use of the Services; (b) your User Content; (c) your violation of these Terms; (d) your violation of any rights of another party; or (e) your violation of any applicable law.</p>
+
+    <h2>12. DISPUTE RESOLUTION</h2>
+    
+    <p><strong>12.1 Governing Law.</strong> These Terms shall be governed by and construed in accordance with the laws of the State of South Carolina, without regard to its conflict of law provisions.</p>
+    
+    <p><strong>12.2 Arbitration.</strong> Any dispute arising out of or relating to these Terms or the Services shall be resolved by binding arbitration administered by the American Arbitration Association under its Commercial Arbitration Rules. The arbitration shall take place in Charleston, South Carolina, and the arbitrator's decision shall be final and binding.</p>
+    
+    <p><strong>12.3 Class Action Waiver.</strong> YOU AGREE THAT ANY ARBITRATION OR LEGAL PROCEEDING SHALL BE CONDUCTED ONLY ON AN INDIVIDUAL BASIS AND NOT AS A CLASS, CONSOLIDATED, OR REPRESENTATIVE ACTION.</p>
+    
+    <p><strong>12.4 Exceptions.</strong> Notwithstanding the above, either party may seek injunctive relief in any court of competent jurisdiction to protect its intellectual property rights.</p>
+    
+    <p><strong>12.5 Time Limit.</strong> Any claim arising out of or relating to these Terms or the Services must be brought within one (1) year after the cause of action arises, or such claim is permanently barred.</p>
+
+    <h2>13. GENERAL PROVISIONS</h2>
+    
+    <p><strong>13.1 Entire Agreement.</strong> These Terms, together with any additional terms you agree to, constitute the entire agreement between you and HingeCraft regarding the Services.</p>
+    
+    <p><strong>13.2 Modifications.</strong> We reserve the right to modify these Terms at any time. We will provide notice of material changes by posting the updated Terms on the Services with a new effective date. Your continued use of the Services after any modifications constitutes your acceptance.</p>
+    
+    <p><strong>13.3 Waiver.</strong> Our failure to enforce any right or provision shall not be deemed a waiver of such right or provision.</p>
+    
+    <p><strong>13.4 Severability.</strong> If any provision is found to be invalid, the remaining provisions shall remain in full force and effect.</p>
+    
+    <p><strong>13.5 Assignment.</strong> You may not assign these Terms without our prior written consent. We may assign these Terms without restriction.</p>
+    
+    <p><strong>13.6 Notices.</strong> We may provide notice to you by email, posting on the Services, or other reasonable means. Notices to us should be sent to legal@hingecraft.com.</p>
+    
+    <p><strong>13.7 Force Majeure.</strong> We shall not be liable for any delay or failure in performance due to causes beyond our reasonable control.</p>
+    
+    <p><strong>13.8 No Third-Party Beneficiaries.</strong> These Terms do not create any third-party beneficiary rights.</p>
+
+    <h2>14. CONTACT INFORMATION</h2>
+    
+    <p>If you have any questions about these Terms, please contact us at:</p>
+    <p>HingeCraft Global, LLC<br>
+    123 Innovation Drive, Suite 100<br>
+    Charleston, South Carolina 29401<br>
+    Email: legal@hingecraft.com<br>
+    Phone: (843) 555-0100</p>
+
+    <div class="footer">
+        <p>HingeCraft Global, LLC | 123 Innovation Drive, Suite 100, Charleston, SC 29401</p>
+        <p>Email: legal@hingecraft.com | Phone: (843) 555-0100</p>
+        <p>© 2025 HingeCraft Global, LLC. All Rights Reserved.</p>
+    </div>
+</body>
+</html>
+
+`;
+}

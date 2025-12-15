@@ -1,0 +1,91 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: hingecraft-chat-db
+    environment:
+      POSTGRES_USER: hingecraft
+      POSTGRES_PASSWORD: changeme
+      POSTGRES_DB: hingecraft_chat
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./migrations:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U hingecraft"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Redis for pub/sub and rate limiting
+  redis:
+    image: redis:7-alpine
+    container_name: hingecraft-chat-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # MinIO for S3-compatible storage (local development)
+  minio:
+    image: minio/minio:latest
+    container_name: hingecraft-chat-minio
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - minio_data:/data
+    command: server /data --console-address ":9001"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 30s
+      timeout: 20s
+      retries: 3
+
+  # Chat API Server
+  api:
+    build: .
+    container_name: hingecraft-chat-api
+    environment:
+      NODE_ENV: development
+      PORT: 3000
+      DB_URL: postgresql://hingecraft:changeme@postgres:5432/hingecraft_chat
+      REDIS_URL: redis://redis:6379
+      JWT_SECRET: your-super-secret-jwt-key-change-in-production-min-32-chars
+      S3_BUCKET: hingecraft-chat-uploads
+      S3_REGION: us-east-1
+      S3_ENDPOINT: http://minio:9000
+      S3_ACCESS_KEY_ID: minioadmin
+      S3_SECRET_ACCESS_KEY: minioadmin
+      CORS_ORIGINS: http://localhost:3000,http://localhost:8080
+      RATE_LIMIT_REQ_PER_MIN: 100
+      LOG_LEVEL: info
+    ports:
+      - "3000:3000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      minio:
+        condition: service_healthy
+    volumes:
+      - ./:/app
+      - /app/node_modules
+    command: npm run dev
+
+volumes:
+  postgres_data:
+  redis_data:
+  minio_data:

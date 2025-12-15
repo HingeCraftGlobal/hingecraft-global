@@ -1,0 +1,1461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HingeCraft Global - Live Mission</title>
+    <!-- T10 Chat System Styles -->
+    <link rel="stylesheet" href="/css/hc-uix.css">
+    <!-- T10 Chat System Scripts -->
+    <script src="https://cdn.socket.io/4.6.1/socket.io.min.js"></script>
+    <script src="/js/hc-client.js"></script>
+    <style>
+        /* Page Layout */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #f4ecff 0%, #e8d5ff 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 20% 60% 20%;
+            gap: 20px;
+        }
+
+        /* Gallery Styles */
+        .gallery-section {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .main-photo-container {
+            margin-bottom: 20px;
+        }
+
+        #mainPhotoImg {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .photo-label {
+            font-weight: 600;
+            margin-top: 12px;
+            color: #2b2449;
+        }
+
+        .photo-caption-box {
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 12px;
+        }
+
+        #photoCaptionText {
+            margin: 8px 0;
+            color: #666;
+        }
+
+        #photoCaptionCredit {
+            font-size: 0.9em;
+            color: #999;
+            font-style: italic;
+        }
+
+        #photoTimestamp {
+            font-size: 0.85em;
+            color: #999;
+            margin-top: 8px;
+        }
+
+        .thumbnails {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .thumb {
+            cursor: pointer;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.2s;
+            opacity: 0.7;
+        }
+
+        .thumb:hover {
+            opacity: 1;
+            transform: scale(1.05);
+        }
+
+        .thumb.active {
+            border-color: #6a4ad8;
+            opacity: 1;
+            box-shadow: 0 0 0 2px rgba(106, 74, 216, 0.2);
+        }
+
+        .thumb img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Country List Styles */
+        .country-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+        .country-list li {
+            padding: 12px;
+            border-bottom: 1px solid #e0d8ff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .country-list li:last-child {
+            border-bottom: none;
+        }
+
+        .country-name {
+            font-weight: 600;
+            color: #2b2449;
+        }
+
+        .country-meta {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .country-count {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .country-code {
+            color: #6a4ad8;
+            font-weight: 600;
+            background: #f4ecff;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.85em;
+        }
+
+        /* Portal Buttons */
+        .portal-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .invite-btn, .portal-btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .invite-btn {
+            background: #6a4ad8;
+            color: white;
+        }
+
+        .invite-btn:hover {
+            background: #5a3ac8;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(106, 74, 216, 0.3);
+        }
+
+        .portal-btn {
+            background: white;
+            color: #6a4ad8;
+            border: 2px solid #6a4ad8;
+        }
+
+        .portal-btn:hover {
+            background: #f4ecff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(106, 74, 216, 0.2);
+        }
+
+        /* Chat Styles */
+        #chatBox {
+            max-height: 400px;
+            overflow-y: auto;
+            border: 1px solid #e0d8ff;
+            border-radius: 8px;
+            padding: 12px;
+            margin: 20px 0;
+            background: white;
+            display: flex;
+            flex-direction: column-reverse;
+        }
+
+        .hc-message {
+            margin: 8px 0;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 3px solid #6a4ad8;
+            position: relative;
+        }
+
+        .hc-message.pending {
+            opacity: 0.6;
+        }
+
+        .hc-message-pinned {
+            border-left-color: #ffc107;
+            background: #fff9e6;
+        }
+
+        .hc-message-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 4px;
+        }
+
+        .hc-message-author {
+            font-weight: 600;
+            color: #2b2449;
+        }
+
+        .hc-message-time {
+            font-size: 0.75em;
+            color: #999;
+        }
+
+        .hc-message-pin-badge {
+            margin-left: auto;
+            font-size: 0.9em;
+        }
+
+        .hc-message-edited {
+            font-size: 0.75em;
+            color: #999;
+            font-style: italic;
+        }
+
+        .hc-message-text {
+            color: #333;
+            word-wrap: break-word;
+        }
+
+        .hc-message-attachments {
+            margin-top: 8px;
+        }
+
+        .hc-attachment-image {
+            max-width: 200px;
+            border-radius: 4px;
+            margin-top: 4px;
+        }
+
+        .hc-attachment-link {
+            display: inline-block;
+            padding: 4px 8px;
+            background: #f4ecff;
+            border-radius: 4px;
+            text-decoration: none;
+            color: #6a4ad8;
+            margin-right: 4px;
+        }
+
+        .hc-message-reactions {
+            display: flex;
+            gap: 4px;
+            margin-top: 8px;
+            flex-wrap: wrap;
+        }
+
+        .hc-reaction, .hc-reaction-add {
+            padding: 4px 8px;
+            border: 1px solid #e0d8ff;
+            border-radius: 12px;
+            background: white;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: all 0.2s;
+        }
+
+        .hc-reaction:hover, .hc-reaction-add:hover {
+            background: #f4ecff;
+        }
+
+        .hc-reaction-active {
+            background: #e8d5ff;
+            border-color: #6a4ad8;
+        }
+
+        .hc-message-actions {
+            display: flex;
+            gap: 4px;
+            margin-top: 8px;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .hc-message:hover .hc-message-actions {
+            opacity: 1;
+        }
+
+        .hc-action-btn {
+            padding: 4px 8px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-size: 0.9em;
+            border-radius: 4px;
+        }
+
+        .hc-action-btn:hover {
+            background: #f4ecff;
+        }
+
+        /* Thread Modal Styles */
+        .hc-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hc-modal {
+            background: white;
+            border-radius: 12px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .hc-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 20px;
+            border-bottom: 1px solid #e0d8ff;
+        }
+
+        .hc-modal-title {
+            margin: 0;
+            font-size: 18px;
+            font-weight: 600;
+            color: #2b2449;
+        }
+
+        .hc-modal-close {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+        }
+
+        .hc-modal-close:hover {
+            background: #f4ecff;
+        }
+
+        .hc-thread-root {
+            border-left: 4px solid #6a4ad8;
+            margin-bottom: 16px;
+        }
+
+        .hc-thread-replies {
+            margin-left: 20px;
+            border-left: 2px solid #e0d8ff;
+            padding-left: 16px;
+        }
+
+        .hc-thread-replies .hc-message {
+            margin-bottom: 12px;
+        }
+
+        /* Channel Switcher */
+        .hc-channel-switcher-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hc-channel-switcher-modal {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .hc-channel-switcher-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0d8ff;
+            border-radius: 8px;
+            font-size: 16px;
+            margin-bottom: 12px;
+        }
+
+        .hc-channel-switcher-input:focus {
+            outline: none;
+            border-color: #6a4ad8;
+        }
+
+        .hc-channel-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .hc-channel-item {
+            padding: 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-bottom: 4px;
+        }
+
+        .hc-channel-item:hover {
+            background: #f4ecff;
+        }
+
+        .hc-channel-item.active {
+            background: #e8d5ff;
+            font-weight: 600;
+        }
+
+        .chat-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #e0d8ff;
+            border-radius: 8px;
+            font-family: inherit;
+            resize: vertical;
+            font-size: 14px;
+        }
+
+        .chat-input:focus {
+            outline: none;
+            border-color: #6a4ad8;
+            box-shadow: 0 0 0 3px rgba(106, 74, 216, 0.1);
+        }
+
+        /* UN Time Display */
+        .un-time {
+            padding: 16px;
+            background: white;
+            border-radius: 8px;
+            margin-top: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .un-time-label {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #2b2449;
+        }
+
+        .un-time-value {
+            font-family: 'Courier New', monospace;
+            font-size: 1.1em;
+            color: #6a4ad8;
+        }
+
+        /* User ID Display (hidden but used for name extraction) */
+        .user-id {
+            display: none;
+        }
+
+        /* Scrollbar Styling */
+        .country-list::-webkit-scrollbar,
+        #chatBox::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .country-list::-webkit-scrollbar-track,
+        #chatBox::-webkit-scrollbar-track {
+            background: #f8f9fa;
+            border-radius: 4px;
+        }
+
+        .country-list::-webkit-scrollbar-thumb,
+        #chatBox::-webkit-scrollbar-thumb {
+            background: #6a4ad8;
+            border-radius: 4px;
+        }
+
+        .country-list::-webkit-scrollbar-thumb:hover,
+        #chatBox::-webkit-scrollbar-thumb:hover {
+            background: #5a3ac8;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- User ID Element (hidden, used for name extraction) -->
+    <div class="user-id">User: Member • Digital Twin #001 • 🇺🇸</div>
+
+    <div class="container">
+        <!-- Left Column: Chat -->
+        <div>
+            <!-- T10 Live Chat System -->
+            <div id="chatBox" class="hc-messages" role="log" aria-live="polite" aria-label="Chat messages">
+                <div class="hc-loading" id="loadingIndicator">Loading messages...</div>
+            </div>
+
+            <!-- Chat Input -->
+            <div class="hc-composer" role="form" aria-label="Message composer" style="margin-top: 12px;">
+                <div class="hc-composer-input-wrapper">
+                    <textarea 
+                        class="hc-composer-input chat-input" 
+                        id="messageInput"
+                        placeholder="Type a message..."
+                        rows="2"
+                        aria-label="Message input"
+                        maxlength="5000"
+                    ></textarea>
+                    <div class="hc-composer-actions" style="margin-top: 8px; display: flex; gap: 8px;">
+                        <button 
+                            class="hc-btn hc-btn-secondary" 
+                            id="attachBtn"
+                            type="button"
+                            aria-label="Attach file"
+                            title="Attach file (max 12MB)"
+                            style="padding: 8px 16px;"
+                        >📎</button>
+                        <input 
+                            type="file" 
+                            id="fileInput" 
+                            multiple 
+                            style="display: none;"
+                            accept="image/*,video/*,audio/*,.pdf,.doc,.docx,.txt"
+                            aria-label="File input"
+                        >
+                        <button 
+                            class="hc-btn hc-btn-primary" 
+                            id="sendBtn"
+                            type="button"
+                            aria-label="Send message"
+                            style="padding: 8px 20px; flex: 1;"
+                        >Send</button>
+                    </div>
+                </div>
+                <div id="validationError" class="hc-validation-error" role="alert" aria-live="polite" style="margin-top: 8px;"></div>
+            </div>
+
+            <!-- Typing Indicator -->
+            <div class="hc-typing-indicator" id="typingIndicator" aria-live="polite" style="display: none; padding: 8px; color: #666; font-style: italic;"></div>
+
+            <!-- Error Message -->
+            <div id="errorMessage" class="hc-error" role="alert" aria-live="polite" style="display: none; margin-top: 12px;"></div>
+        </div>
+
+        <!-- Center Column: Gallery -->
+        <div class="gallery-section">
+            <div class="main-photo-container">
+                <img id="mainPhotoImg" src="https://via.placeholder.com/800x600/6a4ad8/ffffff?text=HingeCraft+Global" alt="Main Photo">
+                <div class="photo-label" id="mainPhotoLabel">Welcome to HingeCraft Global</div>
+                <div class="photo-caption-box">
+                    <div id="photoCaptionText">Building a global community for abundance and resilience.</div>
+                    <div id="photoCaptionCredit">Photo: HingeCraft Global</div>
+                    <div id="photoTimestamp"></div>
+                </div>
+            </div>
+
+            <div class="thumbnails">
+                <!-- Thumbnail examples - replace with your actual gallery images -->
+                <div class="thumb" data-src="https://via.placeholder.com/800x600/6a4ad8/ffffff?text=Photo+1" data-label="Photo 1" data-caption="First gallery image" data-credit="HingeCraft Global" data-timestamp="2024-01-01">
+                    <img src="https://via.placeholder.com/80x60/6a4ad8/ffffff?text=1" alt="Thumbnail 1">
+                </div>
+                <div class="thumb" data-src="https://via.placeholder.com/800x600/5a3ac8/ffffff?text=Photo+2" data-label="Photo 2" data-caption="Second gallery image" data-credit="HingeCraft Global" data-timestamp="2024-01-02">
+                    <img src="https://via.placeholder.com/80x60/5a3ac8/ffffff?text=2" alt="Thumbnail 2">
+                </div>
+                <div class="thumb" data-src="https://via.placeholder.com/800x600/4a2ab8/ffffff?text=Photo+3" data-label="Photo 3" data-caption="Third gallery image" data-credit="HingeCraft Global" data-timestamp="2024-01-03">
+                    <img src="https://via.placeholder.com/80x60/4a2ab8/ffffff?text=3" alt="Thumbnail 3">
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Column: Country List & Portals -->
+        <div>
+            <ul class="country-list">
+                <li>
+                    <span class="country-name">Togo</span>
+                    <span class="country-meta">
+                        <span class="country-count">5,062</span>
+                        <span class="country-code">TG</span>
+                    </span>
+                </li>
+                <li>
+                    <span class="country-name">Tunisia</span>
+                    <span class="country-meta">
+                        <span class="country-count">2,299</span>
+                        <span class="country-code">TN</span>
+                    </span>
+                </li>
+                <li>
+                    <span class="country-name">Turkey</span>
+                    <span class="country-meta">
+                        <span class="country-count">16,216</span>
+                        <span class="country-code">TR</span>
+                    </span>
+                </li>
+                <li>
+                    <span class="country-name">Uganda</span>
+                    <span class="country-meta">
+                        <span class="country-count">3,156</span>
+                        <span class="country-code">UG</span>
+                    </span>
+                </li>
+                <li>
+                    <span class="country-name">Ukraine</span>
+                    <span class="country-meta">
+                        <span class="country-count">7,404</span>
+                        <span class="country-code">UA</span>
+                    </span>
+                </li>
+                <li>
+                    <span class="country-name">United Arab Emirates</span>
+                    <span class="country-meta">
+                        <span class="country-count">6,794</span>
+                        <span class="country-code">AE</span>
+                    </span>
+                </li>
+                <li>
+                    <span class="country-name">United Kingdom</span>
+                    <span class="country-meta">
+                        <span class="country-count">6,856</span>
+                        <span class="country-code">GB</span>
+                    </span>
+                </li>
+                <li>
+                    <span class="country-name">United States</span>
+                    <span class="country-meta">
+                        <span class="country-count">5,916</span>
+                        <span class="country-code">US</span>
+                    </span>
+                </li>
+                <li>
+                    <span class="country-name">Uruguay</span>
+                    <span class="country-meta">
+                        <span class="country-count">2,376</span>
+                        <span class="country-code">UY</span>
+                    </span>
+                </li>
+                <li>
+                    <span class="country-name">Venezuela</span>
+                    <span class="country-meta">
+                        <span class="country-count">7,232</span>
+                        <span class="country-code">VE</span>
+                    </span>
+                </li>
+                <li>
+                    <span class="country-name">Vietnam</span>
+                    <span class="country-meta">
+                        <span class="country-count">5,525</span>
+                        <span class="country-code">VN</span>
+                    </span>
+                </li>
+                <li>
+                    <span class="country-name">Zambia</span>
+                    <span class="country-meta">
+                        <span class="country-count">7,094</span>
+                        <span class="country-code">ZM</span>
+                    </span>
+                </li>
+                <li>
+                    <span class="country-name">Zimbabwe</span>
+                    <span class="country-meta">
+                        <span class="country-count">3,084</span>
+                        <span class="country-code">ZW</span>
+                    </span>
+                </li>
+            </ul>
+
+            <div class="portal-buttons">
+                <button class="invite-btn" onclick="window.location.href='https://www.hingecraft-global.ai/invitation';">Invite a Friend</button>
+                <button class="portal-btn" onclick="window.location.href='https://www.hingecraft-global.ai/membership-page';">Member Portal</button>
+                <button class="portal-btn" onclick="window.location.href='https://www.hingecraft-global.ai/ambassador-portal';">Ambassador Portal</button>
+                <button class="portal-btn" onclick="window.location.href='https://www.hingecraft-global.ai/support';">Supporter Portal</button>
+            </div>
+
+            <!-- UN Time Display -->
+            <div class="un-time" id="unTimeBox">
+                <div class="un-time-label">UN New York Time</div>
+                <div class="un-time-value" id="unTimeValue">Loading…</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Thread Modal -->
+    <div id="threadModal" class="hc-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="threadModalTitle" style="display: none;">
+        <div class="hc-modal">
+            <div class="hc-modal-header">
+                <h2 id="threadModalTitle" class="hc-modal-title">Thread</h2>
+                <button class="hc-modal-close" id="threadModalClose" aria-label="Close thread">×</button>
+            </div>
+            <div id="threadContent" class="hc-messages" style="max-height: 400px; overflow-y: auto; padding: 12px;"></div>
+            <div class="hc-composer" style="margin-top: 12px; padding: 12px; border-top: 1px solid #e0d8ff;">
+                <textarea 
+                    id="threadReplyInput"
+                    class="hc-composer-input chat-input" 
+                    placeholder="Reply in thread..."
+                    rows="2"
+                    aria-label="Thread reply input"
+                    maxlength="5000"
+                ></textarea>
+                <button 
+                    class="hc-btn hc-btn-primary" 
+                    id="threadReplyBtn"
+                    style="margin-top: 8px; padding: 8px 20px;"
+                >Reply</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // ============================================
+            // GALLERY LOGIC
+            // ============================================
+            const thumbs = document.querySelectorAll('.thumb');
+            const mainPhotoImg = document.getElementById('mainPhotoImg');
+            const mainPhotoLabel = document.getElementById('mainPhotoLabel');
+            const captionText = document.getElementById('photoCaptionText');
+            const captionCredit = document.getElementById('photoCaptionCredit');
+
+            function activateThumb(thumb) {
+                thumbs.forEach(function (t) { t.classList.remove('active'); });
+                thumb.classList.add('active');
+
+                const src = thumb.getAttribute('data-src');
+                const label = thumb.getAttribute('data-label');
+                const caption = thumb.getAttribute('data-caption');
+                const credit = thumb.getAttribute('data-credit');
+                const ts = thumb.getAttribute('data-timestamp');
+
+                if (src && mainPhotoImg) {
+                    mainPhotoImg.src = src;
+                }
+                if (label && mainPhotoLabel) {
+                    mainPhotoLabel.textContent = label;
+                }
+                if (caption && captionText) {
+                    captionText.textContent = caption;
+                }
+                if (credit && captionCredit) {
+                    captionCredit.textContent = credit;
+                }
+                const tsEl = document.getElementById('photoTimestamp');
+                if (tsEl && ts) {
+                    tsEl.textContent = 'Date: ' + ts;
+                }
+            }
+
+            thumbs.forEach(function (thumb) {
+                thumb.addEventListener('click', function () {
+                    activateThumb(thumb);
+                });
+            });
+
+            if (thumbs.length > 0) {
+                activateThumb(thumbs[0]);
+            }
+
+            // ============================================
+            // UN NEW YORK TIME DISPLAY
+            // ============================================
+            const unTimeEl = document.getElementById('unTimeValue');
+            function updateUNTime() {
+                if (!unTimeEl) return;
+                const now = new Date();
+                try {
+                    const options = {
+                        timeZone: 'America/New_York',
+                        year: 'numeric',
+                        month: 'short',
+                        day: '2-digit',
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        second: '2-digit',
+                        hour12: true
+                    };
+                    const formatter = new Intl.DateTimeFormat('en-US', options);
+                    unTimeEl.textContent = formatter.format(now);
+                } catch (e) {
+                    unTimeEl.textContent = now.toLocaleString();
+                }
+            }
+            updateUNTime();
+            setInterval(updateUNTime, 1000);
+
+            // ============================================
+            // T10 LIVE CHAT SYSTEM INTEGRATION
+            // ============================================
+            
+            // Initialize Chat Client
+            const client = new HingeCraftChatClient({
+                baseUrl: window.location.origin,
+                channels: ['#general', '#support', '#random'],
+                defaultChannel: '#general'
+            });
+
+            // State
+            let currentChannel = '#general';
+            let messages = [];
+            let typingUsers = new Set();
+            let pendingAttachments = [];
+
+            // DOM Elements
+            const chatBox = document.getElementById('chatBox');
+            const messageInput = document.getElementById('messageInput');
+            const sendBtn = document.getElementById('sendBtn');
+            const attachBtn = document.getElementById('attachBtn');
+            const fileInput = document.getElementById('fileInput');
+            const typingIndicator = document.getElementById('typingIndicator');
+            const errorMessage = document.getElementById('errorMessage');
+            const validationError = document.getElementById('validationError');
+            const loadingIndicator = document.getElementById('loadingIndicator');
+            const threadModal = document.getElementById('threadModal');
+            const threadContent = document.getElementById('threadContent');
+
+            // Get display name from existing user-id element
+            function getDisplayName() {
+                const userIdEl = document.querySelector('.user-id');
+                if (!userIdEl) return 'Member';
+                const txt = userIdEl.textContent || '';
+                const firstSegment = txt.split('•')[0];
+                if (!firstSegment) return 'Member';
+                return firstSegment.replace('User:', '').trim() || 'Member';
+            }
+
+            // Initialize T10 Chat System
+            async function initChat() {
+                try {
+                    await client.init();
+                    console.log('T10 Chat client initialized');
+
+                    setupChatHandlers();
+                    await loadMessages();
+
+                    if (client.socket && typeof io !== 'undefined') {
+                        client.socket.emit('join', currentChannel);
+                    }
+
+                    client.onMessageReceived = handleMessageReceived;
+                    client.onMessageEdit = handleMessageEdit;
+                    client.onMessageDelete = handleMessageDelete;
+                    client.onReactionUpdate = handleReactionUpdate;
+                    client.onTypingUpdate = handleTypingUpdate;
+                    client.onPresenceUpdate = handlePresenceUpdate;
+                    client.onPinUpdate = handlePinUpdate;
+                    client.onThreadUpdate = handleThreadUpdate;
+                    client.onMessageOptimistic = handleMessageOptimistic;
+                    client.onMessageError = handleMessageError;
+
+                    if (loadingIndicator) {
+                        loadingIndicator.style.display = 'none';
+                    }
+                } catch (error) {
+                    console.error('Failed to initialize chat:', error);
+                    if (loadingIndicator) {
+                        loadingIndicator.textContent = 'Failed to load. Please refresh.';
+                    }
+                    showError('Failed to initialize chat: ' + error.message);
+                }
+            }
+
+            function setupChatHandlers() {
+                if (sendBtn) {
+                    sendBtn.addEventListener('click', handleSend);
+                }
+                if (messageInput) {
+                    messageInput.addEventListener('keydown', (e) => {
+                        if (e.key === 'Enter' && !e.shiftKey) {
+                            e.preventDefault();
+                            handleSend();
+                        }
+                    });
+
+                    let typingTimeout;
+                    messageInput.addEventListener('input', () => {
+                        clearTimeout(typingTimeout);
+                        client.sendTyping(currentChannel);
+                        typingTimeout = setTimeout(() => {}, 3000);
+                    });
+                }
+
+                if (attachBtn) {
+                    attachBtn.addEventListener('click', () => fileInput.click());
+                }
+                if (fileInput) {
+                    fileInput.addEventListener('change', handleFileSelect);
+                }
+
+                const threadModalClose = document.getElementById('threadModalClose');
+                if (threadModalClose) {
+                    threadModalClose.addEventListener('click', () => {
+                        threadModal.style.display = 'none';
+                        currentThreadRootId = null;
+                    });
+                }
+
+                if (threadModal) {
+                    threadModal.addEventListener('click', (e) => {
+                        if (e.target === threadModal) {
+                            threadModal.style.display = 'none';
+                            currentThreadRootId = null;
+                        }
+                    });
+                    
+                    // Close on Escape key
+                    threadModal.addEventListener('keydown', (e) => {
+                        if (e.key === 'Escape') {
+                            threadModal.style.display = 'none';
+                            currentThreadRootId = null;
+                        }
+                    });
+                }
+            }
+
+            async function loadMessages() {
+                try {
+                    const data = await client.getMessages(currentChannel, { limit: 50 });
+                    messages = data.messages || [];
+                    renderMessages();
+                } catch (error) {
+                    console.error('Failed to load messages:', error);
+                    showError('Failed to load messages: ' + error.message);
+                }
+            }
+
+            function renderMessages() {
+                if (!chatBox) return;
+                
+                const loading = chatBox.querySelector('.hc-loading');
+                if (loading) loading.remove();
+
+                // Filter messages for current channel and exclude thread replies (show only root messages)
+                const channelMessages = messages.filter(m => 
+                    m.channel === currentChannel && !m.parent_id
+                );
+
+                const sorted = [...channelMessages].sort((a, b) => {
+                    if (a.pinned && !b.pinned) return -1;
+                    if (!a.pinned && b.pinned) return 1;
+                    return new Date(b.ts) - new Date(a.ts);
+                });
+
+                // Clear existing messages
+                const existingMessages = chatBox.querySelectorAll('.hc-message');
+                existingMessages.forEach(el => el.remove());
+
+                // Add new messages (insert at top since we're using flex-direction: column-reverse)
+                sorted.forEach(msg => {
+                    const element = createMessageElement(msg);
+                    chatBox.appendChild(element);
+                });
+
+                // Scroll to top (which is actually the bottom due to column-reverse)
+                chatBox.scrollTop = 0;
+            }
+
+            function createMessageElement(message) {
+                const msgDiv = document.createElement('div');
+                msgDiv.className = 'hc-message' + (message.pending ? ' pending' : '') + (message.pinned ? ' hc-message-pinned' : '');
+                msgDiv.setAttribute('data-message-id', message.id);
+                msgDiv.setAttribute('role', 'article');
+                msgDiv.setAttribute('aria-label', `Message from ${message.user_name || 'Member'}`);
+                
+                const name = message.user_name || getDisplayName() || 'Member';
+                const text = message.text || '';
+                const timestamp = message.ts ? new Date(message.ts).toLocaleTimeString() : '';
+                
+                let html = '<div class="hc-message-header">';
+                html += '<b class="hc-message-author">' + escapeHtml(name) + '</b>';
+                if (timestamp) html += '<span class="hc-message-time">' + timestamp + '</span>';
+                if (message.pinned) html += '<span class="hc-message-pin-badge" title="Pinned">📌</span>';
+                if (message.edited) html += '<span class="hc-message-edited">(edited)</span>';
+                html += '</div>';
+                
+                html += '<div class="hc-message-text">' + escapeHtml(text) + '</div>';
+                
+                // Attachments
+                if (message.attachments && message.attachments.length > 0) {
+                    html += '<div class="hc-message-attachments">';
+                    message.attachments.forEach(att => {
+                        if (att.mime && att.mime.startsWith('image/')) {
+                            html += '<img src="' + escapeHtml(att.url || '') + '" alt="' + escapeHtml(att.name || '') + '" class="hc-attachment-image">';
+                        } else {
+                            html += '<a href="' + escapeHtml(att.url || '') + '" target="_blank" class="hc-attachment-link">📎 ' + escapeHtml(att.name || 'file') + '</a>';
+                        }
+                    });
+                    html += '</div>';
+                }
+                
+                // Reactions
+                if (message.reactions && Object.keys(message.reactions).length > 0) {
+                    html += '<div class="hc-message-reactions">';
+                    Object.entries(message.reactions).forEach(([emoji, userIds]) => {
+                        const count = Array.isArray(userIds) ? userIds.length : Object.keys(userIds || {}).length;
+                        const isReacted = userIds && (Array.isArray(userIds) ? userIds.includes(client.user?.id) : userIds[client.user?.id]);
+                        html += '<button class="hc-reaction' + (isReacted ? ' hc-reaction-active' : '') + '" data-emoji="' + escapeHtml(emoji) + '" aria-label="React with ' + escapeHtml(emoji) + '">';
+                        html += escapeHtml(emoji) + ' <span>' + count + '</span>';
+                        html += '</button>';
+                    });
+                    html += '<button class="hc-reaction-add" aria-label="Add reaction">+</button>';
+                    html += '</div>';
+                } else {
+                    html += '<div class="hc-message-reactions"><button class="hc-reaction-add" aria-label="Add reaction">+</button></div>';
+                }
+                
+                // Actions (edit/delete for own messages, pin for admin)
+                html += '<div class="hc-message-actions">';
+                if (message.user_id === client.user?.id) {
+                    html += '<button class="hc-action-btn" data-action="edit" aria-label="Edit message">✏️</button>';
+                    html += '<button class="hc-action-btn" data-action="delete" aria-label="Delete message">🗑️</button>';
+                }
+                if (client.user?.role === 'admin') {
+                    html += '<button class="hc-action-btn" data-action="pin" aria-label="' + (message.pinned ? 'Unpin' : 'Pin') + ' message">' + (message.pinned ? '📌' : '📍') + '</button>';
+                }
+                html += '<button class="hc-action-btn" data-action="thread" aria-label="Reply in thread">💬</button>';
+                html += '</div>';
+                
+                msgDiv.innerHTML = html;
+                
+                // Add event listeners
+                msgDiv.querySelectorAll('.hc-reaction').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const emoji = btn.getAttribute('data-emoji');
+                        client.toggleReaction(message.id, emoji);
+                    });
+                });
+                
+                msgDiv.querySelectorAll('.hc-action-btn').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const action = btn.getAttribute('data-action');
+                        handleMessageAction(message.id, action);
+                    });
+                });
+                
+                return msgDiv;
+            }
+            
+            function escapeHtml(text) {
+                const div = document.createElement('div');
+                div.textContent = text;
+                return div.innerHTML;
+            }
+            
+            async function handleMessageAction(messageId, action) {
+                const message = messages.find(m => m.id === messageId);
+                if (!message) return;
+                
+                switch (action) {
+                    case 'edit':
+                        const newText = prompt('Edit message:', message.text);
+                        if (newText !== null && newText !== message.text) {
+                            try {
+                                await client.editMessage(messageId, newText);
+                            } catch (error) {
+                                showError('Failed to edit message: ' + error.message);
+                            }
+                        }
+                        break;
+                    case 'delete':
+                        if (confirm('Delete this message?')) {
+                            try {
+                                await client.deleteMessage(messageId);
+                            } catch (error) {
+                                showError('Failed to delete message: ' + error.message);
+                            }
+                        }
+                        break;
+                    case 'pin':
+                        try {
+                            await client.pinMessage(messageId, !message.pinned);
+                        } catch (error) {
+                            showError('Failed to pin message: ' + error.message);
+                        }
+                        break;
+                    case 'thread':
+                        openThreadModal(messageId);
+                        break;
+                }
+            }
+            
+            let currentThreadRootId = null;
+            
+            function openThreadModal(rootMessageId) {
+                const rootMessage = messages.find(m => m.id === rootMessageId);
+                if (!rootMessage) return;
+                
+                currentThreadRootId = rootMessageId;
+                threadModal.style.display = 'flex';
+                threadContent.innerHTML = '';
+                
+                // Add root message
+                const rootEl = createMessageElement(rootMessage);
+                rootEl.classList.add('hc-thread-root');
+                threadContent.appendChild(rootEl);
+                
+                // Load thread replies
+                const replies = messages.filter(m => m.parent_id === rootMessageId).sort((a, b) => 
+                    new Date(a.ts) - new Date(b.ts)
+                );
+                if (replies.length > 0) {
+                    const repliesDiv = document.createElement('div');
+                    repliesDiv.className = 'hc-thread-replies';
+                    replies.forEach(reply => {
+                        repliesDiv.appendChild(createMessageElement(reply));
+                    });
+                    threadContent.appendChild(repliesDiv);
+                }
+                
+                // Focus trap
+                const threadReplyInput = document.getElementById('threadReplyInput');
+                if (threadReplyInput) threadReplyInput.focus();
+            }
+            
+            // Thread reply handler
+            const threadReplyInput = document.getElementById('threadReplyInput');
+            const threadReplyBtn = document.getElementById('threadReplyBtn');
+            
+            if (threadReplyBtn) {
+                threadReplyBtn.addEventListener('click', async () => {
+                    if (!currentThreadRootId || !threadReplyInput) return;
+                    const text = threadReplyInput.value.trim();
+                    if (!text) return;
+                    
+                    try {
+                        await client.sendMessage(currentChannel, text, {
+                            parentId: currentThreadRootId,
+                            clientTempId: client.generateClientTempId()
+                        });
+                        threadReplyInput.value = '';
+                    } catch (error) {
+                        showError('Failed to send reply: ' + error.message);
+                    }
+                });
+            }
+            
+            if (threadReplyInput) {
+                threadReplyInput.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' && !e.shiftKey) {
+                        e.preventDefault();
+                        if (threadReplyBtn) threadReplyBtn.click();
+                    }
+                });
+            }
+
+            async function handleSend() {
+                if (!messageInput) return;
+                const text = messageInput.value.trim();
+                if (!text && pendingAttachments.length === 0) return;
+
+                if (text.length > 5000) {
+                    showValidationError('Message cannot exceed 5000 characters');
+                    return;
+                }
+
+                try {
+                    const attachments = [];
+                    for (const file of pendingAttachments) {
+                        try {
+                            const uploadResult = await client.uploadFile(file, currentChannel, 'ct_temp');
+                            attachments.push({
+                                name: file.name,
+                                mime: file.type,
+                                url: uploadResult.fileUrl,
+                                size: file.size
+                            });
+                        } catch (error) {
+                            showError('Failed to upload ' + file.name + ': ' + error.message);
+                        }
+                    }
+
+                    await client.sendMessage(currentChannel, text, {
+                        attachments,
+                        clientTempId: client.generateClientTempId()
+                    });
+
+                    messageInput.value = '';
+                    pendingAttachments = [];
+                    validationError.textContent = '';
+                } catch (error) {
+                    showError('Failed to send message: ' + error.message);
+                }
+            }
+
+            function handleFileSelect(e) {
+                const files = Array.from(e.target.files);
+                const maxSize = 12 * 1024 * 1024;
+
+                files.forEach(file => {
+                    if (file.size > maxSize) {
+                        showValidationError(`${file.name} exceeds 12MB limit`);
+                        return;
+                    }
+                    pendingAttachments.push(file);
+                });
+
+                fileInput.value = '';
+            }
+
+            function handleMessageReceived(message) {
+                if (message.channel === currentChannel) {
+                    const existingIndex = messages.findIndex(m => m.id === message.id);
+                    if (existingIndex >= 0) {
+                        messages[existingIndex] = message;
+                    } else {
+                        messages.push(message);
+                    }
+                    renderMessages();
+                }
+            }
+
+            function handleMessageOptimistic(message) {
+                messages.push(message);
+                renderMessages();
+            }
+
+            function handleMessageError(clientTempId, error) {
+                messages = messages.filter(m => m.clientTempId !== clientTempId);
+                renderMessages();
+                showError('Failed to send message: ' + error.message);
+            }
+
+            function handleMessageEdit(message) {
+                const index = messages.findIndex(m => m.id === message.id);
+                if (index >= 0) {
+                    messages[index] = message;
+                    renderMessages();
+                }
+            }
+
+            function handleMessageDelete(messageId) {
+                messages = messages.filter(m => m.id !== messageId);
+                renderMessages();
+            }
+
+            function handleReactionUpdate(messageId, reactions) {
+                const message = messages.find(m => m.id === messageId);
+                if (message) {
+                    message.reactions = reactions;
+                    renderMessages();
+                }
+            }
+
+            function handleTypingUpdate(channel, userId, ts) {
+                if (channel === currentChannel && userId !== client.user.id) {
+                    typingUsers.add(userId);
+                    updateTypingIndicator();
+                    setTimeout(() => {
+                        typingUsers.delete(userId);
+                        updateTypingIndicator();
+                    }, 3000);
+                }
+            }
+
+            function handlePresenceUpdate(userId, status, lastSeen) {
+                console.log('Presence update:', userId, status);
+            }
+
+            function handlePinUpdate(messageId, pinned) {
+                const message = messages.find(m => m.id === messageId);
+                if (message) {
+                    message.pinned = pinned;
+                    renderMessages();
+                }
+            }
+
+            function handleThreadUpdate(rootMessageId, replies) {
+                console.log('Thread update:', rootMessageId, replies);
+            }
+
+            function updateTypingIndicator() {
+                if (typingIndicator) {
+                    if (typingUsers.size > 0) {
+                        typingIndicator.textContent = `${typingUsers.size} user${typingUsers.size > 1 ? 's' : ''} typing...`;
+                        typingIndicator.style.display = 'block';
+                    } else {
+                        typingIndicator.style.display = 'none';
+                    }
+                }
+            }
+
+            function showError(message) {
+                if (errorMessage) {
+                    errorMessage.textContent = message;
+                    errorMessage.style.display = 'block';
+                    setTimeout(() => {
+                        errorMessage.style.display = 'none';
+                    }, 5000);
+                }
+            }
+
+            function showValidationError(message) {
+                if (validationError) {
+                    validationError.textContent = message;
+                    setTimeout(() => {
+                        validationError.textContent = '';
+                    }, 5000);
+                }
+            }
+
+            // Channel switcher (Ctrl/Cmd+K)
+            let channelSwitcherOpen = false;
+            const channelSwitcherOverlay = document.createElement('div');
+            channelSwitcherOverlay.className = 'hc-channel-switcher-overlay';
+            channelSwitcherOverlay.innerHTML = `
+                <div class="hc-channel-switcher-modal">
+                    <h3 style="margin-top: 0;">Switch Channel</h3>
+                    <input type="text" class="hc-channel-switcher-input" id="channelSwitcherInput" placeholder="Type channel name...">
+                    <ul class="hc-channel-list" id="channelSwitcherList"></ul>
+                </div>
+            `;
+            document.body.appendChild(channelSwitcherOverlay);
+            
+            const channelSwitcherInput = document.getElementById('channelSwitcherInput');
+            const channelSwitcherList = document.getElementById('channelSwitcherList');
+            
+            function renderChannelList(filter = '') {
+                const filtered = client.channels.filter(ch => 
+                    ch.toLowerCase().includes(filter.toLowerCase())
+                );
+                channelSwitcherList.innerHTML = '';
+                filtered.forEach(ch => {
+                    const li = document.createElement('li');
+                    li.className = 'hc-channel-item' + (ch === currentChannel ? ' active' : '');
+                    li.textContent = ch;
+                    li.addEventListener('click', () => {
+                        switchChannel(ch);
+                        closeChannelSwitcher();
+                    });
+                    channelSwitcherList.appendChild(li);
+                });
+            }
+            
+            function openChannelSwitcher() {
+                channelSwitcherOpen = true;
+                channelSwitcherOverlay.style.display = 'flex';
+                channelSwitcherInput.value = '';
+                renderChannelList();
+                channelSwitcherInput.focus();
+            }
+            
+            function closeChannelSwitcher() {
+                channelSwitcherOpen = false;
+                channelSwitcherOverlay.style.display = 'none';
+            }
+            
+            channelSwitcherInput.addEventListener('input', (e) => {
+                renderChannelList(e.target.value);
+            });
+            
+            channelSwitcherInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    closeChannelSwitcher();
+                } else if (e.key === 'Enter') {
+                    const firstItem = channelSwitcherList.querySelector('.hc-channel-item');
+                    if (firstItem) firstItem.click();
+                }
+            });
+            
+            channelSwitcherOverlay.addEventListener('click', (e) => {
+                if (e.target === channelSwitcherOverlay) {
+                    closeChannelSwitcher();
+                }
+            });
+            
+            // Keyboard shortcut: Ctrl/Cmd+K
+            document.addEventListener('keydown', (e) => {
+                if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                    e.preventDefault();
+                    if (!channelSwitcherOpen) {
+                        openChannelSwitcher();
+                    } else {
+                        closeChannelSwitcher();
+                    }
+                }
+            });
+            
+            async function switchChannel(newChannel) {
+                if (newChannel === currentChannel) return;
+                
+                // Leave old channel
+                if (client.socket && typeof io !== 'undefined') {
+                    client.socket.emit('leave', currentChannel);
+                }
+                
+                currentChannel = newChannel;
+                messages = [];
+                
+                // Join new channel
+                if (client.socket && typeof io !== 'undefined') {
+                    client.socket.emit('join', currentChannel);
+                }
+                
+                // Load messages for new channel
+                await loadMessages();
+            }
+
+            // Initialize T10 Chat System
+            initChat();
+        });
+    </script>
+</body>
+</html>
+

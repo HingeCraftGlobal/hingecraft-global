@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HingeCraft Live Chat</title>
+    <link rel="stylesheet" href="/css/hc-uix.css">
+    <script src="https://cdn.socket.io/4.6.1/socket.io.min.js"></script>
+    <script src="/js/hc-client.js"></script>
+</head>
+<body>
+    <div class="hc-chat-container" role="application" aria-label="HingeCraft Live Chat">
+        <!-- Header -->
+        <header class="hc-header">
+            <h1 class="hc-header-title">HingeCraft Live Chat</h1>
+            <div class="hc-header-actions">
+                <div class="hc-channel-switcher">
+                    <input 
+                        type="text" 
+                        class="hc-channel-switcher-input" 
+                        id="channelSwitcher"
+                        placeholder="Press Ctrl/Cmd+K to switch channels"
+                        aria-label="Channel switcher"
+                        autocomplete="off"
+                    >
+                    <div class="hc-channel-switcher-results" id="channelResults" role="listbox" aria-label="Channel suggestions" style="display: none;"></div>
+                </div>
+                <button class="hc-btn hc-btn-secondary" id="settingsBtn" aria-label="Settings">⚙️</button>
+            </div>
+        </header>
+
+        <!-- Messages Area -->
+        <main class="hc-messages" id="messagesArea" role="log" aria-live="polite" aria-label="Chat messages">
+            <div class="hc-loading" id="loadingIndicator">Loading messages...</div>
+        </main>
+
+        <!-- Typing Indicator -->
+        <div class="hc-typing-indicator" id="typingIndicator" aria-live="polite" style="display: none;"></div>
+
+        <!-- Composer -->
+        <div class="hc-composer" role="form" aria-label="Message composer">
+            <div class="hc-composer-attachments" id="attachmentPreviews"></div>
+            <div class="hc-composer-input-wrapper">
+                <textarea 
+                    class="hc-composer-input" 
+                    id="messageInput"
+                    placeholder="Type a message..."
+                    rows="1"
+                    aria-label="Message input"
+                    aria-describedby="inputHelp"
+                    maxlength="5000"
+                ></textarea>
+                <div class="hc-composer-actions">
+                    <button 
+                        class="hc-btn hc-btn-secondary" 
+                        id="attachBtn"
+                        type="button"
+                        aria-label="Attach file"
+                        title="Attach file (max 12MB)"
+                    >📎</button>
+                    <input 
+                        type="file" 
+                        id="fileInput" 
+                        multiple 
+                        style="display: none;"
+                        accept="image/*,video/*,audio/*,.pdf,.doc,.docx,.txt"
+                        aria-label="File input"
+                    >
+                    <button 
+                        class="hc-btn hc-btn-primary" 
+                        id="sendBtn"
+                        type="button"
+                        aria-label="Send message"
+                    >Send</button>
+                </div>
+            </div>
+            <div id="inputHelp" class="hc-sr-only">Press Enter to send, Shift+Enter for new line</div>
+            <div id="validationError" class="hc-validation-error" role="alert" aria-live="polite"></div>
+        </div>
+
+        <!-- Error Message (aria-live) -->
+        <div id="errorMessage" class="hc-error" role="alert" aria-live="polite" style="display: none;"></div>
+    </div>
+
+    <!-- Thread Modal -->
+    <div id="threadModal" class="hc-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="threadModalTitle" style="display: none;">
+        <div class="hc-modal">
+            <div class="hc-modal-header">
+                <h2 id="threadModalTitle" class="hc-modal-title">Thread</h2>
+                <button class="hc-modal-close" id="threadModalClose" aria-label="Close thread">×</button>
+            </div>
+            <div id="threadContent" class="hc-messages"></div>
+        </div>
+    </div>
+
+    <!-- Upload Modal -->
+    <div id="uploadModal" class="hc-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="uploadModalTitle" style="display: none;">
+        <div class="hc-modal">
+            <div class="hc-modal-header">
+                <h2 id="uploadModalTitle" class="hc-modal-title">Upload File</h2>
+                <button class="hc-modal-close" id="uploadModalClose" aria-label="Close upload">×</button>
+            </div>
+            <div id="uploadContent">
+                <input type="file" id="uploadFileInput" multiple>
+                <div id="uploadProgress"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Chat Client
+        const client = new HingeCraftChatClient({
+            baseUrl: window.location.origin,
+            channels: ['#general', '#support', '#random'],
+            defaultChannel: '#general'
+        });
+
+        // State
+        let currentChannel = '#general';
+        let messages = [];
+        let typingUsers = new Set();
+        let pendingAttachments = [];
+
+        // DOM Elements
+        const messagesArea = document.getElementById('messagesArea');
+        const messageInput = document.getElementById('messageInput');
+        const sendBtn = document.getElementById('sendBtn');
+        const attachBtn = document.getElementById('attachBtn');
+        const fileInput = document.getElementById('fileInput');
+        const channelSwitcher = document.getElementById('channelSwitcher');
+        const channelResults = document.getElementById('channelResults');
+        const typingIndicator = document.getElementById('typingIndicator');
+        const errorMessage = document.getElementById('errorMessage');
+        const validationError = document.getElementById('validationError');
+        const attachmentPreviews = document.getElementById('attachmentPreviews');
+        const loadingIndicator = document.getElementById('loadingIndicator');
+        const threadModal = document.getElementById('threadModal');
+        const threadContent = document.getElementById('threadContent');
+        const uploadModal = document.getElementById('uploadModal');
+
+        // Initialize
+        async function init() {
+            try {
+                // Initialize client
+                await client.init();
+                console.log('Chat client initialized');
+
+                // Set up event handlers
+                setupEventHandlers();
+
+                // Load messages
+                await loadMessages();
+
+                // Join channel
+                if (client.socket && typeof io !== 'undefined') {
+                    client.socket.emit('join', currentChannel);
+                }
+
+                // Set up client callbacks
+                client.onMessageReceived = handleMessageReceived;
+                client.onMessageEdit = handleMessageEdit;
+                client.onMessageDelete = handleMessageDelete;
+                client.onReactionUpdate = handleReactionUpdate;
+                client.onTypingUpdate = handleTypingUpdate;
+                client.onPresenceUpdate = handlePresenceUpdate;
+                client.onPinUpdate = handlePinUpdate;
+                client.onThreadUpdate = handleThreadUpdate;
+                client.onMessageOptimistic = handleMessageOptimistic;
+                client.onMessageError = handleMessageError;
+
+                loadingIndicator.style.display = 'none';
+            } catch (error) {
+                showError('Failed to initialize chat: ' + error.message);
+                loadingIndicator.textContent = 'Failed to load. Please refresh.';
+            }
+        }
+
+        // Setup event handlers
+        function setupEventHandlers() {
+            // Send message
+            sendBtn.addEventListener('click', handleSend);
+            messageInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    handleSend();
+                }
+            });
+
+            // Typing indicator
+            let typingTimeout;
+            messageInput.addEventListener('input', () => {
+                clearTimeout(typingTimeout);
+                client.sendTyping(currentChannel);
+                typingTimeout = setTimeout(() => {
+                    // Typing stopped
+                }, 3000);
+            });
+
+            // File attachment
+            attachBtn.addEventListener('click', () => fileInput.click());
+            fileInput.addEventListener('change', handleFileSelect);
+
+            // Channel switcher (Ctrl/Cmd+K)
+            document.addEventListener('keydown', (e) => {
+                if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                    e.preventDefault();
+                    channelSwitcher.focus();
+                    showChannelSwitcher();
+                }
+            });
+
+            channelSwitcher.addEventListener('input', handleChannelSearch);
+            channelSwitcher.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    channelSwitcher.blur();
+                    channelResults.style.display = 'none';
+                }
+            });
+
+            // Modal close handlers
+            document.getElementById('threadModalClose').addEventListener('click', () => {
+                threadModal.style.display = 'none';
+            });
+            document.getElementById('uploadModalClose').addEventListener('click', () => {
+                uploadModal.style.display = 'none';
+            });
+
+            // Click outside to close modals
+            threadModal.addEventListener('click', (e) => {
+                if (e.target === threadModal) {
+                    threadModal.style.display = 'none';
+                }
+            });
+            uploadModal.addEventListener('click', (e) => {
+                if (e.target === uploadModal) {
+                    uploadModal.style.display = 'none';
+                }
+            });
+        }
+
+        // Load messages
+        async function loadMessages() {
+            try {
+                const data = await client.getMessages(currentChannel, { limit: 50 });
+                messages = data.messages || [];
+                renderMessages();
+            } catch (error) {
+                showError('Failed to load messages: ' + error.message);
+            }
+        }
+
+        // Render messages
+        function renderMessages() {
+            messagesArea.innerHTML = '';
+            
+            // Sort: pinned first, then by timestamp
+            const sorted = [...messages].sort((a, b) => {
+                if (a.pinned && !b.pinned) return -1;
+                if (!a.pinned && b.pinned) return 1;
+                return new Date(a.ts) - new Date(b.ts);
+            });
+
+            sorted.forEach(msg => {
+                const element = createMessageElement(msg);
+                messagesArea.appendChild(element);
+            });
+
+            scrollToBottom();
+        }
+
+        // Create message element
+        function createMessageElement(message) {
+            const div = document.createElement('div');
+            div.className = 'hc-message' + (message.pending ? ' pending' : '') + (message.pinned ? ' pinned' : '');
+            div.id = `msg-${message.id}`;
+            div.setAttribute('data-message-id', message.id);
+
+            const avatar = document.createElement('div');
+            avatar.className = 'hc-message-avatar';
+            avatar.textContent = (message.user_name || 'U')[0].toUpperCase();
+            avatar.setAttribute('aria-label', `Avatar for ${message.user_name || 'User'}`);
+
+            const content = document.createElement('div');
+            content.className = 'hc-message-content';
+
+            const header = document.createElement('div');
+            header.className = 'hc-message-header';
+
+            const author = document.createElement('span');
+            author.className = 'hc-message-author';
+            author.textContent = message.user_name || 'Anonymous';
+
+            const time = document.createElement('span');
+            time.className = 'hc-message-time';
+            time.textContent = formatTime(message.ts);
+
+            header.appendChild(author);
+            header.appendChild(time);
+
+            const text = document.createElement('div');
+            text.className = 'hc-message-text';
+            text.textContent = message.text;
+
+            content.appendChild(header);
+            content.appendChild(text);
+
+            if (message.edited) {
+                const edited = document.createElement('div');
+                edited.className = 'hc-message-edited';
+                edited.textContent = '(edited)';
+                content.appendChild(edited);
+            }
+
+            // Attachments
+            if (message.attachments && message.attachments.length > 0) {
+                const attachmentsDiv = document.createElement('div');
+                attachmentsDiv.className = 'hc-message-attachments';
+                message.attachments.forEach(att => {
+                    const attDiv = document.createElement('div');
+                    attDiv.className = 'hc-attachment';
+                    if (att.mime && att.mime.startsWith('image/')) {
+                        const img = document.createElement('img');
+                        img.src = att.url || att.fileUrl;
+                        img.className = 'hc-attachment-image';
+                        img.alt = att.name || 'Attachment';
+                        attDiv.appendChild(img);
+                    } else {
+                        attDiv.textContent = att.name || 'Attachment';
+                    }
+                    attachmentsDiv.appendChild(attDiv);
+                });
+                content.appendChild(attachmentsDiv);
+            }
+
+            // Reactions
+            if (message.reactions && Object.keys(message.reactions).length > 0) {
+                const reactionsDiv = document.createElement('div');
+                reactionsDiv.className = 'hc-message-reactions';
+                const reactionGroups = {};
+                Object.values(message.reactions).forEach(r => {
+                    const key = r.emoji;
+                    if (!reactionGroups[key]) {
+                        reactionGroups[key] = [];
+                    }
+                    reactionGroups[key].push(r);
+                });
+                Object.entries(reactionGroups).forEach(([emoji, reactions]) => {
+                    const reactionBtn = document.createElement('button');
+                    reactionBtn.className = 'hc-reaction' + 
+                        (reactions.some(r => r.userId === client.user.id) ? ' active' : '');
+                    reactionBtn.textContent = `${emoji} ${reactions.length}`;
+                    reactionBtn.addEventListener('click', () => {
+                        client.toggleReaction(message.id, emoji);
+                    });
+                    reactionsDiv.appendChild(reactionBtn);
+                });
+                content.appendChild(reactionsDiv);
+            }
+
+            // Thread indicator
+            if (message.parent_id) {
+                const threadInd = document.createElement('div');
+                threadInd.className = 'hc-thread-indicator';
+                threadInd.textContent = '↳ Thread reply';
+                threadInd.addEventListener('click', () => {
+                    showThread(message.parent_id);
+                });
+                content.appendChild(threadInd);
+            } else {
+                // Check for replies
+                const replies = messages.filter(m => m.parent_id === message.id);
+                if (replies.length > 0) {
+                    const threadInd = document.createElement('div');
+                    threadInd.className = 'hc-thread-indicator';
+                    threadInd.textContent = `↳ ${replies.length} ${replies.length === 1 ? 'reply' : 'replies'}`;
+                    threadInd.addEventListener('click', () => {
+                        showThread(message.id);
+                    });
+                    content.appendChild(threadInd);
+                }
+            }
+
+            // Message actions
+            const actions = document.createElement('div');
+            actions.className = 'hc-message-actions';
+            
+            if (message.user_id === client.user.id || client.user.role === 'admin') {
+                const editBtn = document.createElement('button');
+                editBtn.className = 'hc-action-btn';
+                editBtn.textContent = 'Edit';
+                editBtn.addEventListener('click', () => editMessage(message));
+                actions.appendChild(editBtn);
+
+                const deleteBtn = document.createElement('button');
+                deleteBtn.className = 'hc-action-btn';
+                deleteBtn.textContent = 'Delete';
+                deleteBtn.addEventListener('click', () => deleteMessage(message.id));
+                actions.appendChild(deleteBtn);
+            }
+
+            if (client.user.role === 'admin') {
+                const pinBtn = document.createElement('button');
+                pinBtn.className = 'hc-action-btn';
+                pinBtn.textContent = message.pinned ? 'Unpin' : 'Pin';
+                pinBtn.addEventListener('click', () => {
+                    client.pinMessage(message.id);
+                });
+                actions.appendChild(pinBtn);
+            }
+
+            content.appendChild(actions);
+
+            div.appendChild(avatar);
+            div.appendChild(content);
+
+            return div;
+        }
+
+        // Handle send
+        async function handleSend() {
+            const text = messageInput.value.trim();
+            if (!text && pendingAttachments.length === 0) return;
+
+            // Validate
+            if (text.length > 5000) {
+                showValidationError('Message cannot exceed 5000 characters');
+                return;
+            }
+
+            try {
+                // Upload attachments first
+                const attachments = [];
+                for (const file of pendingAttachments) {
+                    try {
+                        const uploadResult = await client.uploadFile(file, currentChannel, 'ct_temp');
+                        attachments.push({
+                            name: file.name,
+                            mime: file.type,
+                            url: uploadResult.fileUrl,
+                            size: file.size
+                        });
+                    } catch (error) {
+                        showError('Failed to upload ' + file.name + ': ' + error.message);
+                    }
+                }
+
+                // Send message
+                await client.sendMessage(currentChannel, text, {
+                    attachments,
+                    clientTempId: client.generateClientTempId()
+                });
+
+                // Clear input
+                messageInput.value = '';
+                pendingAttachments = [];
+                attachmentPreviews.innerHTML = '';
+                validationError.textContent = '';
+            } catch (error) {
+                showError('Failed to send message: ' + error.message);
+            }
+        }
+
+        // Handle file select
+        function handleFileSelect(e) {
+            const files = Array.from(e.target.files);
+            const maxSize = 12 * 1024 * 1024; // 12MB
+
+            files.forEach(file => {
+                if (file.size > maxSize) {
+                    showValidationError(`${file.name} exceeds 12MB limit`);
+                    return;
+                }
+
+                pendingAttachments.push(file);
+                showAttachmentPreview(file);
+            });
+
+            fileInput.value = '';
+        }
+
+        // Show attachment preview
+        function showAttachmentPreview(file) {
+            const preview = document.createElement('div');
+            preview.className = 'hc-attachment-preview';
+
+            if (file.type.startsWith('image/')) {
+                const img = document.createElement('img');
+                img.src = URL.createObjectURL(file);
+                img.alt = file.name;
+                preview.appendChild(img);
+            } else {
+                preview.textContent = file.name;
+            }
+
+            const removeBtn = document.createElement('button');
+            removeBtn.className = 'hc-attachment-remove';
+            removeBtn.textContent = '×';
+            removeBtn.addEventListener('click', () => {
+                pendingAttachments = pendingAttachments.filter(f => f !== file);
+                preview.remove();
+            });
+            preview.appendChild(removeBtn);
+
+            attachmentPreviews.appendChild(preview);
+        }
+
+        // Event handlers
+        function handleMessageReceived(message) {
+            if (message.channel === currentChannel) {
+                const existingIndex = messages.findIndex(m => m.id === message.id);
+                if (existingIndex >= 0) {
+                    messages[existingIndex] = message;
+                } else {
+                    messages.push(message);
+                }
+                renderMessages();
+            }
+        }
+
+        function handleMessageOptimistic(message) {
+            messages.push(message);
+            renderMessages();
+        }
+
+        function handleMessageError(clientTempId, error) {
+            messages = messages.filter(m => m.clientTempId !== clientTempId);
+            renderMessages();
+            showError('Failed to send message: ' + error.message);
+        }
+
+        function handleMessageEdit(message) {
+            const index = messages.findIndex(m => m.id === message.id);
+            if (index >= 0) {
+                messages[index] = message;
+                renderMessages();
+            }
+        }
+
+        function handleMessageDelete(messageId) {
+            messages = messages.filter(m => m.id !== messageId);
+            renderMessages();
+        }
+
+        function handleReactionUpdate(messageId, reactions) {
+            const message = messages.find(m => m.id === messageId);
+            if (message) {
+                message.reactions = reactions;
+                renderMessages();
+            }
+        }
+
+        function handleTypingUpdate(channel, userId, ts) {
+            if (channel === currentChannel && userId !== client.user.id) {
+                typingUsers.add(userId);
+                updateTypingIndicator();
+                setTimeout(() => {
+                    typingUsers.delete(userId);
+                    updateTypingIndicator();
+                }, 3000);
+            }
+        }
+
+        function handlePresenceUpdate(userId, status, lastSeen) {
+            // Update presence indicators in UI
+            console.log('Presence update:', userId, status);
+        }
+
+        function handlePinUpdate(messageId, pinned) {
+            const message = messages.find(m => m.id === messageId);
+            if (message) {
+                message.pinned = pinned;
+                renderMessages();
+            }
+        }
+
+        function handleThreadUpdate(rootMessageId, replies) {
+            // Update thread view if open
+            console.log('Thread update:', rootMessageId, replies);
+        }
+
+        // Utility functions
+        function formatTime(isoString) {
+            const date = new Date(isoString);
+            return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        }
+
+        function scrollToBottom() {
+            messagesArea.scrollTop = messagesArea.scrollHeight;
+        }
+
+        function showError(message) {
+            errorMessage.textContent = message;
+            errorMessage.style.display = 'block';
+            setTimeout(() => {
+                errorMessage.style.display = 'none';
+            }, 5000);
+        }
+
+        function showValidationError(message) {
+            validationError.textContent = message;
+            setTimeout(() => {
+                validationError.textContent = '';
+            }, 5000);
+        }
+
+        function updateTypingIndicator() {
+            if (typingUsers.size > 0) {
+                typingIndicator.textContent = `${typingUsers.size} user${typingUsers.size > 1 ? 's' : ''} typing...`;
+                typingIndicator.style.display = 'block';
+            } else {
+                typingIndicator.style.display = 'none';
+            }
+        }
+
+        function showChannelSwitcher() {
+            channelResults.innerHTML = '';
+            client.channels.forEach(channel => {
+                const item = document.createElement('div');
+                item.className = 'hc-channel-item';
+                item.textContent = channel;
+                item.setAttribute('role', 'option');
+                item.addEventListener('click', () => {
+                    switchChannel(channel);
+                    channelSwitcher.value = '';
+                    channelResults.style.display = 'none';
+                });
+                channelResults.appendChild(item);
+            });
+            channelResults.style.display = 'block';
+        }
+
+        function handleChannelSearch(e) {
+            const query = e.target.value.toLowerCase();
+            if (query.length === 0) {
+                channelResults.style.display = 'none';
+                return;
+            }
+
+            const filtered = client.channels.filter(ch => ch.toLowerCase().includes(query));
+            channelResults.innerHTML = '';
+            filtered.forEach(channel => {
+                const item = document.createElement('div');
+                item.className = 'hc-channel-item';
+                item.textContent = channel;
+                item.setAttribute('role', 'option');
+                item.addEventListener('click', () => {
+                    switchChannel(channel);
+                    channelSwitcher.value = '';
+                    channelResults.style.display = 'none';
+                });
+                channelResults.appendChild(item);
+            });
+            channelResults.style.display = filtered.length > 0 ? 'block' : 'none';
+        }
+
+        async function switchChannel(channel) {
+            currentChannel = channel;
+            client.currentChannel = channel;
+            if (client.socket && typeof io !== 'undefined') {
+                client.socket.emit('join', channel);
+            }
+            await loadMessages();
+        }
+
+        function showThread(messageId) {
+            const message = messages.find(m => m.id === messageId);
+            if (!message) return;
+
+            threadContent.innerHTML = '';
+            const rootElement = createMessageElement(message);
+            threadContent.appendChild(rootElement);
+
+            const replies = messages.filter(m => m.parent_id === messageId);
+            replies.forEach(reply => {
+                const replyElement = createMessageElement(reply);
+                threadContent.appendChild(replyElement);
+            });
+
+            threadModal.style.display = 'flex';
+            document.getElementById('threadModalTitle').textContent = `Thread: ${replies.length} ${replies.length === 1 ? 'reply' : 'replies'}`;
+        }
+
+        function editMessage(message) {
+            const newText = prompt('Edit message:', message.text);
+            if (newText && newText !== message.text) {
+                client.editMessage(message.id, newText).catch(error => {
+                    showError('Failed to edit message: ' + error.message);
+                });
+            }
+        }
+
+        function deleteMessage(messageId) {
+            if (confirm('Delete this message?')) {
+                client.deleteMessage(messageId).catch(error => {
+                    showError('Failed to delete message: ' + error.message);
+                });
+            }
+        }
+
+        // Initialize on load
+        init();
+    </script>
+</body>
+</html>

@@ -1,8 +1,8 @@
-# HingeCraft Global - Automation Project
+# HingeCraft Global - Complete System Repository
 
-**Complete Automation Project Repository**
+**Complete HingeCraft Global System with All Projects**
 
-This repository contains ALL data for the automation project, including the Notion automation system and ML automation pipeline.
+This repository contains the complete HingeCraft Global system including automation, payment integration, legal pages, deployment, agents, API, and all supporting systems.
 
 ---
 
@@ -10,155 +10,176 @@ This repository contains ALL data for the automation project, including the Noti
 
 ```
 hingecraft-global/
-├── notion/                # Notion Automation System
-│   ├── sync/              # Notion sync scripts
-│   ├── triggers/          # Automation triggers
-│   ├── monitoring/        # Monitoring systems
-│   ├── webhooks/          # Webhook handlers
-│   └── [102 files]        # Complete Notion automation project
+├── notion/                # Notion Automation System ✅
+├── ml-automation/         # ML Automation Pipeline ✅
 │
-├── ml-automation/         # ML Automation Pipeline System
-│   ├── src/               # Core automation services
-│   │   ├── services/      # Automation services
-│   │   ├── utils/         # Utility functions
-│   │   └── orchestrator.js
-│   ├── scripts/           # Automation scripts
-│   ├── database/          # Database schemas
-│   ├── config/            # Configuration files
-│   ├── webhooks/          # Webhook handlers
-│   ├── workers/           # Background workers
-│   └── [165+ files]       # Complete ML automation system
+├── projects/              # Main Projects
+│   ├── charter/           # Charter Payment Integration
+│   ├── mission-support/   # Mission Support Project
+│   ├── legal/             # Legal Pages Project
+│   └── wix-deployment/    # Wix Deployment Project
 │
-└── database/              # Automation Database
-    └── automation/         # Automation-specific database files
-        ├── schema.sql
-        ├── init-data.sql
-        └── setup.js
+├── agents/                # AI Agent Framework
+├── api/                   # REST API System (FastAPI)
+├── backend/               # Backend Functions
+├── backend-functions/     # Wix Velo Backend Functions
+├── frontend-pages/        # Frontend Pages
+├── public/                # Public Pages
+├── src/                   # Source Files
+│
+├── database/              # Complete Database System
+│   ├── automation/        # Automation database
+│   ├── master_schema/     # Master schema
+│   ├── enterprise/        # Enterprise features
+│   ├── security/          # Security modules
+│   ├── governance/        # Governance functions
+│   └── rag_knowledge_base/ # RAG system
+│
+├── docs/                  # Documentation
+├── documentation/         # Additional Documentation
+├── config/                # Configuration Files
+├── scripts/               # Utility Scripts
+├── seo_markups/           # SEO System
+├── monitoring/            # Monitoring System
+├── pipelines/             # Pipeline System
+├── nginx/                 # Infrastructure
+│
+├── ALL_LEGAL_PAGES_HTML/  # Legal Pages HTML
+├── COMPLETE_LEGAL_DOCS_SC/ # Legal Docs SC
+├── deployment-ready/      # Deployment Ready Files
+├── wix-deployment-ready/  # Wix Deployment Files
+└── database-schema/       # Database Schema
 ```
 
 ---
 
-## 🚀 Quick Start
+## 🚀 Projects Included
 
-### Notion Automation System
+### ✅ Automation Projects
+1. **Notion Automation** - 24/7 Notion dashboard sync (102 files)
+2. **ML Automation System** - Lead automation pipeline (165+ files)
 
-Complete 24/7 sync system for HingeCraft → Notion dashboard.
+### 💳 Payment & Integration Projects
+3. **Charter Project** - Payment integration (Stripe/crypto)
+4. **Mission Support Project** - Form and backend integration
 
-```bash
-cd notion
-pip install -r requirements.txt
-python sync/hingecraft_notion_sync.py
-```
+### 📄 Content Projects
+5. **Legal Pages Project** - 34+ legal documentation pages
 
-See [notion/README.md](notion/README.md) for detailed setup instructions.
+### 🚀 Deployment Projects
+6. **Wix Deployment Project** - Complete Wix Velo deployment system
 
-### ML Automation Pipeline
+### 🤖 AI & Automation
+7. **Agents System** - AI agent framework (multiple agent types)
+8. **API System** - REST API with FastAPI
 
-Complete end-to-end lead automation pipeline that processes Google Drive files, enriches leads, syncs to HubSpot, and sends automated email sequences.
+### 💻 Backend & Frontend
+9. **Backend Functions** - Wix Velo backend functions (.jsw)
+10. **Frontend Pages** - All HTML/JS pages
 
-```bash
-cd ml-automation
-npm install
-npm start
-```
+### 🗄️ Database & Infrastructure
+11. **Database System** - Complete schemas, migrations, enterprise features
+12. **Documentation System** - Deployment guides and docs
 
-See [ml-automation/README.md](ml-automation/README.md) for detailed setup instructions.
-
----
-
-## 🔧 Automation Components
-
-### 1. Notion Automation System
-- **Project Management** → Syncs all HingeCraft data to Notion dashboard
-- **Real-time Monitoring** → Cursor activity monitoring
-- **Automation Triggers** → Automatic progress tracking
-- **Data Synchronization** → Chat history, timeline, and deadline sync
-- **10,000 nano tasks** for complete implementation
-
-### 2. ML Automation Pipeline
-- **Google Drive** → Scans folder for new files (CSV/Sheets)
-- **Lead Processing** → Extracts, normalizes, and deduplicates leads
-- **Anymail API** → Finds missing emails and verifies addresses
-- **HubSpot CRM** → Creates/updates contacts and companies
-- **Email Sequences** → Sends automated email sequences via Anymail/Gmail
-- **Tracking** → Monitors opens, clicks, replies, and bounces
+### 🔧 Supporting Systems
+13. **Configuration System** - Config files (Stripe, secrets)
+14. **Scripts System** - Utility and deployment scripts
+15. **SEO System** - SEO metadata for all pages
+16. **Monitoring System** - Health checks and dashboards
+17. **Pipelines System** - Document generation pipelines
+18. **Infrastructure** - nginx, Docker, deployment configs
 
 ---
 
-## 📊 Database
+## 📊 Project Details
 
-### Automation Database
+### Automation Projects
+- **Notion Automation**: Complete 24/7 sync system
+- **ML Automation**: End-to-end lead processing pipeline
 
-All automation-related database files are in `database/automation/`:
+### Payment Projects
+- **Charter Project**: Stripe and crypto payment integration
+- **Mission Support**: Form processing and backend integration
 
-- `schema.sql` - Database schema
-- `init-data.sql` - Initial data
-- `migrate-existing-data.sql` - Migration scripts
-- `setup.js` - Setup script
+### Legal & Content
+- **Legal Pages**: 34+ complete legal documentation pages
+- **SEO System**: Complete SEO metadata (99 JSON files)
 
-### Database Integration
+### Deployment
+- **Wix Deployment**: Production-ready Wix Velo deployment
+- **Deployment Scripts**: Automated deployment tools
 
-- **Notion**: Database sync scripts in `notion/sync/`
-- **ML Automation**: Database utilities in `ml-automation/src/utils/database.js`
+### AI & Agents
+- **Agents System**: Multi-agent framework with:
+  - Base, Community, Crypto, Crypto Compliance
+  - Education, Engineering, Legal, Marketing
+  - HingeCore, Progress, Prompts, Tests
+
+### API & Backend
+- **API System**: FastAPI REST API with routers and workers
+- **Backend Functions**: Wix Velo backend functions
+- **Frontend Pages**: Complete frontend implementation
+
+### Database
+- **Master Schema**: Core database structure (16 SQL files)
+- **Enterprise**: Enterprise features (11 SQL files)
+- **Security**: Security modules (17 SQL files)
+- **Governance**: RBAC and governance (4 SQL files)
+- **RAG System**: Knowledge base system (2 SQL files)
+
+---
+
+## 🔑 Key Features
+
+- ✅ Complete automation systems
+- ✅ Payment integration (Stripe + Crypto)
+- ✅ Legal documentation system
+- ✅ Wix Velo deployment ready
+- ✅ AI agent framework
+- ✅ REST API system
+- ✅ Complete database system
+- ✅ Comprehensive documentation
+- ✅ SEO optimization
+- ✅ Monitoring and infrastructure
 
 ---
 
 ## 📚 Documentation
 
-- [Notion Automation](notion/README.md) - Complete Notion integration documentation
-- [ML Automation](ml-automation/README.md) - Complete ML automation pipeline documentation
+- See `docs/` for implementation guides
+- See `documentation/` for additional documentation
+- See `PROJECTS_LIST.md` for complete project listing
 
 ---
 
-## 🔑 Configuration
+## 🚀 Quick Start
 
-### Notion Automation
-- Configuration: `notion/env.example` - Copy to `.env` and configure
-- API keys: Configured in environment variables
+### Automation Systems
+```bash
+# Notion Automation
+cd notion
+pip install -r requirements.txt
+python sync/hingecraft_notion_sync.py
 
-### ML Automation
-- Configuration: `ml-automation/config/api_keys.js`
-- API keys: Google OAuth, HubSpot, Anymail
+# ML Automation
+cd ml-automation
+npm install
+npm start
+```
 
----
+### API System
+```bash
+cd api
+pip install -r requirements.txt
+python main.py
+```
 
-## 📊 System Status
-
-**✅ Notion Automation:** Complete
-- Project management automation
-- Data synchronization
-- Task automation triggers
-- Database integration
-- 10,000 nano tasks ready
-
-**✅ ML Automation Pipeline:** Complete
-- Lead processing pipeline
-- HubSpot sync
-- Email sequences
-- Tracking system
-- All features implemented
-
----
-
-## 🧪 Testing
-
-- **Notion**: Test scripts included in `notion/` directory
-- **ML Automation**: Test suite in `ml-automation/tests/`
-
----
-
-## 📦 Project Data
-
-This repository contains **ALL** automation project data:
-
-- ✅ Complete Notion automation system (102 files)
-- ✅ Complete ML automation pipeline (165+ files)
-- ✅ All database schemas and migrations
-- ✅ All configuration files
-- ✅ All scripts and utilities
-- ✅ All documentation
-
-**No other project data is included** - this repository is dedicated exclusively to the automation project.
+### Database
+```bash
+cd database
+# Run master schema
+psql -d hingecraft -f master_schema/00_master_schema_init.sql
+```
 
 ---
 
@@ -169,5 +190,5 @@ Proprietary - HingeCraft Global
 ---
 
 **Last Updated:** December 15, 2025  
-**Version:** 5.0.0  
-**Status:** Complete Automation Project ✅
+**Version:** 6.0.0  
+**Status:** Complete System with All Projects ✅

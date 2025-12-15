@@ -1,0 +1,249 @@
+import { fetch } from 'wix-fetch';
+import { secrets } from 'wix-secrets-backend';
+import wixData from 'wix-data';
+
+/**
+ * Reconciliation Worker for NOWPayments Invoices
+ * 
+ * This worker polls NOWPayments API to check invoice status
+ * and performs on-chain verification when needed.
+ * 
+ * Run this as a scheduled job (e.g., every 5 minutes)
+ */
+
+let NOWPAYMENTS_API_KEY;
+let NOWPAYMENTS_BASE_URL = 'https://api.nowpayments.io/v1';
+let EXTERNAL_DB_ENDPOINT;
+let EXTERNAL_DB_SECRET_KEY;
+let USE_EXTERNAL_DB = true;
+let CRYPTO_CONFIRMATIONS_REQUIRED = 3;
+
+async function initConfig() {
+    try {
+        NOWPAYMENTS_API_KEY = await secrets.getSecret('NOWPAYMENTS_API_KEY');
+        const baseUrl = await secrets.getSecret('NOWPAYMENTS_BASE_URL');
+        if (baseUrl) NOWPAYMENTS_BASE_URL = baseUrl;
+        
+        const confirmations = await secrets.getSecret('CRYPTO_CONFIRMATIONS_REQUIRED');
+        if (confirmations) CRYPTO_CONFIRMATIONS_REQUIRED = parseInt(confirmations);
+        
+        EXTERNAL_DB_ENDPOINT = await secrets.getSecret('EXTERNAL_DB_ENDPOINT');
+        EXTERNAL_DB_SECRET_KEY = await secrets.getSecret('EXTERNAL_DB_SECRET_KEY');
+        if (!EXTERNAL_DB_ENDPOINT || !EXTERNAL_DB_SECRET_KEY) {
+            USE_EXTERNAL_DB = false;
+        }
+    } catch (error) {
+        console.warn('Config initialization error:', error);
+    }
+}
+
+initConfig();
+
+/**
+ * Reconcile pending invoices
+ * Checks NOWPayments API for invoice status updates
+ */
+export async function reconcilePendingInvoices() {
+    try {
+        if (!NOWPAYMENTS_API_KEY) {
+            await initConfig();
+        }
+
+        // Get pending invoices from database
+        const pendingInvoices = await getPendingInvoices();
+        
+        console.log(`🔄 Reconciling ${pendingInvoices.length} pending invoices`);
+
+        for (const invoice of pendingInvoices) {
+            try {
+                await reconcileInvoice(invoice);
+            } catch (error) {
+                console.error(`❌ Error reconciling invoice ${invoice.invoice_id}:`, error);
+            }
+        }
+
+        return {
+            success: true,
+            processed: pendingInvoices.length
+        };
+    } catch (error) {
+        console.error('❌ Reconciliation error:', error);
+        return {
+            success: false,
+            error: error.message
+        };
+    }
+}
+
+/**
+ * Get pending invoices from database
+ */
+async function getPendingInvoices() {
+    try {
+        const statuses = ['pending_invoice', 'pending_payment', 'detected'];
+        
+        if (USE_EXTERNAL_DB) {
+            const response = await fetch(`${EXTERNAL_DB_ENDPOINT}/crypto-payments/pending`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${EXTERNAL_DB_SECRET_KEY}`,
+                    'X-API-Key': EXTERNAL_DB_SECRET_KEY
+                },
+                body: JSON.stringify({ statuses })
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                return data.invoices || [];
+            }
+        } else {
+            const results = await wixData.query('CryptoPayments')
+                .in('status', statuses)
+                .limit(50)
+                .find();
+            
+            return results.items || [];
+        }
+    } catch (error) {
+        console.error('Error fetching pending invoices:', error);
+        return [];
+    }
+}
+
+/**
+ * Reconcile single invoice
+ */
+async function reconcileInvoice(invoice) {
+    if (!invoice.invoice_id) {
+        console.warn('Invoice missing invoice_id:', invoice);
+        return;
+    }
+
+    try {
+        // Fetch invoice status from NOWPayments
+        const response = await fetch(`${NOWPAYMENTS_BASE_URL}/invoice/${invoice.invoice_id}`, {
+            method: 'GET',
+            headers: {
+                'x-api-key': NOWPAYMENTS_API_KEY,
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (!response.ok) {
+            console.warn(`Invoice ${invoice.invoice_id} not found or error: ${response.status}`);
+            return;
+        }
+
+        const invoiceData = await response.json();
+        
+        // Update invoice status
+        await updateInvoiceStatus(invoice, invoiceData);
+        
+        // If confirmed, perform on-chain verification if tx_hash present
+        if (invoiceData.status === 'paid' && invoiceData.payment_id) {
+            await verifyOnChain(invoice, invoiceData);
+        }
+        
+    } catch (error) {
+        console.error(`Error reconciling invoice ${invoice.invoice_id}:`, error);
+    }
+}
+
+/**
+ * Update invoice status in database
+ */
+async function updateInvoiceStatus(invoice, invoiceData) {
+    const status = invoiceData.status || 'waiting';
+    
+    let internalStatus = 'pending_payment';
+    if (status === 'waiting' || status === 'invoice_waiting') {
+        internalStatus = 'pending_payment';
+    } else if (status === 'invoice_paid_unconfirmed' || status === 'partially_paid') {
+        internalStatus = 'detected';
+    } else if (status === 'invoice_paid' || status === 'paid' || status === 'confirmed') {
+        internalStatus = 'confirmed';
+    } else if (status === 'expired' || status === 'invoice_expired') {
+        internalStatus = 'expired';
+    } else if (status === 'failed' || status === 'invoice_failed') {
+        internalStatus = 'failed';
+    }
+
+    const updateData = {
+        status: internalStatus,
+        nowpayments_status: status,
+        raw_response: invoiceData
+    };
+
+    if (invoiceData.payment_id) {
+        updateData.tx_hash = invoiceData.payment_id;
+        updateData.payment_detected_at = new Date();
+    }
+
+    if (internalStatus === 'confirmed') {
+        updateData.payment_confirmed_at = new Date();
+        updateData.confirmations = CRYPTO_CONFIRMATIONS_REQUIRED;
+    }
+
+    try {
+        if (USE_EXTERNAL_DB) {
+            await fetch(`${EXTERNAL_DB_ENDPOINT}/crypto-payments/${invoice.order_id}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${EXTERNAL_DB_SECRET_KEY}`,
+                    'X-API-Key': EXTERNAL_DB_SECRET_KEY
+                },
+                body: JSON.stringify(updateData)
+            });
+        } else {
+            await wixData.update('CryptoPayments', {
+                ...invoice,
+                ...updateData
+            });
+        }
+        
+        console.log(`✅ Updated invoice ${invoice.invoice_id} to status: ${internalStatus}`);
+    } catch (error) {
+        console.error('Error updating invoice:', error);
+    }
+}
+
+/**
+ * Verify transaction on-chain (placeholder - requires blockchain provider)
+ */
+async function verifyOnChain(invoice, invoiceData) {
+    if (!invoiceData.payment_id || !invoice.tx_hash) {
+        return; // No transaction hash to verify
+    }
+
+    // TODO: Implement on-chain verification using blockchain provider
+    // This would use Alchemy, Infura, or similar service to check:
+    // 1. Transaction exists
+    // 2. Transaction is confirmed
+    // 3. Confirmations >= CRYPTO_CONFIRMATIONS_REQUIRED
+    // 4. Amount matches expected amount
+    
+    console.log(`🔍 On-chain verification needed for tx: ${invoice.tx_hash}`);
+    console.log('⚠️ On-chain verification not yet implemented - requires blockchain provider');
+    
+    // For now, rely on NOWPayments status
+    // In production, implement actual blockchain verification
+}
+
+/**
+ * Scheduled job entry point
+ * Call this from Wix Scheduled Jobs or external cron
+ */
+export async function scheduledReconciliation() {
+    console.log('🔄 Starting scheduled reconciliation...');
+    const result = await reconcilePendingInvoices();
+    console.log('✅ Reconciliation complete:', result);
+    return result;
+}
+
+
+
+
+
+
