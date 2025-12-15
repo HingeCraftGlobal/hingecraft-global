@@ -1,38 +1,8 @@
-# HingeCraft Global - Payment & Membership System
+# HingeCraft Global - Notion & AI Agent Components
 
-**Production-Ready Wix Velo Application**
+**Notion Integration & AI Agent Development Repository**
 
-[![Status](https://img.shields.io/badge/status-production--ready-success)](https://github.com/departments-commits/hingecraft-global)
-[![Wix Dev](https://img.shields.io/badge/wix--dev-active-blue)](https://www.wix.com/velo)
-
----
-
-## 🚀 Quick Start
-
-### **For Developers:**
-```bash
-# Clone repository
-git clone https://github.com/departments-commits/hingecraft-global.git
-cd hingecraft-global
-
-# Start Wix Dev Mode
-wix dev
-```
-
-### **For Deployment:**
-See [docs/deployment/COMPLETE_DEPLOYMENT_GUIDE.md](docs/deployment/COMPLETE_DEPLOYMENT_GUIDE.md)
-
----
-
-## 📋 Project Overview
-
-HingeCraft Global is a comprehensive payment and membership system built on Wix Velo, supporting:
-
-- **Payment Methods:** Stripe (Card/ACH), NOWPayments (Crypto)
-- **Membership Tiers:** BASIC ($1), PREMIER ($2-$20), VIP ($30+)
-- **Crypto Minimum:** $30 enforced across all payment flows
-- **Data Flow:** Mission Support Form → Charter Page → Payment Processing
-- **Database:** 7 collections for payments, members, intents, and content
+This repository contains the Notion project integration and AI agent components that are currently in development.
 
 ---
 
@@ -40,129 +10,90 @@ HingeCraft Global is a comprehensive payment and membership system built on Wix 
 
 ```
 hingecraft-global/
-├── src/backend/          # Velo backend functions (32 files)
-├── public/pages/         # Frontend HTML pages
-├── docs/                 # Documentation (organized by category)
-│   ├── deployment/       # Deployment guides
-│   ├── database/         # Database documentation
-│   ├── api/              # API integration docs
-│   ├── troubleshooting/  # Troubleshooting guides
-│   ├── guides/           # User guides
-│   └── reference/        # Quick reference
-├── scripts/              # Utility scripts
-├── legal-pages/          # Legal page HTML files
-└── database/             # Database schemas
+├── notion/                # Notion Automation & Integration
+│   ├── triggers/          # Automation triggers
+│   ├── sync/              # Notion sync scripts
+│   ├── monitoring/        # Monitoring systems
+│   └── README.md          # Notion integration docs
+│
+└── pipelines/             # AI Agent Components (In Development)
+    └── document_generation/  # Document generation AI agent
 ```
 
 ---
 
-## 🔧 Core Features
+## 🚀 Quick Start
 
-### **Payment Processing:**
-- ✅ Stripe custom invoices (instant, no email)
-- ✅ NOWPayments crypto invoices
-- ✅ ACH payment support
-- ✅ $30 crypto minimum enforcement
-- ✅ Webhook handling for payment completion
+### Notion Integration
 
-### **Data Flow:**
-- ✅ Mission Support Form → Charter Page redirect
-- ✅ Amount and payment method persistence
-- ✅ Auto-matching tier/years from amount
-- ✅ Prefill token system for "other" amounts
+Complete 24/7 sync system for HingeCraft → Notion dashboard.
 
-### **Database:**
-- ✅ 7 required collections
-- ✅ Real-time cumulative totals
-- ✅ Contribution tracking
-- ✅ Membership management
+```bash
+cd notion
+pip install -r requirements.txt
+python sync/hingecraft_notion_sync.py
+```
+
+See [notion/README.md](notion/README.md) for detailed setup instructions.
+
+### AI Agent Components
+
+AI agent components for automated document generation (currently in development).
+
+See [pipelines/document_generation/README.md](pipelines/document_generation/README.md) for details.
+
+---
+
+## 🔧 Components
+
+### 1. Notion Integration
+- **Project Management** → Syncs all HingeCraft data to Notion dashboard
+- **Real-time Monitoring** → Cursor activity monitoring
+- **Automation Triggers** → Automatic progress tracking
+- **Data Synchronization** → Chat history, timeline, and deadline sync
+
+### 2. AI Agent Components (In Development)
+- **Document Generation** → Template-based document generation using LLM
+- **Legal Documents** → Automated contract and policy generation
+- **Marketing Materials** → Campaign content generation
+- **Technical Documentation** → API and architecture docs
 
 ---
 
 ## 📚 Documentation
 
-### **Essential Guides:**
-- [Complete Deployment Guide](docs/deployment/COMPLETE_DEPLOYMENT_GUIDE.md)
-- [Database Schema](docs/database/DATABASE_SCHEMA_COMPLETE.md)
-- [API Configuration](docs/api/WIX_SECRETS_CONFIGURATION.md)
-- [Troubleshooting Guide](docs/troubleshooting/TROUBLESHOOTING_GUIDE.md)
+- [Notion Integration](notion/README.md) - Complete Notion integration documentation
+- [AI Agent Components](pipelines/document_generation/README.md) - Document generation AI agent (in development)
 
-### **Quick Reference:**
-- [Quick Reference](docs/reference/QUICK_REFERENCE.md)
-- [All Redirect URLs](docs/reference/ALL_REDIRECT_URLS.md)
-- [Example Usage](docs/reference/EXAMPLE_USAGE.md)
+---
 
-### **Full Documentation Index:**
-See [DOCUMENTATION_INDEX.md](DOCUMENTATION_INDEX.md)
+## 🔑 Configuration
+
+- **Notion**: `notion/env.example` - Copy to `.env` and configure
+- **AI Agents**: Configuration via database templates (in development)
+
+---
+
+## 📊 System Status
+
+**✅ Notion Integration:** Operational
+- Project management automation
+- Data synchronization
+- Task automation triggers
+- Database integration
+
+**🚧 AI Agent Components:** In Development
+- Document generation pipeline (architecture complete, implementation in progress)
+- Legal document pipeline (pending)
+- Marketing pipeline (pending)
+- Policy pipeline (pending)
 
 ---
 
 ## 🧪 Testing
 
-### **In Wix Local Editor:**
-```javascript
-// Quick health check
-fetch('/_functions/master-initialization/quickHealthCheck')
-  .then(r => r.json())
-  .then(data => console.log('Health:', data));
-
-// Complete troubleshooting
-fetch('/_functions/system-troubleshoot/troubleshootSystem')
-  .then(r => r.json())
-  .then(data => console.log('System Status:', data));
-```
-
----
-
-## 🔑 Required Secrets (Wix Secrets Manager)
-
-- `STRIPE_SECRET_KEY_TEST` - Stripe test secret key
-- `STRIPE_PUBLISHABLE_KEY_TEST` - Stripe test publishable key
-- `NOWPAYMENTS_API_KEY` - NOWPayments API key (optional)
-- `SENDGRID_API_KEY` - SendGrid API key (optional)
-
-See [API Configuration Guide](docs/api/WIX_SECRETS_CONFIGURATION.md) for details.
-
----
-
-## 📊 Database Collections
-
-1. **Donations** - Fiat payment records
-2. **CryptoPayments** - Crypto payment records
-3. **StripePayments** - Stripe invoice records
-4. **ContributionIntent** - Form intents and prefill tokens
-5. **Members** - Membership records
-6. **PaymentRoutes** - Payment method configurations
-7. **PageContent** - RAG system content index
-
-See [Database Schema](docs/database/DATABASE_SCHEMA_COMPLETE.md) for complete details.
-
----
-
-## 🚀 Current Status
-
-**✅ All Systems Operational:**
-- Payment processing (Stripe + NOWPayments)
-- Crypto minimum ($30) enforcement
-- Redirect flow (Mission Support → Charter)
-- Data persistence
-- Error handling
-- System troubleshooting
-
-**📝 Latest Updates:**
-- Crypto minimum restriction implemented
-- Mission support form fixes complete
-- System troubleshooting added
-- Repository organization in progress
-
----
-
-## 📞 Support
-
-For issues or questions:
-1. Check [Troubleshooting Guide](docs/troubleshooting/TROUBLESHOOTING_GUIDE.md)
-2. Run `troubleshootSystem()` in Wix
-3. Review [Documentation Index](DOCUMENTATION_INDEX.md)
+- **Notion**: Test scripts included in `notion/` directory
+- **AI Agents**: Testing framework in development
 
 ---
 
@@ -172,6 +103,6 @@ Proprietary - HingeCraft Global
 
 ---
 
-**Last Updated:** December 13, 2025  
-**Version:** 1.0.0  
-**Status:** Production Ready ✅
+**Last Updated:** December 15, 2025  
+**Version:** 3.0.0  
+**Status:** Notion Integration ✅ | AI Agents 🚧 In Development
