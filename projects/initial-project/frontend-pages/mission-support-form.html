@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mission Support - HingeCraft Global</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- T10 HingeCraft Live Chat - CSS -->
+  <link rel="stylesheet" href="/css/hc-uix.css">
+  <!-- Socket.IO for WebSocket -->
+  <script src="https://cdn.socket.io/4.6.1/socket.io.min.js"></script>
+  <!-- T10 HingeCraft Live Chat - Client Library -->
+  <script src="/js/hc-client.js"></script>
+  <style>
+    .prose h1 { font-size: 1.5rem; font-weight: 700; margin-top: 1.25rem; }
+    .prose h2 { font-size: 1.25rem; font-weight: 600; margin-top: 1rem; }
+    .prose h3 { font-size: 1.125rem; font-weight: 600; margin-top: 1rem; }
+    .prose p { margin-top: 0.75rem; line-height: 1.6; }
+    .prose ul, .prose ol { margin-left: 1.25rem; margin-top: 0.5rem; }
+    .prose li { margin-top: 0.25rem; }
+    
+    /* Original chat styles from Prompt.md */
+    .chat-column {
+      width: 20%;
+      border-right: 1px solid #e0d8ff;
+      display: flex;
+      flex-direction: column;
+      padding: 10px;
+      box-sizing: border-box;
+      background: radial-gradient(circle at top left, #ffe9dd 0, #fdfbff 40%, #f2f8ff 100%);
+      position: fixed;
+      left: 0;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+    }
+    
+    .chat {
+      flex-grow: 1;
+      overflow-y: auto;
+      border-radius: 12px;
+      margin-bottom: 10px;
+      padding: 10px;
+      border: 1px solid rgba(106, 74, 216, 0.18);
+      background-color: #ffffff;
+      box-shadow: 0 2px 8px rgba(56, 37, 104, 0.05);
+      font-size: 14px;
+      display: flex;
+      flex-direction: column-reverse; /* New messages at top */
+    }
+    
+    .chat p {
+      margin: 6px 0;
+      padding: 4px 0;
+    }
+    
+    .chat-input {
+      width: 96%;
+      box-sizing: border-box;
+      padding: 7px 8px;
+      border-radius: 999px;
+      border: 1px solid #d7ccff;
+      outline: none;
+      display: block;
+      margin: 0 auto;
+      font-size: 14px;
+    }
+    
+    .chat-input:focus {
+      border-color: #6a4ad8;
+      box-shadow: 0 0 0 2px rgba(106, 74, 216, 0.2);
+    }
+    
+    .user-id {
+      font-size: 12px;
+      margin-top: 10px;
+      color: gray;
+      text-align: center;
+    }
+    
+    /* Main content wrapper */
+    .main-content-wrapper {
+      margin-left: 20%;
+      min-height: 100vh;
+    }
+    
+    /* Chat message styles */
+    .hc-message {
+      padding: 8px;
+      margin-bottom: 4px;
+      border-radius: 8px;
+    }
+    
+    .hc-message.pending {
+      opacity: 0.6;
+    }
+    
+    .hc-message.pinned {
+      background: #fff9e6;
+      border-left: 3px solid #ffc107;
+    }
+    
+    .hc-message-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+    
+    .hc-message-author {
+      font-weight: 600;
+      color: #2b2449;
+    }
+    
+    .hc-message-time {
+      font-size: 11px;
+      color: #666;
+    }
+    
+    .hc-message-text {
+      color: #333;
+      word-wrap: break-word;
+    }
+    
+    .hc-message-reactions {
+      display: flex;
+      gap: 4px;
+      margin-top: 4px;
+      flex-wrap: wrap;
+    }
+    
+    .hc-reaction {
+      padding: 2px 6px;
+      border: 1px solid #e0d8ff;
+      border-radius: 12px;
+      background: #f4ecff;
+      cursor: pointer;
+      font-size: 12px;
+    }
+    
+    .hc-reaction.active {
+      background: #6a4ad8;
+      color: white;
+      border-color: #6a4ad8;
+    }
+    
+    .hc-typing-indicator {
+      padding: 4px 10px;
+      font-size: 12px;
+      color: #666;
+      font-style: italic;
+    }
+    
+    .hc-attachment-preview {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 8px;
+      background: #f4ecff;
+      border-radius: 8px;
+      margin: 4px 0;
+    }
+    
+    .hc-attachment-preview img {
+      max-width: 60px;
+      max-height: 60px;
+      border-radius: 4px;
+    }
+    
+    .hc-attachment-remove {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 18px;
+      color: #666;
+      padding: 0 4px;
+    }
+  </style>
+</head>
+<body class="bg-slate-100">
+  <!-- T10 Live Chat Column (Original Structure) -->
+  <div class="chat-column">
+    <div class="chat" id="chatBox" role="log" aria-live="polite" aria-label="Chat messages">
+      <div class="hc-loading" id="chatLoadingIndicator" style="text-align: center; padding: 20px; color: #666;">
+        Loading messages...
+      </div>
+    </div>
+    <input 
+      class="chat-input" 
+      type="text" 
+      id="chatInput"
+      placeholder="Type a message..." 
+      aria-label="Message input"
+      maxlength="5000"
+    />
+    <div class="user-id" id="userIdDisplay">User: Guest • Digital Twin #000 • 🌍</div>
+    
+    <!-- Typing Indicator -->
+    <div class="hc-typing-indicator" id="typingIndicator" aria-live="polite" style="display: none;"></div>
+    
+    <!-- Error Message -->
+    <div id="chatErrorMessage" class="hc-error" role="alert" aria-live="polite" style="display: none; margin-top: 8px; padding: 8px; background: #fee; border: 1px solid #fcc; border-radius: 4px; color: #c00; font-size: 12px;"></div>
+  </div>
+  
+  <!-- Main Content Wrapper -->
+  <div class="main-content-wrapper">
+    <div id="root" class="min-h-screen py-6"></div>
+  </div>
+  
+  <!-- Wix Velo API for storage integration -->
+  <script src="https://static.parastorage.com/services/js-sdk/1.231.0/js/wix-private.js"></script>
+  
+  <script type="text/babel" data-presets="env,react">
+    const { useEffect, useState } = React;
+
+    // Validation patterns
+    const VALIDATION_PATTERNS = {
+      firstName: /^[a-zA-Z\-\s]{1,50}$/,
+      lastName: /^[a-zA-Z\-\s]{1,50}$/,
+      email: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+      address: /^[a-zA-Z0-9\s\-\.,#]{1,200}$/,
+      missionSupportName: /^[a-zA-Z0-9\s\-\.,]{0,200}$/,
+      amount: /^\d{1,5}(\.\d{1,2})?$/
+    };
+
+    const AMOUNT_CONFIG = {
+      MIN: 1.00,
+      MAX: 25000.00,
+      PRESETS: [1, 5, 10]
+    };
+
+    function MissionSupportForm() {
+      const [formData, setFormData] = useState({
+        firstName: '',
+        lastName: '',
+        email: '',
+        address: '',
+        missionSupportName: '',
+        amount: null,
+        otherAmount: ''
+      });
+      
+      const [errors, setErrors] = useState({});
+      const [selectedPreset, setSelectedPreset] = useState(null);
+      const [showOtherInput, setShowOtherInput] = useState(false);
+      const [isSubmitting, setIsSubmitting] = useState(false);
+      const [sessionRestored, setSessionRestored] = useState(false);
+      const [paymentMethod, setPaymentMethod] = useState('card'); // 'card' or 'crypto'
+      const [cryptoInvoice, setCryptoInvoice] = useState(null); // NOWPayments invoice data
+
+      // Restore form data from session on mount
+      useEffect(() => {
+        restoreFormFromSession();
+      }, []);
+
+      function restoreFormFromSession() {
+        try {
+          // Try Wix Storage first
+          if (typeof wixStorage !== 'undefined' && wixStorage.session) {
+            const stored = wixStorage.session.getItem('missionSupportFormData');
+            if (stored) {
+              const data = JSON.parse(stored);
+              setFormData(data);
+              if (data.amount) {
+                if (AMOUNT_CONFIG.PRESETS.includes(data.amount)) {
+                  setSelectedPreset(data.amount);
+                } else {
+                  setShowOtherInput(true);
+                  setFormData(prev => ({ ...prev, otherAmount: String(data.amount) }));
+                }
+              }
+              setSessionRestored(true);
+              return;
+            }
+          }
+
+          // Fallback to sessionStorage
+          if (typeof sessionStorage !== 'undefined') {
+            const stored = sessionStorage.getItem('missionSupportFormData');
+            if (stored) {
+              const data = JSON.parse(stored);
+              setFormData(data);
+              if (data.amount) {
+                if (AMOUNT_CONFIG.PRESETS.includes(data.amount)) {
+                  setSelectedPreset(data.amount);
+                } else {
+                  setShowOtherInput(true);
+                  setFormData(prev => ({ ...prev, otherAmount: String(data.amount) }));
+                }
+              }
+              setSessionRestored(true);
+            }
+          }
+        } catch (e) {
+          console.error('Error restoring form from session:', e);
+        }
+      }
+
+      function saveFormToSession(data) {
+        try {
+          const sessionData = {
+            ...data,
+            timestamp: new Date().toISOString()
+          };
+
+          // Save to Wix Storage
+          if (typeof wixStorage !== 'undefined' && wixStorage.session) {
+            wixStorage.session.setItem('missionSupportFormData', JSON.stringify(sessionData));
+          }
+
+          // Fallback to sessionStorage
+          if (typeof sessionStorage !== 'undefined') {
+            sessionStorage.setItem('missionSupportFormData', JSON.stringify(sessionData));
+          }
+        } catch (e) {
+          console.error('Error saving form to session:', e);
+        }
+      }
+
+      function validateField(name, value) {
+        const fieldErrors = { ...errors };
+
+        switch (name) {
+          case 'firstName':
+            if (!value.trim()) {
+              fieldErrors.firstName = 'First name is required';
+            } else if (!VALIDATION_PATTERNS.firstName.test(value)) {
+              fieldErrors.firstName = 'First name must be 1-50 characters (letters, hyphens, spaces only)';
+            } else {
+              delete fieldErrors.firstName;
+            }
+            break;
+
+          case 'lastName':
+            if (!value.trim()) {
+              fieldErrors.lastName = 'Last name is required';
+            } else if (!VALIDATION_PATTERNS.lastName.test(value)) {
+              fieldErrors.lastName = 'Last name must be 1-50 characters (letters, hyphens, spaces only)';
+            } else {
+              delete fieldErrors.lastName;
+            }
+            break;
+
+          case 'email':
+            if (!value.trim()) {
+              fieldErrors.email = 'Email is required';
+            } else if (!VALIDATION_PATTERNS.email.test(value)) {
+              fieldErrors.email = 'Please enter a valid email address';
+            } else {
+              delete fieldErrors.email;
+            }
+            break;
+
+          case 'address':
+            if (!value.trim()) {
+              fieldErrors.address = 'Address is required';
+            } else if (!VALIDATION_PATTERNS.address.test(value)) {
+              fieldErrors.address = 'Address must be 1-200 characters';
+            } else {
+              delete fieldErrors.address;
+            }
+            break;
+
+          case 'missionSupportName':
+            if (value && !VALIDATION_PATTERNS.missionSupportName.test(value)) {
+              fieldErrors.missionSupportName = 'Must be 0-200 characters (letters, numbers, spaces, hyphens, periods, commas)';
+            } else {
+              delete fieldErrors.missionSupportName;
+            }
+            break;
+
+          case 'otherAmount':
+            if (showOtherInput && !value.trim()) {
+              fieldErrors.otherAmount = 'Please enter an amount';
+            } else if (value && !VALIDATION_PATTERNS.amount.test(value)) {
+              fieldErrors.otherAmount = 'Invalid amount format';
+            } else if (value) {
+              const amount = parseFloat(value);
+              if (isNaN(amount) || amount < AMOUNT_CONFIG.MIN || amount > AMOUNT_CONFIG.MAX) {
+                fieldErrors.otherAmount = `Amount must be between $${AMOUNT_CONFIG.MIN} and $${AMOUNT_CONFIG.MAX}`;
+              } else {
+                delete fieldErrors.otherAmount;
+              }
+            } else {
+              delete fieldErrors.otherAmount;
+            }
+            break;
+        }
+
+        setErrors(fieldErrors);
+        return Object.keys(fieldErrors).length === 0;
+      }
+
+      function sanitizeAmount(inputValue) {
+        if (!inputValue || typeof inputValue !== 'string') return null;
+
+        let sanitized = inputValue.trim().replace(/\s+/g, '');
+        sanitized = sanitized.replace(/[$,\s]/g, '');
+
+        if (!VALIDATION_PATTERNS.amount.test(sanitized)) return null;
+
+        const amount = parseFloat(sanitized);
+        if (isNaN(amount) || amount < AMOUNT_CONFIG.MIN || amount > AMOUNT_CONFIG.MAX) return null;
+
+        return Math.round(amount * 100) / 100;
+      }
+
+      function handleInputChange(name, value) {
+        const updatedData = { ...formData, [name]: value };
+        setFormData(updatedData);
+        validateField(name, value);
+        saveFormToSession(updatedData);
+      }
+
+      function handlePresetClick(amount) {
+        setSelectedPreset(amount);
+        setShowOtherInput(false);
+        setFormData(prev => ({ ...prev, amount, otherAmount: '' }));
+        setErrors(prev => {
+          const newErrors = { ...prev };
+          delete newErrors.otherAmount;
+          return newErrors;
+        });
+        saveFormToSession({ ...formData, amount, otherAmount: '' });
+      }
+
+      function handleOtherClick() {
+        setSelectedPreset(null);
+        setShowOtherInput(true);
+        setFormData(prev => ({ ...prev, amount: null }));
+        setTimeout(() => {
+          const otherInput = document.getElementById('other-amount-input');
+          if (otherInput) otherInput.focus();
+        }, 100);
+      }
+
+      function handleOtherAmountChange(value) {
+        handleInputChange('otherAmount', value);
+        const sanitized = sanitizeAmount(value);
+        if (sanitized) {
+          setFormData(prev => ({ ...prev, amount: sanitized }));
+          saveFormToSession({ ...formData, amount: sanitized, otherAmount: value });
+        }
+      }
+
+      async function handleSubmit(e) {
+        e.preventDefault();
+        setIsSubmitting(true);
+
+        // Validate all fields
+        const firstNameValid = validateField('firstName', formData.firstName);
+        const lastNameValid = validateField('lastName', formData.lastName);
+        const emailValid = validateField('email', formData.email);
+        const addressValid = validateField('address', formData.address);
+        const missionSupportNameValid = validateField('missionSupportName', formData.missionSupportName);
+
+        // Validate amount
+        let amountValid = false;
+        let finalAmount = null;
+
+        if (selectedPreset) {
+          finalAmount = selectedPreset;
+          amountValid = true;
+        } else if (showOtherInput && formData.otherAmount) {
+          const sanitized = sanitizeAmount(formData.otherAmount);
+          if (sanitized) {
+            finalAmount = sanitized;
+            amountValid = true;
+          } else {
+            validateField('otherAmount', formData.otherAmount);
+            amountValid = false;
+          }
+        } else {
+          setErrors(prev => ({ ...prev, amount: 'Please select or enter an amount' }));
+          amountValid = false;
+        }
+
+        if (!firstNameValid || !lastNameValid || !emailValid || !addressValid || !missionSupportNameValid || !amountValid) {
+          setIsSubmitting(false);
+          return;
+        }
+
+        // Prepare form data for storage and backend
+        const submissionData = {
+          firstName: formData.firstName.trim(),
+          lastName: formData.lastName.trim(),
+          email: formData.email.trim().toLowerCase(),
+          address: formData.address.trim(),
+          missionSupportName: formData.missionSupportName.trim() || null,
+          amount: finalAmount,
+          timestamp: new Date().toISOString(),
+          source: 'missionSupportForm'
+        };
+
+        // Store in session
+        saveFormToSession(submissionData);
+
+        // Store amount separately for payment flow
+        try {
+          if (typeof wixStorage !== 'undefined' && wixStorage.session) {
+            wixStorage.session.setItem('hingecraft_donation', JSON.stringify({
+              amount: finalAmount,
+              timestamp: new Date().toISOString(),
+              source: 'mission_support_form'
+            }));
+          }
+          if (typeof sessionStorage !== 'undefined') {
+            sessionStorage.setItem('hingecraft_donation', JSON.stringify({
+              amount: finalAmount,
+              timestamp: new Date().toISOString(),
+              source: 'mission_support_form'
+            }));
+          }
+        } catch (e) {
+          console.error('Error storing donation amount:', e);
+        }
+
+        // Log to backend (non-blocking)
+        try {
+          const sessionID = generateSessionId();
+          const anonymousFingerprint = getAnonymousFingerprint();
+          
+          // Call backend function
+          if (typeof wixFetch !== 'undefined') {
+            wixFetch.fetch('/_functions/logMissionSupportIntent', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                formData: submissionData,
+                amountEntered: finalAmount,
+                timestamp: submissionData.timestamp,
+                sessionID: sessionID,
+                anonymousFingerprint: anonymousFingerprint,
+                referrerSource: document.referrer || 'direct',
+                pageUrl: window.location.href,
+                userAgent: navigator.userAgent
+              })
+            }).catch(err => console.error('Backend logging error (non-blocking):', err));
+          } else {
+            // Fallback to fetch
+            fetch('/_functions/logMissionSupportIntent', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                formData: submissionData,
+                amountEntered: finalAmount,
+                timestamp: submissionData.timestamp,
+                sessionID: sessionID,
+                anonymousFingerprint: anonymousFingerprint,
+                referrerSource: document.referrer || 'direct',
+                pageUrl: window.location.href,
+                userAgent: navigator.userAgent
+              })
+            }).catch(err => console.error('Backend logging error (non-blocking):', err));
+          }
+        } catch (e) {
+          console.error('Error logging intent:', e);
+        }
+
+        // Handle payment method selection
+        if (paymentMethod === 'crypto') {
+          // Create NOWPayments invoice
+          try {
+            const sessionID = generateSessionId();
+            
+            // Call Wix backend function
+            let invoiceResponse;
+            if (typeof wixFetch !== 'undefined') {
+              invoiceResponse = await wixFetch.fetch('/_functions/createNowPaymentsInvoice', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  intentId: sessionID, // Use sessionID as intentId for now
+                  amount: finalAmount,
+                  email: submissionData.email,
+                  sessionId: sessionID,
+                  firstName: submissionData.firstName,
+                  lastName: submissionData.lastName,
+                  missionSupportName: submissionData.missionSupportName
+                })
+              });
+            } else {
+              invoiceResponse = await fetch('/_functions/createNowPaymentsInvoice', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  intentId: sessionID,
+                  amount: finalAmount,
+                  email: submissionData.email,
+                  sessionId: sessionID,
+                  firstName: submissionData.firstName,
+                  lastName: submissionData.lastName,
+                  missionSupportName: submissionData.missionSupportName
+                })
+              });
+            }
+
+            const invoiceData = await invoiceResponse.json();
+            
+            if (invoiceData.success) {
+              // Store invoice data in session
+              try {
+                const invoiceStorage = {
+                  invoiceId: invoiceData.invoiceId,
+                  paymentUrl: invoiceData.paymentUrl,
+                  payAddress: invoiceData.payAddress,
+                  payAmountCrypto: invoiceData.payAmountCrypto,
+                  payCurrency: invoiceData.payCurrency,
+                  orderId: invoiceData.orderId || invoiceData.intentId,
+                  intentId: invoiceData.intentId
+                };
+                
+                if (typeof wixStorage !== 'undefined' && wixStorage.session) {
+                  wixStorage.session.setItem('hc_nowpay_invoice', JSON.stringify(invoiceStorage));
+                }
+                if (typeof sessionStorage !== 'undefined') {
+                  sessionStorage.setItem('hc_nowpay_invoice', JSON.stringify(invoiceStorage));
+                }
+              } catch (e) {
+                console.error('Error storing invoice data:', e);
+              }
+
+              // Redirect to NOWPayments invoice page
+              if (invoiceData.paymentUrl) {
+                if (typeof wixLocation !== 'undefined' && wixLocation.to) {
+                  wixLocation.to(invoiceData.paymentUrl);
+                } else {
+                  window.location.href = invoiceData.paymentUrl;
+                }
+                return;
+              } else {
+                throw new Error('Payment URL not provided');
+              }
+            } else {
+              throw new Error(invoiceData.error || 'Failed to create crypto invoice');
+            }
+          } catch (cryptoError) {
+            console.error('Crypto invoice creation error:', cryptoError);
+            setErrors(prev => ({ ...prev, payment: 'Failed to create crypto payment. Please try again or select card payment.' }));
+            setIsSubmitting(false);
+            return;
+          }
+        } else {
+          // Card payment: Use middleware to redirect to Charter Page (T10 Implementation)
+          try {
+            const redirectUrl = '/_functions/mission-support-middleware/goToCharterAfterPayment';
+            const redirectResponse = await (typeof wixFetch !== 'undefined' ? wixFetch.fetch : fetch)(redirectUrl, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ value: finalAmount })
+            });
+            
+            const redirectData = await redirectResponse.json();
+            
+            if (redirectData.success && redirectData.redirectUrl) {
+              if (typeof wixLocation !== 'undefined' && wixLocation.to) {
+                wixLocation.to(redirectData.redirectUrl);
+              } else {
+                window.location.href = redirectData.redirectUrl;
+              }
+            } else {
+              // Fallback to direct redirect
+              const charterUrl = `/charter?donationAmount=${encodeURIComponent(finalAmount)}&fromMissionSupport=true&paymentMethod=card`;
+              if (typeof wixLocation !== 'undefined' && wixLocation.to) {
+                wixLocation.to(charterUrl);
+              } else {
+                window.location.href = charterUrl;
+              }
+            }
+          } catch (redirectError) {
+            console.error('Redirect error, using fallback:', redirectError);
+            // Fallback to direct redirect
+            const charterUrl = `/charter?donationAmount=${encodeURIComponent(finalAmount)}&fromMissionSupport=true&paymentMethod=card`;
+            if (typeof wixLocation !== 'undefined' && wixLocation.to) {
+              wixLocation.to(charterUrl);
+            } else {
+              window.location.href = charterUrl;
+            }
+          }
+        }
+      }
+
+      function generateSessionId() {
+        try {
+          if (typeof sessionStorage !== 'undefined') {
+            let sessionId = sessionStorage.getItem('hingecraft_session_id');
+            if (sessionId) return sessionId;
+          }
+          const sessionId = 'hc_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+          if (typeof sessionStorage !== 'undefined') {
+            sessionStorage.setItem('hingecraft_session_id', sessionId);
+          }
+          return sessionId;
+        } catch (e) {
+          return 'hc_' + Date.now();
+        }
+      }
+
+      function getAnonymousFingerprint() {
+        try {
+          const canvas = document.createElement('canvas');
+          const ctx = canvas.getContext('2d');
+          ctx.textBaseline = 'top';
+          ctx.font = '14px Arial';
+          ctx.fillText('HingeCraft', 2, 2);
+          return btoa(canvas.toDataURL().substring(0, 50)).substring(0, 16);
+        } catch (e) {
+          return 'fp_' + Math.random().toString(36).substr(2, 9);
+        }
+      }
+
+      return (
+        <div className="w-full max-w-3xl mx-auto p-4 sm:p-6 bg-white text-slate-900 rounded-lg shadow-lg">
+          <h1 className="text-3xl font-bold mb-6 text-center">MISSION SUPPORT</h1>
+          
+          <form onSubmit={handleSubmit} className="space-y-6">
+            {/* First Name */}
+            <div>
+              <label htmlFor="firstName" className="block text-sm font-medium mb-1">
+                First Name <span className="text-rose-600">*</span>
+              </label>
+              <input
+                id="firstName"
+                type="text"
+                value={formData.firstName}
+                onChange={(e) => handleInputChange('firstName', e.target.value)}
+                className={`w-full border rounded-lg px-3 py-2 ${errors.firstName ? 'border-rose-500' : 'border-slate-300'}`}
+                placeholder="Enter your first name"
+                required
+              />
+              {errors.firstName && <p className="mt-1 text-sm text-rose-600">{errors.firstName}</p>}
+            </div>
+
+            {/* Last Name */}
+            <div>
+              <label htmlFor="lastName" className="block text-sm font-medium mb-1">
+                Last Name <span className="text-rose-600">*</span>
+              </label>
+              <input
+                id="lastName"
+                type="text"
+                value={formData.lastName}
+                onChange={(e) => handleInputChange('lastName', e.target.value)}
+                className={`w-full border rounded-lg px-3 py-2 ${errors.lastName ? 'border-rose-500' : 'border-slate-300'}`}
+                placeholder="Enter your last name"
+                required
+              />
+              {errors.lastName && <p className="mt-1 text-sm text-rose-600">{errors.lastName}</p>}
+            </div>
+
+            {/* Email */}
+            <div>
+              <label htmlFor="email" className="block text-sm font-medium mb-1">
+                Email <span className="text-rose-600">*</span>
+              </label>
+              <input
+                id="email"
+                type="email"
+                value={formData.email}
+                onChange={(e) => handleInputChange('email', e.target.value)}
+                className={`w-full border rounded-lg px-3 py-2 ${errors.email ? 'border-rose-500' : 'border-slate-300'}`}
+                placeholder="Enter your email address"
+                required
+              />
+              {errors.email && <p className="mt-1 text-sm text-rose-600">{errors.email}</p>}
+            </div>
+
+            {/* Address */}
+            <div>
+              <label htmlFor="address" className="block text-sm font-medium mb-1">
+                Address <span className="text-rose-600">*</span>
+              </label>
+              <input
+                id="address"
+                type="text"
+                value={formData.address}
+                onChange={(e) => handleInputChange('address', e.target.value)}
+                className={`w-full border rounded-lg px-3 py-2 ${errors.address ? 'border-rose-500' : 'border-slate-300'}`}
+                placeholder="Enter your address"
+                required
+              />
+              {errors.address && <p className="mt-1 text-sm text-rose-600">{errors.address}</p>}
+            </div>
+
+            {/* Mission Support in the name of */}
+            <div>
+              <label htmlFor="missionSupportName" className="block text-sm font-medium mb-1">
+                Mission Support in the name of
+              </label>
+              <input
+                id="missionSupportName"
+                type="text"
+                value={formData.missionSupportName}
+                onChange={(e) => handleInputChange('missionSupportName', e.target.value)}
+                className={`w-full border rounded-lg px-3 py-2 ${errors.missionSupportName ? 'border-rose-500' : 'border-slate-300'}`}
+                placeholder="Optional: Enter name for attribution or dedication"
+                maxLength={200}
+              />
+              {errors.missionSupportName && <p className="mt-1 text-sm text-rose-600">{errors.missionSupportName}</p>}
+            </div>
+
+            {/* Payment Method Selection */}
+            <div className="border-t pt-6">
+              <label className="block text-sm font-medium mb-3">
+                Payment Method <span className="text-rose-600">*</span>
+              </label>
+              
+              <div className="grid grid-cols-2 gap-3 mb-6">
+                <button
+                  type="button"
+                  onClick={() => setPaymentMethod('card')}
+                  className={`px-4 py-3 border rounded-lg font-semibold transition ${
+                    paymentMethod === 'card'
+                      ? 'border-slate-900 bg-slate-900 text-white'
+                      : 'border-slate-300 hover:border-slate-500'
+                  }`}
+                >
+                  💳 Card Payment
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setPaymentMethod('crypto')}
+                  className={`px-4 py-3 border rounded-lg font-semibold transition ${
+                    paymentMethod === 'crypto'
+                      ? 'border-slate-900 bg-slate-900 text-white'
+                      : 'border-slate-300 hover:border-slate-500'
+                  }`}
+                >
+                  ₿ Crypto Payment
+                </button>
+              </div>
+
+              {paymentMethod === 'crypto' && (
+                <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                  <p className="text-sm text-blue-800">
+                    <strong>Crypto Payment:</strong> You will be redirected to a secure crypto payment page where you can pay with Bitcoin, Ethereum, Solana, or other supported cryptocurrencies.
+                  </p>
+                </div>
+              )}
+            </div>
+
+            {/* Payment Amount Section */}
+            <div className="border-t pt-6">
+              <label className="block text-sm font-medium mb-3">
+                Default payment amount of
+              </label>
+              
+              <div className="grid grid-cols-3 gap-3 mb-4">
+                {AMOUNT_CONFIG.PRESETS.map(amount => (
+                  <button
+                    key={amount}
+                    type="button"
+                    onClick={() => handlePresetClick(amount)}
+                    className={`px-4 py-3 border rounded-lg font-semibold transition ${
+                      selectedPreset === amount
+                        ? 'border-slate-900 bg-slate-900 text-white'
+                        : 'border-slate-300 hover:border-slate-500'
+                    }`}
+                  >
+                    ${amount}
+                  </button>
+                ))}
+                <button
+                  type="button"
+                  onClick={handleOtherClick}
+                  className={`px-4 py-3 border rounded-lg font-semibold transition ${
+                    showOtherInput
+                      ? 'border-slate-900 bg-slate-900 text-white'
+                      : 'border-slate-300 hover:border-slate-500'
+                  }`}
+                >
+                  Other
+                </button>
+              </div>
+
+              {showOtherInput && (
+                <div>
+                  <label htmlFor="other-amount-input" className="block text-sm font-medium mb-1">
+                    Enter custom amount <span className="text-rose-600">*</span>
+                  </label>
+                  <input
+                    id="other-amount-input"
+                    type="text"
+                    value={formData.otherAmount}
+                    onChange={(e) => handleOtherAmountChange(e.target.value)}
+                    className={`w-full border rounded-lg px-3 py-2 ${errors.otherAmount ? 'border-rose-500' : 'border-slate-300'}`}
+                    placeholder={`$${AMOUNT_CONFIG.MIN} - $${AMOUNT_CONFIG.MAX.toLocaleString()}`}
+                    required={showOtherInput}
+                  />
+                  {errors.otherAmount && <p className="mt-1 text-sm text-rose-600">{errors.otherAmount}</p>}
+                  {errors.amount && <p className="mt-1 text-sm text-rose-600">{errors.amount}</p>}
+                </div>
+              )}
+            </div>
+
+            {/* Submit Button */}
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="w-full px-6 py-3 bg-slate-900 text-white rounded-lg font-semibold hover:bg-slate-700 disabled:opacity-50 disabled:cursor-not-allowed transition"
+            >
+              {isSubmitting 
+                ? 'Processing...' 
+                : paymentMethod === 'crypto' 
+                  ? 'Continue to Crypto Payment' 
+                  : 'Continue to Charter Page'}
+            </button>
+
+            {errors.payment && (
+              <p className="mt-2 text-sm text-rose-600 text-center">{errors.payment}</p>
+            )}
+          </form>
+
+          {sessionRestored && (
+            <p className="mt-4 text-xs text-slate-500 text-center">
+              Form data restored from previous session
+            </p>
+          )}
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<MissionSupportForm />);
+  </script>
+  
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  
+  <!-- T10 HingeCraft Live Chat - Initialization Script -->
+  <script>
+    (function() {
+      'use strict';
+      
+      // Chat state
+      let chatClient = null;
+      let currentChannel = '#general';
+      let messages = [];
+      let typingUsers = new Set();
+      let pendingAttachments = [];
+      let typingTimeout = null;
+      
+      // DOM elements
+      const chatBox = document.getElementById('chatBox');
+      const chatInput = document.getElementById('chatInput');
+      const chatLoadingIndicator = document.getElementById('chatLoadingIndicator');
+      const typingIndicator = document.getElementById('typingIndicator');
+      const chatErrorMessage = document.getElementById('chatErrorMessage');
+      const userIdDisplay = document.getElementById('userIdDisplay');
+      
+      // Initialize chat client
+      async function initChat() {
+        try {
+          // Initialize HingeCraft Chat Client
+          chatClient = new HingeCraftChatClient({
+            baseUrl: window.location.origin,
+            channels: ['#general', '#support', '#mission-support'],
+            defaultChannel: '#general'
+          });
+          
+          // Initialize client
+          await chatClient.init();
+          console.log('Chat client initialized', chatClient.user);
+          
+          // Update user display
+          if (chatClient.user) {
+            const userName = chatClient.user.name || 'Guest';
+            const userFlag = '🌍';
+            userIdDisplay.textContent = `User: ${userName} • Digital Twin #${chatClient.user.id.slice(-3)} • ${userFlag}`;
+          }
+          
+          // Set up event handlers
+          setupChatEventHandlers();
+          
+          // Set up WebSocket callbacks
+          setupWebSocketCallbacks();
+          
+          // Load initial messages
+          await loadMessages();
+          
+          // Join channel
+          if (chatClient.socket && typeof io !== 'undefined') {
+            chatClient.socket.emit('join', currentChannel);
+          }
+          
+          // Start presence heartbeat
+          startPresenceHeartbeat();
+          
+          // Hide loading indicator
+          if (chatLoadingIndicator) {
+            chatLoadingIndicator.style.display = 'none';
+          }
+          
+        } catch (error) {
+          console.error('Failed to initialize chat:', error);
+          showChatError('Failed to initialize chat. Please refresh the page.');
+          if (chatLoadingIndicator) {
+            chatLoadingIndicator.textContent = 'Failed to load chat. Please refresh.';
+          }
+        }
+      }
+      
+      // Setup event handlers
+      function setupChatEventHandlers() {
+        // Send message on Enter (without Shift)
+        if (chatInput) {
+          chatInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+              e.preventDefault();
+              handleSendMessage();
+            }
+          });
+          
+          // Typing indicator
+          chatInput.addEventListener('input', function() {
+            clearTimeout(typingTimeout);
+            if (chatClient && chatInput.value.trim()) {
+              chatClient.sendTyping(currentChannel);
+              typingTimeout = setTimeout(() => {
+                // Typing stopped
+              }, 3000);
+            }
+          });
+        }
+      }
+      
+      // Setup WebSocket callbacks
+      function setupWebSocketCallbacks() {
+        if (!chatClient) return;
+        
+        chatClient.onMessageReceived = handleMessageReceived;
+        chatClient.onMessageEdit = handleMessageEdit;
+        chatClient.onMessageDelete = handleMessageDelete;
+        chatClient.onReactionUpdate = handleReactionUpdate;
+        chatClient.onTypingUpdate = handleTypingUpdate;
+        chatClient.onPresenceUpdate = handlePresenceUpdate;
+        chatClient.onPinUpdate = handlePinUpdate;
+        chatClient.onThreadUpdate = handleThreadUpdate;
+        chatClient.onMessageOptimistic = handleMessageOptimistic;
+        chatClient.onMessageError = handleMessageError;
+      }
+      
+      // Load messages
+      async function loadMessages() {
+        try {
+          if (!chatClient) return;
+          
+          const data = await chatClient.getMessages(currentChannel, { limit: 50 });
+          messages = data.messages || [];
+          renderMessages();
+        } catch (error) {
+          console.error('Failed to load messages:', error);
+          showChatError('Failed to load messages. Please try again.');
+        }
+      }
+      
+      // Render messages
+      function renderMessages() {
+        if (!chatBox) return;
+        
+        // Clear loading indicator
+        const loadingEl = chatBox.querySelector('.hc-loading');
+        if (loadingEl) loadingEl.remove();
+        
+        // Clear existing messages (except loading)
+        const existingMessages = chatBox.querySelectorAll('p, .hc-message');
+        existingMessages.forEach(el => {
+          if (!el.classList.contains('hc-loading')) {
+            el.remove();
+          }
+        });
+        
+        // Sort: pinned first, then by timestamp (newest first for reverse display)
+        const sorted = [...messages].sort((a, b) => {
+          if (a.pinned && !b.pinned) return -1;
+          if (!a.pinned && b.pinned) return 1;
+          return new Date(b.ts) - new Date(a.ts); // Reverse for top-to-bottom
+        });
+        
+        // Render messages
+        sorted.forEach(msg => {
+          const element = createMessageElement(msg);
+          chatBox.appendChild(element);
+        });
+        
+        // Scroll to top (since we're using reverse order)
+        chatBox.scrollTop = 0;
+      }
+      
+      // Create message element
+      function createMessageElement(message) {
+        const p = document.createElement('p');
+        p.className = 'hc-message' + (message.pending ? ' pending' : '') + (message.pinned ? ' pinned' : '');
+        p.id = `msg-${message.id}`;
+        p.setAttribute('data-message-id', message.id);
+        
+        // Build message HTML
+        let html = '';
+        
+        // Author and time
+        const author = message.user_name || 'Anonymous';
+        const time = formatTime(message.ts);
+        html += `<b>${escapeHtml(author)}</b> <span style="font-size: 11px; color: #666;">${time}</span>`;
+        
+        // Pinned indicator
+        if (message.pinned) {
+          html += ' 📌';
+        }
+        
+        html += ': ';
+        
+        // Message text
+        html += escapeHtml(message.text || '');
+        
+        // Edited indicator
+        if (message.edited) {
+          html += ' <span style="font-size: 11px; color: #999; font-style: italic;">(edited)</span>';
+        }
+        
+        // Attachments
+        if (message.attachments && message.attachments.length > 0) {
+          message.attachments.forEach(att => {
+            if (att.mime && att.mime.startsWith('image/')) {
+              html += `<br><img src="${escapeHtml(att.url || att.fileUrl)}" alt="${escapeHtml(att.name || 'Attachment')}" style="max-width: 200px; max-height: 200px; border-radius: 4px; margin-top: 4px;">`;
+            } else {
+              html += `<br><span style="font-size: 12px; color: #666;">📎 ${escapeHtml(att.name || 'Attachment')}</span>`;
+            }
+          });
+        }
+        
+        // Reactions
+        if (message.reactions && Object.keys(message.reactions).length > 0) {
+          const reactionGroups = {};
+          Object.values(message.reactions).forEach(r => {
+            const key = r.emoji;
+            if (!reactionGroups[key]) {
+              reactionGroups[key] = [];
+            }
+            reactionGroups[key].push(r);
+          });
+          
+          html += '<div class="hc-message-reactions" style="margin-top: 4px;">';
+          Object.entries(reactionGroups).forEach(([emoji, reactions]) => {
+            const isActive = reactions.some(r => r.userId === chatClient.user.id);
+            html += `<button class="hc-reaction ${isActive ? 'active' : ''}" onclick="toggleReaction('${message.id}', '${emoji}')" style="padding: 2px 6px; border: 1px solid #e0d8ff; border-radius: 12px; background: ${isActive ? '#6a4ad8' : '#f4ecff'}; color: ${isActive ? 'white' : '#333'}; cursor: pointer; font-size: 12px; margin-right: 4px;">${emoji} ${reactions.length}</button>`;
+          });
+          html += '</div>';
+        }
+        
+        p.innerHTML = html;
+        
+        return p;
+      }
+      
+      // Handle send message
+      async function handleSendMessage() {
+        const text = chatInput.value.trim();
+        if (!text && pendingAttachments.length === 0) return;
+        
+        // Validate
+        if (text.length > 5000) {
+          showChatError('Message cannot exceed 5000 characters');
+          return;
+        }
+        
+        if (!chatClient) {
+          showChatError('Chat not initialized. Please refresh the page.');
+          return;
+        }
+        
+        try {
+          // Upload attachments first
+          const attachments = [];
+          for (const file of pendingAttachments) {
+            try {
+              const uploadResult = await chatClient.uploadFile(file, currentChannel, 'ct_temp');
+              attachments.push({
+                name: file.name,
+                mime: file.type,
+                url: uploadResult.fileUrl,
+                size: file.size
+              });
+            } catch (error) {
+              showChatError('Failed to upload ' + file.name + ': ' + error.message);
+            }
+          }
+          
+          // Send message
+          await chatClient.sendMessage(currentChannel, text, {
+            attachments,
+            clientTempId: chatClient.generateClientTempId()
+          });
+          
+          // Clear input
+          chatInput.value = '';
+          pendingAttachments = [];
+          clearChatError();
+        } catch (error) {
+          console.error('Failed to send message:', error);
+          showChatError('Failed to send message: ' + error.message);
+        }
+      }
+      
+      // Event handlers
+      function handleMessageReceived(message) {
+        if (message.channel === currentChannel) {
+          const existingIndex = messages.findIndex(m => m.id === message.id);
+          if (existingIndex >= 0) {
+            messages[existingIndex] = message;
+          } else {
+            messages.push(message);
+          }
+          renderMessages();
+        }
+      }
+      
+      function handleMessageOptimistic(message) {
+        messages.push(message);
+        renderMessages();
+      }
+      
+      function handleMessageError(clientTempId, error) {
+        messages = messages.filter(m => m.clientTempId !== clientTempId);
+        renderMessages();
+        showChatError('Failed to send message: ' + error.message);
+      }
+      
+      function handleMessageEdit(message) {
+        const index = messages.findIndex(m => m.id === message.id);
+        if (index >= 0) {
+          messages[index] = message;
+          renderMessages();
+        }
+      }
+      
+      function handleMessageDelete(messageId) {
+        messages = messages.filter(m => m.id !== messageId);
+        renderMessages();
+      }
+      
+      function handleReactionUpdate(messageId, reactions) {
+        const message = messages.find(m => m.id === messageId);
+        if (message) {
+          message.reactions = reactions;
+          renderMessages();
+        }
+      }
+      
+      function handleTypingUpdate(channel, userId, ts) {
+        if (channel === currentChannel && userId !== chatClient.user.id) {
+          typingUsers.add(userId);
+          updateTypingIndicator();
+          setTimeout(() => {
+            typingUsers.delete(userId);
+            updateTypingIndicator();
+          }, 3000);
+        }
+      }
+      
+      function handlePresenceUpdate(userId, status, lastSeen) {
+        // Update presence indicators if needed
+        console.log('Presence update:', userId, status);
+      }
+      
+      function handlePinUpdate(messageId, pinned) {
+        const message = messages.find(m => m.id === messageId);
+        if (message) {
+          message.pinned = pinned;
+          renderMessages();
+        }
+      }
+      
+      function handleThreadUpdate(rootMessageId, replies) {
+        // Handle thread updates if needed
+        console.log('Thread update:', rootMessageId, replies);
+      }
+      
+      // Utility functions
+      function formatTime(isoString) {
+        const date = new Date(isoString);
+        return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      }
+      
+      function escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+      }
+      
+      function showChatError(message) {
+        if (chatErrorMessage) {
+          chatErrorMessage.textContent = message;
+          chatErrorMessage.style.display = 'block';
+          setTimeout(() => {
+            chatErrorMessage.style.display = 'none';
+          }, 5000);
+        }
+      }
+      
+      function clearChatError() {
+        if (chatErrorMessage) {
+          chatErrorMessage.style.display = 'none';
+        }
+      }
+      
+      function updateTypingIndicator() {
+        if (typingIndicator) {
+          if (typingUsers.size > 0) {
+            typingIndicator.textContent = `${typingUsers.size} user${typingUsers.size > 1 ? 's' : ''} typing...`;
+            typingIndicator.style.display = 'block';
+          } else {
+            typingIndicator.style.display = 'none';
+          }
+        }
+      }
+      
+      function startPresenceHeartbeat() {
+        if (!chatClient || !chatClient.socket) return;
+        
+        setInterval(() => {
+          if (chatClient.socket && chatClient.socket.connected) {
+            chatClient.socket.emit('presence', {
+              status: 'online',
+              ts: new Date().toISOString()
+            });
+          }
+        }, 8000); // Every 8 seconds
+      }
+      
+      // Global function for reaction toggle
+      window.toggleReaction = function(messageId, emoji) {
+        if (chatClient) {
+          chatClient.toggleReaction(messageId, emoji).catch(error => {
+            showChatError('Failed to toggle reaction: ' + error.message);
+          });
+        }
+      };
+      
+      // Initialize chat when DOM is ready
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initChat);
+      } else {
+        initChat();
+      }
+    })();
+  </script>
+</body>
+</html>
+
