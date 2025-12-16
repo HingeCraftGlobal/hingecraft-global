@@ -31,7 +31,7 @@ import os
 import sys
 
 # Add project root to path
-sys.path.insert(0, '$(pwd)')
+sys.path.insert(0, '/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global')
 
 # Task implementation generator
 def generate_agent_implementations():

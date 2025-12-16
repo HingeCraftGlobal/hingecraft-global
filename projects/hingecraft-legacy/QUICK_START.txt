@@ -1,0 +1,37 @@
+═══════════════════════════════════════════════════════════════
+  HingeCraft - Quick Start Commands
+═══════════════════════════════════════════════════════════════
+
+DOCKER CREDENTIALS:
+  Username: departmentsai
+  Repository: departmentsai/wix
+  Token: dckr_pat_2UzZSgjDmwBNQ8neR76PwDOn45Q
+
+═══════════════════════════════════════════════════════════════
+
+STEP 1: Start Docker Desktop
+  → Open Docker Desktop on your Mac
+  → Wait for it to fully start (whale icon in menu bar)
+
+STEP 2: Run Deployment
+  cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+  ./auto-deploy-all.sh
+
+═══════════════════════════════════════════════════════════════
+
+CORRECT COMMAND:
+  ./auto-deploy-all.sh
+
+NOT:
+  ./auto-deploy-al  ❌ (missing "l.sh")
+
+═══════════════════════════════════════════════════════════════
+
+The script will:
+  1. Login to Docker Hub (departmentsai)
+  2. Build and push images to departmentsai/wix
+  3. Start all services
+  4. Test health endpoints
+  5. Push to git (if authenticated)
+
+═══════════════════════════════════════════════════════════════

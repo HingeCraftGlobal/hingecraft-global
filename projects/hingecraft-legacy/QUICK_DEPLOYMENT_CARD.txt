@@ -1,0 +1,24 @@
+═══════════════════════════════════════════════════════════
+🚀 QUICK DEPLOYMENT CARD - WIX
+═══════════════════════════════════════════════════════════
+
+PAYMENT PAGE:
+1. Wix Editor → Payment Page → Settings → Custom Code → JavaScript
+2. Copy: PAYMENT_PAGE_READY_TO_COPY.js
+3. Update CHARTER_PAGE_URL if needed (line 21)
+4. Save → Publish
+
+CHARTER PAGE:
+1. Wix Editor → Charter Page → Settings → Custom Code → HTML
+2. Copy: CHARTER_PAGE_READY_TO_COPY.html
+3. Update CHECKOUT_PAGE_URL if needed (line 21)
+4. Save → Publish
+
+TEST:
+1. Payment Page → Enter "Other" amount: $50
+2. Click submit → Should go to Charter Page
+3. Verify amount displays → Click checkout
+4. Verify goes to Checkout Page
+
+✅ DONE!
+═══════════════════════════════════════════════════════════

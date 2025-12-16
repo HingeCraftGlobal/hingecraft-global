@@ -92,7 +92,7 @@ echo "📦 Test 7: Agent Execution Performance..."
 python3 << 'PYTHON_TEST'
 import sys
 import time
-sys.path.insert(0, '$(pwd)')
+sys.path.insert(0, '/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global')
 
 try:
     from agents.legal.contract_reviewer import ContractReviewer

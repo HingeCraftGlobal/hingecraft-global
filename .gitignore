@@ -50,11 +50,6 @@ secrets/
 *.key
 *.pem
 *.env
-*.env.local
-.env
-.env.local
-!*.env.example
-!env.example
 !*.example.env
 
 # Node
@@ -71,39 +66,3 @@ wix.lock
 *.backup
 .wix/debug.log
 .wix/dev.log
-# Environment files (DO NOT COMMIT)
-.env
-.env.local
-.env.*
-!*.example.env
-!*.env.example
-notion/.env
-notion/.env.local
-
-# Encryption keys and secrets (NEVER COMMIT)
-*.key
-*.pem
-*.p12
-*.pfx
-*_key
-*_secret
-*_password
-secrets/
-keys/
-*.encrypted
-*.enc
-
-# Decrypted database files (local only)
-database/decrypted/
-database/encrypted/
-
-# Sensitive database data
-database/*.enc
-database/**/*.enc
-*.db
-*.sqlite
-*.sqlite3
-
-# Access credentials
-credentials/
-access_tokens/

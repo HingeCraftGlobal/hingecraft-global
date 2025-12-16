@@ -6,7 +6,7 @@ set -e
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
-HINGECRAFT_DIR="../HingeCraft"
+HINGECRAFT_DIR="/Users/chandlerfergusen/Desktop/CURSOR/HingeCraft"
 
 echo "═══════════════════════════════════════════════════════════"
 echo "🚀 COMPLETE DATABASE SEGMENTATION"

@@ -1,0 +1,30 @@
+========================================
+HingeCraft Production Configuration
+========================================
+
+Production URL: https://multiracial-zavier-acculturative.ngrok-free.dev
+Secret Key: 04f1ddd99fdfdc3e89cdd0d714b735feda43fa3aecfd39df946e4e24de163c1b
+
+Database Connection Details for Wix:
+-------------------------------------
+Connection Name: HingeCraftDonationsDB
+Endpoint URL: https://multiracial-zavier-acculturative.ngrok-free.dev
+Secret Key: 04f1ddd99fdfdc3e89cdd0d714b735feda43fa3aecfd39df946e4e24de163c1b
+
+Wix Secrets Manager:
+-------------------------------------
+EXTERNAL_DB_ENDPOINT: https://multiracial-zavier-acculturative.ngrok-free.dev
+EXTERNAL_DB_SECRET_KEY: 04f1ddd99fdfdc3e89cdd0d714b735feda43fa3aecfd39df946e4e24de163c1b
+
+Status: ✅ PRODUCTION READY
+Date: Thu Dec  4 13:02:34 MST 2025
+
+To keep ngrok running:
+  - This script keeps ngrok running in background
+  - PID: 46030
+  - To stop: pkill -f ngrok
+
+To restart:
+  ./PRODUCTION_DEPLOY.sh
+
+========================================

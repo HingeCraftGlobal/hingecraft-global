@@ -11,7 +11,7 @@ from datetime import datetime
 from pathlib import Path
 
 # Base directory
-BASE_DIR = Path("os.path.dirname(os.path.abspath(__file__))")
+BASE_DIR = Path("/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global")
 
 # Task categories and their verification methods
 TASK_RESULTS = {

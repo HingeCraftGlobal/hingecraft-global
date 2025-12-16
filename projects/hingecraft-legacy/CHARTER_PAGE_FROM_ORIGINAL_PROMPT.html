@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HingeCraftDemo</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .prose h1 { font-size: 1.5rem; font-weight: 700; margin-top: 1.25rem; }
+    .prose h2 { font-size: 1.25rem; font-weight: 600; margin-top: 1rem; }
+    .prose h3 { font-size: 1.125rem; font-weight: 600; margin-top: 1rem; }
+    .prose p { margin-top: 0.75rem; line-height: 1.6; }
+    .prose ul, .prose ol { margin-left: 1.25rem; margin-top: 0.5rem; }
+    .prose li { margin-top: 0.25rem; }
+  </style>
+</head>
+<body class="bg-slate-100">
+  <div id="root" class="min-h-screen py-6"></div>
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <!-- Wix Velo API for storage integration -->
+  <script src="https://static.parastorage.com/services/js-sdk/1.231.0/js/wix-private.js"></script>
+  <script type="text/babel" data-presets="env,react">
+    const { useEffect, useMemo, useState } = React;
+    const HCMP_VERSION = "v1.3.0 (Standalone HTML w/ mailto send + back buttons + letter)";
+    const TIERS = [
+      { key: "BASIC", name: "Basic (Entry)", priceHint: "$1 → 1 year", description: "Join the movement. Full portal access, lifetime registry, read-only publications, community social access.", bullets: ["Portal login & social participation","Lifetime registry inclusion","Read-only reports & publications","Name on public charters (opt-in)"], accent: "from-emerald-500 to-teal-500" },
+      { key: "PREMIER", name: "Premier (Extended)", priceHint: "$2–$20 → 2–20 years", description: "Deeper engagement. Downloads + clubs/think tanks. Each extra dollar adds a year (up to 20).", bullets: ["Download books, audiobooks, reports","Start or join thematic clubs","Leadership in communities"], accent: "from-indigo-500 to-sky-500" },
+      { key: "VIP", name: "VIP (Lifetime)", priceHint: "$30 → lifetime", description: "Founding Voice. Lifetime perks + direct input channel to HingeCraft leadership.", bullets: ["Lifetime downloads & clubs","VIP message board to leadership","Advisory/innovation forums","Priority invitations"], accent: "from-amber-500 to-rose-500" },
+    ];
+    const RAILS = [
+      { key: "SOL_USDC", label: "Solana • USDC", hint: "Ultra-low fee (<$0.001)", disabled: true },
+      { key: "XLM_USDC", label: "Stellar • USDC", hint: "Ultra-low fee (<$0.001)", disabled: true },
+      { key: "BTC_LN", label: "Bitcoin • Lightning", hint: "Instant sats, ~1¢/$ multiplier", disabled: true },
+      { key: "CARD", label: "Card (Stripe)", hint: "Fee-included (≈$1.39)" },
+      { key: "ACH", label: "ACH (Stripe)", hint: "Fee-included (≈$1.05)" },
+    ];
+    const DEFAULT_RAIL_MULTIPLIERS = { SOL_USDC: 1.001, XLM_USDC: 1.001, BTC_LN: 1.01, CARD: 1.39, ACH: 1.05 };
+    const formatUSD = (n) => new Intl.NumberFormat(undefined, { style: "currency", currency: "USD" }).format(Number.isFinite(n) ? n : 0);
+    const minutesLeft = (iso) => { if (!iso) return 0; const t = new Date(iso).getTime(); if (!Number.isFinite(t)) return 0; const diffMs = t - Date.now(); return Math.max(0, Math.ceil(diffMs / 60000)); };
+    const makeQrDataUrl = (text) => `https://chart.googleapis.com/chart?cht=qr&chs=280x280&chl=${encodeURIComponent(String(text ?? ""))}`;
+    const amountForSelection = (tier, years) => (
+      tier === "BASIC" ? 1
+      : tier === "VIP" ? 30
+      : Math.min(20, Math.max(2, Number.isFinite(years) ? years : 2))
+    );
+const computeFinalAmount = (baseAmountUSD, rail, multipliers) => Math.round(baseAmountUSD * (((multipliers && multipliers[rail]) ?? DEFAULT_RAIL_MULTIPLIERS[rail] ?? 1)) * 100) / 100;
+    const Spinner = ({ label }) => (<div className="flex items-center gap-2 mt-2"><svg className="animate-spin h-4 w-4 text-slate-600" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path></svg>{label ? <span className="text-xs text-slate-600">{label}</span> : null}</div>);
+    const CopyButton = ({ text }) => { const [ok, setOk] = React.useState(false); return (<button className={`px-2 py-1 rounded border text-xs ${ok ? "border-emerald-400 text-emerald-700" : "border-slate-300"}`} onClick={async () => { try { await navigator.clipboard.writeText(String(text ?? "")); setOk(true); setTimeout(() => setOk(false), 1500);} catch {} }}>{ok ? "Copied" : "Copy"}</button>); };
+    const StatusCard = ({ confirm, polling }) => { if (!confirm) return (<div className="p-3 rounded border border-dashed"><div className="text-sm text-slate-600">Waiting for payment…</div>{polling ? <Spinner label="Listening for confirmations" /> : null}</div>); if (confirm && confirm.status === "PENDING") return (<div className="p-3 rounded border border-amber-300 bg-amber-50"><div className="text-sm text-amber-800">Payment detected. Finalizing…</div><Spinner label="Confirming on network" /></div>); if (confirm && confirm.status === "CONFIRMED") return (<div className="p-3 rounded border border-emerald-300 bg-emerald-50"><div className="text-sm text-emerald-800 font-semibold">Membership Activated</div><div className="mt-1 text-sm text-emerald-900">Member ID: <b>{String(confirm.memberId || "")}</b></div>{confirm.entitlement ? (<div className="mt-1 text-sm text-emerald-900">Tier: <b>{String(confirm.entitlement.tier)}</b> · Start: {new Date(confirm.entitlement.startAt).toLocaleDateString()} · {confirm.entitlement.endAt ? (<>End: {new Date(confirm.entitlement.endAt).toLocaleDateString()}</>) : (<>Lifetime</>)}</div>) : null}{confirm.registryHandle ? (<div className="mt-1 text-sm text-emerald-900">Registry Handle: <b>{String(confirm.registryHandle)}</b></div>) : null}<div className="mt-3 text-sm"><a className="underline" href="/dashboard">Go to Member Dashboard</a></div></div>); return null; };
+    const TierCard = ({ active, onSelect, name, priceHint, description, bullets, accent, years, onYearsChange, tierKey }) => (<button onClick={onSelect} className={`group text-left p-5 border rounded-2xl hover:shadow transition relative overflow-hidden ${active ? "border-slate-900" : "border-slate-200"}`}><div className={`absolute inset-0 opacity-10 bg-gradient-to-br ${accent}`} /><div className="relative flex flex-col h-full"><div className="space-y-1 leading-tight min-h-[60px]"><div className="text-xs uppercase tracking-wide text-slate-500">Membership Tier</div><div className="text-lg font-semibold">{name}</div><div className="text-sm text-slate-600">{priceHint}</div></div><p className="mt-2 text-sm">{description}</p><ul className="mt-3 space-y-1 text-sm list-disc pl-5">{(bullets || []).map((b, i) => <li key={i}>{b}</li>)}</ul><div className="mt-4 flex items-center justify-between text-slate-900 font-medium"><div className="inline-flex items-center gap-2"><span>Select</span><span>→</span></div>{tierKey === "PREMIER" && (<div className="ml-3 w-full max-w-[200px] text-right"><div className="text-lg font-semibold text-slate-900 mb-1">Years 2–20: <b>{Math.min(Math.max(2, Number.isFinite(years) ? years : 2), 20)}</b></div><input type="range" min={2} max={20} value={Math.min(Math.max(2, Number.isFinite(years) ? years : 2), 20)} onChange={(e) => onYearsChange && onYearsChange(parseInt(e.target.value, 10))} className="w-full h-1 accent-black" /></div>)}</div></div></button>);
+    const Header = ({ onVoiceClick, view, onBack, showThankYou, onThankYou }) => (<header className="flex items-center justify-between"><div className="flex-1 min-w-0"><div className="flex items-center gap-3 flex-nowrap">{!(view === "letter" || view === "charter") && <h1 className="text-2xl sm:text-3xl font-bold whitespace-nowrap">HingeCraft Global — Membership</h1>}{!(view === "letter" || view === "charter") && (<button type="button" onClick={() => onVoiceClick && onVoiceClick()} className="inline-flex items-center gap-2 px-3 py-2 border rounded-lg text-sm leading-snug hover:shadow transition border-rose-800 text-rose-800" aria-label="Make Your Voice Heard"><strong>Make Your Voice Heard</strong></button>)}</div>{!(view === "letter" || view === "charter") && (<p className="text-slate-600 text-sm">$1 → 1 year (Basic) · $2–$20 → 2–20 years (Premier) · $30 → Lifetime (VIP). <strong>No equity, no dividends. Membership access only.</strong></p>)}</div><div className="flex items-center gap-3 flex-nowrap">{showThankYou && (<button type="button" onClick={() => onThankYou && onThankYou()} className="inline-flex items-center gap-2 px-3 py-2 border rounded-lg text-sm leading-snug hover:shadow transition">Thank you</button>)}<button type="button" onClick={() => { try { if (view === "main") { if (window.history && window.history.length > 1) { window.history.back(); } else if (document.referrer) { window.location.href = document.referrer; } } else if (onBack) { onBack(); } else if (window.history && window.history.length > 1) { window.history.back(); } } catch (e) {} }} className="inline-flex items-center gap-1 px-3 py-2 border rounded-lg text-sm leading-snug hover:shadow transition" aria-label="Back">← Back</button></div></header>);
+    const CharterLetterLanding = ({ onBack }) => (<div className="w-full max-w-5xl mx-auto p-4 sm:p-6 bg-white text-slate-900"><section className="prose max-w-none prose-slate"><h1 className="text-2xl font-bold">Charter for Abundance & Resilience</h1><h2 className="text-xl font-semibold">UN-Anchored Charter for a Civilizational Transition from Scarcity to Resilience</h2><h3 className="text-lg font-semibold mt-6">Preamble</h3><p>We, the peoples and the States Parties, affirm that the survival, dignity and flourishing of human societies depend upon three interlinked foundations: (1) the protection of inalienable human rights; (2) stewardship of planetary life-support systems; and (3) an economic and governance architecture that secures broad, durable abundance while preventing catastrophic systemic collapse.</p><p>Recognizing that the 21st century's technological power, financial integration and global interdependence have created unprecedented productive capacity and, simultaneously, structural fragility, we adopt this Charter for Abundance & Resilience to:</p><ul className="list-disc pl-6"><li>Reframe public policy, investment, and institutional governance so that resilience becomes an auditable public good.</li><li>Embed distributed productive capacity, social buffers and ecological stewardship into economic design.</li><li>Create interoperable, UN-anchored governance and financing mechanisms enabling nations, cities and communities to transition from scarcity to resilience.</li></ul><h3 className="text-lg font-semibold mt-6">Part I — Fundamental Principles</h3><h4 className="font-semibold">Article 1 — Purpose and Scope</h4><p>1.1 Prevent systemic collapse and realize durable abundance by aligning institutions, capital and operations across nations and communities.</p><p>1.2 Address economic, social, technological and environmental fragilities that cross sectoral boundaries; scope is global and complements existing UN instruments.</p><h4 className="font-semibold mt-4">Article 2 — Core Values</h4><ul className="list-disc pl-6"><li>Human dignity and equal access to opportunity</li><li>Precaution and anticipatory governance</li><li>Subsidiarity and local empowerment within interoperable global standards</li><li>Transparency, auditability and public accountability</li><li>Intergenerational stewardship of planetary systems</li></ul><h4 className="font-semibold mt-4">Article 3 — Rights & Duties</h4><p>Right to a life free from deprivation of basic needs; transitions in production and technology must be paired with retraining, portable credentials and social buffers so labor dislocation does not create durable deprivation.</p><h3 className="text-lg font-semibold mt-6">Part II — Structural Articles (The Three Movements)</h3><h4 className="font-semibold">Article 4 — Institutional Alignment (Movement 1)</h4><p>National Resilience Councils (NRCs) and a UN-anchored Global Council for Abundance & Resilience (GCAR) with dashboards, audit and public reporting.</p><h4 className="font-semibold mt-4">Article 5 — Capital Alignment (Movement 2)</h4><p>Blended finance tied to verified Proof-of-Benefit (PoB) outcomes; interoperable PoB standards for investor confidence and public benefit.</p><h4 className="font-semibold mt-4">Article 6 — Operational Redundancy (Movement 3)</h4><p>Distributed productive capacity via microfactory networks, circular logistics, open standards and procurement clauses that avoid vendor lock-in.</p><h3 className="text-lg font-semibold mt-6">Part III — Metrics, Audit & Compliance</h3><h4 className="font-semibold">Article 7 — The Ariadne Fragility Index (AFI)</h4><p>Standardized fragility metric combining Concentration, Redundancy, Social Buffer and Shock Multiplier; annual reporting to GCAR.</p><h4 className="font-semibold mt-4">Article 8 — Proof-of-Benefit & Validators</h4><p>Independent Validator Network accredits outcome verification; PoB instruments used only when validators certify outcomes.</p><h4 className="font-semibold mt-4">Article 9 — Audit, Transparency & Anti-Capture Safeguards</h4><p>Publish terms, governance, audits and conflicts; GCAR ombuds mechanism for complaints and corrective action.</p><h3 className="text-lg font-semibold mt-6">Part IV — Implementation, Finance & Legal Mechanisms</h3><h4 className="font-semibold">Article 10 — Pilot & Scale Pathway</h4><p>Designate Flagship Hubs with AFI baselines, KPIs and validation; eligible for scale funding upon meeting thresholds.</p><h4 className="font-semibold mt-4">Article 11 — Financing Instruments</h4><p>Pooled resilience funds, Resilience Bonds with performance tranches; transparency and safeguards required.</p><h4 className="font-semibold mt-4">Article 12 — Technology & AI Safeguards</h4><p>Human oversight and cybersecurity minimums for AI in public infrastructure; auditability and UN-aligned norms.</p><h4 className="font-semibold mt-4">Article 13 — Environmental Obligations</h4><p>Integrate adaptation and nature-positive goals into Flagships and procurement; link climate risks to supply-chain fragility.</p><h4 className="font-semibold mt-4">Article 14 — Rights, Labor & Social Protections</h4><p>Protect workers' rights; portable micro-credentials, retraining and social supports; respect ILO standards.</p><h4 className="font-semibold mt-4">Article 15 — Dispute Resolution & Amendment</h4><p>GCAR arbitration/mediation facility; amendments require two-thirds majority and ratification.</p><h3 className="text-lg font-semibold mt-6">Part V — Ratification, Entry into Force & Transitional Clauses</h3><h4 className="font-semibold">Article 16 — Ratification & Entry</h4><p>Open for signature by UN Member States; enters into force after 30 ratifications or by UNGA resolution.</p><h4 className="font-semibold mt-4">Article 17 — Transitional Support</h4><p>Transition Facility funds pilots and technical assistance for low-income signatories; equitable burden sharing.</p><h3 className="text-lg font-semibold mt-6">Final Clause</h3><p>This Charter is an instrument of cooperation. Its standards are intended to enable local ingenuity and international solidarity so that abundance is durable, shared and resilient.</p></section><div className="h-6" /></div>);
+    const Footer = ({ onCharterClick = () => {} }) => (<footer className="mt-6 text-xs text-slate-500 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3"><div className="flex flex-col sm:flex-row items-start sm:items-center justify-between w-full pb-2 border-b"><div>© {new Date().getFullYear()} HingeCraft Global · Membership access only · <strong>No equity, dividends, or profit share.</strong></div><div className="flex items-center gap-4 mt-2 sm:mt-0"><a className="hover:underline" href="https://www.hingecraft-global.ai/terms-of-service" target="_blank" rel="noreferrer">Terms</a><a className="hover:underline" href="https://www.hingecraft-global.ai/privacy-policy" target="_blank" rel="noreferrer">Privacy</a><a className="hover:underline" href="https://www.hingecraft-global.ai/support" target="_blank" rel="noreferrer">Support</a><button onClick={onCharterClick} className="hover:underline">UN Charter of Abundance and Resilience</button></div></div></footer>);
+    function HingeCraftMembershipWidget({ apiBaseUrl = "", railMultipliers } = {}) {
+      const [selectedTier, setSelectedTier] = useState("BASIC");
+      const [years, setYears] = useState(1);
+      const [rail, setRail] = useState("CARD");
+      const [amount, setAmount] = useState(1);
+      const [quote, setQuote] = useState(null);
+      const [quoteError, setQuoteError] = useState(null);
+      const [confirm, setConfirm] = useState(null);
+      const [polling, setPolling] = useState(false);
+      const [view, setView] = useState("main"); // "main" | "letter" | "charter"
+      const [toast, setToast] = useState("");
+      const [name, setName] = useState(""); const [country, setCountry] = useState(""); const [cityOrg, setCityOrg] = useState(""); const [oneLine, setOneLine] = useState(""); const [letterText, setLetterText] = useState("");
+      const [donationAmount, setDonationAmount] = useState(null);
+      useEffect(() => { setAmount(amountForSelection(selectedTier, years)); }, [selectedTier, years]);
+      useEffect(() => {
+        const retrieveDonationAmount = async () => {
+          let amount = 0;
+          const urlParams = new URLSearchParams(window.location.search);
+          const urlAmount = urlParams.get('donationAmount');
+          if (urlAmount) { amount = parseFloat(urlAmount) || 0; }
+          if (!amount && typeof wixStorage !== 'undefined') {
+            try {
+              const stored = wixStorage.getItem('hingecraft_donation');
+              if (stored) { const data = JSON.parse(stored); amount = parseFloat(data.amount) || 0; }
+            } catch (error) { console.log("Could not retrieve from Wix Storage:", error); }
+          }
+          if (!amount && typeof sessionStorage !== 'undefined') {
+            try {
+              const sessionData = sessionStorage.getItem('hingecraft_donation');
+              if (sessionData) { const data = JSON.parse(sessionData); amount = parseFloat(data.amount) || 0; }
+            } catch (error) { console.log("Could not retrieve from sessionStorage:", error); }
+          }
+          if (!amount) {
+            try {
+              const response = await fetch('/_functions/getLatestDonation', { method: 'GET', headers: { 'Content-Type': 'application/json' } });
+              if (response.ok) { const data = await response.json(); if (data && data.amount) { amount = parseFloat(data.amount) || 0; } }
+            } catch (error) { console.log("Could not retrieve from database API:", error); }
+          }
+          if (amount > 0) { setDonationAmount(amount); }
+        };
+        retrieveDonationAmount();
+      }, []);
+      const handleGoToPayment = () => {
+        const normalizedYears = selectedTier === "PREMIER" ? Math.min(19, Math.max(2, Number.isFinite(years) ? years : 2)) : undefined;
+        const amt = Number(finalAmount.toFixed(2));
+        const params = new URLSearchParams({ amount: String(amt), method: rail, tier: selectedTier });
+        if (normalizedYears) params.set("years", String(normalizedYears));
+        window.location.href = "https://www.hingecraft-global.ai/payment?" + params.toString();
+      };
+
+      const finalAmount = useMemo(() => computeFinalAmount(amount, rail, railMultipliers), [amount, rail, railMultipliers]);
+      const multiplier = (railMultipliers && railMultipliers[rail]) ?? DEFAULT_RAIL_MULTIPLIERS[rail] ?? 1;
+      const handleQuote = async () => {
+        setQuoteError(null); setConfirm(null); setQuote(null);
+        try {
+          const body = { tierRequest: selectedTier, rail, baseAmountUSD: amount, appliedMultiplier: multiplier, intentAmountUSD: finalAmount, hcmpVersion: HCMP_VERSION };
+          if (!apiBaseUrl) { const fake = { paymentRequestId: "demo_" + Math.random().toString(36).slice(2), addressOrInvoice: "demo-address-or-invoice", currency: "USD", expiresAt: new Date(Date.now() + 15 * 60 * 1000).toISOString(), }; setQuote(fake); setPolling(false); return; }
+          const res = await fetch(`${apiBaseUrl}/api/join/quote`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body), });
+          if (!res.ok) throw new Error(`Quote failed: ${res.status}`);
+          const data = await res.json(); setQuote(data); setPolling(true);
+        } catch (e) { setQuoteError(e && e.message ? e.message : "Unable to create payment request."); }
+      };
+      useEffect(() => {
+        if (!polling || !quote || !apiBaseUrl) return;
+        const t = setInterval(async () => {
+          try {
+            const res = await fetch(`${apiBaseUrl}/api/join/confirm`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ paymentRequestId: quote && quote.paymentRequestId }), });
+            if (!res.ok) return; const data = await res.json(); setConfirm(data);
+            if (data && data.status === "CONFIRMED") setPolling(false);
+            if (quote && quote.expiresAt && new Date(quote.expiresAt).getTime() < Date.now()) setPolling(false);
+          } catch {}
+        }, 3000);
+        return () => clearInterval(t);
+      }, [polling, quote, apiBaseUrl]);
+      const expired = useMemo(() => { if (!quote || !quote.expiresAt) return false; const t = new Date(quote.expiresAt).getTime(); return Number.isFinite(t) && Date.now() > t; }, [quote]);
+      const backFromPayment = () => { setQuote(null); setConfirm(null); setPolling(false); setView("main"); };
+      const sendPledgeEmail = () => {
+        const to = "info@hingecraft-global.ai";
+        const subject = `Charter Pledge from ${name || "(no name)"}`;
+        const bodyLines = [`Name: ${name}`,`Country: ${country}`,`City/Community/Organization: ${cityOrg}`,`One-line why I pledge: ${oneLine}`,"","Comment:",`${letterText}`,"","Consent: I consent to my pledge being bundled with the Charter submission and used in non-identifying aggregated reporting.",];
+        const mailto = `mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines.join("\n"))}`;
+        window.location.href = mailto;
+      };
+      return (
+        <div className="w-full max-w-5xl mx-auto p-4 sm:p-6 bg-white text-slate-900">
+          <Header onVoiceClick={() => setView("letter")} view={view} onBack={() => setView("main")} showThankYou={view === "letter" && name.trim().length + country.trim().length + cityOrg.trim().length + oneLine.trim().length + letterText.trim().length > 0} onThankYou={() => { setView("main"); setToast("Thanks for watching."); setName(""); setCountry(""); setCityOrg(""); setOneLine(""); setLetterText(""); }} />
+          {!(view === "letter" || view === "charter") && (<>
+            {!quote && (<section className="grid grid-cols-1 lg:grid-cols-3 gap-4 mt-4">{TIERS.map((t) => (<TierCard key={t.key} active={selectedTier === t.key} onSelect={() => setSelectedTier(t.key)} years={years} onYearsChange={(v) => setYears(v)} tierKey={t.key} {...t} />))}</section>)}
+            {!quote && (<div className="mt-4"><div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">{RAILS.map((r) => (<button key={r.key} disabled={r.disabled} onClick={() => { if (!r.disabled) setRail(r.key); }} className={`w-full text-left px-3 py-2 border rounded-lg transition ${rail === r.key ? "border-slate-900" : "border-slate-200"} ${r.disabled ? "opacity-50 cursor-not-allowed" : "hover:shadow"}`} aria-disabled={r.disabled ? "true" : "false"}><div className="font-semibold text-sm leading-snug">{r.label}</div><div className="text-[11px] leading-snug text-slate-600">{r.hint}</div></button>))}</div></div>)}
+            {!quote && (<div className="mt-6 flex items-center justify-between gap-4"><div><div className="text-sm uppercase text-slate-500">Contribution</div><div className="text-2xl font-bold">{formatUSD(finalAmount)}</div>{donationAmount && donationAmount > 0 && (<div className="mt-2 text-lg font-semibold text-emerald-600">Donation Amount: {formatUSD(donationAmount)}</div>)}{multiplier !== 1 && (<div className="text-xs text-slate-500">Base {formatUSD(amount)} × {multiplier.toFixed(3)} (rail multiplier)</div>)}</div><div className="text-xl text-rose-800 font-medium whitespace-nowrap">Help hinge the world to craft the future.</div><button onClick={handleGoToPayment} className="px-5 py-3 rounded-lg bg-slate-900 text-white hover:bg-slate-700">Continue → Payment</button></div>)}
+            {quoteError && (<div className="mt-4 p-3 rounded bg-rose-50 text-rose-700 border border-rose-200">{String(quoteError)}</div>)}
+            {quote && (<>
+              <div className="mt-6 mb-2 flex items-center justify-between"><button type="button" onClick={backFromPayment} className="inline-flex items-center gap-1 px-3 py-2 border rounded-lg text-sm leading-snug hover:shadow transition" aria-label="Back to membership">← Back</button></div>
+              <section className="mt-2 grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div className="p-4 border rounded-lg">
+                  <div className="flex items-center justify-between"><h3 className="text-lg font-semibold">Send Payment</h3><span className="text-xs text-slate-500">Expires in {minutesLeft(quote && quote.expiresAt)} min</span></div>
+                  <div className="mt-2 text-sm text-slate-600">Amount due: <span className="font-semibold">{formatUSD(finalAmount)}</span> {quote && quote.currency ? `(${quote.currency})` : ""}</div>
+                  <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4 items-start">
+                    <div className="border rounded-lg p-3 text-xs break-all bg-slate-50">
+                      <div className="font-mono">{String((quote && quote.addressOrInvoice) || "")}</div>
+                      <div className="mt-2 flex items-center gap-2"><CopyButton text={(quote && quote.addressOrInvoice) || ""} /><span className="text-slate-500">Copy destination</span></div>
+                    </div>
+                    <div className="flex items-center justify-center"><img src={(quote && quote.qrPng) || makeQrDataUrl(quote && quote.addressOrInvoice)} alt="Payment QR" className="w-48 h-48 border rounded-lg" /></div>
+                  </div>
+                  <div className="mt-4 text-xs text-slate-600">Send exactly the shown amount to the address/invoice above. Your membership will activate automatically when the network confirms the payment.</div>
+                  {expired && (<div className="mt-3 p-3 rounded bg-amber-50 text-amber-800 border border-amber-200">This payment request expired. Please go back and generate a new one.</div>)}
+                </div>
+                <div className="p-4 border rounded-lg"><h3 className="text-lg font-semibold">Status</h3><StatusCard confirm={confirm} polling={polling} /></div>
+              </section>
+            </>)}
+          </>)}
+          {view === "letter" && (<section className="mt-4">
+            <h2 className="text-lg font-semibold mb-2">A Letter to the Peoples of the World</h2>
+            <p className="text-sm text-slate-700 mb-3">Please add your details and message in support of the Charter for Abundance & Resilience. Required: Name, Country. Optional: City/Community/Organization, One-line why you pledge.</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div><label className="block text-xs font-medium mb-1">Name<span className="text-rose-600">*</span></label><input value={name} onChange={(e) => setName(e.target.value)} className="w-full border rounded-lg px-3 py-2" placeholder="Your name" /></div>
+              <div><label className="block text-xs font-medium mb-1">Country<span className="text-rose-600">*</span></label><input value={country} onChange={(e) => setCountry(e.target.value)} className="w-full border rounded-lg px-3 py-2" placeholder="Your country" /></div>
+              <div><label className="block text-xs font-medium mb-1">City / Community / Organization (optional)</label><input value={cityOrg} onChange={(e) => setCityOrg(e.target.value)} className="w-full border rounded-lg px-3 py-2" placeholder="Optional" /></div>
+              <div><label className="block text-xs font-medium mb-1">One-line why I pledge — (optional)</label><input value={oneLine} onChange={(e) => setOneLine(e.target.value)} className="w-full border rounded-lg px-3 py-2" placeholder="Optional" /></div>
+            </div>
+            <div className="mt-3">
+              <label className="block text-xs font-medium mb-1">Your comment</label>
+              <textarea value={letterText} onChange={(e) => setLetterText(e.target.value)} className="w-full border rounded-lg p-3 min-h-[160px]" placeholder="Type your comment..." />
+              <p className="text-xs text-slate-600 mt-1 italic">Example: "I am a teacher from Kenya who fears for our children's future jobs and hopes for new resilient systems."</p>
+            </div>
+            <div className="mt-4 flex items-center justify-between">
+              <button type="button" disabled={!name.trim() || !country.trim()} onClick={sendPledgeEmail} className="px-4 py-2 rounded-lg bg-slate-900 text-white hover:bg-slate-700 disabled:opacity-50" aria-label="Send pledge via email">Send</button>
+            </div>
+            <p className="mt-2 text-[11px] text-slate-600">By pressing Send, your default email client will open a pre-filled email to <b>info@hingecraft-global.ai</b> with your details. You may review and send it there.</p>
+            <section id="open-letter" className="mt-8 prose max-w-none prose-slate">
+              <h2 className="text-xl font-semibold">Dear Friends,</h2>
+              <p>We are living in a time of extraordinary possibility — and extraordinary peril. New technologies, global trade and human ingenuity have given us the ability to make more, cure more, and connect more than any generation before us. At the same time, those same forces have made our systems fragile: a single shortage, a single market shock, a single failure of governance can ripple outward and break the things we depend on — our jobs, our neighborhoods, our health systems, and the natural world that sustains us all.</p>
+              <p>This is not an abstract problem. It is the daily reality of millions: a parent whose factory closed, a small shop that could not survive a shipment delay, a community whose hospital had to postpone care because a critical part could not be delivered. It is why, if we do not act together now, the future we imagine for our children becomes far harder to build.</p>
+              <p>That is the purpose of the Charter for Abundance & Resilience — a simple, urgent idea: we can and must design our institutions, our money, and the places we make and live so that abundance does not remain fragile. We can build systems that produce more and protect everyone from cascading collapse. But to make this charter real — to bring it from a draft into the halls of the United Nations and into the hands of governments and investors — we need a very particular thing that only you and millions of others can provide: your voice.</p>
+              <p>This letter is an invitation.</p>
+              <p>We invite you to join a global pledge — a simple act of solidarity — that will be bundled with our formal submission of the Charter to the United Nations. Your pledge will do three powerful things:</p>
+              <ol className="list-decimal pl-6">
+                <li><strong>Make the moral case visible.</strong> Multilateral diplomacy listens. When millions of people ask for resilient, abundant futures — not for a few, but for everyone — it changes how leaders think about risk, investment and law. Your signature shows that resilience is not just a technocratic policy but a global demand for dignity and safety.</li>
+                <li><strong>Shape the practical agenda.</strong> The Charter proposes measurable instruments — a Fragility Index, independent validators of public benefit, blended finance to seed local microfactories and Flagship civic hubs. Your stories and your priorities will help shape which measures get prioritized and what "public benefit" must mean in practice.</li>
+                <li><strong>Protect the future of technology and life.</strong> If we fail to build institutions that align capital, governance and local capacity, powerful technologies can be misused, and climate and social shocks can amplify into long-term harm. Your pledge is a vote for rules, for oversight, and for a humane transition — a world where technology serves everyone, not a few.</li>
+              </ol>
+              <p>We know pledges are not enough on their own. That is why this campaign is designed to be practical and accountable. When you pledge, you will be able to: (a) add a short personal statement about what resilience means to you; (b) opt in to receive brief, transparent updates on the Charter's progress and the pilots the Charter funds; and (c) be invited to participate — if you wish — in local or virtual assemblies where communities test the ideas (for example: Flagship Hub pilots, retraining cohorts, or validator training).</p>
+              <h3 className="text-lg font-semibold mt-6">How you can take three simple steps</h3>
+              <ol className="list-decimal pl-6">
+                <li><strong>Sign the Pledge.</strong> The pledge is short and clear. (Full pledge text below.)</li>
+                <li><strong>Share a short story or priority.</strong> A sentence about who you are and what you fear or hope for. This helps negotiators see the human faces behind the numbers.</li>
+                <li><strong>Invite others.</strong> Ask five friends to pledge. Ask your local community group, school, church, factory floor or makerspace to join. Momentum builds quickly if millions of voices join together.</li>
+              </ol>
+              <h3 className="text-lg font-semibold mt-6">A promise about how your pledge will be used</h3>
+              <p>We promise to treat your voice with care. Pledges and stories will be collected with clear consent and used only as part of the public petition to the United Nations and in non-identifying aggregated reporting about public priorities. If you opt in, we will send short updates and invitations to participate in constructive civic activities. You will always be able to withdraw consent.</p>
+              <h3 className="text-lg font-semibold mt-6">Why your voice, matters right now</h3>
+              <p>Diplomacy and policy are, in their best forms, conversations. They are conversations that should be shaped not only by diplomats in capital cities, nor by investors and technocrats, but by the people who live the consequences of policy every day.</p>
+              <p>If millions of us tell the United Nations that we want a Charter that protects towns as well as markets, that rewards investors who verify public benefit, that guarantees retraining and dignity for displaced workers, and that binds global technology to human oversight — that will make the words in the Charter real.</p>
+              <p>Our movement is not about ideology. It is about a common sense of obligation: to protect the conditions that make human life possible — clean air and water, safe food, meaningful work, and a chance for our children to thrive. It is a pledge to transform fear into agency and complexity into action.</p>
+              <h3 className="text-lg font-semibold mt-6">Join us now</h3>
+              <p>If you are ready to add your voice, please sign the pledge below and share it widely. You will be joining a growing number of people from every country, background and profession who believe that abundance must be durable, equitable and resilient.</p>
+              <p className="mt-6">With gratitude for your time and for the courage that moves nations,</p>
+              <p className="font-medium">Dan Diotte (World Citizen/Heritage Canadian)<br/>Founder & Convenor (on behalf of the Charter initiative)</p>
+            </section>
+          </section>)}
+          {view === "charter" && (<CharterLetterLanding onBack={() => setView("main")} />)}
+          {toast && <div className="mt-4 p-3 rounded bg-emerald-50 text-emerald-800 border border-emerald-200">{toast}</div>}
+          <Footer onCharterClick={() => setView("charter")} />
+        </div>
+      ); }
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(<HingeCraftMembershipWidget />);
+  </script>
+
+  <script>
+    (function(){
+      function byText(root, sel, txt){
+        var nodes = (root||document).querySelectorAll(sel);
+        txt = String(txt||"").toLowerCase();
+        for (var i=0;i<nodes.length;i++){
+          var t = (nodes[i].textContent||"").trim().toLowerCase();
+          if (t.indexOf(txt) !== -1) return nodes[i];
+        }
+        return null;
+      }
+      function placeAlignAndTighten(){
+        try{
+          var header = document.querySelector('header') || document.body;
+          if (!header) return false;
+          var right = header.querySelector(':scope > div:last-child') || header;
+          var voice = right.querySelector('button[aria-label="Make Your Voice Heard"]')
+                   || byText(right,'button','make your voice heard')
+                   || byText(header,'button','make your voice heard');
+          var back = right.querySelector('button[aria-label="Back"]')
+                   || byText(right,'button','back')
+                   || byText(header,'button','back');
+          if (!voice) return false;
+          // Ensure Agility button exists between voice and back
+          var agility = right.querySelector('button[aria-label="Fragility Index"]')
+                     || byText(right,'button','agility index (1900-2045)');
+          if (!agility){
+            agility = document.createElement('button');
+            agility.type = 'button';
+            agility.setAttribute('aria-label','Fragility Index');
+            agility.innerHTML = '<strong>Fragility Index (1900-2045)</strong>';
+          }
+          agility.className = 'inline-flex items-center gap-2 px-3 py-2 border rounded-lg text-sm leading-snug hover:shadow transition border-rose-800 text-rose-800 cursor-pointer';
+          if (back && back.parentNode === right){
+            if (agility.parentNode !== right) right.insertBefore(agility, back);
+            else if (agility.nextSibling !== back) right.insertBefore(agility, back);
+          } else {
+            voice.insertAdjacentElement('afterend', agility);
+          }
+          // Elevation: restore to -20px for Agility + Back
+          [agility, back].forEach(function(el){
+            if (!el) return;
+            el.style.alignSelf = 'flex-start';
+            el.style.transform = 'translateY(-20px)';
+          });
+          if (voice){
+            voice.style.alignSelf = 'flex-start';
+            voice.style.transform = 'translateY(0)';
+          }
+          // Proper spacing between buttons to prevent collision (gap 12px for better spacing)
+          right.style.display = 'flex';
+          right.style.alignItems = 'flex-start';
+          right.style.gap = '12px';
+          [voice, agility, back].forEach(function(el){
+            if (!el) return;
+            el.style.marginLeft = '0';
+            el.style.marginRight = '0';
+          });
+          try {
+            var fragBtn = right.querySelector('button[aria-label="Fragility Index"]');
+            if (fragBtn) { fragBtn.onclick = function(){ try { window.location.href = 'https://www.hingecraft-global.ai/globalfragilityindex'; } catch(e) {} }; }
+          } catch(e) {}
+          return true;
+        }catch(e){
+          console && console.error && console.error('Agility v20 spacing+elevation error:', e);
+          return false;
+        }
+      }
+      if (!placeAlignAndTighten()){
+        document.addEventListener('DOMContentLoaded', placeAlignAndTighten);
+      }
+      var header = document.querySelector('header') || document.body;
+      if (header && 'MutationObserver' in window){
+        var hits = 0;
+        var mo = new MutationObserver(function(){
+          if (placeAlignAndTighten()){ hits++; if (hits>3){ try{ mo.disconnect(); }catch(e){} } }
+        });
+        mo.observe(header, {childList:true, subtree:true});
+        setTimeout(function(){ try{ mo.disconnect(); }catch(e){} }, 20000);
+      }
+    })();
+  </script>
+</body>
+</html>
+

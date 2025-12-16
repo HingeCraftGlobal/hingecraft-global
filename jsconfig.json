@@ -1,0 +1,277 @@
+{
+  "typeAcquisition": {
+    "enable": true
+  },
+  "references": [
+    {
+      "path": ".wix/types/a0hnk/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/adg2f/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/auj04/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/azbxk/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/b6v8z/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/b99r0/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/bh72x/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/bzocp/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/c9lo8/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/cj6uq/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/cjk7d/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/covet/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/den3q/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/dnon5/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/e4ras/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/eav1r/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/ecoz3/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/ecwum/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/f8x76/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/fc8xk/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/fu2hh/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/g2cna/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/gpfrg/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/gz9y4/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/h98n7/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/hh404/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/htlsm/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/hukhs/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/i37qs/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/idotf/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/ihy19/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/itqm9/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/j3os0/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/j6hyj/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/j6i4e/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/j9w8f/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/jcbc4/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/joi32/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/jq01c/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/jt95q/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/k0kt5/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/kc69j/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/kcukv/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/kvnmj/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/lgvd1/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/my1ka/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/n9pe6/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/nb81j/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/nc43m/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/nx1d0/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/o6f0e/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/onmtb/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/oui8d/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/pa3z2/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/pl3ff/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/pusf0/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/qg9hd/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/qzl5a/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/rnfe6/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/tr26u/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/u5fe7/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/u9000/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/u94uk/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/uhgf0/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/uljie/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/vftc0/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/vgoal/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/vxvn9/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/wbcom/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/wjapa/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/wmn7s/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/wp2xl/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/x0mmh/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/x2otf/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/x3szx/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/xf66z/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/xskw5/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/y5onw/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/yci98/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/ydqo3/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/ytxew/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/yyqez/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/z5lc0/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/za1av/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/zexp4/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/zqk0v/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/zub2q/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/masterPage/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/backend/jsconfig.json"
+    },
+    {
+      "path": ".wix/types/public/jsconfig.json"
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+========================================
+  WIX EXTERNAL DATABASE CONFIGURATION
+  FINAL - READY TO USE
+========================================
+
+Connection Name: HingeCraftDonationsDB
+HingeCraftDonationsDB
+
+Endpoint URL:
+[Get from NGROK_URL.txt or http://localhost:4040]
+
+Secret Key: 04f1ddd99fdfdc3e89cdd0d714b735feda43fa3aecfd39df946e4e24de163c1b
+04f1ddd99fdfdc3e89cdd0d714b735feda43fa3aecfd39df946e4e24de163c1b
+
+========================================
+  HOW TO USE IN WIX
+========================================
+
+1. Go to Wix Editor → Database → External Database
+2. Click "Connect External Database"
+3. Select "Custom"
+4. Enter the values above
+5. Click "Test Connection"
+6. If successful, click "Save"
+
+========================================
+  STATUS
+========================================
+
+✅ Docker Services: Running
+✅ Database Adaptor: Healthy
+✅ Ready for Wix Connection
+
+========================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+

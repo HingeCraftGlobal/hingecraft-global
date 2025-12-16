@@ -1,194 +1,261 @@
-# HingeCraft Global - Complete System Repository
+# HingeCraft Live Chat System
 
-**Complete HingeCraft Global System with All Projects**
+Production-ready real-time chat system with WebSocket support, file uploads, content moderation, and full accessibility compliance.
 
-This repository contains the complete HingeCraft Global system including automation, payment integration, legal pages, deployment, agents, API, and all supporting systems.
+## Features
 
----
+- ✅ Real-time messaging with WebSocket (Socket.IO)
+- ✅ File attachments with S3-compatible storage
+- ✅ Threaded conversations
+- ✅ Message reactions
+- ✅ Pin messages (admin)
+- ✅ Typing indicators
+- ✅ Presence/online status
+- ✅ Read receipts
+- ✅ Full-text search
+- ✅ Content moderation
+- ✅ Idempotency protection
+- ✅ Rate limiting
+- ✅ Wix Velo integration
+- ✅ Accessibility (WCAG 2.1 AA)
 
-## 📁 Repository Structure
+## Quick Start
 
-```
-hingecraft-global/
-├── notion/                # Notion Automation System ✅
-├── ml-automation/         # ML Automation Pipeline ✅
-│
-├── projects/              # Main Projects
-│   ├── charter/           # Charter Payment Integration
-│   ├── mission-support/   # Mission Support Project
-│   ├── legal/             # Legal Pages Project
-│   └── wix-deployment/    # Wix Deployment Project
-│
-├── agents/                # AI Agent Framework
-├── api/                   # REST API System (FastAPI)
-├── backend/               # Backend Functions
-├── backend-functions/     # Wix Velo Backend Functions
-├── frontend-pages/        # Frontend Pages
-├── public/                # Public Pages
-├── src/                   # Source Files
-│
-├── database/              # Complete Database System
-│   ├── automation/        # Automation database
-│   ├── master_schema/     # Master schema
-│   ├── enterprise/        # Enterprise features
-│   ├── security/          # Security modules
-│   ├── governance/        # Governance functions
-│   └── rag_knowledge_base/ # RAG system
-│
-├── docs/                  # Documentation
-├── documentation/         # Additional Documentation
-├── config/                # Configuration Files
-├── scripts/               # Utility Scripts
-├── seo_markups/           # SEO System
-├── monitoring/            # Monitoring System
-├── pipelines/             # Pipeline System
-├── nginx/                 # Infrastructure
-│
-├── ALL_LEGAL_PAGES_HTML/  # Legal Pages HTML
-├── COMPLETE_LEGAL_DOCS_SC/ # Legal Docs SC
-├── deployment-ready/      # Deployment Ready Files
-├── wix-deployment-ready/  # Wix Deployment Files
-└── database-schema/       # Database Schema
-```
+### Prerequisites
 
----
+- Node.js 16+
+- PostgreSQL 12+
+- Redis 6+ (optional, for scaling)
+- Docker & Docker Compose (for containerized setup)
 
-## 🚀 Projects Included
+### Local Development
 
-### ✅ Automation Projects
-1. **Notion Automation** - 24/7 Notion dashboard sync (102 files)
-2. **ML Automation System** - Lead automation pipeline (165+ files)
-
-### 💳 Payment & Integration Projects
-3. **Charter Project** - Payment integration (Stripe/crypto)
-4. **Mission Support Project** - Form and backend integration
-
-### 📄 Content Projects
-5. **Legal Pages Project** - 34+ legal documentation pages
-
-### 🚀 Deployment Projects
-6. **Wix Deployment Project** - Complete Wix Velo deployment system
-
-### 🤖 AI & Automation
-7. **Agents System** - AI agent framework (multiple agent types)
-8. **API System** - REST API with FastAPI
-
-### 💻 Backend & Frontend
-9. **Backend Functions** - Wix Velo backend functions (.jsw)
-10. **Frontend Pages** - All HTML/JS pages
-
-### 🗄️ Database & Infrastructure
-11. **Database System** - Complete schemas, migrations, enterprise features
-12. **Documentation System** - Deployment guides and docs
-
-### 🔧 Supporting Systems
-13. **Configuration System** - Config files (Stripe, secrets)
-14. **Scripts System** - Utility and deployment scripts
-15. **SEO System** - SEO metadata for all pages
-16. **Monitoring System** - Health checks and dashboards
-17. **Pipelines System** - Document generation pipelines
-18. **Infrastructure** - nginx, Docker, deployment configs
-
----
-
-## 📊 Project Details
-
-### Automation Projects
-- **Notion Automation**: Complete 24/7 sync system
-- **ML Automation**: End-to-end lead processing pipeline
-
-### Payment Projects
-- **Charter Project**: Stripe and crypto payment integration
-- **Mission Support**: Form processing and backend integration
-
-### Legal & Content
-- **Legal Pages**: 34+ complete legal documentation pages
-- **SEO System**: Complete SEO metadata (99 JSON files)
-
-### Deployment
-- **Wix Deployment**: Production-ready Wix Velo deployment
-- **Deployment Scripts**: Automated deployment tools
-
-### AI & Agents
-- **Agents System**: Multi-agent framework with:
-  - Base, Community, Crypto, Crypto Compliance
-  - Education, Engineering, Legal, Marketing
-  - HingeCore, Progress, Prompts, Tests
-
-### API & Backend
-- **API System**: FastAPI REST API with routers and workers
-- **Backend Functions**: Wix Velo backend functions
-- **Frontend Pages**: Complete frontend implementation
-
-### Database
-- **Master Schema**: Core database structure (16 SQL files)
-- **Enterprise**: Enterprise features (11 SQL files)
-- **Security**: Security modules (17 SQL files)
-- **Governance**: RBAC and governance (4 SQL files)
-- **RAG System**: Knowledge base system (2 SQL files)
-
----
-
-## 🔑 Key Features
-
-- ✅ Complete automation systems
-- ✅ Payment integration (Stripe + Crypto)
-- ✅ Legal documentation system
-- ✅ Wix Velo deployment ready
-- ✅ AI agent framework
-- ✅ REST API system
-- ✅ Complete database system
-- ✅ Comprehensive documentation
-- ✅ SEO optimization
-- ✅ Monitoring and infrastructure
-
----
-
-## 📚 Documentation
-
-- See `docs/` for implementation guides
-- See `documentation/` for additional documentation
-- See `PROJECTS_LIST.md` for complete project listing
-
----
-
-## 🚀 Quick Start
-
-### Automation Systems
+1. **Clone and install:**
 ```bash
-# Notion Automation
-cd notion
-pip install -r requirements.txt
-python sync/hingecraft_notion_sync.py
-
-# ML Automation
-cd ml-automation
+cd hingecraft-global
 npm install
-npm start
 ```
 
-### API System
+2. **Set up environment:**
 ```bash
-cd api
-pip install -r requirements.txt
-python main.py
+cp .env.example .env
+# Edit .env with your configuration
 ```
 
-### Database
+3. **Run database migrations:**
 ```bash
-cd database
-# Run master schema
-psql -d hingecraft -f master_schema/00_master_schema_init.sql
+psql $DB_URL < migrations/001_init_chat_system.sql
 ```
 
----
+4. **Start with Docker Compose:**
+```bash
+docker-compose up
+```
 
-## 📄 License
+Or start manually:
+```bash
+# Terminal 1: PostgreSQL
+docker run -d -p 5432:5432 -e POSTGRES_PASSWORD=changeme postgres:15
 
-Proprietary - HingeCraft Global
+# Terminal 2: Redis (optional)
+docker run -d -p 6379:6379 redis:7
 
----
+# Terminal 3: Server
+npm run dev
+```
 
-**Last Updated:** December 15, 2025  
-**Version:** 6.0.0  
-**Status:** Complete System with All Projects ✅
+5. **Access:**
+- API: http://localhost:3000
+- WebSocket: ws://localhost:3000/ws
+- Health: http://localhost:3000/health
+
+## API Endpoints
+
+### Authentication
+- `POST /api/auth/anon` - Create anonymous session
+- `GET /api/auth/identify` - Identify user from token
+
+### Messages
+- `POST /api/messages` - Create message
+- `GET /api/messages?channel=#general` - Get messages
+- `POST /api/messages/:id/edit` - Edit message
+- `POST /api/messages/:id/delete` - Delete message
+- `POST /api/messages/:id/reaction` - Toggle reaction
+- `POST /api/messages/:id/pin` - Pin message (admin)
+- `POST /api/messages/:id/read` - Mark as read
+- `GET /api/messages/:id/thread` - Get thread replies
+
+### Uploads
+- `POST /api/uploads/request` - Request upload URL
+- `POST /api/uploads/complete` - Complete upload
+
+### Search
+- `GET /api/messages/search?q=query` - Search messages
+
+## WebSocket Events
+
+### Client → Server
+- `typing` - Send typing indicator
+- `presence` - Update presence status
+- `join` - Join channel(s)
+- `leave` - Leave channel
+- `ack` - Acknowledge message
+
+### Server → Client
+- `message:new` - New message
+- `message:edit` - Message edited
+- `message:delete` - Message deleted
+- `reaction:update` - Reactions updated
+- `presence:update` - User presence changed
+- `typing:update` - Typing indicator
+- `pin:update` - Message pinned/unpinned
+- `thread:update` - Thread replies updated
+- `ack` - Message acknowledgment
+
+## Frontend Integration
+
+### Using the Client Library
+
+```html
+<script src="/js/hc-client.js"></script>
+<link rel="stylesheet" href="/css/hc-uix.css">
+```
+
+```javascript
+const client = new HingeCraftChatClient({
+  baseUrl: 'http://localhost:3000',
+  channels: ['#general', '#support'],
+  defaultChannel: '#general'
+});
+
+// Initialize
+await client.init();
+
+// Set up event handlers
+client.onMessageReceived = (message) => {
+  // Add message to UI
+  console.log('New message:', message);
+};
+
+client.onTypingUpdate = (channel, userId, ts) => {
+  // Show typing indicator
+  console.log('User typing:', userId);
+};
+
+// Send message
+await client.sendMessage('#general', 'Hello!');
+
+// Upload file
+const file = document.querySelector('input[type="file"]').files[0];
+await client.uploadFile(file, '#general', 'ct_temp_123');
+```
+
+## Wix Integration
+
+Use the Wix Velo middleware (`backend/hcProxy.jsw`):
+
+```javascript
+import { createMessage } from 'backend/hcProxy';
+
+// In your Wix page code
+const result = await createMessage({
+  channel: '#general',
+  text: 'Hello from Wix!',
+  clientTempId: 'ct_' + Date.now()
+});
+```
+
+## Environment Variables
+
+See `.env.example` for all required variables:
+
+- `BASE_URL` - Backend API URL
+- `DB_URL` - PostgreSQL connection string
+- `REDIS_URL` - Redis connection (optional)
+- `JWT_SECRET` - JWT signing secret
+- `S3_BUCKET` - S3 bucket name
+- `API_KEY` - API key for Wix proxy authentication
+- `RATE_LIMIT_REQ_PER_MIN` - Rate limit (default: 100)
+
+## Testing
+
+```bash
+npm test
+```
+
+## Deployment
+
+### Docker
+
+```bash
+docker build -t hingecraft-chat .
+docker run -p 3000:3000 --env-file .env hingecraft-chat
+```
+
+### Kubernetes
+
+See `k8s/` directory for Kubernetes manifests.
+
+### Render/Heroku
+
+1. Set environment variables
+2. Deploy: `git push heroku main`
+3. Run migrations: `heroku run npm run migrate`
+
+## Architecture
+
+```
+┌─────────────┐
+│  Wix Pages  │
+└──────┬──────┘
+       │
+       ▼
+┌─────────────┐
+│ Wix Velo    │
+│ (hcProxy)   │
+└──────┬──────┘
+       │ HMAC
+       ▼
+┌─────────────┐
+│ Node/Express│
+│   Backend   │
+└──────┬──────┘
+       │
+   ┌───┴───┐
+   ▼       ▼
+┌─────┐ ┌─────┐
+│Postgres│ │Redis│
+└─────┘ └─────┘
+       │
+       ▼
+┌─────────────┐
+│ Socket.IO   │
+│ WebSocket   │
+└─────────────┘
+```
+
+## Security
+
+- JWT authentication (30-day expiry)
+- HMAC-signed proxy requests
+- Rate limiting (Redis-based)
+- Content moderation (async queue)
+- XSS protection (input sanitization)
+- CORS configuration
+- SQL injection protection (parameterized queries)
+
+## Performance
+
+- Horizontal WebSocket scaling (Redis adapter)
+- Database connection pooling
+- Full-text search indexing
+- Optimistic UI updates
+- Idempotency protection
+
+## License
+
+MIT
+
+## Support
+
+For issues and questions, see the documentation or open an issue.

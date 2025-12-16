@@ -1,0 +1,72 @@
+╔════════════════════════════════════════════════════════════╗
+║         HINGECRAFT MASTER CONFIGURATION                    ║
+║         Single Source of Truth - Updated: Sun Nov 30 17:22:54 MST 2025          ║
+╚════════════════════════════════════════════════════════════╝
+
+WIX EXTERNAL DATABASE CONFIGURATION:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Connection Name:
+HingeCraftDonationsDB
+
+Endpoint URL:
+https://multiracial-zavier-acculturative.ngrok-free.dev
+
+Secret Key:
+04f1ddd99fdfdc3e89cdd0d714b735feda43fa3aecfd39df946e4e24de163c1b
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+GIT REPOSITORY:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Repository: https://github.com/departments-commits/website-path-for-backend-contribution.git
+User: William Ferguson
+Email: chandlerferguson319@gmail.com
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+DATABASE SCHEMA (Field Names - Use These):
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+id
+amount
+currency
+is_other_amount
+source
+payment_status
+payment_method
+transaction_id
+member_email
+member_name
+created_at
+updated_at
+metadata
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+API ENDPOINTS (All Require Authentication):
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+GET  /health              (requires auth - API is private)
+GET  /donations/latest    (requires auth)
+POST /donations           (requires auth)
+GET  /donations           (requires auth)
+GET  /export/json         (requires auth)
+
+Authentication Headers:
+  Authorization: Bearer 04f1ddd99fdfdc3e89cdd0d714b735feda43fa3aecfd39df946e4e24de163c1b
+  X-API-Key: 04f1ddd99fdfdc3e89cdd0d714b735feda43fa3aecfd39df946e4e24de163c1b
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+IMPORTANT NOTES:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ API is PRIVATE - All endpoints require authentication
+✅ Health endpoint now requires authentication
+✅ Use exact field names (snake_case) to avoid WDE0116
+✅ Don't use wixData.aggregate() - use direct API calls
+✅ All files have been updated with these values
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

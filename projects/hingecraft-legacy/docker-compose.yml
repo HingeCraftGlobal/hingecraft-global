@@ -1,0 +1,77 @@
+# Docker Compose V2 - version field is obsolete
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15
+    container_name: hingecraft-postgres
+    environment:
+      POSTGRES_DB: hingecraft_db
+      POSTGRES_USER: hingecraft_user
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-hingecraft_secure_password_123}
+      PGDATA: /var/lib/postgresql/data/pgdata
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      # Mount init.sql directly from host (read-only, always up-to-date)
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U hingecraft_user -d hingecraft_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - hingecraft-network
+    restart: always
+
+  # Database Adaptor API (Node.js/Express) - Serverless Docker for Wix Custom Database
+  db-adaptor:
+    build:
+      context: ./database-adaptor
+      dockerfile: Dockerfile
+    image: ${DOCKER_REPOSITORY:-departmentsai/wix}-db-adaptor:latest
+    container_name: hingecraft-db-adaptor
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: hingecraft_db
+      DB_USER: hingecraft_user
+      DB_PASSWORD: ${DB_PASSWORD:-hingecraft_secure_password_123}
+      SECRET_KEY: ${ADAPTOR_SECRET_KEY:-hingecraft_secret_key_change_in_production}
+      API_KEY: ${ADAPTOR_SECRET_KEY:-hingecraft_secret_key_change_in_production}
+      WEBHOOK_URL: ${WEBHOOK_URL:-https://www.wix.com/velo/reference/api-overview/introduction}
+      WEBHOOK_SECRET: ${WEBHOOK_SECRET:-63e22733255b2953c56157238c167fb62b4c68f282f81b07c15b70aa766e2620}
+    ports:
+      - "3000:3000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - hingecraft-network
+    restart: always
+    volumes:
+      - db_adaptor_logs:/app/logs
+
+  # Python Server removed - not needed for Wix external database
+  # Using only Node.js adaptor for Wix integration
+
+volumes:
+  postgres_data:
+    name: hingecraft_postgres_data
+    driver: local
+  database_init:
+    name: hingecraft_database_init
+    driver: local
+  db_adaptor_logs:
+    name: hingecraft_db_adaptor_logs
+    driver: local
+
+networks:
+  hingecraft-network:
+    driver: bridge
+
+
+
