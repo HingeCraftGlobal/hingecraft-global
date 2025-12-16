@@ -1,0 +1,26 @@
+{
+  "timestamp": "2025-12-16T15:37:17.966Z",
+  "funnelSteps": [],
+  "issues": [
+    {
+      "step": 1,
+      "problem": "Missing Script Properties: HUBSPOT_TOKEN, ANYMAIL_API_KEY, MONITORED_FOLDER_ID, GMAIL_FROM_ADDRESS",
+      "solution": "Set in Apps Script UI: Project Settings → Script Properties",
+      "priority": "CRITICAL"
+    },
+    {
+      "step": 3,
+      "problem": "Apps Script files not found locally",
+      "solution": "Code is deployed remotely via clasp. Check Apps Script editor.",
+      "priority": "MEDIUM"
+    },
+    {
+      "step": 4,
+      "problem": "Trigger verification required",
+      "solution": "Manually verify trigger in Apps Script UI",
+      "priority": "HIGH"
+    }
+  ],
+  "fixes": [],
+  "nextSteps": []
+}

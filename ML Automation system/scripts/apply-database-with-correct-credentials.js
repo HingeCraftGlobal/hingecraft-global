@@ -86,30 +86,24 @@ async function applySchema(config) {
     
     console.log('📊 Applying schema...\n');
     
-    // Split by semicolons and execute each statement
-    const statements = schema
-      .split(';')
-      .map(s => s.trim())
-      .filter(s => s.length > 0 && !s.startsWith('--'));
-    
+    // Execute entire schema as one query (handles functions/triggers properly)
     let applied = 0;
     let errors = 0;
     const errorDetails = [];
     
-    for (const statement of statements) {
-      if (statement.length < 10) continue;
-      
-      try {
-        await client.query(statement);
-        applied++;
-      } catch (error) {
-        // Ignore "already exists" errors
-        if (!error.message.includes('already exists') && 
-            !error.message.includes('duplicate') &&
-            !error.message.includes('does not exist')) {
-          errorDetails.push(error.message.substring(0, 100));
-          errors++;
-        }
+    try {
+      console.log('   Executing complete schema...');
+      await client.query(schema);
+      console.log('   ✅ Schema executed successfully');
+      applied = 1;
+    } catch (error) {
+      // If full schema fails, it might be due to existing objects
+      // Try to continue and verify tables
+      console.log(`   ⚠️  Schema execution note: ${error.message.substring(0, 100)}`);
+      if (!error.message.includes('already exists') && 
+          !error.message.includes('duplicate')) {
+        errors++;
+        errorDetails.push(error.message.substring(0, 100));
       }
     }
     
