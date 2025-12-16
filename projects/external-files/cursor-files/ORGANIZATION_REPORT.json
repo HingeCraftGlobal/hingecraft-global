@@ -1,0 +1,368 @@
+{
+  "timestamp": "2025-12-11T15:05:50.598601",
+  "total_files": 4466,
+  "categories": {
+    "02_database": {
+      "name": "Database Systems",
+      "file_count": 159,
+      "total_size": 2006400,
+      "extensions": {
+        ".md": 46,
+        ".py": 19,
+        ".json": 8,
+        ".sh": 14,
+        ".js": 6,
+        ".sql": 63,
+        ".bak": 1,
+        ".db": 2
+      }
+    },
+    "01_core": {
+      "name": "Core System Files",
+      "file_count": 1535,
+      "total_size": 69386579,
+      "extensions": {
+        ".txt": 45,
+        "no_extension": 1322,
+        ".conf": 6,
+        ".opts": 1,
+        ".map": 5,
+        ".108": 1,
+        ".2238": 1,
+        ".example": 1,
+        ".ts": 90,
+        ".png": 18,
+        ".svg": 6,
+        ".zip": 36,
+        ".pkl": 1,
+        ".err": 1,
+        ".out": 1
+      }
+    },
+    "11_scripts": {
+      "name": "Scripts & Automation",
+      "file_count": 638,
+      "total_size": 5130626,
+      "extensions": {
+        ".py": 505,
+        ".sh": 130,
+        ".bak": 1,
+        ".txt": 2
+      }
+    },
+    "10_documentation": {
+      "name": "Documentation",
+      "file_count": 771,
+      "total_size": 7338663,
+      "extensions": {
+        ".md": 740,
+        "no_extension": 6,
+        ".sh": 8,
+        ".py": 14,
+        ".bak": 1,
+        ".scheduler": 1,
+        ".worker": 1
+      }
+    },
+    "09_testing": {
+      "name": "Testing & QA",
+      "file_count": 61,
+      "total_size": 313357,
+      "extensions": {
+        ".md": 21,
+        ".py": 21,
+        ".sh": 16,
+        ".csv": 1,
+        ".txt": 1,
+        ".ini": 1
+      }
+    },
+    "04_frontend": {
+      "name": "Frontend & UI",
+      "file_count": 939,
+      "total_size": 88449885,
+      "extensions": {
+        ".json": 372,
+        ".md": 16,
+        ".js": 203,
+        ".jsw": 29,
+        ".html": 289,
+        ".sh": 5,
+        ".css": 9,
+        ".py": 12,
+        ".template": 4
+      }
+    },
+    "06_integrations": {
+      "name": "External Integrations",
+      "file_count": 163,
+      "total_size": 1757660,
+      "extensions": {
+        ".py": 21,
+        ".md": 107,
+        ".lock": 1,
+        ".sh": 26,
+        ".csv": 4,
+        ".txt": 3,
+        ".bak": 1
+      }
+    },
+    "07_ml_ai": {
+      "name": "ML & AI Systems",
+      "file_count": 114,
+      "total_size": 875841,
+      "extensions": {
+        ".py": 70,
+        ".txt": 6,
+        ".kml": 2,
+        ".md": 22,
+        ".yml": 6,
+        ".sh": 5,
+        ".yaml": 2,
+        ".log": 1
+      }
+    },
+    "05_agents": {
+      "name": "AI Agents",
+      "file_count": 33,
+      "total_size": 249756,
+      "extensions": {
+        ".md": 3,
+        ".sh": 2,
+        ".py": 16,
+        ".zip": 12
+      }
+    },
+    "03_api": {
+      "name": "API & Backend",
+      "file_count": 31,
+      "total_size": 386337,
+      "extensions": {
+        ".md": 1,
+        ".py": 9,
+        ".json": 1,
+        ".jsw": 10,
+        ".js": 7,
+        ".sh": 1,
+        ".api": 1,
+        ".txt": 1
+      }
+    },
+    "12_data": {
+      "name": "Data Files",
+      "file_count": 6,
+      "total_size": 39893,
+      "extensions": {
+        ".csv": 6
+      }
+    },
+    "08_security": {
+      "name": "Security & Auth",
+      "file_count": 6,
+      "total_size": 30030,
+      "extensions": {
+        ".py": 4,
+        ".sh": 2
+      }
+    },
+    "14_logs": {
+      "name": "Logs & Monitoring",
+      "file_count": 7,
+      "total_size": 62857368,
+      "extensions": {
+        ".log": 7
+      }
+    },
+    "13_config": {
+      "name": "Configuration",
+      "file_count": 3,
+      "total_size": 5721,
+      "extensions": {
+        ".txt": 2,
+        ".bak": 1
+      }
+    }
+  },
+  "projects": {
+    "root": {
+      "file_count": 371,
+      "total_size": 20210723,
+      "categories": {
+        "02_database": 29,
+        "01_core": 20,
+        "11_scripts": 66,
+        "10_documentation": 154,
+        "09_testing": 5,
+        "04_frontend": 64,
+        "06_integrations": 23,
+        "07_ml_ai": 5,
+        "05_agents": 2,
+        "03_api": 2,
+        "14_logs": 1
+      }
+    },
+    "RU_PREP": {
+      "file_count": 201,
+      "total_size": 3064309,
+      "categories": {
+        "10_documentation": 117,
+        "04_frontend": 12,
+        "01_core": 14,
+        "02_database": 8,
+        "11_scripts": 27,
+        "06_integrations": 8,
+        "07_ml_ai": 13,
+        "03_api": 2
+      }
+    },
+    "ai": {
+      "file_count": 203,
+      "total_size": 2656008,
+      "categories": {
+        "07_ml_ai": 31,
+        "04_frontend": 6,
+        "05_agents": 7,
+        "11_scripts": 97,
+        "03_api": 3,
+        "10_documentation": 26,
+        "09_testing": 21,
+        "06_integrations": 6,
+        "01_core": 5,
+        "02_database": 1
+      }
+    },
+    "pycharm": {
+      "file_count": 34,
+      "total_size": 55680,
+      "categories": {
+        "09_testing": 2,
+        "10_documentation": 4,
+        "01_core": 2,
+        "11_scripts": 24,
+        "05_agents": 2
+      }
+    },
+    "hingecraft-global": {
+      "file_count": 2975,
+      "total_size": 208946038,
+      "categories": {
+        "10_documentation": 283,
+        "04_frontend": 770,
+        "06_integrations": 77,
+        "11_scripts": 231,
+        "02_database": 99,
+        "01_core": 1427,
+        "03_api": 16,
+        "05_agents": 4,
+        "09_testing": 17,
+        "07_ml_ai": 37,
+        "12_data": 5,
+        "08_security": 5,
+        "14_logs": 4
+      }
+    },
+    "ats_python_system": {
+      "file_count": 92,
+      "total_size": 475981,
+      "categories": {
+        "09_testing": 4,
+        "06_integrations": 1,
+        "03_api": 1,
+        "10_documentation": 17,
+        "07_ml_ai": 7,
+        "01_core": 1,
+        "11_scripts": 53,
+        "04_frontend": 5,
+        "05_agents": 3
+      }
+    },
+    "HingeCraft": {
+      "file_count": 317,
+      "total_size": 1908569,
+      "categories": {
+        "10_documentation": 122,
+        "11_scripts": 62,
+        "06_integrations": 45,
+        "02_database": 22,
+        "04_frontend": 31,
+        "01_core": 9,
+        "09_testing": 10,
+        "13_config": 3,
+        "14_logs": 2,
+        "12_data": 1,
+        "03_api": 6,
+        "07_ml_ai": 3,
+        "08_security": 1
+      }
+    },
+    "pattern_analyzer_system": {
+      "file_count": 224,
+      "total_size": 1427497,
+      "categories": {
+        "10_documentation": 47,
+        "11_scripts": 35,
+        "07_ml_ai": 18,
+        "01_core": 56,
+        "06_integrations": 3,
+        "09_testing": 1,
+        "04_frontend": 51,
+        "03_api": 1,
+        "05_agents": 12
+      }
+    },
+    "VOLK-PRIME": {
+      "file_count": 49,
+      "total_size": 83311,
+      "categories": {
+        "01_core": 1,
+        "10_documentation": 1,
+        "11_scripts": 43,
+        "09_testing": 1,
+        "05_agents": 3
+      }
+    }
+  },
+  "statistics": {
+    "total_size_bytes": 238828116,
+    "unique_extensions": 37,
+    "files_by_extension": {
+      ".md": 956,
+      ".txt": 60,
+      ".py": 691,
+      ".json": 381,
+      ".kml": 2,
+      ".sh": 209,
+      "no_extension": 1328,
+      ".js": 216,
+      ".lock": 1,
+      ".yml": 6,
+      ".csv": 11,
+      ".sql": 63,
+      ".conf": 6,
+      ".opts": 1,
+      ".map": 5,
+      ".108": 1,
+      ".2238": 1,
+      ".jsw": 39,
+      ".html": 289,
+      ".yaml": 2,
+      ".example": 1,
+      ".css": 9,
+      ".log": 8,
+      ".ts": 90,
+      ".template": 4,
+      ".bak": 5,
+      ".png": 18,
+      ".svg": 6,
+      ".zip": 48,
+      ".pkl": 1,
+      ".err": 1,
+      ".out": 1,
+      ".ini": 1,
+      ".scheduler": 1,
+      ".api": 1,
+      ".worker": 1,
+      ".db": 2
+    }
+  }
+}

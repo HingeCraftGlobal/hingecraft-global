@@ -1,0 +1,3017 @@
+{
+  "timestamp": "2025-12-11T15:24:23.543564",
+  "ferguson_system": [
+    {
+      "type": "directory",
+      "source": "/Users/chandlerfergusen/ferguson-system/ai",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/RECOVERED_DATA/ferguson-system/ai",
+      "size": 3727409
+    },
+    {
+      "type": "directory",
+      "source": "/Users/chandlerfergusen/ferguson-system/sql",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/RECOVERED_DATA/ferguson-system/sql",
+      "size": 7914201
+    },
+    {
+      "type": "directory",
+      "source": "/Users/chandlerfergusen/ferguson-system/data",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/RECOVERED_DATA/ferguson-system/data",
+      "size": 51965
+    },
+    {
+      "type": "directory",
+      "source": "/Users/chandlerfergusen/ferguson-system/notion_sync",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/RECOVERED_DATA/ferguson-system/notion_sync",
+      "size": 11722
+    },
+    {
+      "type": "directory",
+      "source": "/Users/chandlerfergusen/ferguson-system/obsidian",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/RECOVERED_DATA/ferguson-system/obsidian",
+      "size": 133402554
+    }
+  ],
+  "python_environments": [
+    {
+      "type": "venv",
+      "path": "/Users/chandlerfergusen/ferguson-system/.venv",
+      "parent": "/Users/chandlerfergusen/ferguson-system"
+    },
+    {
+      "type": "venv",
+      "path": "/Users/chandlerfergusen/ferguson-system/p2p_sync/.venv",
+      "parent": "/Users/chandlerfergusen/ferguson-system/p2p_sync"
+    },
+    {
+      "type": "venv",
+      "path": "/Users/chandlerfergusen/PycharmProjects/PythonProject/.venv",
+      "parent": "/Users/chandlerfergusen/PycharmProjects/PythonProject"
+    },
+    {
+      "type": "venv",
+      "path": "/Users/chandlerfergusen/PycharmProjects/PythonProject/Volkov-1: Diplomatic Prompt Architect/.venv",
+      "parent": "/Users/chandlerfergusen/PycharmProjects/PythonProject/Volkov-1: Diplomatic Prompt Architect"
+    },
+    {
+      "type": "venv",
+      "path": "/Users/chandlerfergusen/PycharmProjects/PythonProject/ferguson-system/.venv",
+      "parent": "/Users/chandlerfergusen/PycharmProjects/PythonProject/ferguson-system"
+    },
+    {
+      "type": "venv",
+      "path": "/Users/chandlerfergusen/PyCharmMiscProject/.venv",
+      "parent": "/Users/chandlerfergusen/PyCharmMiscProject"
+    }
+  ],
+  "git_repositories": [
+    {
+      "name": "hingecraft-global",
+      "path": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global",
+      "remote_url": "https://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@github.com/departments-commits/hingecraft-global.git",
+      "backup_path": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global"
+    },
+    {
+      "name": "HingeCraft",
+      "path": "/Users/chandlerfergusen/Desktop/CURSOR/HingeCraft",
+      "remote_url": "git@github.com:departments-commits/hingecraft-global.git",
+      "backup_path": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/HingeCraft"
+    },
+    {
+      "name": "youtube_agent",
+      "path": "/Users/chandlerfergusen/Desktop/CURSOR/ai/youtube_agent",
+      "remote_url": "https://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@github.com/departments-commits/youtube-agent.git",
+      "backup_path": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/youtube_agent"
+    },
+    {
+      "name": "ferguson-system",
+      "path": "/Users/chandlerfergusen/ferguson-system",
+      "remote_url": "git@github.com:theangelofwill/ferguson-system.git",
+      "backup_path": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/ferguson-system"
+    },
+    {
+      "name": "PythonProject",
+      "path": "/Users/chandlerfergusen/PycharmProjects/PythonProject",
+      "remote_url": "git@github.com:theangelofwill/ferguson-system.git",
+      "backup_path": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/PythonProject"
+    },
+    {
+      "name": "ferguson-system",
+      "path": "/Users/chandlerfergusen/PycharmProjects/PythonProject/ferguson-system",
+      "remote_url": "git@github.com:angelofwill/ferguson-system.git",
+      "backup_path": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/ferguson-system"
+    }
+  ],
+  "sensitive_files": [
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.env",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.env",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/HingeCraft/.env",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.env_1",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/ai/youtube_agent/.env",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.env_2",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/RECOVERED_DATA/ferguson-system/notion_sync/.env",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.env_3",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/notion_sync/.env",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.env_4",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/HingeCraft/files/.env",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.env_5",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/PythonProject/files/68/.env",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.env_6",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/PythonProject/files/Volkov-1: Diplomatic Prompt Architect/.env",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.env_7",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/PythonProject/files/ferguson-system/.env",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.env_8",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/PythonProject/files/helixlearn/app/.env",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.env_9",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/PythonProject/files/Communtiy Bot / Core Offer/.env",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.env_10",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/PythonProject/files/ferguson-system/notion_sync/.env",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.env_11",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/PythonProject/files/Volkov-1: Diplomatic Prompt Architect/database.py/.env",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.env_12",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/ferguson-system/files/.env",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.env_13",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/ferguson-system/files/notion_sync/.env",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.env_14",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/youtube_agent/files/.env",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.env_15",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.env",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.env_16",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/notion/.env",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.env_17",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/ferguson-system/full_backup/notion_sync/.env",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.env_18",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/notion/.env",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.env_19",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/.env.example",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.env.example",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/HingeCraft/.env.example",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.env_1.example",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/ai/youtube_agent/.env.example",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.env_2.example",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/RECOVERED_DATA/python-projects/PycharmProjects/PythonProject/ferguson-system/Infra/scripts/.env.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.env.py",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/RECOVERED_DATA/ferguson-system/notion_sync/.env.save",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.env.save",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/notion_sync/.env.save",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.env_1.save",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/HingeCraft/files/.env.example",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.env_3.example",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/PythonProject/files/ferguson-system/Infra/scripts/.env.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.env_1.py",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/ferguson-system/files/notion_sync/.env.save",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.env_2.save",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/youtube_agent/files/.env.example",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.env_4.example",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/notion/.env.local",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.env.local",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/ML Automation system/node_modules/@dabh/diagnostics/adapters/process.env.js",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/process.env.js",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/ferguson-system/full_backup/notion_sync/.env.save",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.env_3.save",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/notion/.env.local",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.env_1.local",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/node_modules/@dabh/diagnostics/adapters/process.env.js",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/process.env_1.js",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/ats_python_system/api_keys_manager.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/api-keys/api_keys_manager.py",
+      "type": "api-keys"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/pattern_analyzer_system/.venv/lib/python3.10/site-packages/fastapi/security/api_key.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/api-keys/api_key.py",
+      "type": "api-keys"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/pattern_analyzer_system/.venv/lib/python3.10/site-packages/google/auth/api_key.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/api-keys/api_key_1.py",
+      "type": "api-keys"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/pattern_analyzer_system/.venv/lib/python3.10/site-packages/googleapiclient/discovery_cache/documents/apikeys.v2.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/api-keys/apikeys.v2.json",
+      "type": "api-keys"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/RECOVERED_DATA/python-projects/PycharmProjects/PythonProject/ats/api_keys_manager.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/api-keys/api_keys_manager_1.py",
+      "type": "api-keys"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/RECOVERED_DATA/python-projects/PycharmProjects/PythonProject/env310/lib/python3.10/site-packages/fastapi/security/api_key.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/api-keys/api_key_2.py",
+      "type": "api-keys"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/RECOVERED_DATA/python-projects/PycharmProjects/PythonProject/env310/lib/python3.10/site-packages/google/auth/api_key.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/api-keys/api_key_3.py",
+      "type": "api-keys"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/RECOVERED_DATA/python-projects/PycharmProjects/PythonProject/.venv/lib/python3.13/site-packages/fastapi/security/api_key.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/api-keys/api_key_4.py",
+      "type": "api-keys"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/RECOVERED_DATA/python-projects/PycharmProjects/PythonProject/.venv/lib/python3.13/site-packages/google/auth/api_key.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/api-keys/api_key_5.py",
+      "type": "api-keys"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/RECOVERED_DATA/python-projects/PycharmProjects/PythonProject/ferguson-system/.venv/lib/python3.10/site-packages/fastapi/security/api_key.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/api-keys/api_key_6.py",
+      "type": "api-keys"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/RECOVERED_DATA/python-projects/ferguson-system/.venv/lib/python3.13/site-packages/fastapi/security/api_key.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/api-keys/api_key_7.py",
+      "type": "api-keys"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/RECOVERED_DATA/python-projects/ferguson-system/.venv/lib/python3.13/site-packages/google/auth/api_key.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/api-keys/api_key_8.py",
+      "type": "api-keys"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.venv/lib/python3.13/site-packages/fastapi/security/api_key.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/api-keys/api_key_9.py",
+      "type": "api-keys"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.venv/lib/python3.13/site-packages/google/auth/api_key.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/api-keys/api_key_10.py",
+      "type": "api-keys"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.venv/lib/python3.13/site-packages/googleapiclient/discovery_cache/documents/apikeys.v2.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/api-keys/apikeys.v2_1.json",
+      "type": "api-keys"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/PythonProject/files/ats/api_keys_manager.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/api-keys/api_keys_manager_2.py",
+      "type": "api-keys"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/PythonProject/files/env310/lib/python3.10/site-packages/fastapi/security/api_key.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/api-keys/api_key_11.py",
+      "type": "api-keys"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/PythonProject/files/env310/lib/python3.10/site-packages/google/auth/api_key.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/api-keys/api_key_12.py",
+      "type": "api-keys"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/PythonProject/files/ferguson-system/.venv/lib/python3.10/site-packages/fastapi/security/api_key.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/api-keys/api_key_13.py",
+      "type": "api-keys"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/ML Automation system/config/api_keys.js",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/api-keys/api_keys.js",
+      "type": "api-keys"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/config/api_keys.js",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/api-keys/api_keys_1.js",
+      "type": "api-keys"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/pattern_analyzer_system/.venv/lib/python3.10/site-packages/google/auth/_credentials_base.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/_credentials_base.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/pattern_analyzer_system/.venv/lib/python3.10/site-packages/google/auth/credentials.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/credentials.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/pattern_analyzer_system/.venv/lib/python3.10/site-packages/google/auth/_credentials_async.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/_credentials_async.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/pattern_analyzer_system/.venv/lib/python3.10/site-packages/google/auth/impersonated_credentials.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/impersonated_credentials.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/pattern_analyzer_system/.venv/lib/python3.10/site-packages/google/oauth2/credentials.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/credentials_1.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/pattern_analyzer_system/.venv/lib/python3.10/site-packages/google/oauth2/_credentials_async.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/_credentials_async_1.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/pattern_analyzer_system/.venv/lib/python3.10/site-packages/google/oauth2/gdch_credentials.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/gdch_credentials.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/pattern_analyzer_system/.venv/lib/python3.10/site-packages/google/auth/aio/credentials.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/credentials_2.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/pattern_analyzer_system/.venv/lib/python3.10/site-packages/google/auth/compute_engine/credentials.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/credentials_3.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/pattern_analyzer_system/.venv/lib/python3.10/site-packages/oauthlib/oauth2/rfc6749/grant_types/resource_owner_password_credentials.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/resource_owner_password_credentials.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/pattern_analyzer_system/.venv/lib/python3.10/site-packages/oauthlib/oauth2/rfc6749/grant_types/client_credentials.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/client_credentials.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/pattern_analyzer_system/.venv/lib/python3.10/site-packages/googleapiclient/discovery_cache/documents/iamcredentials.v1.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/iamcredentials.v1.json",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/RECOVERED_DATA/python-projects/PyCharmMiscProject/.venv/lib/python3.13/site-packages/telegram/_passport/credentials.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/credentials_4.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/RECOVERED_DATA/python-projects/PycharmProjects/PythonProject/env310/lib/python3.10/site-packages/google/auth/_credentials_base.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/_credentials_base_1.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/RECOVERED_DATA/python-projects/PycharmProjects/PythonProject/env310/lib/python3.10/site-packages/google/auth/credentials.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/credentials_5.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/RECOVERED_DATA/python-projects/PycharmProjects/PythonProject/env310/lib/python3.10/site-packages/google/auth/_credentials_async.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/_credentials_async_2.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/RECOVERED_DATA/python-projects/PycharmProjects/PythonProject/env310/lib/python3.10/site-packages/google/auth/impersonated_credentials.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/impersonated_credentials_1.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/RECOVERED_DATA/python-projects/PycharmProjects/PythonProject/env310/lib/python3.10/site-packages/google/oauth2/credentials.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/credentials_6.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/RECOVERED_DATA/python-projects/PycharmProjects/PythonProject/env310/lib/python3.10/site-packages/google/oauth2/_credentials_async.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/_credentials_async_3.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/RECOVERED_DATA/python-projects/PycharmProjects/PythonProject/env310/lib/python3.10/site-packages/google/oauth2/gdch_credentials.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/gdch_credentials_1.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/RECOVERED_DATA/python-projects/PycharmProjects/PythonProject/env310/lib/python3.10/site-packages/google/auth/aio/credentials.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/credentials_7.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/RECOVERED_DATA/python-projects/PycharmProjects/PythonProject/env310/lib/python3.10/site-packages/google/auth/compute_engine/credentials.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/credentials_8.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/RECOVERED_DATA/python-projects/PycharmProjects/PythonProject/env310/lib/python3.10/site-packages/oauthlib/oauth2/rfc6749/grant_types/resource_owner_password_credentials.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/resource_owner_password_credentials_1.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/RECOVERED_DATA/python-projects/PycharmProjects/PythonProject/env310/lib/python3.10/site-packages/oauthlib/oauth2/rfc6749/grant_types/client_credentials.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/client_credentials_1.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/RECOVERED_DATA/python-projects/PycharmProjects/PythonProject/.venv/lib/python3.13/site-packages/telegram/_passport/credentials.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/credentials_9.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/RECOVERED_DATA/python-projects/PycharmProjects/PythonProject/.venv/lib/python3.13/site-packages/google/auth/_credentials_base.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/_credentials_base_2.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/RECOVERED_DATA/python-projects/PycharmProjects/PythonProject/.venv/lib/python3.13/site-packages/google/auth/credentials.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/credentials_10.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/RECOVERED_DATA/python-projects/PycharmProjects/PythonProject/.venv/lib/python3.13/site-packages/google/auth/_credentials_async.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/_credentials_async_4.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/RECOVERED_DATA/python-projects/PycharmProjects/PythonProject/.venv/lib/python3.13/site-packages/google/auth/impersonated_credentials.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/impersonated_credentials_2.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/RECOVERED_DATA/python-projects/PycharmProjects/PythonProject/.venv/lib/python3.13/site-packages/google/oauth2/credentials.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/credentials_11.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/RECOVERED_DATA/python-projects/PycharmProjects/PythonProject/.venv/lib/python3.13/site-packages/google/oauth2/_credentials_async.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/_credentials_async_5.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/RECOVERED_DATA/python-projects/PycharmProjects/PythonProject/.venv/lib/python3.13/site-packages/google/oauth2/gdch_credentials.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/gdch_credentials_2.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/RECOVERED_DATA/python-projects/PycharmProjects/PythonProject/.venv/lib/python3.13/site-packages/google/auth/aio/credentials.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/credentials_12.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/RECOVERED_DATA/python-projects/PycharmProjects/PythonProject/.venv/lib/python3.13/site-packages/google/auth/compute_engine/credentials.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/credentials_13.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/RECOVERED_DATA/python-projects/PycharmProjects/PythonProject/.venv/lib/python3.13/site-packages/oauthlib/oauth2/rfc6749/grant_types/resource_owner_password_credentials.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/resource_owner_password_credentials_2.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/RECOVERED_DATA/python-projects/PycharmProjects/PythonProject/.venv/lib/python3.13/site-packages/oauthlib/oauth2/rfc6749/grant_types/client_credentials.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/client_credentials_2.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/RECOVERED_DATA/python-projects/PycharmProjects/PythonProject/.venv/lib/python3.13/site-packages/streamlit/runtime/credentials.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/credentials_14.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/RECOVERED_DATA/python-projects/PycharmProjects/PythonProject/ferguson-system/.venv/lib/python3.10/site-packages/redis/credentials.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/credentials_15.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/RECOVERED_DATA/python-projects/ferguson-system/.venv/lib/python3.13/site-packages/google/auth/_credentials_base.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/_credentials_base_3.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/RECOVERED_DATA/python-projects/ferguson-system/.venv/lib/python3.13/site-packages/google/auth/credentials.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/credentials_16.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/RECOVERED_DATA/python-projects/ferguson-system/.venv/lib/python3.13/site-packages/google/auth/_credentials_async.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/_credentials_async_6.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/RECOVERED_DATA/python-projects/ferguson-system/.venv/lib/python3.13/site-packages/google/auth/impersonated_credentials.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/impersonated_credentials_3.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/RECOVERED_DATA/python-projects/ferguson-system/.venv/lib/python3.13/site-packages/google/oauth2/credentials.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/credentials_17.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/RECOVERED_DATA/python-projects/ferguson-system/.venv/lib/python3.13/site-packages/google/oauth2/_credentials_async.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/_credentials_async_7.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/RECOVERED_DATA/python-projects/ferguson-system/.venv/lib/python3.13/site-packages/google/oauth2/gdch_credentials.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/gdch_credentials_3.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/RECOVERED_DATA/python-projects/ferguson-system/.venv/lib/python3.13/site-packages/google/auth/aio/credentials.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/credentials_18.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/RECOVERED_DATA/python-projects/ferguson-system/.venv/lib/python3.13/site-packages/google/auth/compute_engine/credentials.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/credentials_19.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/RECOVERED_DATA/python-projects/ferguson-system/.venv/lib/python3.13/site-packages/oauthlib/oauth2/rfc6749/grant_types/resource_owner_password_credentials.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/resource_owner_password_credentials_3.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/RECOVERED_DATA/python-projects/ferguson-system/.venv/lib/python3.13/site-packages/oauthlib/oauth2/rfc6749/grant_types/client_credentials.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/client_credentials_3.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.venv/lib/python3.13/site-packages/google/auth/_credentials_base.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/_credentials_base_4.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.venv/lib/python3.13/site-packages/google/auth/credentials.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/credentials_20.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.venv/lib/python3.13/site-packages/google/auth/_credentials_async.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/_credentials_async_8.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.venv/lib/python3.13/site-packages/google/auth/impersonated_credentials.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/impersonated_credentials_4.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.venv/lib/python3.13/site-packages/google/oauth2/credentials.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/credentials_21.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.venv/lib/python3.13/site-packages/google/oauth2/_credentials_async.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/_credentials_async_9.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.venv/lib/python3.13/site-packages/google/oauth2/gdch_credentials.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/gdch_credentials_4.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.venv/lib/python3.13/site-packages/google/auth/aio/credentials.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/credentials_22.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.venv/lib/python3.13/site-packages/google/auth/compute_engine/credentials.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/credentials_23.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.venv/lib/python3.13/site-packages/oauthlib/oauth2/rfc6749/grant_types/resource_owner_password_credentials.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/resource_owner_password_credentials_4.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.venv/lib/python3.13/site-packages/oauthlib/oauth2/rfc6749/grant_types/client_credentials.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/client_credentials_4.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.venv/lib/python3.13/site-packages/googleapiclient/discovery_cache/documents/iamcredentials.v1.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/iamcredentials.v1_1.json",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/PythonProject/files/env310/lib/python3.10/site-packages/tensorflow/include/external/com_github_grpc_grpc/src/cpp/server/secure_server_credentials.h",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/secure_server_credentials.h",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/PythonProject/files/env310/lib/python3.10/site-packages/tensorflow/include/external/com_github_grpc_grpc/src/cpp/common/tls_credentials_options_util.h",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/tls_credentials_options_util.h",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/PythonProject/files/env310/lib/python3.10/site-packages/tensorflow/include/external/com_github_grpc_grpc/src/cpp/client/secure_credentials.h",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/secure_credentials.h",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/PythonProject/files/env310/lib/python3.10/site-packages/tensorflow/include/external/com_github_grpc_grpc/src/core/lib/security/credentials/credentials.h",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/credentials.h",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/PythonProject/files/env310/lib/python3.10/site-packages/tensorflow/include/external/com_github_grpc_grpc/src/core/lib/security/credentials/jwt/jwt_credentials.h",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/jwt_credentials.h",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/PythonProject/files/env310/lib/python3.10/site-packages/tensorflow/include/external/com_github_grpc_grpc/src/core/lib/security/credentials/ssl/ssl_credentials.h",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/ssl_credentials.h",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/PythonProject/files/env310/lib/python3.10/site-packages/tensorflow/include/external/com_github_grpc_grpc/src/core/lib/security/credentials/plugin/plugin_credentials.h",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/plugin_credentials.h",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/PythonProject/files/env310/lib/python3.10/site-packages/tensorflow/include/external/com_github_grpc_grpc/src/core/lib/security/credentials/oauth2/oauth2_credentials.h",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/oauth2_credentials.h",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/PythonProject/files/env310/lib/python3.10/site-packages/tensorflow/include/external/com_github_grpc_grpc/src/core/lib/security/credentials/google_default/google_default_credentials.h",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/google_default_credentials.h",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/PythonProject/files/env310/lib/python3.10/site-packages/tensorflow/include/external/com_github_grpc_grpc/src/core/lib/security/credentials/composite/composite_credentials.h",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/composite_credentials.h",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/PythonProject/files/env310/lib/python3.10/site-packages/tensorflow/include/external/com_github_grpc_grpc/src/core/lib/security/credentials/local/local_credentials.h",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/local_credentials.h",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/PythonProject/files/env310/lib/python3.10/site-packages/tensorflow/include/external/com_github_grpc_grpc/src/core/lib/security/credentials/iam/iam_credentials.h",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/iam_credentials.h",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/PythonProject/files/env310/lib/python3.10/site-packages/tensorflow/include/external/com_github_grpc_grpc/src/core/lib/security/credentials/tls/tls_credentials.h",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/tls_credentials.h",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/PythonProject/files/env310/lib/python3.10/site-packages/tensorflow/include/external/com_github_grpc_grpc/src/core/lib/security/credentials/tls/grpc_tls_credentials_options.h",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/grpc_tls_credentials_options.h",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/PythonProject/files/env310/lib/python3.10/site-packages/tensorflow/include/external/com_github_grpc_grpc/src/core/lib/security/credentials/alts/alts_credentials.h",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/alts_credentials.h",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/PythonProject/files/env310/lib/python3.10/site-packages/tensorflow/include/external/com_github_grpc_grpc/src/core/lib/security/credentials/alts/grpc_alts_credentials_options.h",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/grpc_alts_credentials_options.h",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/PythonProject/files/env310/lib/python3.10/site-packages/tensorflow/include/external/com_github_grpc_grpc/src/core/lib/security/credentials/fake/fake_credentials.h",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/fake_credentials.h",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/PythonProject/files/env310/lib/python3.10/site-packages/tensorflow/include/external/com_github_grpc_grpc/include/grpc++/security/server_credentials.h",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/server_credentials.h",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/PythonProject/files/env310/lib/python3.10/site-packages/tensorflow/include/external/com_github_grpc_grpc/include/grpc++/security/credentials.h",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/credentials_1.h",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/PythonProject/files/env310/lib/python3.10/site-packages/tensorflow/include/external/com_github_grpc_grpc/include/grpcpp/security/server_credentials.h",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/server_credentials_1.h",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/PythonProject/files/env310/lib/python3.10/site-packages/tensorflow/include/external/com_github_grpc_grpc/include/grpcpp/security/credentials_impl.h",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/credentials_impl.h",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/PythonProject/files/env310/lib/python3.10/site-packages/tensorflow/include/external/com_github_grpc_grpc/include/grpcpp/security/credentials.h",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/credentials_2.h",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/PythonProject/files/env310/lib/python3.10/site-packages/tensorflow/include/external/com_github_grpc_grpc/include/grpcpp/security/server_credentials_impl.h",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/server_credentials_impl.h",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/PythonProject/files/env310/lib/python3.10/site-packages/tensorflow/include/external/com_github_grpc_grpc/include/grpcpp/security/tls_credentials_options.h",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/tls_credentials_options.h",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/PythonProject/files/env310/lib/python3.10/site-packages/google/auth/_credentials_base.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/_credentials_base_5.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/PythonProject/files/env310/lib/python3.10/site-packages/google/auth/credentials.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/credentials_24.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/PythonProject/files/env310/lib/python3.10/site-packages/google/auth/_credentials_async.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/_credentials_async_10.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/PythonProject/files/env310/lib/python3.10/site-packages/google/auth/impersonated_credentials.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/impersonated_credentials_5.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/PythonProject/files/env310/lib/python3.10/site-packages/google/oauth2/credentials.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/credentials_25.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/PythonProject/files/env310/lib/python3.10/site-packages/google/oauth2/_credentials_async.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/_credentials_async_11.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/PythonProject/files/env310/lib/python3.10/site-packages/google/oauth2/gdch_credentials.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/gdch_credentials_5.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/PythonProject/files/env310/lib/python3.10/site-packages/google/auth/aio/credentials.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/credentials_26.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/PythonProject/files/env310/lib/python3.10/site-packages/google/auth/compute_engine/credentials.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/credentials_27.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/PythonProject/files/env310/lib/python3.10/site-packages/oauthlib/oauth2/rfc6749/grant_types/resource_owner_password_credentials.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/resource_owner_password_credentials_5.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/PythonProject/files/env310/lib/python3.10/site-packages/oauthlib/oauth2/rfc6749/grant_types/client_credentials.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/client_credentials_5.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/PythonProject/files/ferguson-system/.venv/lib/python3.10/site-packages/redis/credentials.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/credentials_28.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/ML Automation system/node_modules/google-auth-library/build/src/auth/defaultawssecuritycredentialssupplier.d.ts",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/defaultawssecuritycredentialssupplier.d.ts",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/ML Automation system/node_modules/google-auth-library/build/src/auth/credentials.js",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/credentials.js",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/ML Automation system/node_modules/google-auth-library/build/src/auth/defaultawssecuritycredentialssupplier.js",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/defaultawssecuritycredentialssupplier.js",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/ML Automation system/node_modules/google-auth-library/build/src/auth/stscredentials.d.ts",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/stscredentials.d.ts",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/ML Automation system/node_modules/google-auth-library/build/src/auth/credentials.d.ts",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/credentials.d.ts",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/ML Automation system/node_modules/google-auth-library/build/src/auth/stscredentials.js",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/stscredentials.js",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/node_modules/google-auth-library/build/src/auth/defaultawssecuritycredentialssupplier.d.ts",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/defaultawssecuritycredentialssupplier.d_1.ts",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/node_modules/google-auth-library/build/src/auth/credentials.js",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/credentials_1.js",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/node_modules/google-auth-library/build/src/auth/defaultawssecuritycredentialssupplier.js",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/defaultawssecuritycredentialssupplier_1.js",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/node_modules/google-auth-library/build/src/auth/stscredentials.d.ts",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/stscredentials.d_1.ts",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/node_modules/google-auth-library/build/src/auth/credentials.d.ts",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/credentials.d_1.ts",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/node_modules/google-auth-library/build/src/auth/stscredentials.js",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/stscredentials_1.js",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/aws-sdk/lib/credentials.js",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/credentials_2.js",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/aws-sdk/lib/credentials.d.ts",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/credentials.d_2.ts",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/aws-sdk/lib/signers/v4_credentials.js",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/v4_credentials.js",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/aws-sdk/lib/credentials/sso_credentials.js",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/sso_credentials.js",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/aws-sdk/lib/credentials/token_file_web_identity_credentials.js",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/token_file_web_identity_credentials.js",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/aws-sdk/lib/credentials/ecs_credentials.d.ts",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/ecs_credentials.d.ts",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/aws-sdk/lib/credentials/cognito_identity_credentials.d.ts",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/cognito_identity_credentials.d.ts",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/aws-sdk/lib/credentials/temporary_credentials.d.ts",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/temporary_credentials.d.ts",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/aws-sdk/lib/credentials/chainable_temporary_credentials.js",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/chainable_temporary_credentials.js",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/aws-sdk/lib/credentials/environment_credentials.d.ts",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/environment_credentials.d.ts",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/aws-sdk/lib/credentials/token_file_web_identity_credentials.d.ts",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/token_file_web_identity_credentials.d.ts",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/aws-sdk/lib/credentials/process_credentials.js",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/process_credentials.js",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/aws-sdk/lib/credentials/saml_credentials.js",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/saml_credentials.js",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/aws-sdk/lib/credentials/file_system_credentials.d.ts",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/file_system_credentials.d.ts",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/aws-sdk/lib/credentials/environment_credentials.js",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/environment_credentials.js",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/aws-sdk/lib/credentials/sso_credentials.d.ts",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/sso_credentials.d.ts",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/aws-sdk/lib/credentials/ec2_metadata_credentials.d.ts",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/ec2_metadata_credentials.d.ts",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/aws-sdk/lib/credentials/ecs_credentials.js",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/ecs_credentials.js",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/aws-sdk/lib/credentials/shared_ini_file_credentials.d.ts",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/shared_ini_file_credentials.d.ts",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/aws-sdk/lib/credentials/temporary_credentials.js",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/temporary_credentials.js",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/aws-sdk/lib/credentials/remote_credentials.js",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/remote_credentials.js",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/aws-sdk/lib/credentials/web_identity_credentials.js",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/web_identity_credentials.js",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/aws-sdk/lib/credentials/web_identity_credentials.d.ts",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/web_identity_credentials.d.ts",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/aws-sdk/lib/credentials/chainable_temporary_credentials.d.ts",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/chainable_temporary_credentials.d.ts",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/aws-sdk/lib/credentials/process_credentials.d.ts",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/process_credentials.d.ts",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/aws-sdk/lib/credentials/shared_ini_file_credentials.js",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/shared_ini_file_credentials.js",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/aws-sdk/lib/credentials/saml_credentials.d.ts",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/saml_credentials.d.ts",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/aws-sdk/lib/credentials/cognito_identity_credentials.js",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/cognito_identity_credentials.js",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/aws-sdk/lib/credentials/ec2_metadata_credentials.js",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/ec2_metadata_credentials.js",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/aws-sdk/lib/credentials/remote_credentials.d.ts",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/remote_credentials.d.ts",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/aws-sdk/lib/credentials/file_system_credentials.js",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/file_system_credentials.js",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/wix.config.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/wix.config.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/database_verification/ferguson_system_system_config_export.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/ferguson_system_system_config_export.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/RU_PREP/SYSTEMS/email_config.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/email_config.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/pattern_analyzer_system/.venv/lib/python3.10/site-packages/googleapiclient/discovery_cache/documents/osconfig.v1beta.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/osconfig.v1beta.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/pattern_analyzer_system/.venv/lib/python3.10/site-packages/googleapiclient/discovery_cache/documents/runtimeconfig.v1.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/runtimeconfig.v1.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/pattern_analyzer_system/.venv/lib/python3.10/site-packages/googleapiclient/discovery_cache/documents/gamesConfiguration.v1configuration.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/gamesConfiguration.v1configuration.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/pattern_analyzer_system/.venv/lib/python3.10/site-packages/googleapiclient/discovery_cache/documents/runtimeconfig.v1beta1.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/runtimeconfig.v1beta1.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/pattern_analyzer_system/.venv/lib/python3.10/site-packages/googleapiclient/discovery_cache/documents/osconfig.v1.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/osconfig.v1.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/pattern_analyzer_system/.venv/lib/python3.10/site-packages/googleapiclient/discovery_cache/documents/config.v1.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/config.v1.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/pattern_analyzer_system/.venv/lib/python3.10/site-packages/googleapiclient/discovery_cache/documents/osconfig.v2.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/osconfig.v2.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/pattern_analyzer_system/.venv/lib/python3.10/site-packages/googleapiclient/discovery_cache/documents/osconfig.v1alpha.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/osconfig.v1alpha.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/pattern_analyzer_system/.venv/lib/python3.10/site-packages/googleapiclient/discovery_cache/documents/osconfig.v2beta.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/osconfig.v2beta.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/ui/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.venv/lib/python3.13/site-packages/googleapiclient/discovery_cache/documents/osconfig.v1beta.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/osconfig.v1beta_1.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.venv/lib/python3.13/site-packages/googleapiclient/discovery_cache/documents/runtimeconfig.v1.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/runtimeconfig.v1_1.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.venv/lib/python3.13/site-packages/googleapiclient/discovery_cache/documents/gamesConfiguration.v1configuration.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/gamesConfiguration.v1configuration_1.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.venv/lib/python3.13/site-packages/googleapiclient/discovery_cache/documents/runtimeconfig.v1beta1.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/runtimeconfig.v1beta1_1.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.venv/lib/python3.13/site-packages/googleapiclient/discovery_cache/documents/osconfig.v1.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/osconfig.v1_1.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.venv/lib/python3.13/site-packages/googleapiclient/discovery_cache/documents/config.v1.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/config.v1_1.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.venv/lib/python3.13/site-packages/googleapiclient/discovery_cache/documents/osconfig.v2.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/osconfig.v2_1.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.venv/lib/python3.13/site-packages/googleapiclient/discovery_cache/documents/osconfig.v1alpha.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/osconfig.v1alpha_1.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.venv/lib/python3.13/site-packages/googleapiclient/discovery_cache/documents/osconfig.v2beta.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/osconfig.v2beta_1.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/PythonProject/files/models/all-MiniLM-L6-v2-onnx/tokenizer_config.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tokenizer_config.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/PythonProject/files/models/all-MiniLM-L6-v2-onnx/config.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/config.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/PythonProject/files/models/all-MiniLM-L6-v2-onnx/config_sentence_transformers.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/config_sentence_transformers.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/PythonProject/files/models/all-MiniLM-L6-v2-onnx/sentence_bert_config.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/sentence_bert_config.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/PythonProject/files/models/all-MiniLM-L6-v2-onnx/1_Pooling/config.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/config_1.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/ferguson-system/files/ui/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_1.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_1.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/wix.config.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/wix.config_1.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/ML Automation system/node_modules/es-errors/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_2.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/ML Automation system/node_modules/math-intrinsics/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_3.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/ML Automation system/node_modules/has-tostringtag/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_4.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/ML Automation system/node_modules/side-channel-list/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_5.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/ML Automation system/node_modules/call-bind-apply-helpers/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_6.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/ML Automation system/node_modules/es-define-property/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_7.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/ML Automation system/node_modules/call-bound/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_8.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/ML Automation system/node_modules/dunder-proto/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_9.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/ML Automation system/node_modules/hasown/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_10.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/ML Automation system/node_modules/side-channel-weakmap/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_11.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/ML Automation system/node_modules/logform/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_12.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/ML Automation system/node_modules/has-symbols/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_13.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/ML Automation system/node_modules/side-channel/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_14.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/ML Automation system/node_modules/get-proto/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_15.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/ML Automation system/node_modules/gopd/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_16.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/ML Automation system/node_modules/nodemon/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_2.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/ML Automation system/node_modules/es-set-tostringtag/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_17.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/ML Automation system/node_modules/side-channel-map/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_18.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/ML Automation system/node_modules/es-object-atoms/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_19.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/ML Automation system/node_modules/@bcoe/v8-coverage/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_20.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/ML Automation system/node_modules/@bcoe/v8-coverage/dist/lib/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_21.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/ML Automation system/node_modules/cfb/types/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_22.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/ML Automation system/node_modules/@babel/traverse/tsconfig.overrides.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig.overrides.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/ML Automation system/node_modules/ssf/types/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_23.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/ML Automation system/node_modules/xlsx/types/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_24.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/ML Automation system/node_modules/codepage/types/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_25.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/ML Automation system/node_modules/crc-32/types/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_26.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/ML Automation system/node_modules/frac/types/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_27.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/ML Automation system/node_modules/adler-32/types/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_28.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/x0mmh/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_3.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/kcukv/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_4.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/b6v8z/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_5.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/hh404/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_6.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/cj6uq/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_7.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/qzl5a/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_8.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/g2cna/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_9.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/masterPage/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_10.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/pa3z2/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_11.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/jcbc4/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_12.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/nb81j/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_13.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/yyqez/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_14.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/j6hyj/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_15.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/eav1r/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_16.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/gpfrg/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_17.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/uljie/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_18.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/e4ras/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_19.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/b99r0/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_20.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/y5onw/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_21.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/o6f0e/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_22.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/wmn7s/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_23.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/zub2q/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_24.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/xskw5/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_25.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/kvnmj/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_26.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/adg2f/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_27.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/nx1d0/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_28.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/rnfe6/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_29.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/nc43m/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_30.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/vftc0/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_31.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/h98n7/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_32.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/lgvd1/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_33.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/bh72x/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_34.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/j9w8f/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_35.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/ytxew/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_36.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/ecoz3/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_37.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/pl3ff/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_38.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/dnon5/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_39.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/backend/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_40.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/za1av/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_41.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/uhgf0/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_42.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/x3szx/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_43.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/hukhs/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_44.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/vxvn9/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_45.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/itqm9/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_46.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/wjapa/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_47.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/den3q/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_48.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/vgoal/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_49.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/c9lo8/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_50.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/idotf/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_51.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/joi32/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_52.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/cjk7d/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_53.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/public/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_54.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/u94uk/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_55.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/tr26u/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_56.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/x2otf/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_57.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/oui8d/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_58.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/z5lc0/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_59.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/u9000/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_60.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/zexp4/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_61.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/ydqo3/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_62.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/htlsm/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_63.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/j6i4e/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_64.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/bzocp/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_65.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/a0hnk/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_66.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/wbcom/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_67.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/yci98/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_68.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/ihy19/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_69.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/i37qs/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_70.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/wp2xl/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_71.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/n9pe6/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_72.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/jt95q/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_73.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/azbxk/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_74.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/ecwum/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_75.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/pusf0/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_76.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/jq01c/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_77.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/auj04/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_78.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/j3os0/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_79.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/onmtb/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_80.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/my1ka/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_81.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/fu2hh/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_82.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/kc69j/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_83.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/k0kt5/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_84.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/fc8xk/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_85.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/covet/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_86.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/xf66z/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_87.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/u5fe7/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_88.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/qg9hd/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_89.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/gz9y4/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_90.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/f8x76/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_91.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/zqk0v/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_92.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/wix-code-types/configs/tsconfig.page.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig.page.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/wix-code-types/configs/tsconfig.public.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig.public.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/wix-code-types/configs/tsconfig.base.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig.base.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/wix-code-types/configs/tsconfig.backend.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig.backend.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/wix-code-types/configs/beta/tsconfig.public.beta.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig.public.beta.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/wix-code-types/configs/beta/tsconfig.backend.beta.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig.backend.beta.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/wix-code-types/configs/beta/tsconfig.page.beta.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig.page.beta.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/ferguson-system/full_backup/ui/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_29.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/node_modules/es-errors/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_30.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/node_modules/math-intrinsics/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_31.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/node_modules/has-tostringtag/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_32.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/node_modules/side-channel-list/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_33.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/node_modules/call-bind-apply-helpers/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_34.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/node_modules/es-define-property/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_35.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/node_modules/call-bound/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_36.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/node_modules/dunder-proto/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_37.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/node_modules/hasown/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_38.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/node_modules/side-channel-weakmap/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_39.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/node_modules/logform/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_40.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/node_modules/has-symbols/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_41.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/node_modules/side-channel/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_42.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/node_modules/get-proto/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_43.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/node_modules/gopd/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_44.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/node_modules/nodemon/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_93.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/node_modules/es-set-tostringtag/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_45.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/node_modules/side-channel-map/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_46.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/node_modules/es-object-atoms/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_47.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/node_modules/@bcoe/v8-coverage/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_48.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/node_modules/@bcoe/v8-coverage/dist/lib/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_49.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/node_modules/cfb/types/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_50.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/node_modules/@babel/traverse/tsconfig.overrides.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig.overrides_1.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/node_modules/ssf/types/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_51.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/node_modules/xlsx/types/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_52.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/node_modules/codepage/types/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_53.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/node_modules/crc-32/types/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_54.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/node_modules/frac/types/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_55.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/node_modules/adler-32/types/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_56.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/x0mmh/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_94.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/kcukv/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_95.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/b6v8z/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_96.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/hh404/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_97.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/cj6uq/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_98.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/qzl5a/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_99.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/g2cna/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_100.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/masterPage/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_101.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/pa3z2/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_102.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/jcbc4/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_103.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/nb81j/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_104.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/yyqez/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_105.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/j6hyj/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_106.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/eav1r/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_107.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/gpfrg/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_108.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/uljie/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_109.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/e4ras/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_110.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/b99r0/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_111.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/y5onw/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_112.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/o6f0e/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_113.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/wmn7s/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_114.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/zub2q/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_115.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/xskw5/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_116.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/kvnmj/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_117.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/adg2f/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_118.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/nx1d0/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_119.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/rnfe6/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_120.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/nc43m/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_121.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/vftc0/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_122.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/h98n7/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_123.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/lgvd1/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_124.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/bh72x/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_125.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/j9w8f/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_126.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/ytxew/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_127.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/ecoz3/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_128.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/pl3ff/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_129.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/dnon5/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_130.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/backend/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_131.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/za1av/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_132.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/uhgf0/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_133.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/x3szx/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_134.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/hukhs/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_135.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/vxvn9/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_136.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/itqm9/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_137.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/wjapa/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_138.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/den3q/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_139.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/vgoal/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_140.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/c9lo8/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_141.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/idotf/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_142.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/joi32/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_143.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/cjk7d/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_144.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/public/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_145.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/u94uk/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_146.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/tr26u/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_147.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/x2otf/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_148.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/oui8d/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_149.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/z5lc0/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_150.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/u9000/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_151.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/zexp4/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_152.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/ydqo3/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_153.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/htlsm/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_154.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/j6i4e/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_155.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/bzocp/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_156.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/a0hnk/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_157.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/wbcom/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_158.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/yci98/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_159.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/ihy19/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_160.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/i37qs/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_161.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/wp2xl/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_162.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/n9pe6/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_163.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/jt95q/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_164.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/azbxk/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_165.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/ecwum/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_166.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/pusf0/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_167.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/jq01c/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_168.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/auj04/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_169.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/j3os0/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_170.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/onmtb/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_171.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/my1ka/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_172.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/fu2hh/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_173.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/kc69j/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_174.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/k0kt5/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_175.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/fc8xk/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_176.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/covet/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_177.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/xf66z/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_178.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/u5fe7/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_179.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/qg9hd/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_180.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/gz9y4/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_181.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/f8x76/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_182.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/zqk0v/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_183.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/wix-code-types/configs/tsconfig.page.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig.page_1.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/wix-code-types/configs/tsconfig.public.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig.public_1.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/wix-code-types/configs/tsconfig.base.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig.base_1.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/wix-code-types/configs/tsconfig.backend.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig.backend_1.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/wix-code-types/configs/beta/tsconfig.public.beta.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig.public.beta_1.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/wix-code-types/configs/beta/tsconfig.backend.beta.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig.backend.beta_1.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/wix-code-types/configs/beta/tsconfig.page.beta.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig.page.beta_1.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/reusify/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_57.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/define-data-property/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_58.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/is-typed-array/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_59.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/es-errors/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_60.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/possible-typed-array-names/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_61.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/math-intrinsics/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_62.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/has-tostringtag/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_63.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/side-channel-list/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_64.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/call-bind-apply-helpers/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_65.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/is-generator-function/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_66.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/es-define-property/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_67.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/call-bound/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_68.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/dunder-proto/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_69.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/hasown/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_70.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/side-channel-weakmap/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_71.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/has-symbols/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_72.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/side-channel/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_73.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/set-function-length/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_74.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/safe-regex-test/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_75.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/get-proto/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_76.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/generator-function/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_77.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/is-regex/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_78.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/gopd/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_79.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/for-each/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_80.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/which-typed-array/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_81.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/nodemon/jsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/jsconfig_184.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/available-typed-arrays/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_82.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/es-set-tostringtag/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_83.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/side-channel-map/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_84.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/is-arguments/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_85.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/es-object-atoms/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_86.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/@bcoe/v8-coverage/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_87.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/@bcoe/v8-coverage/dist/lib/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_88.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/fastq/test/tsconfig.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig_89.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/@babel/traverse/tsconfig.overrides.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/tsconfig.overrides_2.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/aws-sdk/apis/appconfig-2019-10-09.examples.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/appconfig-2019-10-09.examples.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/aws-sdk/apis/route53-recovery-control-config-2020-11-02.min.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/route53-recovery-control-config-2020-11-02.min.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/aws-sdk/apis/appconfigdata-2021-11-11.examples.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/appconfigdata-2021-11-11.examples.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/aws-sdk/apis/appconfig-2019-10-09.paginators.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/appconfig-2019-10-09.paginators.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/aws-sdk/apis/config-2014-11-12.min.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/config-2014-11-12.min.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/aws-sdk/apis/route53-recovery-control-config-2020-11-02.waiters2.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/route53-recovery-control-config-2020-11-02.waiters2.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/aws-sdk/apis/route53-recovery-control-config-2020-11-02.paginators.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/route53-recovery-control-config-2020-11-02.paginators.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/aws-sdk/apis/migrationhub-config-2019-06-30.paginators.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/migrationhub-config-2019-06-30.paginators.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/aws-sdk/apis/config-2014-11-12.examples.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/config-2014-11-12.examples.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/aws-sdk/apis/migrationhub-config-2019-06-30.examples.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/migrationhub-config-2019-06-30.examples.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/aws-sdk/apis/appconfigdata-2021-11-11.min.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/appconfigdata-2021-11-11.min.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/aws-sdk/apis/config-2014-11-12.paginators.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/config-2014-11-12.paginators.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/aws-sdk/apis/migrationhub-config-2019-06-30.min.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/migrationhub-config-2019-06-30.min.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/aws-sdk/apis/appconfigdata-2021-11-11.paginators.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/appconfigdata-2021-11-11.paginators.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/aws-sdk/apis/appconfig-2019-10-09.min.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/appconfig-2019-10-09.min.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/aws-sdk/lib/region_config_data.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/region_config_data.json",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/pattern_analyzer_system/.venv/lib/python3.10/site-packages/openai/resources/realtime/client_secrets.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/client_secrets.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/RECOVERED_DATA/python-projects/PycharmProjects/PythonProject/.venv/lib/python3.13/site-packages/openai/resources/realtime/client_secrets.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/client_secrets_1.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/RECOVERED_DATA/python-projects/PycharmProjects/PythonProject/.venv/lib/python3.13/site-packages/streamlit/runtime/secrets.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/secrets.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/RECOVERED_DATA/python-projects/PycharmProjects/PythonProject/ferguson-system/.venv/lib/python3.10/site-packages/openai/resources/realtime/client_secrets.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/client_secrets_2.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/RECOVERED_DATA/python-projects/PycharmProjects/PythonProject/ferguson-system/.venv/lib/python3.10/site-packages/pydantic_settings/sources/providers/secrets.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/secrets_1.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/RECOVERED_DATA/python-projects/PycharmProjects/PythonProject/ferguson-system/.venv/lib/python3.10/site-packages/pydantic_settings/sources/providers/nested_secrets.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/nested_secrets.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/PythonProject/files/ferguson-system/.venv/lib/python3.10/site-packages/openai/resources/realtime/client_secrets.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/client_secrets_3.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/PythonProject/files/ferguson-system/.venv/lib/python3.10/site-packages/pydantic_settings/sources/providers/secrets.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/secrets_2.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/PythonProject/files/ferguson-system/.venv/lib/python3.10/site-packages/pydantic_settings/sources/providers/nested_secrets.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/nested_secrets_1.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/config/stripe_secrets.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/stripe_secrets.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/deployment-scripts/prepare-secrets-config.sh",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/prepare-secrets-config.sh",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/test-scripts/test-secrets-access.js",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/test-secrets-access.js",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/wix-code-types/dist/types/common/wix-secrets-backend.d.ts",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/wix-secrets-backend.d.ts",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/wix-code-types/dist/types/common/wix-secrets-backend.v2.d.ts",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/wix-secrets-backend.v2.d.ts",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.wix/types/wix-code-types/dist/types/beta/common/wix-secrets-backend.v2.d.ts",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/wix-secrets-backend.v2.d_1.ts",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/deployment-ready/test-scripts/test-secrets-access.js",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/test-secrets-access_1.js",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/config/stripe_secrets.py",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/stripe_secrets_1.py",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/deployment-scripts/prepare-secrets-config.sh",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/prepare-secrets-config_1.sh",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/test-scripts/test-secrets-access.js",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/test-secrets-access_2.js",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/wix-code-types/dist/types/common/wix-secrets-backend.d.ts",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/wix-secrets-backend.d_1.ts",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/wix-code-types/dist/types/common/wix-secrets-backend.v2.d.ts",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/wix-secrets-backend.v2.d_2.ts",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.wix/types/wix-code-types/dist/types/beta/common/wix-secrets-backend.v2.d.ts",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/wix-secrets-backend.v2.d_3.ts",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/aws-sdk/clients/secretsmanager.d.ts",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/secretsmanager.d.ts",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/aws-sdk/clients/secretsmanager.js",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/secretsmanager.js",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/aws-sdk/apis/secretsmanager-2017-10-17.min.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/secretsmanager-2017-10-17.min.json",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/aws-sdk/apis/secretsmanager-2017-10-17.paginators.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/secretsmanager-2017-10-17.paginators.json",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/node_modules/aws-sdk/apis/secretsmanager-2017-10-17.examples.json",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/secretsmanager-2017-10-17.examples.json",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/deployment-ready/test-scripts/test-secrets-access.js",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/credentials/test-secrets-access_3.js",
+      "type": "credentials"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/.env",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.env_20",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/HingeCraft/.env",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.env_21",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/ai/youtube_agent/.env",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.env_22",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/RECOVERED_DATA/ferguson-system/notion_sync/.env",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.env_23",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/notion_sync/.env",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.env_24",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/HingeCraft/files/.env",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.env_25",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/PythonProject/files/68/.env",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.env_26",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/PythonProject/files/Volkov-1: Diplomatic Prompt Architect/.env",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.env_27",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/PythonProject/files/ferguson-system/.env",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.env_28",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/PythonProject/files/helixlearn/app/.env",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.env_29",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/PythonProject/files/Communtiy Bot / Core Offer/.env",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.env_30",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/PythonProject/files/ferguson-system/notion_sync/.env",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.env_31",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/PythonProject/files/Volkov-1: Diplomatic Prompt Architect/database.py/.env",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.env_32",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/ferguson-system/files/.env",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.env_33",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/ferguson-system/files/notion_sync/.env",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.env_34",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/youtube_agent/files/.env",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.env_35",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/.env",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.env_36",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/notion/.env",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.env_37",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/ferguson-system/full_backup/notion_sync/.env",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.env_38",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/notion/.env",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.env_39",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/notion/.env.local",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.env_2.local",
+      "type": "env-files"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/notion/.env.local",
+      "dest": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA/env-files/.env_3.local",
+      "type": "env-files"
+    }
+  ],
+  "backup_locations": {
+    "main_backup": "/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP",
+    "secure_data": "/Users/chandlerfergusen/Desktop/CURSOR/SECURE_DATA",
+    "recovered_data": "/Users/chandlerfergusen/Desktop/CURSOR/RECOVERED_DATA"
+  }
+}

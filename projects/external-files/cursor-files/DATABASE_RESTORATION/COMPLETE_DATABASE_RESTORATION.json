@@ -1,0 +1,2399 @@
+{
+  "restoration_timestamp": "2025-12-10T19:15:44.408348",
+  "databases": {
+    "ferguson_system": {
+      "database_name": "ferguson_system",
+      "database_path": "/Users/chandlerfergusen/Desktop/CURSOR/data/ferguson_system.db",
+      "export_timestamp": "2025-12-10T19:15:44.418902",
+      "tables": {
+        "entries": {
+          "schema": [
+            {
+              "cid": 0,
+              "name": "uid",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 1
+            },
+            {
+              "cid": 1,
+              "name": "raw_content",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 2,
+              "name": "created_at",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": "datetime('now')",
+              "pk": 0
+            }
+          ],
+          "row_count": 0,
+          "data": []
+        },
+        "prompts": {
+          "schema": [
+            {
+              "cid": 0,
+              "name": "id",
+              "type": "INTEGER",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 1
+            },
+            {
+              "cid": 1,
+              "name": "uid",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 2,
+              "name": "model",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 3,
+              "name": "prompt_text",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 4,
+              "name": "result_json",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 5,
+              "name": "created_at",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": "datetime('now')",
+              "pk": 0
+            }
+          ],
+          "row_count": 0,
+          "data": []
+        },
+        "sqlite_sequence": {
+          "schema": [
+            {
+              "cid": 0,
+              "name": "name",
+              "type": "",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 1,
+              "name": "seq",
+              "type": "",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            }
+          ],
+          "row_count": 1,
+          "data": [
+            {
+              "name": "large_plays",
+              "seq": 12
+            }
+          ]
+        },
+        "embeddings": {
+          "schema": [
+            {
+              "cid": 0,
+              "name": "uid",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 1
+            },
+            {
+              "cid": 1,
+              "name": "vector",
+              "type": "BLOB",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 2,
+              "name": "meta",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 3,
+              "name": "created_at",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": "datetime('now')",
+              "pk": 0
+            }
+          ],
+          "row_count": 0,
+          "data": []
+        },
+        "tctc_atoms": {
+          "schema": [
+            {
+              "cid": 0,
+              "name": "id",
+              "type": "INTEGER",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 1
+            },
+            {
+              "cid": 1,
+              "name": "uid",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 2,
+              "name": "atom_id",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 3,
+              "name": "micro_event",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 4,
+              "name": "hash_digest",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 5,
+              "name": "hmac",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 6,
+              "name": "entropy",
+              "type": "REAL",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 7,
+              "name": "frameworks",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 8,
+              "name": "quantum_algorithms",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 9,
+              "name": "idl_protocols",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 10,
+              "name": "maslow_layers",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 11,
+              "name": "metadata",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 12,
+              "name": "created_at",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": "datetime('now')",
+              "pk": 0
+            }
+          ],
+          "row_count": 0,
+          "data": []
+        },
+        "tctc_vectors": {
+          "schema": [
+            {
+              "cid": 0,
+              "name": "id",
+              "type": "INTEGER",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 1
+            },
+            {
+              "cid": 1,
+              "name": "uid",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 2,
+              "name": "vector_source",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 3,
+              "name": "vector_dim",
+              "type": "INTEGER",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 4,
+              "name": "composite_vector",
+              "type": "BLOB",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 5,
+              "name": "atom_ids",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 6,
+              "name": "metadata",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 7,
+              "name": "created_at",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": "datetime('now')",
+              "pk": 0
+            }
+          ],
+          "row_count": 0,
+          "data": []
+        },
+        "tctc_compiled": {
+          "schema": [
+            {
+              "cid": 0,
+              "name": "id",
+              "type": "INTEGER",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 1
+            },
+            {
+              "cid": 1,
+              "name": "uid",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 2,
+              "name": "compiled_intent",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 3,
+              "name": "decoded_prompt",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 4,
+              "name": "alignment_shift",
+              "type": "REAL",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 5,
+              "name": "frameworks",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 6,
+              "name": "quantum_algorithms",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 7,
+              "name": "idl_protocols",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 8,
+              "name": "maslow_layers",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 9,
+              "name": "safety_checks",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 10,
+              "name": "metadata",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 11,
+              "name": "created_at",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": "datetime('now')",
+              "pk": 0
+            }
+          ],
+          "row_count": 0,
+          "data": []
+        },
+        "qsde_results": {
+          "schema": [
+            {
+              "cid": 0,
+              "name": "id",
+              "type": "INTEGER",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 1
+            },
+            {
+              "cid": 1,
+              "name": "uid",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 2,
+              "name": "chaos_score",
+              "type": "REAL",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 3,
+              "name": "momentum_score",
+              "type": "REAL",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 4,
+              "name": "drift",
+              "type": "REAL",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 5,
+              "name": "alignment_shift",
+              "type": "REAL",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 6,
+              "name": "emotional_polarity",
+              "type": "REAL",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 7,
+              "name": "survival_score",
+              "type": "REAL",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 8,
+              "name": "fractal_score",
+              "type": "REAL",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 9,
+              "name": "drift_directions",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 10,
+              "name": "future_predictions",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 11,
+              "name": "pre_solution_prompt",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 12,
+              "name": "metadata",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 13,
+              "name": "created_at",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": "datetime('now')",
+              "pk": 0
+            }
+          ],
+          "row_count": 0,
+          "data": []
+        },
+        "mrpl_variants": {
+          "schema": [
+            {
+              "cid": 0,
+              "name": "id",
+              "type": "INTEGER",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 1
+            },
+            {
+              "cid": 1,
+              "name": "uid",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 2,
+              "name": "variant_id",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 3,
+              "name": "reality_type",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 4,
+              "name": "prompt",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 5,
+              "name": "utility_score",
+              "type": "REAL",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 6,
+              "name": "risk_score",
+              "type": "REAL",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 7,
+              "name": "novelty_score",
+              "type": "REAL",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 8,
+              "name": "alignment_score",
+              "type": "REAL",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 9,
+              "name": "future_impact_score",
+              "type": "REAL",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 10,
+              "name": "weighted_score",
+              "type": "REAL",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 11,
+              "name": "maroc_veto",
+              "type": "BOOLEAN",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 12,
+              "name": "metadata",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 13,
+              "name": "created_at",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": "datetime('now')",
+              "pk": 0
+            }
+          ],
+          "row_count": 0,
+          "data": []
+        },
+        "mrpl_merged": {
+          "schema": [
+            {
+              "cid": 0,
+              "name": "id",
+              "type": "INTEGER",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 1
+            },
+            {
+              "cid": 1,
+              "name": "uid",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 2,
+              "name": "base_prompt",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 3,
+              "name": "final_prompt",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 4,
+              "name": "compiled_intent",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 5,
+              "name": "merge_method",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 6,
+              "name": "selected_realities",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 7,
+              "name": "weights",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 8,
+              "name": "metadata",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 9,
+              "name": "created_at",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": "datetime('now')",
+              "pk": 0
+            }
+          ],
+          "row_count": 0,
+          "data": []
+        },
+        "csal_threats": {
+          "schema": [
+            {
+              "cid": 0,
+              "name": "id",
+              "type": "INTEGER",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 1
+            },
+            {
+              "cid": 1,
+              "name": "uid",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 2,
+              "name": "threat_detected",
+              "type": "BOOLEAN",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 3,
+              "name": "threat_level",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 4,
+              "name": "threat_types",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 5,
+              "name": "threat_score",
+              "type": "REAL",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 6,
+              "name": "suspicious_matches",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 7,
+              "name": "token_heuristic_score",
+              "type": "REAL",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 8,
+              "name": "embedding_similarity_score",
+              "type": "REAL",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 9,
+              "name": "maroc_alignment_score",
+              "type": "REAL",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 10,
+              "name": "qsde_signal_score",
+              "type": "REAL",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 11,
+              "name": "metadata",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 12,
+              "name": "created_at",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": "datetime('now')",
+              "pk": 0
+            }
+          ],
+          "row_count": 0,
+          "data": []
+        },
+        "csal_counter_actions": {
+          "schema": [
+            {
+              "cid": 0,
+              "name": "id",
+              "type": "INTEGER",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 1
+            },
+            {
+              "cid": 1,
+              "name": "threat_id",
+              "type": "INTEGER",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 2,
+              "name": "uid",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 3,
+              "name": "action_type",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 4,
+              "name": "action_description",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 5,
+              "name": "defensive_transform",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 6,
+              "name": "shielded_prompt",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 7,
+              "name": "metadata",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 8,
+              "name": "created_at",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": "datetime('now')",
+              "pk": 0
+            }
+          ],
+          "row_count": 0,
+          "data": []
+        },
+        "maroc_agents": {
+          "schema": [
+            {
+              "cid": 0,
+              "name": "id",
+              "type": "INTEGER",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 1
+            },
+            {
+              "cid": 1,
+              "name": "agent_id",
+              "type": "TEXT",
+              "notnull": 1,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 2,
+              "name": "agent_type",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 3,
+              "name": "status",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 4,
+              "name": "metadata",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 5,
+              "name": "registered_at",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": "datetime('now')",
+              "pk": 0
+            },
+            {
+              "cid": 6,
+              "name": "last_seen",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            }
+          ],
+          "row_count": 0,
+          "data": []
+        },
+        "maroc_oversight": {
+          "schema": [
+            {
+              "cid": 0,
+              "name": "id",
+              "type": "INTEGER",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 1
+            },
+            {
+              "cid": 1,
+              "name": "agent_id",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 2,
+              "name": "uid",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 3,
+              "name": "alignment_score",
+              "type": "REAL",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 4,
+              "name": "entropy",
+              "type": "REAL",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 5,
+              "name": "drift",
+              "type": "REAL",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 6,
+              "name": "system_health",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 7,
+              "name": "agent_modifications",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 8,
+              "name": "overrides",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 9,
+              "name": "entropy_corrections",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 10,
+              "name": "prompt_chain_rewrites",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 11,
+              "name": "quantum_noise_reduction",
+              "type": "REAL",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 12,
+              "name": "structural_updates",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 13,
+              "name": "future_risk_predictions",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 14,
+              "name": "meta_directive",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 15,
+              "name": "metadata",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 16,
+              "name": "created_at",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": "datetime('now')",
+              "pk": 0
+            }
+          ],
+          "row_count": 0,
+          "data": []
+        },
+        "unified_results": {
+          "schema": [
+            {
+              "cid": 0,
+              "name": "id",
+              "type": "INTEGER",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 1
+            },
+            {
+              "cid": 1,
+              "name": "uid",
+              "type": "TEXT",
+              "notnull": 1,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 2,
+              "name": "fma_profile",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 3,
+              "name": "tctc_result",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 4,
+              "name": "qsde_result",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 5,
+              "name": "mrpl_result",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 6,
+              "name": "csal_result",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 7,
+              "name": "maroc_result",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 8,
+              "name": "frameworks_detected",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 9,
+              "name": "quantum_algorithms",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 10,
+              "name": "bpsd_analysis",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 11,
+              "name": "counter_entrapment",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 12,
+              "name": "idl_protocols",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 13,
+              "name": "processing_time",
+              "type": "REAL",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 14,
+              "name": "metadata",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 15,
+              "name": "created_at",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": "datetime('now')",
+              "pk": 0
+            }
+          ],
+          "row_count": 0,
+          "data": []
+        },
+        "system_config": {
+          "schema": [
+            {
+              "cid": 0,
+              "name": "id",
+              "type": "INTEGER",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 1
+            },
+            {
+              "cid": 1,
+              "name": "key",
+              "type": "TEXT",
+              "notnull": 1,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 2,
+              "name": "value",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 3,
+              "name": "description",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 4,
+              "name": "updated_at",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": "datetime('now')",
+              "pk": 0
+            }
+          ],
+          "row_count": 0,
+          "data": []
+        },
+        "sessions": {
+          "schema": [
+            {
+              "cid": 0,
+              "name": "id",
+              "type": "INTEGER",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 1
+            },
+            {
+              "cid": 1,
+              "name": "session_id",
+              "type": "TEXT",
+              "notnull": 1,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 2,
+              "name": "user_agent",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 3,
+              "name": "ip_address",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 4,
+              "name": "start_time",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": "datetime('now')",
+              "pk": 0
+            },
+            {
+              "cid": 5,
+              "name": "end_time",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 6,
+              "name": "status",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": "'active'",
+              "pk": 0
+            }
+          ],
+          "row_count": 0,
+          "data": []
+        },
+        "statistics": {
+          "schema": [
+            {
+              "cid": 0,
+              "name": "id",
+              "type": "INTEGER",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 1
+            },
+            {
+              "cid": 1,
+              "name": "metric_name",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 2,
+              "name": "metric_value",
+              "type": "REAL",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 3,
+              "name": "metric_type",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 4,
+              "name": "metadata",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 5,
+              "name": "recorded_at",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": "datetime('now')",
+              "pk": 0
+            }
+          ],
+          "row_count": 0,
+          "data": []
+        },
+        "large_plays": {
+          "schema": [
+            {
+              "cid": 0,
+              "name": "id",
+              "type": "INTEGER",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 1
+            },
+            {
+              "cid": 1,
+              "name": "title",
+              "type": "TEXT",
+              "notnull": 1,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 2,
+              "name": "description",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 3,
+              "name": "category",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 4,
+              "name": "priority",
+              "type": "INTEGER",
+              "notnull": 0,
+              "default_value": "5",
+              "pk": 0
+            },
+            {
+              "cid": 5,
+              "name": "status",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": "'pending'",
+              "pk": 0
+            },
+            {
+              "cid": 6,
+              "name": "impact_score",
+              "type": "REAL",
+              "notnull": 0,
+              "default_value": "0.0",
+              "pk": 0
+            },
+            {
+              "cid": 7,
+              "name": "growth_potential",
+              "type": "REAL",
+              "notnull": 0,
+              "default_value": "0.0",
+              "pk": 0
+            },
+            {
+              "cid": 8,
+              "name": "last_sent_date",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 9,
+              "name": "times_sent",
+              "type": "INTEGER",
+              "notnull": 0,
+              "default_value": "0",
+              "pk": 0
+            },
+            {
+              "cid": 10,
+              "name": "metadata",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 11,
+              "name": "created_at",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": "datetime('now')",
+              "pk": 0
+            },
+            {
+              "cid": 12,
+              "name": "updated_at",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": "datetime('now')",
+              "pk": 0
+            }
+          ],
+          "row_count": 12,
+          "data": [
+            {
+              "id": 1,
+              "title": "Damage Mitigation - Adulthood Reversals",
+              "description": "Damage mitigation life action on all levels of adulthood reversals. Comprehensive review and action plan for reversing negative patterns and establishing positive adult frameworks.",
+              "category": "life_optimization",
+              "priority": 10,
+              "status": "pending",
+              "impact_score": 9.5,
+              "growth_potential": 9.0,
+              "last_sent_date": null,
+              "times_sent": 0,
+              "metadata": "{\"urgency\": \"high\", \"scope\": \"comprehensive\", \"timeframe\": \"ongoing\"}",
+              "created_at": "2025-11-21 22:29:05",
+              "updated_at": "2025-11-21 22:29:05"
+            },
+            {
+              "id": 2,
+              "title": "Data Recovery & Backup System",
+              "description": "Pull back all data from various sources. Comprehensive data collection, organization, and secure backup system. Ensure all critical information is preserved and accessible.",
+              "category": "data_management",
+              "priority": 9,
+              "status": "pending",
+              "impact_score": 8.5,
+              "growth_potential": 7.5,
+              "last_sent_date": null,
+              "times_sent": 0,
+              "metadata": "{\"urgency\": \"high\", \"scope\": \"all_data_sources\", \"timeframe\": \"immediate\"}",
+              "created_at": "2025-11-21 22:29:05",
+              "updated_at": "2025-11-21 22:29:05"
+            },
+            {
+              "id": 3,
+              "title": "Hard Drive Preparation - 1YB Backup",
+              "description": "Prep 1YB hard drive for comprehensive backup. Organize, format, and prepare external storage for full system backup including all critical data, documents, and configurations.",
+              "category": "data_management",
+              "priority": 8,
+              "status": "pending",
+              "impact_score": 8.0,
+              "growth_potential": 7.0,
+              "last_sent_date": null,
+              "times_sent": 0,
+              "metadata": "{\"urgency\": \"medium\", \"scope\": \"backup_system\", \"timeframe\": \"1-2_days\"}",
+              "created_at": "2025-11-21 22:29:05",
+              "updated_at": "2025-11-21 22:29:05"
+            },
+            {
+              "id": 4,
+              "title": "Essential Items Bag Check & Storage",
+              "description": "Bag check for essentials then store. Review and organize essential items, create go-bag with critical supplies, and establish secure storage system for important documents and items.",
+              "category": "preparation",
+              "priority": 9,
+              "status": "pending",
+              "impact_score": 8.5,
+              "growth_potential": 8.0,
+              "last_sent_date": null,
+              "times_sent": 0,
+              "metadata": "{\"urgency\": \"high\", \"scope\": \"essential_items\", \"timeframe\": \"immediate\"}",
+              "created_at": "2025-11-21 22:29:05",
+              "updated_at": "2025-11-21 22:29:05"
+            },
+            {
+              "id": 5,
+              "title": "Source Charging Cord & Cables",
+              "description": "Find place to buy cord and necessary cables. Research and locate reliable sources for charging cords, cables, and tech accessories needed for daily operations and backup systems.",
+              "category": "logistics",
+              "priority": 6,
+              "status": "pending",
+              "impact_score": 6.5,
+              "growth_potential": 5.0,
+              "last_sent_date": null,
+              "times_sent": 0,
+              "metadata": "{\"urgency\": \"medium\", \"scope\": \"equipment\", \"timeframe\": \"1_day\"}",
+              "created_at": "2025-11-21 22:29:05",
+              "updated_at": "2025-11-21 22:29:05"
+            },
+            {
+              "id": 6,
+              "title": "Vision Care - New Glasses & Prescription",
+              "description": "New glasses/prescription. Schedule eye exam, update prescription, and obtain new glasses to ensure optimal vision for all work and daily activities.",
+              "category": "health",
+              "priority": 7,
+              "status": "pending",
+              "impact_score": 7.5,
+              "growth_potential": 7.0,
+              "last_sent_date": null,
+              "times_sent": 0,
+              "metadata": "{\"urgency\": \"medium\", \"scope\": \"health\", \"timeframe\": \"1_week\"}",
+              "created_at": "2025-11-21 22:29:05",
+              "updated_at": "2025-11-21 22:29:05"
+            },
+            {
+              "id": 7,
+              "title": "Strategic Decision Analysis - Chess Move",
+              "description": "Calculate pros and cons of this upcoming chess move. Comprehensive analysis of major life decision, including risk assessment, opportunity cost, and strategic implications. Use decision matrix and probability calculations.",
+              "category": "strategic_planning",
+              "priority": 10,
+              "status": "pending",
+              "impact_score": 9.5,
+              "growth_potential": 9.5,
+              "last_sent_date": null,
+              "times_sent": 0,
+              "metadata": "{\"urgency\": \"high\", \"scope\": \"major_decision\", \"timeframe\": \"immediate\", \"requires_analysis\": true}",
+              "created_at": "2025-11-21 22:29:05",
+              "updated_at": "2025-11-21 22:29:05"
+            },
+            {
+              "id": 8,
+              "title": "Next Phase of Life - Direct Action",
+              "description": "Direct action on next phase of life. Execute concrete steps toward major life transition, including planning, resource allocation, and immediate actionable items. Focus on momentum and forward progress.",
+              "category": "life_transition",
+              "priority": 10,
+              "status": "pending",
+              "impact_score": 10.0,
+              "growth_potential": 10.0,
+              "last_sent_date": null,
+              "times_sent": 0,
+              "metadata": "{\"urgency\": \"critical\", \"scope\": \"life_phase\", \"timeframe\": \"ongoing\", \"requires_execution\": true}",
+              "created_at": "2025-11-21 22:29:05",
+              "updated_at": "2025-11-21 22:29:05"
+            },
+            {
+              "id": 9,
+              "title": "Daily Growth Plays - Database Integration",
+              "description": "3 new large plays things a day for direct growth pull from DB. Automated system to identify and execute 3 high-impact growth actions daily from database, ensuring consistent forward momentum and progress tracking.",
+              "category": "automation",
+              "priority": 9,
+              "status": "pending",
+              "impact_score": 9.0,
+              "growth_potential": 9.5,
+              "last_sent_date": null,
+              "times_sent": 0,
+              "metadata": "{\"urgency\": \"high\", \"scope\": \"daily_system\", \"timeframe\": \"daily\", \"automated\": true}",
+              "created_at": "2025-11-21 22:29:05",
+              "updated_at": "2025-11-21 22:29:05"
+            },
+            {
+              "id": 10,
+              "title": "Court Case Documentation & Motion Preparation",
+              "description": "Continue building motion drafts, evidence collection, and legal documentation. Maintain comprehensive legal strategy and ensure all documentation is current and properly organized.",
+              "category": "legal",
+              "priority": 9,
+              "status": "pending",
+              "impact_score": 9.0,
+              "growth_potential": 8.5,
+              "last_sent_date": null,
+              "times_sent": 0,
+              "metadata": "{\"urgency\": \"high\", \"scope\": \"legal_proceedings\", \"timeframe\": \"ongoing\", \"related_files\": [\"court/07_motion_drafts.md\"]}",
+              "created_at": "2025-11-21 22:29:05",
+              "updated_at": "2025-11-21 22:29:05"
+            },
+            {
+              "id": 11,
+              "title": "Database Integration & System Optimization",
+              "description": "Integrate all systems with database, ensure proper data flow, and optimize automation pipelines. Connect all components for seamless operation and maximum efficiency.",
+              "category": "system_integration",
+              "priority": 8,
+              "status": "pending",
+              "impact_score": 8.5,
+              "growth_potential": 8.5,
+              "last_sent_date": null,
+              "times_sent": 0,
+              "metadata": "{\"urgency\": \"medium\", \"scope\": \"system_wide\", \"timeframe\": \"ongoing\"}",
+              "created_at": "2025-11-21 22:29:05",
+              "updated_at": "2025-11-21 22:29:05"
+            },
+            {
+              "id": 12,
+              "title": "Financial Planning & Resource Allocation",
+              "description": "Review financial situation, optimize resource allocation, and plan for upcoming expenses. Ensure financial stability while pursuing growth opportunities.",
+              "category": "financial",
+              "priority": 8,
+              "status": "pending",
+              "impact_score": 8.0,
+              "growth_potential": 8.0,
+              "last_sent_date": null,
+              "times_sent": 0,
+              "metadata": "{\"urgency\": \"medium\", \"scope\": \"financial\", \"timeframe\": \"weekly\"}",
+              "created_at": "2025-11-21 22:29:05",
+              "updated_at": "2025-11-21 22:29:05"
+            }
+          ]
+        },
+        "daily_large_plays_log": {
+          "schema": [
+            {
+              "cid": 0,
+              "name": "id",
+              "type": "INTEGER",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 1
+            },
+            {
+              "cid": 1,
+              "name": "play_id",
+              "type": "INTEGER",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 2,
+              "name": "sent_date",
+              "type": "TEXT",
+              "notnull": 1,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 3,
+              "name": "google_doc_url",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 4,
+              "name": "google_doc_id",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 5,
+              "name": "metadata",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 6,
+              "name": "created_at",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": "datetime('now')",
+              "pk": 0
+            }
+          ],
+          "row_count": 0,
+          "data": []
+        }
+      }
+    },
+    "fma_data": {
+      "database_name": "fma_data",
+      "database_path": "/Users/chandlerfergusen/Desktop/CURSOR/sql/fma_data.db",
+      "export_timestamp": "2025-12-10T19:15:44.433162",
+      "tables": {
+        "ru_prep_frameworks": {
+          "schema": [
+            {
+              "cid": 0,
+              "name": "id",
+              "type": "INTEGER",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 1
+            },
+            {
+              "cid": 1,
+              "name": "name",
+              "type": "TEXT",
+              "notnull": 1,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 2,
+              "name": "description",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 3,
+              "name": "core_function",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 4,
+              "name": "integration_points",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 5,
+              "name": "application",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 6,
+              "name": "file_path",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 7,
+              "name": "created_at",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": "datetime('now')",
+              "pk": 0
+            }
+          ],
+          "row_count": 0,
+          "data": []
+        },
+        "sqlite_sequence": {
+          "schema": [
+            {
+              "cid": 0,
+              "name": "name",
+              "type": "",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 1,
+              "name": "seq",
+              "type": "",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            }
+          ],
+          "row_count": 1,
+          "data": [
+            {
+              "name": "ru_prep_counter_plans",
+              "seq": 5
+            }
+          ]
+        },
+        "ru_prep_algorithms": {
+          "schema": [
+            {
+              "cid": 0,
+              "name": "id",
+              "type": "INTEGER",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 1
+            },
+            {
+              "cid": 1,
+              "name": "name",
+              "type": "TEXT",
+              "notnull": 1,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 2,
+              "name": "description",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 3,
+              "name": "idl_use_case",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 4,
+              "name": "input_mapping",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 5,
+              "name": "maturity",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 6,
+              "name": "layer",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 7,
+              "name": "created_at",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": "datetime('now')",
+              "pk": 0
+            }
+          ],
+          "row_count": 0,
+          "data": []
+        },
+        "ru_prep_strategies": {
+          "schema": [
+            {
+              "cid": 0,
+              "name": "id",
+              "type": "INTEGER",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 1
+            },
+            {
+              "cid": 1,
+              "name": "name",
+              "type": "TEXT",
+              "notnull": 1,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 2,
+              "name": "description",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 3,
+              "name": "file_path",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 4,
+              "name": "key_concepts",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 5,
+              "name": "created_at",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": "datetime('now')",
+              "pk": 0
+            }
+          ],
+          "row_count": 0,
+          "data": []
+        },
+        "ru_prep_systems": {
+          "schema": [
+            {
+              "cid": 0,
+              "name": "id",
+              "type": "INTEGER",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 1
+            },
+            {
+              "cid": 1,
+              "name": "name",
+              "type": "TEXT",
+              "notnull": 1,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 2,
+              "name": "status",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 3,
+              "name": "content",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 4,
+              "name": "file_path",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 5,
+              "name": "created_at",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": "datetime('now')",
+              "pk": 0
+            }
+          ],
+          "row_count": 0,
+          "data": []
+        },
+        "ru_prep_goals": {
+          "schema": [
+            {
+              "cid": 0,
+              "name": "id",
+              "type": "INTEGER",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 1
+            },
+            {
+              "cid": 1,
+              "name": "number",
+              "type": "INTEGER",
+              "notnull": 1,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 2,
+              "name": "title",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 3,
+              "name": "description",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 4,
+              "name": "status",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": "'PENDING'",
+              "pk": 0
+            },
+            {
+              "cid": 5,
+              "name": "created_at",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": "datetime('now')",
+              "pk": 0
+            }
+          ],
+          "row_count": 0,
+          "data": []
+        },
+        "ru_prep_calculators": {
+          "schema": [
+            {
+              "cid": 0,
+              "name": "id",
+              "type": "INTEGER",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 1
+            },
+            {
+              "cid": 1,
+              "name": "name",
+              "type": "TEXT",
+              "notnull": 1,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 2,
+              "name": "description",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 3,
+              "name": "file_path",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 4,
+              "name": "created_at",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": "datetime('now')",
+              "pk": 0
+            }
+          ],
+          "row_count": 0,
+          "data": []
+        },
+        "ru_prep_timelines": {
+          "schema": [
+            {
+              "cid": 0,
+              "name": "id",
+              "type": "INTEGER",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 1
+            },
+            {
+              "cid": 1,
+              "name": "phase",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 2,
+              "name": "start_date",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 3,
+              "name": "end_date",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 4,
+              "name": "duration_days",
+              "type": "INTEGER",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 5,
+              "name": "timeline_data",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 6,
+              "name": "created_at",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": "datetime('now')",
+              "pk": 0
+            }
+          ],
+          "row_count": 0,
+          "data": []
+        },
+        "ru_prep_counter_plans": {
+          "schema": [
+            {
+              "cid": 0,
+              "name": "id",
+              "type": "INTEGER",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 1
+            },
+            {
+              "cid": 1,
+              "name": "plan_name",
+              "type": "TEXT",
+              "notnull": 1,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 2,
+              "name": "enemy_tactic",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 3,
+              "name": "counter_strategy",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 4,
+              "name": "execution_protocol",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": null,
+              "pk": 0
+            },
+            {
+              "cid": 5,
+              "name": "status",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": "'ACTIVE'",
+              "pk": 0
+            },
+            {
+              "cid": 6,
+              "name": "created_at",
+              "type": "TEXT",
+              "notnull": 0,
+              "default_value": "datetime('now')",
+              "pk": 0
+            }
+          ],
+          "row_count": 5,
+          "data": [
+            {
+              "id": 1,
+              "plan_name": "Motion 24 Counter",
+              "enemy_tactic": "Delay motion 24, control timeline",
+              "counter_strategy": "Force out lawyer, get new lawyer, immediate motion 24",
+              "execution_protocol": "If lawyer doesn't comply tomorrow, force out + new lawyer + motion 24 same day",
+              "status": "ACTIVE",
+              "created_at": "2025-11-30 00:04:53"
+            },
+            {
+              "id": 2,
+              "plan_name": "Jail Prevention",
+              "enemy_tactic": "Isolate, recondition, jail",
+              "counter_strategy": "Motion 24 + international exit + nomad blueprint",
+              "execution_protocol": "Multiple routes, immediate execution, no delay",
+              "status": "ACTIVE",
+              "created_at": "2025-11-30 00:04:53"
+            },
+            {
+              "id": 3,
+              "plan_name": "Economic Control Counter",
+              "enemy_tactic": "Control finances, limit income",
+              "counter_strategy": "Income diversification, 5+ streams, business models",
+              "execution_protocol": "Deploy all business models, activate all income streams",
+              "status": "ACTIVE",
+              "created_at": "2025-11-30 00:04:53"
+            },
+            {
+              "id": 4,
+              "plan_name": "Time Control Counter",
+              "enemy_tactic": "Control timeline, slow progress",
+              "counter_strategy": "Compressed timeline, 2-9x bursts, bulk timing",
+              "execution_protocol": "Quadrupled momentum, perfect synchronization",
+              "status": "ACTIVE",
+              "created_at": "2025-11-30 00:04:53"
+            },
+            {
+              "id": 5,
+              "plan_name": "Location Control Counter",
+              "enemy_tactic": "Anchor location, limit mobility",
+              "counter_strategy": "Nomad blueprint, 20+ locations, no anchoring",
+              "execution_protocol": "90-day tour, multiple locations, maximum mobility",
+              "status": "ACTIVE",
+              "created_at": "2025-11-30 00:04:53"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "hingecraft_chats": [
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/COMPLETE_CHAT_HISTORY_EXPORT.md",
+      "file_name": "COMPLETE_CHAT_HISTORY_EXPORT.md",
+      "size": 27142,
+      "last_modified": "2025-12-07T09:51:38.446556"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/MASTER_CHAT_CONTINUATION_COMPLETE.md",
+      "file_name": "MASTER_CHAT_CONTINUATION_COMPLETE.md",
+      "size": 20816,
+      "last_modified": "2025-12-07T13:38:29.319651"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/HingeCraft/HINGECRAFT_COMPLETE_CHAT_DATA.md",
+      "file_name": "HINGECRAFT_COMPLETE_CHAT_DATA.md",
+      "size": 12957,
+      "last_modified": "2025-11-30T17:22:44.340685"
+    }
+  ],
+  "postgresql_connections": [],
+  "last_3_active_chats": [
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/MASTER_CHAT_CONTINUATION_COMPLETE.md",
+      "file_name": "MASTER_CHAT_CONTINUATION_COMPLETE.md",
+      "size": 20816,
+      "last_modified": "2025-12-07T13:38:29.319651"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/COMPLETE_CHAT_HISTORY_EXPORT.md",
+      "file_name": "COMPLETE_CHAT_HISTORY_EXPORT.md",
+      "size": 27142,
+      "last_modified": "2025-12-07T09:51:38.446556"
+    },
+    {
+      "source": "/Users/chandlerfergusen/Desktop/CURSOR/HingeCraft/HINGECRAFT_COMPLETE_CHAT_DATA.md",
+      "file_name": "HINGECRAFT_COMPLETE_CHAT_DATA.md",
+      "size": 12957,
+      "last_modified": "2025-11-30T17:22:44.340685"
+    }
+  ]
+}
