@@ -1,0 +1,60 @@
+{
+  "timestamp": "2025-12-16T13:04:36.246Z",
+  "issues": [
+    {
+      "component": "Script Properties",
+      "problem": "HUBSPOT_TOKEN not set",
+      "solution": "Add HUBSPOT_TOKEN to Apps Script Script Properties",
+      "priority": "CRITICAL"
+    },
+    {
+      "component": "Script Properties",
+      "problem": "ANYMAIL_API_KEY not set",
+      "solution": "Add ANYMAIL_API_KEY to Apps Script Script Properties",
+      "priority": "CRITICAL"
+    },
+    {
+      "component": "Script Properties",
+      "problem": "MONITORED_FOLDER_ID not set",
+      "solution": "Add MONITORED_FOLDER_ID to Apps Script Script Properties",
+      "priority": "CRITICAL"
+    },
+    {
+      "component": "Script Properties",
+      "problem": "GMAIL_FROM_ADDRESS not set",
+      "solution": "Add GMAIL_FROM_ADDRESS to Apps Script Script Properties",
+      "priority": "CRITICAL"
+    },
+    {
+      "component": "HubSpot Connection",
+      "problem": "HUBSPOT_TOKEN not set",
+      "solution": "Add HUBSPOT_TOKEN to Script Properties",
+      "priority": "CRITICAL"
+    }
+  ],
+  "fixes": [
+    {
+      "type": "script_properties",
+      "action": "Add missing properties in Apps Script UI",
+      "properties": [
+        "HUBSPOT_TOKEN",
+        "ANYMAIL_API_KEY",
+        "MONITORED_FOLDER_ID",
+        "GMAIL_FROM_ADDRESS"
+      ],
+      "instructions": [
+        "1. Go to: https://script.google.com",
+        "2. Open your project",
+        "3. Go to: Project Settings → Script Properties",
+        "4. Add missing properties"
+      ]
+    }
+  ],
+  "recommendations": [
+    "Verify code is deployed via clasp",
+    "Most likely failure: Script Properties missing (HUBSPOT_TOKEN, GMAIL_FROM_ADDRESS)",
+    "Second most likely: Contact not created in HubSpot",
+    "Third: Gmail permissions not granted"
+  ],
+  "nextSteps": []
+}
