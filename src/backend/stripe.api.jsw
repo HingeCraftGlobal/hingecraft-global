@@ -109,26 +109,29 @@ export async function createCheckoutSession(requestData) {
         const amountInCents = Math.round(amount * 100);
 
         // Build checkout session payload
+        // CUSTOM INVOICE: Amount comes from requestData, creating a custom one-time invoice
         const sessionData = {
-            payment_method_types: ['card'],
+            payment_method_types: ['card', 'us_bank_account'], // Card and ACH support
             line_items: [{
                 price_data: {
                     currency: 'usd',
                     product_data: {
                         name: 'HingeCraft Donation',
-                        description: 'Mission Support Contribution'
+                        description: `Custom Donation - $${amount.toFixed(2)} USD`
                     },
-                    unit_amount: amountInCents
+                    unit_amount: amountInCents // Custom amount = custom invoice
                 },
                 quantity: 1
             }],
-            mode: 'payment',
-            success_url: requestData.successUrl || `https://hingecraft-global.ai/charter?payment=success&session_id={CHECKOUT_SESSION_ID}`,
-            cancel_url: requestData.cancelUrl || `https://hingecraft-global.ai/charter?payment=cancelled`,
+            mode: 'payment', // One-time payment (not subscription)
+            client_reference_id: requestData.intentId || requestData.donationId || '', // Link to ContributionIntent
+            success_url: requestData.successUrl || `https://hingecraft-global.ai/charter?payment=success&intentId=${requestData.intentId || ''}&session_id={CHECKOUT_SESSION_ID}`,
+            cancel_url: requestData.cancelUrl || `https://hingecraft-global.ai/charter?payment=cancelled&intentId=${requestData.intentId || ''}`,
             metadata: {
-                donationId: requestData.donationId || '',
-                source: 'charter_page',
-                amount: amount.toString()
+                intentId: requestData.intentId || requestData.donationId || '',
+                source: requestData.source || 'charter_page',
+                amount: amount.toString(),
+                isSubscription: requestData.isSubscription ? 'true' : 'false'
             }
         };
 

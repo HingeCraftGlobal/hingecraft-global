@@ -143,50 +143,87 @@ export async function handleUserInputDonation(formData) {
 /**
  * Go to charter page after payment
  * Passes donation amount to charter page
+ * 
+ * CRITICAL: Creates ContributionIntent record which generates intentId
+ * This intentId becomes the custom invoice ID for NOWPayments (order_id)
+ * 
  * @public
- * @param {number} value - Donation amount (can be passed as object with value property)
+ * @param {number|Object} value - Donation amount or data object
+ * @returns {Promise<Object>} Redirect URL and intentId
  */
 export async function goToCharterAfterPayment(value) {
     try {
         // Handle both direct value and object parameter
-        const amount = typeof value === 'object' && value.value ? value.value : value;
+        const amount = typeof value === 'object' && value.value ? value.value : 
+                      typeof value === 'object' && value.amount ? value.amount : 
+                      typeof value === 'object' && value.donationAmount ? value.donationAmount :
+                      parseFloat(value);
+        
         console.log('🔄 Redirecting to charter page with amount:', amount);
         
-        // Store donation amount
+        // Store donation amount in session
         await storeDonationAmount(amount, 'card', null);
         
-        // Use production URL directly
-        const productionUrl = 'https://hingecraft-global.ai';
-        const redirectUrl = `${productionUrl}/charter?donationAmount=${encodeURIComponent(amount)}&paymentMethod=card&fromMissionSupport=true`;
+        // Get form data if provided
+        const formData = typeof value === 'object' ? value : {};
         
-        // Also save to ContributionIntent for tracking
-        try {
-            const sessionId = await getSessionId();
-            const intentRecord = {
-                amount_entered: parseFloat(amount),
-                status: 'intent',
-                source: 'missionSupportForm',
-                session_id: sessionId,
-                timestamp: new Date().toISOString(),
-                metadata: {
-                    paymentMethod: 'card',
-                    redirectUrl: redirectUrl
-                }
-            };
-            await wixData.save('ContributionIntent', intentRecord);
-        } catch (dbError) {
-            console.warn('⚠️ Failed to save intent (non-blocking):', dbError);
-        }
+        // Create ContributionIntent record (CRITICAL: This creates the intentId)
+        const sessionId = await getSessionId();
+        const intentRecord = {
+            donationAmount: parseFloat(amount),
+            paymentMethod: 'card',
+            intentStatus: 'pending',
+            source: 'missionSupportForm',
+            session_id: sessionId,
+            timestamp: new Date(),
+            
+            // Form data
+            name: formData.name || `${formData.firstName || ''} ${formData.lastName || ''}`.trim() || null,
+            email: formData.email || null,
+            phone: formData.phone || null,
+            first_name: formData.firstName || null,
+            last_name: formData.lastName || null,
+            address: formData.address || null,
+            mission_support_name: formData.missionSupportName || null,
+            
+            // Subscription
+            isSubscription: formData.isSubscription || false,
+            
+            // User link (if logged in)
+            wix_user_id: formData.wix_user_id || null,
+            
+            // Tracking
+            anonymous_fingerprint: formData.anonymousFingerprint || await getAnonymousFingerprint(),
+            referrer_source: formData.referrerSource || 'direct',
+            page_url: formData.pageUrl || 'unknown',
+            user_agent: formData.userAgent || 'unknown',
+            
+            metadata: {
+                paymentMethod: 'card',
+                fromMissionSupport: true
+            }
+        };
+        
+        // Save to ContributionIntent - This creates the intentId (custom invoice ID for crypto)
+        const savedIntent = await wixData.save('ContributionIntent', intentRecord);
+        const intentId = savedIntent._id; // This is the custom invoice ID for NOWPayments
+        
+        console.log('✅ ContributionIntent created with intentId:', intentId);
+        
+        // Use production URL with intentId
+        const productionUrl = 'https://hingecraft-global.ai';
+        const redirectUrl = `${productionUrl}/charter?intentId=${intentId}&donationAmount=${encodeURIComponent(amount)}&paymentMethod=card&fromMissionSupport=true`;
         
         return {
             success: true,
             redirectUrl: redirectUrl,
-            amount: amount
+            amount: amount,
+            intentId: intentId // Return intentId for tracking
         };
     } catch (error) {
         console.error('❌ Go to charter error:', error);
-        // Fallback to production URL
-        const amount = typeof value === 'object' && value.value ? value.value : value;
+        // Fallback to production URL without intentId
+        const amount = typeof value === 'object' && value.value ? value.value : parseFloat(value);
         const productionUrl = 'https://hingecraft-global.ai';
         const fallbackUrl = `${productionUrl}/charter?donationAmount=${encodeURIComponent(amount)}&paymentMethod=card&fromMissionSupport=true`;
         return {

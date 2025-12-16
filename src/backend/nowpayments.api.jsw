@@ -142,11 +142,13 @@ export async function createNowPaymentsInvoice(requestData) {
             'ETH': '0xbf907088116868986c014f9662a8efcbeb168237'
         };
 
-        // Build NOWPayments invoice payload
+        // Build NOWPayments payment/invoice payload
+        // NOTE: NOWPayments API uses 'payment' endpoint, not 'invoice'
+        // The order_id is our CUSTOM INVOICE ID (intentId from ContributionIntent)
         const invoicePayload = {
             price_amount: amount,
             price_currency: 'usd',
-            order_id: orderId,
+            order_id: orderId, // CUSTOM INVOICE ID = intentId
             order_description: 'HingeCraft Mission Support',
             ipn_callback_url: `https://hingecraft-global.ai/_functions/webhooks/nowpayments`,
             success_url: `https://hingecraft-global.ai/charter?payment=success&intent=${encodeURIComponent(intentId)}&source=crypto`,
@@ -154,12 +156,11 @@ export async function createNowPaymentsInvoice(requestData) {
             metadata: {
                 intentId: intentId,
                 sessionId: requestData.sessionId || 'unknown',
-                source: 'missionSupportForm',
+                source: requestData.source || 'missionSupportForm',
                 email: requestData.email || '',
                 firstName: requestData.firstName || '',
                 lastName: requestData.lastName || '',
-                missionSupportName: requestData.missionSupportName || '',
-                walletAddress: WALLET_ADDRESSES[payCurrency] || null
+                missionSupportName: requestData.missionSupportName || ''
             }
         };
 
@@ -168,8 +169,9 @@ export async function createNowPaymentsInvoice(requestData) {
             invoicePayload.pay_currency = requestData.payCurrency.toLowerCase();
         }
 
-        // Call NOWPayments API
-        const response = await fetch(`${NOWPAYMENTS_BASE_URL}/invoice`, {
+        // Call NOWPayments API - Create Invoice
+        // NOTE: NOWPayments uses /payment endpoint for invoices, not /invoice
+        const response = await fetch(`${NOWPAYMENTS_BASE_URL}/payment`, {
             method: 'POST',
             headers: {
                 'x-api-key': NOWPAYMENTS_API_KEY,
@@ -186,9 +188,10 @@ export async function createNowPaymentsInvoice(requestData) {
 
         const invoiceData = await response.json();
 
-        // Extract invoice details
-        const invoiceId = invoiceData.id || invoiceData.invoice_id;
-        const paymentUrl = invoiceData.invoice_url || invoiceData.payment_url;
+        // Extract invoice/payment details
+        // NOWPayments returns 'payment_id' and 'invoice_url' or 'payment_url'
+        const invoiceId = invoiceData.payment_id || invoiceData.id || invoiceData.invoice_id;
+        const paymentUrl = invoiceData.invoice_url || invoiceData.payment_url || invoiceData.pay_url;
         const payAddress = invoiceData.pay_address || null;
         const payAmountCrypto = invoiceData.pay_amount ? parseFloat(invoiceData.pay_amount) : null;
         const payCurrency = invoiceData.pay_currency || null;

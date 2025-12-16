@@ -61,15 +61,26 @@ export async function onReady() {
 /**
  * Handle crypto button click
  * Creates NOWPayments invoice for selected crypto
+ * 
+ * CRITICAL: Uses intentId from ContributionIntent as order_id (custom invoice ID)
+ * 
+ * @param {number} amount - Donation amount
+ * @param {string} coin - Cryptocurrency (solana, stellar, bitcoin, ethereum)
+ * @param {string} intentId - Optional: intentId from ContributionIntent (if from Mission Support)
  */
-export async function cryptoButtonClick(amount, coin) {
+export async function cryptoButtonClick(amount, coin, intentId = null) {
     try {
-        console.log('💰 Crypto button clicked:', { amount, coin });
+        console.log('💰 Crypto button clicked:', { amount, coin, intentId });
         
         // Validate amount
         const validatedAmount = validateAmount(amount);
         if (!validatedAmount) {
             throw new Error('Invalid amount');
+        }
+        
+        // CRITICAL: Enforce $30 minimum for crypto
+        if (validatedAmount < 30) {
+            throw new Error('Crypto payments require a minimum of $30');
         }
         
         // Validate coin
@@ -93,18 +104,55 @@ export async function cryptoButtonClick(amount, coin) {
         
         const payCurrency = payCurrencyMap[normalizedCoin] || normalizedCoin.toUpperCase();
         
-        // Generate intent ID
-        const intentId = 'hc_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+        // Get or create intentId
+        let finalIntentId = intentId;
         
-        // Create NOWPayments invoice
+        if (!finalIntentId) {
+            // Create new ContributionIntent if not provided
+            const sessionId = await getSessionId();
+            const intentRecord = {
+                donationAmount: validatedAmount,
+                paymentMethod: 'crypto',
+                intentStatus: 'pending',
+                source: 'charter_page',
+                session_id: sessionId,
+                timestamp: new Date(),
+                metadata: {
+                    paymentMethod: 'crypto',
+                    coin: coin
+                }
+            };
+            
+            const savedIntent = await wixData.save('ContributionIntent', intentRecord);
+            finalIntentId = savedIntent._id;
+            console.log('✅ Created new ContributionIntent with intentId:', finalIntentId);
+        } else {
+            // Update existing intent with crypto payment method
+            try {
+                const existingIntent = await wixData.get('ContributionIntent', finalIntentId);
+                if (existingIntent) {
+                    await wixData.update('ContributionIntent', {
+                        ...existingIntent,
+                        paymentMethod: 'crypto',
+                        donationAmount: validatedAmount,
+                        _updatedDate: new Date()
+                    });
+                }
+            } catch (updateError) {
+                console.warn('⚠️ Could not update existing intent:', updateError);
+            }
+        }
+        
+        // Create NOWPayments invoice with intentId as order_id (CUSTOM INVOICE ID)
         const invoiceResult = await createNowPaymentsInvoice({
-            intentId: intentId,
+            intentId: finalIntentId, // This becomes order_id in NOWPayments
             amount: validatedAmount,
             payCurrency: payCurrency,
             email: '', // Will be filled from session if available
             sessionId: await getSessionId(),
             firstName: '',
-            lastName: ''
+            lastName: '',
+            source: 'charter_page'
         });
         
         if (!invoiceResult.success) {
@@ -124,7 +172,8 @@ export async function cryptoButtonClick(amount, coin) {
             payAddress: invoiceResult.payAddress,
             payAmountCrypto: invoiceResult.payAmountCrypto,
             payCurrency: invoiceResult.payCurrency,
-            intentId: intentId
+            intentId: finalIntentId, // Return intentId for tracking
+            orderId: finalIntentId // Custom invoice ID
         };
     } catch (error) {
         console.error('❌ Crypto button click error:', error);
@@ -151,13 +200,44 @@ export async function fiatButtonClick(preset) {
             throw new Error('Invalid preset amount. Must be 1, 5, or 20');
         }
         
-        // Create Stripe checkout session
+        // Get intentId if available (from URL parameters or create new)
+        let intentId = null;
+        try {
+            // Try to get intentId from URL or session
+            // This should be passed from Mission Support form
+            const urlParams = new URLSearchParams(typeof window !== 'undefined' ? window.location.search : '');
+            intentId = urlParams.get('intentId');
+            
+            if (!intentId) {
+                // Create new ContributionIntent for Charter page direct access
+                const sessionId = await getSessionId();
+                const intentRecord = {
+                    donationAmount: amount,
+                    paymentMethod: 'card',
+                    intentStatus: 'pending',
+                    source: 'charter_page',
+                    session_id: sessionId,
+                    timestamp: new Date(),
+                    metadata: { preset: amount }
+                };
+                const savedIntent = await wixData.save('ContributionIntent', intentRecord);
+                intentId = savedIntent._id;
+                console.log('✅ Created new ContributionIntent for preset amount:', intentId);
+            }
+        } catch (intentError) {
+            console.warn('⚠️ Could not get/create intentId:', intentError);
+        }
+        
+        // Create Stripe checkout session with intentId
         const sessionResult = await createCheckoutSession({
             amount: amount,
-            successUrl: `${await getBaseUrl()}/payment-success?amount=${amount}&method=stripe`,
-            cancelUrl: `${await getBaseUrl()}/charter?canceled=true&amount=${amount}`,
-            donationId: null,
-            email: null
+            intentId: intentId, // Pass intentId for client_reference_id
+            successUrl: `https://hingecraft-global.ai/charter?payment=success&intentId=${intentId}&session_id={CHECKOUT_SESSION_ID}`,
+            cancelUrl: `https://hingecraft-global.ai/charter?payment=cancelled&intentId=${intentId}`,
+            donationId: intentId,
+            email: null,
+            source: 'charter_page',
+            isSubscription: false
         });
         
         if (!sessionResult.success) {

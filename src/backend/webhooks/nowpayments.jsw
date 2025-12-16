@@ -1,89 +1,328 @@
-import { fetch } from 'wix-fetch';
-import { handleNowPaymentsWebhook } from 'backend/nowpayments.api';
-
 /**
- * NOWPayments Webhook Endpoint
+ * NOWPayments Webhook/IPN Handler
  * 
- * This endpoint receives webhooks from NOWPayments when invoice status changes.
+ * Handles Instant Payment Notifications (IPN) from NOWPayments
  * 
- * URL: /_functions/webhooks/nowpayments
+ * Endpoint: /_functions/webhooks/nowpayments
  * Method: POST
  * 
- * Webhook events handled:
- * - invoice_paid
- * - invoice_paid_unconfirmed
- * - invoice_expired
- * - invoice_waiting
- * - invoice_partial
+ * Security: Verifies HMAC-SHA512 signature using IPN Secret Key
+ * 
+ * Required Wix Secrets:
+ * - NOWPAYMENTS_IPN_SECRET
  */
 
-export async function post(request) {
+import { fetch } from 'wix-fetch';
+import { secrets } from 'wix-secrets-backend';
+import wixData from 'wix-data';
+import crypto from 'wix-crypto';
+
+let NOWPAYMENTS_IPN_SECRET = null;
+
+/**
+ * Initialize IPN secret
+ */
+async function initIPNSecret() {
     try {
-        // Get raw body for signature verification
-        const rawBody = request.body || JSON.stringify(request);
-        
-        // Get signature header (NOWPayments may use different header names)
-        const signatureHeader = request.headers['x-nowpayments-sig'] || 
-                               request.headers['x-nowpayments-signature'] ||
-                               request.headers['signature'] ||
-                               null;
-
-        // Parse webhook data
-        let webhookData;
-        if (typeof request.body === 'string') {
-            webhookData = JSON.parse(request.body);
-        } else {
-            webhookData = request.body;
+        NOWPAYMENTS_IPN_SECRET = await secrets.getSecret('NOWPAYMENTS_IPN_SECRET');
+        if (!NOWPAYMENTS_IPN_SECRET) {
+            throw new Error('NOWPAYMENTS_IPN_SECRET not configured');
         }
-
-        if (!webhookData) {
-            return {
-                status: 400,
-                body: {
-                    success: false,
-                    error: 'Invalid webhook payload'
-                }
-            };
-        }
-
-        // Process webhook
-        const result = await handleNowPaymentsWebhook(webhookData, signatureHeader, rawBody);
-
-        if (result.success) {
-            return {
-                status: 200,
-                body: {
-                    success: true,
-                    message: 'Webhook processed successfully',
-                    invoiceId: result.invoiceId,
-                    orderId: result.orderId,
-                    status: result.status
-                }
-            };
-        } else {
-            return {
-                status: 400,
-                body: {
-                    success: false,
-                    error: result.error || 'Webhook processing failed'
-                }
-            };
-        }
-
     } catch (error) {
-        console.error('❌ Webhook endpoint error:', error);
-        return {
-            status: 500,
-            body: {
-                success: false,
-                error: error.message || 'Internal server error'
-            }
-        };
+        console.error('❌ Error loading NOWPayments IPN secret:', error);
+        throw new Error('NOWPayments IPN secret missing. Please set NOWPAYMENTS_IPN_SECRET in Wix Secrets Manager.');
     }
 }
 
+// Initialize on module load
+initIPNSecret();
 
+/**
+ * Verify NOWPayments webhook signature
+ * Uses HMAC-SHA512 as specified by NOWPayments
+ * 
+ * @param {string} rawBody - Raw request body as string
+ * @param {string} signatureHeader - X-Nowpayments-Sig header value
+ * @returns {boolean} - True if signature is valid
+ */
+function verifyWebhookSignature(rawBody, signatureHeader) {
+    try {
+        if (!NOWPAYMENTS_IPN_SECRET) {
+            console.error('⚠️ NOWPAYMENTS_IPN_SECRET not configured');
+            return false;
+        }
 
+        if (!signatureHeader) {
+            console.error('⚠️ Missing X-Nowpayments-Sig header');
+            return false;
+        }
 
+        // NOWPayments uses HMAC-SHA512
+        // Sort parameters, convert to string, sign with IPN Secret
+        const hmac = crypto.createHmac('sha512', NOWPAYMENTS_IPN_SECRET);
+        hmac.update(rawBody);
+        const calculatedSignature = hmac.digest('hex');
 
+        // Timing-safe comparison (prevent timing attacks)
+        if (calculatedSignature.length !== signatureHeader.length) {
+            return false;
+        }
 
+        let match = true;
+        for (let i = 0; i < calculatedSignature.length; i++) {
+            if (calculatedSignature[i] !== signatureHeader[i]) {
+                match = false;
+            }
+        }
+
+        return match;
+    } catch (error) {
+        console.error('❌ Error verifying webhook signature:', error);
+        return false;
+    }
+}
+
+/**
+ * HTTP Function: Handle NOWPayments Webhook/IPN
+ * 
+ * @param {Object} request - HTTP request object
+ * @returns {Promise<Object>} HTTP response
+ */
+export async function post(request) {
+    try {
+        console.log('📥 NOWPayments webhook received');
+
+        // Ensure IPN secret is loaded
+        if (!NOWPAYMENTS_IPN_SECRET) {
+            await initIPNSecret();
+        }
+
+        // Get raw body and signature header
+        const rawBody = request.body || JSON.stringify(request.body);
+        const signatureHeader = request.headers['x-nowpayments-sig'] || request.headers['X-Nowpayments-Sig'];
+
+        // Verify signature
+        if (!verifyWebhookSignature(rawBody, signatureHeader)) {
+            console.error('❌ Invalid webhook signature');
+            return {
+                status: 401,
+                body: { error: 'Invalid signature' }
+            };
+        }
+
+        console.log('✅ Webhook signature verified');
+
+        // Parse webhook data
+        const webhookData = typeof request.body === 'string' ? JSON.parse(request.body) : request.body;
+
+        // Extract critical fields
+        const orderId = webhookData.order_id; // This is our custom invoice ID (intentId)
+        const paymentId = webhookData.payment_id || webhookData.id;
+        const paymentStatus = webhookData.payment_status || webhookData.status;
+        const payAmount = parseFloat(webhookData.pay_amount || webhookData.price_amount);
+        const payCurrency = webhookData.pay_currency || 'USD';
+
+        console.log('📊 Webhook data:', {
+            orderId,
+            paymentId,
+            paymentStatus,
+            payAmount,
+            payCurrency
+        });
+
+        if (!orderId) {
+            console.error('❌ Missing order_id in webhook');
+            return {
+                status: 400,
+                body: { error: 'Missing order_id' }
+            };
+        }
+
+        // Get intentId from order_id (they should be the same)
+        const intentId = orderId;
+
+        // Process based on payment status
+        if (paymentStatus === 'finished' || paymentStatus === 'confirmed') {
+            // Payment completed successfully
+            
+            // 1. Update CryptoPayments record
+            try {
+                const cryptoPayments = await wixData.query('CryptoPayments')
+                    .eq('order_id', orderId)
+                    .find();
+
+                if (cryptoPayments.items.length > 0) {
+                    const cryptoPayment = cryptoPayments.items[0];
+                    await wixData.update('CryptoPayments', {
+                        ...cryptoPayment,
+                        status: 'confirmed',
+                        payment_id: paymentId,
+                        nowpayments_status: paymentStatus,
+                        _updatedDate: new Date()
+                    });
+                    console.log('✅ CryptoPayments record updated');
+                } else {
+                    console.warn('⚠️ CryptoPayments record not found for order_id:', orderId);
+                }
+            } catch (dbError) {
+                console.error('❌ Error updating CryptoPayments:', dbError);
+            }
+
+            // 2. Get ContributionIntent to check for duplicate
+            let intentRecord = null;
+            try {
+                const intents = await wixData.query('ContributionIntent')
+                    .eq('_id', intentId)
+                    .find();
+                
+                if (intents.items.length > 0) {
+                    intentRecord = intents.items[0];
+                }
+            } catch (intentError) {
+                console.error('❌ Error fetching ContributionIntent:', intentError);
+            }
+
+            // 3. Check for existing donation (idempotency)
+            let existingDonation = null;
+            try {
+                const donations = await wixData.query('Donations')
+                    .eq('transaction_id', paymentId)
+                    .find();
+                
+                if (donations.items.length > 0) {
+                    existingDonation = donations.items[0];
+                    console.log('✅ Donation already exists (idempotency check)');
+                }
+            } catch (donationCheckError) {
+                console.error('❌ Error checking for existing donation:', donationCheckError);
+            }
+
+            // 4. Create Donations record (if not exists)
+            if (!existingDonation && intentRecord) {
+                try {
+                    const donationRecord = {
+                        intentId: intentId,
+                        paymentType: 'crypto',
+                        amount: payAmount,
+                        currency: 'USD',
+                        datePaid: new Date(),
+                        isSubscription: intentRecord.isSubscription || false,
+                        transaction_id: paymentId,
+                        payment_status: 'completed',
+                        payment_method: 'crypto',
+                        source: intentRecord.source || 'missionSupportForm',
+                        member_email: intentRecord.email || null,
+                        member_name: intentRecord.name || `${intentRecord.first_name || ''} ${intentRecord.last_name || ''}`.trim() || null,
+                        wix_user_id: intentRecord.wix_user_id || null,
+                        metadata: {
+                            order_id: orderId,
+                            payment_id: paymentId,
+                            pay_currency: payCurrency,
+                            nowpayments_status: paymentStatus
+                        }
+                    };
+
+                    await wixData.save('Donations', donationRecord);
+                    console.log('✅ Donation record created');
+                } catch (donationError) {
+                    console.error('❌ Error creating Donation record:', donationError);
+                }
+            }
+
+            // 5. Update ContributionIntent status
+            if (intentRecord) {
+                try {
+                    await wixData.update('ContributionIntent', {
+                        ...intentRecord,
+                        intentStatus: 'paid',
+                        _updatedDate: new Date()
+                    });
+                    console.log('✅ ContributionIntent status updated to paid');
+                } catch (intentUpdateError) {
+                    console.error('❌ Error updating ContributionIntent:', intentUpdateError);
+                }
+            }
+
+            // 6. Update Member record (if applicable)
+            if (intentRecord && intentRecord.email) {
+                try {
+                    const members = await wixData.query('Members')
+                        .eq('email', intentRecord.email)
+                        .find();
+
+                    if (members.items.length > 0) {
+                        const member = members.items[0];
+                        await wixData.update('Members', {
+                            ...member,
+                            total_contributed: (parseFloat(member.total_contributed) || 0) + payAmount,
+                            _updatedDate: new Date()
+                        });
+                        console.log('✅ Member record updated');
+                    } else {
+                        // Create new member record
+                        const newMember = {
+                            email: intentRecord.email,
+                            first_name: intentRecord.first_name || null,
+                            last_name: intentRecord.last_name || null,
+                            total_contributed: payAmount,
+                            status: 'active',
+                            wix_user_id: intentRecord.wix_user_id || null,
+                            metadata: {}
+                        };
+                        await wixData.save('Members', newMember);
+                        console.log('✅ New member record created');
+                    }
+                } catch (memberError) {
+                    console.error('❌ Error updating Member record:', memberError);
+                }
+            }
+
+        } else if (['failed', 'expired', 'refunded', 'cancelled'].includes(paymentStatus)) {
+            // Payment failed or cancelled
+            try {
+                const cryptoPayments = await wixData.query('CryptoPayments')
+                    .eq('order_id', orderId)
+                    .find();
+
+                if (cryptoPayments.items.length > 0) {
+                    const cryptoPayment = cryptoPayments.items[0];
+                    await wixData.update('CryptoPayments', {
+                        ...cryptoPayment,
+                        status: paymentStatus,
+                        nowpayments_status: paymentStatus,
+                        _updatedDate: new Date()
+                    });
+                }
+
+                // Update intent status
+                const intents = await wixData.query('ContributionIntent')
+                    .eq('_id', intentId)
+                    .find();
+
+                if (intents.items.length > 0) {
+                    await wixData.update('ContributionIntent', {
+                        ...intents.items[0],
+                        intentStatus: 'cancelled',
+                        _updatedDate: new Date()
+                    });
+                }
+            } catch (updateError) {
+                console.error('❌ Error updating failed payment:', updateError);
+            }
+        }
+
+        // Always return 200 to acknowledge receipt
+        return {
+            status: 200,
+            body: { received: true }
+        };
+
+    } catch (error) {
+        console.error('❌ NOWPayments webhook error:', error);
+        // Still return 200 to prevent retry storms
+        return {
+            status: 200,
+            body: { received: true, error: 'Processing error acknowledged' }
+        };
+    }
+}
