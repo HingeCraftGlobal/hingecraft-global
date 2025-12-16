@@ -11,21 +11,24 @@ Use this template to input secrets into Wix Secrets Manager. Fill in the values 
 ### 1. STRIPE_SECRET_KEY_LIVE
 ```
 Secret Name: STRIPE_SECRET_KEY_LIVE
-Secret Value: [🔍 CHECK: api-keys/stripe_keys.json or database secrets table]
+Secret Value: [🔍 QUERY DATABASE: SELECT value FROM secrets WHERE key = 'STRIPE_SECRET_KEY_LIVE']
 ```
 **Where to Get:** 
-- Stripe Dashboard → Developers → API keys → Secret key
-- Or check: `api-keys/stripe_keys.json` in your project
-- Or query database: `SELECT * FROM secrets WHERE key LIKE '%stripe%'`
+1. **From Database:** `SELECT value FROM secrets WHERE key = 'STRIPE_SECRET_KEY_LIVE'`
+2. **From Stripe Dashboard:** https://dashboard.stripe.com → Developers → API keys → Secret key
+3. **Format:** Starts with `sk_live_...` or `sk_test_...`
 
 ---
 
 ### 2. STRIPE_WEBHOOK_SECRET_LIVE
 ```
 Secret Name: STRIPE_WEBHOOK_SECRET_LIVE
-Secret Value: [Paste your Stripe webhook signing secret here - starts with whsec_]
+Secret Value: [🔍 QUERY DATABASE: SELECT value FROM secrets WHERE key = 'STRIPE_WEBHOOK_SECRET_LIVE']
 ```
-**Where to Get:** Stripe Dashboard → Developers → Webhooks → Signing secret  
+**Where to Get:** 
+1. **From Database:** `SELECT value FROM secrets WHERE key = 'STRIPE_WEBHOOK_SECRET_LIVE'`
+2. **From Stripe Dashboard:** https://dashboard.stripe.com → Developers → Webhooks → Signing secret
+3. **Format:** Starts with `whsec_...`
 **Webhook URL to Set:** `https://hingecraft-global.ai/_functions/webhooks/stripe`
 
 ---
@@ -33,18 +36,24 @@ Secret Value: [Paste your Stripe webhook signing secret here - starts with whsec
 ### 3. NOWPAYMENTS_API_KEY
 ```
 Secret Name: NOWPAYMENTS_API_KEY
-Secret Value: [Paste your NOWPayments API key here]
+Secret Value: [🔍 QUERY DATABASE: SELECT value FROM secrets WHERE key = 'NOWPAYMENTS_API_KEY']
 ```
-**Where to Get:** NOWPayments Dashboard → Settings → API Keys
+**Where to Get:** 
+1. **From Database:** `SELECT value FROM secrets WHERE key = 'NOWPAYMENTS_API_KEY'`
+2. **From NOWPayments Dashboard:** https://nowpayments.io → Settings → API Keys
+3. **Note:** Save immediately - only shown once upon creation
 
 ---
 
 ### 4. NOWPAYMENTS_IPN_SECRET
 ```
 Secret Name: NOWPAYMENTS_IPN_SECRET
-Secret Value: [Paste your NOWPayments IPN secret key here]
+Secret Value: [🔍 QUERY DATABASE: SELECT value FROM secrets WHERE key = 'NOWPAYMENTS_IPN_SECRET']
 ```
-**Where to Get:** NOWPayments Dashboard → Settings → Store Settings → IPN Secret  
+**Where to Get:** 
+1. **From Database:** `SELECT value FROM secrets WHERE key = 'NOWPAYMENTS_IPN_SECRET'`
+2. **From NOWPayments Dashboard:** https://nowpayments.io → Settings → Store Settings → IPN Secret
+3. **CRITICAL:** Save immediately - only shown once upon creation
 **IPN Callback URL to Set:** `https://hingecraft-global.ai/_functions/webhooks/nowpayments`
 
 ---
@@ -119,8 +128,11 @@ Secret Value: [Your external database API key]
 ### 12. SENDGRID_API_KEY
 ```
 Secret Name: SENDGRID_API_KEY
-Secret Value: [Your SendGrid API key]
+Secret Value: [🔍 QUERY DATABASE: SELECT value FROM secrets WHERE key = 'SENDGRID_API_KEY']
 ```
+**Where to Get:** 
+1. **From Database:** `SELECT value FROM secrets WHERE key = 'SENDGRID_API_KEY'`
+2. **From SendGrid Dashboard:** https://app.sendgrid.com → Settings → API Keys
 **Note:** Only needed if using SendGrid for email notifications
 
 ---
@@ -137,8 +149,11 @@ Secret Value: no-reply@hingecraft-global.ai
 ### 14. NOTION_SYNC_URL
 ```
 Secret Name: NOTION_SYNC_URL
-Secret Value: [Your Notion API endpoint URL]
+Secret Value: [🔍 QUERY DATABASE: SELECT value FROM secrets WHERE key = 'NOTION_SYNC_URL']
 ```
+**Where to Get:** 
+1. **From Database:** `SELECT value FROM secrets WHERE key = 'NOTION_SYNC_URL'`
+2. **From Notion:** https://www.notion.so → Settings → Connections → API
 **Note:** Only needed if syncing with Notion/CRM
 
 ---
@@ -146,9 +161,111 @@ Secret Value: [Your Notion API endpoint URL]
 ### 15. CRM_API_KEY
 ```
 Secret Name: CRM_API_KEY
-Secret Value: [Your CRM/Notion API key]
+Secret Value: [🔍 QUERY DATABASE: SELECT value FROM secrets WHERE key = 'CRM_API_KEY']
 ```
+**Where to Get:** 
+1. **From Database:** `SELECT value FROM secrets WHERE key = 'CRM_API_KEY'`
+2. **From Notion/CRM Dashboard:** API Keys section
 **Note:** Only needed if syncing with Notion/CRM
+
+---
+
+## 🔍 How to Find Your Secrets
+
+### Method 1: Query PostgreSQL Database
+
+**Step 1: Connect to your database**
+```bash
+psql -h localhost -U postgres -d hingecraft
+```
+
+**Step 2: Check if secrets table exists**
+```sql
+SELECT EXISTS (
+    SELECT FROM information_schema.tables 
+    WHERE table_schema = 'public' 
+    AND table_name = 'secrets'
+);
+```
+
+**Step 3: Query all secrets**
+```sql
+-- See all secrets (value preview only for security)
+SELECT key, name, service, 
+       CASE WHEN encrypted THEN '[ENCRYPTED]' ELSE LEFT(value, 20) || '...' END as value_preview
+FROM secrets
+WHERE is_active = true
+ORDER BY service, key;
+```
+
+**Step 4: Get specific secrets**
+```sql
+-- Stripe secrets
+SELECT key, value FROM secrets WHERE key LIKE '%STRIPE%' AND is_active = true;
+
+-- NOWPayments secrets
+SELECT key, value FROM secrets WHERE key LIKE '%NOWPAYMENTS%' AND is_active = true;
+
+-- SendGrid secrets
+SELECT key, value FROM secrets WHERE key LIKE '%SENDGRID%' AND is_active = true;
+
+-- Notion/CRM secrets
+SELECT key, value FROM secrets WHERE (key LIKE '%NOTION%' OR key LIKE '%CRM%') AND is_active = true;
+```
+
+**Step 5: Use the query script**
+```bash
+# Run the SQL query file
+psql -h localhost -U postgres -d hingecraft -f scripts/query-secrets-from-database.sql
+```
+
+### Method 2: Create Secrets Table (If It Doesn't Exist)
+
+If you don't have a secrets table, create it:
+
+```bash
+psql -h localhost -U postgres -d hingecraft -f scripts/create-secrets-table.sql
+```
+
+Then insert your secrets:
+```sql
+INSERT INTO secrets (key, name, value, service, environment, description) VALUES
+('STRIPE_SECRET_KEY_LIVE', 'Stripe Secret Key', 'YOUR_KEY_HERE', 'stripe', 'production', 'Stripe API secret key'),
+('STRIPE_WEBHOOK_SECRET_LIVE', 'Stripe Webhook Secret', 'YOUR_SECRET_HERE', 'stripe', 'production', 'Stripe webhook signing secret'),
+('NOWPAYMENTS_API_KEY', 'NOWPayments API Key', 'YOUR_KEY_HERE', 'nowpayments', 'production', 'NOWPayments API key'),
+('NOWPAYMENTS_IPN_SECRET', 'NOWPayments IPN Secret', 'YOUR_SECRET_HERE', 'nowpayments', 'production', 'NOWPayments IPN secret');
+```
+
+### Method 3: Run Extraction Scripts
+```bash
+# Extract from database and config files
+node scripts/extract-secrets-from-db.js
+
+# Query database directly
+node scripts/query-database-for-secrets.js
+```
+
+### Method 4: Check API Keys Directory
+```bash
+cd /path/to/hingecraft-global
+ls -la api-keys/
+cat api-keys/apikeys.v2.json | grep -i "stripe\|nowpayments\|sendgrid"
+```
+
+### Method 5: Check .env Files (If Accessible)
+```bash
+# Check for .env files (may be gitignored for security)
+find . -name ".env*" -type f -exec grep -l "STRIPE\|NOWPAYMENTS\|SENDGRID" {} \;
+```
+
+### Method 6: Get from API Dashboards (If Not in Database)
+
+If secrets aren't in your database, get them from:
+
+- **Stripe:** https://dashboard.stripe.com → Developers → API keys
+- **NOWPayments:** https://nowpayments.io → Settings → API Keys
+- **SendGrid:** https://app.sendgrid.com → Settings → API Keys
+- **Notion:** https://www.notion.so → Settings → Connections → API
 
 ---
 
