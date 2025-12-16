@@ -1,0 +1,49 @@
+{
+  "timestamp": "2025-12-16T13:41:52.288Z",
+  "status": {
+    "scriptProperties": {
+      "status": "NEEDS_VALUES",
+      "details": [
+        "Script file created",
+        "Function ready",
+        "Empty: HUBSPOT_TOKEN, ANYMAIL_API_KEY, MONITORED_FOLDER_ID"
+      ]
+    },
+    "hubspotProperties": {
+      "status": "NEEDS_TOKEN",
+      "details": [
+        "HUBSPOT_TOKEN not set"
+      ]
+    },
+    "database": {
+      "status": "NEEDS_INSTALL",
+      "details": [
+        "Schema file exists",
+        "11 tables defined",
+        "pg module not installed"
+      ]
+    },
+    "testFile": {
+      "status": "READY",
+      "details": [
+        "File exists",
+        "Test email present"
+      ]
+    },
+    "clis": {
+      "status": "COMPLETE",
+      "details": [
+        "set-script-properties-cli.js: exists",
+        "push-hubspot-properties-cli.js: exists",
+        "master-cli.js: exists",
+        "comprehensive-email-diagnosis.js: exists",
+        "verify-all-clis.js: exists"
+      ]
+    }
+  },
+  "summary": {
+    "complete": 2,
+    "needsAction": 3,
+    "total": 5
+  }
+}
