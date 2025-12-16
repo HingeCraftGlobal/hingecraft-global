@@ -1,0 +1,23 @@
+{
+  "timestamp": "2025-12-16T14:56:40.276Z",
+  "sqlFiles": {
+    "total": 256,
+    "categories": {
+      "ML Automation": 4,
+      "Complete HingeCraft Database": 62,
+      "Automation": 12,
+      "Enterprise": 33,
+      "Security": 51,
+      "Master Schema": 48,
+      "Other": 46
+    }
+  },
+  "mlAutomation": {
+    "tables": 11,
+    "indexes": 18,
+    "functions": 2,
+    "triggers": 3,
+    "fileSize": 10745,
+    "lines": 283
+  }
+}
