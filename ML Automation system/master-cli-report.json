@@ -1,15 +1,13 @@
 {
-  "timestamp": "2025-12-16T13:13:48.153Z",
+  "timestamp": "2025-12-16T13:37:36.335Z",
   "results": [
     {
-      "success": false,
-      "step": "diagnosis",
-      "error": "Command failed: node /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/comprehensive-email-diagnosis.js"
+      "success": true,
+      "step": "diagnosis"
     },
     {
-      "success": false,
-      "step": "script-properties",
-      "error": "Command failed: node /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/set-script-properties-cli.js"
+      "success": true,
+      "step": "script-properties"
     },
     {
       "success": false,
@@ -18,14 +16,12 @@
       "skipped": true
     },
     {
-      "success": false,
-      "step": "verify-clis",
-      "error": "Command failed: node /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/verify-all-clis.js"
+      "success": true,
+      "step": "verify-clis"
     },
     {
-      "success": false,
-      "step": "sync-git",
-      "error": "Command failed: bash /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/sync-all-to-repo.sh"
+      "success": true,
+      "step": "sync-git"
     }
   ],
   "checks": {
@@ -36,7 +32,7 @@
   },
   "summary": {
     "total": 5,
-    "successful": 0,
-    "failed": 5
+    "successful": 4,
+    "failed": 1
   }
 }
