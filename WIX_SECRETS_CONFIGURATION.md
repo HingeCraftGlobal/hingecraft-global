@@ -35,8 +35,9 @@ You need to configure **4 secrets** in Wix:
 #### Step 2: Add Stripe Secret Key
 
 1. **Click "Add Secret"** or **"New Secret"**
-2. **Secret Name:** `STRIPE_SECRET_KEY`
+2. **Secret Name:** `STRIPE_SECRET_KEY_LIVE`
    - ⚠️ **IMPORTANT:** Use exact name (case-sensitive)
+   - Note: Code also accepts `STRIPE_SECRET_KEY` as fallback
 3. **Secret Value:** Your Stripe secret key
    - Format: `sk_live_...` (for production)
    - Or: `sk_test_...` (for testing)
@@ -237,10 +238,12 @@ Call this function from your frontend to verify all secrets are accessible.
 
 | Secret Name | Format | Example | Where to Get |
 |------------|--------|---------|--------------|
-| `STRIPE_SECRET_KEY` | `sk_live_...` or `sk_test_...` | `sk_live_51AbC...` | Stripe Dashboard → Developers → API keys |
+| `STRIPE_SECRET_KEY_LIVE` | `sk_live_...` or `sk_test_...` | `sk_live_51AbC...` | Stripe Dashboard → Developers → API keys |
 | `STRIPE_WEBHOOK_SECRET_LIVE` | `whsec_...` | `whsec_AbC123...` | Stripe Dashboard → Developers → Webhooks → Signing secret |
 | `NOWPAYMENTS_API_KEY` | Alphanumeric string | `abc123def456...` | NOWPayments Dashboard → Settings → API Keys |
 | `NOWPAYMENTS_IPN_SECRET` | Alphanumeric string | `xyz789uvw012...` | NOWPayments Dashboard → Settings → Store Settings → IPN Secret |
+
+**Note:** The code accepts `STRIPE_SECRET_KEY` as an alternative to `STRIPE_SECRET_KEY_LIVE` for backward compatibility.
 
 ---
 

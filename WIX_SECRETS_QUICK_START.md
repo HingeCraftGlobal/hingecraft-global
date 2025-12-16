@@ -15,10 +15,12 @@ Click **"Add Secret"** for each:
 
 | Secret Name | Value Source |
 |------------|--------------|
-| `STRIPE_SECRET_KEY` | Stripe Dashboard → Developers → API keys → Secret key |
+| `STRIPE_SECRET_KEY_LIVE` | Stripe Dashboard → Developers → API keys → Secret key |
 | `STRIPE_WEBHOOK_SECRET_LIVE` | Stripe Dashboard → Developers → Webhooks → Signing secret |
 | `NOWPAYMENTS_API_KEY` | NOWPayments Dashboard → Settings → API Keys |
 | `NOWPAYMENTS_IPN_SECRET` | NOWPayments Dashboard → Settings → Store Settings → IPN Secret |
+
+**Note:** `STRIPE_SECRET_KEY` also works as an alternative name.
 
 ⚠️ **IMPORTANT:** Secret names must match **exactly** (case-sensitive)
 
