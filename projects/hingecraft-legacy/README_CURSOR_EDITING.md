@@ -2,7 +2,7 @@
 
 ## ✅ You're All Set!
 
-**Location**: `/Users/chandlerfergusen/Desktop/CURSOR/HingeCraft`
+**Location**: `[PROJECT_ROOT]/HingeCraft`
 
 All your Wix website code is here and ready to edit in Cursor.
 
@@ -26,7 +26,7 @@ All your Wix website code is here and ready to edit in Cursor.
 
 ### Step 1: Open in Cursor
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 # Open any file in Cursor
 ```
 

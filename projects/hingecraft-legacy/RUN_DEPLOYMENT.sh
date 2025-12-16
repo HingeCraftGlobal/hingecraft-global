@@ -1,7 +1,7 @@
 #!/bin/bash
 # Simplified deployment runner with better error handling
 
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 
 echo "=========================================="
 echo "HingeCraft Deployment Script"

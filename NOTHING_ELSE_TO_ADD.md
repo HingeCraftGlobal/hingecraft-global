@@ -116,7 +116,7 @@
 **Everything is complete!** Run:
 
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 ./scripts/push-to-wix-dev.sh
 ```
 

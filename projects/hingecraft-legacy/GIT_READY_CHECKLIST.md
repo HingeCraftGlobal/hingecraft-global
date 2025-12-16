@@ -22,7 +22,7 @@
 ### Initial Setup
 ```bash
 # Navigate to project
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 
 # Initialize git (if not already done)
 git init

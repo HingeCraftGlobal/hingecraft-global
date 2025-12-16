@@ -79,7 +79,7 @@ All collections support:
 
 Run verification script:
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 ./VERIFY_ALL_COLLECTIONS.sh
 ```
 

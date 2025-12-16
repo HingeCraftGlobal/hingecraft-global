@@ -9,17 +9,17 @@ This document inventories ALL data related to hingecraft-global found across the
 ## 📍 Data Locations Found
 
 ### 1. **Main Repository**
-- **Location**: `/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/`
+- **Location**: `[PROJECT_ROOT]/hingecraft-global/`
 - **Status**: ✅ Active repository
 - **Contains**: All current projects and systems
 
 ### 2. **Complete Backup**
-- **Location**: `/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/`
+- **Location**: `[PROJECT_ROOT]/COMPLETE_BACKUP/git-repos/hingecraft-global/`
 - **Status**: ✅ Full backup
 - **Contains**: Complete historical backup of all files
 
 ### 3. **HingeCraft Repository** (Related)
-- **Location**: `/Users/chandlerfergusen/Desktop/CURSOR/HingeCraft/`
+- **Location**: `[PROJECT_ROOT]/HingeCraft/`
 - **Status**: ⚠️ Related project (some data references hingecraft-global)
 - **Contains**: 
   - `ALL_HINGECRAFT_CHAT_DATA_CONSOLIDATED.md`
@@ -28,7 +28,7 @@ This document inventories ALL data related to hingecraft-global found across the
   - `MOVE_TO_HINGECRAFT_GLOBAL.sh`
 
 ### 4. **HingeCraft Backup**
-- **Location**: `/Users/chandlerfergusen/Desktop/CURSOR/COMPLETE_BACKUP/git-repos/HingeCraft/`
+- **Location**: `[PROJECT_ROOT]/COMPLETE_BACKUP/git-repos/HingeCraft/`
 - **Status**: ✅ Backup of related project
 
 ---

@@ -3,7 +3,7 @@
 ## ⚡ 3 Commands to Complete Setup
 
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 
 # 1. Authenticate ngrok
 ./SETUP_NGROK.sh

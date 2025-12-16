@@ -12,7 +12,7 @@
 
 ### Option 1: Quick Launch (if you have authtoken)
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 ./AUTOMATE_WITH_TOKEN.sh YOUR_NGROK_AUTHTOKEN
 ```
 

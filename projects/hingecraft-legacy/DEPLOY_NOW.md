@@ -15,7 +15,7 @@ All HingeCraft data has been compiled from all chats and is ready for deployment
 
 ### Step 2: Run Automated Deployment
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 ./COMPLETE_DEPLOYMENT_AUTOMATION.sh
 ```
 
@@ -170,7 +170,7 @@ After deployment, verify:
 **When Docker Desktop is running:**
 
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 ./COMPLETE_DEPLOYMENT_AUTOMATION.sh
 ```
 

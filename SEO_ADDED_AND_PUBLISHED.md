@@ -70,7 +70,7 @@ The script found **9 legal pages** that exist in Wix Editor. However, the manife
 
 3. **Re-run SEO Script:**
    ```bash
-   cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+   cd [PROJECT_ROOT]/hingecraft-global
    python3 scripts/add_seo_simple.py
    wix publish --source local --approve-preview
    ```

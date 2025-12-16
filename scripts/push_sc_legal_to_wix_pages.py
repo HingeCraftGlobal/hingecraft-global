@@ -10,7 +10,7 @@ import re
 from pathlib import Path
 
 # Directories
-BASE_DIR = Path("/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global")
+BASE_DIR = Path("[PROJECT_ROOT]/hingecraft-global")
 SC_DOCS_DIR = BASE_DIR / "COMPLETE_LEGAL_DOCS_SC"
 WIX_PAGES_DIR = BASE_DIR / "src" / "pages"
 

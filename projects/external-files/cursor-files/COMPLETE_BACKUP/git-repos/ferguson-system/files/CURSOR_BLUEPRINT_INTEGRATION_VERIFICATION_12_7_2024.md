@@ -10,7 +10,7 @@ Complete verification of Cursor blueprint integration with Ferguson System as of
 
 ### Blueprint Files Verified ✅
 
-Located in `/Users/chandlerfergusen/Desktop/CURSOR/`:
+Located in `[PROJECT_ROOT]/`:
 
 1. ✅ **COMPLETE_BLUEPRINT_DATA.json** - Complete blueprint data
 2. ✅ **BLUEPRINT_LAUNCH_COMPLETE.json** - Launch status
@@ -37,13 +37,13 @@ From blueprint documentation:
 ### Integration Points ✅
 
 1. ✅ **Path Integration**
-   - Cursor: `/Users/chandlerfergusen/Desktop/CURSOR`
-   - Ferguson: `/Users/chandlerfergusen/ferguson-system`
+   - Cursor: `[PROJECT_ROOT]`
+   - Ferguson: `[USER_HOME]/ferguson-system`
    - Both paths verified and accessible
 
 2. ✅ **AI Module Integration**
-   - Cursor AI: `/Users/chandlerfergusen/Desktop/CURSOR/ai/`
-   - Ferguson AI: `/Users/chandlerfergusen/ferguson-system/ai/`
+   - Cursor AI: `[PROJECT_ROOT]/ai/`
+   - Ferguson AI: `[USER_HOME]/ferguson-system/ai/`
    - Shared components identified
 
 3. ✅ **PyCharm Connector**

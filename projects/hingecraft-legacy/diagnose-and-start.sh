@@ -4,7 +4,7 @@
 set -e
 
 export PATH="/usr/local/bin:/usr/bin:/bin:$PATH"
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 
 echo "🔍 HingeCraft Diagnostic & Startup"
 echo "=================================="

@@ -13,7 +13,7 @@ This document contains the complete export of the chat session where we:
 ## 🎯 Task 1: Apply All Data from Update Access Token Push Changes
 
 ### Initial State
-- Repository: `HingeCraft` at `/Users/chandlerfergusen/Desktop/CURSOR/HingeCraft`
+- Repository: `HingeCraft` at `[PROJECT_ROOT]/HingeCraft`
 - Remote: `https://github.com/departments-commits/website-path-for-backend-contribution.git`
 - Status: Had uncommitted changes and untracked files
 
@@ -21,7 +21,7 @@ This document contains the complete export of the chat session where we:
 
 #### 1. Staged All Changes
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 git add .
 ```
 
@@ -93,7 +93,7 @@ To push to GitHub, you need a Personal Access Token:
 
 2. **Push Using Token:**
    ```bash
-   cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+   cd [PROJECT_ROOT]/HingeCraft
    ./push-with-token.sh
    # Enter token when prompted
    ```
@@ -110,7 +110,7 @@ To push to GitHub, you need a Personal Access Token:
 
 ### Current Docker Setup
 
-**Location:** `/Users/chandlerfergusen/Desktop/CURSOR/HingeCraft`
+**Location:** `[PROJECT_ROOT]/HingeCraft`
 
 **Services Configured:**
 1. PostgreSQL Database
@@ -159,7 +159,7 @@ To push to GitHub, you need a Personal Access Token:
 ### Quick Start (Recommended)
 
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 
 # Option 1: Use simple start script
 ./start.sh
@@ -231,13 +231,13 @@ curl http://localhost:8000/api/v1/health # Python Server
 
 ### 1. Push to GitHub (Optional)
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 ./push-with-token.sh
 ```
 
 ### 2. Start Docker Services
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 ./start.sh
 ```
 

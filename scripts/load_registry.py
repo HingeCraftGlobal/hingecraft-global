@@ -12,7 +12,7 @@ Env (defaults shown):
   DB_PASSWORD=hingecraft_secure_password_123
 
 Run:
-  cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+  cd [PROJECT_ROOT]/hingecraft-global
   python3 scripts/load_registry.py
 """
 

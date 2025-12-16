@@ -13,13 +13,13 @@
 
 **Option A: Use Script (Recommended)**
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 ./START_WIX_DEV.sh
 ```
 
 **Option B: Manual Start**
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 wix dev
 ```
 
@@ -150,7 +150,7 @@ wix dev
 
 ```bash
 # In a new terminal (keep wix dev running)
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 wix publish --source local
 ```
 

@@ -25,9 +25,9 @@ Completed comprehensive analysis of the ferguson-system project, identified all 
 **Note**: Ferguson-System is completely separate from HingeCraft. No HingeCraft components are included.
 
 ### Key Locations
-1. **CURSOR Project**: `/Users/chandlerfergusen/Desktop/CURSOR`
-2. **Ferguson-System**: `/Users/chandlerfergusen/PycharmProjects/PythonProject/ferguson-system`
-3. **PyCharm Python**: `/Users/chandlerfergusen/Desktop/CURSOR/pycharm/python`
+1. **CURSOR Project**: `[PROJECT_ROOT]`
+2. **Ferguson-System**: `[USER_HOME]/PycharmProjects/PythonProject/ferguson-system`
+3. **PyCharm Python**: `[PROJECT_ROOT]/pycharm/python`
 
 ---
 

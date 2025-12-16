@@ -172,7 +172,7 @@ The code in the Git repository is **ready to be deployed** to the Wix website. T
 ### Push Command
 
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 ./push-with-token.sh
 ```
 

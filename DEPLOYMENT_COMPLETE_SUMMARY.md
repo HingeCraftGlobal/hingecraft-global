@@ -43,13 +43,13 @@
 
 ### Option 1: Use Deployment Script
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 ./scripts/push-to-wix-dev.sh
 ```
 
 ### Option 2: Manual Wix CLI Push
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 
 # Start Wix dev server
 wix dev --https

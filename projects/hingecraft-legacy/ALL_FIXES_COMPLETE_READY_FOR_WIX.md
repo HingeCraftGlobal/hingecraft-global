@@ -234,13 +234,13 @@ All issues have been fixed, tested, and are ready for deployment to Wix. All cha
 
 **Option 1: Use Script** (Recommended)
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 ./PUSH_TO_GIT.sh
 ```
 
 **Option 2: Manual Push**
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 git push origin main
 ```
 

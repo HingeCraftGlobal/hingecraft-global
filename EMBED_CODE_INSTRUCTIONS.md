@@ -24,7 +24,7 @@
 3. **Copy Payment Code**
    ```bash
    # Run this command to copy code:
-   cat /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/public/pages/payment-page.js
+   cat [PROJECT_ROOT]/hingecraft-global/public/pages/payment-page.js
    ```
 
 4. **Paste Code**
@@ -48,7 +48,7 @@
 3. **Copy Charter Code**
    ```bash
    # Run this command to copy code:
-   cat /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/public/pages/charter-page.html
+   cat [PROJECT_ROOT]/hingecraft-global/public/pages/charter-page.html
    ```
 
 4. **Paste Code**

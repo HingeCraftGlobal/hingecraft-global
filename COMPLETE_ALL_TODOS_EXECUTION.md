@@ -13,7 +13,7 @@
 
 #### Step 1: Launch Database
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 ./LAUNCH_01_DATABASE.sh
 ```
 
@@ -125,7 +125,7 @@ docker exec -i postgres psql -U hcuser -d hingecraft -c "\dv"
 
 ### Complete Database Buildout
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 ./COMPLETE_DATABASE_BUILDOUT_EXECUTION.sh
 ```
 

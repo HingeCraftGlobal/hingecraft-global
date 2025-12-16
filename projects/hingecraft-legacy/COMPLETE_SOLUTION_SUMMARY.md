@@ -51,13 +51,13 @@
 
 **Option 1: Use push script with token**
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 ./push-with-token.sh YOUR_GITHUB_TOKEN
 ```
 
 **Option 2: Manual push with token**
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 git push https://YOUR_TOKEN@github.com/departments-commits/website-path-for-backend-contribution.git main
 ```
 

@@ -41,10 +41,10 @@ This folder contains **EVERY** HingeCraft database file found across your entire
 
 ## 🔍 Sources Scanned
 
-1. ✅ `Desktop/CURSOR/hingecraft-global/database/` - Main location
-2. ✅ `Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/database/` - Backup
-3. ✅ `Desktop/CURSOR_BACKUP_20251210_190306/workspace/hingecraft-global/database/` - Cursor backup
-4. ✅ `Desktop/CURSOR/HingeCraft/` - Other HingeCraft directory
+1. ✅ `[PROJECT_ROOT]/hingecraft-global/database/` - Main location
+2. ✅ `[PROJECT_ROOT]/COMPLETE_BACKUP/git-repos/hingecraft-global/files/database/` - Backup
+3. ✅ `[PROJECT_ROOT]_BACKUP_20251210_190306/workspace/hingecraft-global/database/` - Cursor backup
+4. ✅ `[PROJECT_ROOT]/HingeCraft/` - Other HingeCraft directory
 5. ✅ All documentation files mentioning HingeCraft database
 
 ## 📊 File Count

@@ -18,7 +18,7 @@ echo -e "${BLUE}═════════════════════�
 echo ""
 
 # Configuration
-BASE_DIR="/Users/chandlerfergusen/Desktop/CURSOR"
+BASE_DIR="[PROJECT_ROOT]"
 HINGECRAFT_DIR="$BASE_DIR/HingeCraft"
 REPO_DIR="$BASE_DIR/hingecraft-global"
 REPO_URL="git@github.com:departments-commits/hingecraft-global.git"

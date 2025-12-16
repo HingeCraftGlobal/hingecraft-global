@@ -16,7 +16,7 @@ echo -e "${BLUE}🚀 Pushing All Updates to Git Repository${NC}"
 echo -e "${BLUE}═══════════════════════════════════════════════════════════${NC}"
 echo ""
 
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 
 # Step 1: Check git status
 echo -e "${YELLOW}Step 1: Checking git status...${NC}"

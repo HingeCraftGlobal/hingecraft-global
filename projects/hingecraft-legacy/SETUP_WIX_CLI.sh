@@ -36,7 +36,7 @@ fi
 # Step 2: Clone repository
 echo ""
 echo -e "${YELLOW}Step 2: Cloning hingecraft-global repository...${NC}"
-cd /Users/chandlerfergusen/Desktop/CURSOR
+cd [PROJECT_ROOT]
 
 if [ -d "hingecraft-global" ]; then
     echo -e "${GREEN}✅ Repository already exists${NC}"

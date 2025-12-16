@@ -47,11 +47,11 @@ All Python dependencies from across your entire project have been consolidated a
 
 A consolidated `requirements_master.txt` file has been created with all dependencies from all projects.
 
-**Location:** `/Users/chandlerfergusen/Desktop/CURSOR/requirements_master.txt`
+**Location:** `[PROJECT_ROOT]/requirements_master.txt`
 
 **To install all packages:**
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR
+cd [PROJECT_ROOT]
 pip3 install -r requirements_master.txt
 ```
 
@@ -157,7 +157,7 @@ pip3 install -r requirements.txt
 
 ### 1. Complete Installation
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR
+cd [PROJECT_ROOT]
 pip3 install -r requirements_master.txt
 ```
 

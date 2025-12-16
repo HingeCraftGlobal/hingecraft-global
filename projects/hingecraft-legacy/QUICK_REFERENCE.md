@@ -31,7 +31,7 @@ ngrok: https://[your-url].ngrok-free.app
 
 ### 1. Start Services
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 docker-compose up -d
 ```
 

@@ -69,7 +69,7 @@ echo ""
 
 # Step 2: Check/Create repository directory
 echo -e "${YELLOW}Step 2: Setting up repository...${NC}"
-cd /Users/chandlerfergusen/Desktop/CURSOR
+cd [PROJECT_ROOT]
 
 if [ -d "hingecraft-global" ]; then
     echo -e "${GREEN}✅ Repository directory exists${NC}"

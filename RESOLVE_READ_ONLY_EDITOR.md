@@ -15,7 +15,7 @@ The Wix Editor becomes read-only when files aren't synced. Here's how to fix it:
 
 1. **Open Terminal** and navigate to the project:
    ```bash
-   cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+   cd [PROJECT_ROOT]/hingecraft-global
    ```
 
 2. **Start Wix dev server**:

@@ -38,7 +38,7 @@
 
 ### Push Now:
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 
 # Push all changes to Wix
 wix push

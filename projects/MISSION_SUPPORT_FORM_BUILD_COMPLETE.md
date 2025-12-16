@@ -167,7 +167,7 @@ The Mission Support form file has been read and verified. It is a complete, prod
 
 ### View the File
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 open public/pages/mission-support-form.html
 ```
 

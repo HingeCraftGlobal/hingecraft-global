@@ -112,7 +112,7 @@ Status: ✅ Authenticated
 
 ### File Locations
 ```
-/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/
+[PROJECT_ROOT]/hingecraft-global/
 ├── public/pages/
 │   ├── payment-page.js          ✅ Verified
 │   └── charter-page.html        ✅ Verified
@@ -132,7 +132,7 @@ Status: ✅ Authenticated
 
 ### Step 1: Verify Wix Dev is Running
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 ps aux | grep "wix dev"
 # Should show: PID 4577 running
 ```
@@ -174,7 +174,7 @@ ps aux | grep "wix dev"
 
 ### Step 6: Publish
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 wix publish --source local
 ```
 
@@ -295,7 +295,7 @@ const CONFIG = {
 
 ### If Wix Dev Stops
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 wix dev
 ```
 
@@ -345,7 +345,7 @@ wix dev
 
 1. **Check Wix Dev Status**
    ```bash
-   cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+   cd [PROJECT_ROOT]/hingecraft-global
    ps aux | grep "wix dev"
    ```
 

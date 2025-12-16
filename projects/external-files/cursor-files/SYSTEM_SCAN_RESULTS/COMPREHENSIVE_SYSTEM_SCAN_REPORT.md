@@ -2,7 +2,7 @@
 
 **Scan Date:** 2025-12-10 19:27:27
 
-**Scan Root:** /Users/chandlerfergusen
+**Scan Root:** [USER_HOME]
 
 ## 📊 Statistics
 
@@ -18,350 +18,350 @@
 
 ### ferguson_system.db
 
-- **Path:** `/Users/chandlerfergusen/Desktop/CURSOR/data/ferguson_system.db`
+- **Path:** `[PROJECT_ROOT]/data/ferguson_system.db`
 - **Size:** 0.26 MB
 - **Tables:** 20
 - **Modified:** 2025-11-21T15:29:05.370911
 
 ### fma_data.db
 
-- **Path:** `/Users/chandlerfergusen/Desktop/CURSOR/sql/fma_data.db`
+- **Path:** `[PROJECT_ROOT]/sql/fma_data.db`
 - **Size:** 0.07 MB
 - **Tables:** 9
 - **Modified:** 2025-11-29T17:04:53.312059
 
 ### ferguson_system.db
 
-- **Path:** `/Users/chandlerfergusen/Desktop/CURSOR_BACKUP_20251210_190306/workspace/data/ferguson_system.db`
+- **Path:** `[PROJECT_ROOT]_BACKUP_20251210_190306/workspace/data/ferguson_system.db`
 - **Size:** 0.26 MB
 - **Tables:** 20
 - **Modified:** 2025-11-21T15:29:05
 
 ### fma_data.db
 
-- **Path:** `/Users/chandlerfergusen/Desktop/CURSOR_BACKUP_20251210_190306/workspace/sql/fma_data.db`
+- **Path:** `[PROJECT_ROOT]_BACKUP_20251210_190306/workspace/sql/fma_data.db`
 - **Size:** 0.07 MB
 - **Tables:** 9
 - **Modified:** 2025-11-29T17:04:53
 
 ### fma_data.db
 
-- **Path:** `/Users/chandlerfergusen/ferguson-system/sql/fma_data.db`
+- **Path:** `[USER_HOME]/ferguson-system/sql/fma_data.db`
 - **Size:** 0.21 MB
 - **Tables:** 22
 - **Modified:** 2025-11-28T19:53:41.616619
 
 ### database.sqlite
 
-- **Path:** `/Users/chandlerfergusen/ferguson-system/sql/database.sqlite`
+- **Path:** `[USER_HOME]/ferguson-system/sql/database.sqlite`
 - **Size:** 7.32 MB
 - **Tables:** 20
 - **Modified:** 2025-11-30T18:16:22.595095
 
 ### user_data.db
 
-- **Path:** `/Users/chandlerfergusen/PycharmProjects/PythonProject/user_data.db`
+- **Path:** `[USER_HOME]/PycharmProjects/PythonProject/user_data.db`
 - **Size:** 0.01 MB
 - **Tables:** 1
 - **Modified:** 2025-10-27T18:33:28.028392
 
 ### fma_data.db
 
-- **Path:** `/Users/chandlerfergusen/PycharmProjects/sql/fma_data.db`
+- **Path:** `[USER_HOME]/PycharmProjects/sql/fma_data.db`
 - **Size:** 0.06 MB
 - **Tables:** 8
 - **Modified:** 2025-11-26T15:39:55.356779
 
 ### ats_system.db
 
-- **Path:** `/Users/chandlerfergusen/PycharmProjects/PythonProject/ats/ats_system.db`
+- **Path:** `[USER_HOME]/PycharmProjects/PythonProject/ats/ats_system.db`
 - **Size:** 0.16 MB
 - **Tables:** 9
 - **Modified:** 2025-11-20T15:27:01.591745
 
 ### ferguson_system.db
 
-- **Path:** `/Users/chandlerfergusen/PycharmProjects/PythonProject/sql/ferguson_system.db`
+- **Path:** `[USER_HOME]/PycharmProjects/PythonProject/sql/ferguson_system.db`
 - **Size:** 0.02 MB
 - **Tables:** 3
 - **Modified:** 2025-11-10T12:34:47.699509
 
 ### fma_data.db
 
-- **Path:** `/Users/chandlerfergusen/PycharmProjects/PythonProject/sql/fma_data.db`
+- **Path:** `[USER_HOME]/PycharmProjects/PythonProject/sql/fma_data.db`
 - **Size:** 0.39 MB
 - **Tables:** 21
 - **Modified:** 2025-11-28T14:33:58.329177
 
 ### fma_data.db
 
-- **Path:** `/Users/chandlerfergusen/PycharmProjects/PythonProject/ferguson-system/SQL/fma_data.db`
+- **Path:** `[USER_HOME]/PycharmProjects/PythonProject/ferguson-system/SQL/fma_data.db`
 - **Size:** 0.24 MB
 - **Tables:** 21
 - **Modified:** 2025-11-28T13:07:06.443312
 
 ### iVolk.db
 
-- **Path:** `/Users/chandlerfergusen/PycharmProjects/PythonProject/Volkov-1: Diplomatic Prompt Architect/database.py/iVolk.db`
+- **Path:** `[USER_HOME]/PycharmProjects/PythonProject/Volkov-1: Diplomatic Prompt Architect/database.py/iVolk.db`
 - **Size:** 0.01 MB
 - **Tables:** 0
 - **Modified:** 2025-11-07T12:10:16.771148
 
 ### sem.db
 
-- **Path:** `/Users/chandlerfergusen/PycharmProjects/PythonProject/Volkov-1: Diplomatic Prompt Architect/database.py/sem.db`
+- **Path:** `[USER_HOME]/PycharmProjects/PythonProject/Volkov-1: Diplomatic Prompt Architect/database.py/sem.db`
 - **Size:** 0.0 MB
 - **Tables:** 0
 - **Modified:** 2025-11-07T13:53:48.358856
 
 ### pinecone_meta.db
 
-- **Path:** `/Users/chandlerfergusen/PycharmProjects/PythonProject/Volkov-1: Diplomatic Prompt Architect/database.py/pinecone_meta.db`
+- **Path:** `[USER_HOME]/PycharmProjects/PythonProject/Volkov-1: Diplomatic Prompt Architect/database.py/pinecone_meta.db`
 - **Size:** 0.0 MB
 - **Tables:** 0
 - **Modified:** 2025-11-07T13:54:33.159663
 
 ### clpb_system.db
 
-- **Path:** `/Users/chandlerfergusen/PycharmProjects/PythonProject/Volkov-1: Diplomatic Prompt Architect/database.py/clpb_system.db`
+- **Path:** `[USER_HOME]/PycharmProjects/PythonProject/Volkov-1: Diplomatic Prompt Architect/database.py/clpb_system.db`
 - **Size:** 0.0 MB
 - **Tables:** 0
 - **Modified:** 2025-11-07T13:52:37.091940
 
 ### llc.db
 
-- **Path:** `/Users/chandlerfergusen/PycharmProjects/PythonProject/Volkov-1: Diplomatic Prompt Architect/database.py/llc.db`
+- **Path:** `[USER_HOME]/PycharmProjects/PythonProject/Volkov-1: Diplomatic Prompt Architect/database.py/llc.db`
 - **Size:** 0.0 MB
 - **Tables:** 0
 - **Modified:** 2025-11-07T13:53:29.345385
 
 ### qapd.db
 
-- **Path:** `/Users/chandlerfergusen/PycharmProjects/PythonProject/Volkov-1: Diplomatic Prompt Architect/database.py/qapd.db`
+- **Path:** `[USER_HOME]/PycharmProjects/PythonProject/Volkov-1: Diplomatic Prompt Architect/database.py/qapd.db`
 - **Size:** 0.0 MB
 - **Tables:** 0
 - **Modified:** 2025-11-07T13:51:04.752587
 
 ### volkov_qapd.db
 
-- **Path:** `/Users/chandlerfergusen/PycharmProjects/PythonProject/Volkov-1: Diplomatic Prompt Architect/database.py/volkov_qapd.db`
+- **Path:** `[USER_HOME]/PycharmProjects/PythonProject/Volkov-1: Diplomatic Prompt Architect/database.py/volkov_qapd.db`
 - **Size:** 0.0 MB
 - **Tables:** 0
 - **Modified:** 2025-11-07T13:01:33.627825
 
 ### ivp.db
 
-- **Path:** `/Users/chandlerfergusen/PycharmProjects/PythonProject/Volkov-1: Diplomatic Prompt Architect/database.py/ivp.db`
+- **Path:** `[USER_HOME]/PycharmProjects/PythonProject/Volkov-1: Diplomatic Prompt Architect/database.py/ivp.db`
 - **Size:** 0.0 MB
 - **Tables:** 0
 - **Modified:** 2025-11-07T13:54:07.862296
 
 ### volkov1.db
 
-- **Path:** `/Users/chandlerfergusen/PycharmProjects/PythonProject/Volkov-1: Diplomatic Prompt Architect/database.py/volkov1.db`
+- **Path:** `[USER_HOME]/PycharmProjects/PythonProject/Volkov-1: Diplomatic Prompt Architect/database.py/volkov1.db`
 - **Size:** 0.01 MB
 - **Tables:** 0
 - **Modified:** 2025-11-07T13:49:50.380669
 
 ### fma_data.db
 
-- **Path:** `/Users/chandlerfergusen/Downloads/fma_data.db`
+- **Path:** `[USER_HOME]/Downloads/fma_data.db`
 - **Size:** 0.02 MB
 - **Tables:** 2
 - **Modified:** 2025-11-09T19:46:31.122307
 
 ### volkov1.db
 
-- **Path:** `/Users/chandlerfergusen/volkov1.db`
+- **Path:** `[USER_HOME]/volkov1.db`
 - **Size:** 0.1 MB
 - **Tables:** 8
 - **Modified:** 2025-11-06T16:44:49.802166
 
 ### fma_data.db
 
-- **Path:** `/Users/chandlerfergusen/sql/fma_data.db`
+- **Path:** `[USER_HOME]/sql/fma_data.db`
 - **Size:** 0.25 MB
 - **Tables:** 20
 - **Modified:** 2025-11-28T19:54:00.887720
 
 ### gecko.db
 
-- **Path:** `/Users/chandlerfergusen/Movies/CapCut/User Data/Cache/gecko.db`
+- **Path:** `[USER_HOME]/Movies/CapCut/User Data/Cache/gecko.db`
 - **Size:** 0.01 MB
 - **Tables:** 2
 - **Modified:** 2025-07-10T18:53:37.847937
 
 ### tracking_v2.db
 
-- **Path:** `/Users/chandlerfergusen/Movies/CapCut/User Data/Tracking/tracking_v2.db`
+- **Path:** `[USER_HOME]/Movies/CapCut/User Data/Tracking/tracking_v2.db`
 - **Size:** 1.36 MB
 - **Tables:** 0
 - **Modified:** 2025-07-11T17:09:24.299960
 
 ### tracking_v3.db
 
-- **Path:** `/Users/chandlerfergusen/Movies/CapCut/User Data/Tracking/tracking_v3.db`
+- **Path:** `[USER_HOME]/Movies/CapCut/User Data/Tracking/tracking_v3.db`
 - **Size:** 0.45 MB
 - **Tables:** 0
 - **Modified:** 2025-07-11T19:59:57.017207
 
 ### scan.db
 
-- **Path:** `/Users/chandlerfergusen/Movies/CapCut/User Data/Cache/ILASDKDB/scan.db`
+- **Path:** `[USER_HOME]/Movies/CapCut/User Data/Cache/ILASDKDB/scan.db`
 - **Size:** 0.18 MB
 - **Tables:** 20
 - **Modified:** 2025-07-10T18:53:20.168095
 
 ### mediasearch.db
 
-- **Path:** `/Users/chandlerfergusen/Movies/CapCut/User Data/Cache/ILASDKDB/mediasearch.db`
+- **Path:** `[USER_HOME]/Movies/CapCut/User Data/Cache/ILASDKDB/mediasearch.db`
 - **Size:** 0.07 MB
 - **Tables:** 14
 - **Modified:** 2025-07-10T18:53:19.849602
 
 ### cloudsearch.db
 
-- **Path:** `/Users/chandlerfergusen/Movies/CapCut/User Data/Cache/ILASDKDB/cloudsearch.db`
+- **Path:** `[USER_HOME]/Movies/CapCut/User Data/Cache/ILASDKDB/cloudsearch.db`
 - **Size:** 0.03 MB
 - **Tables:** 5
 - **Modified:** 2025-07-10T18:53:19.867923
 
 ### rp_master.db
 
-- **Path:** `/Users/chandlerfergusen/Movies/CapCut/User Data/Cache/ressdk_db/rp_master.db`
+- **Path:** `[USER_HOME]/Movies/CapCut/User Data/Cache/ressdk_db/rp_master.db`
 - **Size:** 0.01 MB
 - **Tables:** 1
 - **Modified:** 2025-07-11T17:11:09.622252
 
 ### rp.db
 
-- **Path:** `/Users/chandlerfergusen/Movies/CapCut/User Data/Cache/ressdk_db/8100246830890900143/rp.db`
+- **Path:** `[USER_HOME]/Movies/CapCut/User Data/Cache/ressdk_db/8100246830890900143/rp.db`
 - **Size:** 28.62 MB
 - **Tables:** 46
 - **Modified:** 2025-07-11T17:12:38.895765
 
 ### mediasearch.db
 
-- **Path:** `/Users/chandlerfergusen/Movies/CapCut/User Data/Cache/ILASDKDB/CombineSearch/mediasearch.db`
+- **Path:** `[USER_HOME]/Movies/CapCut/User Data/Cache/ILASDKDB/CombineSearch/mediasearch.db`
 - **Size:** 0.07 MB
 - **Tables:** 14
 - **Modified:** 2025-07-10T18:53:19.948438
 
 ### SiriAnalytics.db
 
-- **Path:** `/Users/chandlerfergusen/Library/Assistant/SiriAnalytics.db`
+- **Path:** `[USER_HOME]/Library/Assistant/SiriAnalytics.db`
 - **Size:** 0.11 MB
 - **Tables:** 1
 - **Modified:** 2025-12-10T18:56:54.685879
 
 ### SiriSyncItems.db
 
-- **Path:** `/Users/chandlerfergusen/Library/Assistant/SiriSyncItems.db`
+- **Path:** `[USER_HOME]/Library/Assistant/SiriSyncItems.db`
 - **Size:** 0.05 MB
 - **Tables:** 5
 - **Modified:** 2025-07-14T16:58:33.131214
 
 ### CloudStorage.db
 
-- **Path:** `/Users/chandlerfergusen/Library/com.apple.icloud.searchpartyd/CloudStorage.db`
+- **Path:** `[USER_HOME]/Library/com.apple.icloud.searchpartyd/CloudStorage.db`
 - **Size:** 0.0 MB
 - **Tables:** 0
 - **Modified:** 2025-12-10T18:54:31.475226
 
 ### CloudStorage_CKRecordCache.db
 
-- **Path:** `/Users/chandlerfergusen/Library/com.apple.icloud.searchpartyd/CloudStorage_CKRecordCache.db`
+- **Path:** `[USER_HOME]/Library/com.apple.icloud.searchpartyd/CloudStorage_CKRecordCache.db`
 - **Size:** 0.0 MB
 - **Tables:** 0
 - **Modified:** 2025-12-10T18:56:04.029885
 
 ### synched.db
 
-- **Path:** `/Users/chandlerfergusen/Library/com.apple.internal.ck/synched.db`
+- **Path:** `[USER_HOME]/Library/com.apple.internal.ck/synched.db`
 - **Size:** 0.04 MB
 - **Tables:** 5
 - **Modified:** 2025-07-01T18:26:03.694087
 
 ### applicationState.db
 
-- **Path:** `/Users/chandlerfergusen/Library/FrontBoard/applicationState.db`
+- **Path:** `[USER_HOME]/Library/FrontBoard/applicationState.db`
 - **Size:** 0.0 MB
 - **Tables:** 4
 - **Modified:** 2025-06-26T20:02:38.829820
 
 ### UAFAssetSubscriptions.db
 
-- **Path:** `/Users/chandlerfergusen/Library/UnifiedAssetFramework/UAFAssetSubscriptions.db`
+- **Path:** `[USER_HOME]/Library/UnifiedAssetFramework/UAFAssetSubscriptions.db`
 - **Size:** 0.03 MB
 - **Tables:** 4
 - **Modified:** 2025-12-10T18:56:03.436463
 
 ### finance_local.db
 
-- **Path:** `/Users/chandlerfergusen/Library/Finance/finance_local.db`
+- **Path:** `[USER_HOME]/Library/Finance/finance_local.db`
 - **Size:** 0.98 MB
 - **Tables:** 81
 - **Modified:** 2025-06-26T20:02:12.711622
 
 ### finance_cloud.db
 
-- **Path:** `/Users/chandlerfergusen/Library/Finance/finance_cloud.db`
+- **Path:** `[USER_HOME]/Library/Finance/finance_cloud.db`
 - **Size:** 1.13 MB
 - **Tables:** 95
 - **Modified:** 2025-12-10T18:54:44.065014
 
 ### TextReplacements.db
 
-- **Path:** `/Users/chandlerfergusen/Library/KeyboardServices/TextReplacements.db`
+- **Path:** `[USER_HOME]/Library/KeyboardServices/TextReplacements.db`
 - **Size:** 0.05 MB
 - **Tables:** 5
 - **Modified:** 2025-06-26T20:03:03.569828
 
 ### pcm.db
 
-- **Path:** `/Users/chandlerfergusen/Library/Containers/com.lemon.lvoverseas/Data/Library/WebKit/WebsiteData/ResourceLoadStatistics/pcm.db`
+- **Path:** `[USER_HOME]/Library/Containers/com.lemon.lvoverseas/Data/Library/WebKit/WebsiteData/ResourceLoadStatistics/pcm.db`
 - **Size:** 0.0 MB
 - **Tables:** 3
 - **Modified:** 2025-07-10T18:52:59.214357
 
 ### observations.db
 
-- **Path:** `/Users/chandlerfergusen/Library/Containers/com.lemon.lvoverseas/Data/Library/WebKit/WebsiteData/ResourceLoadStatistics/observations.db`
+- **Path:** `[USER_HOME]/Library/Containers/com.lemon.lvoverseas/Data/Library/WebKit/WebsiteData/ResourceLoadStatistics/observations.db`
 - **Size:** 0.0 MB
 - **Tables:** 13
 - **Modified:** 2025-07-10T18:52:54.303227
 
 ### Vault.db
 
-- **Path:** `/Users/chandlerfergusen/Library/Containers/com.duckduckgo.macos.browser/Data/Library/Application Support/Vault/Vault.db`
+- **Path:** `[USER_HOME]/Library/Containers/com.duckduckgo.macos.browser/Data/Library/Application Support/Vault/Vault.db`
 - **Size:** 0.08 MB
 - **Tables:** 0
 - **Modified:** 2025-11-03T10:46:31.989276
 
 ### pcm.db
 
-- **Path:** `/Users/chandlerfergusen/Library/Containers/com.apple.helpviewer/Data/Library/WebKit/WebsiteData/ResourceLoadStatistics/pcm.db`
+- **Path:** `[USER_HOME]/Library/Containers/com.apple.helpviewer/Data/Library/WebKit/WebsiteData/ResourceLoadStatistics/pcm.db`
 - **Size:** 0.0 MB
 - **Tables:** 3
 - **Modified:** 2025-08-15T12:45:49.850290
 
 ### observations.db
 
-- **Path:** `/Users/chandlerfergusen/Library/Containers/com.apple.helpviewer/Data/Library/WebKit/WebsiteData/ResourceLoadStatistics/observations.db`
+- **Path:** `[USER_HOME]/Library/Containers/com.apple.helpviewer/Data/Library/WebKit/WebsiteData/ResourceLoadStatistics/observations.db`
 - **Size:** 0.0 MB
 - **Tables:** 13
 - **Modified:** 2025-08-15T12:45:44.858769
 
 ### tips-store.db
 
-- **Path:** `/Users/chandlerfergusen/Library/Containers/com.apple.reminders/Data/Library/Application Support/.tipkit/tips-store.db`
+- **Path:** `[USER_HOME]/Library/Containers/com.apple.reminders/Data/Library/Application Support/.tipkit/tips-store.db`
 - **Size:** 0.18 MB
 - **Tables:** 11
 - **Modified:** 2025-07-30T11:20:23.314772
 
 ### ResourceMonitorPersistence.db
 
-- **Path:** `/Users/chandlerfergusen/Library/Containers/com.apple.Safari.CacheDeleteExtension/Data/Library/WebKit/WebsiteData/ResourceMonitorThrottler/ResourceMonitorPersistence.db`
+- **Path:** `[USER_HOME]/Library/Containers/com.apple.Safari.CacheDeleteExtension/Data/Library/WebKit/WebsiteData/ResourceMonitorThrottler/ResourceMonitorPersistence.db`
 - **Size:** 0.02 MB
 - **Tables:** 1
 - **Modified:** 2025-12-10T18:36:09.124684
@@ -437,7 +437,7 @@
 
 ## ✅ CURSOR Directory Integrity
 
-- **Path:** `/Users/chandlerfergusen/Desktop/CURSOR`
+- **Path:** `[PROJECT_ROOT]`
 - **Exists:** True
 - **Is Directory:** True
 

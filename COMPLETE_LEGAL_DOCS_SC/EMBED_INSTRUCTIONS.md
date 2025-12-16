@@ -72,7 +72,7 @@ For each legal page in Wix Editor:
 If you prefer to use Velo code instead of embeds, the `.js` files in `src/pages/` have been updated with the content already. Just run:
 
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 wix dev
 # Then in a new terminal:
 wix publish
@@ -83,7 +83,7 @@ wix publish
 
 ## Files Location
 
-All HTML files: `/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/COMPLETE_LEGAL_DOCS_SC/`
+All HTML files: `[PROJECT_ROOT]/hingecraft-global/COMPLETE_LEGAL_DOCS_SC/`
 
 Index: `00-INDEX-ALL-DOCUMENTS.html`
 

@@ -3,7 +3,7 @@
   "databases": {
     "ferguson_system": {
       "database_name": "ferguson_system",
-      "database_path": "/Users/chandlerfergusen/Desktop/CURSOR/data/ferguson_system.db",
+      "database_path": "[PROJECT_ROOT]/data/ferguson_system.db",
       "export_timestamp": "2025-12-10T19:15:44.418902",
       "tables": {
         "entries": {
@@ -1804,7 +1804,7 @@
     },
     "fma_data": {
       "database_name": "fma_data",
-      "database_path": "/Users/chandlerfergusen/Desktop/CURSOR/sql/fma_data.db",
+      "database_path": "[PROJECT_ROOT]/sql/fma_data.db",
       "export_timestamp": "2025-12-10T19:15:44.433162",
       "tables": {
         "ru_prep_frameworks": {
@@ -2357,19 +2357,19 @@
   },
   "hingecraft_chats": [
     {
-      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/COMPLETE_CHAT_HISTORY_EXPORT.md",
+      "source": "[PROJECT_ROOT]/hingecraft-global/COMPLETE_CHAT_HISTORY_EXPORT.md",
       "file_name": "COMPLETE_CHAT_HISTORY_EXPORT.md",
       "size": 27142,
       "last_modified": "2025-12-07T09:51:38.446556"
     },
     {
-      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/MASTER_CHAT_CONTINUATION_COMPLETE.md",
+      "source": "[PROJECT_ROOT]/hingecraft-global/MASTER_CHAT_CONTINUATION_COMPLETE.md",
       "file_name": "MASTER_CHAT_CONTINUATION_COMPLETE.md",
       "size": 20816,
       "last_modified": "2025-12-07T13:38:29.319651"
     },
     {
-      "source": "/Users/chandlerfergusen/Desktop/CURSOR/HingeCraft/HINGECRAFT_COMPLETE_CHAT_DATA.md",
+      "source": "[PROJECT_ROOT]/HingeCraft/HINGECRAFT_COMPLETE_CHAT_DATA.md",
       "file_name": "HINGECRAFT_COMPLETE_CHAT_DATA.md",
       "size": 12957,
       "last_modified": "2025-11-30T17:22:44.340685"
@@ -2378,19 +2378,19 @@
   "postgresql_connections": [],
   "last_3_active_chats": [
     {
-      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/MASTER_CHAT_CONTINUATION_COMPLETE.md",
+      "source": "[PROJECT_ROOT]/hingecraft-global/MASTER_CHAT_CONTINUATION_COMPLETE.md",
       "file_name": "MASTER_CHAT_CONTINUATION_COMPLETE.md",
       "size": 20816,
       "last_modified": "2025-12-07T13:38:29.319651"
     },
     {
-      "source": "/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/COMPLETE_CHAT_HISTORY_EXPORT.md",
+      "source": "[PROJECT_ROOT]/hingecraft-global/COMPLETE_CHAT_HISTORY_EXPORT.md",
       "file_name": "COMPLETE_CHAT_HISTORY_EXPORT.md",
       "size": 27142,
       "last_modified": "2025-12-07T09:51:38.446556"
     },
     {
-      "source": "/Users/chandlerfergusen/Desktop/CURSOR/HingeCraft/HINGECRAFT_COMPLETE_CHAT_DATA.md",
+      "source": "[PROJECT_ROOT]/HingeCraft/HINGECRAFT_COMPLETE_CHAT_DATA.md",
       "file_name": "HINGECRAFT_COMPLETE_CHAT_DATA.md",
       "size": 12957,
       "last_modified": "2025-11-30T17:22:44.340685"

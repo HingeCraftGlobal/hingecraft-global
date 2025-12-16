@@ -17,7 +17,7 @@ echo -e "${BLUE}🚀 Deploy Everything - Complete Deployment${NC}"
 echo -e "${BLUE}═══════════════════════════════════════════════════════════${NC}"
 echo ""
 
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 
 # Step 1: Verify all files are ready
 echo -e "${YELLOW}Step 1: Verifying deployment files...${NC}"
@@ -145,13 +145,13 @@ cat > DEPLOYMENT_COMPLETE.md << 'EOF'
 
 1. **Run Setup:**
    ```bash
-   cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+   cd [PROJECT_ROOT]/HingeCraft
    ./AUTOMATE_COMPLETE_WIX_CLI_SETUP.sh
    ```
 
 2. **Start Development:**
    ```bash
-   cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+   cd [PROJECT_ROOT]/hingecraft-global
    wix dev
    ```
 

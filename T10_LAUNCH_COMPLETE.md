@@ -75,7 +75,7 @@
 ### Option 1: Docker Compose (Recommended)
 
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 
 # Start all services
 docker-compose up

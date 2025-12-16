@@ -28,7 +28,7 @@
 ### Step 1: Start Wix Dev Mode (2 minutes)
 
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 wix dev
 ```
 
@@ -146,7 +146,7 @@ wix dev
 
 ```bash
 # In a new terminal (keep wix dev running)
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 wix publish --source local
 ```
 

@@ -128,7 +128,7 @@ src/pages/legal/
 ### Option 2: Use Wix Dev (If CLI Works)
 
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 wix dev
 ```
 

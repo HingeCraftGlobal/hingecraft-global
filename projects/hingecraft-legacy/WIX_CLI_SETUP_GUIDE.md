@@ -31,7 +31,7 @@ If you get "command not found", check:
 ### Step 2: Clone Repository
 
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR
+cd [PROJECT_ROOT]
 git clone git@github.com:departments-commits/hingecraft-global.git
 cd hingecraft-global
 ```
@@ -194,7 +194,7 @@ wix auth login
 npm install -g @wix/cli
 
 # Clone repository
-cd /Users/chandlerfergusen/Desktop/CURSOR
+cd [PROJECT_ROOT]
 git clone git@github.com:departments-commits/hingecraft-global.git
 cd hingecraft-global
 

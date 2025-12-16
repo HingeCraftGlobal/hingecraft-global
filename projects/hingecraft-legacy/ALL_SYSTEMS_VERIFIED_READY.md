@@ -160,7 +160,7 @@
 
 **Option 1: Use Script** (Recommended)
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 ./MASTER_DEPLOY_AND_PUSH.sh
 ```
 

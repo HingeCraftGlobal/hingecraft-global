@@ -14,8 +14,8 @@ Ferguson-System and HingeCraft are **completely separate systems** with no share
 ## 📁 Ferguson-System Components
 
 ### Core Location
-- **Primary**: `/Users/chandlerfergusen/PycharmProjects/PythonProject/ferguson-system`
-- **CURSOR Integration**: `/Users/chandlerfergusen/Desktop/CURSOR/ai/`
+- **Primary**: `[USER_HOME]/PycharmProjects/PythonProject/ferguson-system`
+- **CURSOR Integration**: `[PROJECT_ROOT]/ai/`
 
 ### Ferguson-System Only Components
 

@@ -109,7 +109,7 @@ CHECKOUT_PAGE_URL: '/checkout'  // Update if different
 
 ```bash
 # Start Wix dev
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 wix dev
 
 # Verify pages

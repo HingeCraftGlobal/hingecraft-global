@@ -14,7 +14,7 @@
 
 **Option A: Use our setup script**
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 ./SETUP_NGROK.sh
 ```
 
@@ -73,7 +73,7 @@ ngrok requires a free account to create tunnels.
 Once authenticated:
 
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 ngrok http 3000
 ```
 

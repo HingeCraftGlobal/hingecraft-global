@@ -26,7 +26,7 @@ All changes have been:
 ### Option 1: Use the Push Script (Recommended)
 
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 ./push-with-token.sh
 ```
 
@@ -40,7 +40,7 @@ When prompted, enter your GitHub Personal Access Token.
 ### Option 2: Manual Push with Token
 
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 
 # Set remote with token
 git remote set-url origin https://YOUR_TOKEN@github.com/departments-commits/website-path-for-backend-contribution.git

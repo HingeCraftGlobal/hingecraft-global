@@ -101,7 +101,7 @@ After comprehensive investigation, the WDE0116 error was caused by multiple issu
 
 ### Option 1: Automatic (Recommended)
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 ./FIX_WDE0116_COMPLETE.sh
 ```
 

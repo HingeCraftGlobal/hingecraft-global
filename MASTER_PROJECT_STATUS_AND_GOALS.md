@@ -349,7 +349,7 @@ const CONFIG = {
 
 ```bash
 # Start Wix dev (if not running)
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 wix dev
 
 # Verify pages in Wix Editor

@@ -40,7 +40,7 @@
 
 ### Check Git Status
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 git status
 git log --oneline -5
 ```

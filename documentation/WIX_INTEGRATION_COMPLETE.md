@@ -122,7 +122,7 @@ curl -H "Authorization: Bearer $SECRET_KEY" \
 
 ### Complete Integration
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 ./scripts/COMPLETE_WIX_INTEGRATION.sh
 ```
 

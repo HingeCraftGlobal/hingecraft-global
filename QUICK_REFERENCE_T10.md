@@ -210,7 +210,7 @@ User completes payment
 
 ### Deploy:
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 ./scripts/deploy-to-wix-cli.sh
 ```
 

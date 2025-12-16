@@ -106,7 +106,7 @@ All code has been verified, enhanced, and is working properly.
 ### Push Command
 
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 ./push-with-token.sh
 ```
 

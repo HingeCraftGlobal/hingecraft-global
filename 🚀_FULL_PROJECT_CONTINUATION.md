@@ -24,7 +24,7 @@
 
 **Action Required:**
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 
 # Step 1: Start Docker services
 docker compose up -d postgres

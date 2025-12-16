@@ -106,7 +106,7 @@ All 35 legal documents created and verified.
 ### Option 1: Docker Deployment (Recommended)
 ```bash
 # Start Docker Desktop first, then:
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 docker compose up -d
 ./LAUNCH_01_DATABASE.sh
 ./scripts/APPLY_MASTER_SCHEMA.sh

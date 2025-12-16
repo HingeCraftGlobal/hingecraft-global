@@ -2,7 +2,7 @@
 # Status check script - shows detailed service information
 
 export PATH="/usr/local/bin:$PATH"
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 
 echo "📊 Docker Compose Status:"
 echo "========================"

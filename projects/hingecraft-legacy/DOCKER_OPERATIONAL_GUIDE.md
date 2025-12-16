@@ -12,7 +12,7 @@ Complete guide to get your Docker setup running and operational for Wix integrat
 
 ```bash
 # Navigate to project directory
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 
 # Create environment file
 cp .env.example .env

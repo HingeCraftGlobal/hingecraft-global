@@ -5,7 +5,7 @@
 ### 1. Open Project in Cursor
 
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 ```
 
 All your Wix code is here and ready to edit!
@@ -40,9 +40,9 @@ git push
 ## 📁 File Locations
 
 ### In Cursor (Edit Here)
-- `/Users/chandlerfergusen/Desktop/CURSOR/HingeCraft/payment-page-integration.js`
-- `/Users/chandlerfergusen/Desktop/CURSOR/HingeCraft/charter-page.html`
-- `/Users/chandlerfergusen/Desktop/CURSOR/HingeCraft/wix-project/` (organized structure)
+- `[PROJECT_ROOT]/HingeCraft/payment-page-integration.js`
+- `[PROJECT_ROOT]/HingeCraft/charter-page.html`
+- `[PROJECT_ROOT]/HingeCraft/wix-project/` (organized structure)
 
 ### In Wix (Paste There)
 - Payment Page → Custom Code → JavaScript

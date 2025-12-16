@@ -80,7 +80,7 @@
 
 1. **Start Wix Dev:**
    ```bash
-   cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+   cd [PROJECT_ROOT]/hingecraft-global
    wix dev
    ```
 

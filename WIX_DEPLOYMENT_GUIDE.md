@@ -75,7 +75,7 @@ If CLI continues to fail, use Wix REST API to upload pages programmatically.
 ### Step 1: Verify Files Are in Place
 
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 ls -la src/pages/legal/*.html | wc -l  # Should show 34
 ls -la public/pages/legal/*.html | wc -l  # Should show 34
 ```

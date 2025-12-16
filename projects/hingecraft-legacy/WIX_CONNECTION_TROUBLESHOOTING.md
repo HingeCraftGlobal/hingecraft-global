@@ -31,7 +31,7 @@ http://localhost:3000
 1. **Docker services not running**
    - Solution: Start Docker services
    ```bash
-   cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+   cd [PROJECT_ROOT]/HingeCraft
    docker-compose up -d
    ```
 
@@ -63,7 +63,7 @@ http://localhost:3000
 ### Step 1: Verify Docker Services Are Running
 
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 
 # Check Docker is running
 docker info
@@ -139,7 +139,7 @@ In Wix Editor:
 ### Fix 1: Restart Services
 
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 docker-compose restart
 ```
 

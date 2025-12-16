@@ -60,7 +60,7 @@
 
 1. **Start Database:**
    ```bash
-   cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+   cd [PROJECT_ROOT]/hingecraft-global
    docker compose up -d db
    ```
 

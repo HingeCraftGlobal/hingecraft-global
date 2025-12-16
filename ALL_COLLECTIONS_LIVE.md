@@ -97,7 +97,7 @@ Wix CMS (Display Collections)
 
 Run anytime to verify all collections:
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 ./VERIFY_ALL_COLLECTIONS.sh
 ```
 
@@ -106,7 +106,7 @@ cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
 The adaptor container was updated by copying `server.js` directly. To make this permanent, rebuild the Docker image:
 
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 docker compose build db-adaptor
 docker compose restart db-adaptor
 ```

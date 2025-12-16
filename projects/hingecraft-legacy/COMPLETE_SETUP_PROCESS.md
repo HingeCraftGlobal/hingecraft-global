@@ -50,7 +50,7 @@ You need to provide:
 #### 1.1 Create .env File
 
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 cp .env.example .env
 ```
 

@@ -12,7 +12,7 @@ RED='\033[0;31m'
 BLUE='\033[0;34m'
 NC='\033[0m'
 
-PROJECT_DIR="/Users/chandlerfergusen/Desktop/CURSOR/HingeCraft"
+PROJECT_DIR="[PROJECT_ROOT]/HingeCraft"
 cd "$PROJECT_DIR"
 
 echo -e "${BLUE}========================================${NC}"

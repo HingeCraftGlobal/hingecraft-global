@@ -17,7 +17,7 @@ echo -e "${BLUE}✅ Verify Live Changes on Wix${NC}"
 echo -e "${BLUE}═══════════════════════════════════════════════════════════${NC}"
 echo ""
 
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 
 # Step 1: Check Wix dev server
 echo -e "${YELLOW}Step 1: Checking Wix dev server...${NC}"

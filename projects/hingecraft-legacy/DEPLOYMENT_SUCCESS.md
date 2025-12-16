@@ -29,7 +29,7 @@ Both Docker images have been **successfully pushed to Docker Hub**:
 1. **Restart Docker Desktop** (to fix I/O errors)
 2. **Start services**:
    ```bash
-   cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+   cd [PROJECT_ROOT]/HingeCraft
    docker-compose up -d
    ```
 

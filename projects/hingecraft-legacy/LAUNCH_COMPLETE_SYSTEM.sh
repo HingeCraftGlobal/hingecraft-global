@@ -13,7 +13,7 @@ CYAN='\033[0;36m'
 NC='\033[0m' # No Color
 
 cd "$(dirname "$0")"
-PROJECT_DIR="/Users/chandlerfergusen/Desktop/CURSOR/HingeCraft"
+PROJECT_DIR="[PROJECT_ROOT]/HingeCraft"
 
 # Configuration
 GIT_REPO="https://github.com/departments-commits/website-path-for-backend-contribution.git"

@@ -145,7 +145,7 @@ All files have been:
 
 ### To Complete Installation:
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR
+cd [PROJECT_ROOT]
 
 # Install all dependencies
 pip3 install -r requirements_master.txt

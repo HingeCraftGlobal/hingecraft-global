@@ -18,7 +18,7 @@ cd "$PROJECT_ROOT"
 echo "📦 Test 1: Agent-to-Agent Communication..."
 python3 << 'PYTHON_TEST'
 import sys
-sys.path.insert(0, '/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global')
+sys.path.insert(0, '[PROJECT_ROOT]/hingecraft-global')
 
 from agents.base.message_bus import MessageBus
 from unittest.mock import Mock
@@ -61,7 +61,7 @@ echo ""
 echo "📦 Test 3: RAG Knowledge Base Integration..."
 python3 << 'PYTHON_TEST'
 import sys
-sys.path.insert(0, '/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global')
+sys.path.insert(0, '[PROJECT_ROOT]/hingecraft-global')
 
 from agents.base.rag_connector import RAGConnector
 from unittest.mock import Mock
@@ -104,7 +104,7 @@ echo ""
 echo "📦 Test 5: Agent-Database Integration..."
 python3 << 'PYTHON_TEST'
 import sys
-sys.path.insert(0, '/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global')
+sys.path.insert(0, '[PROJECT_ROOT]/hingecraft-global')
 
 try:
     from agents.legal.contract_reviewer import ContractReviewer
@@ -128,7 +128,7 @@ echo ""
 echo "📦 Test 6: Workflow Engine Integration..."
 python3 << 'PYTHON_TEST'
 import sys
-sys.path.insert(0, '/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global')
+sys.path.insert(0, '[PROJECT_ROOT]/hingecraft-global')
 
 from agents.base.workflow import WorkflowEngine, WorkflowStep
 
@@ -152,7 +152,7 @@ echo ""
 echo "📦 Test 7: Progress Tracker Integration..."
 python3 << 'PYTHON_TEST'
 import sys
-sys.path.insert(0, '/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global')
+sys.path.insert(0, '[PROJECT_ROOT]/hingecraft-global')
 
 from agents.progress.tracker import ProgressTracker
 

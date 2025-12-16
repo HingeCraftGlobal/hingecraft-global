@@ -148,7 +148,7 @@
 
 ### Step 1: Verify Current State
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 
 # Check what exists
 ls -la database/master_schema/*.sql

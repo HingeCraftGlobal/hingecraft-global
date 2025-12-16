@@ -212,7 +212,7 @@ The secret key is configured in `.env` file and passed to containers via environ
 
 ### Check Service Status
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 export PATH="/usr/local/bin:$PATH"
 docker compose ps
 ```

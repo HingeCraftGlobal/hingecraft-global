@@ -100,7 +100,7 @@
 
 #### Step 1: Verify Current Status ✅
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 
 # Check Wix dev
 ps aux | grep "wix dev"
@@ -171,7 +171,7 @@ cat public/pages/charter-page.html
 
 #### Step 8: Publish to Production ⏳
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 wix publish --source local
 ```
 

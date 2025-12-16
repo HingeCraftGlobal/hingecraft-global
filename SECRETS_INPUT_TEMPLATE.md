@@ -170,6 +170,97 @@ Secret Value: [🔍 QUERY DATABASE: SELECT value FROM secrets WHERE key = 'CRM_A
 
 ---
 
+## 💰 CRYPTO WALLET ADDRESSES (For NOWPayments Payouts)
+
+**IMPORTANT:** Wallet addresses must be configured in NOWPayments Dashboard, not in Wix Secrets.
+
+### How to Configure Wallet Addresses
+
+1. **Go to NOWPayments Dashboard:** https://nowpayments.io
+2. **Settings** → **Payout Settings** or **Wallet Settings**
+3. **Add Wallet Addresses** for each cryptocurrency:
+   - Bitcoin (BTC)
+   - Ethereum (ETH)
+   - Solana (SOL)
+   - Stellar (XLM)
+
+### Query Database for Wallet Addresses
+
+```sql
+-- Get all wallet addresses from crypto_treasury
+SELECT currency, wallet_address, wallet_type, network
+FROM crypto_treasury
+WHERE is_active = true
+ORDER BY currency;
+
+-- Get specific currency addresses
+SELECT wallet_address FROM crypto_treasury 
+WHERE currency = 'BTC' AND is_active = true;
+SELECT wallet_address FROM crypto_treasury 
+WHERE currency = 'ETH' AND is_active = true;
+SELECT wallet_address FROM crypto_treasury 
+WHERE currency = 'SOL' AND is_active = true;
+SELECT wallet_address FROM crypto_treasury 
+WHERE currency = 'XLM' AND is_active = true;
+```
+
+### Wallet Address Format Examples
+
+- **Bitcoin (BTC):** `1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa` or `bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh`
+- **Ethereum (ETH):** `0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb`
+- **Solana (SOL):** `DxPvzLdQYcVj3Vx1qJ8K9L2M3N4O5P6Q7R8S9T0U1V2W3X4Y5Z6A7B8C9D0E1F`
+- **Stellar (XLM):** `GABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890ABCDEFGHIJKLMNOPQRSTUV`
+
+### NOWPayments API Wallet Configuration
+
+According to NOWPayments API documentation:
+- Wallet addresses are configured in the NOWPayments Dashboard
+- You specify the `pay_currency` parameter when creating invoices
+- NOWPayments uses your configured payout wallet addresses automatically
+- No need to pass wallet addresses in API calls (they're stored in your account)
+
+### Extract Wallet Addresses Script
+
+Run this to extract wallet addresses from your database:
+
+```bash
+node scripts/extract-wallet-addresses.js
+```
+
+This will:
+- Query `crypto_treasury` table
+- Query `wallets` table
+- Query `secrets` table for wallet-related keys
+- Generate formatted output for NOWPayments
+
+---
+
+## 💰 Crypto Wallet Addresses
+
+**IMPORTANT:** Wallet addresses are configured in NOWPayments Dashboard, NOT in Wix Secrets.
+
+### Quick Setup:
+1. Go to NOWPayments Dashboard → Settings → Payout Settings
+2. Add wallet addresses for: BTC, ETH, SOL, XLM
+3. Verify addresses are correct
+4. Save configuration
+
+### Query Database for Wallet Addresses:
+```sql
+-- Get all wallet addresses
+SELECT currency, wallet_address, wallet_type
+FROM crypto_treasury
+WHERE is_active = true
+ORDER BY currency;
+
+-- Or run extraction script
+-- node scripts/extract-wallet-addresses.js
+```
+
+**See `WALLET_ADDRESSES_GUIDE.md` for complete wallet configuration guide.**
+
+---
+
 ## 🔍 How to Find Your Secrets
 
 ### Method 1: Query PostgreSQL Database

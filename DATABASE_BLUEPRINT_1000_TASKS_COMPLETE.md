@@ -104,7 +104,7 @@ Successfully created **1,098 comprehensive nano tasks** covering the complete Hi
 
 1. **Execute Task Verification**
    ```bash
-   cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+   cd [PROJECT_ROOT]/hingecraft-global
    python3 database/RUN_1000_NANO_TASKS.py
    ```
 

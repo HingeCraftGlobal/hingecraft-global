@@ -142,7 +142,7 @@
 
 **Execution:**
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 python3 EXECUTE_1000_LAUNCH_STEPS.py
 ```
 
@@ -223,7 +223,7 @@ python3 EXECUTE_1000_LAUNCH_STEPS.py
 
 **Execution:**
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 wix publish --source local
 ```
 
@@ -237,7 +237,7 @@ Then verify:
 
 ### Step 1: Execute Automated Steps
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 python3 EXECUTE_1000_LAUNCH_STEPS.py
 ```
 
@@ -315,7 +315,7 @@ python3 EXECUTE_1000_LAUNCH_STEPS.py
 
 ### Execute All Automated Steps
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 python3 EXECUTE_1000_LAUNCH_STEPS.py
 ```
 

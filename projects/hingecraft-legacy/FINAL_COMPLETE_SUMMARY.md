@@ -34,7 +34,7 @@ All HingeCraft project files have been gathered, exported, and solutions provide
 
 ### Step 1: Start Services
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 ./EXECUTE_COMPLETE_SETUP.sh
 ```
 
@@ -181,7 +181,7 @@ GET  /export/json         (auth required)
 
 1. **Run Setup:**
    ```bash
-   cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+   cd [PROJECT_ROOT]/HingeCraft
    ./EXECUTE_COMPLETE_SETUP.sh
    ```
 

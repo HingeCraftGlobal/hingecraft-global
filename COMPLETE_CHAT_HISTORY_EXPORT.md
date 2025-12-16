@@ -626,7 +626,7 @@ WDE0116 - Field names referenced in code don't exist in the collection
 ### 📋 Next Steps
 1. **Database Deployment:**
    ```bash
-   cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+   cd [PROJECT_ROOT]/hingecraft-global
    ./LAUNCH_01_DATABASE.sh
    ```
 
@@ -769,7 +769,7 @@ EXTERNAL_DB_ENDPOINT=http://localhost:3000
 
 ### Start Everything
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 docker compose up -d
 ngrok http 3000
 ```

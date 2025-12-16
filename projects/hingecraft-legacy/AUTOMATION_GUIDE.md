@@ -4,7 +4,7 @@
 
 ### Option 1: Fully Automated (with authtoken)
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 
 # If you have your ngrok authtoken:
 ./AUTOMATE_WITH_TOKEN.sh YOUR_AUTHTOKEN

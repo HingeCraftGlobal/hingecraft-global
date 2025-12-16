@@ -30,7 +30,7 @@ All Wix CLI setup steps are now automated in a single script!
 ### Run the Automation:
 
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 ./AUTOMATE_COMPLETE_WIX_CLI_SETUP.sh
 ```
 
@@ -107,7 +107,7 @@ After running the script, verify:
 
 1. **Navigate to project:**
    ```bash
-   cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+   cd [PROJECT_ROOT]/hingecraft-global
    ```
 
 2. **Start development:**
@@ -137,7 +137,7 @@ After running the script, verify:
 ## 🚀 Run Now
 
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 ./AUTOMATE_COMPLETE_WIX_CLI_SETUP.sh
 ```
 

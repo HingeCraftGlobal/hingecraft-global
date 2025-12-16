@@ -30,7 +30,7 @@
 
 ### Step 1.1: Start Wix Dev Mode
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 ./START_WIX_DEV.sh
 ```
 
@@ -133,7 +133,7 @@ wix publish --source local
 
 ### Step 2.1: Start Docker Services
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 docker compose up -d postgres
 ```
 
@@ -194,7 +194,7 @@ docker compose exec postgres psql -U hcuser -d hingecraft -c "SELECT COUNT(*) FR
 
 ### Step 3.1: Configure Notion Environment
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/notion
+cd [PROJECT_ROOT]/hingecraft-global/notion
 cp env_template.txt .env
 # Edit .env with Notion token and page ID
 ```
@@ -337,7 +337,7 @@ python3 monitoring/cursor_monitor.py &
 **Start Phase 1 - Wix Deployment:**
 
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 ./START_WIX_DEV.sh
 ```
 

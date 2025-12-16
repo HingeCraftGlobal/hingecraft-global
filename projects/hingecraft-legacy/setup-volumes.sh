@@ -3,7 +3,7 @@
 # This ensures all data is stored in Docker volumes, not on host filesystem
 
 export PATH="/usr/local/bin:$PATH"
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 
 echo "📦 Setting up Docker volumes with all data..."
 

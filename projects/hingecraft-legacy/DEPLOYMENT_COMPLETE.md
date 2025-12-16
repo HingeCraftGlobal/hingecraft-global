@@ -43,13 +43,13 @@
 
 1. **Run Setup:**
    ```bash
-   cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+   cd [PROJECT_ROOT]/HingeCraft
    ./AUTOMATE_COMPLETE_WIX_CLI_SETUP.sh
    ```
 
 2. **Start Development:**
    ```bash
-   cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+   cd [PROJECT_ROOT]/hingecraft-global
    wix dev
    ```
 

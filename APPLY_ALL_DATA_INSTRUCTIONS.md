@@ -5,7 +5,7 @@
 Run the master automation script:
 
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 ./scripts/APPLY_ALL_DATABASE.sh
 ```
 
@@ -52,13 +52,13 @@ export DB_PASSWORD=your_password
 
 ### 1. Start Docker Database
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 docker compose up -d
 ```
 
 ### 2. Load Data Manually
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 export DB_HOST=localhost
 export DB_PORT=5432
 export DB_NAME=hingecraft_db
@@ -69,14 +69,14 @@ python3 scripts/load_all_hingecraft_data.py
 
 ### 3. Verify Data
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 docker compose exec postgres psql -U hingecraft_user -d hingecraft_db -c "SELECT COUNT(*) FROM donations;"
 docker compose exec postgres psql -U hingecraft_user -d hingecraft_db -c "SELECT COUNT(*) FROM members;"
 ```
 
 ### 4. Restart Adaptor
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 docker compose restart db-adaptor
 ```
 
@@ -93,7 +93,7 @@ curl -H "Authorization: Bearer YOUR_SECRET_KEY" \
 
 ### 6. Sync to Wix
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 NODE_TLS_REJECT_UNAUTHORIZED=0 wix dev
 ```
 

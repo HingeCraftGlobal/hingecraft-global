@@ -12,7 +12,7 @@ from pathlib import Path
 import subprocess
 
 # Database paths
-CURSOR_ROOT = Path("/Users/chandlerfergusen/Desktop/CURSOR")
+CURSOR_ROOT = Path("[PROJECT_ROOT]")
 DATABASES = {
     "ferguson_system": CURSOR_ROOT / "data" / "ferguson_system.db",
     "fma_data": CURSOR_ROOT / "sql" / "fma_data.db",

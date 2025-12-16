@@ -138,7 +138,7 @@
 ### Immediate (Today):
 1. **Start Wix Deployment:**
    ```bash
-   cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+   cd [PROJECT_ROOT]/hingecraft-global
    ./START_WIX_DEV.sh
    ```
    Follow: `QUICK_DEPLOY_TO_WIX.md`

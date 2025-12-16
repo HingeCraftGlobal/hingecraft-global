@@ -31,7 +31,7 @@ All updates have been committed to the local repository. The push requires authe
 ### Option 1: Push with Authentication (Recommended)
 
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 git push origin main
 ```
 

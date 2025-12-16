@@ -51,7 +51,7 @@
 
 ### 1. Database Setup
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 docker compose up -d db
 ```
 
@@ -73,7 +73,7 @@ docker compose up -d db
 
 ### 5. Start Database Adaptor
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 docker compose up -d db-adaptor
 ```
 
@@ -88,7 +88,7 @@ ngrok http 3000
 
 ### 8. Start Wix Dev Server
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 NODE_TLS_REJECT_UNAUTHORIZED=0 wix dev
 ```
 

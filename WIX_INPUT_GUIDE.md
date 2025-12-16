@@ -3,7 +3,7 @@
 ## Quick Launch Commands
 
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 wix dev
 # Then in new terminal:
 wix publish

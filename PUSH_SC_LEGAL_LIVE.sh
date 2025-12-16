@@ -9,7 +9,7 @@ echo "HINGECRAFT GLOBAL - SC LEGAL DOCUMENTS DEPLOYMENT"
 echo "============================================================"
 echo ""
 
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 
 # Step 1: Show updated pages
 echo "STEP 1: Pages Updated with SC Legal Content"
@@ -47,7 +47,7 @@ echo "STEP 2: Starting Wix Dev Mode"
 echo "------------------------------------------------------------"
 echo "Run this command in your terminal:"
 echo ""
-echo "    cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global"
+echo "    cd [PROJECT_ROOT]/hingecraft-global"
 echo "    wix dev"
 echo ""
 echo "This will open the Local Editor to verify changes."
@@ -79,7 +79,7 @@ echo "COMPLETE LEGAL PACKAGE DOCUMENTATION"
 echo "============================================================"
 echo ""
 echo "All 34 SC legal documents are located at:"
-echo "  /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/COMPLETE_LEGAL_DOCS_SC/"
+echo "  [PROJECT_ROOT]/hingecraft-global/COMPLETE_LEGAL_DOCS_SC/"
 echo ""
 echo "Index file: 00-INDEX-ALL-DOCUMENTS.html"
 echo "Documentation: LEGAL_PACKAGE_DOCUMENTATION.md"

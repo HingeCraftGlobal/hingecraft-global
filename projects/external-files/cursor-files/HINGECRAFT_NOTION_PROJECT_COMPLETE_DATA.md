@@ -38,7 +38,7 @@
 - ✅ **10,000 nano tasks** for complete implementation
 
 ### Project Location:
-- **Local Path:** `/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/notion/`
+- **Local Path:** `[PROJECT_ROOT]/hingecraft-global/notion/`
 - **Git Repository:** `https://github.com/departments-commits/hingecraft-global.git`
 - **Main Branch:** `main`
 
@@ -517,7 +517,7 @@ schedule>=1.2.0
 - **Branch:** `main`
 - **Total Commits:** 143
 - **Tracked Files:** 3,162
-- **Local Path:** `/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/`
+- **Local Path:** `[PROJECT_ROOT]/hingecraft-global/`
 
 ### Repository Structure:
 ```
@@ -612,7 +612,7 @@ hingecraft-global/
 
 ### 1. Install Dependencies
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/notion
+cd [PROJECT_ROOT]/hingecraft-global/notion
 pip install -r requirements.txt
 ```
 
@@ -684,7 +684,7 @@ python triggers/automation_triggers.py
 - **Wix Editor:** https://editor.wix.com
 
 ### Project Files Location:
-- **Local Path:** `/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/notion/`
+- **Local Path:** `[PROJECT_ROOT]/hingecraft-global/notion/`
 - **Sync Script:** `notion/sync/hingecraft_notion_sync.py`
 - **Tasks File:** `notion/NOTION_INTEGRATION_10000_TASKS.json`
 

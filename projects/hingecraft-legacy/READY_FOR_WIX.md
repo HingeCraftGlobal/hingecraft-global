@@ -35,7 +35,7 @@ https://multiracial-zavier-acculturative.ngrok-free.dev
 ### Option 1: Automated (Recommended)
 
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 
 # Start ngrok in one terminal
 ngrok http 3000

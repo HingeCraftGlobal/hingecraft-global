@@ -13,7 +13,7 @@ Everything is committed and ready to push! The repository has been initialized w
 ### Option 1: Using HTTPS (with Personal Access Token)
 
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 
 # Push to GitHub
 git push -u origin main
@@ -30,7 +30,7 @@ git push -u origin main
 ### Option 2: Using SSH (Recommended)
 
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 
 # Change remote to SSH
 git remote set-url origin git@github.com:departments-commits/website-path-for-backend-contribution.git
@@ -44,7 +44,7 @@ git push -u origin main
 ### Option 3: GitHub CLI (if installed)
 
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 
 # Authenticate (if not already)
 gh auth login

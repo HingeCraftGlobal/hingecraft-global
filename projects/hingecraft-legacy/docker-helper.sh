@@ -6,7 +6,7 @@
 export PATH="/usr/local/bin:$PATH"
 
 # Change to HingeCraft directory
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 
 # Run the requested command or default to status
 if [ "$1" = "up" ]; then

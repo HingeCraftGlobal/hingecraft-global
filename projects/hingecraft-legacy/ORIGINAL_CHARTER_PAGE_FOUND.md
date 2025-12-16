@@ -30,10 +30,10 @@
 ## 📍 Original File Location
 
 ```
-/Users/chandlerfergusen/Desktop/CURSOR/HingeCraft/charter-page.html
+[PROJECT_ROOT]/HingeCraft/charter-page.html
 ```
 
-**Full Path**: `/Users/chandlerfergusen/Desktop/CURSOR/HingeCraft/charter-page.html`
+**Full Path**: `[PROJECT_ROOT]/HingeCraft/charter-page.html`
 
 ---
 

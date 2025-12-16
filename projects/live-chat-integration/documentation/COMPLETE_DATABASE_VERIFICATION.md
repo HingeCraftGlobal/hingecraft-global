@@ -179,18 +179,18 @@ database/COMPLETE_HINGECRAFT_DATABASE/
 All files were collected from:
 
 1. ✅ **Main Repository**
-   - `Desktop/CURSOR/hingecraft-global/database/`
+   - `[PROJECT_ROOT]/hingecraft-global/database/`
 
 2. ✅ **Complete Backup**
-   - `Desktop/CURSOR/COMPLETE_BACKUP/git-repos/hingecraft-global/files/database/`
+   - `[PROJECT_ROOT]/COMPLETE_BACKUP/git-repos/hingecraft-global/files/database/`
 
 3. ✅ **Cursor Backup**
-   - `Desktop/CURSOR_BACKUP_20251210_190306/workspace/hingecraft-global/database/`
+   - `[PROJECT_ROOT]_BACKUP_20251210_190306/workspace/hingecraft-global/database/`
 
 4. ✅ **HingeCraft Directory**
-   - `Desktop/CURSOR/HingeCraft/database/`
-   - `Desktop/CURSOR/HingeCraft/database-schema.sql`
-   - `Desktop/CURSOR/HingeCraft/python-server/database.py`
+   - `[PROJECT_ROOT]/HingeCraft/database/`
+   - `[PROJECT_ROOT]/HingeCraft/database-schema.sql`
+   - `[PROJECT_ROOT]/HingeCraft/python-server/database.py`
 
 5. ✅ **Documentation Files**
    - All markdown files mentioning HingeCraft database

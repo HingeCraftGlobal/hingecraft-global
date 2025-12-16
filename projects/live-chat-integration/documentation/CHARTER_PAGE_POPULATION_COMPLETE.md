@@ -99,7 +99,7 @@ Successfully extracted all HingeCraft data from database files and populated the
 
 ### Run Population Script
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 python3 scripts/populate_charter_page_with_data.py
 ```
 

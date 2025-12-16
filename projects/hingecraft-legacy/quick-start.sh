@@ -2,7 +2,7 @@
 # Quick start script - bypasses volume setup issues
 
 export PATH="/usr/local/bin:/usr/bin:/bin:$PATH"
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 
 echo "🚀 Quick Start - HingeCraft Services"
 echo ""

@@ -158,7 +158,7 @@ deployment-scripts/
 
 **Run:**
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 ./deployment-scripts/push-to-wix-dev.sh
 ```
 

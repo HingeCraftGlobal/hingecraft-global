@@ -17,7 +17,7 @@ echo -e "${BLUE}🧪 Test Complete Flow: Payment → Charter → Checkout${NC}"
 echo -e "${BLUE}═══════════════════════════════════════════════════════════${NC}"
 echo ""
 
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 
 # Step 1: Verify code files exist
 echo -e "${YELLOW}Step 1: Verifying code files...${NC}"

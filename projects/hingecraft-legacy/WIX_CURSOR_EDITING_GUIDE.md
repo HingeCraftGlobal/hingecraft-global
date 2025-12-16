@@ -10,7 +10,7 @@ This guide shows you how to edit your entire Wix website directly from Cursor ID
 
 ### Option 1: Use Existing HingeCraft Directory (Recommended)
 
-Since we already have all the code in `/Users/chandlerfergusen/Desktop/CURSOR/HingeCraft`, we can use this as our Wix development workspace.
+Since we already have all the code in `[PROJECT_ROOT]/HingeCraft`, we can use this as our Wix development workspace.
 
 **Current Structure:**
 ```
@@ -74,7 +74,7 @@ Since npm/Wix CLI may not be available, use this manual sync method:
 ### Step 1: Create Local Wix Project Structure
 
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 mkdir -p wix-project/{public/pages,backend/functions}
 ```
 
@@ -166,7 +166,7 @@ Edit files in `wix-project/` directory:
 
 **Cursor File:**
 ```
-/Users/chandlerfergusen/Desktop/CURSOR/HingeCraft/payment-page-integration.js
+[PROJECT_ROOT]/HingeCraft/payment-page-integration.js
 ```
 
 **Wix Location:**
@@ -184,7 +184,7 @@ Edit files in `wix-project/` directory:
 
 **Cursor File:**
 ```
-/Users/chandlerfergusen/Desktop/CURSOR/HingeCraft/charter-page.html
+[PROJECT_ROOT]/HingeCraft/charter-page.html
 ```
 
 **Wix Location:**
@@ -201,7 +201,7 @@ Edit files in `wix-project/` directory:
 
 **Cursor File:**
 ```
-/Users/chandlerfergusen/Desktop/CURSOR/HingeCraft/database-adaptor/server.js
+[PROJECT_ROOT]/HingeCraft/database-adaptor/server.js
 ```
 
 **Wix Location:**
@@ -221,7 +221,7 @@ Edit files in `wix-project/` directory:
 
 1. **Edit in Cursor:**
    ```bash
-   cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+   cd [PROJECT_ROOT]/HingeCraft
    # Edit files with Cursor
    ```
 
@@ -239,7 +239,7 @@ Edit files in `wix-project/` directory:
 
 ```bash
 # Commit changes in Cursor
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 git add .
 git commit -m "Update payment page integration"
 git push
@@ -269,8 +269,8 @@ Create a sync script to automate copying:
 #!/bin/bash
 # sync-to-wix.sh
 
-SOURCE_DIR="/Users/chandlerfergusen/Desktop/CURSOR/HingeCraft"
-WIX_PROJECT="/Users/chandlerfergusen/Desktop/CURSOR/HingeCraft/wix-project"
+SOURCE_DIR="[PROJECT_ROOT]/HingeCraft"
+WIX_PROJECT="[PROJECT_ROOT]/HingeCraft/wix-project"
 
 # Copy payment page
 cp "$SOURCE_DIR/payment-page-integration.js" \
@@ -323,7 +323,7 @@ echo "Next: Copy from wix-project/ to Wix Editor"
 
 1. **Open Cursor:**
    ```bash
-   cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+   cd [PROJECT_ROOT]/HingeCraft
    code .
    ```
 

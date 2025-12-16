@@ -12,7 +12,7 @@ All databases in your workspace have been verified, and all data has been export
 ### ✅ SQLite Databases Found
 
 #### 1. **ferguson_system.db**
-- **Location:** `/Users/chandlerfergusen/Desktop/CURSOR/data/ferguson_system.db`
+- **Location:** `[PROJECT_ROOT]/data/ferguson_system.db`
 - **Size:** 0.26 MB
 - **Tables:** 20 tables
 - **Total Rows:** 13 rows
@@ -28,7 +28,7 @@ All databases in your workspace have been verified, and all data has been export
 - `sessions`, `statistics`, `large_plays`, `daily_large_plays_log`
 
 #### 2. **fma_data.db**
-- **Location:** `/Users/chandlerfergusen/Desktop/CURSOR/sql/fma_data.db`
+- **Location:** `[PROJECT_ROOT]/sql/fma_data.db`
 - **Size:** 0.07 MB
 - **Tables:** 9 tables
 - **Total Rows:** 6 rows
@@ -71,7 +71,7 @@ docker exec -it postgres psql -U hingecraft_user -d hingecraft_db -c "\dt"
 
 All database data has been exported to JSON files in:
 ```
-/Users/chandlerfergusen/Desktop/CURSOR/database_verification/
+[PROJECT_ROOT]/database_verification/
 ```
 
 ### Export Files Created:
@@ -86,12 +86,12 @@ All database data has been exported to JSON files in:
 
 A backup script has been created at:
 ```
-/Users/chandlerfergusen/Desktop/CURSOR/database_verification/backup_all_databases.sh
+[PROJECT_ROOT]/database_verification/backup_all_databases.sh
 ```
 
 **To backup all databases:**
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR
+cd [PROJECT_ROOT]
 ./database_verification/backup_all_databases.sh
 ```
 

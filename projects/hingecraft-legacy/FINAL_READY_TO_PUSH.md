@@ -52,7 +52,7 @@
 ### Push Now
 
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 ./PUSH_TO_GIT.sh
 ```
 

@@ -192,7 +192,7 @@ To expose all 51 tables via SPI endpoints:
 To sync code to Wix Editor:
 
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 wix dev
 ```
 

@@ -16,7 +16,7 @@ Complete guide to push your HingeCraft project to GitHub.
 ### Step 1: Verify Git Status
 
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 
 # Check what will be committed
 git status

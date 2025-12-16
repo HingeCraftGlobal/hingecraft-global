@@ -20,11 +20,11 @@ from collections import defaultdict
 
 # HTML file paths
 HTML_FILES = [
-    '/Users/chandlerfergusen/Downloads/name_on_public_charter_masked_sorted (3).html',
-    '/Users/chandlerfergusen/Downloads/membership_portal_full V3.html',
-    '/Users/chandlerfergusen/Downloads/portal_login_social_participation.html',
-    '/Users/chandlerfergusen/Downloads/lifetime_registry_inclusion (13).html',
-    '/Users/chandlerfergusen/Downloads/lifetime_registry_inclusion (13) (1).html'
+    '[USER_HOME]/Downloads/name_on_public_charter_masked_sorted (3).html',
+    '[USER_HOME]/Downloads/membership_portal_full V3.html',
+    '[USER_HOME]/Downloads/portal_login_social_participation.html',
+    '[USER_HOME]/Downloads/lifetime_registry_inclusion (13).html',
+    '[USER_HOME]/Downloads/lifetime_registry_inclusion (13) (1).html'
 ]
 
 def extract_table_data(html_path):

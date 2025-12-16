@@ -10,7 +10,7 @@ import re
 from pathlib import Path
 from datetime import datetime
 
-BASE_DIR = Path("/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global")
+BASE_DIR = Path("[PROJECT_ROOT]/hingecraft-global")
 PAGES_DIR = BASE_DIR / "src" / "pages"
 SEO_OUTPUT_DIR = BASE_DIR / "seo_markups"
 

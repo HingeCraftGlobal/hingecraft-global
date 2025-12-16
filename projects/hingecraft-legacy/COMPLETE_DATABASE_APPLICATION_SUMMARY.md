@@ -314,7 +314,7 @@ Port: 5432
 
 ### Start Services
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 docker-compose up -d
 ```
 

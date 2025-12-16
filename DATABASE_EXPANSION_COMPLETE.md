@@ -360,7 +360,7 @@ Checkout Page
 ### Immediate Actions:
 1. **Apply Master Schema**
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
    ./LAUNCH_01_DATABASE.sh
    ./scripts/APPLY_MASTER_SCHEMA.sh
    ```

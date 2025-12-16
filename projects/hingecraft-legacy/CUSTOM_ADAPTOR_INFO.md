@@ -8,7 +8,7 @@ We built a **custom database adaptor** specifically for HingeCraft to connect Wi
 
 ## 📁 Custom Adaptor Location
 
-**Directory**: `/Users/chandlerfergusen/Desktop/CURSOR/HingeCraft/database-adaptor/`
+**Directory**: `[PROJECT_ROOT]/HingeCraft/database-adaptor/`
 
 **Files**:
 - `server.js` - Main Express.js API server (354 lines)

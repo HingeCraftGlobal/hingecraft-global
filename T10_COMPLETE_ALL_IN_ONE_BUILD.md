@@ -132,7 +132,7 @@ The `complete-all-in-one.html` file has been fully enhanced with the complete T1
 ### 1. Start Backend Server
 
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 npm install
 npm start
 ```

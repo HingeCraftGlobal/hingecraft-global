@@ -12,7 +12,7 @@ from pathlib import Path
 from typing import Dict, List
 
 # Base directory
-BASE_DIR = Path("/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global")
+BASE_DIR = Path("[PROJECT_ROOT]/hingecraft-global")
 
 # Master task tracker
 MASTER_RESULTS = {

@@ -176,7 +176,7 @@
 
 **To Push**:
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 git add -A
 git commit -m "Fix payment page error and deploy complete Wix integration"
 git push origin main

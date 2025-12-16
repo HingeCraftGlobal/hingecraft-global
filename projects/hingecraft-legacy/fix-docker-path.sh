@@ -36,7 +36,7 @@ if docker --version > /dev/null 2>&1; then
     echo ""
     
     # Try to start services
-    cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+    cd [PROJECT_ROOT]/HingeCraft
     echo "🚀 Starting HingeCraft services..."
     docker compose up -d
     

@@ -3,7 +3,7 @@
 **Date:** January 27, 2025  
 **Status:** ✅ All Database Data Consolidated from Git Repository  
 **Repository:** `https://github.com/departments-commits/hingecraft-global.git`  
-**Location:** `/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/`
+**Location:** `[PROJECT_ROOT]/hingecraft-global/`
 
 ---
 
@@ -846,7 +846,7 @@ All tables have two triggers:
 
 ```bash
 # Navigate to project
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 
 # Start PostgreSQL (Docker)
 docker-compose up -d postgres
@@ -906,7 +906,7 @@ python3 database/RUN_TROUBLESHOOTING_500_TASKS.py
 ### Immediate Actions
 1. **Apply Master Schema**
    ```bash
-   cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+   cd [PROJECT_ROOT]/hingecraft-global
    ./LAUNCH_01_DATABASE.sh
    ./scripts/APPLY_MASTER_SCHEMA.sh
    ```
@@ -984,7 +984,7 @@ This document consolidates **ALL** database project data for HingeCraft Global, 
 
 **Last Updated:** January 27, 2025  
 **Repository:** `https://github.com/departments-commits/hingecraft-global.git`  
-**Location:** `/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/`
+**Location:** `[PROJECT_ROOT]/hingecraft-global/`
 
 ---
 

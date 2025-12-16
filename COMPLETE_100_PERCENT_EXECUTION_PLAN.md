@@ -36,7 +36,7 @@
 
 #### Step 1.1: Verify Wix Dev Running ✅
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 ps aux | grep "wix dev"
 # Status: ✅ Running (PID: 9956)
 ```
@@ -134,7 +134,7 @@ ps aux | grep "wix dev"
 
 #### Step 4.2: Publish to Production ⏳
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 wix publish --source local
 ```
 

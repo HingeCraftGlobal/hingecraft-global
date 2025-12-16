@@ -9,7 +9,7 @@
 
 set -e
 
-REPO_DIR="/Users/chandlerfergusen/Desktop/CURSOR/HingeCraft"
+REPO_DIR="[PROJECT_ROOT]/HingeCraft"
 cd "$REPO_DIR"
 
 echo "🚀 Pushing to GitHub..."

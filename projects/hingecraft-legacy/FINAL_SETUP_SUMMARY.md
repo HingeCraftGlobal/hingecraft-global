@@ -28,7 +28,7 @@ Once ngrok is authenticated and running, use these values:
 
 **Quick Setup:**
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 ./SETUP_NGROK.sh
 ```
 
@@ -137,7 +137,7 @@ curl https://multiracial-zavier-acculturative.ngrok-free.dev/health
 
 **Run this command to complete setup:**
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 ./SETUP_NGROK.sh
 ```
 

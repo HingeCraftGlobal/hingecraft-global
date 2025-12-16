@@ -17,7 +17,7 @@ echo -e "${BLUE}✅ Verify Deployment Ready for Wix Editor${NC}"
 echo -e "${BLUE}═══════════════════════════════════════════════════════════${NC}"
 echo ""
 
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 
 # Step 1: Verify Payment Page
 echo -e "${YELLOW}Step 1: Verifying Payment Page...${NC}"

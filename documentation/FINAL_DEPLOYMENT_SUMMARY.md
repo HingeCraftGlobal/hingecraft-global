@@ -71,7 +71,7 @@ hingecraft-global/
 ### Step 1: Start Wix Dev Mode
 
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 wix dev
 ```
 
@@ -151,7 +151,7 @@ For each of the 34 pages:
 ### Prepare Commit
 
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 
 # Add all files
 git add .

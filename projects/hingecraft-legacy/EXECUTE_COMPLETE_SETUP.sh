@@ -12,7 +12,7 @@ RED='\033[0;31m'
 NC='\033[0m' # No Color
 
 cd "$(dirname "$0")"
-PROJECT_DIR="/Users/chandlerfergusen/Desktop/CURSOR/HingeCraft"
+PROJECT_DIR="[PROJECT_ROOT]/HingeCraft"
 
 echo -e "${BLUE}========================================${NC}"
 echo -e "${BLUE}  HingeCraft Complete Setup${NC}"

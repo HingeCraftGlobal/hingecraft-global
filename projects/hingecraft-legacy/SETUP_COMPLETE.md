@@ -9,7 +9,7 @@ Your Wix website code is now set up in Cursor and ready to edit.
 ## 📁 Project Structure
 
 ```
-/Users/chandlerfergusen/Desktop/CURSOR/HingeCraft/
+[PROJECT_ROOT]/HingeCraft/
 ├── payment-page-integration.js    ✅ Payment page code
 ├── charter-page.html              ✅ Charter page code
 ├── wix-project/                  ✅ Organized Wix structure
@@ -30,7 +30,7 @@ Your Wix website code is now set up in Cursor and ready to edit.
 
 1. **Open Cursor:**
    ```bash
-   cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+   cd [PROJECT_ROOT]/HingeCraft
    ```
 
 2. **Edit Files:**
@@ -84,6 +84,6 @@ All files are committed and ready to push:
 ---
 
 **Status**: ✅ READY TO EDIT
-**Location**: `/Users/chandlerfergusen/Desktop/CURSOR/HingeCraft`
+**Location**: `[PROJECT_ROOT]/HingeCraft`
 **Start Now**: Open any file in Cursor!
 

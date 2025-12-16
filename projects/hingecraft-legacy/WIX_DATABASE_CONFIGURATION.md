@@ -102,7 +102,7 @@ https://multiracial-zavier-acculturative.ngrok-free.dev
 
 **If using Docker (Local):**
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 docker-compose up -d
 ```
 

@@ -29,7 +29,7 @@ All requested tasks for the Wix project have been completed:
 
 ### 1. Chat Data Consolidation
 **File:** `ALL_HINGECRAFT_CHAT_DATA_CONSOLIDATED.md`
-- **Location:** `/Users/chandlerfergusen/Desktop/CURSOR/HingeCraft/`
+- **Location:** `[PROJECT_ROOT]/HingeCraft/`
 - **Purpose:** Master document containing ALL HingeCraft chat data
 - **Contents:**
   - Complete project history
@@ -42,7 +42,7 @@ All requested tasks for the Wix project have been completed:
 
 ### 2. Homepage HTML
 **File:** `wix-project/public/pages/homepage.html`
-- **Location:** `/Users/chandlerfergusen/Desktop/CURSOR/HingeCraft/wix-project/public/pages/`
+- **Location:** `[PROJECT_ROOT]/HingeCraft/wix-project/public/pages/`
 - **Purpose:** Homepage content with text, ready for Wix
 - **Contents:**
   - Hero section with call-to-action buttons
@@ -56,7 +56,7 @@ All requested tasks for the Wix project have been completed:
 
 ### 3. Google Search Console Setup
 **File:** `WIX_GOOGLE_SEARCH_CONSOLE_SETUP.md`
-- **Location:** `/Users/chandlerfergusen/Desktop/CURSOR/HingeCraft/`
+- **Location:** `[PROJECT_ROOT]/HingeCraft/`
 - **Purpose:** Complete guide for connecting site to Google Search Console
 - **Contents:**
   - Step-by-step verification process
@@ -67,7 +67,7 @@ All requested tasks for the Wix project have been completed:
 
 ### 4. Homepage SEO Setup
 **File:** `WIX_HOMEPAGE_SEO_SETUP.md`
-- **Location:** `/Users/chandlerfergusen/Desktop/CURSOR/HingeCraft/`
+- **Location:** `[PROJECT_ROOT]/HingeCraft/`
 - **Purpose:** Guide for setting homepage title and meta tags
 - **Contents:**
   - Recommended title: "HingeCraft Global - Charter for Abundance & Resilience"
@@ -84,7 +84,7 @@ All requested tasks for the Wix project have been completed:
 
 1. **Open the homepage HTML file:**
    ```
-   /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft/wix-project/public/pages/homepage.html
+   [PROJECT_ROOT]/HingeCraft/wix-project/public/pages/homepage.html
    ```
 
 2. **Copy the content:**

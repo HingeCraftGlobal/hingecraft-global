@@ -85,7 +85,7 @@ app.get('/v1/collections/chat_messages/items', authenticate, async (req, res) =>
 ### 2. Rebuild Adaptor
 
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 docker compose build db-adaptor
 docker compose restart db-adaptor
 ```
@@ -112,7 +112,7 @@ docker compose restart db-adaptor
 
 Run the complete segmentation:
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 ./scripts/COMPLETE_DATABASE_SEGMENTATION.sh
 ```
 

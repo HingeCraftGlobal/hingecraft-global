@@ -221,7 +221,7 @@
 
 **Action Required:**
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 ./LAUNCH_01_DATABASE.sh
 ./scripts/APPLY_MASTER_SCHEMA.sh
 ```
@@ -370,7 +370,7 @@ curl http://localhost:4040/api/tunnels
 
 ### Step 1: Database Deployment (Priority 1)
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 
 # Start Docker services (if not running)
 docker compose up -d postgres
@@ -444,7 +444,7 @@ python3 database/RUN_TROUBLESHOOTING_500_TASKS.py
 
 ### Start Everything
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 docker compose up -d
 ngrok http 3000
 ```

@@ -17,7 +17,7 @@ hingecraft-global/public/pages/
 
 ### Open in Browser
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 open public/pages/charter-live-mission-from-prompt-copy.html
 ```
 

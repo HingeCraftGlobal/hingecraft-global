@@ -59,7 +59,7 @@
 ### Step 1: Verify Connection Endpoint
 
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 
 # Start Docker services
 docker-compose up -d

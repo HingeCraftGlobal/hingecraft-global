@@ -14,7 +14,7 @@ import subprocess
 from collections import defaultdict
 
 # Scan configuration
-SCAN_ROOT = Path("/Users/chandlerfergusen")
+SCAN_ROOT = Path("[USER_HOME]")
 EXCLUDE_DIRS = {
     '.Trash', '.cache', '.npm', '.yarn', 'node_modules', 
     '.git', '__pycache__', '.venv', 'venv', '.env',
@@ -34,7 +34,7 @@ KEY_DIRECTORIES = [
 ]
 
 # Output directory
-OUTPUT_DIR = Path("/Users/chandlerfergusen/Desktop/CURSOR/SYSTEM_SCAN_RESULTS")
+OUTPUT_DIR = Path("[PROJECT_ROOT]/SYSTEM_SCAN_RESULTS")
 OUTPUT_DIR.mkdir(exist_ok=True)
 
 def calculate_file_hash(file_path):

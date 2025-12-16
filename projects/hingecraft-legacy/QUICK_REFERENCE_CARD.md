@@ -3,7 +3,7 @@
 ## 🚀 Quick Start
 
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 ./EXECUTE_COMPLETE_SETUP.sh
 ```
 

@@ -33,7 +33,7 @@ This implementation adds a complete flow where:
 ### Step 1: Start Wix Dev
 
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 wix dev
 ```
 
@@ -349,7 +349,7 @@ $w('#checkoutForm')
 
 ```bash
 # 1. Start Wix dev
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 wix dev
 
 # 2. Verify files synced

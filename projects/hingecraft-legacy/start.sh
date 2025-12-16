@@ -3,7 +3,7 @@
 # All data is stored in Docker volumes (zero host filesystem dependencies)
 
 export PATH="/usr/local/bin:$PATH"
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 
 echo "📦 Setting up Docker volumes (all data stored in Docker)..."
 ./setup-volumes-simple.sh

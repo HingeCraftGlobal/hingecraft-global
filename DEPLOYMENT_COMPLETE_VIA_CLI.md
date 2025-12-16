@@ -123,7 +123,7 @@ pkill -f "wix dev"
 
 ### Restart Wix Dev:
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 ./scripts/auto_push_all_pages.sh
 ```
 

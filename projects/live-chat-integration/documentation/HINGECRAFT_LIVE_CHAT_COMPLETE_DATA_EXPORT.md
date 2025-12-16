@@ -125,7 +125,7 @@ hingecraft-global/
 - Reaction toggling
 - Pin/unpin (admin only)
 
-**File Location:** `/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/public/pages/chat.html`
+**File Location:** `[PROJECT_ROOT]/hingecraft-global/public/pages/chat.html`
 
 ### 2. `public/js/hc-client.js` (759 lines)
 
@@ -154,7 +154,7 @@ hingecraft-global/
 - Error handling and retries
 - LocalStorage persistence
 
-**File Location:** `/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/public/js/hc-client.js`
+**File Location:** `[PROJECT_ROOT]/hingecraft-global/public/js/hc-client.js`
 
 ### 3. `public/css/hc-uix.css` (564 lines)
 
@@ -171,7 +171,7 @@ hingecraft-global/
 - Accessibility styles (focus, aria-live)
 - Dark mode support (prepared)
 
-**File Location:** `/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/public/css/hc-uix.css`
+**File Location:** `[PROJECT_ROOT]/hingecraft-global/public/css/hc-uix.css`
 
 ---
 
@@ -190,7 +190,7 @@ hingecraft-global/
 - Error handling
 - Health check endpoint
 
-**File Location:** `/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/server.js`
+**File Location:** `[PROJECT_ROOT]/hingecraft-global/server.js`
 
 ### 2. `routes/auth.js` (82 lines)
 
@@ -200,7 +200,7 @@ hingecraft-global/
 - `POST /api/auth/anon` - Create anonymous session
 - `GET /api/auth/identify` - Identify user with JWT
 
-**File Location:** `/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/routes/auth.js`
+**File Location:** `[PROJECT_ROOT]/hingecraft-global/routes/auth.js`
 
 ### 3. `routes/messages.js` (355 lines)
 
@@ -215,7 +215,7 @@ hingecraft-global/
 - `POST /api/messages/:id/pin` - Pin/unpin (admin)
 - `POST /api/messages/:id/read` - Mark as read
 
-**File Location:** `/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/routes/messages.js`
+**File Location:** `[PROJECT_ROOT]/hingecraft-global/routes/messages.js`
 
 ### 4. `routes/uploads.js` (87 lines)
 
@@ -225,7 +225,7 @@ hingecraft-global/
 - `POST /api/uploads/request` - Request pre-signed S3 URL
 - `POST /api/uploads/complete` - Complete upload
 
-**File Location:** `/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/routes/uploads.js`
+**File Location:** `[PROJECT_ROOT]/hingecraft-global/routes/uploads.js`
 
 ### 5. `routes/search.js` (44 lines)
 
@@ -234,7 +234,7 @@ hingecraft-global/
 **Endpoints:**
 - `GET /api/messages/search` - Full-text search
 
-**File Location:** `/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/routes/search.js`
+**File Location:** `[PROJECT_ROOT]/hingecraft-global/routes/search.js`
 
 ### 6. `lib/db.js` (409 lines)
 
@@ -249,7 +249,7 @@ hingecraft-global/
 - Moderation log storage
 - Full-text search queries
 
-**File Location:** `/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/lib/db.js`
+**File Location:** `[PROJECT_ROOT]/hingecraft-global/lib/db.js`
 
 ### 7. `lib/auth.js` (206 lines)
 
@@ -262,7 +262,7 @@ hingecraft-global/
 - Token refresh
 - Wix proxy signature validation
 
-**File Location:** `/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/lib/auth.js`
+**File Location:** `[PROJECT_ROOT]/hingecraft-global/lib/auth.js`
 
 ### 8. `lib/idempotency.js` (87 lines)
 
@@ -273,7 +273,7 @@ hingecraft-global/
 - Store idempotency response
 - Prevent duplicate requests
 
-**File Location:** `/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/lib/idempotency.js`
+**File Location:** `[PROJECT_ROOT]/hingecraft-global/lib/idempotency.js`
 
 ### 9. `lib/uploads.js` (183 lines)
 
@@ -284,7 +284,7 @@ hingecraft-global/
 - Verify upload completion
 - Store upload metadata
 
-**File Location:** `/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/lib/uploads.js`
+**File Location:** `[PROJECT_ROOT]/hingecraft-global/lib/uploads.js`
 
 ### 10. `lib/moderation.js` (190 lines)
 
@@ -296,7 +296,7 @@ hingecraft-global/
 - Flag offensive content
 - Store moderation results
 
-**File Location:** `/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/lib/moderation.js`
+**File Location:** `[PROJECT_ROOT]/hingecraft-global/lib/moderation.js`
 
 ---
 
@@ -322,7 +322,7 @@ hingecraft-global/
 **Triggers:**
 - Update full-text search vector on message insert/update
 
-**File Location:** `/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/migrations/001_init_chat_system.sql`
+**File Location:** `[PROJECT_ROOT]/hingecraft-global/migrations/001_init_chat_system.sql`
 
 ### 2. Database CSV Data
 
@@ -344,7 +344,7 @@ Member,Zenith Loop,KE,Room 1 is wild. 🌙,Room 1,2025-12-04T18:55:12.970396,aca
 Member,Logic Fable,CO,This is cozy.,Room 1,2025-12-04T18:55:12.970450,academic-chat-clubs-provided
 ```
 
-**File Location:** `/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/database/chat_messages_provided.csv`
+**File Location:** `[PROJECT_ROOT]/hingecraft-global/database/chat_messages_provided.csv`
 
 #### `database/chat_clubs_provided.csv`
 
@@ -363,7 +363,7 @@ Programming / Coding,38,Active,Unknown,chat-clubs-provided
 Cybersecurity,21,Active,Unknown,chat-clubs-provided
 ```
 
-**File Location:** `/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/database/chat_clubs_provided.csv`
+**File Location:** `[PROJECT_ROOT]/hingecraft-global/database/chat_clubs_provided.csv`
 
 ### 3. Migration Script
 
@@ -376,7 +376,7 @@ Cybersecurity,21,Active,Unknown,chat-clubs-provided
 - Verifies table creation
 - Error handling
 
-**File Location:** `/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/scripts/apply_chat_migrations.js`
+**File Location:** `[PROJECT_ROOT]/hingecraft-global/scripts/apply_chat_migrations.js`
 
 ---
 
@@ -397,7 +397,7 @@ Cybersecurity,21,Active,Unknown,chat-clubs-provided
 - Secure proxy authentication
 - Error handling
 
-**File Location:** `/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/backend/hcProxy.jsw`
+**File Location:** `[PROJECT_ROOT]/hingecraft-global/backend/hcProxy.jsw`
 
 ---
 
@@ -429,7 +429,7 @@ Cybersecurity,21,Active,Unknown,chat-clubs-provided
 5. **MASTER_CHAT_CONTINUATION_COMPLETE.md** - Project continuation point
 6. **README.md** - Setup and deployment guide
 
-**File Locations:** `/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/`
+**File Locations:** `[PROJECT_ROOT]/hingecraft-global/`
 
 ---
 
@@ -852,7 +852,7 @@ Message acknowledgment
 ### Option 1: Docker Compose (Recommended)
 
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 
 # Start all services
 docker-compose up -d
@@ -946,21 +946,21 @@ docker run -d \
 ### Key File Locations
 
 **Frontend:**
-- `/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/public/pages/chat.html`
-- `/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/public/js/hc-client.js`
-- `/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/public/css/hc-uix.css`
+- `[PROJECT_ROOT]/hingecraft-global/public/pages/chat.html`
+- `[PROJECT_ROOT]/hingecraft-global/public/js/hc-client.js`
+- `[PROJECT_ROOT]/hingecraft-global/public/css/hc-uix.css`
 
 **Backend:**
-- `/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/server.js`
-- `/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/routes/`
-- `/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/lib/`
+- `[PROJECT_ROOT]/hingecraft-global/server.js`
+- `[PROJECT_ROOT]/hingecraft-global/routes/`
+- `[PROJECT_ROOT]/hingecraft-global/lib/`
 
 **Database:**
-- `/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/migrations/001_init_chat_system.sql`
-- `/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/database/`
+- `[PROJECT_ROOT]/hingecraft-global/migrations/001_init_chat_system.sql`
+- `[PROJECT_ROOT]/hingecraft-global/database/`
 
 **Wix:**
-- `/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/backend/hcProxy.jsw`
+- `[PROJECT_ROOT]/hingecraft-global/backend/hcProxy.jsw`
 
 ---
 

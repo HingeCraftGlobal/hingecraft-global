@@ -3,7 +3,7 @@
 # Update all files to use HTTPS instead of HTTP for localhost
 # Wix requires HTTPS connections
 
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 
 echo "Updating all files to use HTTPS for Wix connection..."
 

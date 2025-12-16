@@ -45,7 +45,7 @@ All possible automation has been completed. Everything is ready for deployment.
 
 ### Step 1: Push to Git (Optional)
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 git push origin main
 ```
 (Requires GitHub authentication)
@@ -65,7 +65,7 @@ git push origin main
 
 **Option B: Wix CLI Development**
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 wix dev
 ```
 

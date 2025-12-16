@@ -114,7 +114,7 @@ All database buildout scripts have been created and are ready to execute. The co
 
 ### Step 2: Launch Database
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 ./LAUNCH_01_DATABASE.sh
 ```
 
@@ -271,7 +271,7 @@ docker exec -i postgres psql -U hcuser -d hingecraft -c "SELECT COUNT(*) FROM pg
 
 2. **Execute Database Buildout**
    ```bash
-   cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+   cd [PROJECT_ROOT]/hingecraft-global
    ./LAUNCH_01_DATABASE.sh
    ./COMPLETE_DATABASE_BUILDOUT_EXECUTION.sh
    ```

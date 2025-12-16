@@ -2,7 +2,7 @@
 # Verify Docker volumes and services setup
 
 export PATH="/usr/local/bin:$PATH"
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 
 echo "🔍 Verifying Docker Setup..."
 echo ""

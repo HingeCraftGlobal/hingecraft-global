@@ -83,7 +83,7 @@ Successfully built out the complete Charter for Abundance & Resilience Live Miss
 
 ### View the File
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 open public/pages/charter-live-mission-final.html
 ```
 

@@ -3,7 +3,7 @@
 # The init.sql will be mounted directly from host (read-only)
 
 export PATH="/usr/local/bin:$PATH"
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 
 echo "📦 Creating Docker volumes..."
 

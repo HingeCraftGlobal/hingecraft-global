@@ -190,7 +190,7 @@ python3 monitoring/cursor_monitor.py &
 **Start Deployment Now:**
 
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 ./START_WIX_DEV.sh
 ```
 

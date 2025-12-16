@@ -37,7 +37,7 @@ All endpoints now return complete data including Wix required fields:
 Run the verification script to confirm everything is working:
 
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 ./VERIFY_DATABASE_AND_API.sh
 ```
 

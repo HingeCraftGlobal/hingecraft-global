@@ -24,7 +24,7 @@ ngrok config add-authtoken YOUR_AUTHTOKEN_HERE
 Once authenticated, run:
 
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 ngrok http 3000
 ```
 
@@ -64,7 +64,7 @@ Once you have the ngrok HTTPS URL, use these values in Wix:
 After you've authenticated ngrok, you can use:
 
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 ./START_NGROK_AND_GET_URL.sh
 ```
 

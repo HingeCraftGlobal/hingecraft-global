@@ -6,7 +6,7 @@
 
 ### ferguson_system
 
-- **Path:** /Users/chandlerfergusen/Desktop/CURSOR/data/ferguson_system.db
+- **Path:** [PROJECT_ROOT]/data/ferguson_system.db
 - **Tables:** 20
   - `entries`: 0 rows
   - `prompts`: 0 rows
@@ -31,7 +31,7 @@
 
 ### fma_data
 
-- **Path:** /Users/chandlerfergusen/Desktop/CURSOR/sql/fma_data.db
+- **Path:** [PROJECT_ROOT]/sql/fma_data.db
 - **Tables:** 9
   - `ru_prep_frameworks`: 0 rows
   - `sqlite_sequence`: 1 rows
@@ -47,15 +47,15 @@
 
 1. **MASTER_CHAT_CONTINUATION_COMPLETE.md**
    - Last Modified: 2025-12-07T13:38:29.319651
-   - Source: /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/MASTER_CHAT_CONTINUATION_COMPLETE.md
+   - Source: [PROJECT_ROOT]/hingecraft-global/MASTER_CHAT_CONTINUATION_COMPLETE.md
 
 2. **COMPLETE_CHAT_HISTORY_EXPORT.md**
    - Last Modified: 2025-12-07T09:51:38.446556
-   - Source: /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/COMPLETE_CHAT_HISTORY_EXPORT.md
+   - Source: [PROJECT_ROOT]/hingecraft-global/COMPLETE_CHAT_HISTORY_EXPORT.md
 
 3. **HINGECRAFT_COMPLETE_CHAT_DATA.md**
    - Last Modified: 2025-11-30T17:22:44.340685
-   - Source: /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft/HINGECRAFT_COMPLETE_CHAT_DATA.md
+   - Source: [PROJECT_ROOT]/HingeCraft/HINGECRAFT_COMPLETE_CHAT_DATA.md
 
 ## PostgreSQL Connections
 

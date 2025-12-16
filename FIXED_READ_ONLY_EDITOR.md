@@ -23,7 +23,7 @@
 
 1. **Check `wix dev` is running**:
    ```bash
-   cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+   cd [PROJECT_ROOT]/hingecraft-global
    ps aux | grep "wix dev"
    ```
 

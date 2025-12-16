@@ -13,7 +13,7 @@ CYAN='\033[0;36m'
 NC='\033[0m'
 
 cd "$(dirname "$0")"
-PROJECT_DIR="/Users/chandlerfergusen/Desktop/CURSOR/HingeCraft"
+PROJECT_DIR="[PROJECT_ROOT]/HingeCraft"
 
 CONNECTION_NAME="HingeCraftDonationsDB"
 SECRET_KEY="04f1ddd99fdfdc3e89cdd0d714b735feda43fa3aecfd39df946e4e24de163c1b"

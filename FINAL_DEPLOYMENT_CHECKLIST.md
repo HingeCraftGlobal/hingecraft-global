@@ -47,7 +47,7 @@ Before pushing, ensure these secrets are configured in Wix Secrets Manager:
 
 ### Step 1: Push to Wix Dev
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 ./scripts/push-to-wix-dev.sh
 ```
 

@@ -163,7 +163,7 @@ SECRET_KEY=04f1ddd99fdfdc3e89cdd0d714b735feda43fa3aecfd39df946e4e24de163c1b
 
 1. **Push to GitHub** (if not already):
    ```bash
-   cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+   cd [PROJECT_ROOT]/HingeCraft
    git push origin main
    ```
 

@@ -8,7 +8,7 @@ echo "HINGECRAFT GLOBAL - DEPLOY TO WIX"
 echo "============================================================"
 echo ""
 
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 
 echo "Step 1: Starting Wix Dev Mode..."
 echo "This will sync all 99 pages with SEO optimizations"
@@ -16,7 +16,7 @@ echo ""
 echo "Run: wix dev"
 echo ""
 echo "Step 2: After sync completes, in a NEW terminal run:"
-echo "   cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global"
+echo "   cd [PROJECT_ROOT]/hingecraft-global"
 echo "   wix publish"
 echo ""
 echo "   When prompted, select: Local code"

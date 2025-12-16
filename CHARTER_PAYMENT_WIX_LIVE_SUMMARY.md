@@ -250,7 +250,7 @@ Created **1000 nano tasks** to systematically verify, test, and deploy the chart
 ### Execution Script:
 ```bash
 # 1. Start Wix dev
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 wix dev
 
 # 2. Verify pages in Wix Editor

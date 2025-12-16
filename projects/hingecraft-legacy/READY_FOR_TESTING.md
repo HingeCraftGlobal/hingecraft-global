@@ -33,7 +33,7 @@ Your HingeCraft backend is fully configured and ready for website integration te
 ### 1. Start Everything
 
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 
 # Start all services
 ./start-docker.sh

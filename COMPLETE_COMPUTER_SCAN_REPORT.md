@@ -5,7 +5,7 @@
 
 ## Scan Summary
 
-Performed a comprehensive scan of the entire computer (`/Users/chandlerfergusen`) to find every piece of code, documentation, and file related to HingeCraft in any way, shape, or form.
+Performed a comprehensive scan of the entire computer (`[USER_HOME]`) to find every piece of code, documentation, and file related to HingeCraft in any way, shape, or form.
 
 ## Search Methodology
 
@@ -24,29 +24,29 @@ Performed a comprehensive scan of the entire computer (`/Users/chandlerfergusen`
 ### Key Locations
 
 1. **Main Repository**
-   - `/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/` - Primary repository
+   - `[PROJECT_ROOT]/hingecraft-global/` - Primary repository
    - Contains all organized project files
 
 2. **Backup Directory**
-   - `/Users/chandlerfergusen/Desktop/CURSOR_BACKUP_20251210_190306/workspace/hingecraft-global/`
+   - `[PROJECT_ROOT]_BACKUP_20251210_190306/workspace/hingecraft-global/`
    - Complete backup of repository state
 
 3. **Legacy HingeCraft Directory**
-   - `/Users/chandlerfergusen/Desktop/CURSOR/HingeCraft/`
+   - `[PROJECT_ROOT]/HingeCraft/`
    - Legacy project files (moved to `projects/hingecraft-legacy/`)
 
 4. **Downloads**
-   - `/Users/chandlerfergusen/Downloads/`
+   - `[USER_HOME]/Downloads/`
    - Business plans, PDFs, prompt files
    - Files copied to `projects/external-files/downloads/`
 
 5. **CURSOR Root Directory**
-   - `/Users/chandlerfergusen/Desktop/CURSOR/`
+   - `[PROJECT_ROOT]/`
    - Various documentation and configuration files
    - Files copied to `projects/external-files/cursor-files/`
 
 6. **Cursor App Data**
-   - `/Users/chandlerfergusen/.cursor/`
+   - `[USER_HOME]/.cursor/`
    - Agent transcripts and IDE state (excluded from repository)
 
 ## Files Copied to Repository

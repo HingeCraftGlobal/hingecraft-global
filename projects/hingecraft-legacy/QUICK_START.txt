@@ -14,7 +14,7 @@ STEP 1: Start Docker Desktop
   → Wait for it to fully start (whale icon in menu bar)
 
 STEP 2: Run Deployment
-  cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+  cd [PROJECT_ROOT]/HingeCraft
   ./auto-deploy-all.sh
 
 ═══════════════════════════════════════════════════════════════

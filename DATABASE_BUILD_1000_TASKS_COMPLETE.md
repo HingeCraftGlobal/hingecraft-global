@@ -120,7 +120,7 @@
 
 1. **Execute BUILD Tasks**
    ```bash
-   cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+   cd [PROJECT_ROOT]/hingecraft-global
    python3 database/RUN_BUILD_TASKS_1000.py
    ```
 

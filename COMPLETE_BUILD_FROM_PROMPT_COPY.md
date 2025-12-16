@@ -3,7 +3,7 @@
 ## Status: Entire File Built and Production-Ready
 
 **Date:** January 27, 2025  
-**Source:** `/Users/chandlerfergusen/Desktop/Prompt copy.txt`  
+**Source:** `[USER_HOME]/Desktop/Prompt copy.txt`  
 **Status:** ✅ Complete
 
 ---
@@ -114,7 +114,7 @@ Successfully built out the complete Charter for Abundance & Resilience Live Miss
 
 ### View Files
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 
 # View complete file
 open public/pages/charter-live-mission-complete-from-prompt-copy.html

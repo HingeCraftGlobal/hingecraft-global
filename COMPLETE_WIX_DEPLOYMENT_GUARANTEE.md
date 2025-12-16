@@ -241,7 +241,7 @@ ps aux | grep "wix dev"
 
 2. **Publish to Production:**
    ```bash
-   cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+   cd [PROJECT_ROOT]/hingecraft-global
    wix publish --source local
    ```
 
@@ -293,7 +293,7 @@ ps aux | grep "wix dev"
 
 ### Start Wix Dev
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 wix dev
 ```
 
@@ -373,7 +373,7 @@ wix whoami
 ### Wix Dev Not Running
 ```bash
 # Start Wix dev
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 wix dev
 ```
 

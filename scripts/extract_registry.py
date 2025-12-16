@@ -3,18 +3,18 @@
 Extract registry/membership data from provided HTML files into CSV for DB + Wix CMS.
 
 Inputs (local paths):
-  - /Users/chandlerfergusen/Downloads/name_on_public_charter_masked_sorted (3).html
-  - /Users/chandlerfergusen/Downloads/membership_portal_full V3.html
-  - /Users/chandlerfergusen/Downloads/portal_login_social_participation.html
-  - /Users/chandlerfergusen/Downloads/lifetime_registry_inclusion (13).html
-  - /Users/chandlerfergusen/Downloads/lifetime_registry_inclusion (13) (1).html
+  - [USER_HOME]/Downloads/name_on_public_charter_masked_sorted (3).html
+  - [USER_HOME]/Downloads/membership_portal_full V3.html
+  - [USER_HOME]/Downloads/portal_login_social_participation.html
+  - [USER_HOME]/Downloads/lifetime_registry_inclusion (13).html
+  - [USER_HOME]/Downloads/lifetime_registry_inclusion (13) (1).html
 
 Outputs:
   - database/registry_import.csv        (normalized)
   - database/registry_wix_import.csv    (same headers; Wix-friendly)
 
 Run:
-  cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+  cd [PROJECT_ROOT]/hingecraft-global
   python3 scripts/extract_registry.py
 """
 
@@ -236,11 +236,11 @@ def dedupe(rows):
 
 def main():
     sources = [
-        "/Users/chandlerfergusen/Downloads/name_on_public_charter_masked_sorted (3).html",
-        "/Users/chandlerfergusen/Downloads/membership_portal_full V3.html",
-        "/Users/chandlerfergusen/Downloads/portal_login_social_participation.html",
-        "/Users/chandlerfergusen/Downloads/lifetime_registry_inclusion (13).html",
-        "/Users/chandlerfergusen/Downloads/lifetime_registry_inclusion (13) (1).html",
+        "[USER_HOME]/Downloads/name_on_public_charter_masked_sorted (3).html",
+        "[USER_HOME]/Downloads/membership_portal_full V3.html",
+        "[USER_HOME]/Downloads/portal_login_social_participation.html",
+        "[USER_HOME]/Downloads/lifetime_registry_inclusion (13).html",
+        "[USER_HOME]/Downloads/lifetime_registry_inclusion (13) (1).html",
     ]
 
     all_rows = []

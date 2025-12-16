@@ -79,7 +79,7 @@ HingeCraftDonationsDB
 
 **Option A: Use ngrok Tunnel (Quick Fix)**
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 
 # Start Docker services
 docker-compose up -d
@@ -146,7 +146,7 @@ const result = await getAllDonations(100, 0);
 ### Step 1: Verify Docker Services
 
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 
 # Check Docker is running
 docker info
@@ -275,7 +275,7 @@ $w.onReady(async function () {
 ### Step 2: Push Using Script
 
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 
 # Option 1: Run script and enter token when prompted
 ./push-with-token.sh
@@ -287,7 +287,7 @@ cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
 ### Step 3: Manual Push (Alternative)
 
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 
 # Set remote with token
 git remote set-url origin https://YOUR_TOKEN@github.com/departments-commits/website-path-for-backend-contribution.git
@@ -452,7 +452,7 @@ Response: {"timestamp":"...","donations":[...]}
 
 ### Start Everything
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 docker-compose up -d
 ngrok http 3000
 ```

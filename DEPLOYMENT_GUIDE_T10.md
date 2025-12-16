@@ -81,7 +81,7 @@ src/backend/hingecraft.api.web.jsw
 
 ```bash
 # Navigate to project directory
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 
 # Run deployment script
 ./scripts/deploy-to-wix-cli.sh

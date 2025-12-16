@@ -39,7 +39,7 @@
 ### Quick Start (Recommended):
 
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 
 # Start Wix dev
 ./START_WIX_DEV.sh

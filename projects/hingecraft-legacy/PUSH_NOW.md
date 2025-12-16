@@ -11,7 +11,7 @@
 ### Quick Push (Recommended)
 
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 ./push-with-token.sh
 ```
 
@@ -63,7 +63,7 @@ If you need a token:
 ## 🚀 Push Now
 
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 ./push-with-token.sh
 ```
 

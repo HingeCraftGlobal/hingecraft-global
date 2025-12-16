@@ -10,12 +10,12 @@ Successfully restored **861 files** with **133,394 lines of code** that were pre
 ### Files Restored
 
 #### From Backup Directory
-- **Source:** `/Users/chandlerfergusen/Desktop/CURSOR_BACKUP_20251210_190306/workspace/hingecraft-global/`
+- **Source:** `[PROJECT_ROOT]_BACKUP_20251210_190306/workspace/hingecraft-global/`
 - **Files Restored:** ~1,583 files from backup
 - Includes all frontend pages, backend functions, database files, documentation, scripts, and configuration files
 
 #### From HingeCraft Legacy Directory
-- **Source:** `/Users/chandlerfergusen/Desktop/CURSOR/HingeCraft/`
+- **Source:** `[PROJECT_ROOT]/HingeCraft/`
 - **Files Restored:** All HingeCraft project files
 - **Location:** Moved to `projects/hingecraft-legacy/` directory
 - Includes deployment scripts, Docker configurations, Wix integration files, and all project documentation

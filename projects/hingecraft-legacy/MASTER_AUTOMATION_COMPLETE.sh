@@ -17,8 +17,8 @@ echo -e "${BLUE}🚀 Master Automation - Complete Everything${NC}"
 echo -e "${BLUE}═══════════════════════════════════════════════════════════${NC}"
 echo ""
 
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
-BASE_DIR="/Users/chandlerfergusen/Desktop/CURSOR"
+cd [PROJECT_ROOT]/HingeCraft
+BASE_DIR="[PROJECT_ROOT]"
 REPO_DIR="$BASE_DIR/hingecraft-global"
 
 # ============================================================================
@@ -291,7 +291,7 @@ All possible automation has been completed. Everything is ready for deployment.
 
 ### Step 1: Push to Git (Optional)
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 git push origin main
 ```
 (Requires GitHub authentication)
@@ -311,7 +311,7 @@ git push origin main
 
 **Option B: Wix CLI Development**
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 wix dev
 ```
 

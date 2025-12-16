@@ -16,7 +16,7 @@ echo -e "${BLUE}📦 Apply All Database Data to Git Repository${NC}"
 echo -e "${BLUE}═══════════════════════════════════════════════════════════${NC}"
 echo ""
 
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 
 # Step 1: Verify all database files exist
 echo -e "${YELLOW}Step 1: Verifying database files...${NC}"

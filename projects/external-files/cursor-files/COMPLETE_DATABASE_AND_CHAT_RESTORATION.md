@@ -12,7 +12,7 @@
 ### ✅ All Databases Exported and Restored
 
 #### 1. Ferguson System Database
-- **Location:** `/Users/chandlerfergusen/Desktop/CURSOR/data/ferguson_system.db`
+- **Location:** `[PROJECT_ROOT]/data/ferguson_system.db`
 - **Size:** 264 KB
 - **Last Modified:** November 21, 2025
 - **Tables:** 20 tables
@@ -38,7 +38,7 @@
   - `daily_large_plays_log`: 0 rows
 
 #### 2. FMA Data Database
-- **Location:** `/Users/chandlerfergusen/Desktop/CURSOR/sql/fma_data.db`
+- **Location:** `[PROJECT_ROOT]/sql/fma_data.db`
 - **Size:** 68 KB
 - **Last Modified:** November 29, 2025
 - **Tables:** 9 tables
@@ -55,8 +55,8 @@
 ### 📁 Complete Database Export Files
 
 All database data has been exported to:
-- **JSON Export:** `/Users/chandlerfergusen/Desktop/CURSOR/DATABASE_RESTORATION/COMPLETE_DATABASE_RESTORATION.json`
-- **Summary:** `/Users/chandlerfergusen/Desktop/CURSOR/DATABASE_RESTORATION/RESTORATION_SUMMARY.md`
+- **JSON Export:** `[PROJECT_ROOT]/DATABASE_RESTORATION/COMPLETE_DATABASE_RESTORATION.json`
+- **Summary:** `[PROJECT_ROOT]/DATABASE_RESTORATION/RESTORATION_SUMMARY.md`
 
 ---
 
@@ -65,7 +65,7 @@ All database data has been exported to:
 ### ✅ Chat #1: MASTER_CHAT_CONTINUATION_COMPLETE.md
 **Most Recent Active Chat**
 
-- **File:** `/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/MASTER_CHAT_CONTINUATION_COMPLETE.md`
+- **File:** `[PROJECT_ROOT]/hingecraft-global/MASTER_CHAT_CONTINUATION_COMPLETE.md`
 - **Last Modified:** December 7, 2025 at 13:38:29
 - **Size:** 20,816 bytes (20.3 KB)
 - **Status:** ✅ Active - Complete Project Data Export & Continuation Point
@@ -92,7 +92,7 @@ All database data has been exported to:
 ### ✅ Chat #2: COMPLETE_CHAT_HISTORY_EXPORT.md
 **Second Most Recent Active Chat**
 
-- **File:** `/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/COMPLETE_CHAT_HISTORY_EXPORT.md`
+- **File:** `[PROJECT_ROOT]/hingecraft-global/COMPLETE_CHAT_HISTORY_EXPORT.md`
 - **Last Modified:** December 7, 2025 at 09:51:38
 - **Size:** 27,142 bytes (26.5 KB)
 - **Status:** ✅ Active - Complete Chat History Export
@@ -149,7 +149,7 @@ All database data has been exported to:
 ### ✅ Chat #3: HINGECRAFT_COMPLETE_CHAT_DATA.md
 **Third Most Recent Active Chat**
 
-- **File:** `/Users/chandlerfergusen/Desktop/CURSOR/HingeCraft/HINGECRAFT_COMPLETE_CHAT_DATA.md`
+- **File:** `[PROJECT_ROOT]/HingeCraft/HINGECRAFT_COMPLETE_CHAT_DATA.md`
 - **Last Modified:** November 30, 2025 at 17:22:44
 - **Size:** 12,957 bytes (12.7 KB)
 - **Status:** ✅ Active - Complete Chat Data & Project History
@@ -243,7 +243,7 @@ All database data has been exported to:
 
 2. Or use Docker to access PostgreSQL:
    ```bash
-   cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+   cd [PROJECT_ROOT]/hingecraft-global
    docker compose up -d postgres
    docker compose exec postgres psql -U hcuser -d hingecraft
    ```
@@ -290,7 +290,7 @@ The last 3 active HingeCraft chats have been:
 - ✅ Content summarized
 
 **All restoration data is available in:**
-- `/Users/chandlerfergusen/Desktop/CURSOR/DATABASE_RESTORATION/`
+- `[PROJECT_ROOT]/DATABASE_RESTORATION/`
 
 ---
 

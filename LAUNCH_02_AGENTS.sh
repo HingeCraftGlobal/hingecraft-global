@@ -28,7 +28,7 @@ cd "$PROJECT_ROOT" || {
 echo "📦 Testing Legal Agent..."
 python3 << 'PYTHON_TEST'
 import sys
-sys.path.insert(0, '/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global')
+sys.path.insert(0, '[PROJECT_ROOT]/hingecraft-global')
 
 try:
     from agents.legal.contract_reviewer import ContractReviewer
@@ -65,7 +65,7 @@ echo ""
 echo "📦 Testing Marketing Agent..."
 python3 << 'PYTHON_TEST'
 import sys
-sys.path.insert(0, '/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global')
+sys.path.insert(0, '[PROJECT_ROOT]/hingecraft-global')
 
 try:
     from agents.marketing.blog_generator import BlogGenerator

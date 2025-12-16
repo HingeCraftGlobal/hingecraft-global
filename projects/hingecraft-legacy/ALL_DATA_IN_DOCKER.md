@@ -18,7 +18,7 @@ All data is now stored **entirely in Docker volumes** - nothing on your host fil
 ## Quick Start
 
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 
 # Start services (automatically sets up volumes)
 ./start.sh

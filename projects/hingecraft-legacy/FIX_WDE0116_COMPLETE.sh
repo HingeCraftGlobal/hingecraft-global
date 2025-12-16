@@ -10,7 +10,7 @@ echo "Complete WDE0116 Fix - All Solutions"
 echo "=========================================="
 echo ""
 
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 
 # 1. Fix GET /donations to return array format (Wix expects array, not wrapped object)
 echo "1. Fixing GET /donations response format..."

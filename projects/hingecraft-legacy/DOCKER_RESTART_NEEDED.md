@@ -20,7 +20,7 @@ write /var/lib/desktop-containerd/daemon/io.containerd.metadata.v1.bolt/meta.db:
 
 3. **Re-login to Docker Hub**:
    ```bash
-   cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+   cd [PROJECT_ROOT]/HingeCraft
    echo "dckr_pat_k8ZdXrNQIvCKXjN3wSbwd8PyZUQ" | docker login -u departmentsai --password-stdin
    ```
 

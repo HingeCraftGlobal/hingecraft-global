@@ -33,7 +33,7 @@ https://multiracial-zavier-acculturative.ngrok-free.dev
 ### Complete Automated Setup
 
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 ./AUTOMATE_WIX_CONNECTION.sh
 ```
 
@@ -83,7 +83,7 @@ cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
 
 ### Step 1: Start Docker Services
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 docker-compose up -d
 ```
 

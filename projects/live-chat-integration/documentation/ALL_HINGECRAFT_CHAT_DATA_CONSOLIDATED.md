@@ -372,7 +372,7 @@ Charter Page (/charter)
 
 ### Option 1: Docker (Recommended - Offline/Serverless)
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 docker-compose up -d
 ```
 
@@ -475,7 +475,7 @@ docker-compose up -d
 
 ### Start Everything
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 docker-compose up -d
 ngrok http 3000
 ```

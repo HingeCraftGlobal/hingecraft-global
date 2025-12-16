@@ -145,7 +145,7 @@ Boolean fields use lowercase:
 To export fresh data from the database:
 
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 chmod +x export_csv_for_wix.sh
 ./export_csv_for_wix.sh
 ```

@@ -8,7 +8,7 @@ All HingeCraft data has been loaded into the database and exposed via Wix SPI en
 
 Run the verification script:
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 ./scripts/verify_wix_integration.sh
 ```
 
@@ -108,21 +108,21 @@ curl -H "Authorization: Bearer $SECRET_KEY" \
 
 ### Adaptor Not Responding
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 docker compose restart db-adaptor
 docker compose logs db-adaptor --tail=50
 ```
 
 ### Database Connection Issues
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 docker compose ps
 docker compose exec postgres psql -U hingecraft_user -d hingecraft_db -c "SELECT COUNT(*) FROM members;"
 ```
 
 ### Wix Dev Not Syncing
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 pkill -f "wix dev"
 NODE_TLS_REJECT_UNAUTHORIZED=0 wix dev
 ```

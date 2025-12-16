@@ -36,7 +36,7 @@
 ### 1. Start Wix Dev Mode
 
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 ./START_WIX_DEV.sh
 ```
 

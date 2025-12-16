@@ -11,7 +11,7 @@ All your Wix code is in this directory and ready to edit.
 ### Your Wix Code Files (Edit These in Cursor)
 
 ```
-/Users/chandlerfergusen/Desktop/CURSOR/HingeCraft/
+[PROJECT_ROOT]/HingeCraft/
 ├── payment-page-integration.js    ← Payment page code
 ├── charter-page.html              ← Charter/contributions page code
 ├── wix-project/                   ← Organized Wix project structure
@@ -97,7 +97,7 @@ HingeCraft/wix-project/public/pages/charter-page.html
 
 ```bash
 # Open project
-cd /Users/chandlerfergusen/Desktop/CURSOR/HingeCraft
+cd [PROJECT_ROOT]/HingeCraft
 
 # Edit files in Cursor
 # - payment-page-integration.js

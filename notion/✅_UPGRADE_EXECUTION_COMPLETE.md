@@ -45,7 +45,7 @@
 ### Execution Commands:
 ```bash
 # Execute Phase 1
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/notion
+cd [PROJECT_ROOT]/hingecraft-global/notion
 python3 execute_upgrade_tasks.py
 
 # Continue through all phases

@@ -4,7 +4,7 @@
 
 **Date:** January 27, 2025  
 **Status:** ✅ Complete  
-**Source:** `/Users/chandlerfergusen/Desktop/Prompt copy.txt`  
+**Source:** `[USER_HOME]/Desktop/Prompt copy.txt`  
 **Output:** `public/pages/charter-live-mission-from-prompt-copy.html`
 
 ---
@@ -108,7 +108,7 @@ Successfully built out the complete Charter for Abundance & Resilience Live Miss
 
 ### View the File
 ```bash
-cd /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global
+cd [PROJECT_ROOT]/hingecraft-global
 open public/pages/charter-live-mission-from-prompt-copy.html
 ```
 
