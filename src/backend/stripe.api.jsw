@@ -123,8 +123,8 @@ export async function createCheckoutSession(requestData) {
                 quantity: 1
             }],
             mode: 'payment',
-            success_url: requestData.successUrl || `${requestData.baseUrl || 'https://www.hingecraft-global.ai'}/payment-success?amount=${amount}&method=stripe`,
-            cancel_url: requestData.cancelUrl || `${requestData.baseUrl || 'https://www.hingecraft-global.ai'}/charter?canceled=true`,
+            success_url: requestData.successUrl || `https://hingecraft-global.ai/charter?payment=success&session_id={CHECKOUT_SESSION_ID}`,
+            cancel_url: requestData.cancelUrl || `https://hingecraft-global.ai/charter?payment=cancelled`,
             metadata: {
                 donationId: requestData.donationId || '',
                 source: 'charter_page',
@@ -155,25 +155,34 @@ export async function createCheckoutSession(requestData) {
 
         const session = await response.json();
 
-        // Store payment intent in database
+        // Store payment intent in database with custom invoice ID
         try {
+            // Use session.id as custom invoice ID
+            const customInvoiceId = session.id; // Stripe session_id is our custom invoice ID
+            
             const paymentRecord = {
-                _id: session.id,
+                _id: customInvoiceId,
+                invoice_id: customInvoiceId, // Custom invoice ID = Stripe session_id
                 session_id: session.id,
                 amount: amount,
                 currency: 'usd',
                 status: 'pending',
-                payment_method: 'stripe',
+                payment_method: requestData.paymentMethod || 'card', // 'card' or 'ach'
                 donation_id: requestData.donationId || null,
                 email: requestData.email || null,
+                name: requestData.name || null,
                 created_at: new Date(),
+                updated_at: new Date(),
                 metadata: {
                     stripe_session_id: session.id,
-                    stripe_payment_intent: session.payment_intent || null
+                    stripe_payment_intent: session.payment_intent || null,
+                    custom_invoice_id: customInvoiceId,
+                    source: requestData.source || 'charter_page'
                 }
             };
 
             await wixData.save('StripePayments', paymentRecord);
+            console.log('✅ Stripe payment saved with custom invoice ID:', customInvoiceId);
         } catch (dbError) {
             console.error('⚠️  Error saving payment record (non-blocking):', dbError);
             // Don't fail the request if database save fails

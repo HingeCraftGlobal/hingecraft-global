@@ -148,9 +148,9 @@ export async function createNowPaymentsInvoice(requestData) {
             price_currency: 'usd',
             order_id: orderId,
             order_description: 'HingeCraft Mission Support',
-            ipn_callback_url: `${BASE_URL}/_functions/webhooks/nowpayments`,
-            success_url: `${BASE_URL}/payment-success?intent=${encodeURIComponent(intentId)}&source=crypto`,
-            cancel_url: `${BASE_URL}/payment-cancel?intent=${encodeURIComponent(intentId)}&source=crypto`,
+            ipn_callback_url: `https://hingecraft-global.ai/_functions/webhooks/nowpayments`,
+            success_url: `https://hingecraft-global.ai/charter?payment=success&intent=${encodeURIComponent(intentId)}&source=crypto`,
+            cancel_url: `https://hingecraft-global.ai/charter?payment=cancelled&intent=${encodeURIComponent(intentId)}&source=crypto`,
             metadata: {
                 intentId: intentId,
                 sessionId: requestData.sessionId || 'unknown',
@@ -194,13 +194,16 @@ export async function createNowPaymentsInvoice(requestData) {
         const payCurrency = invoiceData.pay_currency || null;
         const invoiceExpiresAt = invoiceData.expiration_at ? new Date(invoiceData.expiration_at) : null;
 
-        // Store crypto payment record
+        // Store crypto payment record with custom invoice ID
+        // Custom invoice ID = order_id (which is intentId from ContributionIntent)
+        const customInvoiceId = orderId; // This is our custom invoice ID
+        
         const cryptoPaymentId = generateCryptoPaymentId();
         const cryptoPaymentRecord = {
             _id: cryptoPaymentId,
             intent_id: intentId,
-            order_id: orderId,
-            invoice_id: invoiceId,
+            order_id: customInvoiceId, // Custom invoice ID = intentId
+            invoice_id: invoiceId, // NOWPayments invoice ID
             payment_url: paymentUrl,
             pay_address: payAddress,
             pay_amount_crypto: payAmountCrypto,
@@ -211,12 +214,18 @@ export async function createNowPaymentsInvoice(requestData) {
             nowpayments_status: invoiceData.status || 'waiting',
             invoice_created_at: new Date(),
             invoice_expires_at: invoiceExpiresAt,
+            email: requestData.email || null,
+            first_name: requestData.firstName || null,
+            last_name: requestData.lastName || null,
+            mission_support_name: requestData.missionSupportName || null,
+            session_id: requestData.sessionId || null,
+            created_at: new Date(),
+            updated_at: new Date(),
             raw_response: invoiceData,
             metadata: {
-                source: 'missionSupportForm',
-                email: requestData.email,
-                firstName: requestData.firstName,
-                lastName: requestData.lastName
+                source: requestData.source || 'missionSupportForm',
+                custom_invoice_id: customInvoiceId,
+                nowpayments_invoice_id: invoiceId
             }
         };
 
