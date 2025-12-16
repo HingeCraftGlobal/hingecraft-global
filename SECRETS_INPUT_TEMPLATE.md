@@ -11,9 +11,12 @@ Use this template to input secrets into Wix Secrets Manager. Fill in the values 
 ### 1. STRIPE_SECRET_KEY_LIVE
 ```
 Secret Name: STRIPE_SECRET_KEY_LIVE
-Secret Value: [Paste your Stripe secret key here - starts with sk_live_ or sk_test_]
+Secret Value: [🔍 CHECK: api-keys/stripe_keys.json or database secrets table]
 ```
-**Where to Get:** Stripe Dashboard → Developers → API keys → Secret key
+**Where to Get:** 
+- Stripe Dashboard → Developers → API keys → Secret key
+- Or check: `api-keys/stripe_keys.json` in your project
+- Or query database: `SELECT * FROM secrets WHERE key LIKE '%stripe%'`
 
 ---
 
