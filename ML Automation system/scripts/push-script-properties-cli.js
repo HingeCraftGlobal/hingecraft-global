@@ -6,9 +6,16 @@
  * Sets Script Properties in Google Apps Script using Apps Script API
  */
 
-const { google } = require('googleapis');
 const fs = require('fs');
 const path = require('path');
+
+// Try to load googleapis if available
+let google = null;
+try {
+  google = require('googleapis');
+} catch (e) {
+  // googleapis not installed
+}
 
 // Try to load .env if available
 try {
@@ -36,6 +43,10 @@ const SCRIPT_PROPERTIES = {
 };
 
 async function authenticate() {
+  if (!google) {
+    return null; // googleapis not available
+  }
+  
   const keyFile = process.env.GOOGLE_SERVICE_ACCOUNT_KEY || 
                   path.join(__dirname, '../config/service-account-key.json');
   
@@ -75,8 +86,6 @@ async function authenticate() {
 }
 
 async function setScriptProperties(auth) {
-  const script = google.script('v1');
-  
   console.log('📝 Setting Script Properties...\n');
   
   // Note: Apps Script API doesn't directly support setting Script Properties

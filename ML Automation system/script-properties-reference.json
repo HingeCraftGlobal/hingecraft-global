@@ -1,0 +1,11 @@
+{
+  "HUBSPOT_TOKEN": "",
+  "ANYMAIL_API_KEY": "",
+  "MONITORED_FOLDER_ID": "",
+  "GMAIL_FROM_ADDRESS": "marketingecraft@gmail.com",
+  "TRACKING_ENDPOINT_URL": "https://script.google.com/macros/s/AKfycbz2kYZn-DKiaKHPWOVoOh7fdY8l-tnkRwx4GBFX5sA30muzoyAgWn-cVS_aU0OMceq4/exec",
+  "GA4_MEASUREMENT_ID": "G-QF5H2Q291T",
+  "GA4_API_SECRET": "cJH76-IHQteQx6DKaiPkGA",
+  "GA4_STREAM_ID": "13142410458",
+  "GA4_STREAM_URL": "https://hingecraft-global.ai"
+}
