@@ -51,10 +51,32 @@ This document lists **ALL** secrets required for the HingeCraft Global payment s
 
 | Secret Name | Code Reference | Required | Format | Purpose |
 |------------|----------------|----------|--------|---------|
-| `EXTERNAL_DB_ENDPOINT` | `nowpayments.api.jsw` | ⚠️ Optional | URL | External database API endpoint |
-| `EXTERNAL_DB_SECRET_KEY` | `nowpayments.api.jsw` | ⚠️ Optional | String | API key for external database |
+| `EXTERNAL_DB_ENDPOINT` | `nowpayments.api.jsw`, `reconciliation-worker.jsw`, `notion-crm-sync.jsw` | ⚠️ Optional | URL | External database API endpoint |
+| `EXTERNAL_DB_SECRET_KEY` | `nowpayments.api.jsw`, `reconciliation-worker.jsw`, `notion-crm-sync.jsw` | ⚠️ Optional | String | API key for external database |
 
 **Note:** These are only needed if you're using an external PostgreSQL database instead of Wix Data.
+
+---
+
+## 📧 Email Service Secrets (If Using SendGrid)
+
+| Secret Name | Code Reference | Required | Format | Purpose |
+|------------|----------------|----------|--------|---------|
+| `SENDGRID_API_KEY` | `email-templates.jsw` | ⚠️ Optional | String | SendGrid API key for sending emails |
+| `EMAIL_FROM` | `email-templates.jsw` | ⚠️ Optional | Email address | Default sender email address |
+
+**Note:** These are only needed if you're using SendGrid for email notifications.
+
+---
+
+## 🔗 CRM Integration Secrets (If Using Notion/CRM)
+
+| Secret Name | Code Reference | Required | Format | Purpose |
+|------------|----------------|----------|--------|---------|
+| `NOTION_SYNC_URL` | `notion-crm-sync.jsw` | ⚠️ Optional | URL | Notion API endpoint for CRM sync |
+| `CRM_API_KEY` | `notion-crm-sync.jsw` | ⚠️ Optional | String | API key for CRM/Notion integration |
+
+**Note:** These are only needed if you're syncing data with Notion or another CRM system.
 
 ---
 
@@ -79,6 +101,10 @@ This document lists **ALL** secrets required for the HingeCraft Global payment s
 9. `CRYPTO_CONFIRMATIONS_REQUIRED` - Crypto confirmations (defaults to `3`)
 10. `EXTERNAL_DB_ENDPOINT` - External database endpoint (only if using external DB)
 11. `EXTERNAL_DB_SECRET_KEY` - External database API key (only if using external DB)
+12. `SENDGRID_API_KEY` - SendGrid API key (only if using email notifications)
+13. `EMAIL_FROM` - Default sender email (only if using email notifications)
+14. `NOTION_SYNC_URL` - Notion API endpoint (only if using CRM sync)
+15. `CRM_API_KEY` - CRM/Notion API key (only if using CRM sync)
 
 ---
 
@@ -185,4 +211,4 @@ console.log(results);
 ---
 
 **Last Updated:** 2025-01-27  
-**Total Required Secrets:** 4 (minimum) | 6 (recommended) | 11 (all optional)
+**Total Required Secrets:** 4 (minimum) | 6 (recommended) | 15 (all including optional)
