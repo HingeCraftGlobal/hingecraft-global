@@ -1,0 +1,45 @@
+{
+  "timestamp": "2025-12-16T12:54:19.855Z",
+  "diagnosis": {
+    "issues": [
+      {
+        "component": "File Processing",
+        "problem": "Test file not found",
+        "solution": "Create test_chandler_tracking.csv"
+      },
+      {
+        "component": "AnyMail Enrichment",
+        "problem": "API key not set",
+        "solution": "Add ANYMAIL_API_KEY to Script Properties"
+      },
+      {
+        "component": "HubSpot Contact Creation",
+        "problem": "HUBSPOT_TOKEN not set",
+        "solution": "Add HUBSPOT_TOKEN to Script Properties"
+      },
+      {
+        "component": "Sequence Manager",
+        "problem": "HUBSPOT_TOKEN not set",
+        "solution": "Add HUBSPOT_TOKEN to Script Properties"
+      },
+      {
+        "component": "Gmail Sending",
+        "problem": "GMAIL_FROM_ADDRESS not set",
+        "solution": "Add GMAIL_FROM_ADDRESS to Script Properties"
+      }
+    ],
+    "recommendations": [
+      "System will use fallback (source data)",
+      "Check Apps Script execution logs for template errors",
+      "Verify TEMPLATE_DB_FILE_ID in Script Properties",
+      "Ensure template exists for set_three_b2b, step 1"
+    ],
+    "nextSteps": [
+      "1. Go to: https://script.google.com",
+      "2. Open your project",
+      "3. Go to: Executions tab",
+      "4. Find latest checkFolderForNewFiles execution",
+      "5. Review execution log for errors"
+    ]
+  }
+}

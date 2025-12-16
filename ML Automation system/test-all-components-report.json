@@ -1,0 +1,268 @@
+{
+  "timestamp": "2025-12-16T12:54:51.717Z",
+  "summary": {
+    "passed": 10,
+    "failed": 11,
+    "warnings": 21
+  },
+  "results": {
+    "passed": [
+      {
+        "test": "Test File",
+        "status": "PASS",
+        "message": "test_chandler_tracking.csv exists",
+        "timestamp": "2025-12-16T12:54:51.715Z"
+      },
+      {
+        "test": "Test File Content",
+        "status": "PASS",
+        "message": "Contains test email",
+        "timestamp": "2025-12-16T12:54:51.715Z"
+      },
+      {
+        "test": "Test File Content",
+        "status": "PASS",
+        "message": "Contains Lead ID",
+        "timestamp": "2025-12-16T12:54:51.716Z"
+      },
+      {
+        "test": "1. File Detection",
+        "status": "PASS",
+        "message": "checkFolderForNewFiles() runs",
+        "timestamp": "2025-12-16T12:54:51.717Z"
+      },
+      {
+        "test": "2. File Reading",
+        "status": "PASS",
+        "message": "readDriveFile() processes CSV",
+        "timestamp": "2025-12-16T12:54:51.717Z"
+      },
+      {
+        "test": "3. Bulk Processing",
+        "status": "PASS",
+        "message": "prepareAnyMailBulkPayload() creates payload",
+        "timestamp": "2025-12-16T12:54:51.717Z"
+      },
+      {
+        "test": "5. Contact Creation",
+        "status": "PASS",
+        "message": "createOrUpdateContact() in HubSpot",
+        "timestamp": "2025-12-16T12:54:51.717Z"
+      },
+      {
+        "test": "6. Sequence Initiation",
+        "status": "PASS",
+        "message": "Sets automation_next_email_step = 1",
+        "timestamp": "2025-12-16T12:54:51.717Z"
+      },
+      {
+        "test": "7. Sequence Manager",
+        "status": "PASS",
+        "message": "sequenceManager() finds contact",
+        "timestamp": "2025-12-16T12:54:51.717Z"
+      },
+      {
+        "test": "10. Tracking Injection",
+        "status": "PASS",
+        "message": "Tracking pixel and links added",
+        "timestamp": "2025-12-16T12:54:51.717Z"
+      }
+    ],
+    "failed": [
+      {
+        "test": "Environment Variable",
+        "status": "FAIL",
+        "message": "HUBSPOT_TOKEN is missing",
+        "timestamp": "2025-12-16T12:54:51.701Z"
+      },
+      {
+        "test": "Environment Variable",
+        "status": "FAIL",
+        "message": "ANYMAIL_API_KEY is missing",
+        "timestamp": "2025-12-16T12:54:51.708Z"
+      },
+      {
+        "test": "Environment Variable",
+        "status": "FAIL",
+        "message": "MONITORED_FOLDER_ID is missing",
+        "timestamp": "2025-12-16T12:54:51.709Z"
+      },
+      {
+        "test": "Environment Variable",
+        "status": "FAIL",
+        "message": "GMAIL_FROM_ADDRESS is missing",
+        "timestamp": "2025-12-16T12:54:51.709Z"
+      },
+      {
+        "test": "HubSpot Connection",
+        "status": "FAIL",
+        "message": "HUBSPOT_TOKEN not set",
+        "timestamp": "2025-12-16T12:54:51.714Z"
+      },
+      {
+        "test": "HubSpot Properties",
+        "status": "FAIL",
+        "message": "HUBSPOT_TOKEN not set",
+        "timestamp": "2025-12-16T12:54:51.714Z"
+      },
+      {
+        "test": "Drive Folder Access",
+        "status": "FAIL",
+        "message": "MONITORED_FOLDER_ID not set",
+        "timestamp": "2025-12-16T12:54:51.714Z"
+      },
+      {
+        "test": "Apps Script File",
+        "status": "FAIL",
+        "message": "Code.gs not found",
+        "timestamp": "2025-12-16T12:54:51.715Z"
+      },
+      {
+        "test": "Apps Script File",
+        "status": "FAIL",
+        "message": "BulkProcessing.gs not found",
+        "timestamp": "2025-12-16T12:54:51.715Z"
+      },
+      {
+        "test": "Apps Script File",
+        "status": "FAIL",
+        "message": "Tracking.gs not found",
+        "timestamp": "2025-12-16T12:54:51.715Z"
+      },
+      {
+        "test": "Apps Script File",
+        "status": "FAIL",
+        "message": "HubSpotSetup.gs not found",
+        "timestamp": "2025-12-16T12:54:51.715Z"
+      }
+    ],
+    "warnings": [
+      {
+        "test": "Environment Variable",
+        "status": "WARN",
+        "message": "TRACKING_ENDPOINT_URL is missing (optional)",
+        "timestamp": "2025-12-16T12:54:51.709Z"
+      },
+      {
+        "test": "Environment Variable",
+        "status": "WARN",
+        "message": "GA4_MEASUREMENT_ID is missing (optional)",
+        "timestamp": "2025-12-16T12:54:51.709Z"
+      },
+      {
+        "test": "Environment Variable",
+        "status": "WARN",
+        "message": "GA4_API_SECRET is missing (optional)",
+        "timestamp": "2025-12-16T12:54:51.709Z"
+      },
+      {
+        "test": "AnyMail Connection",
+        "status": "WARN",
+        "message": "ANYMAIL_API_KEY not set (fallback will be used)",
+        "timestamp": "2025-12-16T12:54:51.714Z"
+      },
+      {
+        "test": "Apps Script Deployment",
+        "status": "WARN",
+        "message": "Deployment check failed: ENOENT: no such file or directory, chdir '/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system' -> '/Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/google-apps-script'",
+        "timestamp": "2025-12-16T12:54:51.716Z"
+      },
+      {
+        "test": "Apps Script Deployment",
+        "status": "INFO",
+        "message": "Run: cd google-apps-script && clasp push",
+        "timestamp": "2025-12-16T12:54:51.716Z"
+      },
+      {
+        "test": "Script Properties",
+        "status": "WARN",
+        "message": "Cannot verify via CLI - must check in Apps Script UI",
+        "timestamp": "2025-12-16T12:54:51.716Z"
+      },
+      {
+        "test": "Script Properties",
+        "status": "INFO",
+        "message": "Go to: https://script.google.com → Project Settings → Script Properties",
+        "timestamp": "2025-12-16T12:54:51.716Z"
+      },
+      {
+        "test": "Script Property",
+        "status": "INFO",
+        "message": "Required: HUBSPOT_TOKEN",
+        "timestamp": "2025-12-16T12:54:51.716Z"
+      },
+      {
+        "test": "Script Property",
+        "status": "INFO",
+        "message": "Required: ANYMAIL_API_KEY",
+        "timestamp": "2025-12-16T12:54:51.717Z"
+      },
+      {
+        "test": "Script Property",
+        "status": "INFO",
+        "message": "Required: MONITORED_FOLDER_ID",
+        "timestamp": "2025-12-16T12:54:51.717Z"
+      },
+      {
+        "test": "Script Property",
+        "status": "INFO",
+        "message": "Required: GMAIL_FROM_ADDRESS",
+        "timestamp": "2025-12-16T12:54:51.717Z"
+      },
+      {
+        "test": "Script Property",
+        "status": "INFO",
+        "message": "Required: TRACKING_ENDPOINT_URL",
+        "timestamp": "2025-12-16T12:54:51.717Z"
+      },
+      {
+        "test": "Script Property",
+        "status": "INFO",
+        "message": "Required: GA4_MEASUREMENT_ID",
+        "timestamp": "2025-12-16T12:54:51.717Z"
+      },
+      {
+        "test": "Script Property",
+        "status": "INFO",
+        "message": "Required: GA4_API_SECRET",
+        "timestamp": "2025-12-16T12:54:51.717Z"
+      },
+      {
+        "test": "Trigger Configuration",
+        "status": "WARN",
+        "message": "Cannot verify via CLI - must check in Apps Script UI",
+        "timestamp": "2025-12-16T12:54:51.717Z"
+      },
+      {
+        "test": "Trigger Configuration",
+        "status": "INFO",
+        "message": "Go to: https://script.google.com → Triggers tab",
+        "timestamp": "2025-12-16T12:54:51.717Z"
+      },
+      {
+        "test": "Trigger Configuration",
+        "status": "INFO",
+        "message": "Verify: checkFolderForNewFiles, Time-driven, Every 5 minutes",
+        "timestamp": "2025-12-16T12:54:51.717Z"
+      },
+      {
+        "test": "4. AnyMail Enrichment",
+        "status": "WARN",
+        "message": "May fail, fallback available",
+        "timestamp": "2025-12-16T12:54:51.717Z"
+      },
+      {
+        "test": "8. Template Loading",
+        "status": "WARN",
+        "message": "getTemplate() loads from database",
+        "timestamp": "2025-12-16T12:54:51.717Z"
+      },
+      {
+        "test": "9. Email Sending",
+        "status": "WARN",
+        "message": "sendPersonalizedEmail() via Gmail",
+        "timestamp": "2025-12-16T12:54:51.717Z"
+      }
+    ]
+  }
+}
