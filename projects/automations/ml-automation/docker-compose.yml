@@ -1,0 +1,129 @@
+version: '3.8'
+
+services:
+  # Main Automation System
+  automation:
+    build: .
+    container_name: hingecraft-automation
+    ports:
+      - "7101:3001"  # Changed to 7101 to avoid conflicts
+    environment:
+      - NODE_ENV=development
+      - DRY_RUN=true
+      - PORT=3001
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_NAME=hingecraft_automation
+      - DB_USER=hingecraft_user
+      - DB_PASSWORD=hingecraft_password
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    volumes:
+      - ./logs:/app/logs
+      - ./config:/app/config
+    depends_on:
+      - postgres
+      - redis
+    restart: unless-stopped
+    networks:
+      - automation-network
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'      # 1000 nano CPUs = 1 full CPU
+          memory: 512M
+        reservations:
+          cpus: '0.5'      # 500 nano CPUs minimum
+          memory: 256M
+
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+    platform: linux/amd64
+    container_name: hingecraft-postgres
+    environment:
+      - POSTGRES_DB=hingecraft_automation
+      - POSTGRES_USER=hingecraft_user
+      - POSTGRES_PASSWORD=hingecraft_password
+    ports:
+      - "7543:5432"  # Changed to 7543 to avoid conflicts
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./database/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql
+      - ./database/init-data.sql:/docker-entrypoint-initdb.d/02-init-data.sql
+      - ./database/migrate-existing-data.sql:/docker-entrypoint-initdb.d/03-migrate-data.sql
+    restart: unless-stopped
+    networks:
+      - automation-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U hingecraft_user -d hingecraft_automation"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'      # 500 nano CPUs = 0.5 CPU
+          memory: 256M
+        reservations:
+          cpus: '0.25'     # 250 nano CPUs minimum
+          memory: 128M
+
+  # Redis for queues and caching
+  redis:
+    image: redis:7-alpine
+    container_name: hingecraft-redis
+    ports:
+      - "7638:6379"  # Changed to 7638 to avoid conflicts
+    volumes:
+      - redis-data:/data
+    restart: unless-stopped
+    networks:
+      - automation-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+    deploy:
+      resources:
+        limits:
+          cpus: '0.1'      # 100 nano CPUs = 0.1 CPU
+          memory: 64M
+        reservations:
+          cpus: '0.05'     # 50 nano CPUs minimum
+          memory: 32M
+
+  # Visual Dashboard (nginx + static files)
+  dashboard:
+    image: nginx:alpine
+    container_name: hingecraft-dashboard
+    ports:
+      - "7080:80"  # Changed to 7080 to avoid conflicts
+    volumes:
+      - ./public/dashboard:/usr/share/nginx/html
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - automation
+    restart: unless-stopped
+    networks:
+      - automation-network
+    deploy:
+      resources:
+        limits:
+          cpus: '0.1'      # 100 nano CPUs = 0.1 CPU
+          memory: 64M
+        reservations:
+          cpus: '0.05'     # 50 nano CPUs minimum
+          memory: 32M
+
+volumes:
+  postgres-data:
+  redis-data:
+
+networks:
+  automation-network:
+    driver: bridge
+
+
+
