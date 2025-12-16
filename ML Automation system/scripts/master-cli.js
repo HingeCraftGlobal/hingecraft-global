@@ -77,15 +77,18 @@ function runStep(step) {
   try {
     if (step.isShell) {
       // Shell script
-      execSync(`bash ${scriptPath}`, { 
+      execSync(`bash "${scriptPath}"`, { 
         stdio: 'inherit',
-        cwd: path.dirname(scriptPath)
+        cwd: path.dirname(scriptPath),
+        shell: '/bin/bash'
       });
     } else {
-      // Node.js script
-      execSync(`node ${scriptPath}`, { 
+      // Node.js script - use absolute path and proper quoting
+      const absolutePath = path.resolve(scriptPath);
+      execSync(`node "${absolutePath}"`, { 
         stdio: 'inherit',
-        cwd: path.dirname(scriptPath)
+        cwd: path.dirname(absolutePath),
+        shell: '/bin/bash'
       });
     }
     

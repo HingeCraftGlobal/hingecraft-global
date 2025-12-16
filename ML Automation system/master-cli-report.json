@@ -1,0 +1,42 @@
+{
+  "timestamp": "2025-12-16T13:13:48.153Z",
+  "results": [
+    {
+      "success": false,
+      "step": "diagnosis",
+      "error": "Command failed: node /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/comprehensive-email-diagnosis.js"
+    },
+    {
+      "success": false,
+      "step": "script-properties",
+      "error": "Command failed: node /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/set-script-properties-cli.js"
+    },
+    {
+      "success": false,
+      "step": "hubspot-properties",
+      "error": "HUBSPOT_TOKEN not set",
+      "skipped": true
+    },
+    {
+      "success": false,
+      "step": "verify-clis",
+      "error": "Command failed: node /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/verify-all-clis.js"
+    },
+    {
+      "success": false,
+      "step": "sync-git",
+      "error": "Command failed: bash /Users/chandlerfergusen/Desktop/CURSOR/hingecraft-global/ML Automation system/scripts/sync-all-to-repo.sh"
+    }
+  ],
+  "checks": {
+    "node": true,
+    "git": true,
+    "clasp": true,
+    "hubspotToken": false
+  },
+  "summary": {
+    "total": 5,
+    "successful": 0,
+    "failed": 5
+  }
+}
