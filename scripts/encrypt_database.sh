@@ -37,3 +37,5 @@ done
 echo "✅ Database files encrypted"
 echo "🔑 Key required to decrypt: DATABASE_ENCRYPTION_KEY"
 
+
+
