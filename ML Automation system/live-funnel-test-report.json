@@ -1,0 +1,122 @@
+{
+  "timestamp": "2025-12-16T16:06:32.814Z",
+  "steps": [
+    {
+      "name": "Test File Exists",
+      "status": "PASS",
+      "details": "File found with 2 lines",
+      "error": null,
+      "timestamp": "2025-12-16T16:06:32.820Z"
+    },
+    {
+      "name": "Test File Content",
+      "status": "PASS",
+      "details": "Contains test email: chandlerferguson319@gmail.com",
+      "error": null,
+      "timestamp": "2025-12-16T16:06:32.821Z"
+    },
+    {
+      "name": "Script Properties",
+      "status": "FAIL",
+      "details": "Missing: HUBSPOT_TOKEN, ANYMAIL_API_KEY, MONITORED_FOLDER_ID, GMAIL_FROM_ADDRESS",
+      "error": "Script Properties must be set in Apps Script UI",
+      "timestamp": "2025-12-16T16:06:32.821Z"
+    },
+    {
+      "name": "Drive Folder ID",
+      "status": "FAIL",
+      "details": null,
+      "error": "MONITORED_FOLDER_ID not set",
+      "timestamp": "2025-12-16T16:06:32.821Z"
+    },
+    {
+      "name": "HubSpot Token",
+      "status": "FAIL",
+      "details": null,
+      "error": "HUBSPOT_TOKEN not set",
+      "timestamp": "2025-12-16T16:06:32.821Z"
+    },
+    {
+      "name": "AnyMail API Key",
+      "status": "FAIL",
+      "details": null,
+      "error": "ANYMAIL_API_KEY not set",
+      "timestamp": "2025-12-16T16:06:32.823Z"
+    },
+    {
+      "name": "Apps Script ID",
+      "status": "PASS",
+      "details": "Script ID: AKfycbz2kYZn-DKiaKHPWOVoOh7fdY8l-tnkRwx4GBFX5sA30muzoyAgWn-cVS_aU0OMceq4",
+      "error": null,
+      "timestamp": "2025-12-16T16:06:32.823Z"
+    },
+    {
+      "name": "Trigger Verification",
+      "status": "WARN",
+      "details": "Cannot verify from CLI - must be checked in Apps Script UI",
+      "error": null,
+      "timestamp": "2025-12-16T16:06:32.823Z"
+    },
+    {
+      "name": "Upload Target",
+      "status": "FAIL",
+      "details": null,
+      "error": "MONITORED_FOLDER_ID not set",
+      "timestamp": "2025-12-16T16:06:32.823Z"
+    },
+    {
+      "name": "Execution Logs",
+      "status": "WARN",
+      "details": "Cannot access from CLI - must be checked in Apps Script UI",
+      "error": null,
+      "timestamp": "2025-12-16T16:06:32.823Z"
+    },
+    {
+      "name": "HubSpot Contact Search",
+      "status": "FAIL",
+      "details": null,
+      "error": "HUBSPOT_TOKEN not set",
+      "timestamp": "2025-12-16T16:06:32.824Z"
+    }
+  ],
+  "errors": [
+    {
+      "step": "Script Properties",
+      "error": "Script Properties must be set in Apps Script UI"
+    },
+    {
+      "step": "Drive Folder ID",
+      "error": "MONITORED_FOLDER_ID not set"
+    },
+    {
+      "step": "HubSpot Token",
+      "error": "HUBSPOT_TOKEN not set"
+    },
+    {
+      "step": "AnyMail API Key",
+      "error": "ANYMAIL_API_KEY not set"
+    },
+    {
+      "step": "Upload Target",
+      "error": "MONITORED_FOLDER_ID not set"
+    },
+    {
+      "step": "HubSpot Contact Search",
+      "error": "HUBSPOT_TOKEN not set"
+    }
+  ],
+  "warnings": [],
+  "recommendations": [
+    "Go to Apps Script → Project Settings → Script Properties and add all required properties",
+    "Verify code is deployed: https://script.google.com",
+    "Check that checkFolderForNewFiles function exists",
+    "Verify trigger is set to run every 5 minutes",
+    "Go to Apps Script → Triggers tab",
+    "Verify checkFolderForNewFiles is set as Time-driven",
+    "Frequency should be Every 5 minutes (or Every hour)",
+    "Go to Apps Script → Executions tab",
+    "Look for latest execution of checkFolderForNewFiles",
+    "Check for any errors in the execution log",
+    "Common errors: \"No item with the given ID\", \"API key invalid\", \"Gmail permission denied\""
+  ]
+}
