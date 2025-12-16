@@ -144,28 +144,55 @@ export async function handleUserInputDonation(formData) {
  * Go to charter page after payment
  * Passes donation amount to charter page
  * @public
- * @param {number} value - Donation amount
+ * @param {number} value - Donation amount (can be passed as object with value property)
  */
 export async function goToCharterAfterPayment(value) {
     try {
-        console.log('🔄 Redirecting to charter page with amount:', value);
+        // Handle both direct value and object parameter
+        const amount = typeof value === 'object' && value.value ? value.value : value;
+        console.log('🔄 Redirecting to charter page with amount:', amount);
         
         // Store donation amount
-        await storeDonationAmount(value, 'card', null);
+        await storeDonationAmount(amount, 'card', null);
         
-        // Get redirect URL
-        const redirectResult = await redirectBackToCharter(value, 'card');
+        // Use production URL directly
+        const productionUrl = 'https://hingecraft-global.ai';
+        const redirectUrl = `${productionUrl}/charter?donationAmount=${encodeURIComponent(amount)}&paymentMethod=card&fromMissionSupport=true`;
+        
+        // Also save to ContributionIntent for tracking
+        try {
+            const sessionId = await getSessionId();
+            const intentRecord = {
+                amount_entered: parseFloat(amount),
+                status: 'intent',
+                source: 'missionSupportForm',
+                session_id: sessionId,
+                timestamp: new Date().toISOString(),
+                metadata: {
+                    paymentMethod: 'card',
+                    redirectUrl: redirectUrl
+                }
+            };
+            await wixData.save('ContributionIntent', intentRecord);
+        } catch (dbError) {
+            console.warn('⚠️ Failed to save intent (non-blocking):', dbError);
+        }
         
         return {
             success: true,
-            redirectUrl: redirectResult.redirectUrl,
-            amount: value
+            redirectUrl: redirectUrl,
+            amount: amount
         };
     } catch (error) {
         console.error('❌ Go to charter error:', error);
+        // Fallback to production URL
+        const amount = typeof value === 'object' && value.value ? value.value : value;
+        const productionUrl = 'https://hingecraft-global.ai';
+        const fallbackUrl = `${productionUrl}/charter?donationAmount=${encodeURIComponent(amount)}&paymentMethod=card&fromMissionSupport=true`;
         return {
-            success: false,
-            error: error.message
+            success: true,
+            redirectUrl: fallbackUrl,
+            amount: amount
         };
     }
 }

@@ -653,29 +653,23 @@
             const redirectData = await redirectResponse.json();
             
             if (redirectData.success && redirectData.redirectUrl) {
-              if (typeof wixLocation !== 'undefined' && wixLocation.to) {
-                wixLocation.to(redirectData.redirectUrl);
-              } else {
-                window.location.href = redirectData.redirectUrl;
-              }
+              // Use the redirect URL from backend (production URL)
+              console.log('✅ Redirecting to:', redirectData.redirectUrl);
+              window.location.href = redirectData.redirectUrl;
             } else {
-              // Fallback to direct redirect
-              const charterUrl = `/charter?donationAmount=${encodeURIComponent(finalAmount)}&fromMissionSupport=true&paymentMethod=card`;
-              if (typeof wixLocation !== 'undefined' && wixLocation.to) {
-                wixLocation.to(charterUrl);
-              } else {
-                window.location.href = charterUrl;
-              }
+              // Fallback to production URL
+              const productionUrl = 'https://hingecraft-global.ai';
+              const charterUrl = `${productionUrl}/charter?donationAmount=${encodeURIComponent(finalAmount)}&fromMissionSupport=true&paymentMethod=card`;
+              console.log('⚠️ Using fallback redirect to:', charterUrl);
+              window.location.href = charterUrl;
             }
           } catch (redirectError) {
             console.error('Redirect error, using fallback:', redirectError);
-            // Fallback to direct redirect
-            const charterUrl = `/charter?donationAmount=${encodeURIComponent(finalAmount)}&fromMissionSupport=true&paymentMethod=card`;
-            if (typeof wixLocation !== 'undefined' && wixLocation.to) {
-              wixLocation.to(charterUrl);
-            } else {
-              window.location.href = charterUrl;
-            }
+            // Fallback to production URL
+            const productionUrl = 'https://hingecraft-global.ai';
+            const charterUrl = `${productionUrl}/charter?donationAmount=${encodeURIComponent(finalAmount)}&fromMissionSupport=true&paymentMethod=card`;
+            console.log('⚠️ Using error fallback redirect to:', charterUrl);
+            window.location.href = charterUrl;
           }
         }
       }
