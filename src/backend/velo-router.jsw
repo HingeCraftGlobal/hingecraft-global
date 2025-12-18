@@ -1,0 +1,326 @@
+/**
+ * Velo Router - HTTP Function Router
+ * 
+ * This file routes HTTP requests to the appropriate backend functions
+ * Supports the pattern: /_functions/[module-name]/[function-name]
+ * 
+ * Endpoint: /_functions/velo-router
+ * 
+ * Usage in HTML:
+ * callVeloFunction('/_functions/charter-page-middleware', 'onReady', {})
+ * 
+ * This router will:
+ * 1. Extract module name and function name from path
+ * 2. Route to appropriate backend function
+ * 3. Return result as JSON
+ */
+
+import { onReady, cryptoButtonClick, fiatButtonClick, getCumulativeTotal } from 'backend/charter-page-middleware';
+import { onReady as missionOnReady, handleUserInputDonation, goToCharterAfterPayment, getPrefill } from 'backend/mission-support-middleware';
+import { createNowPaymentsInvoice } from 'backend/nowpayments.api';
+import { getPublishableKey, createCheckoutSession } from 'backend/stripe.api';
+import { initVolkov, queryVolkov, getVolkovModelInfo } from 'backend/volkov-llm';
+import { initMoonLabs, createFineTuningJob, getFineTuningStatus, listFineTuningJobs, cancelFineTuningJob } from 'backend/moonlabs-finetuning';
+
+/**
+ * HTTP POST handler - Routes requests to appropriate functions
+ */
+export async function post(request) {
+    try {
+        // Parse request body - Wix HTTP functions may need explicit parsing
+        let body = {};
+        try {
+            if (typeof request.body === 'string') {
+                body = JSON.parse(request.body);
+            } else if (request.body) {
+                body = request.body;
+            }
+        } catch (parseError) {
+            console.warn('⚠️ Could not parse request body:', parseError);
+            body = {};
+        }
+        
+        // Extract module and function from body (preferred) or path
+        let moduleName = body.module || null;
+        let functionName = body.function || null;
+        
+        // Fallback: Try to parse from path if not in body
+        if (!moduleName || !functionName) {
+            const path = request.path || '';
+            const pathParts = path.split('/').filter(p => p);
+            
+            const functionsIndex = pathParts.indexOf('_functions');
+            if (functionsIndex >= 0 && pathParts.length > functionsIndex + 2) {
+                moduleName = moduleName || pathParts[functionsIndex + 1];
+                functionName = functionName || pathParts[functionsIndex + 2];
+            } else if (pathParts.length >= 2) {
+                moduleName = moduleName || pathParts[pathParts.length - 2];
+                functionName = functionName || pathParts[pathParts.length - 1];
+            }
+        }
+        
+        console.log(`🔄 Router Request:`, { 
+            moduleName, 
+            functionName, 
+            bodyKeys: Object.keys(body),
+            path: request.path,
+            method: request.method
+        });
+        
+        if (!moduleName || !functionName) {
+            return {
+                status: 400,
+                headers: { 'Content-Type': 'application/json' },
+                body: { 
+                    success: false, 
+                    error: 'Module and function required. Send in body: { module: "module-name", function: "function-name", ...data }',
+                    receivedBody: body,
+                    receivedPath: request.path,
+                    hint: 'Make sure you are sending: { module: "charter-page-middleware", function: "fiatButtonClick", amount: 10, ... }'
+                }
+            };
+        }
+        
+        // Route to appropriate function based on module name
+        let result;
+        
+        // Remove module and function from body before passing to route functions
+        const { module: bodyModule, function: bodyFunction, ...routeData } = body;
+        
+        if (moduleName === 'charter-page-middleware') {
+            result = await routeCharterMiddleware(functionName, { ...routeData, ...body });
+        } else if (moduleName === 'mission-support-middleware') {
+            result = await routeMissionSupport(functionName, { ...routeData, ...body });
+        } else if (moduleName === 'nowpayments.api') {
+            result = await routeNowPayments(functionName, { ...routeData, ...body });
+        } else if (moduleName === 'stripe.api') {
+            result = await routeStripe(functionName, { ...routeData, ...body });
+        } else if (moduleName === 'hingecraft.api') {
+            result = await routeHingeCraft(functionName, { ...routeData, ...body });
+        } else if (moduleName === 'volkov-llm') {
+            result = await routeVolkovLLM(functionName, { ...routeData, ...body });
+        } else if (moduleName === 'moonlabs-finetuning') {
+            result = await routeMoonLabsFineTuning(functionName, { ...routeData, ...body });
+        } else {
+            return {
+                status: 404,
+                headers: { 'Content-Type': 'application/json' },
+                body: { 
+                    success: false, 
+                    error: `Module '${moduleName}' not found. Available modules: charter-page-middleware, mission-support-middleware, nowpayments.api, stripe.api, hingecraft.api` 
+                }
+            };
+        }
+        
+        return {
+            headers: { 'Content-Type': 'application/json' },
+            body: result
+        };
+        
+    } catch (error) {
+        console.error('❌ Router Error:', error);
+        return {
+            status: 500,
+            headers: { 'Content-Type': 'application/json' },
+            body: { 
+                success: false, 
+                error: error.message,
+                stack: error.stack
+            }
+        };
+    }
+}
+
+/**
+ * Route Charter Page Middleware functions
+ */
+async function routeCharterMiddleware(functionName, body) {
+    console.log(`📦 Routing to charter-page-middleware.${functionName}`, { functionName, bodyKeys: Object.keys(body) });
+    
+    switch (functionName) {
+        case 'onReady':
+            console.log('✅ Calling onReady()');
+            return await onReady();
+            
+        case 'cryptoButtonClick':
+            const { amount, coin, intentId } = body;
+            console.log('✅ Calling cryptoButtonClick:', { amount, coin, intentId });
+            if (!amount || !coin) {
+                throw new Error('Amount and coin are required');
+            }
+            return await cryptoButtonClick(amount, coin, intentId);
+            
+        case 'fiatButtonClick':
+            // Support both old format (number) and new format (object)
+            // Remove module and function from body before passing
+            const { module, function: func, ...fiatData } = body;
+            console.log('✅ Calling fiatButtonClick with data:', fiatData);
+            if (fiatData.amount !== undefined || fiatData.preset !== undefined) {
+                return await fiatButtonClick(fiatData);
+            } else {
+                return await fiatButtonClick(fiatData.preset || fiatData.amount || fiatData);
+            }
+            
+        case 'getCumulativeTotal':
+            console.log('✅ Calling getCumulativeTotal()');
+            return await getCumulativeTotal();
+            
+        default:
+            console.error(`❌ Function '${functionName}' not found in charter-page-middleware`);
+            throw new Error(`Function '${functionName}' not found in charter-page-middleware. Available: onReady, cryptoButtonClick, fiatButtonClick, getCumulativeTotal`);
+    }
+}
+
+/**
+ * Route Mission Support Middleware functions
+ */
+async function routeMissionSupport(functionName, body) {
+    switch (functionName) {
+        case 'onReady':
+            return await missionOnReady();
+            
+        case 'handleUserInputDonation':
+            return await handleUserInputDonation(body);
+            
+        case 'goToCharterAfterPayment':
+            const { value, amount, donationAmount } = body;
+            const paymentValue = value || amount || donationAmount;
+            return await goToCharterAfterPayment(paymentValue);
+            
+        case 'getPrefill':
+            return await getPrefill(body);
+            
+        default:
+            throw new Error(`Function '${functionName}' not found in mission-support-middleware`);
+    }
+}
+
+/**
+ * Route NOWPayments API functions
+ */
+async function routeNowPayments(functionName, body) {
+    switch (functionName) {
+        case 'createNowPaymentsInvoice':
+            return await createNowPaymentsInvoice(body);
+            
+        case 'getInvoiceStatus':
+            // This would need to be implemented in nowpayments.api.jsw
+            return {
+                success: false,
+                error: 'getInvoiceStatus not yet implemented'
+            };
+            
+        default:
+            throw new Error(`Function '${functionName}' not found in nowpayments.api`);
+    }
+}
+
+/**
+ * Route Stripe API functions
+ */
+async function routeStripe(functionName, body) {
+    switch (functionName) {
+        case 'getPublishableKey':
+            return await getPublishableKey();
+            
+        case 'createCheckoutSession':
+            return await createCheckoutSession(body);
+            
+        default:
+            throw new Error(`Function '${functionName}' not found in stripe.api`);
+    }
+}
+
+/**
+ * Route HingeCraft API functions
+ */
+async function routeHingeCraft(functionName, body) {
+    // Import HingeCraft API functions if needed
+    const { getLatestDonation, saveDonation, logMissionSupportIntent } = await import('backend/hingecraft.api.web');
+    
+    switch (functionName) {
+        case 'getLatestDonation':
+            return await getLatestDonation();
+            
+        case 'saveDonation':
+            return await saveDonation(body);
+            
+        case 'logMissionSupportIntent':
+            return await logMissionSupportIntent(body);
+            
+        default:
+            throw new Error(`Function '${functionName}' not found in hingecraft.api`);
+    }
+}
+
+/**
+ * Route Volkov LLM functions
+ */
+async function routeVolkovLLM(functionName, body) {
+    switch (functionName) {
+        case 'init':
+        case 'initialize':
+        case 'initVolkov':
+            return await initVolkov();
+            
+        case 'query':
+        case 'queryVolkov':
+            const query = body.query || body.text || body.message;
+            if (!query) {
+                throw new Error('Query is required');
+            }
+            return await queryVolkov(query, body.options || {});
+            
+        case 'status':
+        case 'info':
+        case 'getVolkovModelInfo':
+            return await getVolkovModelInfo();
+            
+        default:
+            // Default to query if no function specified
+            const defaultQuery = body.query || body.text || body.message || JSON.stringify(body);
+            return await queryVolkov(defaultQuery, body.options || {});
+    }
+}
+
+/**
+ * Route MoonLabs Fine-Tuning functions
+ */
+async function routeMoonLabsFineTuning(functionName, body) {
+    switch (functionName) {
+        case 'init':
+        case 'initialize':
+        case 'initMoonLabs':
+            return await initMoonLabs();
+            
+        case 'create':
+        case 'start':
+        case 'createFineTuningJob':
+            return await createFineTuningJob(body.config || body);
+            
+        case 'status':
+        case 'getFineTuningStatus':
+            const jobId = body.job_id || body.jobId;
+            if (!jobId) {
+                throw new Error('Job ID is required');
+            }
+            return await getFineTuningStatus(jobId);
+            
+        case 'list':
+        case 'jobs':
+        case 'listFineTuningJobs':
+            return await listFineTuningJobs();
+            
+        case 'cancel':
+            const cancelJobId = body.job_id || body.jobId;
+            if (!cancelJobId) {
+                throw new Error('Job ID is required');
+            }
+            return await cancelFineTuningJob(cancelJobId);
+            
+        default:
+            // Default to init if no function specified
+            return await initMoonLabs();
+    }
+}
+
