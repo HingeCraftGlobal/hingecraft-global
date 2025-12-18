@@ -1,12 +1,12 @@
-# 🚀 HingeCraft Global - Enterprise Cloud Portal & Database System
+# HingeCraft Global - Enterprise Cloud Portal & Database System
 
-## 🌟 **MAIN FEATURE: Production-Ready ML-Powered Cloud Portal**
+## **MAIN FEATURE: Production-Ready ML-Powered Cloud Portal**
 
 > **The biggest addition to this repository** - A complete, production-ready, enterprise-grade ML-powered cloud portal with Docker database, automation system, and advanced data collection pipeline for marketing optimization.
 
 ---
 
-## 🎯 **What is This?**
+## **What is This?**
 
 This is a **complete, production-ready enterprise cloud portal** built with:
 - **Docker-based PostgreSQL database** with pgvector for semantic search
