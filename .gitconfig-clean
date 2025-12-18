@@ -1,0 +1,19 @@
+[user]
+	name = HingeCraft Automation
+	email = automation@hingecraft-global.ai
+
+[commit]
+	gpgsign = false
+	template = 
+
+[push]
+	default = simple
+	followTags = true
+
+[core]
+	autocrlf = input
+	fileMode = true
+	excludesfile = .gitignore
+
+[init]
+	defaultBranch = main

@@ -1,0 +1,246 @@
+/**
+ * MoonLabs Fine-Tuning Backend
+ * 
+ * Powered by Ferguson System Integration
+ * Uses angelofwill database for configuration
+ * SEPARATE FROM WIX - Uses angelofwill repository only
+ */
+
+import { 
+    getKeyFromAngelofwill, 
+    saveKeyToAngelofwill,
+    initFergusonSystem 
+} from 'backend/ferguson-system-integration';
+
+// MoonLabs Configuration
+const MOONLABS_CONFIG = {
+    api_endpoint: 'https://api.moonlabs.ai/v1', // Update with actual endpoint
+    repository: 'angelofwill'
+};
+
+let moonlabsInitialized = false;
+let moonlabsAPIKey = null;
+
+/**
+ * Initialize MoonLabs Fine-Tuning
+ * Powered by Ferguson System
+ */
+export async function initMoonLabs() {
+    try {
+        console.log('🚀 Initializing MoonLabs Fine-Tuning (Ferguson System powered)...');
+        
+        // Initialize Ferguson System integration
+        await initFergusonSystem();
+        
+        // Load API key from angelofwill database
+        const keyResult = await getKeyFromAngelofwill('moonlabs');
+        if (keyResult.success) {
+            moonlabsAPIKey = keyResult.api_key;
+            moonlabsInitialized = true;
+            console.log('✅ MoonLabs initialized with API key from angelofwill database');
+            return {
+                success: true,
+                initialized: true,
+                source: 'angelofwill_database',
+                repository: 'angelofwill',
+                powered_by: 'ferguson-system'
+            };
+        } else {
+            console.warn('⚠️ MoonLabs API key not found, but system initialized');
+            return {
+                success: true,
+                initialized: false,
+                warning: 'API key not loaded',
+                error: keyResult.error
+            };
+        }
+    } catch (error) {
+        console.error('❌ MoonLabs initialization error:', error);
+        return {
+            success: false,
+            error: error.message
+        };
+    }
+}
+
+/**
+ * Create Fine-Tuning Job
+ */
+export async function createFineTuningJob(config) {
+    try {
+        if (!moonlabsInitialized) {
+            await initMoonLabs();
+        }
+        
+        if (!moonlabsAPIKey) {
+            const keyResult = await getKeyFromAngelofwill('moonlabs');
+            if (!keyResult.success) {
+                return {
+                    success: false,
+                    error: 'MoonLabs API key not available. Please save API key first.'
+                };
+            }
+            moonlabsAPIKey = keyResult.api_key;
+        }
+        
+        const response = await fetch(`${MOONLABS_CONFIG.api_endpoint}/fine-tune`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${moonlabsAPIKey}`
+            },
+            body: JSON.stringify(config)
+        });
+        
+        if (!response.ok) {
+            throw new Error(`MoonLabs API error: ${response.status} ${response.statusText}`);
+        }
+        
+        const data = await response.json();
+        return {
+            success: true,
+            job: data,
+            repository: 'angelofwill',
+            powered_by: 'ferguson-system'
+        };
+    } catch (error) {
+        console.error('❌ MoonLabs fine-tuning job creation error:', error);
+        return {
+            success: false,
+            error: error.message
+        };
+    }
+}
+
+/**
+ * Get Fine-Tuning Job Status
+ */
+export async function getFineTuningStatus(jobId) {
+    try {
+        if (!moonlabsAPIKey) {
+            const keyResult = await getKeyFromAngelofwill('moonlabs');
+            if (!keyResult.success) {
+                return {
+                    success: false,
+                    error: 'MoonLabs API key not available'
+                };
+            }
+            moonlabsAPIKey = keyResult.api_key;
+        }
+        
+        const response = await fetch(`${MOONLABS_CONFIG.api_endpoint}/fine-tune/${jobId}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${moonlabsAPIKey}`
+            }
+        });
+        
+        if (!response.ok) {
+            throw new Error(`MoonLabs API error: ${response.status} ${response.statusText}`);
+        }
+        
+        const data = await response.json();
+        return {
+            success: true,
+            job: data,
+            repository: 'angelofwill',
+            powered_by: 'ferguson-system'
+        };
+    } catch (error) {
+        console.error('❌ MoonLabs status check error:', error);
+        return {
+            success: false,
+            error: error.message
+        };
+    }
+}
+
+/**
+ * List Fine-Tuning Jobs
+ */
+export async function listFineTuningJobs() {
+    try {
+        if (!moonlabsAPIKey) {
+            const keyResult = await getKeyFromAngelofwill('moonlabs');
+            if (!keyResult.success) {
+                return {
+                    success: false,
+                    error: 'MoonLabs API key not available'
+                };
+            }
+            moonlabsAPIKey = keyResult.api_key;
+        }
+        
+        const response = await fetch(`${MOONLABS_CONFIG.api_endpoint}/fine-tune`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${moonlabsAPIKey}`
+            }
+        });
+        
+        if (!response.ok) {
+            throw new Error(`MoonLabs API error: ${response.status} ${response.statusText}`);
+        }
+        
+        const data = await response.json();
+        return {
+            success: true,
+            jobs: data,
+            repository: 'angelofwill',
+            powered_by: 'ferguson-system'
+        };
+    } catch (error) {
+        console.error('❌ MoonLabs list jobs error:', error);
+        return {
+            success: false,
+            error: error.message
+        };
+    }
+}
+
+/**
+ * Cancel Fine-Tuning Job
+ */
+export async function cancelFineTuningJob(jobId) {
+    try {
+        if (!moonlabsAPIKey) {
+            const keyResult = await getKeyFromAngelofwill('moonlabs');
+            if (!keyResult.success) {
+                return {
+                    success: false,
+                    error: 'MoonLabs API key not available'
+                };
+            }
+            moonlabsAPIKey = keyResult.api_key;
+        }
+        
+        const response = await fetch(`${MOONLABS_CONFIG.api_endpoint}/fine-tune/${jobId}/cancel`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${moonlabsAPIKey}`
+            }
+        });
+        
+        if (!response.ok) {
+            throw new Error(`MoonLabs API error: ${response.status} ${response.statusText}`);
+        }
+        
+        const data = await response.json();
+        return {
+            success: true,
+            job: data,
+            repository: 'angelofwill',
+            powered_by: 'ferguson-system'
+        };
+    } catch (error) {
+        console.error('❌ MoonLabs cancel job error:', error);
+        return {
+            success: false,
+            error: error.message
+        };
+    }
+}
+

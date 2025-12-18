@@ -1,0 +1,283 @@
+/**
+ * Volkov LLM Backend
+ * 
+ * Powered by Ferguson System Integration
+ * Uses angelofwill database (T10 CIA encryption)
+ * SEPARATE FROM WIX - Uses angelofwill repository only
+ */
+
+import { 
+    getKeyFromAngelofwill, 
+    saveKeyToAngelofwill, 
+    testKeyConnection,
+    initFergusonSystem 
+} from 'backend/ferguson-system-integration';
+
+// Volkov LLM Configuration
+const VOLKOV_CONFIG = {
+    model_name: 'volkov',
+    api_endpoint: 'https://api.volkov.ai/v1', // Update with actual endpoint
+    repository: 'angelofwill'
+};
+
+let volkovInitialized = false;
+let volkovAPIKey = null;
+
+/**
+ * Initialize Volkov LLM
+ * Powered by Ferguson System
+ */
+export async function initVolkov() {
+    try {
+        console.log('🚀 Initializing Volkov LLM (Ferguson System powered)...');
+        
+        // Initialize Ferguson System integration
+        await initFergusonSystem();
+        
+        // Load API key from angelofwill database
+        const keyResult = await getKeyFromAngelofwill('volkov');
+        if (keyResult.success) {
+            volkovAPIKey = keyResult.api_key;
+            volkovInitialized = true;
+            console.log('✅ Volkov LLM initialized with API key from angelofwill database');
+            return {
+                success: true,
+                initialized: true,
+                source: 'angelofwill_database',
+                repository: 'angelofwill',
+                powered_by: 'ferguson-system'
+            };
+        } else {
+            console.warn('⚠️ Volkov API key not found, but system initialized');
+            return {
+                success: true,
+                initialized: false,
+                warning: 'API key not loaded',
+                error: keyResult.error
+            };
+        }
+    } catch (error) {
+        console.error('❌ Volkov initialization error:', error);
+        return {
+            success: false,
+            error: error.message
+        };
+    }
+}
+
+/**
+ * Get Volkov API Key
+ * Retrieves from angelofwill database using Ferguson System
+ */
+export async function getVolkovAPIKey() {
+    try {
+        if (volkovAPIKey) {
+            return {
+                success: true,
+                api_key: volkovAPIKey,
+                source: 'cache',
+                repository: 'angelofwill'
+            };
+        }
+        
+        // Load from angelofwill database
+        const result = await getKeyFromAngelofwill('volkov');
+        if (result.success) {
+            volkovAPIKey = result.api_key;
+        }
+        return result;
+    } catch (error) {
+        return {
+            success: false,
+            error: error.message
+        };
+    }
+}
+
+/**
+ * Save Volkov API Key
+ * Saves to angelofwill database using Ferguson System
+ */
+export async function saveVolkovAPIKey(apiKey) {
+    try {
+        const result = await saveKeyToAngelofwill('volkov', apiKey);
+        if (result.success) {
+            volkovAPIKey = apiKey; // Cache the key
+            volkovInitialized = true;
+        }
+        return result;
+    } catch (error) {
+        return {
+            success: false,
+            error: error.message
+        };
+    }
+}
+
+/**
+ * Query Volkov LLM
+ */
+export async function queryVolkov(query, options = {}) {
+    try {
+        // Ensure initialized
+        if (!volkovInitialized) {
+            await initVolkov();
+        }
+        
+        // Get API key
+        const keyResult = await getVolkovAPIKey();
+        if (!keyResult.success || !keyResult.api_key) {
+            return {
+                success: false,
+                error: 'Volkov API key not available. Please save API key first.',
+                hint: 'Use saveVolkovAPIKey() or save via frontend'
+            };
+        }
+        
+        // Make API call to Volkov LLM
+        const response = await fetch(`${VOLKOV_CONFIG.api_endpoint}/chat/completions`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${keyResult.api_key}`
+            },
+            body: JSON.stringify({
+                model: VOLKOV_CONFIG.model_name,
+                messages: [
+                    {
+                        role: 'user',
+                        content: query
+                    }
+                ],
+                ...options
+            })
+        });
+        
+        if (!response.ok) {
+            throw new Error(`Volkov API error: ${response.status} ${response.statusText}`);
+        }
+        
+        const data = await response.json();
+        return {
+            success: true,
+            response: data,
+            model: VOLKOV_CONFIG.model_name,
+            repository: 'angelofwill',
+            powered_by: 'ferguson-system'
+        };
+    } catch (error) {
+        console.error('❌ Volkov query error:', error);
+        return {
+            success: false,
+            error: error.message
+        };
+    }
+}
+
+/**
+ * Get Volkov Model Info
+ */
+export async function getVolkovModelInfo() {
+    return {
+        success: true,
+        model: VOLKOV_CONFIG.model_name,
+        repository: 'angelofwill',
+        powered_by: 'ferguson-system',
+        initialized: volkovInitialized,
+        api_key_loaded: !!volkovAPIKey,
+        endpoint: VOLKOV_CONFIG.api_endpoint
+    };
+}
+
+/**
+ * HTTP GET Handler - For direct endpoint access
+ */
+export async function get(request) {
+    const action = request.query?.action || request.path?.split('?')[1]?.split('=')[1];
+    
+    switch (action) {
+        case 'getKey':
+        case 'getKeyFromDatabase':
+            return {
+                headers: { 'Content-Type': 'application/json' },
+                body: await getVolkovAPIKey()
+            };
+            
+        case 'status':
+        case 'info':
+            return {
+                headers: { 'Content-Type': 'application/json' },
+                body: await getVolkovModelInfo()
+            };
+            
+        case 'init':
+        case 'initialize':
+            return {
+                headers: { 'Content-Type': 'application/json' },
+                body: await initVolkov()
+            };
+            
+        default:
+            return {
+                status: 400,
+                headers: { 'Content-Type': 'application/json' },
+                body: {
+                    success: false,
+                    error: 'Invalid action',
+                    available_actions: ['getKey', 'getKeyFromDatabase', 'status', 'info', 'init', 'initialize']
+                }
+            };
+    }
+}
+
+/**
+ * HTTP POST Handler - For saving keys and queries
+ */
+export async function post(request) {
+    let body = {};
+    try {
+        if (typeof request.body === 'string') {
+            body = JSON.parse(request.body);
+        } else {
+            body = request.body || {};
+        }
+    } catch (e) {
+        body = {};
+    }
+    
+    const action = body.action || request.query?.action;
+    
+    switch (action) {
+        case 'saveKey':
+        case 'saveAPIKey':
+            return {
+                headers: { 'Content-Type': 'application/json' },
+                body: await saveVolkovAPIKey(body.api_key || body.key)
+            };
+            
+        case 'query':
+        case 'queryVolkov':
+            return {
+                headers: { 'Content-Type': 'application/json' },
+                body: await queryVolkov(body.query || body.text || body.message, body.options || {})
+            };
+            
+        case 'test':
+        case 'testKey':
+            return {
+                headers: { 'Content-Type': 'application/json' },
+                body: await testKeyConnection('volkov', body.api_key || volkovAPIKey)
+            };
+            
+        default:
+            return {
+                status: 400,
+                headers: { 'Content-Type': 'application/json' },
+                body: {
+                    success: false,
+                    error: 'Invalid action',
+                    available_actions: ['saveKey', 'saveAPIKey', 'query', 'queryVolkov', 'test', 'testKey']
+                }
+            };
+    }
+}

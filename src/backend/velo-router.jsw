@@ -19,8 +19,9 @@ import { onReady, cryptoButtonClick, fiatButtonClick, getCumulativeTotal } from 
 import { onReady as missionOnReady, handleUserInputDonation, goToCharterAfterPayment, getPrefill } from 'backend/mission-support-middleware';
 import { createNowPaymentsInvoice } from 'backend/nowpayments.api';
 import { getPublishableKey, createCheckoutSession } from 'backend/stripe.api';
-import { initVolkov, queryVolkov, getVolkovModelInfo } from 'backend/volkov-llm';
+import { initVolkov, queryVolkov, getVolkovModelInfo, getVolkovAPIKey, saveVolkovAPIKey } from 'backend/volkov-llm';
 import { initMoonLabs, createFineTuningJob, getFineTuningStatus, listFineTuningJobs, cancelFineTuningJob } from 'backend/moonlabs-finetuning';
+import { initFergusonSystem, getFergusonSystemStatus, getKeyFromAngelofwill, saveKeyToAngelofwill } from 'backend/ferguson-system-integration';
 
 /**
  * HTTP POST handler - Routes requests to appropriate functions
@@ -101,13 +102,15 @@ export async function post(request) {
             result = await routeVolkovLLM(functionName, { ...routeData, ...body });
         } else if (moduleName === 'moonlabs-finetuning') {
             result = await routeMoonLabsFineTuning(functionName, { ...routeData, ...body });
+        } else if (moduleName === 'ferguson-system') {
+            result = await routeFergusonSystem(functionName, { ...routeData, ...body });
         } else {
             return {
                 status: 404,
                 headers: { 'Content-Type': 'application/json' },
                 body: { 
                     success: false, 
-                    error: `Module '${moduleName}' not found. Available modules: charter-page-middleware, mission-support-middleware, nowpayments.api, stripe.api, hingecraft.api` 
+                    error: `Module '${moduleName}' not found. Available modules: charter-page-middleware, mission-support-middleware, nowpayments.api, stripe.api, hingecraft.api, volkov-llm, moonlabs-finetuning, ferguson-system` 
                 }
             };
         }
@@ -276,6 +279,19 @@ async function routeVolkovLLM(functionName, body) {
         case 'getVolkovModelInfo':
             return await getVolkovModelInfo();
             
+        case 'getKey':
+        case 'getKeyFromDatabase':
+        case 'getAPIKey':
+            return await getVolkovAPIKey();
+            
+        case 'saveKey':
+        case 'saveAPIKey':
+            const apiKey = body.api_key || body.key;
+            if (!apiKey) {
+                throw new Error('API key is required');
+            }
+            return await saveVolkovAPIKey(apiKey);
+            
         default:
             // Default to query if no function specified
             const defaultQuery = body.query || body.text || body.message || JSON.stringify(body);
@@ -321,6 +337,39 @@ async function routeMoonLabsFineTuning(functionName, body) {
         default:
             // Default to init if no function specified
             return await initMoonLabs();
+    }
+}
+
+/**
+ * Route Ferguson System functions
+ */
+async function routeFergusonSystem(functionName, body) {
+    switch (functionName) {
+        case 'init':
+        case 'initialize':
+        case 'initFergusonSystem':
+            return await initFergusonSystem();
+            
+        case 'status':
+        case 'getStatus':
+            return getFergusonSystemStatus();
+            
+        case 'getKey':
+        case 'getKeyFromAngelofwill':
+            const keyName = body.key_name || body.keyName || 'volkov';
+            return await getKeyFromAngelofwill(keyName);
+            
+        case 'saveKey':
+        case 'saveKeyToAngelofwill':
+            const saveKeyName = body.key_name || body.keyName || 'volkov';
+            const saveKey = body.api_key || body.key;
+            if (!saveKey) {
+                throw new Error('API key is required');
+            }
+            return await saveKeyToAngelofwill(saveKeyName, saveKey);
+            
+        default:
+            return getFergusonSystemStatus();
     }
 }
 
